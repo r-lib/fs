@@ -1,0 +1,13 @@
+PKG_LIBS = ./libuv/.libs/libuv.a
+
+PKG_CPPFLAGS = -I./libuv/include
+
+$(SHLIB): libuv/.libs/libuv.a
+
+libuv/Makefile:
+	(cd libuv && sh autogen.sh && ./configure)
+
+libuv/.libs/libuv.a: libuv/Makefile
+	$(MAKE) --directory=libuv \
+		CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" \
+		HAVE_DTRACE=0
