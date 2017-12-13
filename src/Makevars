@@ -11,3 +11,6 @@ libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
 		CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" \
 		HAVE_DTRACE=0
+
+clean:
+	$(MAKE) --directory=libuv clean
