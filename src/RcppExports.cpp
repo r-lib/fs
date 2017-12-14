@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// move_
+void move_(std::string path, std::string new_path);
+RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< std::string >::type new_path(new_pathSEXP);
+    move_(path, new_path);
+    return R_NilValue;
+END_RCPP
+}
 // realpath_
 std::string realpath_(std::string path);
 RcppExport SEXP _fs_realpath_(SEXP pathSEXP) {
@@ -14,17 +25,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
     rcpp_result_gen = Rcpp::wrap(realpath_(path));
     return rcpp_result_gen;
-END_RCPP
-}
-// rename_
-void rename_(std::string path, std::string new_path);
-RcppExport SEXP _fs_rename_(SEXP pathSEXP, SEXP new_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< std::string >::type new_path(new_pathSEXP);
-    rename_(path, new_path);
-    return R_NilValue;
 END_RCPP
 }
 // close_uv_
@@ -38,8 +38,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_realpath_", (DL_FUNC) &_fs_realpath_, 1},
-    {"_fs_rename_", (DL_FUNC) &_fs_rename_, 2},
     {"_fs_close_uv_", (DL_FUNC) &_fs_close_uv_, 0},
     {NULL, NULL, 0}
 };

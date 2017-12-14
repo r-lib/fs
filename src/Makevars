@@ -1,4 +1,4 @@
-PKG_LIBS = ./libuv/.libs/libuv.a
+PKG_LIBS = libuv/.libs/libuv.a
 
 PKG_CPPFLAGS = -I./libuv/include
 

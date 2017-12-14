@@ -24,3 +24,9 @@ URL: https://github.com/jimhester/fs
 BugReports: https://github.com/jimhester/fs/issues
 Suggests: 
     testthat
+Collate: 
+    'RcppExports.R'
+    'file.R'
+    'dir.R'
+    'package.R'
+    'path.R'
