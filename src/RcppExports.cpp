@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// realpath_
+std::string realpath_(std::string path);
+RcppExport SEXP _fileuv_realpath_(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(realpath_(path));
+    return rcpp_result_gen;
+END_RCPP
+}
 // file_rename_
 void file_rename_(std::string path, std::string new_path);
 RcppExport SEXP _fileuv_file_rename_(SEXP pathSEXP, SEXP new_pathSEXP) {
@@ -18,6 +29,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_fileuv_realpath_", (DL_FUNC) &_fileuv_realpath_, 1},
     {"_fileuv_file_rename_", (DL_FUNC) &_fileuv_file_rename_, 2},
     {NULL, NULL, 0}
 };
