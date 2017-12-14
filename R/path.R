@@ -26,7 +26,19 @@ path_expand <- function(path) {
 }
 
 #' Provide the path to the users home directory
+#' @template fs
 #' @export
 path_home <- function() {
   enc2utf8(path.expand("~"))
+}
+
+#' Split a path into components
+#' @template fs
+#' @export
+path_split <- function(path) {
+  path <- enc2utf8(path)
+
+  path <- path_norm(path)
+
+  strsplit(path_norm(path), "/+")[[1]]
 }
