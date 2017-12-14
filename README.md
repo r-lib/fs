@@ -18,8 +18,8 @@ devtools::install_github("jimhester/fs")
 fs functions always convert the input paths to UTF-8 and return results as
 UTF-8 encoded paths. This gives you path encoding consistency across OSs.
 
-All fs functions are vectorized. They accept one or more input vectors and
-return equivalent vectors as outputs.
+All fs functions are vectorized. They accept character vectors as input and
+return equivalent character vectors as outputs.
 
 fs functions use a consistent naming convention. Because base R's functions
 were gradually added over time there are a number of different conventions used
