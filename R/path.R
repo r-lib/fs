@@ -4,7 +4,7 @@
 #' @param ... character vectors
 #' @seealso [base::file.path()]
 path <- function(...) {
-  enc2utf8(file.path(..., "/"))
+  enc2utf8(file.path(..., fsep = "/"))
 }
 
 #' Return the canonicalized absolute pathname
