@@ -1,12 +1,18 @@
 Package: fileuv
 Title: Provide cross platform file operations based on libuv <https://libuv.org>
 Version: 0.0.0.9000
-Authors@R: person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+    person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre")),
+    person("libuv project contributors", role = "cph", comment = "libuv library"),
+    person("Joyent, Inc. and other Node contributors", role = "cph", comment = "libuv library"),
+    person("RStudio", role = c("cph", "fnd"))
+    )
 Description: Provide cross platform file operations based on libuv <https://libuv.org>.
 Depends: R (>= 3.4.2)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+ByteCompile: true
 LinkingTo: 
     Rcpp
 Imports: 
