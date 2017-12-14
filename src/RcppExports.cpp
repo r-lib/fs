@@ -17,12 +17,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // realpath_
-std::string realpath_(std::string path);
+CharacterVector realpath_(CharacterVector path);
 RcppExport SEXP _fs_realpath_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
     rcpp_result_gen = Rcpp::wrap(realpath_(path));
     return rcpp_result_gen;
 END_RCPP
