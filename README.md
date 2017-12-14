@@ -1,6 +1,7 @@
 # fs
 [![Travis build status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
-
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+ 
 The goal of fs is to provide a uniform interface to file operations using [libuv](http://libuv.org/). libuv is used widely in the javascript community underneath [nodejs](https://nodejs.org), so the code is tested by a large community on diverse systems.
 
 ## Installation
@@ -27,7 +28,7 @@ devtools::install_github("r-lib/fs")
   used (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs 
   `file.access())`.
 
-## Example
+## Usage
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -37,7 +38,9 @@ fs_rename("test", "test2")
 readLines("test2")
 ```
 
-## Path functions
+Functions are divided into four main categories: manipulating paths, files, directories, and links.
+
+### Path functions
 
 - `path()` - constructs a new path
 - `path_expand()` - expand `~` in a path
