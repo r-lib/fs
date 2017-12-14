@@ -1,3 +1,11 @@
+#' Construct path to a file or directory
+#'
+#' @param ... character vectors
+#' @seealso [base::file.path()]
+path <- function(...) {
+  enc2utf8(file.path(..., "/"))
+}
+
 #' Return the canonicalized absolute pathname
 #'
 #' This is functionally equivalent to [base::normalizePath()].
