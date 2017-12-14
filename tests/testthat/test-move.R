@@ -8,7 +8,7 @@ describe("fs_move", {
     expect_true(file.exists(file))
     expect_false(file.exists(file2))
 
-    fs_move(file, file2)
+    file_move(file, file2)
     expect_false(file.exists(file))
     expect_true(file.exists(file2))
   })
