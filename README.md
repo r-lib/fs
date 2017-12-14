@@ -1,12 +1,11 @@
 # fs
 [![Travis build status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
 
-The goal of fs is to provide a uniform interface to cross platform file operations using [libuv](http://libuv.org/).
+The goal of fs is to provide a uniform interface to file operations using [libuv](http://libuv.org/). libuv is used widely in the javascript community underneath [nodejs](https://nodejs.org), so the code is tested by a large community on diverse systems.
 
 ## Installation
 
 You can install fs from github with:
-
 
 ``` r
 # install.packages("devtools")
@@ -15,20 +14,18 @@ devtools::install_github("r-lib/fs")
 
 ## Motivation vs base equivalents
 
-fs functions always convert the input paths to UTF-8 and return results as
-UTF-8 encoded paths. This gives you path encoding consistency across OSs.
+* All fs functions are vectorized. They accept character vectors as input and
+  return a character vector of paths as outputs.
 
-All fs functions are vectorized. They accept character vectors as input and
-return equivalent character vectors as outputs.
+* If an operation fails, fs throws an error.
 
-fs functions use a consistent naming convention. Because base R's functions
-were gradually added over time there are a number of different conventions used
-across a handful of different packages, which makes function discovery more
-difficult.
+* fs functions always convert the input paths to UTF-8 and return results as
+  UTF-8 encoded paths. This gives you path encoding consistency across OSs.
 
-libuv is used widely in the javascript community underneath
-[nodejs](https://nodejs.org), so the code is tested by a large community on
-diverse systems.
+* fs functions use a consistent naming convention. Because base R's functions
+  were gradually added over time there are a number of different conventions 
+  used (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs 
+  `file.access())`.
 
 ## Example
 
