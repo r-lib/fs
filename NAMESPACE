@@ -3,6 +3,7 @@
 export(dir_move)
 export(file_move)
 export(path_expand)
+export(path_home)
 export(path_norm)
 importFrom(Rcpp,sourceCpp)
 useDynLib(fs, .registration = TRUE)

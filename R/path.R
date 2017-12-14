@@ -24,3 +24,9 @@ path_expand <- function(path) {
 
   enc2utf8(path.expand(path))
 }
+
+#' Provide the path to the users home directory
+#' @export
+path_home <- function() {
+  enc2utf8(path.expand("~"))
+}

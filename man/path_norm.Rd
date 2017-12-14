@@ -11,6 +11,8 @@ path_norm(path)
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 }
 \value{
+\code{[character()]}\cr UTF-8 encoded path.
+
 \code{[character(1)]} the fully resolved path.
 }
 \description{
