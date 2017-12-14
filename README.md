@@ -39,3 +39,12 @@ cat(file = "test", "hi")
 fs_rename("test", "test2")
 readLines("test2")
 ```
+
+## Path functions
+
+- `path()` - constructs a new path
+- `path_expand()` - expand `~` in a path
+- `path_home()` - home directory path
+- `path_norm()` - normalizes a path
+- `path_split()` - split a path into components
+- `path_temp()` - temporary directory path
