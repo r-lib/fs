@@ -1,5 +1,6 @@
 #' Construct path to a file or directory
 #'
+#' @template fs
 #' @param ... character vectors
 #' @seealso [base::file.path()]
 path <- function(...) {
@@ -24,6 +25,7 @@ path_norm <- function(path) {
 #' Perform tilde expansion of a pathname
 #'
 #' equivalent to [base::path.expand]
+#' @template fs
 #' @export
 # TODO: so far it looks like libuv does not provide a cross platform version of
 # this https://github.com/libuv/libuv/issues/11
@@ -34,7 +36,6 @@ path_expand <- function(path) {
 }
 
 #' Provide the path to the users home directory
-#' @template fs
 #' @export
 path_home <- function() {
   enc2utf8(path.expand("~"))
@@ -54,7 +55,6 @@ path_split <- function(path) {
 #' Path to sessions temporary directory
 #'
 #' Analogous to [base::tempdir()].
-#' @template fs
 #' @export
 path_temp <- function() {
   enc2utf8(tempdir())

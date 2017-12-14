@@ -3,3 +3,4 @@
 ^src/libuv/\.mailmap$
 ^src/libuv/m4/lt~obsolete\.m4$
 ^LICENSE\.md$
+^man-roxygen$

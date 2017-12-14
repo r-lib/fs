@@ -8,6 +8,11 @@ path(...)
 }
 \arguments{
 \item{...}{character vectors}
+
+\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+}
+\value{
+\code{[character()]}\cr UTF-8 encoded path.
 }
 \description{
 Construct path to a file or directory
