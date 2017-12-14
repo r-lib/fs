@@ -3,7 +3,7 @@
 #' @param path file path
 #' @param new_path new file path
 #' @export
-fs_rename <- function(path, new_path) {
+fs_move <- function(path, new_path) {
   path <- enc2utf8(path)
   new_path <- enc2utf8(new_path)
 
