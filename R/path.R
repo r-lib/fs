@@ -42,3 +42,12 @@ path_split <- function(path) {
 
   strsplit(path_norm(path), "/+")[[1]]
 }
+
+#' Path to sessions temporary directory
+#'
+#' Analogous to [base::tempdir()].
+#' @template fs
+#' @export
+path_temp <- function() {
+  enc2utf8(tempdir())
+}
