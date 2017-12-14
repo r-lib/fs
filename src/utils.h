@@ -5,8 +5,7 @@
 
 using namespace Rcpp;
 
-#define check_for_error(X)        \
-  int err = (X);                  \
-  if (err < 0) {                  \
-    Rcpp::stop(uv_strerror(err)); \
+#define stop_for_error(file, err)                   \
+  if (err < 0) {                                    \
+    Rcpp::stop("'%s': %s", file, uv_strerror(err)); \
   }
