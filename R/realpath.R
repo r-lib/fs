@@ -2,7 +2,7 @@
 #'
 #' This is functionally equivalent to [base::normalizePath()].
 #'
-#' @template fileuv
+#' @template fs
 #' @return `[character(1)]` the fully resolved path.
 #' @aliases dir_realpath
 #' @export

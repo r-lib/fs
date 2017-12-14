@@ -1,17 +1,34 @@
-# fileuv
-[![Travis build status](https://travis-ci.org/jimhester/fileuv.svg?branch=master)](https://travis-ci.org/jimhester/fileuv)
+# fs
+[![Travis build status](https://travis-ci.org/jimhester/fs.svg?branch=master)](https://travis-ci.org/jimhester/fs)
 
-The goal of fileuv is to provide a uniform interface to cross platform file operations using [libuv](http://libuv.org/).
+The goal of fs is to provide a uniform interface to cross platform file operations using [libuv](http://libuv.org/).
 
 ## Installation
 
-You can install fileuv from github with:
+You can install fs from github with:
 
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jimhester/fileuv")
+devtools::install_github("jimhester/fs")
 ```
+
+## Motivation vs base equivalents
+
+fs functions always convert the input paths to UTF-8 and return results as
+UTF-8 encoded paths. This gives you path encoding consistency across OSs.
+
+All fs functions are vectorized. They accept one or more input vectors and
+return equivalent vectors as outputs.
+
+fs functions use a consistent naming convention. Because base R's functions
+were gradually added over time there are a number of different conventions used
+across a handful of different packages, which makes function discovery more
+difficult.
+
+libuv is used widely in the javascript community underneath
+[nodejs](https://nodejs.org), so the code is tested by a large community on
+diverse systems.
 
 ## Example
 

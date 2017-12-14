@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // realpath_
 std::string realpath_(std::string path);
-RcppExport SEXP _fileuv_realpath_(SEXP pathSEXP) {
+RcppExport SEXP _fs_realpath_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // rename_
 void rename_(std::string path, std::string new_path);
-RcppExport SEXP _fileuv_rename_(SEXP pathSEXP, SEXP new_pathSEXP) {
+RcppExport SEXP _fs_rename_(SEXP pathSEXP, SEXP new_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
@@ -29,12 +29,12 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_fileuv_realpath_", (DL_FUNC) &_fileuv_realpath_, 1},
-    {"_fileuv_rename_", (DL_FUNC) &_fileuv_rename_, 2},
+    {"_fs_realpath_", (DL_FUNC) &_fs_realpath_, 1},
+    {"_fs_rename_", (DL_FUNC) &_fs_rename_, 2},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_fileuv(DllInfo *dll) {
+RcppExport void R_init_fs(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

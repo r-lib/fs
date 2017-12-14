@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 realpath_ <- function(path) {
-    .Call(`_fileuv_realpath_`, path)
+    .Call(`_fs_realpath_`, path)
 }
 
 rename_ <- function(path, new_path) {
-    invisible(.Call(`_fileuv_rename_`, path, new_path))
+    invisible(.Call(`_fs_rename_`, path, new_path))
 }
 

@@ -1,4 +1,4 @@
 library(testthat)
-library(fileuv)
+library(fs)
 
-test_check("fileuv")
+test_check("fs")

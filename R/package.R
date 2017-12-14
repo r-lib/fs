@@ -1,3 +1,3 @@
-#' @useDynLib fileuv, .registration = TRUE
+#' @useDynLib fs, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 NULL
