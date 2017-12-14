@@ -1,5 +1,5 @@
 # fs
-[![Travis build status](https://travis-ci.org/jimhester/fs.svg?branch=master)](https://travis-ci.org/jimhester/fs)
+[![Travis build status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
 
 The goal of fs is to provide a uniform interface to cross platform file operations using [libuv](http://libuv.org/).
 
@@ -10,7 +10,7 @@ You can install fs from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jimhester/fs")
+devtools::install_github("r-lib/fs")
 ```
 
 ## Motivation vs base equivalents
