@@ -9,3 +9,7 @@ rename_ <- function(path, new_path) {
     invisible(.Call(`_fs_rename_`, path, new_path))
 }
 
+close_uv_ <- function() {
+    invisible(.Call(`_fs_close_uv_`))
+}
+

@@ -27,10 +27,20 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// close_uv_
+void close_uv_();
+RcppExport SEXP _fs_close_uv_() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    close_uv_();
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_realpath_", (DL_FUNC) &_fs_realpath_, 1},
     {"_fs_rename_", (DL_FUNC) &_fs_rename_, 2},
+    {"_fs_close_uv_", (DL_FUNC) &_fs_close_uv_, 0},
     {NULL, NULL, 0}
 };
 
