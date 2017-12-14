@@ -2,7 +2,7 @@
 #'
 #' equivalent to [base::path.expand]
 #' @export
-file_expand <- function(path) {
+fs_expand <- function(path) {
   enc2utf8(path.expand(enc2utf8(path)))
 }
 

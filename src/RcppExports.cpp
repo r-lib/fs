@@ -16,21 +16,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// file_rename_
-void file_rename_(std::string path, std::string new_path);
-RcppExport SEXP _fileuv_file_rename_(SEXP pathSEXP, SEXP new_pathSEXP) {
+// rename_
+void rename_(std::string path, std::string new_path);
+RcppExport SEXP _fileuv_rename_(SEXP pathSEXP, SEXP new_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
     Rcpp::traits::input_parameter< std::string >::type new_path(new_pathSEXP);
-    file_rename_(path, new_path);
+    rename_(path, new_path);
     return R_NilValue;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fileuv_realpath_", (DL_FUNC) &_fileuv_realpath_, 1},
-    {"_fileuv_file_rename_", (DL_FUNC) &_fileuv_file_rename_, 2},
+    {"_fileuv_rename_", (DL_FUNC) &_fileuv_rename_, 2},
     {NULL, NULL, 0}
 };
 

@@ -19,6 +19,6 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 cat(file = "test", "hi")
-file_rename("test", "test2")
+fs_rename("test", "test2")
 readLines("test2")
 ```

@@ -6,9 +6,6 @@
 #' @return `[character(1)]` the fully resolved path.
 #' @aliases dir_realpath
 #' @export
-file_realpath <- function(path) {
-  realpath_(file_expand(path))
+fs_realpath <- function(path) {
+  realpath_(fs_expand(path))
 }
-
-#' @export
-dir_realpath <- file_realpath

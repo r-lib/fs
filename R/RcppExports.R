@@ -5,7 +5,7 @@ realpath_ <- function(path) {
     .Call(`_fileuv_realpath_`, path)
 }
 
-file_rename_ <- function(path, new_path) {
-    invisible(.Call(`_fileuv_file_rename_`, path, new_path))
+rename_ <- function(path, new_path) {
+    invisible(.Call(`_fileuv_rename_`, path, new_path))
 }
 
