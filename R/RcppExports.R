@@ -13,11 +13,7 @@ exists_ <- function(path) {
     .Call(`_fs_exists_`, path)
 }
 
-realpath_ <- function(path) {
-    .Call(`_fs_realpath_`, path)
-}
-
-close_uv_ <- function() {
-    invisible(.Call(`_fs_close_uv_`))
+normalize_ <- function(path) {
+    .Call(`_fs_normalize_`, path)
 }
 

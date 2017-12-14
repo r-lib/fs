@@ -18,7 +18,7 @@ path <- function(...) {
 path_norm <- function(path) {
   path <- enc2utf8(path)
 
-  realpath_(path_expand(path))
+  normalize_(path_expand(path))
 }
 
 

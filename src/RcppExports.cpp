@@ -38,24 +38,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// realpath_
-CharacterVector realpath_(CharacterVector path);
-RcppExport SEXP _fs_realpath_(SEXP pathSEXP) {
+// normalize_
+CharacterVector normalize_(CharacterVector path);
+RcppExport SEXP _fs_normalize_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(realpath_(path));
+    rcpp_result_gen = Rcpp::wrap(normalize_(path));
     return rcpp_result_gen;
-END_RCPP
-}
-// close_uv_
-void close_uv_();
-RcppExport SEXP _fs_close_uv_() {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    close_uv_();
-    return R_NilValue;
 END_RCPP
 }
 
@@ -63,8 +54,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
     {"_fs_exists_", (DL_FUNC) &_fs_exists_, 1},
-    {"_fs_realpath_", (DL_FUNC) &_fs_realpath_, 1},
-    {"_fs_close_uv_", (DL_FUNC) &_fs_close_uv_, 0},
+    {"_fs_normalize_", (DL_FUNC) &_fs_normalize_, 1},
     {NULL, NULL, 0}
 };
 
