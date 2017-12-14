@@ -6,12 +6,12 @@
 using namespace Rcpp;
 
 // move_
-void move_(std::string path, std::string new_path);
+void move_(CharacterVector path, CharacterVector new_path);
 RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< std::string >::type new_path(new_pathSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
     move_(path, new_path);
     return R_NilValue;
 END_RCPP
