@@ -1,1 +1,4 @@
 ^\.travis\.yml$
+^src/libuv/\.github$
+^src/libuv/\.mailmap$
+^src/libuv/m4/lt~obsolete\.m4$

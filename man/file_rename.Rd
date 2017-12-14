@@ -9,7 +9,7 @@ file_rename(path, new_path)
 \arguments{
 \item{path}{file path}
 
-\item{path}{new file path}
+\item{new_path}{new file path}
 }
 \description{
 Rename a file
