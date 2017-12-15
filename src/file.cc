@@ -18,7 +18,10 @@ void move_(CharacterVector path, CharacterVector new_path) {
 }
 
 // [[Rcpp::export]]
-void create_(CharacterVector path, int mode) {
+void create_(CharacterVector path, std::string mode_str) {
+  void* out = setmode(mode_str.c_str());
+  mode_t mode = getmode(out, 0);
+
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t file_req;
     const char* p = CHAR(STRING_ELT(path, i));

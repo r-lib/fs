@@ -17,13 +17,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // create_
-void create_(CharacterVector path, int mode);
-RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP modeSEXP) {
+void create_(CharacterVector path, std::string mode_str);
+RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP mode_strSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< int >::type mode(modeSEXP);
-    create_(path, mode);
+    Rcpp::traits::input_parameter< std::string >::type mode_str(mode_strSEXP);
+    create_(path, mode_str);
     return R_NilValue;
 END_RCPP
 }

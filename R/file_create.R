@@ -9,7 +9,6 @@
 #' x <- file_create(tempfile())
 #' x
 file_create <- function(path, mode = "0700") {
-  mode <- as.octmode(mode)
   stopifnot(length(mode) == 1)
 
   path <- enc2utf8(path)

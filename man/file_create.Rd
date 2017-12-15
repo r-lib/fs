@@ -11,9 +11,6 @@ file_create(path, mode = "0700")
 
 \item{mode}{If file is created, what mode should it have?}
 }
-\value{
-\code{[character()]}\cr UTF-8 encoded path.
-}
 \description{
 Unlike \code{\link[=file.create]{file.create()}}, will not truncate an existing file.
 }

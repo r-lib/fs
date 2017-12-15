@@ -5,8 +5,12 @@ move_ <- function(path, new_path) {
     invisible(.Call(`_fs_move_`, path, new_path))
 }
 
-create_ <- function(path, mode) {
-    invisible(.Call(`_fs_create_`, path, mode))
+create_ <- function(path, mode_str) {
+    invisible(.Call(`_fs_create_`, path, mode_str))
+}
+
+stat_ <- function(path) {
+    .Call(`_fs_stat_`, path)
 }
 
 access_ <- function(path, mode) {
