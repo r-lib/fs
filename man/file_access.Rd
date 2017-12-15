@@ -13,8 +13,6 @@ file_access(path, mode = "exists")
 'write', 'execute'.}
 }
 \value{
-\code{[character()]}\cr UTF-8 encoded path.
-
 A logical vector
 }
 \description{

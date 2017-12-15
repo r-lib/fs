@@ -11,9 +11,6 @@ file_move(path, new_path)
 
 \item{new_path}{new file path}
 }
-\value{
-\code{[character()]}\cr UTF-8 encoded path.
-}
 \description{
 Rename a file
 }

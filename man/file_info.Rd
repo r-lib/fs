@@ -10,8 +10,6 @@ file_info(path)
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 }
 \value{
-\code{[character()]}\cr UTF-8 encoded path.
-
 A tibble with metadata for each file
 }
 \description{
