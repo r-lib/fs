@@ -12,3 +12,17 @@ file_chmod(path, mode)
 \description{
 Change file permissions
 }
+\examples{
+x <- file_create(tempfile(), "000")
+file_chmod(x, "777")
+file_info(x)$permissions
+
+file_chmod(x, "u-x")
+file_info(x)$permissions
+
+file_chmod(x, "a-wrx")
+file_info(x)$permissions
+
+file_chmod(x, "ug+wr")
+file_info(x)$permissions
+}
