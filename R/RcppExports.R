@@ -13,6 +13,14 @@ access_ <- function(path, mode) {
     .Call(`_fs_access_`, path, mode)
 }
 
+getmode_ <- function(mode) {
+    .Call(`_fs_getmode_`, mode)
+}
+
+strmode_ <- function(mode) {
+    .Call(`_fs_strmode_`, mode)
+}
+
 normalize_ <- function(path) {
     .Call(`_fs_normalize_`, path)
 }

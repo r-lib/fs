@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include "Rcpp.h"
 #include "utils.h"
 #include "uv.h"
@@ -32,6 +33,7 @@ void create_(CharacterVector path, int mode) {
   }
 }
 
+// [[Rcpp::export]]
 List stat_(CharacterVector path) {
   // typedef struct {
   //  uint64_t st_dev;
@@ -67,7 +69,7 @@ List stat_(CharacterVector path) {
 
   SET_STRING_ELT(names, 3, Rf_mkChar("permissions"));
   SET_VECTOR_ELT(out, 3, Rf_allocVector(INTSXP, n));
-  Rf_classgets(VECTOR_ELT(out, 3), Rf_mkString("octmode"));
+  Rf_classgets(VECTOR_ELT(out, 3), Rf_mkString("fmode"));
 
   SET_STRING_ELT(names, 4, Rf_mkChar("hard_links"));
   SET_VECTOR_ELT(out, 4, Rf_allocVector(REALSXP, n));
@@ -189,4 +191,16 @@ LogicalVector access_(CharacterVector path, int mode) {
     uv_fs_req_cleanup(&file_req);
   }
   return out;
+}
+
+// [[Rcpp::export]]
+int getmode_(std::string mode) { return getmode(setmode(mode.c_str()), 0); }
+
+// [[Rcpp::export]]
+std::string strmode_(int mode) {
+  char out[12];
+  strmode(mode, out);
+
+  // The first character is the file type, so we do not return it.
+  return out + 1;
 }
