@@ -6,11 +6,11 @@ describe("fs_move", {
     file2 <- tempfile()
 
     file_create(file)
-    expect_true(file.exists(file))
-    expect_false(file.exists(file2))
+    expect_true(file_exists(file))
+    expect_false(file_exists(file2))
 
     file_move(file, file2)
-    expect_false(file.exists(file))
-    expect_true(file.exists(file2))
+    expect_false(file_exists(file))
+    expect_true(file_exists(file2))
   })
 })

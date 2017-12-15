@@ -27,6 +27,17 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// exists_
+LogicalVector exists_(CharacterVector path);
+RcppExport SEXP _fs_exists_(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(exists_(path));
+    return rcpp_result_gen;
+END_RCPP
+}
 // realpath_
 CharacterVector realpath_(CharacterVector path);
 RcppExport SEXP _fs_realpath_(SEXP pathSEXP) {
@@ -51,6 +62,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
+    {"_fs_exists_", (DL_FUNC) &_fs_exists_, 1},
     {"_fs_realpath_", (DL_FUNC) &_fs_realpath_, 1},
     {"_fs_close_uv_", (DL_FUNC) &_fs_close_uv_, 0},
     {NULL, NULL, 0}

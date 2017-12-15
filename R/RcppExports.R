@@ -9,6 +9,10 @@ create_ <- function(path, mode) {
     invisible(.Call(`_fs_create_`, path, mode))
 }
 
+exists_ <- function(path) {
+    .Call(`_fs_exists_`, path)
+}
+
 realpath_ <- function(path) {
     .Call(`_fs_realpath_`, path)
 }
