@@ -26,7 +26,7 @@ devtools::install_github("r-lib/fs")
 * fs functions use a consistent naming convention. Because base R's functions
   were gradually added over time there are a number of different conventions 
   used (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs 
-  `file.access())`.
+  `file.access()`).
 
 ## Usage
 
