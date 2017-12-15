@@ -1,4 +1,3 @@
-#include <unistd.h>
 #include "Rcpp.h"
 #include "utils.h"
 #include "uv.h"
@@ -31,22 +30,6 @@ void create_(CharacterVector path, int mode) {
 
     uv_fs_req_cleanup(&file_req);
   }
-}
-
-// [[Rcpp::export]]
-LogicalVector exists_(CharacterVector path) {
-  size_t n = Rf_xlength(path);
-
-  LogicalVector out(n);
-
-  uv_fs_t file_req;
-  for (size_t i = 0; i < n; ++i) {
-    const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_access(uv_default_loop(), &file_req, p, F_OK, NULL);
-    out[i] = (res == 0);
-  }
-  uv_fs_req_cleanup(&file_req);
-  return out;
 }
 
 List stat_(CharacterVector path) {

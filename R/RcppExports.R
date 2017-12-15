@@ -9,10 +9,6 @@ create_ <- function(path, mode) {
     invisible(.Call(`_fs_create_`, path, mode))
 }
 
-exists_ <- function(path) {
-    .Call(`_fs_exists_`, path)
-}
-
 access_ <- function(path, mode) {
     .Call(`_fs_access_`, path, mode)
 }
