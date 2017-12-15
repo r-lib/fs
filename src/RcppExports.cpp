@@ -16,6 +16,17 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// create_
+void create_(CharacterVector path, int mode);
+RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP modeSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< int >::type mode(modeSEXP);
+    create_(path, mode);
+    return R_NilValue;
+END_RCPP
+}
 // realpath_
 CharacterVector realpath_(CharacterVector path);
 RcppExport SEXP _fs_realpath_(SEXP pathSEXP) {
@@ -39,6 +50,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
+    {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
     {"_fs_realpath_", (DL_FUNC) &_fs_realpath_, 1},
     {"_fs_close_uv_", (DL_FUNC) &_fs_close_uv_, 0},
     {NULL, NULL, 0}

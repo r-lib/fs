@@ -5,6 +5,10 @@ move_ <- function(path, new_path) {
     invisible(.Call(`_fs_move_`, path, new_path))
 }
 
+create_ <- function(path, mode) {
+    invisible(.Call(`_fs_create_`, path, mode))
+}
+
 realpath_ <- function(path) {
     .Call(`_fs_realpath_`, path)
 }

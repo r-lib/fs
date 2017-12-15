@@ -28,5 +28,6 @@ Collate:
     'RcppExports.R'
     'file.R'
     'dir.R'
+    'file_create.R'
     'package.R'
     'path.R'

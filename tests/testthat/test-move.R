@@ -4,7 +4,8 @@ describe("fs_move", {
   it("works with an empty file", {
     file <- tempfile()
     file2 <- tempfile()
-    cat(file = file)
+
+    file_create(file)
     expect_true(file.exists(file))
     expect_false(file.exists(file2))
 
