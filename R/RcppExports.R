@@ -13,6 +13,10 @@ exists_ <- function(path) {
     .Call(`_fs_exists_`, path)
 }
 
+access_ <- function(path, mode) {
+    .Call(`_fs_access_`, path, mode)
+}
+
 normalize_ <- function(path) {
     .Call(`_fs_normalize_`, path)
 }

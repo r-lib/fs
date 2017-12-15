@@ -192,3 +192,18 @@ List stat_(CharacterVector path) {
   Rf_setAttrib(out, R_NamesSymbol, names);
   return out;
 }
+
+// [[Rcpp::export]]
+LogicalVector access_(CharacterVector path, int mode) {
+  LogicalVector out = LogicalVector(Rf_xlength(path));
+  Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path));
+
+  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+    uv_fs_t file_req;
+    const char* p = CHAR(STRING_ELT(path, i));
+    int res = uv_fs_access(uv_default_loop(), &file_req, p, mode, NULL);
+    LOGICAL(out)[i] = res == 0;
+    uv_fs_req_cleanup(&file_req);
+  }
+  return out;
+}

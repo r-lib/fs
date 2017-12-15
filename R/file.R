@@ -38,3 +38,18 @@ file_info <- function(path) {
 
   as_tibble(res)
 }
+
+access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
+
+#' Query files for access permissions
+#' @template fs
+#' @param mode A character vector containing one or more of 'exists', 'read',
+#'   'write', 'execute'.
+#' @return A logical vector
+file_access <- function(path, mode = "exists") {
+  path <- path_expand(path)
+  mode <- match.arg(mode, names(access_types), several.ok = TRUE)
+  mode <- sum(access_types[mode])
+
+  access_(path, mode)
+}
