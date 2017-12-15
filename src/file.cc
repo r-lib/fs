@@ -194,6 +194,25 @@ LogicalVector access_(CharacterVector path, int mode) {
 }
 
 // [[Rcpp::export]]
+void chmod_(CharacterVector path, std::string mode_str) {
+  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+    uv_fs_t req;
+    const char* p = CHAR(STRING_ELT(path, i));
+    int res = uv_fs_lstat(uv_default_loop(), &req, p, NULL);
+    stop_for_error("Failed to stat", p, res);
+    uv_stat_t st = req.statbuf;
+    uv_fs_req_cleanup(&req);
+
+    uv_fs_t req2;
+    void* out = setmode(mode_str.c_str());
+    mode_t mode = getmode(out, st.st_mode);
+    int res2 = uv_fs_chmod(uv_default_loop(), &req2, p, mode, NULL);
+    stop_for_error("Failed to chmod", p, res2);
+    uv_fs_req_cleanup(&req2);
+  }
+}
+
+// [[Rcpp::export]]
 int getmode_(std::string mode) { return getmode(setmode(mode.c_str()), 0); }
 
 // [[Rcpp::export]]

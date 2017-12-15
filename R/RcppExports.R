@@ -13,6 +13,10 @@ access_ <- function(path, mode) {
     .Call(`_fs_access_`, path, mode)
 }
 
+chmod_ <- function(path, mode_str) {
+    invisible(.Call(`_fs_chmod_`, path, mode_str))
+}
+
 getmode_ <- function(mode) {
     .Call(`_fs_getmode_`, mode)
 }

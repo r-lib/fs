@@ -53,3 +53,13 @@ file_access <- function(path, mode = "exists") {
 
   access_(path, mode)
 }
+
+#' Change file permissions
+#' @template fs
+#' @param mode
+file_chmod <- function(path, mode) {
+  stopifnot(length(mode) == 1)
+  chmod_(path_expand(path), mode)
+
+  invisible(path)
+}

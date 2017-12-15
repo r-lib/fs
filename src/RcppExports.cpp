@@ -27,6 +27,17 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// stat_
+List stat_(CharacterVector path);
+RcppExport SEXP _fs_stat_(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(stat_(path));
+    return rcpp_result_gen;
+END_RCPP
+}
 // access_
 LogicalVector access_(CharacterVector path, int mode);
 RcppExport SEXP _fs_access_(SEXP pathSEXP, SEXP modeSEXP) {
@@ -37,6 +48,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type mode(modeSEXP);
     rcpp_result_gen = Rcpp::wrap(access_(path, mode));
     return rcpp_result_gen;
+END_RCPP
+}
+// chmod_
+void chmod_(CharacterVector path, std::string mode_str);
+RcppExport SEXP _fs_chmod_(SEXP pathSEXP, SEXP mode_strSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< std::string >::type mode_str(mode_strSEXP);
+    chmod_(path, mode_str);
+    return R_NilValue;
 END_RCPP
 }
 // getmode_
@@ -76,7 +98,9 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
+    {"_fs_stat_", (DL_FUNC) &_fs_stat_, 1},
     {"_fs_access_", (DL_FUNC) &_fs_access_, 2},
+    {"_fs_chmod_", (DL_FUNC) &_fs_chmod_, 2},
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 1},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
     {"_fs_normalize_", (DL_FUNC) &_fs_normalize_, 1},
