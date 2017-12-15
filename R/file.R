@@ -27,6 +27,9 @@ file_info <- function(path) {
 
   res <- stat_(path)
 
+  types <- c("block_device", "character_device", "directory", "FIFO", "symlink", "file", "socket")
+  res$type <- factor(res$type, levels = seq_along(types) - 1, labels = types)
+
   # TODO: convert to UTC times?
   res$access_time <- .POSIXct(res$access_time)
   res$modification_time <- .POSIXct(res$modification_time)
