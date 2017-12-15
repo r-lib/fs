@@ -16,3 +16,22 @@ file_move <- function(path, new_path) {
 
   invisible(new_path)
 }
+
+#' Query file metadata
+#' @template fs
+#' @return A tibble with metadata for each file
+#' @importFrom tibble as_tibble
+#' @export
+file_info <- function(path) {
+  path <- enc2utf8(path)
+
+  res <- stat_(path)
+
+  # TODO: convert to UTC times?
+  res$access_time <- .POSIXct(res$access_time)
+  res$modification_time <- .POSIXct(res$modification_time)
+  res$creation_time <- .POSIXct(res$creation_time)
+  res$birth_time <- .POSIXct(res$birth_time)
+
+  as_tibble(res)
+}

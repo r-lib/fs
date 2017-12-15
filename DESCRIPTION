@@ -15,7 +15,8 @@ LazyData: true
 ByteCompile: true
 LinkingTo: 
     Rcpp
-Imports: 
+Imports:
+    tibble,
     Rcpp
 SystemRequirements: GNU make
 Roxygen: list(markdown = TRUE)
