@@ -31,5 +31,6 @@ Collate:
     'dir.R'
     'file_create.R'
     'file_exists.R'
+    'is.R'
     'package.R'
     'path.R'

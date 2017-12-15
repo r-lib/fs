@@ -23,7 +23,7 @@ file_move <- function(path, new_path) {
 #' @importFrom tibble as_tibble
 #' @export
 file_info <- function(path) {
-  path <- enc2utf8(path)
+  path <- path_expand(path)
 
   res <- stat_(path)
 

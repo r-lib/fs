@@ -131,7 +131,7 @@ List stat_(CharacterVector path) {
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_stat(uv_default_loop(), &req, p, NULL);
+    int res = uv_fs_lstat(uv_default_loop(), &req, p, NULL);
     stop_for_error("Failed to stat", p, res);
 
     uv_stat_t st = req.statbuf;
