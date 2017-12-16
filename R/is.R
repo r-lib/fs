@@ -1,5 +1,5 @@
 #' Functions to test for file types
-#' @returns A logical vector
+#' @return A logical vector
 #' @template fs
 #' @export
 is_file <- function(path) {

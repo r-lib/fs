@@ -15,6 +15,9 @@ is_link(path)
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 }
+\value{
+A logical vector
+}
 \description{
 Functions to test for file types
 }

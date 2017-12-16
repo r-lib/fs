@@ -21,10 +21,14 @@ as.character.fmode <- format.fmode
   y
 }
 
-#' File permissions
+#' @rdname fmode
 #' @export
 as_fmode <- function(x) {
   if (inherits(x, "fmode")) {
+    return(x)
+  }
+  if (inherits(x, "octmode")) {
+    class(x) <- "fmode"
     return(x)
   }
   if (is.double(x) && all(is.na(x) | x == as.integer(x))) {
@@ -39,6 +43,10 @@ as_fmode <- function(x) {
   stop("'x' cannot be coerced to class \"fmode\"")
 }
 
+#' File permissions
+#' @param x An object which is to be coerced to a fmode object. Can be an
+#'   number or hexidecimal character representation, including symbolic
+#'   representations.
 #' @export
 fmode <- as_fmode
 

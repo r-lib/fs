@@ -8,6 +8,8 @@ file_chmod(path, mode)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+
+\item{mode}{A character representation of the mode, in either hexidecimal or symbolic format.}
 }
 \description{
 Change file permissions

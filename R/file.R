@@ -56,7 +56,8 @@ file_access <- function(path, mode = "exists") {
 
 #' Change file permissions
 #' @template fs
-#' @param mode
+#' @param mode A character representation of the mode, in either hexidecimal or symbolic format.
+#' @export
 #' @examples
 #' x <- file_create(tempfile(), "000")
 #' file_chmod(x, "777")
