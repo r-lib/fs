@@ -4,7 +4,7 @@
 \alias{file_create}
 \title{Create a file}
 \usage{
-file_create(path, mode = "0700")
+file_create(path, mode = "u+rw,go+r")
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}

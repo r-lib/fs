@@ -13,7 +13,7 @@ template fs
 }
 \examples{
 x <- file_create(tempfile())
-file_exsts(x)
+file_exists(x)
 file_delete(x)
 file_exists(x)
 }
