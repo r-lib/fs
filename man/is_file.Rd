@@ -2,13 +2,13 @@
 % Please edit documentation in R/is.R
 \name{is_file}
 \alias{is_file}
-\alias{is_directory}
+\alias{is_dir}
 \alias{is_link}
 \title{Functions to test for file types}
 \usage{
 is_file(path)
 
-is_directory(path)
+is_dir(path)
 
 is_link(path)
 }

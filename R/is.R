@@ -8,7 +8,7 @@ is_file <- function(path) {
 
 #' @rdname is_file
 #' @export
-is_directory <- function(path) {
+is_dir <- function(path) {
   file_info(path)$type == "directory"
 }
 
