@@ -41,6 +41,10 @@ link_create_symbolic_ <- function(path, new_path) {
     invisible(.Call(`_fs_link_create_symbolic_`, path, new_path))
 }
 
+readlink_ <- function(path) {
+    .Call(`_fs_readlink_`, path)
+}
+
 normalize_ <- function(path) {
     .Call(`_fs_normalize_`, path)
 }

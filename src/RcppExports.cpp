@@ -115,6 +115,17 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// readlink_
+CharacterVector readlink_(CharacterVector path);
+RcppExport SEXP _fs_readlink_(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(readlink_(path));
+    return rcpp_result_gen;
+END_RCPP
+}
 // normalize_
 CharacterVector normalize_(CharacterVector path);
 RcppExport SEXP _fs_normalize_(SEXP pathSEXP) {
@@ -138,6 +149,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_unlink_", (DL_FUNC) &_fs_unlink_, 1},
     {"_fs_link_create_hard_", (DL_FUNC) &_fs_link_create_hard_, 2},
     {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
+    {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
     {"_fs_normalize_", (DL_FUNC) &_fs_normalize_, 1},
     {NULL, NULL, 0}
 };

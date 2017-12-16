@@ -11,7 +11,7 @@ link_info <- file_info
 #' @export
 link_create <- function(path, new_path, symbolic = TRUE) {
   path <- path_expand(path)
-  path <- path_expand(new_path)
+  new_path <- path_expand(new_path)
 
   stopifnot(length(path) == length(new_path))
 
@@ -22,4 +22,17 @@ link_create <- function(path, new_path, symbolic = TRUE) {
   }
 
   invisible(new_path)
+}
+
+#' Read the value of a symbolic link
+#' @template fs
+#' @examples
+#' file_create("foo")
+#' link_create("foo", "bar")
+#' link_path("bar")
+#' @export
+link_path <- function(path) {
+  path <- path_expand(path)
+
+  readlink_(path)
 }
