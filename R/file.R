@@ -100,3 +100,20 @@ file_delete <- function(path) {
   # TODO: not sure if this should return the path or not.
   invisible(path)
 }
+
+#' Copy a file
+#' @param new_path Character vector of paths to the new files.
+#' @param force Force overwriting of existing files.
+#' @template fs
+#' @examples
+#' file_create("foo")
+#' file_copy("foo", "bar")
+#' try(file_copy("foo", "bar"))
+#' file_copy("foo", "bar", force = TRUE)
+#' file_delete(c("foo", "bar"))
+#' @export
+file_copy <- function(path, new_path, force = FALSE) {
+  path <- path_expand(path)
+  new_path <- path_expand(new_path)
+  copyfile_(path, new_path, isTRUE(force))
+}

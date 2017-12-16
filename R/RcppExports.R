@@ -33,6 +33,10 @@ unlink_ <- function(path) {
     invisible(.Call(`_fs_unlink_`, path))
 }
 
+copyfile_ <- function(path, new_path, force) {
+    invisible(.Call(`_fs_copyfile_`, path, new_path, force))
+}
+
 link_create_hard_ <- function(path, new_path) {
     invisible(.Call(`_fs_link_create_hard_`, path, new_path))
 }

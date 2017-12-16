@@ -93,6 +93,18 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// copyfile_
+void copyfile_(CharacterVector path, CharacterVector new_path, bool force);
+RcppExport SEXP _fs_copyfile_(SEXP pathSEXP, SEXP new_pathSEXP, SEXP forceSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    Rcpp::traits::input_parameter< bool >::type force(forceSEXP);
+    copyfile_(path, new_path, force);
+    return R_NilValue;
+END_RCPP
+}
 // link_create_hard_
 void link_create_hard_(CharacterVector path, CharacterVector new_path);
 RcppExport SEXP _fs_link_create_hard_(SEXP pathSEXP, SEXP new_pathSEXP) {
@@ -147,6 +159,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 1},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
     {"_fs_unlink_", (DL_FUNC) &_fs_unlink_, 1},
+    {"_fs_copyfile_", (DL_FUNC) &_fs_copyfile_, 3},
     {"_fs_link_create_hard_", (DL_FUNC) &_fs_link_create_hard_, 2},
     {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
     {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
