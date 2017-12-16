@@ -114,3 +114,28 @@ file_copy <- function(path, new_path, force = FALSE) {
   new_path <- path_expand(new_path)
   copyfile_(path, new_path, isTRUE(force))
 }
+
+#' Change ownership or group of a file
+#' @template fs
+#' @param user_id The user id of the new owner, the R process must be privlaged to change
+#'   this.
+#' @param group_id The group id of the new owner
+#' @export
+file_chown <- function(path, user_id = NULL, group_id = NULL) {
+  path <- path_expand(path)
+
+  if (is.null(user_id)) {
+    user_id <- -1
+  }
+
+  if (is.null(group_id)) {
+    group_id <- -1
+  }
+
+  # TODO: use [getpwnam(3)](https://linux.die.net/man/3/getpwnam),
+  # [getgrnam(3)](https://linux.die.net/man/3/getgrnam) to support specifying
+  # uid / gid as names in addition to integers.
+  chown_(path, user_id, group_id)
+
+  invisible(path)
+}

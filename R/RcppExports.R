@@ -41,6 +41,10 @@ copyfile_ <- function(path, new_path, force) {
     invisible(.Call(`_fs_copyfile_`, path, new_path, force))
 }
 
+chown_ <- function(path, uid, gid) {
+    invisible(.Call(`_fs_chown_`, path, uid, gid))
+}
+
 link_create_hard_ <- function(path, new_path) {
     invisible(.Call(`_fs_link_create_hard_`, path, new_path))
 }

@@ -257,3 +257,14 @@ void copyfile_(CharacterVector path, CharacterVector new_path, bool force) {
     uv_fs_req_cleanup(&file_req);
   }
 }
+
+// [[Rcpp::export]]
+void chown_(CharacterVector path, int uid, int gid) {
+  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+    uv_fs_t file_req;
+    const char* p = CHAR(STRING_ELT(path, i));
+    int res = uv_fs_chown(uv_default_loop(), &file_req, p, uid, gid, NULL);
+    stop_for_error("Failed to chown", p, res);
+    uv_fs_req_cleanup(&file_req);
+  }
+}

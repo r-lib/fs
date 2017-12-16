@@ -116,6 +116,18 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// chown_
+void chown_(CharacterVector path, int uid, int gid);
+RcppExport SEXP _fs_chown_(SEXP pathSEXP, SEXP uidSEXP, SEXP gidSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< int >::type uid(uidSEXP);
+    Rcpp::traits::input_parameter< int >::type gid(gidSEXP);
+    chown_(path, uid, gid);
+    return R_NilValue;
+END_RCPP
+}
 // link_create_hard_
 void link_create_hard_(CharacterVector path, CharacterVector new_path);
 RcppExport SEXP _fs_link_create_hard_(SEXP pathSEXP, SEXP new_pathSEXP) {
@@ -172,6 +184,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
     {"_fs_unlink_", (DL_FUNC) &_fs_unlink_, 1},
     {"_fs_copyfile_", (DL_FUNC) &_fs_copyfile_, 3},
+    {"_fs_chown_", (DL_FUNC) &_fs_chown_, 3},
     {"_fs_link_create_hard_", (DL_FUNC) &_fs_link_create_hard_, 2},
     {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
     {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
