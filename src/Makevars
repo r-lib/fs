@@ -1,4 +1,4 @@
-PKG_LIBS = libuv/.libs/libuv.a
+PKG_LIBS = ./libuv/.libs/libuv.a `pkg-config libbsd --libs 2>/dev/null`
 
 PKG_CPPFLAGS = -I./libuv/include
 

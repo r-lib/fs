@@ -1,4 +1,11 @@
+#if defined(__APPLE__) && defined(__MACH__)
+#include <string.h>
 #include <unistd.h>
+#else
+#include <bsd/string.h>
+#include <bsd/unistd.h>
+#endif
+
 #include "Rcpp.h"
 #include "utils.h"
 #include "uv.h"
