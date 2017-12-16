@@ -29,6 +29,14 @@ strmode_ <- function(mode) {
     .Call(`_fs_strmode_`, mode)
 }
 
+link_create_hard_ <- function(path, new_path) {
+    invisible(.Call(`_fs_link_create_hard_`, path, new_path))
+}
+
+link_create_symbolic_ <- function(path, new_path) {
+    invisible(.Call(`_fs_link_create_symbolic_`, path, new_path))
+}
+
 normalize_ <- function(path) {
     .Call(`_fs_normalize_`, path)
 }

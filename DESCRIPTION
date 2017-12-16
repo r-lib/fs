@@ -33,5 +33,6 @@ Collate:
     'file_exists.R'
     'fmode.R'
     'is.R'
+    'link.R'
     'package.R'
     'path.R'

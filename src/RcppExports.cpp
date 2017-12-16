@@ -83,6 +83,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// link_create_hard_
+void link_create_hard_(CharacterVector path, CharacterVector new_path);
+RcppExport SEXP _fs_link_create_hard_(SEXP pathSEXP, SEXP new_pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    link_create_hard_(path, new_path);
+    return R_NilValue;
+END_RCPP
+}
+// link_create_symbolic_
+void link_create_symbolic_(CharacterVector path, CharacterVector new_path);
+RcppExport SEXP _fs_link_create_symbolic_(SEXP pathSEXP, SEXP new_pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    link_create_symbolic_(path, new_path);
+    return R_NilValue;
+END_RCPP
+}
 // normalize_
 CharacterVector normalize_(CharacterVector path);
 RcppExport SEXP _fs_normalize_(SEXP pathSEXP) {
@@ -103,6 +125,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_chmod_", (DL_FUNC) &_fs_chmod_, 2},
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 1},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
+    {"_fs_link_create_hard_", (DL_FUNC) &_fs_link_create_hard_, 2},
+    {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
     {"_fs_normalize_", (DL_FUNC) &_fs_normalize_, 1},
     {NULL, NULL, 0}
 };
