@@ -39,6 +39,13 @@ file_info <- function(path) {
   as_tibble(res)
 }
 
+#' Check if a file exists
+#' @template fs
+#' @export
+file_exists <- function(path) {
+  file_access(path, "exists")
+}
+
 access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
 
 #' Query files for access permissions
