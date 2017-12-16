@@ -2,14 +2,15 @@
 % Please edit documentation in R/file.R
 \name{file_delete}
 \alias{file_delete}
-\title{Delete a file
-template fs}
+\title{Delete a file}
 \usage{
 file_delete(path)
 }
+\arguments{
+\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+}
 \description{
 Delete a file
-template fs
 }
 \examples{
 x <- file_create(tempfile())

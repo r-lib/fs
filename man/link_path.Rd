@@ -16,4 +16,5 @@ Read the value of a symbolic link
 file_create("foo")
 link_create("foo", "bar")
 link_path("bar")
+file_delete(c("foo", "bar"))
 }

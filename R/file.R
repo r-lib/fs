@@ -86,7 +86,7 @@ file_chmod <- function(path, mode) {
 }
 
 #' Delete a file
-#' template fs
+#' @template fs
 #' @examples
 #' x <- file_create(tempfile())
 #' file_exists(x)

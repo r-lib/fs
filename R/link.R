@@ -30,6 +30,7 @@ link_create <- function(path, new_path, symbolic = TRUE) {
 #' file_create("foo")
 #' link_create("foo", "bar")
 #' link_path("bar")
+#' file_delete(c("foo", "bar"))
 #' @export
 link_path <- function(path) {
   path <- path_expand(path)
