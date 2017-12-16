@@ -77,3 +77,19 @@ file_chmod <- function(path, mode) {
 
   invisible(path)
 }
+
+#' Delete a file
+#' template fs
+#' @examples
+#' x <- file_create(tempfile())
+#' file_exsts(x)
+#' file_delete(x)
+#' file_exists(x)
+#' @export
+file_delete <- function(path) {
+  path <- path_expand(path)
+  unlink_(path)
+
+  # TODO: not sure if this should return the path or not.
+  invisible(path)
+}

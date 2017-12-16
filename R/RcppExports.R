@@ -29,6 +29,10 @@ strmode_ <- function(mode) {
     .Call(`_fs_strmode_`, mode)
 }
 
+unlink_ <- function(path) {
+    invisible(.Call(`_fs_unlink_`, path))
+}
+
 link_create_hard_ <- function(path, new_path) {
     invisible(.Call(`_fs_link_create_hard_`, path, new_path))
 }

@@ -233,3 +233,14 @@ std::string strmode_(int mode) {
   // The first character is the file type, so we do not return it.
   return out + 1;
 }
+
+// [[Rcpp::export]]
+void unlink_(CharacterVector path) {
+  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+    uv_fs_t file_req;
+    const char* p = CHAR(STRING_ELT(path, i));
+    int res = uv_fs_unlink(uv_default_loop(), &file_req, p, NULL);
+    stop_for_error("Failed to remove", p, res);
+    uv_fs_req_cleanup(&file_req);
+  }
+}
