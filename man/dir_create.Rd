@@ -5,16 +5,19 @@
 \alias{file_create}
 \title{Create a file or directory.}
 \usage{
-dir_create(path, mode = "u+rwx,go+rx")
+dir_create(path, mode = "u+rwx,go+rx", recursive = TRUE)
 
 file_create(path, mode = "u+rw,go+r")
 
-dir_create(path, mode = "u+rwx,go+rx")
+dir_create(path, mode = "u+rwx,go+rx", recursive = TRUE)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 
 \item{mode}{If file/directory is created, what mode should it have?}
+
+\item{recursive}{Should intermediate directories be created recursively if
+they don't exist?}
 }
 \description{
 These functions ensure that \code{path} exists; if it already exists it will

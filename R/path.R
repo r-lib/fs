@@ -46,11 +46,10 @@ path_home <- function() {
 #' @template fs
 #' @export
 path_split <- function(path) {
-  path <- enc2utf8(path)
-
   path <- path_expand(path)
 
-  strsplit(path, "/+")[[1]]
+  # Split on all but leading /
+  strsplit(path, "(?<=.)/+", perl = TRUE)[[1]]
 }
 
 #' Path to sessions temporary directory

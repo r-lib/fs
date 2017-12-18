@@ -12,16 +12,23 @@ dir_info <- file_info
 
 #' Create a directory
 #' @inheritParams file_create
+#' @param recursive Should intermediate directories be created recursively if
+#'   they don't exist?
 #' @examples
 #' x <- tempfile()
 #' try(is_dir(x))
 #' dir_create(x)
 #' is_dir(x)
 #' @export
-dir_create <- function(path, mode = "u+rwx,go+rx") {
-  path <- path_expand(path)
-
-  mkdir_(path, mode)
+dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
+  paths <- path_split(path)
+  if (length(paths) == 1 || !isTRUE(recursive)) {
+    mkdir_(path, mode)
+    return(invisible(path))
+  }
+  else {
+    dir_create(Reduce(file.path, paths, accumulate = TRUE), mode = mode)
+  }
 
   invisible(path)
 }

@@ -21,7 +21,11 @@ void mkdir_(CharacterVector path, std::string mode_str) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     int fd = uv_fs_mkdir(uv_default_loop(), &req, p, mode, NULL);
-    stop_for_error("Failed to make directory", p, fd);
+
+    // We want to fail silently if the directory already exists
+    if (fd != UV_EEXIST) {
+      stop_for_error("Failed to make directory", p, fd);
+    }
     uv_fs_req_cleanup(&req);
   }
 }
@@ -46,7 +50,8 @@ CharacterVector scandir_(CharacterVector path, IntegerVector type,
     int next_res = uv_fs_scandir_next(&req, &e);
     while (next_res != UV_EOF) {
       if (file_type == -1 || e.type == (uv_dirent_type_t)file_type) {
-        // TODO: handle case when p already ends with '/' to avoid doubling it.
+        // TODO: handle case when p already ends with '/' to avoid doubling
+        // it.
 
         // If p is '.', just return the name
         if (strcmp(p, ".") == 0) {
