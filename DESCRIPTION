@@ -27,9 +27,9 @@ Suggests:
     testthat
 Collate: 
     'RcppExports.R'
+    'create.R'
     'file.R'
     'dir.R'
-    'file_create.R'
     'file_exists.R'
     'fmode.R'
     'is.R'

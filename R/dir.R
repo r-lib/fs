@@ -9,20 +9,3 @@ dir_move <- file_move
 #' @inherit file_info
 #' @export
 dir_info <- file_info
-
-#' Create a directory
-#' @template fs
-#' @inheritParams file_create
-#' @examples
-#' x <- tempfile()
-#' try(is_dir(x))
-#' dir_create(x)
-#' is_dir(x)
-#' @export
-dir_create <- function(path, mode = "u+rwx,go+rx") {
-  path <- path_expand(path)
-
-  mkdir_(path, mode)
-
-  invisible(path)
-}

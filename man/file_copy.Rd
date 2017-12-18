@@ -4,7 +4,7 @@
 \alias{file_copy}
 \title{Copy a file}
 \usage{
-file_copy(path, new_path, force = FALSE)
+file_copy(path, new_path, overwrite = FALSE)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
