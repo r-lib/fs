@@ -7,7 +7,7 @@ print.fmode <- function(x, ...) {
 
 #' @export
 format.fmode <- function(x, ...) {
-  strmode_(x)
+  vapply(x, strmode_, character(1))
 }
 
 #' @export
