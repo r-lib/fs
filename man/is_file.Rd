@@ -16,8 +16,20 @@ is_link(path)
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 }
 \value{
-A logical vector
+A named logical vector, where the names give the paths.
 }
 \description{
 Functions to test for file types
+}
+\examples{
+tmp <- dir_create(tempfile())
+
+file_create(path(tmp, "file.txt"))
+dir_create(path(tmp, "dir"))
+link_create(path(tmp, "file.txt"), path(tmp, "link"))
+
+paths <- dir_list(tmp)
+is_file(paths)
+is_dir(paths)
+is_link(paths)
 }

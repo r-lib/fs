@@ -1,7 +1,19 @@
 #' Functions to test for file types
-#' @return A logical vector
+#'
+#' @return A named logical vector, where the names give the paths.
 #' @template fs
 #' @export
+#' @examples
+#' tmp <- dir_create(tempfile())
+#'
+#' file_create(path(tmp, "file.txt"))
+#' dir_create(path(tmp, "dir"))
+#' link_create(path(tmp, "file.txt"), path(tmp, "link"))
+#'
+#' paths <- dir_list(tmp)
+#' is_file(paths)
+#' is_dir(paths)
+#' is_link(paths)
 is_file <- function(path) {
   res <- file_info(path)
   setNames(res$type == "file", res$path)
