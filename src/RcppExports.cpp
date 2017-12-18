@@ -17,14 +17,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // scandir_
-List scandir_(CharacterVector path, IntegerVector type);
-RcppExport SEXP _fs_scandir_(SEXP pathSEXP, SEXP typeSEXP) {
+CharacterVector scandir_(CharacterVector path, IntegerVector type, bool recurse);
+RcppExport SEXP _fs_scandir_(SEXP pathSEXP, SEXP typeSEXP, SEXP recurseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type type(typeSEXP);
-    rcpp_result_gen = Rcpp::wrap(scandir_(path, type));
+    Rcpp::traits::input_parameter< bool >::type recurse(recurseSEXP);
+    rcpp_result_gen = Rcpp::wrap(scandir_(path, type, recurse));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -187,7 +188,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_mkdir_", (DL_FUNC) &_fs_mkdir_, 2},
-    {"_fs_scandir_", (DL_FUNC) &_fs_scandir_, 2},
+    {"_fs_scandir_", (DL_FUNC) &_fs_scandir_, 3},
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
     {"_fs_stat_", (DL_FUNC) &_fs_stat_, 1},

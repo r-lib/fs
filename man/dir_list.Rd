@@ -4,14 +4,12 @@
 \alias{dir_list}
 \title{List files in a directory}
 \usage{
-dir_list(path, recursive = TRUE, relative = FALSE, type = "any")
+dir_list(path, recursive = TRUE, type = "any")
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 
 \item{recursive}{Should directories be listed recursively?}
-
-\item{relative}{Should filenames be returned relative to the input path?}
 
 \item{type}{File type to return, one of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
@@ -21,5 +19,4 @@ List files in a directory
 }
 \examples{
 dir_list(system.file())
-dir_list(system.file(), relative = TRUE)
 }

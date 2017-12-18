@@ -28,7 +28,6 @@ dir_create <- function(path, mode = "u+rwx,go+rx") {
 
 #' List files in a directory
 #'
-#' @param relative Should filenames be returned relative to the input path?
 #' @param type File type to return, one of "any", "file", "directory",
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
 #' @param recursive Should directories be listed recursively?
@@ -36,8 +35,8 @@ dir_create <- function(path, mode = "u+rwx,go+rx") {
 #' @export
 #' @examples
 #' dir_list(system.file())
-#' dir_list(system.file(), relative = TRUE)
-dir_list <- function(path, recursive = TRUE, relative = FALSE, type = "any") {
+dir_list <- function(path, recursive = TRUE, type = "any") {
+  # TODO: actually implement recursion
   directory_entry_types <- c(
     "any" = -1L,
     "file" = 1L,
@@ -52,10 +51,6 @@ dir_list <- function(path, recursive = TRUE, relative = FALSE, type = "any") {
 
   path <- path_expand(path)
 
-  files <- scandir_(path, directory_entry_types[type])
-  if (!isTRUE(relative)) {
-    full_path <- path_norm(path)
-    files <- lapply(files, function(x) path(full_path, x))
-  }
+  files <- scandir_(path, directory_entry_types[type], recursive)
   files
 }
