@@ -4,7 +4,7 @@
 \alias{dir_list}
 \title{List files in a directory}
 \usage{
-dir_list(path, recursive = TRUE, type = "any")
+dir_list(path = ".", recursive = TRUE, type = "any")
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}

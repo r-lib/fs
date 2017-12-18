@@ -42,16 +42,27 @@ CharacterVector scandir_(CharacterVector path, IntegerVector type,
     int res = uv_fs_scandir(uv_default_loop(), &req, p, 0, NULL);
     stop_for_error("Failed to search directory", p, res);
 
-    uv_dirent_t d;
-    int next_res = uv_fs_scandir_next(&req, &d);
+    uv_dirent_t e;
+    int next_res = uv_fs_scandir_next(&req, &e);
     while (next_res != UV_EOF) {
-      if (file_type == -1 || d.type == (uv_dirent_type_t)file_type) {
-        files.push_back(std::string(p) + '/' + d.name);
+      if (file_type == -1 || e.type == (uv_dirent_type_t)file_type) {
+        // TODO: handle case when p already ends with '/' to avoid doubling it.
+
+        // If p is '.', just return the name
+        if (strcmp(p, ".") == 0) {
+          files.push_back(e.name);
+        }
+        // If p already ends with '/' just concatenate them.
+        else if (p[strlen(p) - 1] == '/') {
+          files.push_back(std::string(p) + e.name);
+        } else {
+          files.push_back(std::string(p) + '/' + e.name);
+        }
       }
       if (next_res != UV_EOF) {
         stop_for_error("Failed to search directory", p, next_res);
       }
-      next_res = uv_fs_scandir_next(&req, &d);
+      next_res = uv_fs_scandir_next(&req, &e);
     }
     SET_VECTOR_ELT(out, i, wrap(files));
 

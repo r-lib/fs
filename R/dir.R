@@ -35,7 +35,7 @@ dir_create <- function(path, mode = "u+rwx,go+rx") {
 #' @export
 #' @examples
 #' dir_list(system.file())
-dir_list <- function(path, recursive = TRUE, type = "any") {
+dir_list <- function(path = ".", recursive = TRUE, type = "any") {
   # TODO: actually implement recursion
   directory_entry_types <- c(
     "any" = -1L,
