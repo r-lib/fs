@@ -8,7 +8,6 @@ test_that("file_create works with new and existing files", {
 })
 
 test_that("dir_create works with new and existing files", {
-  skip("currently fails")
   x1 <- dir_create(tempfile())
 
   expect_true(file_exists(x1))
