@@ -30,6 +30,7 @@ Collate:
     'create.R'
     'file.R'
     'dir.R'
+    'dir_list.R'
     'file_exists.R'
     'fmode.R'
     'is.R'
