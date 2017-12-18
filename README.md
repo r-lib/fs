@@ -15,8 +15,9 @@ devtools::install_github("r-lib/fs")
 
 ## Motivation vs base equivalents
 
-* All fs functions are vectorized. They accept character vectors as input and
-  return a character vector of paths as outputs.
+* All fs functions are vectorized, accepting multiple paths as input.
+  All functions either return a character vector of paths, or
+  a named integer or logical vector (where the names give the paths).
 
 * If an operation fails, fs throws an error. Base R file manipulation functions
   tend to generate a warning and return a logical vector of successes and
