@@ -68,10 +68,6 @@ void list_dir(std::vector<std::string>* files, const char* path, int file_type,
 // [[Rcpp::export]]
 CharacterVector scandir_(CharacterVector path, IntegerVector type,
                          bool recurse) {
-  // TODO: filter by name / pattern
-
-  List out = List(Rf_xlength(path));
-
   int file_type = INTEGER(type)[0];
 
   std::vector<std::string> files;
