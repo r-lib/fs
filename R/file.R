@@ -100,7 +100,8 @@ file_delete <- function(path) {
 
 #' Copy a file
 #' @param new_path Character vector of paths to the new files.
-#' @param force Force overwriting of existing files.
+#' @param overwrite Overwrite files if they exist. If this is `FALSE` and a
+#'   file exists and error will be thrown.
 #' @template fs
 #' @examples
 #' file_create("foo")
@@ -109,10 +110,10 @@ file_delete <- function(path) {
 #' file_copy("foo", "bar", force = TRUE)
 #' file_delete(c("foo", "bar"))
 #' @export
-file_copy <- function(path, new_path, force = FALSE) {
+file_copy <- function(path, new_path, overwrite = FALSE) {
   path <- path_expand(path)
   new_path <- path_expand(new_path)
-  copyfile_(path, new_path, isTRUE(force))
+  copyfile_(path, new_path, isTRUE(overwrite))
 }
 
 #' Change ownership or group of a file

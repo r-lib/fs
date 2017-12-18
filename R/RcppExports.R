@@ -37,8 +37,8 @@ unlink_ <- function(path) {
     invisible(.Call(`_fs_unlink_`, path))
 }
 
-copyfile_ <- function(path, new_path, force) {
-    invisible(.Call(`_fs_copyfile_`, path, new_path, force))
+copyfile_ <- function(path, new_path, overwrite) {
+    invisible(.Call(`_fs_copyfile_`, path, new_path, overwrite))
 }
 
 chown_ <- function(path, uid, gid) {

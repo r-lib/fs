@@ -11,7 +11,8 @@ file_copy(path, new_path, force = FALSE)
 
 \item{new_path}{Character vector of paths to the new files.}
 
-\item{force}{Force overwriting of existing files.}
+\item{overwrite}{Overwrite files if they exist. If this is \code{FALSE} and a
+file exists and error will be thrown.}
 }
 \description{
 Copy a file

@@ -105,14 +105,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // copyfile_
-void copyfile_(CharacterVector path, CharacterVector new_path, bool force);
-RcppExport SEXP _fs_copyfile_(SEXP pathSEXP, SEXP new_pathSEXP, SEXP forceSEXP) {
+void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite);
+RcppExport SEXP _fs_copyfile_(SEXP pathSEXP, SEXP new_pathSEXP, SEXP overwriteSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
-    Rcpp::traits::input_parameter< bool >::type force(forceSEXP);
-    copyfile_(path, new_path, force);
+    Rcpp::traits::input_parameter< bool >::type overwrite(overwriteSEXP);
+    copyfile_(path, new_path, overwrite);
     return R_NilValue;
 END_RCPP
 }
