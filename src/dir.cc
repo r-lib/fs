@@ -27,12 +27,13 @@ void mkdir_(CharacterVector path, std::string mode_str) {
 }
 
 // [[Rcpp::export]]
-List scandir_(CharacterVector path) {
-  // TODO: filter by file type
+List scandir_(CharacterVector path, IntegerVector type) {
   // TODO: filter by name / pattern
-  //
+
   List out = List(Rf_xlength(path));
   Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path));
+
+  int file_type = INTEGER(type)[0];
 
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     std::vector<std::string> files;
@@ -42,13 +43,15 @@ List scandir_(CharacterVector path) {
     stop_for_error("Failed to search directory", p, res);
 
     uv_dirent_t d;
-    int next_res = res;
+    int next_res = uv_fs_scandir_next(&req, &d);
     while (next_res != UV_EOF) {
-      next_res = uv_fs_scandir_next(&req, &d);
-      files.push_back(d.name);
+      if (file_type == -1 || d.type == (uv_dirent_type_t)file_type) {
+        files.push_back(d.name);
+      }
       if (next_res != UV_EOF) {
         stop_for_error("Failed to search directory", p, next_res);
       }
+      next_res = uv_fs_scandir_next(&req, &d);
     }
     SET_VECTOR_ELT(out, i, wrap(files));
 

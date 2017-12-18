@@ -24,8 +24,7 @@ file_info <- function(path) {
 
   res <- stat_(path)
 
-  types <- c("block_device", "character_device", "directory", "FIFO", "symlink", "file", "socket")
-  res$type <- factor(res$type, levels = seq_along(types) - 1, labels = types)
+  res$type <- factor(res$type, levels = file_types, labels = names(file_types))
 
   # TODO: convert to UTC times?
   res$access_time <- .POSIXct(res$access_time)
@@ -35,6 +34,16 @@ file_info <- function(path) {
 
   as_tibble(res)
 }
+
+file_types <- c(
+  "any" = -1,
+  "block_device" = 0L,
+  "character_device" = 1L,
+  "directory" = 2L,
+  "FIFO" = 3L,
+  "symlink" = 4L,
+  "file" = 5L,
+  "socket" = 6L)
 
 #' Check if a file exists
 #' @template fs
