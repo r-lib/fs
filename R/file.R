@@ -107,7 +107,7 @@ file_delete <- function(path) {
 #' file_create("foo")
 #' file_copy("foo", "bar")
 #' try(file_copy("foo", "bar"))
-#' file_copy("foo", "bar", force = TRUE)
+#' file_copy("foo", "bar", overwrite = TRUE)
 #' file_delete(c("foo", "bar"))
 #' @export
 file_copy <- function(path, new_path, overwrite = FALSE) {
