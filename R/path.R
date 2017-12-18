@@ -2,6 +2,7 @@
 #'
 #' @template fs
 #' @param ... character vectors
+#' @export
 #' @seealso [base::file.path()]
 path <- function(...) {
   enc2utf8(file.path(..., fsep = "/"))
