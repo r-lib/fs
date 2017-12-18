@@ -48,9 +48,9 @@ path_home <- function() {
 path_split <- function(path) {
   path <- enc2utf8(path)
 
-  path <- path_norm(path)
+  path <- path_expand(path)
 
-  strsplit(path_norm(path), "/+")[[1]]
+  strsplit(path, "/+")[[1]]
 }
 
 #' Path to sessions temporary directory
