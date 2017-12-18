@@ -24,4 +24,15 @@ describe("dir_list", {
       expect_equal(dir_list(type = "symlink"), "foo/bar/qux")
     })
   })
+
+  it("Uses grep to filter output", {
+    with_dir_tree(list(
+        "foo/bar/baz" = "test",
+        "foo/bar/test2" = "",
+        "foo/bar/test3" = ""), {
+      expect_equal(dir_list(pattern = "baz"), "foo/bar/baz")
+      expect_equal(dir_list(pattern = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
+      expect_equal(dir_list(pattern = "(?<=a)z", perl = TRUE), "foo/bar/baz")
+    })
+  })
 })

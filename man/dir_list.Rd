@@ -4,7 +4,8 @@
 \alias{dir_list}
 \title{List files in a directory}
 \usage{
-dir_list(path = ".", recursive = TRUE, type = "any")
+dir_list(path = ".", recursive = TRUE, type = "any", pattern = NULL,
+  ...)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
@@ -13,6 +14,11 @@ dir_list(path = ".", recursive = TRUE, type = "any")
 
 \item{type}{File type to return, one of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
+
+\item{pattern}{A regular expression pattern used passed to \link{grep} to filter
+the filenames.}
+
+\item{...}{Additional arguments passed to \link{grep}.}
 }
 \description{
 List files in a directory
