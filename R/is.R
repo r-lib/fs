@@ -3,17 +3,20 @@
 #' @template fs
 #' @export
 is_file <- function(path) {
-  file_info(path)$type == "file"
+  res <- file_info(path)
+  setNames(res$type == "file", res$path)
 }
 
 #' @rdname is_file
 #' @export
 is_dir <- function(path) {
-  file_info(path)$type == "directory"
+  res <- file_info(path)
+  setNames(res$type == "directory", res$path)
 }
 
 #' @rdname is_file
 #' @export
 is_link <- function(path) {
-  file_info(path)$type == "symlink"
+  res <- file_info(path)
+  setNames(res$type == "symlink", res$path)
 }
