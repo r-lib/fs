@@ -30,7 +30,7 @@ void mkdir_(CharacterVector path, std::string mode_str) {
   }
 }
 
-void list_dir(std::vector<std::string>& files, const char* path, int file_type,
+void list_dir(std::vector<std::string>* files, const char* path, int file_type,
               bool recurse) {
   uv_fs_t req;
   int res = uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
@@ -39,28 +39,28 @@ void list_dir(std::vector<std::string>& files, const char* path, int file_type,
   uv_dirent_t e;
   int next_res = uv_fs_scandir_next(&req, &e);
   while (next_res != UV_EOF) {
-    if (file_type == -1 || e.type == (uv_dirent_type_t)file_type) {
-      std::string name;
-      // If path is '.', just return the name
-      if (strcmp(path, ".") == 0) {
-        name = e.name;
-      }
-      // If path already ends with '/' just concatenate them.
-      else if (path[strlen(path) - 1] == '/') {
-        name = std::string(path) + e.name;
-      } else {
-        name = std::string(path) + '/' + e.name;
-      }
-      files.push_back(name);
-
-      if (recurse && e.type == UV_DIRENT_DIR) {
-        list_dir(files, name.c_str(), file_type, true);
-      }
-      if (next_res != UV_EOF) {
-        stop_for_error("Failed to search directory", path, next_res);
-      }
-      next_res = uv_fs_scandir_next(&req, &e);
+    std::string name;
+    // If path is '.', just return the name
+    if (strcmp(path, ".") == 0) {
+      name = e.name;
     }
+    // If path already ends with '/' just concatenate them.
+    else if (path[strlen(path) - 1] == '/') {
+      name = std::string(path) + e.name;
+    } else {
+      name = std::string(path) + '/' + e.name;
+    }
+    if (file_type == -1 || e.type == (uv_dirent_type_t)file_type) {
+      files->push_back(name);
+    }
+
+    if (recurse && e.type == UV_DIRENT_DIR) {
+      list_dir(files, name.c_str(), file_type, true);
+    }
+    if (next_res != UV_EOF) {
+      stop_for_error("Failed to search directory", path, next_res);
+    }
+    next_res = uv_fs_scandir_next(&req, &e);
   }
   uv_fs_req_cleanup(&req);
 }
@@ -77,7 +77,7 @@ CharacterVector scandir_(CharacterVector path, IntegerVector type,
   std::vector<std::string> files;
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     const char* p = CHAR(STRING_ELT(path, i));
-    list_dir(files, p, file_type, recurse);
+    list_dir(&files, p, file_type, recurse);
   }
   return wrap(files);
 }
