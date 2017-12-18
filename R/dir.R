@@ -66,3 +66,16 @@ dir_list <- function(path = ".", recursive = TRUE, type = "any", pattern = NULL,
   }
   files
 }
+
+#' Delete files in a directory
+#'
+#' @inheritParams dir_list
+#' @export
+dir_delete <- function(path) {
+  dirs <- dir_list(path, type = "directory")
+  files <- setdiff(dir_list(path, type = "any"), dirs)
+  file_delete(files)
+  rmdir_(rev(c(path, dirs)))
+
+  invisible(path)
+}

@@ -29,6 +29,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rmdir_
+void rmdir_(CharacterVector path);
+RcppExport SEXP _fs_rmdir_(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    rmdir_(path);
+    return R_NilValue;
+END_RCPP
+}
 // move_
 void move_(CharacterVector path, CharacterVector new_path);
 RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
@@ -189,6 +199,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_mkdir_", (DL_FUNC) &_fs_mkdir_, 2},
     {"_fs_scandir_", (DL_FUNC) &_fs_scandir_, 3},
+    {"_fs_rmdir_", (DL_FUNC) &_fs_rmdir_, 1},
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
     {"_fs_stat_", (DL_FUNC) &_fs_stat_, 1},

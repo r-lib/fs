@@ -77,3 +77,15 @@ CharacterVector scandir_(CharacterVector path, IntegerVector type,
   }
   return wrap(files);
 }
+
+// [[Rcpp::export]]
+void rmdir_(CharacterVector path) {
+  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+    uv_fs_t req;
+    const char* p = CHAR(STRING_ELT(path, i));
+    int res = uv_fs_rmdir(uv_default_loop(), &req, p, NULL);
+    stop_for_error("Failed to remove", p, res);
+
+    uv_fs_req_cleanup(&req);
+  }
+}
