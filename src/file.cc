@@ -127,6 +127,29 @@ List stat_(CharacterVector path) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     int res = uv_fs_lstat(uv_default_loop(), &req, p, NULL);
+
+    // If file does not exist mark all results as NA
+    if (res == UV_ENOENT) {
+      REAL(VECTOR_ELT(out, 1))[i] = NA_REAL;
+      INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
+      INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
+      INTEGER(VECTOR_ELT(out, 3))[i] = NA_INTEGER;
+      REAL(VECTOR_ELT(out, 4))[i] = NA_REAL;
+      INTEGER(VECTOR_ELT(out, 5))[i] = NA_INTEGER;
+      INTEGER(VECTOR_ELT(out, 6))[i] = NA_INTEGER;
+      REAL(VECTOR_ELT(out, 7))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 8))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 9))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 10))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 11))[i] = NA_REAL;
+      INTEGER(VECTOR_ELT(out, 12))[i] = NA_INTEGER;
+      REAL(VECTOR_ELT(out, 13))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 14))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 15))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 16))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 17))[i] = NA_REAL;
+      continue;
+    }
     stop_for_error("Failed to stat", p, res);
 
     uv_stat_t st = req.statbuf;

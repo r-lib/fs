@@ -16,7 +16,8 @@ is_link(path)
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 }
 \value{
-A named logical vector, where the names give the paths.
+A named logical vector, where the names give the paths. If the given
+object does not exist, \code{NA} is returned.
 }
 \description{
 Functions to test for file types

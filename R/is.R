@@ -1,6 +1,7 @@
 #' Functions to test for file types
 #'
-#' @return A named logical vector, where the names give the paths.
+#' @return A named logical vector, where the names give the paths. If the given
+#'   object does not exist, `NA` is returned.
 #' @template fs
 #' @export
 #' @examples
