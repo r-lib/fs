@@ -40,11 +40,10 @@ directory_entry_types <- c(
 #' @examples
 #' dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 #' @export
-dir_walk <- function(path = ".", f, recursive = TRUE, type = "any", pattern = NULL, ...) {
+dir_walk <- function(path = ".", f, all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types))
 
   path <- path_expand(path)
 
-  files <- scandir_(path, directory_entry_types[type], recursive)
-  dir_walk_(path, f, directory_entry_types[type], recursive)
+  dir_walk_(path, f, all, directory_entry_types[type], recursive)
 }

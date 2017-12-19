@@ -13,8 +13,8 @@ rmdir_ <- function(path) {
     invisible(.Call(`_fs_rmdir_`, path))
 }
 
-dir_walk_ <- function(path, fun, type, recurse) {
-    invisible(.Call(`_fs_dir_walk_`, path, fun, type, recurse))
+dir_walk_ <- function(path, fun, all, type, recurse) {
+    invisible(.Call(`_fs_dir_walk_`, path, fun, all, type, recurse))
 }
 
 move_ <- function(path, new_path) {
