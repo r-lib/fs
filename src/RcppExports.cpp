@@ -39,6 +39,19 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// dir_walk_
+void dir_walk_(CharacterVector path, Function fun, IntegerVector type, bool recurse);
+RcppExport SEXP _fs_dir_walk_(SEXP pathSEXP, SEXP funSEXP, SEXP typeSEXP, SEXP recurseSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Function >::type fun(funSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< bool >::type recurse(recurseSEXP);
+    dir_walk_(path, fun, type, recurse);
+    return R_NilValue;
+END_RCPP
+}
 // move_
 void move_(CharacterVector path, CharacterVector new_path);
 RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
@@ -200,6 +213,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_mkdir_", (DL_FUNC) &_fs_mkdir_, 2},
     {"_fs_scandir_", (DL_FUNC) &_fs_scandir_, 3},
     {"_fs_rmdir_", (DL_FUNC) &_fs_rmdir_, 1},
+    {"_fs_dir_walk_", (DL_FUNC) &_fs_dir_walk_, 4},
     {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
     {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
     {"_fs_stat_", (DL_FUNC) &_fs_stat_, 1},

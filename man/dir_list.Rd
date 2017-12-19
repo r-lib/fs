@@ -2,9 +2,13 @@
 % Please edit documentation in R/dir_list.R
 \name{dir_list}
 \alias{dir_list}
+\alias{dir_walk}
 \title{List files in a directory}
 \usage{
 dir_list(path = ".", recursive = TRUE, type = "any", pattern = NULL,
+  ...)
+
+dir_walk(path = ".", f, recursive = TRUE, type = "any", pattern = NULL,
   ...)
 }
 \arguments{
@@ -19,10 +23,19 @@ dir_list(path = ".", recursive = TRUE, type = "any", pattern = NULL,
 the filenames.}
 
 \item{...}{Additional arguments passed to \link{grep}.}
+
+\item{f}{A function, taking one parameter, the current path entry.}
 }
 \description{
 List files in a directory
 }
+\section{Functions}{
+\itemize{
+\item \code{dir_walk}: Walk along a directory, calling \code{f} for each entry in
+the directory.
+}}
+
 \examples{
 dir_list(system.file())
+dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 }
