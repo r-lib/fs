@@ -13,7 +13,7 @@ is_dir(path)
 is_link(path)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 }
 \value{
 A named logical vector, where the names give the paths. If the given

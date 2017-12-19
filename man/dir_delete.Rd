@@ -7,7 +7,7 @@
 dir_delete(path)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 }
 \description{
 Delete files in a directory

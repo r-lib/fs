@@ -7,7 +7,7 @@
 file_chown(path, user_id = NULL, group_id = NULL)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 
 \item{user_id}{The user id of the new owner, the R process must be privlaged to change
 this.}

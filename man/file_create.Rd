@@ -13,7 +13,7 @@ dir_create(path, mode = "u+rwx,go+rx", recursive = TRUE)
 link_create(path, new_path, symbolic = TRUE)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 
 \item{mode}{If file/directory is created, what mode should it have?
 Links do not have permissions; they inherit the permissions of the

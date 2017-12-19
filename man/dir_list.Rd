@@ -12,7 +12,7 @@ dir_walk(path = ".", f, all = FALSE, recursive = TRUE, type = "any",
   pattern = NULL, ...)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 
 \item{all}{If \code{TRUE} hidden files are also returned.}
 

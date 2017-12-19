@@ -7,7 +7,7 @@
 file_move(path, new_path)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 
 \item{new_path}{New file path. If \code{new_path} is existing directory, the file
 will be moved into that directory; otherwise it will be moved/renamed to

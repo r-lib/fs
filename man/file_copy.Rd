@@ -7,7 +7,7 @@
 file_copy(path, new_path, overwrite = FALSE)
 }
 \arguments{
-\item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+\item{path}{A character vector of paths.}
 
 \item{new_path}{Character vector of paths to the new files.}
 
