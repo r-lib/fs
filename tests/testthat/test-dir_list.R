@@ -35,4 +35,13 @@ describe("dir_list", {
       expect_equal(dir_list(pattern = "(?<=a)z", perl = TRUE), "foo/bar/baz")
     })
   })
+
+  it("Does not print hidden files by default", {
+    with_dir_tree(list(
+        ".foo" = "foo",
+        "bar" = "bar"), {
+      expect_equal(dir_list(), "bar")
+      expect_equal(dir_list(all = TRUE), c(".foo", "bar"))
+    })
+  })
 })

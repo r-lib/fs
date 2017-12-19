@@ -5,8 +5,8 @@ mkdir_ <- function(path, mode_str) {
     invisible(.Call(`_fs_mkdir_`, path, mode_str))
 }
 
-scandir_ <- function(path, type, recurse) {
-    .Call(`_fs_scandir_`, path, type, recurse)
+scandir_ <- function(path, all, type, recurse) {
+    .Call(`_fs_scandir_`, path, all, type, recurse)
 }
 
 rmdir_ <- function(path) {

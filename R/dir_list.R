@@ -5,18 +5,19 @@
 #' @param recursive Should directories be listed recursively?
 #' @param pattern A regular expression pattern used passed to [grep] to filter
 #'   the filenames.
+#' @param all If `TRUE` hidden files are also returned.
 #' @param ... Additional arguments passed to [grep].
 #' @template fs
 #' @export
 #' @examples
 #' dir_list(system.file())
-dir_list <- function(path = ".", recursive = TRUE, type = "any", pattern = NULL, ...) {
+dir_list <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
 
   type <- match.arg(type, names(directory_entry_types))
 
   path <- path_expand(path)
 
-  files <- scandir_(path, directory_entry_types[type], recursive)
+  files <- scandir_(path, isTRUE(all), directory_entry_types[type], recursive)
   if (!is.null(pattern)) {
     files <- grep(x = files, pattern = pattern, value = TRUE, ...)
   }
