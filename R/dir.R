@@ -1,16 +1,3 @@
-#' Move a directory
-#'
-#' @inherit file_move
-#' @include file_move.R
-#' @export
-dir_move <- file_move
-
-#' Directory information
-#' @inherit file_info
-#' @include file.R
-#' @export
-dir_info <- file_info
-
 #' Delete files in a directory
 #'
 #' @inheritParams dir_list
@@ -23,7 +10,6 @@ dir_delete <- function(path) {
 
   invisible(path)
 }
-
 
 #' Check if a directory exists
 #' @template fs

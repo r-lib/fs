@@ -1,8 +1,3 @@
-#' Link information
-#' @inherit file_info
-#' @export
-link_info <- file_info
-
 #' Create a file link
 #' @template fs
 #' @param new_path Character vector of locations the link should point to.
