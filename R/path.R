@@ -43,13 +43,15 @@ path_home <- function() {
 }
 
 #' Split a path into components
+#'
 #' @template fs
+#' @return A list of separated paths
 #' @export
 path_split <- function(path) {
   path <- path_expand(path)
 
   # Split on all but leading /
-  strsplit(path, "(?<=.)/+", perl = TRUE)[[1]]
+  strsplit(path, "(?<=.)/+", perl = TRUE)
 }
 
 #' Path to sessions temporary directory

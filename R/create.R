@@ -19,10 +19,17 @@
 #' # file_create applied to the same path will fail
 #' try(file_create(x))
 #' @export
-dir_create <- function(path, mode = "u+rwx,go+rx") {
-  stopifnot(length(mode) == 1)
+dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
+  paths <- path_split(path)
+  for (p in paths) {
+    if (length(p) == 1 || !isTRUE(recursive)) {
+      mkdir_(p, mode)
+    }
+    else {
+      mkdir_(Reduce(file.path, p, accumulate = TRUE), mode)
+    }
+  }
 
-  mkdir_(path_expand(path), mode)
   invisible(path)
 }
 
