@@ -18,7 +18,7 @@ LinkingTo:
 Imports:
     tibble,
     Rcpp
-SystemRequirements: GNU make, libbsd-dev (deb)
+SystemRequirements: GNU make, libbsd-dev (deb), libbsd-devel (yum)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 URL: https://github.com/r-lib/fs
