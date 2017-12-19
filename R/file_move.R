@@ -1,7 +1,11 @@
-#' Move a file
+#' Move/rename a file
 #'
 #' @template fs
-#' @param new_path new file path
+#' @param new_path New file path. If `new_path` is existing directory, the file
+#'   will be moved into that directory; otherwise it will be moved/renamed to
+#'   the full path.
+#'
+#'   Should either be the same length as `path`, or a single directory.
 #' @export
 file_move <- function(path, new_path) {
   path <- path_expand(path)

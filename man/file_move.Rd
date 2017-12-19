@@ -2,15 +2,19 @@
 % Please edit documentation in R/file_move.R
 \name{file_move}
 \alias{file_move}
-\title{Move a file}
+\title{Move/rename a file}
 \usage{
 file_move(path, new_path)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 
-\item{new_path}{new file path}
+\item{new_path}{New file path. If \code{new_path} is existing directory, the file
+will be moved into that directory; otherwise it will be moved/renamed to
+the full path.
+
+Should either be the same length as \code{path}, or a single directory.}
 }
 \description{
-Move a file
+Move/rename a file
 }
