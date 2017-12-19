@@ -8,8 +8,8 @@
 #'
 #' @template fs
 #' @param mode If file/directory is created, what mode should it have?
-#'   Links do not have permissions; they inherit the permissions of the
-#'   file they link to.
+#'
+#'   Links do not have mode; they inherit the mode of the file they link to.
 #' @param recursive should intermediate directories be created if they do not
 #'   exist?
 #' @examples

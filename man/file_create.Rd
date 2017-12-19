@@ -16,8 +16,8 @@ link_create(path, new_path, symbolic = TRUE)
 \item{path}{A character vector of paths.}
 
 \item{mode}{If file/directory is created, what mode should it have?
-Links do not have permissions; they inherit the permissions of the
-file they link to.}
+
+Links do not have mode; they inherit the mode of the file they link to.}
 
 \item{recursive}{should intermediate directories be created if they do not
 exist?}
