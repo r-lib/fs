@@ -29,28 +29,6 @@ file_types <- c(
   "file" = 5L,
   "socket" = 6L)
 
-#' Check if a file exists
-#' @template fs
-#' @export
-file_exists <- function(path) {
-  file_access(path, "exists")
-}
-
-access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
-
-#' Query files for access permissions
-#' @template fs
-#' @param mode A character vector containing one or more of 'exists', 'read',
-#'   'write', 'execute'.
-#' @return A logical vector
-file_access <- function(path, mode = "exists") {
-  path <- path_expand(path)
-  mode <- match.arg(mode, names(access_types), several.ok = TRUE)
-  mode <- sum(access_types[mode])
-
-  access_(path, mode)
-}
-
 #' Change file permissions
 #' @template fs
 #' @param mode A character representation of the mode, in either hexidecimal or symbolic format.

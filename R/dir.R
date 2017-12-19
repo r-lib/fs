@@ -11,13 +11,6 @@ dir_delete <- function(path) {
   invisible(path)
 }
 
-#' Check if a directory exists
-#' @template fs
-#' @export
-dir_exists <- function(path) {
-  file_exists(path) && is_dir(path)
-}
-
 #' Copy a directory
 #' @template fs
 #' @param new_path new location to copy to.

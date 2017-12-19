@@ -33,7 +33,7 @@ Collate:
     'file_move.R'
     'dir.R'
     'dir_list.R'
-    'file_exists.R'
+    'access.R'
     'fmode.R'
     'is.R'
     'link.R'
