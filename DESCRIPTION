@@ -29,6 +29,7 @@ Collate:
     'RcppExports.R'
     'create.R'
     'file.R'
+    'file_move.R'
     'dir.R'
     'dir_list.R'
     'file_exists.R'

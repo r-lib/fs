@@ -1,12 +1,13 @@
 #' Move a directory
 #'
 #' @inherit file_move
-#' @include file.R
+#' @include file_move.R
 #' @export
 dir_move <- file_move
 
 #' Directory information
 #' @inherit file_info
+#' @include file.R
 #' @export
 dir_info <- file_info
 
