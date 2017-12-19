@@ -1,4 +1,4 @@
-#' Create a file or directory.
+#' Create a file, directory, or link.
 #'
 #' These functions ensure that `path` exists; if it already exists it will
 #' be left unchanged. That means that ompared to [file.create()],
@@ -42,4 +42,23 @@ file_create <- function(path, mode = "u+rw,go+r") {
 
   create_(path_expand(path), mode)
   invisible(path)
+}
+
+#' @export
+#' @rdname dir_create
+#' @param symbolic Boolean value determining if the link should be a symbolic
+#'   (the default) or hard link.
+link_create <- function(path, new_path, symbolic = TRUE) {
+  path <- path_expand(path)
+  new_path <- path_expand(new_path)
+
+  stopifnot(length(path) == length(new_path))
+
+  if (isTRUE(symbolic)) {
+    link_create_symbolic_(path, new_path)
+  } else {
+    link_create_hard_(path, new_path)
+  }
+
+  invisible(new_path)
 }

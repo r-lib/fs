@@ -3,11 +3,14 @@
 \name{dir_create}
 \alias{dir_create}
 \alias{file_create}
-\title{Create a file or directory.}
+\alias{link_create}
+\title{Create a file, directory, or link.}
 \usage{
 dir_create(path, mode = "u+rwx,go+rx", recursive = TRUE)
 
 file_create(path, mode = "u+rw,go+r")
+
+link_create(path, new_path, symbolic = TRUE)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
@@ -16,6 +19,9 @@ file_create(path, mode = "u+rw,go+r")
 
 \item{recursive}{should intermediate directories be created if they do not
 exist?}
+
+\item{symbolic}{Boolean value determining if the link should be a symbolic
+(the default) or hard link.}
 }
 \description{
 These functions ensure that \code{path} exists; if it already exists it will
