@@ -5,14 +5,16 @@
 \alias{dir_walk}
 \title{List files in a directory}
 \usage{
-dir_list(path = ".", recursive = TRUE, type = "any", pattern = NULL,
-  ...)
+dir_list(path = ".", all = FALSE, recursive = TRUE, type = "any",
+  pattern = NULL, ...)
 
 dir_walk(path = ".", f, recursive = TRUE, type = "any", pattern = NULL,
   ...)
 }
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
+
+\item{all}{If \code{TRUE} hidden files are also returned.}
 
 \item{recursive}{Should directories be listed recursively?}
 
