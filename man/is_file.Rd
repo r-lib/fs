@@ -34,3 +34,7 @@ is_file(paths)
 is_dir(paths)
 is_link(paths)
 }
+\seealso{
+\code{\link[=file_exists]{file_exists()}}, \code{\link[=dir_exists]{dir_exists()}} and \code{\link[=link_exists]{link_exists()}} if you want
+to ensure that the path also exists.
+}
