@@ -8,6 +8,8 @@
 #'
 #' @template fs
 #' @param mode If file/directory is created, what mode should it have?
+#'   Links do not have permissions; they inherit the permissions of the
+#'   file they link to.
 #' @param recursive should intermediate directories be created if they do not
 #'   exist?
 #' @examples
@@ -21,6 +23,15 @@
 #' # file_create applied to the same path will fail
 #' try(file_create(x))
 #' @export
+file_create <- function(path, mode = "u+rw,go+r") {
+  stopifnot(length(mode) == 1)
+
+  create_(path_expand(path), mode)
+  invisible(path)
+}
+
+#' @export
+#' @rdname file_create
 dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
   paths <- path_split(path)
   for (p in paths) {
@@ -36,16 +47,7 @@ dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
 }
 
 #' @export
-#' @rdname dir_create
-file_create <- function(path, mode = "u+rw,go+r") {
-  stopifnot(length(mode) == 1)
-
-  create_(path_expand(path), mode)
-  invisible(path)
-}
-
-#' @export
-#' @rdname dir_create
+#' @rdname file_create
 #' @param symbolic Boolean value determining if the link should be a symbolic
 #'   (the default) or hard link.
 link_create <- function(path, new_path, symbolic = TRUE) {
