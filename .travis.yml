@@ -8,3 +8,6 @@ addons:
   apt:
     packages:
       libbsd-dev
+
+after_success:
+  - Rscript -e 'covr::codecov()'
