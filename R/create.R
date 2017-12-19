@@ -8,6 +8,8 @@
 #'
 #' @template fs
 #' @param mode If file/directory is created, what mode should it have?
+#' @param recursive should intermediate directories be created if they do not
+#'   exist?
 #' @examples
 #' x <- file_create(tempfile())
 #' is_file(x)

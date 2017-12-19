@@ -9,6 +9,9 @@ path_split(path)
 \arguments{
 \item{path}{\code{[character(1)]}\cr Pathname, this will be UTF-8 encoded before passing to libuv.}
 }
+\value{
+A list of separated paths
+}
 \description{
 Split a path into components
 }
