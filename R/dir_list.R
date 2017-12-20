@@ -25,6 +25,7 @@ dir_list <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pa
 
 directory_entry_types <- c(
   "any" = -1L,
+  "unknown" = 1L,
   "file" = 2L,
   "directory" = 4L,
   "symlink" = 8L,
