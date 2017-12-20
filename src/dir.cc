@@ -58,6 +58,8 @@ void list_dir(std::vector<std::string>* files, const char* path, bool all,
       files->push_back(name);
     }
 
+    Rcpp::Rcout << std::endl << name << ": " << e.type << std::endl;
+
     if (recurse && e.type == UV_DIRENT_DIR) {
       list_dir(files, name.c_str(), all, file_type, true);
     }
