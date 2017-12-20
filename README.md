@@ -52,3 +52,28 @@ Functions are divided into four main categories: manipulating paths, files, dire
 - `path_norm()` - normalizes a path
 - `path_split()` - split a path into components
 - `path_temp()` - temporary directory path
+
+### File functions
+
+- `file_chmod()` - Change file permissions
+- `file_chown()` - Change file ownership
+- `file_copy()` - Copy a file
+- `file_create()` - Create a new empty file
+- `file_delete()` - Delete files
+- `file_exists()` / `file_access()` - Query for file existence and access permissions.
+- `file_info()` - Query file metadata
+- `file_move()` - Move a file
+
+### Directory functions
+
+- `dir_create()` -  Create a new directory
+- `dir_delete()` - Delete an existing directory
+- `dir_exists()` - Query for directory existence
+- `dir_list()` - List objects in a directory
+- `dir_walk()` - Perform an action on objects in a directory
+
+### Link functions
+
+- `link_create()` - Create a new link
+- `link_exists()` - Query for link existence
+- `link_path()` - Retrieve the path a link points to
