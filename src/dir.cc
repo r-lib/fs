@@ -30,6 +30,48 @@ void mkdir_(CharacterVector path, std::string mode_str) {
   }
 }
 
+// If dirent is not unknown, just return it, otherwise stat the file and get
+// the filetype from that.
+uv_dirent_type_t get_dirent_type(const char* path,
+                                 const uv_dirent_type_t& entry_type) {
+  if (entry_type == UV_DIRENT_UNKNOWN) {
+    uv_fs_t req;
+    uv_fs_lstat(uv_default_loop(), &req, path, NULL);
+    stop_for_error(req, "Failed to stat '%s'", path);
+    uv_dirent_type_t type;
+    switch (req.statbuf.st_mode & S_IFMT) {
+      case S_IFBLK:
+        type = UV_DIRENT_BLOCK;
+        break;
+      case S_IFCHR:
+        type = UV_DIRENT_CHAR;
+        break;
+      case S_IFDIR:
+        type = UV_DIRENT_DIR;
+        break;
+      case S_IFIFO:
+        type = UV_DIRENT_FIFO;
+        break;
+      case S_IFLNK:
+        type = UV_DIRENT_LINK;
+        break;
+      case S_IFREG:
+        type = UV_DIRENT_FILE;
+        break;
+      case S_IFSOCK:
+        type = UV_DIRENT_SOCKET;
+        break;
+      default:
+        type = UV_DIRENT_UNKNOWN;
+        break;
+    }
+    uv_fs_req_cleanup(&req);
+    return type;
+  }
+
+  return entry_type;
+}
+
 void list_dir(std::vector<std::string>* files, const char* path, bool all,
               int file_type, bool recurse) {
   uv_fs_t req;
@@ -54,11 +96,12 @@ void list_dir(std::vector<std::string>* files, const char* path, bool all,
     } else {
       name = std::string(path) + '/' + e.name;
     }
-    if (file_type == -1 || (((1 << (e.type)) & file_type) > 0)) {
+    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type);
+    if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
       files->push_back(name);
     }
 
-    if (recurse && e.type == UV_DIRENT_DIR) {
+    if (recurse && entry_type == UV_DIRENT_DIR) {
       list_dir(files, name.c_str(), all, file_type, true);
     }
     if (next_res != UV_EOF) {
@@ -118,11 +161,12 @@ void dir_walk(Function fun, const char* path, bool all, int file_type,
     } else {
       name = std::string(path) + '/' + e.name;
     }
-    if (file_type == -1 || (((1 << (e.type)) & file_type) > 0)) {
+    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type);
+    if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
       fun(name);
     }
 
-    if (recurse && e.type == UV_DIRENT_DIR) {
+    if (recurse && entry_type == UV_DIRENT_DIR) {
       dir_walk(fun, name.c_str(), all, file_type, true);
     }
     if (next_res != UV_EOF) {
