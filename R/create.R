@@ -48,6 +48,7 @@ dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
 
 #' @export
 #' @rdname file_create
+#' @param new_path The path where the link should be created.
 #' @param symbolic Boolean value determining if the link should be a symbolic
 #'   (the default) or hard link.
 link_create <- function(path, new_path, symbolic = TRUE) {
