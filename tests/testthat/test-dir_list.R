@@ -44,4 +44,17 @@ describe("dir_list", {
       expect_equal(dir_list(all = TRUE), c(".foo", "bar"))
     })
   })
+
+  it("can find multiple types", {
+    with_dir_tree(list(
+        "file" = "foo",
+        "dir"), {
+      link_create("dir", "link")
+      expect_equal(dir_list(type = "file"), "file")
+      expect_equal(dir_list(type = "directory"), "dir")
+      expect_equal(dir_list(type = "symlink"), "link")
+      expect_equal(dir_list(type = c("directory", "symlink")), c("dir", "link"))
+      expect_equal(dir_list(type = c("file", "directory", "symlink")), c("dir", "file", "link"))
+    })
+  })
 })

@@ -1,6 +1,6 @@
 #' List files in a directory
 #'
-#' @param type File type to return, one of "any", "file", "directory",
+#' @param type File type(s) to return, one or more of "any", "file", "directory",
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
 #' @param recursive Should directories be listed recursively?
 #' @param pattern A regular expression pattern used passed to [grep] to filter
@@ -12,12 +12,11 @@
 #' @examples
 #' dir_list(system.file())
 dir_list <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
-
-  type <- match.arg(type, names(directory_entry_types))
+  type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
 
-  files <- scandir_(path, isTRUE(all), directory_entry_types[type], recursive)
+  files <- scandir_(path, isTRUE(all), sum(directory_entry_types[type]), recursive)
   if (!is.null(pattern)) {
     files <- grep(x = files, pattern = pattern, value = TRUE, ...)
   }
@@ -26,13 +25,13 @@ dir_list <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pa
 
 directory_entry_types <- c(
   "any" = -1L,
-  "file" = 1L,
-  "directory" = 2L,
-  "symlink" = 3L,
-  "FIFO" = 4L,
-  "socket" = 5L,
-  "character_device" = 6L,
-  "block_device" = 7L)
+  "file" = 2L,
+  "directory" = 4L,
+  "symlink" = 8L,
+  "FIFO" = 16L,
+  "socket" = 32L,
+  "character_device" = 64L,
+  "block_device" = 128L)
 
 #' @describeIn dir_list Walk along a directory, calling `f` for each entry in
 #'   the directory.
@@ -41,9 +40,9 @@ directory_entry_types <- c(
 #' dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 #' @export
 dir_walk <- function(path = ".", f, all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
-  type <- match.arg(type, names(directory_entry_types))
+  type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
 
-  dir_walk_(path, f, all, directory_entry_types[type], recursive)
+  dir_walk_(path, f, all, sum(directory_entry_types[type]), recursive)
 }

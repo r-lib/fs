@@ -18,7 +18,7 @@ dir_walk(path = ".", f, all = FALSE, recursive = TRUE, type = "any",
 
 \item{recursive}{Should directories be listed recursively?}
 
-\item{type}{File type to return, one of "any", "file", "directory",
+\item{type}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
 
 \item{pattern}{A regular expression pattern used passed to \link{grep} to filter

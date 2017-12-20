@@ -54,7 +54,7 @@ void list_dir(std::vector<std::string>* files, const char* path, bool all,
     } else {
       name = std::string(path) + '/' + e.name;
     }
-    if (file_type == -1 || e.type == (uv_dirent_type_t)file_type) {
+    if (file_type == -1 || (((1 << (e.type)) & file_type) > 0)) {
       files->push_back(name);
     }
 
@@ -118,7 +118,7 @@ void dir_walk(Function fun, const char* path, bool all, int file_type,
     } else {
       name = std::string(path) + '/' + e.name;
     }
-    if (file_type == -1 || e.type == (uv_dirent_type_t)file_type) {
+    if (file_type == -1 || (((1 << (e.type)) & file_type) > 0)) {
       fun(name);
     }
 
