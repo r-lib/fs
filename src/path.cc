@@ -1,18 +1,20 @@
 #include "Rcpp.h"
-#include "utils.h"
+#include "error.h"
 #include "uv.h"
+
+using namespace Rcpp;
 
 // [[Rcpp::export]]
 CharacterVector normalize_(CharacterVector path) {
   CharacterVector out = CharacterVector(path.size());
 
   for (size_t i = 0; i < Rf_xlength(out); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_realpath(uv_default_loop(), &file_req, p, NULL);
-    stop_for_error("Failed to normalize", p, res);
-    SET_STRING_ELT(out, i, Rf_mkChar((const char*)file_req.ptr));
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_realpath(uv_default_loop(), &req, p, NULL);
+    stop_for_error(req, "Failed to normalize '%s'", p);
+    SET_STRING_ELT(out, i, Rf_mkChar((const char*)req.ptr));
+    uv_fs_req_cleanup(&req);
   }
   return out;
 }

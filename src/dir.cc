@@ -7,7 +7,7 @@
 #endif
 
 #include "Rcpp.h"
-#include "utils.h"
+#include "error.h"
 #include "uv.h"
 
 using namespace Rcpp;
@@ -24,7 +24,7 @@ void mkdir_(CharacterVector path, std::string mode_str) {
 
     // We want to fail silently if the directory already exists
     if (fd != UV_EEXIST) {
-      stop_for_error("Failed to make directory", p, fd);
+      stop_for_error(req, "Failed to make directory '%s'", p);
     }
     uv_fs_req_cleanup(&req);
   }
@@ -33,8 +33,8 @@ void mkdir_(CharacterVector path, std::string mode_str) {
 void list_dir(std::vector<std::string>* files, const char* path, bool all,
               int file_type, bool recurse) {
   uv_fs_t req;
-  int res = uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
-  stop_for_error("Failed to search directory", path, res);
+  uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
+  stop_for_error(req, "Failed to search directory '%s'", path);
 
   uv_dirent_t e;
   for (int next_res = uv_fs_scandir_next(&req, &e); next_res != UV_EOF;
@@ -62,7 +62,7 @@ void list_dir(std::vector<std::string>* files, const char* path, bool all,
       list_dir(files, name.c_str(), all, file_type, true);
     }
     if (next_res != UV_EOF) {
-      stop_for_error("Failed to search directory", path, next_res);
+      stop_for_error(req, "Failed to search directory '%s'", path);
     }
   }
   uv_fs_req_cleanup(&req);
@@ -86,8 +86,8 @@ void rmdir_(CharacterVector path) {
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_rmdir(uv_default_loop(), &req, p, NULL);
-    stop_for_error("Failed to remove", p, res);
+    uv_fs_rmdir(uv_default_loop(), &req, p, NULL);
+    stop_for_error(req, "Failed to remove '%s'", p);
 
     uv_fs_req_cleanup(&req);
   }
@@ -96,8 +96,8 @@ void rmdir_(CharacterVector path) {
 void dir_walk(Function fun, const char* path, bool all, int file_type,
               bool recurse) {
   uv_fs_t req;
-  int res = uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
-  stop_for_error("Failed to search directory", path, res);
+  uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
+  stop_for_error(req, "Failed to search directory '%s'", path);
 
   uv_dirent_t e;
   for (int next_res = uv_fs_scandir_next(&req, &e); next_res != UV_EOF;
@@ -126,7 +126,7 @@ void dir_walk(Function fun, const char* path, bool all, int file_type,
       dir_walk(fun, name.c_str(), all, file_type, true);
     }
     if (next_res != UV_EOF) {
-      stop_for_error("Failed to search directory", path, next_res);
+      stop_for_error(req, "Failed to search directory '%s'", path);
     }
   }
   uv_fs_req_cleanup(&req);

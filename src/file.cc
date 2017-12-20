@@ -7,7 +7,7 @@
 #endif
 
 #include "Rcpp.h"
-#include "utils.h"
+#include "error.h"
 #include "uv.h"
 
 using namespace Rcpp;
@@ -15,12 +15,12 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 void move_(CharacterVector path, CharacterVector new_path) {
   for (size_t i = 0; i < Rf_xlength(new_path); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
-    int res = uv_fs_rename(uv_default_loop(), &file_req, p, n, NULL);
-    stop_for_error("Failed to move", p, res);
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_rename(uv_default_loop(), &req, p, n, NULL);
+    stop_for_error(req, "Failed to move '%s'to '%s'", p, n);
+    uv_fs_req_cleanup(&req);
   }
 }
 
@@ -30,16 +30,16 @@ void create_(CharacterVector path, std::string mode_str) {
   mode_t mode = getmode(out, 0);
 
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int fd = uv_fs_open(uv_default_loop(), &file_req, p,
+    int fd = uv_fs_open(uv_default_loop(), &req, p,
                         UV_FS_O_CREAT | UV_FS_O_WRONLY, mode, NULL);
-    stop_for_error("Failed to open", p, fd);
+    stop_for_error(req, "Failed to open '%s'", p);
 
-    int res = uv_fs_close(uv_default_loop(), &file_req, fd, NULL);
-    stop_for_error("Failed to close", p, res);
+    uv_fs_close(uv_default_loop(), &req, fd, NULL);
+    stop_for_error(req, "Failed to close '%s'", p);
 
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_req_cleanup(&req);
   }
 }
 
@@ -150,7 +150,7 @@ List stat_(CharacterVector path) {
       REAL(VECTOR_ELT(out, 17))[i] = NA_REAL;
       continue;
     }
-    stop_for_error("Failed to stat", p, res);
+    stop_for_error(req, "Failed to stat '%s'", p);
 
     uv_stat_t st = req.statbuf;
     REAL(VECTOR_ELT(out, 1))[i] = st.st_dev;
@@ -217,11 +217,11 @@ LogicalVector access_(CharacterVector path, int mode) {
   Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path));
 
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_access(uv_default_loop(), &file_req, p, mode, NULL);
+    int res = uv_fs_access(uv_default_loop(), &req, p, mode, NULL);
     LOGICAL(out)[i] = res == 0;
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_req_cleanup(&req);
   }
   return out;
 }
@@ -231,16 +231,16 @@ void chmod_(CharacterVector path, std::string mode_str) {
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_lstat(uv_default_loop(), &req, p, NULL);
-    stop_for_error("Failed to stat", p, res);
+    uv_fs_lstat(uv_default_loop(), &req, p, NULL);
+    stop_for_error(req, "Failed to stat '%s'", p);
     uv_stat_t st = req.statbuf;
     uv_fs_req_cleanup(&req);
 
     uv_fs_t req2;
     void* out = setmode(mode_str.c_str());
     mode_t mode = getmode(out, st.st_mode);
-    int res2 = uv_fs_chmod(uv_default_loop(), &req2, p, mode, NULL);
-    stop_for_error("Failed to chmod", p, res2);
+    uv_fs_chmod(uv_default_loop(), &req2, p, mode, NULL);
+    stop_for_error(req2, "Failed to chmod '%s'", p);
     uv_fs_req_cleanup(&req2);
   }
 }
@@ -260,34 +260,34 @@ std::string strmode_(int mode) {
 // [[Rcpp::export]]
 void unlink_(CharacterVector path) {
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_unlink(uv_default_loop(), &file_req, p, NULL);
-    stop_for_error("Failed to remove", p, res);
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_unlink(uv_default_loop(), &req, p, NULL);
+    stop_for_error(req, "Failed to remove '%s'", p);
+    uv_fs_req_cleanup(&req);
   }
 }
 
 // [[Rcpp::export]]
 void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite) {
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
-    int res = uv_fs_copyfile(uv_default_loop(), &file_req, p, n,
-                             !overwrite ? UV_FS_COPYFILE_EXCL : 0, NULL);
-    stop_for_error("Failed to copy", p, res);
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_copyfile(uv_default_loop(), &req, p, n,
+                   !overwrite ? UV_FS_COPYFILE_EXCL : 0, NULL);
+    stop_for_error(req, "Failed to copy '%s' to '%s'", p, n);
+    uv_fs_req_cleanup(&req);
   }
 }
 
 // [[Rcpp::export]]
 void chown_(CharacterVector path, int uid, int gid) {
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
-    uv_fs_t file_req;
+    uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int res = uv_fs_chown(uv_default_loop(), &file_req, p, uid, gid, NULL);
-    stop_for_error("Failed to chown", p, res);
-    uv_fs_req_cleanup(&file_req);
+    uv_fs_chown(uv_default_loop(), &req, p, uid, gid, NULL);
+    stop_for_error(req, "Failed to chown '%s'", p);
+    uv_fs_req_cleanup(&req);
   }
 }
