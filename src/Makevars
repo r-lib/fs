@@ -18,5 +18,9 @@ libuv/.libs/libuv.a: libuv/Makefile
 		CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" \
 		HAVE_DTRACE=0
 
+.PHONY: shlib-clean clean
+
+shlib-clean: clean
+
 clean:
 	$(MAKE) --directory=libuv distclean
