@@ -36,14 +36,14 @@ directory_entry_types <- c(
 
 #' @describeIn dir_list Walk along a directory, calling `f` for each entry in
 #'   the directory.
-#' @param f A function, taking one parameter, the current path entry.
+#' @param fun A function, taking one parameter, the current path entry.
 #' @examples
 #' dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 #' @export
-dir_walk <- function(path = ".", f, all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
+dir_walk <- function(path = ".", fun, all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
 
-  dir_walk_(path, f, all, sum(directory_entry_types[type]), recursive)
+  dir_walk_(path, fun, all, sum(directory_entry_types[type]), recursive)
 }

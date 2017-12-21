@@ -58,3 +58,34 @@ describe("dir_list", {
     })
   })
 })
+
+
+describe("dir_walk", {
+  it("can find multiple types", {
+    x <- character()
+    f <- function(p) x <<- p
+
+    with_dir_tree(list(
+        "file" = "foo",
+        "dir"), {
+      link_create("dir", "link")
+
+      dir_walk(type = "file", fun = f)
+      expect_equal(x, "file")
+
+      dir_walk(type = "directory", fun = f)
+      expect_equal(x, "dir")
+
+      dir_walk(type = "symlink", fun = f)
+      expect_equal(x, "link")
+
+      x <- character()
+      dir_walk(type = c("directory", "symlink"), fun = function(p) x <<- c(x, p))
+      expect_equal(x, c("dir", "link"))
+
+      x <- character()
+      dir_walk(type = c("file", "directory", "symlink"), fun = function(p) x <<- c(x, p))
+      expect_equal(x, c("dir", "file", "link"))
+    })
+  })
+})

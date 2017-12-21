@@ -8,7 +8,7 @@
 dir_list(path = ".", all = FALSE, recursive = TRUE, type = "any",
   pattern = NULL, ...)
 
-dir_walk(path = ".", f, all = FALSE, recursive = TRUE, type = "any",
+dir_walk(path = ".", fun, all = FALSE, recursive = TRUE, type = "any",
   pattern = NULL, ...)
 }
 \arguments{
@@ -26,7 +26,7 @@ the filenames.}
 
 \item{...}{Additional arguments passed to \link{grep}.}
 
-\item{f}{A function, taking one parameter, the current path entry.}
+\item{fun}{A function, taking one parameter, the current path entry.}
 }
 \description{
 List files in a directory
