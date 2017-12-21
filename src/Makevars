@@ -8,7 +8,7 @@ PKG_CPPFLAGS = -I./libuv/include
 $(SHLIB): libuv/.libs/libuv.a
 
 libuv/Makefile:
-	(cd libuv && sh autogen.sh && ./configure)
+	(cd libuv && sh autogen.sh && ./configure >/dev/null)
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
