@@ -41,3 +41,4 @@ Collate:
     'link.R'
     'package.R'
     'path.R'
+    'utils-pipe.R'
