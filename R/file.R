@@ -65,7 +65,6 @@ file_delete <- function(path) {
   path <- path_expand(path)
   unlink_(path)
 
-  # TODO: not sure if this should return the path or not.
   invisible(path)
 }
 
