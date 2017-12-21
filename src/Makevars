@@ -7,8 +7,11 @@ PKG_CPPFLAGS = -I./libuv/include
 
 $(SHLIB): libuv/.libs/libuv.a
 
+ifdef _R_CHECK_COMPILATION_FLAGS_
+    CONFIGURE_FLAGS="--quiet"
+endif
 libuv/Makefile:
-	(cd libuv && sh autogen.sh && ./configure --quiet)
+	(cd libuv && sh autogen.sh && ./configure $(CONFIGURE_FLAGS))
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
