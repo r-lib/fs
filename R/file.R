@@ -48,7 +48,9 @@ file_types <- c(
 #' file_info(x)$permissions
 file_chmod <- function(path, mode) {
   stopifnot(length(mode) == 1)
-  chmod_(path_expand(path), mode)
+  path <- path_expand(path)
+
+  chmod_(path, mode)
 
   invisible(path)
 }
@@ -84,6 +86,8 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
   path <- path_expand(path)
   new_path <- path_expand(new_path)
   copyfile_(path, new_path, isTRUE(overwrite))
+
+  invisible(new_path)
 }
 
 #' Change ownership or group of a file
