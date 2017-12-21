@@ -8,3 +8,4 @@
 ^\.Rproj\.user$
 ^codecov\.yml$
 ^src/\.ycm_extra_conf\.py$
+^README\.Rmd$
