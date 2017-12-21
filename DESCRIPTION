@@ -16,9 +16,10 @@ LazyData: true
 ByteCompile: true
 LinkingTo: 
     Rcpp
-Imports:
+Imports: 
     tibble,
-    Rcpp
+    Rcpp,
+    magrittr
 SystemRequirements: GNU make, libbsd-dev (deb), libbsd-devel (yum)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
