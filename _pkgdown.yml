@@ -1,3 +1,29 @@
+url: http://fs.r-lib.org
+
 authors:
   "Jim Hester":
     href: http://jimhester.com
+
+reference:
+- title: File manipulation
+  contents:
+  - starts_with("file_")
+
+- title: Directory manipulation
+  contents:
+  - starts_with("dir_")
+
+- title: Link manipulation
+  contents:
+  - starts_with("link_")
+
+- title: Path manipulation
+  contents:
+  - path
+  - starts_with("path_")
+
+- title: Helpers
+  contents:
+  - is_file
+  - as_bytes
+  - as_fmode

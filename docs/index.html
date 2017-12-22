@@ -67,13 +67,13 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#fs" class="anchor"></a>fs</h1></div>
 
-<p>The goal of <strong>fs</strong> is to provide a uniform interface to file operations using <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a>. libuv is used widely in the javascript community underneath <a href="https://nodejs.org">nodejs</a>, so the code is tested by a large community on diverse systems. The name, and some of the interface, is inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
+<p>The goal of <strong>fs</strong> is to provide a uniform interface to file and directory operations, built on top of the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library. libuv is used by <a href="https://nodejs.org">nodejs</a>, so is widely in the javascript community and tested by a large community on diverse systems. The name, and some of the interface, is inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install <strong>fs</strong> from github with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"r-lib/fs"</span>)</code></pre></div>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></div>
+<div class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"r-lib/fs"</span>)</div></code></pre>
 </div>
 <div id="motivation-vs-base-equivalents" class="section level2">
 <h2 class="hasAnchor">
@@ -88,96 +88,78 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p><strong>fs</strong> functions all accept vectors of paths as inputs and outputs, so they work well with dplyr verbs in pipelines.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(fs)
-<span class="kw">library</span>(dplyr)
+<p><strong>fs</strong> functions are divided into four main categories: manipulating paths (<code>path_</code>), files (<code>file_</code>), directories (<code>dir_</code>), and links (<code>link_</code>). Directories and links are special types of files, so <code>file_</code> functions will generally also work when applied to a directory or link.</p>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">
+<span class="kw">library</span>(fs)</div>
+<div class="sourceLine" id="cb2-2" data-line-number="2"></div>
+<div class="sourceLine" id="cb2-3" data-line-number="3">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/file_create.html">dir_create</a></span>(<span class="kw">tempfile</span>())</div>
+<div class="sourceLine" id="cb2-4" data-line-number="4">tmp</div>
+<div class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; [1] "/tmp/Rtmpt8Mxqj/file115c520e77f8b"</span></div>
+<div class="sourceLine" id="cb2-6" data-line-number="6"></div>
+<div class="sourceLine" id="cb2-7" data-line-number="7">
+<span class="kw"><a href="reference/file_create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</div>
+<div class="sourceLine" id="cb2-8" data-line-number="8">
+<span class="kw"><a href="reference/dir_list.html">dir_list</a></span>(tmp)</div>
+<div class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; [1] "/tmp/Rtmpt8Mxqj/file115c520e77f8b/my-file.txt"</span></div>
+<div class="sourceLine" id="cb2-10" data-line-number="10">
+<span class="kw"><a href="reference/file_delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</div>
+<div class="sourceLine" id="cb2-11" data-line-number="11">
+<span class="kw"><a href="reference/dir_list.html">dir_list</a></span>(tmp)</div>
+<div class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; character(0)</span></div>
+<div class="sourceLine" id="cb2-13" data-line-number="13"></div>
+<div class="sourceLine" id="cb2-14" data-line-number="14">
+<span class="kw"><a href="reference/dir_delete.html">dir_delete</a></span>(tmp)</div></code></pre>
+<p><strong>fs</strong> is designed to work well with the pipe, although it doesn’t provide the pipe itself because it’s a low-level infrastructure package. You’ll need to attach magrittr or similar.</p>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">
+<span class="kw">library</span>(magrittr)</div>
+<div class="sourceLine" id="cb3-2" data-line-number="2"></div>
+<div class="sourceLine" id="cb3-3" data-line-number="3">paths &lt;-<span class="st"> </span><span class="kw">tempfile</span>() <span class="op">%&gt;%</span>
+</div>
+<div class="sourceLine" id="cb3-4" data-line-number="4">
+<span class="st">  </span><span class="kw"><a href="reference/file_create.html">dir_create</a></span>() <span class="op">%&gt;%</span>
+</div>
+<div class="sourceLine" id="cb3-5" data-line-number="5">
+<span class="st">  </span><span class="kw"><a href="reference/path.html">path</a></span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]) <span class="op">%&gt;%</span>
+</div>
+<div class="sourceLine" id="cb3-6" data-line-number="6">
+<span class="st">  </span><span class="kw"><a href="reference/file_create.html">file_create</a></span>() </div>
+<div class="sourceLine" id="cb3-7" data-line-number="7">paths</div>
+<div class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; [1] "/tmp/Rtmpt8Mxqj/file115c53f5a91fc/a"</span></div>
+<div class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [2] "/tmp/Rtmpt8Mxqj/file115c53f5a91fc/b"</span></div>
+<div class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; [3] "/tmp/Rtmpt8Mxqj/file115c53f5a91fc/c"</span></div>
+<div class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; [4] "/tmp/Rtmpt8Mxqj/file115c53f5a91fc/d"</span></div>
+<div class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; [5] "/tmp/Rtmpt8Mxqj/file115c53f5a91fc/e"</span></div>
+<div class="sourceLine" id="cb3-13" data-line-number="13"></div>
+<div class="sourceLine" id="cb3-14" data-line-number="14">paths <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/file_delete.html">file_delete</a></span>()</div></code></pre>
+<p><code><a href="reference/dir_list.html">dir_info()</a></code> returns a data frame, which works particularly nicely in conjunction with dplyr and the S3 helper classes for permissions and file sizes.</p>
+<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><div class="sourceLine" id="cb4-1" data-line-number="1">
+<span class="kw">library</span>(dplyr)</div>
+<div class="sourceLine" id="cb4-2" data-line-number="2"></div>
+<div class="sourceLine" id="cb4-3" data-line-number="3">
 <span class="kw"><a href="reference/dir_list.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="dt">recursive =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+</div>
+<div class="sourceLine" id="cb4-4" data-line-number="4">
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
+</div>
+<div class="sourceLine" id="cb4-5" data-line-number="5">
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(type <span class="op">==</span><span class="st"> "file"</span>, permissions <span class="op">==</span><span class="st"> "u+r"</span>, size <span class="op">&gt;</span><span class="st"> "10KB"</span>) <span class="op">%&gt;%</span>
+</div>
+<div class="sourceLine" id="cb4-6" data-line-number="6">
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(size)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(path, permissions, size)
-<span class="co">#&gt;                path permissions    size</span>
-<span class="co">#&gt; 1 src/RcppExports.o  rw-r--r--  594.13K</span>
-<span class="co">#&gt; 2         src/dir.o  rw-r--r--  452.67K</span>
-<span class="co">#&gt; 3         src/fs.so  rwxr-xr-x   360.2K</span>
-<span class="co">#&gt; 4        src/file.o  rw-r--r--  300.32K</span>
-<span class="co">#&gt; 5        src/link.o  rw-r--r--  219.66K</span>
-<span class="co">#&gt; 6        src/path.o  rw-r--r--  216.91K</span>
-<span class="co">#&gt; 7       src/error.o  rw-r--r--   14.16K</span></code></pre></div>
-<div id="functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#functions" class="anchor"></a>Functions</h3>
-<p><strong>fs</strong> functions are divided into four main categories: manipulating paths, files, directories, and links.</p>
 </div>
-<div id="path-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#path-functions" class="anchor"></a>Path functions</h3>
-<ul>
-<li>
-<code><a href="reference/path.html">path()</a></code> - constructs a new path</li>
-<li>
-<code><a href="reference/path_expand.html">path_expand()</a></code> - expand <code>~</code> in a path</li>
-<li>
-<code><a href="reference/path_home.html">path_home()</a></code> - home directory path</li>
-<li>
-<code><a href="reference/path_norm.html">path_norm()</a></code> - normalizes a path</li>
-<li>
-<code><a href="reference/path_split.html">path_split()</a></code> - split a path into components</li>
-<li>
-<code><a href="reference/path_temp.html">path_temp()</a></code> - temporary directory path</li>
-</ul>
-</div>
-<div id="file-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#file-functions" class="anchor"></a>File functions</h3>
-<ul>
-<li>
-<code><a href="reference/file_chmod.html">file_chmod()</a></code> - Change file permissions</li>
-<li>
-<code><a href="reference/file_chown.html">file_chown()</a></code> - Change file ownership</li>
-<li>
-<code><a href="reference/file_copy.html">file_copy()</a></code> - Copy a file</li>
-<li>
-<code><a href="reference/file_create.html">file_create()</a></code> - Create a new empty file</li>
-<li>
-<code><a href="reference/file_delete.html">file_delete()</a></code> - Delete files</li>
-<li>
-<code><a href="reference/file_access.html">file_exists()</a></code> / <code><a href="reference/file_access.html">file_access()</a></code> - Query for file existence and access permissions.</li>
-<li>
-<code><a href="reference/file_info.html">file_info()</a></code> - Query file metadata</li>
-<li>
-<code><a href="reference/file_move.html">file_move()</a></code> - Move a file</li>
-</ul>
-</div>
-<div id="directory-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#directory-functions" class="anchor"></a>Directory functions</h3>
-<ul>
-<li>
-<code><a href="reference/file_create.html">dir_create()</a></code> - Create a new directory</li>
-<li>
-<code><a href="reference/dir_delete.html">dir_delete()</a></code> - Delete an existing directory</li>
-<li>
-<code><a href="reference/file_access.html">dir_exists()</a></code> - Query for directory existence</li>
-<li>
-<code><a href="reference/dir_list.html">dir_list()</a></code> - List objects in a directory</li>
-<li>
-<code><a href="reference/dir_list.html">dir_info()</a></code> - Retrieve information on objects in a directory</li>
-<li>
-<code><a href="reference/dir_list.html">dir_walk()</a></code> - Perform an action on objects in a directory</li>
-</ul>
-</div>
-<div id="link-functions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#link-functions" class="anchor"></a>Link functions</h3>
-<ul>
-<li>
-<code><a href="reference/file_create.html">link_create()</a></code> - Create a new link</li>
-<li>
-<code><a href="reference/file_access.html">link_exists()</a></code> - Query for link existence</li>
-<li>
-<code><a href="reference/link_path.html">link_path()</a></code> - Retrieve the path a link points to</li>
-</ul>
-</div>
+<div class="sourceLine" id="cb4-7" data-line-number="7">
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(path, permissions, size, creation_time)</div>
+<div class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; # A tibble: 8 x 4</span></div>
+<div class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;                path permissions        size       creation_time</span></div>
+<div class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;               &lt;chr&gt; &lt;S3: fmode&gt; &lt;S3: bytes&gt;              &lt;dttm&gt;</span></div>
+<div class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 1 src/RcppExports.o  rw-r--r--       689.9K 2017-12-19 16:11:38</span></div>
+<div class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 2         src/dir.o  rw-r--r--       482.7K 2017-12-22 08:24:31</span></div>
+<div class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 3         src/fs.so  rwxr-xr-x       312.9K 2017-12-22 08:24:38</span></div>
+<div class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 4        src/file.o  rw-r--r--       301.7K 2017-12-22 08:24:33</span></div>
+<div class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; 5          src/uv.o  rw-r--r--       230.9K 2017-12-14 20:11:49</span></div>
+<div class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; 6        src/link.o  rw-r--r--       216.4K 2017-12-22 08:24:35</span></div>
+<div class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; 7        src/path.o  rw-r--r--         213K 2017-12-22 08:24:38</span></div>
+<div class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 8       src/error.o  rw-r--r--        14.7K 2017-12-22 08:24:31</span></div></code></pre>
 </div>
 </div>
 </div>

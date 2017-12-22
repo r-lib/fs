@@ -58,11 +58,11 @@ library(fs)
 
 tmp <- dir_create(tempfile())
 tmp
-#> [1] "/tmp/RtmpH0O8wJ/file113566692350a"
+#> [1] "/tmp/Rtmp3U5bQV/file115b81ebeda87"
 
 file_create(path(tmp, "my-file.txt"))
 dir_list(tmp)
-#> [1] "/tmp/RtmpH0O8wJ/file113566692350a/my-file.txt"
+#> [1] "/tmp/Rtmp3U5bQV/file115b81ebeda87/my-file.txt"
 file_delete(path(tmp, "my-file.txt"))
 dir_list(tmp)
 #> character(0)
@@ -82,11 +82,11 @@ paths <- tempfile() %>%
   path(letters[1:5]) %>%
   file_create() 
 paths
-#> [1] "/tmp/RtmpH0O8wJ/file11356338224b7/a"
-#> [2] "/tmp/RtmpH0O8wJ/file11356338224b7/b"
-#> [3] "/tmp/RtmpH0O8wJ/file11356338224b7/c"
-#> [4] "/tmp/RtmpH0O8wJ/file11356338224b7/d"
-#> [5] "/tmp/RtmpH0O8wJ/file11356338224b7/e"
+#> [1] "/tmp/Rtmp3U5bQV/file115b850139fa5/a"
+#> [2] "/tmp/Rtmp3U5bQV/file115b850139fa5/b"
+#> [3] "/tmp/Rtmp3U5bQV/file115b850139fa5/c"
+#> [4] "/tmp/Rtmp3U5bQV/file115b850139fa5/d"
+#> [5] "/tmp/Rtmp3U5bQV/file115b850139fa5/e"
 
 paths %>% file_delete()
 ```
@@ -115,41 +115,3 @@ dir_info("src", recursive = FALSE) %>%
 #> 7        src/path.o  rw-r--r--         213K 2017-12-22 08:24:38
 #> 8       src/error.o  rw-r--r--        14.7K 2017-12-22 08:24:31
 ```
-
-### Functions
-
-### Path functions
-
-  - `path()` - constructs a new path
-  - `path_expand()` - expand `~` in a path
-  - `path_home()` - home directory path
-  - `path_norm()` - normalizes a path
-  - `path_split()` - split a path into components
-  - `path_temp()` - temporary directory path
-
-### File functions
-
-  - `file_chmod()` - Change file permissions
-  - `file_chown()` - Change file ownership
-  - `file_copy()` - Copy a file
-  - `file_create()` - Create a new empty file
-  - `file_delete()` - Delete files
-  - `file_exists()` / `file_access()` - Query for file existence and
-    access permissions.
-  - `file_info()` - Query file metadata
-  - `file_move()` - Move a file
-
-### Directory functions
-
-  - `dir_create()` - Create a new directory
-  - `dir_delete()` - Delete an existing directory
-  - `dir_exists()` - Query for directory existence
-  - `dir_list()` - List objects in a directory
-  - `dir_info()` - Retrieve information on objects in a directory
-  - `dir_walk()` - Perform an action on objects in a directory
-
-### Link functions
-
-  - `link_create()` - Create a new link
-  - `link_exists()` - Query for link existence
-  - `link_path()` - Retrieve the path a link points to
