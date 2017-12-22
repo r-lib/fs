@@ -51,6 +51,11 @@ as_bytes <- function(x) {
 }
 
 #' @export
+sum.bytes <- function(x, ...) {
+  as_bytes(NextMethod())
+}
+
+#' @export
 `[.bytes` <- function(x, i) {
   cl <- oldClass(x)
   y <- NextMethod("[")
