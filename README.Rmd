@@ -22,7 +22,7 @@ if (basename(getwd()) == "docs") {
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 [![Coverage status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
 
-The goal of **fs** is to provide a uniform interface to file operations using [libuv](http://docs.libuv.org/en/v1.x/fs.html). libuv is used widely in the javascript community underneath [nodejs](https://nodejs.org), so the code is tested by a large community on diverse systems. The name, and some of the interface, is inspired by Rust's [fs module](https://doc.rust-lang.org/std/fs/index.html).
+The goal of **fs** is to provide a uniform interface to file and directory operations, built on top of the [libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. libuv is used by [nodejs](https://nodejs.org), so is widely in the javascript community and tested by a large community on diverse systems. The name, and some of the interface, is inspired by Rust's [fs module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation
 
@@ -53,21 +53,54 @@ devtools::install_github("r-lib/fs")
 
 ## Usage
 
-**fs** functions all accept vectors of paths as inputs and outputs, so they work
-well with dplyr verbs in pipelines.
+**fs** functions are divided into four main categories: manipulating paths 
+(`path_`), files (`file_`), directories (`dir_`), and links (`link_`). 
+Directories and links are special types of files, so `file_` functions 
+will generally also work when applied to a directory or link.
 
 ```{r}
 library(fs)
+
+tmp <- dir_create(tempfile())
+tmp
+
+file_create(path(tmp, "my-file.txt"))
+dir_list(tmp)
+file_delete(path(tmp, "my-file.txt"))
+dir_list(tmp)
+
+dir_delete(tmp)
+```
+
+**fs** is designed to work well with the pipe, although it doesn't provide the 
+pipe itself because it's a low-level infrastructure package. You'll need to
+attach magrittr or similar.
+
+```{r}
+library(magrittr)
+
+paths <- tempfile() %>%
+  dir_create() %>%
+  path(letters[1:5]) %>%
+  file_create() 
+paths
+
+paths %>% file_delete()
+```
+
+`dir_info()` returns a data frame, which works particularly nicely in conjunction with dplyr and the S3 helper classes for permissions and file sizes.
+
+```{r}
 library(dplyr)
+
 dir_info("src", recursive = FALSE) %>%
+  as_tibble() %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
-  select(path, permissions, size)
+  select(path, permissions, size, creation_time)
 ```
 
 ### Functions
-
-**fs** functions are divided into four main categories: manipulating paths, files, directories, and links.
 
 ### Path functions
 
