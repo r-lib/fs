@@ -91,6 +91,9 @@
   <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
 <span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
   <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -133,6 +136,7 @@ the filenames.</p></td>
     <ul>
 <li><p><code>dir_walk</code>: Walk along a directory, calling <code>f</code> for each entry in
 the directory.</p></li>
+<li><p><code>dir_info</code>: A shortcut for the combination of <code><a href='file_info.html'>file_info(dir_list())</a></code>.</p></li>
 </ul>
     
 

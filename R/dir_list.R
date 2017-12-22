@@ -47,3 +47,9 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = TRUE, type = "any
 
   dir_walk_(path, fun, all, sum(directory_entry_types[type]), recursive)
 }
+
+#' @describeIn dir_list A shortcut for the combination of `file_info(dir_list())`.
+#' @export
+dir_info <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
+  file_info(dir_list(path = path, all = all, recursive = recursive, type = type, pattern = pattern, ...))
+}

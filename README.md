@@ -36,8 +36,7 @@ Usage
 ``` r
 library(fs)
 library(dplyr)
-dir_list("src", recursive = FALSE) %>%
-  file_info() %>%
+dir_info("src", recursive = FALSE) %>%
   filter(size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
@@ -83,6 +82,7 @@ dir_list("src", recursive = FALSE) %>%
 -   `dir_delete()` - Delete an existing directory
 -   `dir_exists()` - Query for directory existence
 -   `dir_list()` - List objects in a directory
+-   `dir_info()` - Retrieve information on objects in a directory
 -   `dir_walk()` - Perform an action on objects in a directory
 
 ### Link functions

@@ -3,12 +3,16 @@
 \name{dir_list}
 \alias{dir_list}
 \alias{dir_walk}
+\alias{dir_info}
 \title{List files in a directory}
 \usage{
 dir_list(path = ".", all = FALSE, recursive = TRUE, type = "any",
   pattern = NULL, ...)
 
 dir_walk(path = ".", fun, all = FALSE, recursive = TRUE, type = "any",
+  pattern = NULL, ...)
+
+dir_info(path = ".", all = FALSE, recursive = TRUE, type = "any",
   pattern = NULL, ...)
 }
 \arguments{
@@ -35,6 +39,8 @@ List files in a directory
 \itemize{
 \item \code{dir_walk}: Walk along a directory, calling \code{f} for each entry in
 the directory.
+
+\item \code{dir_info}: A shortcut for the combination of \code{file_info(dir_list())}.
 }}
 
 \examples{
