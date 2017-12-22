@@ -45,7 +45,7 @@ as_bytes <- function(x) {
     return(structure(x, class = "bytes"))
   }
   x <- as.character(x)
-  m <- rematch2::re_match(x, "^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$")
+  m <- captures(x, regexpr("^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$", x, perl = TRUE))
   m$unit[m$unit == ""] <- "B"
   structure(as.numeric(m$size) * units[m$unit], class = "bytes")
 }

@@ -18,8 +18,7 @@ ByteCompile: true
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp,
-    rematch2
+    Rcpp
 SystemRequirements: GNU make, libbsd-dev (deb), libbsd-devel (yum)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
@@ -42,3 +41,4 @@ Collate:
     'link.R'
     'package.R'
     'path.R'
+    'utils.R'
