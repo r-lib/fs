@@ -37,7 +37,7 @@ Usage
 library(fs)
 library(dplyr)
 dir_info("src", recursive = FALSE) %>%
-  filter(size > "10KB") %>%
+  filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
 #> # A tibble: 7 x 3
