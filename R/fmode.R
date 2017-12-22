@@ -24,23 +24,35 @@ as.character.fmode <- format.fmode
 #' @rdname fmode
 #' @export
 as_fmode <- function(x) {
-  if (inherits(x, "fmode")) {
-    return(x)
-  }
-  if (inherits(x, "octmode")) {
-    class(x) <- "fmode"
-    return(x)
-  }
-  if (is.double(x) && all(is.na(x) | x == as.integer(x))) {
+  UseMethod("as_fmode")
+}
+
+#' @export
+as_fmode.fmode <- identity
+
+#' @export
+as_fmode.character <- function(x) {
+  structure(getmode_(x), class = "fmode")
+}
+
+#' @export
+as_fmode.octmode <- function(x) {
+  class(x) <- "fmode"
+  x
+}
+
+#' @export
+as_fmode.numeric <- function(x) {
+  if (all(is.na(x) | x == as.integer(x))) {
     x <- as.integer(x)
-  }
-  if (is.integer(x)) {
     return(structure(x, class = "fmode"))
   }
-  if (is.character(x)) {
-    return(structure(getmode_(x), class = "fmode"))
-  }
-  stop("'x' cannot be coerced to class \"fmode\"")
+  stop("'x' cannot be coerced to class \"fmode\"", call. = FALSE)
+}
+
+#' @export
+as_fmode.integer <- function(x) {
+  return(structure(x, class = "fmode"))
 }
 
 #' File permissions
