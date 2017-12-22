@@ -105,7 +105,7 @@ dir_info("src", recursive = FALSE) %>%
   select(path, permissions, size, creation_time)
 #> # A tibble: 8 x 4
 #>                path permissions        size       creation_time
-#>               <chr> <S3: fs_perms> <S3: bytes>              <dttm>
+#>               <chr> <S3: fs_perms> <S3: fs_bytes>              <dttm>
 #> 1 src/RcppExports.o  rw-r--r--       689.9K 2017-12-19 16:11:38
 #> 2         src/dir.o  rw-r--r--       482.7K 2017-12-22 08:24:31
 #> 3         src/fs.so  rwxr-xr-x       312.9K 2017-12-22 08:24:38

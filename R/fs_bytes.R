@@ -3,7 +3,7 @@ units <- c('B' = 1, 'K' = 1024, 'M' = 1024 ^ 2, 'G' = 1024 ^ 3, 'T' = 1024 ^ 4, 
 #' @export
 # Adapted from https://github.com/gaborcsardi/prettyunits
 # Aims to be consistent with ls -lh, so uses 1024 KiB units, 3 or less digits etc.
-format.bytes <- function(x, scientific = FALSE, digits = 3, ...) {
+format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
   bytes <- unclass(x)
 
   exponent <- pmin(floor(log(bytes, 1024)), length(units) - 1)
@@ -25,38 +25,38 @@ format.bytes <- function(x, scientific = FALSE, digits = 3, ...) {
 }
 
 #' @export
-as.character.bytes <- format.bytes
+as.character.fs_bytes <- format.fs_bytes
 
 #' @export
-print.bytes <- function(x, ...) {
-  cat(format.bytes(x, ...))
+print.fs_bytes <- function(x, ...) {
+  cat(format.fs_bytes(x, ...))
 }
 
-#' Coerce an object to a bytes object
+#' Coerce an object to a fs_bytes object
 #' @param x Object to be coerced
 #' @examples
-#' as_bytes("1KB") < "1MB"
+#' as_fs_bytes("1KB") < "1MB"
 #' @export
-as_bytes <- function(x) {
-  if (inherits(x, "bytes")) {
+as_fs_bytes <- function(x) {
+  if (inherits(x, "fs_bytes")) {
     return(x)
   }
   if (is.numeric(x)) {
-    return(structure(x, class = "bytes"))
+    return(structure(x, class = "fs_bytes"))
   }
   x <- as.character(x)
   m <- captures(x, regexpr("^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$", x, perl = TRUE))
   m$unit[m$unit == ""] <- "B"
-  structure(as.numeric(m$size) * units[m$unit], class = "bytes")
+  structure(as.numeric(m$size) * units[m$unit], class = "fs_bytes")
 }
 
 #' @export
-sum.bytes <- function(x, ...) {
+sum.fs_bytes <- function(x, ...) {
   as_bytes(NextMethod())
 }
 
 #' @export
-`[.bytes` <- function(x, i) {
+`[.fs_bytes` <- function(x, i) {
   cl <- oldClass(x)
   y <- NextMethod("[")
   oldClass(y) <- cl
@@ -65,15 +65,15 @@ sum.bytes <- function(x, ...) {
 
 #' @export
 # Adapted from Ops.numeric_version
-Ops.bytes <- function (e1, e2) {
+Ops.fs_bytes <- function (e1, e2) {
   if (nargs() == 1L) {
-    stop(gettextf("unary '%s' not defined for \"bytes\" objects",
+    stop(gettextf("unary '%s' not defined for \"fs_bytes\" objects",
         .Generic), domain = NA)
   }
   boolean <- switch(.Generic, `<` = , `>` = , `==` = , `!=` = ,
     `<=` = , `>=` = TRUE, FALSE)
   if (!boolean) {
-    stop(gettextf("'%s' not defined for \"bytes\" objects",
+    stop(gettextf("'%s' not defined for \"fs_bytes\" objects",
         .Generic), domain = NA)
   }
   e1 <- as_bytes(e1)
