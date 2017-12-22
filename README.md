@@ -35,7 +35,7 @@ Usage
 
 ``` r
 library(fs)
-library(dplyr, quietly = TRUE)
+library(dplyr)
 dir_list("src", recursive = FALSE) %>%
   file_info() %>%
   filter(size > "10KB") %>%

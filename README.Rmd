@@ -11,6 +11,10 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(dplyr)
+if (basename(getwd()) == "docs") {
+  knitr::opts_knit$set(root.dir = file.path(getwd(), ".."))
+}
 ```
 
 # fs
@@ -54,7 +58,7 @@ well with dplyr verbs in pipelines.
 
 ```{r}
 library(fs)
-library(dplyr, quietly = TRUE)
+library(dplyr)
 dir_list("src", recursive = FALSE) %>%
   file_info() %>%
   filter(size > "10KB") %>%
