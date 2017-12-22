@@ -1,7 +1,6 @@
 #' Query file metadata
 #' @template fs
-#' @return A tibble with metadata for each file
-#' @importFrom tibble as_tibble
+#' @return A data.frame with metadata for each file
 #' @export
 file_info <- function(path) {
   path <- path_expand(path)
@@ -17,7 +16,7 @@ file_info <- function(path) {
   res$birth_time <- .POSIXct(res$birth_time)
 
   important <- c("path", "type", "size", "permissions", "modification_time", "user_id", "group_id")
-  as_tibble(res[c(important, setdiff(names(res), important))])
+  res[c(important, setdiff(names(res), important))]
 }
 
 file_types <- c(
