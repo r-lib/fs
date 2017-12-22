@@ -52,7 +52,7 @@ as_fs_bytes <- function(x) {
 
 #' @export
 sum.fs_bytes <- function(x, ...) {
-  as_bytes(NextMethod())
+  as_fs_bytes(NextMethod())
 }
 
 #' @export
@@ -76,7 +76,7 @@ Ops.fs_bytes <- function (e1, e2) {
     stop(gettextf("'%s' not defined for \"fs_bytes\" objects",
         .Generic), domain = NA)
   }
-  e1 <- as_bytes(e1)
-  e2 <- as_bytes(e2)
+  e1 <- as_fs_bytes(e1)
+  e2 <- as_fs_bytes(e2)
   NextMethod(.Generic)
 }
