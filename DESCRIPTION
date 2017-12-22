@@ -18,7 +18,6 @@ ByteCompile: true
 LinkingTo: 
     Rcpp
 Imports: 
-    tibble,
     Rcpp,
     rematch2
 SystemRequirements: GNU make, libbsd-dev (deb), libbsd-devel (yum)

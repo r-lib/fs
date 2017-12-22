@@ -10,7 +10,7 @@ file_info(path)
 \item{path}{A character vector of paths.}
 }
 \value{
-A tibble with metadata for each file
+A data.frame with metadata for each file
 }
 \description{
 Query file metadata

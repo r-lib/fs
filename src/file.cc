@@ -129,7 +129,8 @@ List stat_(CharacterVector path) {
   SET_STRING_ELT(names, 17, Rf_mkChar("birth_time"));
   SET_VECTOR_ELT(out, 17, Rf_allocVector(REALSXP, n));
 
-  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+  size_t i;
+  for (i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     int res = uv_fs_lstat(uv_default_loop(), &req, p, NULL);
@@ -214,6 +215,11 @@ List stat_(CharacterVector path) {
     uv_fs_req_cleanup(&req);
   }
   Rf_setAttrib(out, R_NamesSymbol, names);
+  Rf_setAttrib(out, R_ClassSymbol, Rf_mkString("data.frame"));
+  SEXP attr =
+      Rf_setAttrib(out, Rf_install("row.names"), Rf_allocVector(INTSXP, 2));
+  INTEGER(attr)[0] = NA_INTEGER;
+  INTEGER(attr)[1] = -i;
   return out;
 }
 
