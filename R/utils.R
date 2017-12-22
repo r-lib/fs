@@ -1,7 +1,7 @@
 captures <- function(x, m) {
   stopifnot(is.character(x))
   stopifnot(class(m) == "integer" &&
-    identical(names(attributes(m)), c("match.length", "useBytes", "capture.start", "capture.length", "capture.names")))
+    all(c("match.length", "useBytes", "capture.start", "capture.length", "capture.names") %in% names(attributes(m))))
 
   starts <- attr(m, "capture.start")
   strings <- substring(x, starts, starts + attr(m, "capture.length") - 1L)
