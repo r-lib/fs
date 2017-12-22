@@ -2,6 +2,7 @@
 
 S3method("!",fmode)
 S3method("&",fmode)
+S3method("==",fmode)
 S3method("[",bytes)
 S3method("[",fmode)
 S3method("|",fmode)

@@ -27,9 +27,9 @@ describe("file_info", {
 describe("file_chmod", {
   with_dir_tree(list("foo/bar" = "test"), {
     it("returns the input path and changes permissions", {
-      expect_equal(file_info("foo/bar")$permissions, fmode("644"))
+      expect_true(file_info("foo/bar")$permissions == "644")
       expect_equal(file_chmod("foo/bar", "u+x"), "foo/bar")
-      expect_equal(file_info("foo/bar")$permissions, fmode("744"))
+      expect_true(file_info("foo/bar")$permissions == "744")
     })
   })
 })

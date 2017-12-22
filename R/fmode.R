@@ -64,3 +64,9 @@ fmode <- as_fmode
 `|.fmode` <- function(a, b) {
   as_fmode(bitwOr(as_fmode(a), as_fmode(b)))
 }
+
+#' @export
+`==.fmode` <- function(a, b) {
+  b <- as_fmode(b)
+  unclass(a & b) == unclass(b)
+}

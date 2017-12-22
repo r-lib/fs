@@ -183,7 +183,7 @@ List stat_(CharacterVector path) {
         break;
     }
     INTEGER(VECTOR_ELT(out, 2))[i] = type;
-    INTEGER(VECTOR_ELT(out, 3))[i] = st.st_mode & ~S_IFMT;
+    INTEGER(VECTOR_ELT(out, 3))[i] = st.st_mode;
     REAL(VECTOR_ELT(out, 4))[i] = st.st_nlink;
     INTEGER(VECTOR_ELT(out, 5))[i] = st.st_uid;
     INTEGER(VECTOR_ELT(out, 6))[i] = st.st_gid;
