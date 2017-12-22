@@ -3,6 +3,7 @@ Title: Provide cross platform file operations based on libuv <https://libuv.org>
 Version: 0.0.0.9000
 Authors@R: c(
     person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre")),
+    person("Hadley", "Wickham", , "hadley@rstudio.com", "aut"),
     person("libuv project contributors", role = "cph", comment = "libuv library"),
     person("Joyent, Inc. and other Node contributors", role = "cph", comment = "libuv library"),
     person("RStudio", role = c("cph", "fnd"))
