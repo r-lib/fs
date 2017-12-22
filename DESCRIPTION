@@ -36,7 +36,7 @@ Collate:
     'dir.R'
     'dir_list.R'
     'access.R'
-    'fmode.R'
+    'fs_perms.R'
     'is.R'
     'link.R'
     'package.R'

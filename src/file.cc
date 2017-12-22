@@ -84,7 +84,7 @@ List stat_(CharacterVector path) {
 
   SET_STRING_ELT(names, 3, Rf_mkChar("permissions"));
   SET_VECTOR_ELT(out, 3, Rf_allocVector(INTSXP, n));
-  Rf_classgets(VECTOR_ELT(out, 3), Rf_mkString("fmode"));
+  Rf_classgets(VECTOR_ELT(out, 3), Rf_mkString("fs_perms"));
 
   SET_STRING_ELT(names, 4, Rf_mkChar("hard_links"));
   SET_VECTOR_ELT(out, 4, Rf_allocVector(REALSXP, n));

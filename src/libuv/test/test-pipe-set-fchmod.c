@@ -41,7 +41,7 @@ TEST_IMPL(pipe_set_chmod) {
   r = uv_pipe_chmod(&pipe_handle, UV_READABLE);
   if (r == UV_EPERM) {
     MAKE_VALGRIND_HAPPY();
-    RETURN_SKIP("Insufficient privileges to alter pipe fmode");
+    RETURN_SKIP("Insufficient privileges to alter pipe fs_perms");
   }
   ASSERT(r == 0);
 

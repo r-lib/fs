@@ -1,4 +1,4 @@
-context("test-fmode.R")
+context("test-fs_perms.R")
 
 describe("as_fmode", {
   it("coerces integers", {
@@ -13,7 +13,7 @@ describe("as_fmode", {
     expect_equal(as_fmode(NA_real_), new_fmode(NA_integer_))
     expect_equal(as_fmode(c(511, 420)), new_fmode(c(511L, 420L)))
 
-    expect_error(as_fmode(420.5), "'x' cannot be coerced to class \"fmode\"")
+    expect_error(as_fmode(420.5), "'x' cannot be coerced to class \"fs_perms\"")
   })
   it("coerces octmode", {
     expect_equal(as_fmode(as.octmode("777")), new_fmode(511L))
