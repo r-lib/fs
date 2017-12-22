@@ -40,16 +40,14 @@ dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
-#> # A tibble: 7 x 3
-#>                path permissions        size
-#>               <chr> <S3: fmode> <S3: bytes>
-#> 1 src/RcppExports.o  rw-r--r--       594.1K
-#> 2         src/dir.o  rw-r--r--       452.7K
-#> 3         src/fs.so  rwxr-xr-x       360.2K
-#> 4        src/file.o  rw-r--r--       299.7K
-#> 5        src/link.o  rw-r--r--       219.7K
-#> 6        src/path.o  rw-r--r--       216.9K
-#> 7       src/error.o  rw-r--r--        14.2K
+#>                path permissions    size
+#> 1 src/RcppExports.o  rw-r--r--  594.13K
+#> 2         src/dir.o  rw-r--r--  452.67K
+#> 3         src/fs.so  rwxr-xr-x   360.2K
+#> 4        src/file.o  rw-r--r--  300.32K
+#> 5        src/link.o  rw-r--r--  219.66K
+#> 6        src/path.o  rw-r--r--  216.91K
+#> 7       src/error.o  rw-r--r--   14.16K
 ```
 
 ### Functions
