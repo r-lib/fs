@@ -31,6 +31,10 @@ describe("file_chmod", {
       expect_equal(file_chmod("foo/bar", "u+x"), "foo/bar")
       expect_true(file_info("foo/bar")$permissions == "744")
     })
+
+    it("errors if given an invalid mode", {
+      expect_error(file_chmod("foo", "g+S"), "Invalid mode 'g\\+S'")
+    })
   })
 })
 

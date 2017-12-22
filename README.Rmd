@@ -54,10 +54,10 @@ well with dplyr verbs in pipelines.
 
 ```{r}
 library(fs)
-library(dplyr)
-dir_list() %>%
+library(dplyr, quietly = TRUE)
+dir_list("src", recursive = FALSE) %>%
   file_info() %>%
-  filter(size > "1KB") %>%
+  filter(size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
 ```

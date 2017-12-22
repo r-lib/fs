@@ -35,26 +35,22 @@ Usage
 
 ``` r
 library(fs)
-library(dplyr)
-dir_list() %>%
+library(dplyr, quietly = TRUE)
+dir_list("src", recursive = FALSE) %>%
   file_info() %>%
-  filter(size > "1KB") %>%
+  filter(size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
-#> # A tibble: 468 x 3
-#>                                 path permissions        size
-#>                                <chr> <S3: fmode> <S3: bytes>
-#>  1                 src/RcppExports.o  rw-r--r--         594K
-#>  2             src/libuv/Makefile.in  rw-r--r--         522K
-#>  3 src/libuv/autom4te.cache/output.0  rw-r--r--         457K
-#>  4 src/libuv/autom4te.cache/output.1  rw-r--r--         457K
-#>  5 src/libuv/autom4te.cache/output.2  rw-r--r--         457K
-#>  6 src/libuv/autom4te.cache/output.3  rw-r--r--         457K
-#>  7                src/libuv/Makefile  rw-r--r--         454K
-#>  8               src/libuv/configure  rwxr-xr-x         454K
-#>  9                         src/dir.o  rw-r--r--         453K
-#> 10                         src/fs.so  rwxr-xr-x         360K
-#> # ... with 458 more rows
+#> # A tibble: 7 x 3
+#>                path permissions        size
+#>               <chr> <S3: fmode> <S3: bytes>
+#> 1 src/RcppExports.o  rw-r--r--       594.1K
+#> 2         src/dir.o  rw-r--r--       452.7K
+#> 3         src/fs.so  rwxr-xr-x       360.2K
+#> 4        src/file.o  rw-r--r--       299.7K
+#> 5        src/link.o  rw-r--r--       219.7K
+#> 6        src/path.o  rw-r--r--       216.9K
+#> 7       src/error.o  rw-r--r--        14.2K
 ```
 
 ### Functions
