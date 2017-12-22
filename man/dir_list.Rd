@@ -6,13 +6,13 @@
 \alias{dir_info}
 \title{List files in a directory}
 \usage{
-dir_list(path = ".", all = FALSE, recursive = TRUE, type = "any",
+dir_list(path = ".", all = FALSE, recursive = FALSE, type = "any",
   pattern = NULL, ...)
 
-dir_walk(path = ".", fun, all = FALSE, recursive = TRUE, type = "any",
+dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any",
   pattern = NULL, ...)
 
-dir_info(path = ".", all = FALSE, recursive = TRUE, type = "any",
+dir_info(path = ".", all = FALSE, recursive = FALSE, type = "any",
   pattern = NULL, ...)
 }
 \arguments{
