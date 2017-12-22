@@ -20,7 +20,6 @@ LinkingTo:
 Imports: 
     tibble,
     Rcpp,
-    magrittr,
     rematch2
 SystemRequirements: GNU make, libbsd-dev (deb), libbsd-devel (yum)
 Roxygen: list(markdown = TRUE)
@@ -44,4 +43,3 @@ Collate:
     'link.R'
     'package.R'
     'path.R'
-    'utils-pipe.R'
