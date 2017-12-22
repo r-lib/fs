@@ -4,7 +4,7 @@ units <- c('B' = 1, 'K' = 1024, 'M' = 1024 ^ 2, 'G' = 1024 ^ 3, 'T' = 1024 ^ 4, 
 # Adapted from https://github.com/gaborcsardi/prettyunits
 # Aims to be consistent with ls -lh, so uses 1024 KiB units, 3 or less digits etc.
 format.bytes <- function(x, scientific = FALSE, digits = 3, ...) {
-  bytes <- unclass(bytes)
+  bytes <- unclass(x)
 
   exponent <- pmin(floor(log(bytes, 1024)), length(units) - 1)
   res <- round(bytes / 1024 ^ exponent, 2)
