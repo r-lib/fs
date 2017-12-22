@@ -16,7 +16,8 @@ file_info <- function(path) {
   res$creation_time <- .POSIXct(res$creation_time)
   res$birth_time <- .POSIXct(res$birth_time)
 
-  as_tibble(res)
+  important <- c("path", "type", "size", "permissions", "modification_time", "user_id", "group_id")
+  as_tibble(res[c(important, setdiff(names(res), important))])
 }
 
 file_types <- c(

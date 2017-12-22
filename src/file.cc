@@ -98,6 +98,7 @@ List stat_(CharacterVector path) {
 
   SET_STRING_ELT(names, 9, Rf_mkChar("size"));
   SET_VECTOR_ELT(out, 9, Rf_allocVector(REALSXP, n));
+  Rf_classgets(VECTOR_ELT(out, 9), Rf_mkString("bytes"));
 
   SET_STRING_ELT(names, 10, Rf_mkChar("block_size"));
   SET_VECTOR_ELT(out, 10, Rf_allocVector(REALSXP, n));

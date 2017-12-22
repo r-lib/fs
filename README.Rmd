@@ -57,7 +57,7 @@ library(fs)
 library(dplyr)
 dir_list() %>%
   file_info() %>%
-  filter(size > 10000) %>%
+  filter(size > "1KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
 ```

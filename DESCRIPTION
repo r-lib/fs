@@ -19,7 +19,8 @@ LinkingTo:
 Imports: 
     tibble,
     Rcpp,
-    magrittr
+    magrittr,
+    rematch2
 SystemRequirements: GNU make, libbsd-dev (deb), libbsd-devel (yum)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
@@ -30,6 +31,7 @@ Suggests:
     covr
 Collate: 
     'RcppExports.R'
+    'bytes.R'
     'create.R'
     'file.R'
     'file_move.R'

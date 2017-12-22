@@ -38,23 +38,23 @@ library(fs)
 library(dplyr)
 dir_list() %>%
   file_info() %>%
-  filter(size > 10000) %>%
+  filter(size > "1KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size)
-#> # A tibble: 102 x 3
-#>                                 path permissions   size
-#>                                <chr> <S3: fmode>  <dbl>
-#>  1             src/libuv/Makefile.in  rw-r--r--  534520
-#>  2 src/libuv/autom4te.cache/output.0  rw-r--r--  467591
-#>  3 src/libuv/autom4te.cache/output.1  rw-r--r--  467591
-#>  4 src/libuv/autom4te.cache/output.2  rw-r--r--  467549
-#>  5 src/libuv/autom4te.cache/output.3  rw-r--r--  467549
-#>  6                src/libuv/Makefile  rw-r--r--  465140
-#>  7               src/libuv/configure  rwxr-xr-x  464640
-#>  8                 src/libuv/libtool  rwxr-xr-x  339624
-#>  9               src/libuv/ltmain.sh  rw-r--r--  324089
-#> 10           src/libuv/m4/libtool.m4  rw-r--r--  305723
-#> # ... with 92 more rows
+#> # A tibble: 468 x 3
+#>                                 path permissions        size
+#>                                <chr> <S3: fmode> <S3: bytes>
+#>  1                 src/RcppExports.o  rw-r--r--         594K
+#>  2             src/libuv/Makefile.in  rw-r--r--         522K
+#>  3 src/libuv/autom4te.cache/output.0  rw-r--r--         457K
+#>  4 src/libuv/autom4te.cache/output.1  rw-r--r--         457K
+#>  5 src/libuv/autom4te.cache/output.2  rw-r--r--         457K
+#>  6 src/libuv/autom4te.cache/output.3  rw-r--r--         457K
+#>  7                src/libuv/Makefile  rw-r--r--         454K
+#>  8               src/libuv/configure  rwxr-xr-x         454K
+#>  9                         src/dir.o  rw-r--r--         453K
+#> 10                         src/fs.so  rwxr-xr-x         360K
+#> # ... with 458 more rows
 ```
 
 ### Functions
