@@ -11,7 +11,7 @@
 #' @export
 #' @examples
 #' dir_list(system.file())
-dir_list <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
+dir_list <- function(path = ".", all = FALSE, recursive = FALSE, type = "any", pattern = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
@@ -40,7 +40,7 @@ directory_entry_types <- c(
 #' @examples
 #' dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 #' @export
-dir_walk <- function(path = ".", fun, all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
+dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any", pattern = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
@@ -50,6 +50,6 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = TRUE, type = "any
 
 #' @describeIn dir_list A shortcut for the combination of `file_info(dir_list())`.
 #' @export
-dir_info <- function(path = ".", all = FALSE, recursive = TRUE, type = "any", pattern = NULL, ...) {
+dir_info <- function(path = ".", all = FALSE, recursive = FALSE, type = "any", pattern = NULL, ...) {
   file_info(dir_list(path = path, all = all, recursive = recursive, type = type, pattern = pattern, ...))
 }

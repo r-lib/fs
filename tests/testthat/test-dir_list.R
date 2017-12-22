@@ -9,9 +9,9 @@ describe("dir_list", {
     })
 
     with_dir_tree(list("foo/bar" = "test"), {
-      expect_equal(dir_list(), c("foo", "foo/bar"))
-      expect_equal(dir_list(type = "file"), "foo/bar")
-      expect_equal(dir_list("./"), c("./foo", "./foo/bar"))
+      expect_equal(dir_list(recursive = TRUE), c("foo", "foo/bar"))
+      expect_equal(dir_list(recursive = TRUE, type = "file"), "foo/bar")
+      expect_equal(dir_list("./", recursive = TRUE), c("./foo", "./foo/bar"))
       expect_equal(dir_list("foo"), "foo/bar")
       expect_equal(dir_list("foo/"), "foo/bar")
     })
@@ -20,8 +20,8 @@ describe("dir_list", {
   it("Does not follow symbolic links", {
     with_dir_tree(list("foo/bar/baz" = "test"), {
       link_create("foo", "foo/bar/qux")
-      expect_equal(dir_list(), c("foo", "foo/bar", "foo/bar/baz", "foo/bar/qux"))
-      expect_equal(dir_list(type = "symlink"), "foo/bar/qux")
+      expect_equal(dir_list(recursive = TRUE), c("foo", "foo/bar", "foo/bar/baz", "foo/bar/qux"))
+      expect_equal(dir_list(recursive = TRUE, type = "symlink"), "foo/bar/qux")
     })
   })
 
@@ -30,9 +30,9 @@ describe("dir_list", {
         "foo/bar/baz" = "test",
         "foo/bar/test2" = "",
         "foo/bar/test3" = ""), {
-      expect_equal(dir_list(pattern = "baz"), "foo/bar/baz")
-      expect_equal(dir_list(pattern = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
-      expect_equal(dir_list(pattern = "(?<=a)z", perl = TRUE), "foo/bar/baz")
+      expect_equal(dir_list(recursive = TRUE, pattern = "baz"), "foo/bar/baz")
+      expect_equal(dir_list(recursive = TRUE, pattern = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
+      expect_equal(dir_list(recursive = TRUE, pattern = "(?<=a)z", perl = TRUE), "foo/bar/baz")
     })
   })
 
