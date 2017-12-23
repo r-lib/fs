@@ -37,14 +37,6 @@ chmod_ <- function(path, mode_str) {
     invisible(.Call(`_fs_chmod_`, path, mode_str))
 }
 
-getmode_ <- function(mode) {
-    .Call(`_fs_getmode_`, mode)
-}
-
-strmode_ <- function(mode) {
-    .Call(`_fs_strmode_`, mode)
-}
-
 unlink_ <- function(path) {
     invisible(.Call(`_fs_unlink_`, path))
 }
@@ -55,6 +47,14 @@ copyfile_ <- function(path, new_path, overwrite) {
 
 chown_ <- function(path, uid, gid) {
     invisible(.Call(`_fs_chown_`, path, uid, gid))
+}
+
+getmode_ <- function(mode_str, mode) {
+    .Call(`_fs_getmode_`, mode_str, mode)
+}
+
+strmode_ <- function(mode) {
+    .Call(`_fs_strmode_`, mode)
 }
 
 link_create_hard_ <- function(path, new_path) {

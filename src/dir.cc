@@ -1,21 +1,13 @@
-#if defined(__APPLE__) && defined(__MACH__)
-#include <string.h>
-#include <unistd.h>
-#else
-#include <bsd/string.h>
-#include <bsd/unistd.h>
-#endif
-
 #include "Rcpp.h"
 #include "error.h"
+#include "getmode.h"
 #include "uv.h"
 
 using namespace Rcpp;
 
 // [[Rcpp::export]]
 void mkdir_(CharacterVector path, std::string mode_str) {
-  void* out = setmode(mode_str.c_str());
-  mode_t mode = getmode(out, 0);
+  mode_t mode = getmode_(mode_str.c_str(), 0);
 
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;

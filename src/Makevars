@@ -3,7 +3,12 @@ CXX_STD=CXX11
 
 PKG_LIBS = ./libuv/.libs/libuv.a `pkg-config libbsd --libs 2>/dev/null`
 
-PKG_CPPFLAGS = -I./libuv/include
+PKG_CPPFLAGS = -I./libuv/include -I.
+
+all: $(SHLIB)
+
+SOURCES = $(wildcard *.cc unix/*.cc)
+OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
 
 $(SHLIB): libuv/.libs/libuv.a
 

@@ -1,14 +1,9 @@
-#if defined(__APPLE__) && defined(__MACH__)
-#include <string.h>
-#include <unistd.h>
-#else
-#include <bsd/string.h>
-#include <bsd/unistd.h>
-#endif
-
 #include "Rcpp.h"
 #include "error.h"
+#include "getmode.h"
 #include "uv.h"
+
+#include <string.h>
 
 using namespace Rcpp;
 
@@ -26,13 +21,7 @@ void move_(CharacterVector path, CharacterVector new_path) {
 
 // [[Rcpp::export]]
 void create_(CharacterVector path, std::string mode_str) {
-  void* out = setmode(mode_str.c_str());
-  if (out == NULL) {
-    // TODO: use stop_for_error here
-    Rf_error("Invalid mode '%s'", mode_str.c_str());
-  }
-  mode_t mode = getmode(out, 0);
-  free(out);
+  mode_t mode = getmode_(mode_str.c_str(), 0);
 
   for (size_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
@@ -249,38 +238,11 @@ void chmod_(CharacterVector path, std::string mode_str) {
     uv_fs_req_cleanup(&req);
 
     uv_fs_t req2;
-    void* out = setmode(mode_str.c_str());
-    if (out == NULL) {
-      // TODO: use stop_for_error here
-      Rf_error("Invalid mode '%s'", mode_str.c_str());
-    }
-    mode_t mode = getmode(out, st.st_mode);
-    free(out);
+    mode_t mode = getmode_(mode_str.c_str(), st.st_mode);
     uv_fs_chmod(uv_default_loop(), &req2, p, mode, NULL);
     stop_for_error(req2, "Failed to chmod '%s'", p);
     uv_fs_req_cleanup(&req2);
   }
-}
-
-// [[Rcpp::export]]
-int getmode_(std::string mode) {
-  void* out = setmode(mode.c_str());
-  if (out == NULL) {
-    // TODO: use stop_for_error here
-    Rf_error("Invalid mode '%s'", mode.c_str());
-  }
-  mode_t res = getmode(out, 0);
-  free(out);
-  return res;
-}
-
-// [[Rcpp::export]]
-std::string strmode_(int mode) {
-  char out[12];
-  strmode(mode, out);
-
-  // The first character is the file type, so we do not return it.
-  return out + 1;
 }
 
 // [[Rcpp::export]]

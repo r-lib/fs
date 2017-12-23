@@ -60,7 +60,7 @@ as_fmode.character <- function(x) {
 
   is_display_mode <- grepl("[rwxXst-]{9}", x)
   res[is_display_mode] <- display_mode_to_symbolic_mode(res[is_display_mode])
-  res <- vapply(res, getmode_, integer(1), USE.NAMES = FALSE)
+  res <- vapply(res, getmode_, integer(1), USE.NAMES = FALSE, mode = 0)
   structure(res, class = "fs_perms")
 }
 
