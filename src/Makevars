@@ -19,5 +19,5 @@ libuv/.libs/libuv.a: libuv/Makefile
 
 shlib-clean: clean
 
-clean:
+clean: libuv/Makefile
 	$(MAKE) --directory=libuv distclean
