@@ -25,11 +25,6 @@ format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
 }
 
 #' @export
-type_sum.fs_bytes <- function(x) {
-  "fs::bytes"
-}
-
-#' @export
 as.character.fs_bytes <- format.fs_bytes
 
 #' @export
@@ -84,4 +79,12 @@ Ops.fs_bytes <- function (e1, e2) {
   e1 <- as_fs_bytes(e1)
   e2 <- as_fs_bytes(e2)
   NextMethod(.Generic)
+}
+
+pillar_shaft.fs_bytes <- function(x, ...) {
+  pillar::new_pillar_shaft_simple(format.fs_bytes(x), align = "right", ...)
+}
+
+type_sum.fs_bytes <- function(x) {
+  "fs::bytes"
 }

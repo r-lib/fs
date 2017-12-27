@@ -20,9 +20,6 @@ auto_name <- function(names) {
   names
 }
 
-# Dummy definition of tibble::type_sum to avoid R CMD CHECK warning
-type_sum <- function(x) UseMethod("type_sum")
-
 is_windows <- function() {
   tolower(Sys.info()[["sysname"]]) == "windows"
 }
