@@ -7,7 +7,7 @@ PKG_CPPFLAGS = -I./libuv/include -I.
 
 all: $(SHLIB)
 
-SOURCES = $(wildcard *.cc windows/*.cc)
+SOURCES = $(wildcard *.cc unix/*.cc)
 OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
 
 $(SHLIB): libuv/.libs/libuv.a
@@ -22,7 +22,8 @@ libuv/.libs/libuv.a: libuv/Makefile
 
 .PHONY: shlib-clean clean
 
-#shlib-clean: clean
+shlib-clean: clean
 
 clean: libuv/Makefile
 	$(MAKE) --directory=libuv distclean
+	rm -f $(OBJECTS)

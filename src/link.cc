@@ -26,8 +26,15 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
 
-    // TODO: investigate flags parameter on windows
-    uv_fs_symlink(uv_default_loop(), &req, p, n, 0, NULL);
+    int flags = 0;
+// windows 10 sort of supports file links for non-elevated users, and libuv
+// will try the flag, https://github.com/libuv/libuv/issues/1157. But most
+// users do not _yet_ have this enabled. In the meantime we will always use
+// the directory symlinks instead.
+#ifdef __WIN32
+    flags = UV_FS_SYMLINK_JUNCTION;
+#endif
+    uv_fs_symlink(uv_default_loop(), &req, p, n, flags, NULL);
     stop_for_error(req, "Failed to link '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }

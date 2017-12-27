@@ -1,7 +1,7 @@
 context("test-is.R")
 
 with_dir_tree(list("foo/bar"  = "test"), {
-  link_create("foo", "foo2")
+  link_create(path_norm("foo"), "foo2")
 
   describe("is_file", {
     it("returns true for files, false for non-files, NA if no object exists", {

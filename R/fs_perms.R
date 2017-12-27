@@ -59,10 +59,10 @@ as_fmode.character <- function(x) {
   res <- x
 
   if (!is_windows()) {
-    is_display_mode <- grepl("[rwxXst-]{9}", x)
+    is_display_mode <- grepl("^[rwxXst-]{9}$", x)
     res[is_display_mode] <- display_mode_to_symbolic_mode_posix(res[is_display_mode])
   } else {
-    is_display_mode <- grepl("[rwxXst-]{3}", x)
+    is_display_mode <- grepl("^[rwxXst-]{3}$", x)
     res[is_display_mode] <- display_mode_to_symbolic_mode_windows(res[is_display_mode])
   }
   res <- vapply(res, getmode_, integer(1), USE.NAMES = FALSE, mode = 0)

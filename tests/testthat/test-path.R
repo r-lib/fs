@@ -18,7 +18,7 @@ describe("path", {
 describe("path_norm", {
   it("returns the real path for symbolic links", {
     with_dir_tree(list("foo/bar" = "test"), {
-      link_create("foo", "foo2")
+      link_create(path_norm("foo"), "foo2")
       expect_equal(path_norm("foo2"), path_norm("foo"))
     })
   })

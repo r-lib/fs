@@ -57,7 +57,7 @@ getop:
       case 'w':
         perm |= S_IWUSR;
         break;
-      case 'x':
+    case 'x':
         perm |= S_IXUSR;
         break;
       default:
@@ -79,6 +79,7 @@ apply:
       Rf_error("Invalid mode '%s'", mode_str);
   }
   out &= who;
+  errno = 0;
   return out;
 }
 
