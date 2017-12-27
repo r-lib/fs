@@ -5,7 +5,7 @@
 
 [![Travis build
 status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
-<https://img.shields.io/badge/lifecycle-experimental-orange.svg>
+![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 [![Coverage
 status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
 
@@ -58,11 +58,11 @@ library(fs)
 
 tmp <- dir_create(tempfile())
 tmp
-#> [1] "/tmp/Rtmp3U5bQV/file115b81ebeda87"
+#> [1] "/tmp/RtmpDGqPEX/file387035d1042d"
 
 file_create(path(tmp, "my-file.txt"))
 dir_list(tmp)
-#> [1] "/tmp/Rtmp3U5bQV/file115b81ebeda87/my-file.txt"
+#> [1] "/tmp/RtmpDGqPEX/file387035d1042d/my-file.txt"
 file_delete(path(tmp, "my-file.txt"))
 dir_list(tmp)
 #> character(0)
@@ -82,11 +82,11 @@ paths <- tempfile() %>%
   path(letters[1:5]) %>%
   file_create() 
 paths
-#> [1] "/tmp/Rtmp3U5bQV/file115b850139fa5/a"
-#> [2] "/tmp/Rtmp3U5bQV/file115b850139fa5/b"
-#> [3] "/tmp/Rtmp3U5bQV/file115b850139fa5/c"
-#> [4] "/tmp/Rtmp3U5bQV/file115b850139fa5/d"
-#> [5] "/tmp/Rtmp3U5bQV/file115b850139fa5/e"
+#> [1] "/tmp/RtmpDGqPEX/file38705969531d/a"
+#> [2] "/tmp/RtmpDGqPEX/file38705969531d/b"
+#> [3] "/tmp/RtmpDGqPEX/file38705969531d/c"
+#> [4] "/tmp/RtmpDGqPEX/file38705969531d/d"
+#> [5] "/tmp/RtmpDGqPEX/file38705969531d/e"
 
 paths %>% file_delete()
 ```
@@ -105,7 +105,7 @@ dir_info("src", recursive = FALSE) %>%
   select(path, permissions, size, creation_time)
 #> # A tibble: 8 x 4
 #>                path permissions        size       creation_time
-#>               <chr> <S3: fs_perms> <S3: fs_bytes>              <dttm>
+#>               <chr> <S3: fmode> <S3: bytes>              <dttm>
 #> 1 src/RcppExports.o  rw-r--r--       689.9K 2017-12-19 16:11:38
 #> 2         src/dir.o  rw-r--r--       482.7K 2017-12-22 08:24:31
 #> 3         src/fs.so  rwxr-xr-x       312.9K 2017-12-22 08:24:38
