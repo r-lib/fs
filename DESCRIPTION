@@ -27,18 +27,3 @@ BugReports: https://github.com/r-lib/fs/issues
 Suggests: 
     testthat,
     covr
-Collate: 
-    'RcppExports.R'
-    'fs_bytes.R'
-    'create.R'
-    'file.R'
-    'file_move.R'
-    'dir.R'
-    'dir_list.R'
-    'access.R'
-    'fs_perms.R'
-    'is.R'
-    'link.R'
-    'package.R'
-    'path.R'
-    'utils.R'
