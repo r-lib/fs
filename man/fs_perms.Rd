@@ -2,11 +2,11 @@
 % Please edit documentation in R/fs_perms.R
 \name{fs_perms}
 \alias{fs_perms}
-\alias{as_fmode}
+\alias{as_fs_perms}
 \alias{fs_perms}
 \title{File permissions}
 \usage{
-as_fmode(x)
+as_fs_perms(x)
 
 fs_perms(x)
 }

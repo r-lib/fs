@@ -26,4 +26,4 @@ reference:
   contents:
   - is_file
   - as_bytes
-  - as_fmode
+  - as_fs_perms

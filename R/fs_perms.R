@@ -17,13 +17,13 @@
 #' fs_perms(c("a+rwx", "u+rw,go+r"))
 #' @export
 #' @name fs_perms
-as_fmode <- function(x) {
-  UseMethod("as_fmode")
+as_fs_perms <- function(x) {
+  UseMethod("as_fs_perms")
 }
 
 #' @export
 #' @rdname fs_perms
-fs_perms <- as_fmode
+fs_perms <- as_fs_perms
 
 #' @export
 print.fs_perms <- function(x, ...) {
@@ -39,7 +39,7 @@ format.fs_perms <- function(x, ...) {
 
 #' @export
 type_sum.fs_perms <- function(x) {
-  "fs::fmode"
+  "fs::fs_perms"
 }
 
 #' @export
@@ -47,14 +47,14 @@ as.character.fs_perms <- format.fs_perms
 
 #' @export
 `[.fs_perms` <- function(x, i) {
-  new_fmode(NextMethod("["))
+  new_fs_perms(NextMethod("["))
 }
 
 #' @export
-as_fmode.fs_perms <- identity
+as_fs_perms.fs_perms <- identity
 
 #' @export
-as_fmode.character <- function(x) {
+as_fs_perms.character <- function(x) {
   # matches inputs in rwxrwxrwx mode
   res <- x
 
@@ -77,13 +77,13 @@ display_mode_to_symbolic_mode_windows <- function(x) {
 }
 
 #' @export
-as_fmode.octmode <- function(x) {
+as_fs_perms.octmode <- function(x) {
   class(x) <- "fs_perms"
   x
 }
 
 #' @export
-as_fmode.numeric <- function(x) {
+as_fs_perms.numeric <- function(x) {
   if (all(is.na(x) | x == as.integer(x))) {
     x <- as.integer(x)
     return(structure(x, class = "fs_perms"))
@@ -92,32 +92,32 @@ as_fmode.numeric <- function(x) {
 }
 
 #' @export
-as_fmode.integer <- function(x) {
+as_fs_perms.integer <- function(x) {
   return(structure(x, class = "fs_perms"))
 }
 
-new_fmode <- function(x) {
+new_fs_perms <- function(x) {
   stopifnot(is.integer(x))
   structure(x, class = "fs_perms")
 }
 
 #' @export
 `!.fs_perms` <- function(a) {
-  new_fmode(bitwNot(a))
+  new_fs_perms(bitwNot(a))
 }
 
 #' @export
 `&.fs_perms` <- function(a, b) {
-  new_fmode(bitwAnd(a, as_fmode(b)))
+  new_fs_perms(bitwAnd(a, as_fs_perms(b)))
 }
 
 #' @export
 `|.fs_perms` <- function(a, b) {
-  new_fmode(bitwOr(a, as_fmode(b)))
+  new_fs_perms(bitwOr(a, as_fs_perms(b)))
 }
 
 #' @export
 `==.fs_perms` <- function(a, b) {
-  b <- as_fmode(b)
+  b <- as_fs_perms(b)
   unclass(a & b) == unclass(b)
 }
