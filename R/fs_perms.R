@@ -39,7 +39,7 @@ format.fs_perms <- function(x, ...) {
 
 #' @export
 type_sum.fs_perms <- function(x) {
-  "fs::fs_perms"
+  "fs::perms"
 }
 
 #' @export
