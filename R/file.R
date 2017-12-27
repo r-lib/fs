@@ -114,3 +114,19 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 
   invisible(path)
 }
+
+#' Open the file(s) directory in an interactive explorer
+#'
+#' @template fs
+#' @return The directories that were opened (invisibly).
+#' @export
+file_show <- function(path = ".") {
+  dirs <- path
+  dirs[is_file(path)] <- dirname(path)
+
+  for (p in dirs) {
+    browseURL(p)
+  }
+
+  invisible(dirs)
+}
