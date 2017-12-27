@@ -2,7 +2,7 @@
 #' @template fs
 #' @examples
 #' file_create("foo")
-#' link_create("foo", "bar")
+#' link_create(path_norm("foo"), "bar")
 #' link_path("bar")
 #' file_delete(c("foo", "bar"))
 #' @export

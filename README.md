@@ -3,9 +3,11 @@
 
 # fs
 
+![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
 [![Travis build
 status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
-![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
 [![Coverage
 status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
 
@@ -58,11 +60,11 @@ library(fs)
 
 tmp <- dir_create(tempfile())
 tmp
-#> [1] "/tmp/Rtmpa9D1jh/fileacc85f45cb96"
+#> [1] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e060777196"
 
 file_create(path(tmp, "my-file.txt"))
 dir_list(tmp)
-#> [1] "/tmp/Rtmpa9D1jh/fileacc85f45cb96/my-file.txt"
+#> [1] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e060777196/my-file.txt"
 file_delete(path(tmp, "my-file.txt"))
 dir_list(tmp)
 #> character(0)
@@ -82,11 +84,11 @@ paths <- tempfile() %>%
   path(letters[1:5]) %>%
   file_create() 
 paths
-#> [1] "/tmp/Rtmpa9D1jh/fileacc81cc0d238/a"
-#> [2] "/tmp/Rtmpa9D1jh/fileacc81cc0d238/b"
-#> [3] "/tmp/Rtmpa9D1jh/fileacc81cc0d238/c"
-#> [4] "/tmp/Rtmpa9D1jh/fileacc81cc0d238/d"
-#> [5] "/tmp/Rtmpa9D1jh/fileacc81cc0d238/e"
+#> [1] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/a"
+#> [2] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/b"
+#> [3] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/c"
+#> [4] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/d"
+#> [5] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/e"
 
 paths %>% file_delete()
 ```
@@ -106,12 +108,12 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 8 x 4
 #>                path    permissions           size       creation_time
 #>               <chr> <S3: fs_perms> <S3: fs_bytes>              <dttm>
-#> 1 src/RcppExports.o     rw-r--r--          700.7K 2017-12-27 08:39:41
-#> 2         src/dir.o     rw-r--r--          482.7K 2017-12-27 08:39:44
-#> 3         src/fs.so     rwxr-xr-x          302.4K 2017-12-27 08:40:43
-#> 4        src/file.o     rw-r--r--          301.7K 2017-12-27 08:39:46
-#> 5          src/uv.o     rw-r--r--          230.9K 2017-12-14 20:11:49
-#> 6        src/link.o     rw-r--r--          216.4K 2017-12-27 08:39:48
-#> 7        src/path.o     rw-r--r--            213K 2017-12-27 08:39:50
-#> 8       src/error.o     rw-r--r--           14.7K 2017-12-27 08:39:44
+#> 1        src/fs.dll     rw-rw-rw-         1003.5K 2017-12-27 14:36:06
+#> 2 src/RcppExports.o     rw-r--r--          601.2K 2017-12-27 14:56:23
+#> 3         src/dir.o     rw-r--r--          452.6K 2017-12-27 14:56:23
+#> 4         src/fs.so     rwxr-xr-x          367.1K 2017-12-27 14:56:41
+#> 5        src/file.o     rw-r--r--          292.4K 2017-12-27 14:56:23
+#> 6        src/link.o     rw-r--r--          219.6K 2017-12-27 14:56:26
+#> 7        src/path.o     rw-r--r--          216.8K 2017-12-27 14:56:23
+#> 8       src/error.o     rw-r--r--           17.3K 2017-12-27 14:56:23
 ```

@@ -25,6 +25,6 @@ file_info(x)$permissions
 file_chmod(x, "a-wrx")
 file_info(x)$permissions
 
-file_chmod(x, "ug+wr")
+file_chmod(x, "u+wr")
 file_info(x)$permissions
 }

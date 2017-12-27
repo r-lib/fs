@@ -6,7 +6,8 @@ describe("path", {
   })
 
   it("returns paths UTF-8 encoded", {
-    expect_equal(Encoding(path("你好.R")), "UTF-8")
+    skip_on_os("windows")
+    expect_equal(Encoding(path("\U4F60\U597D.R")), "UTF-8")
   })
 
   it("returns empty strings unchanged", {

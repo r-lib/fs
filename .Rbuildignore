@@ -13,3 +13,4 @@
 ^docs$
 ^_pkgdown\.yml$
 ^doc$
+^appveyor\.yml$
