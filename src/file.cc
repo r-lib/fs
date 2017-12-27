@@ -227,7 +227,8 @@ List stat_(CharacterVector path) {
     uv_fs_req_cleanup(&req);
   }
   Rf_setAttrib(out, R_NamesSymbol, names);
-  Rf_setAttrib(out, R_ClassSymbol, Rf_mkString("data.frame"));
+  Rf_setAttrib(out, R_ClassSymbol,
+               CharacterVector::create("tbl", "tbl_df", "data.frame"));
   SEXP attr =
       Rf_setAttrib(out, Rf_install("row.names"), Rf_allocVector(INTSXP, 2));
   INTEGER(attr)[0] = NA_INTEGER;

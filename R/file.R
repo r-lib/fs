@@ -7,6 +7,8 @@ file_info <- function(path) {
 
   res <- stat_(path)
 
+  res$path <- new_fs_filename(res$path, res$permissions)
+
   res$type <- factor(res$type, levels = file_types, labels = names(file_types))
 
   # TODO: convert to UTC times?

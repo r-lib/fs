@@ -38,11 +38,6 @@ format.fs_perms <- function(x, ...) {
 }
 
 #' @export
-type_sum.fs_perms <- function(x) {
-  "fs::perms"
-}
-
-#' @export
 as.character.fs_perms <- format.fs_perms
 
 #' @export
@@ -120,4 +115,12 @@ new_fs_perms <- function(x) {
 `==.fs_perms` <- function(a, b) {
   b <- as_fs_perms(b)
   unclass(a & b) == unclass(b)
+}
+
+pillar_shaft.fs_perms <- function(x, ...) {
+  pillar::new_pillar_shaft_simple(format.fs_perms(x), ...)
+}
+
+type_sum.fs_perms <- function(x) {
+  "fs::perms"
 }

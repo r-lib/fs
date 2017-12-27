@@ -167,6 +167,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// file_code_
+std::string file_code_(std::string path, mode_t mode);
+RcppExport SEXP _fs_file_code_(SEXP pathSEXP, SEXP modeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    rcpp_result_gen = Rcpp::wrap(file_code_(path, mode));
+    return rcpp_result_gen;
+END_RCPP
+}
 // getpwnam_
 IntegerVector getpwnam_(CharacterVector name);
 RcppExport SEXP _fs_getpwnam_(SEXP nameSEXP) {
@@ -269,6 +281,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_chown_", (DL_FUNC) &_fs_chown_, 3},
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 2},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
+    {"_fs_file_code_", (DL_FUNC) &_fs_file_code_, 2},
     {"_fs_getpwnam_", (DL_FUNC) &_fs_getpwnam_, 1},
     {"_fs_getgrnam_", (DL_FUNC) &_fs_getgrnam_, 1},
     {"_fs_groups_", (DL_FUNC) &_fs_groups_, 0},

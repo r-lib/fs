@@ -57,7 +57,7 @@ getop:
       case 'w':
         perm |= S_IWUSR;
         break;
-    case 'x':
+      case 'x':
         perm |= S_IXUSR;
         break;
       default:
@@ -169,4 +169,25 @@ std::string strmode_(mode_t mode) {
 
   // The first character is the file type, so we do not return it.
   return out + 1;
+}
+#define S_IFLNK 0120000
+
+std::string file_code_(std::string path, mode_t mode) {
+  switch (mode & S_IFMT) {
+    case S_IFDIR:
+      return "di";
+    case S_IFLNK:
+      return "ln";
+    case S_IFIFO:
+      return "pi";
+    case S_IFBLK:
+      return "db";
+    case S_IFCHR:
+      return "cd";
+    default:;
+  }
+  if (mode & S_IXUSR) {
+    return "ex";
+  }
+  return "no";
 }

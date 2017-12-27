@@ -10,6 +10,8 @@
 
 #include <Rcpp.h> /* for Rf_error */
 
+#include <sys/stat.h>
+
 mode_t getmode_(const char* mode_str, mode_t mode) {
   void* out = setmode(mode_str);
   if (out == NULL) {
@@ -27,4 +29,37 @@ std::string strmode_(mode_t mode) {
 
   // The first character is the file type, so we do not return it.
   return out + 1;
+}
+
+std::string file_code_(std::string path, mode_t mode) {
+  switch (mode & S_IFMT) {
+    case S_IFDIR:
+      if (mode & S_IWOTH)
+        if (mode & S_ISTXT)
+          return "tw";
+        else
+          return "ow";
+      else
+        return "di";
+    case S_IFLNK:
+      return "ln";
+    case S_IFSOCK:
+      return "so";
+    case S_IFIFO:
+      return "pi";
+    case S_IFBLK:
+      return "db";
+    case S_IFCHR:
+      return "cd";
+    default:;
+  }
+  if (mode & (S_IXUSR | S_IXGRP | S_IXOTH)) {
+    if (mode & S_ISUID)
+      return "su";
+    else if (mode & S_ISGID)
+      return "sg";
+    else
+      return "ex";
+  }
+  return "fi";
 }
