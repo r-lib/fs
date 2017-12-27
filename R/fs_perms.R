@@ -38,6 +38,11 @@ format.fs_perms <- function(x, ...) {
 }
 
 #' @export
+type_sum.fs_perms <- function(x) {
+  "fs::fmode"
+}
+
+#' @export
 as.character.fs_perms <- format.fs_perms
 
 #' @export

@@ -19,3 +19,6 @@ auto_name <- function(names) {
   names[missing] <- seq_along(names)[missing]
   names
 }
+
+# Dummy definition of tibble::type_sum to avoid R CMD CHECK warning
+type_sum <- function(x) UseMethod("type_sum")

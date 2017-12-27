@@ -25,6 +25,11 @@ format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
 }
 
 #' @export
+type_sum.fs_bytes <- function(x) {
+  "fs::bytes"
+}
+
+#' @export
 as.character.fs_bytes <- format.fs_bytes
 
 #' @export
