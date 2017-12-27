@@ -26,4 +26,4 @@ shlib-clean: clean
 
 clean: libuv/Makefile
 	$(MAKE) --directory=libuv distclean
-	rm -f $(OBJECTS)
+	rm -f $(OBJECTS) windows/getmode.o
