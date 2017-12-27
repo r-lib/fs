@@ -58,14 +58,22 @@ as_fmode.character <- function(x) {
   # matches inputs in rwxrwxrwx mode
   res <- x
 
-  is_display_mode <- grepl("[rwxXst-]{9}", x)
-  res[is_display_mode] <- display_mode_to_symbolic_mode(res[is_display_mode])
+  if (!is_windows()) {
+    is_display_mode <- grepl("[rwxXst-]{9}", x)
+    res[is_display_mode] <- display_mode_to_symbolic_mode_posix(res[is_display_mode])
+  } else {
+    is_display_mode <- grepl("[rwxXst-]{3}", x)
+    res[is_display_mode] <- display_mode_to_symbolic_mode_windows(res[is_display_mode])
+  }
   res <- vapply(res, getmode_, integer(1), USE.NAMES = FALSE, mode = 0)
   structure(res, class = "fs_perms")
 }
 
-display_mode_to_symbolic_mode <- function(x) {
-  paste0("u+", substring(x, 1, 3), ",g+", substring(x, 4,6), ",o+", substring(x, 7, 9))
+display_mode_to_symbolic_mode_posix <- function(x) {
+  paste0("u=", substring(x, 1, 3), ",g+", substring(x, 4,6), ",o+", substring(x, 7, 9))
+}
+display_mode_to_symbolic_mode_windows <- function(x) {
+  paste0("u=", substring(x, 1, 3))
 }
 
 #' @export

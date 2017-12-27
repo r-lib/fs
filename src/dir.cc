@@ -1,7 +1,10 @@
-#include "Rcpp.h"
-#include "error.h"
 #include "getmode.h"
 #include "uv.h"
+
+#undef ERROR
+
+#include "Rcpp.h"
+#include "error.h"
 
 using namespace Rcpp;
 
@@ -50,9 +53,11 @@ uv_dirent_type_t get_dirent_type(const char* path,
       case S_IFREG:
         type = UV_DIRENT_FILE;
         break;
+#ifndef __WIN32
       case S_IFSOCK:
         type = UV_DIRENT_SOCKET;
         break;
+#endif
       default:
         type = UV_DIRENT_UNKNOWN;
         break;

@@ -7,6 +7,8 @@ extern "C" {
 
 #include <Rinternals.h>
 #include <stdarg.h>
+
+#undef ERROR
 #include "uv.h"
 
 #define STRING_I(x) #x

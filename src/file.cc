@@ -1,9 +1,10 @@
-#include "Rcpp.h"
-#include "error.h"
 #include "getmode.h"
 #include "uv.h"
 
-#include <string.h>
+#undef ERROR
+
+#include "Rcpp.h"
+#include "error.h"
 
 using namespace Rcpp;
 
@@ -170,9 +171,11 @@ List stat_(CharacterVector path) {
       case S_IFREG:
         type = 5;
         break;
+#ifndef __WIN32
       case S_IFSOCK:
         type = 6;
         break;
+#endif
       default:
         type = NA_INTEGER;
         break;

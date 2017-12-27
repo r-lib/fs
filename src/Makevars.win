@@ -1,0 +1,30 @@
+# Use C++11 if available, so we have C99 support for variadic macros
+CXX_STD=CXX11
+
+PKG_LIBS = ./libuv/libuv.a \
+           -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv
+
+PKG_CPPFLAGS = -I./libuv/include -D_WIN32_WINNT=0x0600 -I.
+CFLAGS += -D_WIN32_WINNT=0x0600
+
+all: $(SHLIB)
+
+SOURCES = $(wildcard *.cc windows/*.cc)
+OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
+
+# Additional flags for libuv borrowed from libuv/Makefile.mingw
+LIBUV_CFLAGS = -Iinclude -Isrc -Isrc/win -DWIN32_LEAN_AND_MEAN
+
+$(SHLIB): libuv/libuv.a
+
+libuv/libuv.a:
+	$(MAKE) --directory=libuv -f Makefile.mingw \
+		CC="$(CC)" CFLAGS="$(CFLAGS) $(LIBUV_CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" \
+		HAVE_DTRACE=0
+
+.PHONY: shlib-clean clean
+
+shlib-clean: clean
+
+clean:
+	$(MAKE) --directory=libuv -f Makefile.mingw clean

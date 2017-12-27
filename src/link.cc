@@ -1,6 +1,9 @@
+#include "uv.h"
+
+#undef ERROR
+
 #include "Rcpp.h"
 #include "error.h"
-#include "uv.h"
 
 using namespace Rcpp;
 
