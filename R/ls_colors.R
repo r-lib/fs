@@ -41,21 +41,35 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
   map <- setNames(
     vapply(nms, `[[`, character(1), 2),
     vapply(nms, `[[`, character(1), 1))
-  perms <- attr(x, "permissions")
+  files <- vapply(x, .subset2, character(1), 1)
+  perms <- vapply(x, .subset2, integer(1), 2)
   res <- character(length(x))
   for (i in seq_along(x)) {
-    code <- map[file_code_(x[[i]], perms[[i]])]
+    code <- map[file_code_(files[[i]], perms[[i]])]
     if (!is.na(code)) {
-      res[[i]] <- paste0("\033[", code, "m", x[[i]], "\033[0m")
+      res[[i]] <- paste0("\033[", code, "m", files[[i]], "\033[0m")
     } else {
-      res[[i]] <- paste0(x[[i]])
+      res[[i]] <- files[[i]]
     }
   }
   res
 }
 
+#' @export
+as.character.fs_filename <- function(x, ...) {
+  vapply(x, .subset2, character(1), 1, USE.NAMES = FALSE)
+}
+
+#' @export
+format.fs_filename <- as.character.fs_filename
+
+#' @export
+str.fs_filename <- function(obj, ...) {
+  str(format(obj), ...)
+}
+
 new_fs_filename <- function(x, permissions) {
-  structure(x, permissions = permissions, class = "fs_filename")
+  structure(Map(function(x, p) list(x, p), x, permissions, USE.NAMES = FALSE), class = "fs_filename")
 }
 
 #' @export
@@ -65,8 +79,9 @@ print.fs_filename <- function(x, ...) {
 
 #' @export
 `[.fs_filename` <- function(x, i) {
-  perms <- attr(x, "permissions")[i]
-  new_fs_filename(NextMethod("["), perms)
+  perms <- vapply(x, .subset2, integer(1), 2, USE.NAMES = FALSE)[i]
+  files <- vapply(x, .subset2, character(1), 1, USE.NAMES = FALSE)[i]
+  new_fs_filename(files, perms)
 }
 
 pillar_shaft.fs_filename <- function(x, ...) {
