@@ -34,6 +34,7 @@ gnu_ls_code_map <- c(
 # TODO: freebsd has a different format for LSCOLORS
 # https://www.freebsd.org/cgi/man.cgi?query=ls&apropos=0&sektion=0&manpath=FreeBSD+11.1-RELEASE+and+Ports&arch=default&format=html
 
+#' @importFrom stats setNames
 colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
   vals <- strsplit(colors, ":")[[1]]
   nms <- strsplit(vals, "=")
