@@ -6,6 +6,11 @@
 #include "Rcpp.h"
 #include "error.h"
 
+#ifndef __WIN32
+#include <grp.h>
+#include <pwd.h>
+#endif
+
 using namespace Rcpp;
 
 // [[Rcpp::export]]
@@ -80,10 +85,10 @@ List stat_(CharacterVector path) {
   SET_VECTOR_ELT(out, 4, Rf_allocVector(REALSXP, n));
 
   SET_STRING_ELT(names, 5, Rf_mkChar("user_id"));
-  SET_VECTOR_ELT(out, 5, Rf_allocVector(INTSXP, n));
+  SET_VECTOR_ELT(out, 5, Rf_allocVector(STRSXP, n));
 
   SET_STRING_ELT(names, 6, Rf_mkChar("group_id"));
-  SET_VECTOR_ELT(out, 6, Rf_allocVector(INTSXP, n));
+  SET_VECTOR_ELT(out, 6, Rf_allocVector(STRSXP, n));
 
   SET_STRING_ELT(names, 7, Rf_mkChar("special_device_id"));
   SET_VECTOR_ELT(out, 7, Rf_allocVector(REALSXP, n));
@@ -132,8 +137,8 @@ List stat_(CharacterVector path) {
       INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
       INTEGER(VECTOR_ELT(out, 3))[i] = NA_INTEGER;
       REAL(VECTOR_ELT(out, 4))[i] = NA_REAL;
-      INTEGER(VECTOR_ELT(out, 5))[i] = NA_INTEGER;
-      INTEGER(VECTOR_ELT(out, 6))[i] = NA_INTEGER;
+      SET_STRING_ELT(VECTOR_ELT(out, 5), i, NA_STRING);
+      SET_STRING_ELT(VECTOR_ELT(out, 6), i, NA_STRING);
       REAL(VECTOR_ELT(out, 7))[i] = NA_REAL;
       REAL(VECTOR_ELT(out, 8))[i] = NA_REAL;
       REAL(VECTOR_ELT(out, 9))[i] = NA_REAL;
@@ -183,8 +188,23 @@ List stat_(CharacterVector path) {
     INTEGER(VECTOR_ELT(out, 2))[i] = type;
     INTEGER(VECTOR_ELT(out, 3))[i] = st.st_mode;
     REAL(VECTOR_ELT(out, 4))[i] = st.st_nlink;
-    INTEGER(VECTOR_ELT(out, 5))[i] = st.st_uid;
-    INTEGER(VECTOR_ELT(out, 6))[i] = st.st_gid;
+
+#ifdef __WIN32
+    SET_STRING_ELT(VECTOR_ELT(out, 5), i, NA_STRING);
+#else
+    passwd* pwd;
+    pwd = getpwuid(st.st_uid);
+    SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(pwd->pw_name, CE_UTF8));
+#endif
+
+#ifdef __WIN32
+    SET_STRING_ELT(VECTOR_ELT(out, 6), i, NA_STRING);
+#else
+    group* grp;
+    grp = getgrgid(st.st_gid);
+    SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(grp->gr_name, CE_UTF8));
+#endif
+
     REAL(VECTOR_ELT(out, 7))[i] = st.st_rdev;
     REAL(VECTOR_ELT(out, 8))[i] = st.st_ino;
     REAL(VECTOR_ELT(out, 9))[i] = st.st_size;

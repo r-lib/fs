@@ -92,9 +92,10 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 
 #' Change ownership or group of a file
 #' @template fs
-#' @param user_id The user id of the new owner, the R process must be privlaged to change
-#'   this.
-#' @param group_id The group id of the new owner
+#' @param user_id The user id of the new owner, specified as a numeric ID or
+#'   name. The R process must be privileged to change this.
+#' @param group_id The group id of the new owner, specified as a numeric ID or
+#'   name.
 #' @export
 file_chown <- function(path, user_id = NULL, group_id = NULL) {
   path <- path_expand(path)
@@ -105,6 +106,14 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 
   if (is.null(group_id)) {
     group_id <- -1
+  }
+
+  if (is.character(user_id)) {
+    user_id <- getpwnam_(user_id)
+  }
+
+  if (is.character(group_id)) {
+    user_id <- getgrnam_(user_id)
   }
 
   # TODO: use [getpwnam(3)](https://linux.die.net/man/3/getpwnam),
