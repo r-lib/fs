@@ -119,6 +119,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 #'
 #' @template fs
 #' @return The directories that were opened (invisibly).
+#' @importFrom utils browseURL
 #' @export
 file_show <- function(path = ".") {
   dirs <- path
