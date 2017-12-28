@@ -5,6 +5,7 @@
 #' @seealso [file_exists()], [dir_exists()] and [link_exists()] if you want
 #'   to ensure that the path also exists.
 #' @template fs
+#' @importFrom stats setNames
 #' @export
 #' @examples
 #' tmp <- dir_create(tempfile())
@@ -19,19 +20,19 @@
 #' is_link(paths)
 is_file <- function(path) {
   res <- file_info(path)
-  stats::setNames(res$type == "file", res$path)
+  setNames(res$type == "file", res$path)
 }
 
 #' @rdname is_file
 #' @export
 is_dir <- function(path) {
   res <- file_info(path)
-  stats::setNames(res$type == "directory", res$path)
+  setNames(res$type == "directory", res$path)
 }
 
 #' @rdname is_file
 #' @export
 is_link <- function(path) {
   res <- file_info(path)
-  stats::setNames(res$type == "symlink", res$path)
+  setNames(res$type == "symlink", res$path)
 }

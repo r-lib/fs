@@ -167,6 +167,48 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// getpwnam_
+IntegerVector getpwnam_(CharacterVector name);
+RcppExport SEXP _fs_getpwnam_(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(getpwnam_(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// getgrnam_
+IntegerVector getgrnam_(CharacterVector name);
+RcppExport SEXP _fs_getgrnam_(SEXP nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type name(nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(getgrnam_(name));
+    return rcpp_result_gen;
+END_RCPP
+}
+// groups_
+List groups_();
+RcppExport SEXP _fs_groups_() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(groups_());
+    return rcpp_result_gen;
+END_RCPP
+}
+// users_
+List users_();
+RcppExport SEXP _fs_users_() {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    rcpp_result_gen = Rcpp::wrap(users_());
+    return rcpp_result_gen;
+END_RCPP
+}
 // link_create_hard_
 void link_create_hard_(CharacterVector path, CharacterVector new_path);
 RcppExport SEXP _fs_link_create_hard_(SEXP pathSEXP, SEXP new_pathSEXP) {
@@ -227,6 +269,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_chown_", (DL_FUNC) &_fs_chown_, 3},
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 2},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
+    {"_fs_getpwnam_", (DL_FUNC) &_fs_getpwnam_, 1},
+    {"_fs_getgrnam_", (DL_FUNC) &_fs_getgrnam_, 1},
+    {"_fs_groups_", (DL_FUNC) &_fs_groups_, 0},
+    {"_fs_users_", (DL_FUNC) &_fs_users_, 0},
     {"_fs_link_create_hard_", (DL_FUNC) &_fs_link_create_hard_, 2},
     {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
     {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
