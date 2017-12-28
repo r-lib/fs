@@ -11,7 +11,7 @@ using namespace Rcpp;
 CharacterVector normalize_(CharacterVector path) {
   CharacterVector out = CharacterVector(path.size());
 
-  for (size_t i = 0; i < Rf_xlength(out); ++i) {
+  for (R_len_t i = 0; i < Rf_xlength(out); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     uv_fs_realpath(uv_default_loop(), &req, p, NULL);

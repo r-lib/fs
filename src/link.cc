@@ -9,7 +9,7 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 void link_create_hard_(CharacterVector path, CharacterVector new_path) {
-  for (size_t i = 0; i < Rf_xlength(new_path); ++i) {
+  for (R_len_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
@@ -21,7 +21,7 @@ void link_create_hard_(CharacterVector path, CharacterVector new_path) {
 
 // [[Rcpp::export]]
 void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
-  for (size_t i = 0; i < Rf_xlength(new_path); ++i) {
+  for (R_len_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
@@ -44,7 +44,7 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
 CharacterVector readlink_(CharacterVector path) {
   CharacterVector out(Rf_xlength(path));
   Rf_setAttrib(out, R_NamesSymbol, path);
-  for (size_t i = 0; i < Rf_xlength(path); ++i) {
+  for (R_len_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     uv_fs_readlink(uv_default_loop(), &req, p, NULL);
