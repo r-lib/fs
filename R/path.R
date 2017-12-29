@@ -78,7 +78,7 @@ path_split <- function(path) {
   path <- path_tidy(path)
 
   # Split drive / UNC parts
-  strsplit(path, "(?<!^)(?<![A-Za-z]:)(?<!^/)/+", perl = TRUE)
+  strsplit(path, "(?<!^)(?<!^/)/+", perl = TRUE)
 }
 
 #' Path to sessions temporary directory

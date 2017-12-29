@@ -33,8 +33,8 @@ describe("path_split", {
 
   it("does not split the root path", {
     expect_equal(path_split("/usr/bin")[[1]], c("/usr", "bin"))
-    expect_equal(path_split("c:/usr/bin")[[1]], c("c:/usr", "bin"))
-    expect_equal(path_split("X:/usr/bin")[[1]], c("X:/usr", "bin"))
+    expect_equal(path_split("c:/usr/bin")[[1]], c("c:", "usr", "bin"))
+    expect_equal(path_split("X:/usr/bin")[[1]], c("X:", "usr", "bin"))
     expect_equal(path_split("//server/usr/bin")[[1]], c("//server", "usr", "bin"))
     expect_equal(path_split("\\\\server\\usr\\bin")[[1]], c("//server", "usr", "bin"))
   })
@@ -55,14 +55,6 @@ describe("path_tidy", {
     expect_equal(path_tidy("//foo\\\\bar\\\\baz"), "//foo/bar/baz")
     expect_equal(path_tidy("foo\\\\bar\\\\baz\\"), "foo/bar/baz")
     expect_equal(path_tidy("foo\\\\bar\\\\baz\\\\"), "foo/bar/baz")
-  })
-
-  it("does not split the root path", {
-    expect_equal(path_split("/usr/bin")[[1]], c("/usr", "bin"))
-    expect_equal(path_split("c:/usr/bin")[[1]], c("c:/usr", "bin"))
-    expect_equal(path_split("X:/usr/bin")[[1]], c("X:/usr", "bin"))
-    expect_equal(path_split("//server/usr/bin")[[1]], c("//server", "usr", "bin"))
-    expect_equal(path_split("\\\\server\\usr\\bin")[[1]], c("//server", "usr", "bin"))
   })
 })
 
