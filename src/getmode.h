@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Rcpp.h>
 #include <sys/types.h>
 #include <string>
 
@@ -10,4 +11,4 @@ mode_t getmode_(const char* mode_str, mode_t mode);
 std::string strmode_(mode_t mode);
 
 // [[Rcpp::export]]
-std::string file_code_(std::string path, mode_t mode);
+Rcpp::CharacterVector file_code_(std::string path, mode_t mode);
