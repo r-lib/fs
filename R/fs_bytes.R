@@ -16,6 +16,7 @@ units <- c('B' = 1, 'K' = 1024, 'M' = 1024 ^ 2, 'G' = 1024 ^ 3, 'T' = 1024 ^ 4, 
 #' fs_bytes("1KB") < "1MB"
 #'
 #' sum(fs_bytes(c("1MB", "5MB", "500KB")))
+#' @name fs_bytes
 #' @export
 as_fs_bytes <- function(x) {
   UseMethod("as_fs_bytes")
