@@ -57,6 +57,22 @@ strmode_ <- function(mode) {
     .Call(`_fs_strmode_`, mode)
 }
 
+getpwnam_ <- function(name) {
+    .Call(`_fs_getpwnam_`, name)
+}
+
+getgrnam_ <- function(name) {
+    .Call(`_fs_getgrnam_`, name)
+}
+
+groups_ <- function() {
+    .Call(`_fs_groups_`)
+}
+
+users_ <- function() {
+    .Call(`_fs_users_`)
+}
+
 link_create_hard_ <- function(path, new_path) {
     invisible(.Call(`_fs_link_create_hard_`, path, new_path))
 }
