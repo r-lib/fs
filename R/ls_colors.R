@@ -36,11 +36,7 @@ gnu_ls_code_map <- c(
 
 #' @importFrom stats setNames
 colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
-  if (length(x) == 0) {
-    return(x)
-  }
-
-  if (!(requireNamespace("crayon") && crayon::has_color())) {
+  if (length(x) == 0 || !has_color()) {
     return(x)
   }
 
@@ -75,7 +71,8 @@ new_fs_filename <- function(x) {
 
 #' @export
 print.fs_filename <- function(x, ..., max = getOption("max.print")) {
-  cat(colourise_fs_filename(x[seq_len(min(length(x), max))], ...))
+  x <- x[seq_len(min(length(x), max))]
+  cat(multicol(colourise_fs_filename(x, ...)), sep = "")
 
   invisible(x)
 }
@@ -91,4 +88,22 @@ pillar_shaft.fs_filename <- function(x, ...) {
 
 type_sum.fs_filename <- function(x) {
   "fs::filename"
+}
+
+has_color <- function() {
+  requireNamespace("crayon") && crayon::has_color()
+}
+
+# From gaborcsardi/crayon/R/utils.r
+multicol <- function(x) {
+  xs <- if (has_color()) crayon::strip_style(x) else x
+  max_len <- max(nchar(xs)) + 1
+  to_add <- max_len - nchar(xs)
+  x <- paste0(x, substring(paste0(collapse = "", rep(" ", max_len)), 1, to_add))
+  screen_width <- getOption("width")
+  num_cols <- max(trunc(screen_width / max_len), 1)
+  num_rows <- ceiling(length(x) / num_cols)
+  x <- c(x, rep("", num_cols * num_rows - length(x)))
+  xm <- matrix(x, ncol = num_cols, byrow = TRUE)
+  paste0(apply(xm, 1, paste0, collapse = ""), "\n")
 }
