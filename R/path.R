@@ -37,8 +37,12 @@ path_expand <- function(path) {
 
 #' Tidy paths
 #'
-#' untidy paths are all different, tidy paths are all the same. They all use
-#' `/` to delimit directories, never have multiple `/` or trailing `/`.
+#' untidy paths are all different, tidy paths are all the same.
+#'
+#' Tidy paths always expand `~`, use `/` to delimit directories, never have
+#' multiple `/` or trailing `/` and have colourised output based on the file
+#' type.
+#'
 #' @return A fs_filename object
 #' @template fs
 #' @return a 

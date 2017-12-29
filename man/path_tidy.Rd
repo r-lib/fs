@@ -15,6 +15,10 @@ A fs_filename object
 a
 }
 \description{
-untidy paths are all different, tidy paths are all the same. They all use
-\code{/} to delimit directories, never have multiple \code{/} or trailing \code{/}.
+untidy paths are all different, tidy paths are all the same.
+}
+\details{
+Tidy paths always expand \code{~}, use \code{/} to delimit directories, never have
+multiple \code{/} or trailing \code{/} and have colourised output based on the file
+type.
 }
