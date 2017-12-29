@@ -36,6 +36,16 @@ gnu_ls_code_map <- c(
 
 #' @importFrom stats setNames
 colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
+  if (length(x) == 0) {
+    return(x)
+  }
+
+  files <- vapply(x, .subset2, character(1), 1)
+  perms <- vapply(x, .subset2, integer(1), 2)
+  if (!(requireNamespace("crayon") && crayon::has_color())) {
+    return(x)
+  }
+
   vals <- strsplit(colors, ":")[[1]]
   nms <- strsplit(vals, "=")
   map <- setNames(

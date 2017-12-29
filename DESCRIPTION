@@ -27,6 +27,7 @@ BugReports: https://github.com/r-lib/fs/issues
 Suggests: 
     testthat,
     covr,
-    pillar
+    pillar,
+    crayon
 Remotes:
     r-lib/pillar
