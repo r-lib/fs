@@ -50,13 +50,14 @@ path_tidy <- function(path) {
   path <- path_expand(path)
 
   # convert `\\` to `/`
-  path <- gsub("\\\\", "/", path)
+  path <- gsub("\\", "/", path, fixed = TRUE)
 
-  # convert multiple // to single /
-  path <- gsub("//+", "/", path)
+  # convert multiple // to single /, as long as they are not at the start (when
+  # they could be UNC paths).
+  path <- gsub("(?<!^)//+", "/", path, perl = TRUE)
 
-  # Remove trailing / from paths
-  path <- sub("/$", "", path)
+  # Remove trailing / from paths (that aren't also the beginning)
+  path <- sub("(?<!^)/$", "", path, perl = TRUE)
 
   new_fs_filename(path)
 }
@@ -74,10 +75,10 @@ path_home <- function(...) {
 #' @return A list of separated paths
 #' @export
 path_split <- function(path) {
-  path <- path_expand(path)
+  path <- path_tidy(path)
 
-  # Split on all but leading /
-  strsplit(path, "(?<=.)/+", perl = TRUE)
+  # Split drive / UNC parts
+  strsplit(path, "(?<!^)(?<![A-Za-z]:)(?<!^/)/+", perl = TRUE)
 }
 
 #' Path to sessions temporary directory
