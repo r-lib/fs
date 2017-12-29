@@ -53,13 +53,11 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
     vapply(nms, `[[`, character(1), 1))
   file_types <- map[grepl("^[*][.]", names(map))]
   names(file_types) <- sub("^[*][.]", "", names(file_types))
-  files <- vapply(x, .subset2, character(1), 1)
-  perms <- vapply(x, .subset2, integer(1), 2)
   res <- character(length(x))
   for (i in seq_along(x)) {
-    code <- file_types[tools::file_ext(files[[i]])]
+    code <- map[file_code_(files[[i]], perms[[i]])]
     if (is.na(code)) {
-      code <- map[file_code_(files[[i]], perms[[i]])]
+      code <- file_types[tools::file_ext(files[[i]])]
     }
     if (!is.na(code)) {
       res[[i]] <- paste0("\033[", code, "m", files[[i]], "\033[0m")
