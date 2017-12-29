@@ -4,7 +4,10 @@
 \alias{path_temp}
 \title{Path to sessions temporary directory}
 \usage{
-path_temp()
+path_temp(...)
+}
+\arguments{
+\item{...}{Additional paths appended to the temporary directory by \code{path()}.}
 }
 \description{
 Analogous to \code{\link[base:tempdir]{base::tempdir()}}.

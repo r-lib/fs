@@ -4,7 +4,10 @@
 \alias{path_home}
 \title{Provide the path to the users home directory}
 \usage{
-path_home()
+path_home(...)
+}
+\arguments{
+\item{...}{Additional paths appended to the temporary directory by \code{path()}.}
 }
 \description{
 Provide the path to the users home directory
