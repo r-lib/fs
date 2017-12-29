@@ -1,9 +1,11 @@
 #' Lookup Users and Groups on a system
 #'
 #' These functions use the GETPWENT(3) and GETGRENT(3) system calls to query
-#' users and groups respectively. They return their results in a `data.frame`.
+#' users and groups respectively. 
 #'
-#' On windows both functions return an empty data.frame.
+#' @return They return their results in a `data.frame`. On windows both
+#'   functions return an empty `data.frame` because windows does not have user
+#'   or group ids.
 #' @name id
 #' @export
 group_ids <- function() {

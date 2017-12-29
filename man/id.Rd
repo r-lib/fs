@@ -10,7 +10,12 @@ group_ids()
 
 user_ids()
 }
+\value{
+They return their results in a \code{data.frame}. On windows both
+functions return an empty \code{data.frame} because windows does not have user
+or group ids.
+}
 \description{
 These functions use the GETPWENT(3) and GETGRENT(3) system calls to query
-users and groups respectively. They return their results in a \code{data.frame}.
+users and groups respectively.
 }
