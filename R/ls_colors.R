@@ -90,7 +90,9 @@ new_fs_filename <- function(x, permissions = list(NA_integer_)) {
 
 #' @export
 print.fs_filename <- function(x, ...) {
-  cat(colourise_fs_filename(x, ...), sep = "\n")
+  cat(colourise_fs_filename(x, ...))
+
+  invisible(x)
 }
 
 #' @export
