@@ -2,7 +2,6 @@
 % Please edit documentation in R/path.R
 \name{path_norm}
 \alias{path_norm}
-\alias{dir_realpath}
 \title{Return the canonicalized absolute pathname}
 \usage{
 path_norm(path)

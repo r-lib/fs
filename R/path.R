@@ -5,7 +5,7 @@
 #' @export
 #' @seealso [base::file.path()]
 path <- function(...) {
-  enc2utf8(file.path(..., fsep = "/"))
+  path_tidy(enc2utf8(file.path(..., fsep = "/")))
 }
 
 #' Return the canonicalized absolute pathname
@@ -14,12 +14,11 @@ path <- function(...) {
 #'
 #' @template fs
 #' @return `[character(1)]` the fully resolved path.
-#' @aliases dir_realpath
 #' @export
 path_norm <- function(path) {
   path <- enc2utf8(path)
 
-  normalize_(path_expand(path))
+  path_tidy(normalize_(path_expand(path)))
 }
 
 
@@ -33,13 +32,36 @@ path_norm <- function(path) {
 path_expand <- function(path) {
   path <- enc2utf8(path)
 
-  enc2utf8(path.expand(path))
+  new_fs_filename(path.expand(path))
+}
+
+#' Tidy paths
+#'
+#' untidy paths are all different, tidy paths are all the same. They all use
+#' `/` to delimit directories, never have multiple `/` or trailing `/`.
+#' @return A fs_filename object
+#' @template fs
+#' @return a 
+#' @export
+path_tidy <- function(path) {
+  path <- path_expand(path)
+
+  # convert `\\` to `/`
+  path <- gsub("\\\\", "/", path)
+
+  # convert multiple // to single /
+  path <- gsub("//+", "/", path)
+
+  # Remove trailing / from paths
+  path <- sub("/$", "", path)
+
+  path
 }
 
 #' Provide the path to the users home directory
 #' @export
 path_home <- function() {
-  enc2utf8(path.expand("~"))
+  path_expand("~")
 }
 
 #' Split a path into components
@@ -59,5 +81,5 @@ path_split <- function(path) {
 #' Analogous to [base::tempdir()].
 #' @export
 path_temp <- function() {
-  enc2utf8(tempdir())
+  path_tidy(tempdir())
 }

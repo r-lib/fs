@@ -22,5 +22,5 @@ file_move <- function(path, new_path) {
 
   move_(path, new_path)
 
-  invisible(new_path)
+  invisible(path_tidy(new_path))
 }

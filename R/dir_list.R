@@ -20,7 +20,7 @@ dir_list <- function(path = ".", all = FALSE, recursive = FALSE, type = "any", p
   if (!is.null(pattern)) {
     files <- grep(x = files, pattern = pattern, value = TRUE, ...)
   }
-  new_fs_filename(files)
+  path_tidy(files)
 }
 
 directory_entry_types <- c(

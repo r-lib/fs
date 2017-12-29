@@ -10,7 +10,7 @@ dir_delete <- function(path) {
   file_delete(files)
   rmdir_(rev(c(path, dirs)))
 
-  invisible(path)
+  invisible(path_tidy(path))
 }
 
 #' Copy a directory
@@ -37,5 +37,5 @@ dir_copy <- function(path, new_path) {
   new_files <- path(new_path, sub("[^/]*/", "", files))
   file_copy(files, new_files)
 
-  invisible(new_path)
+  invisible(path_tidy(new_path))
 }
