@@ -54,6 +54,9 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
   file_types <- map[grepl("^[*][.]", names(map))]
   names(file_types) <- sub("^[*][.]", "", names(file_types))
   res <- character(length(x))
+  missing_perms <- is.na(perms)
+  perms[missing_perms] <- file_info(files[missing_perms])$permissions
+
   for (i in seq_along(x)) {
     code <- map[file_code_(files[[i]], perms[[i]])]
     if (is.na(code)) {
@@ -81,7 +84,7 @@ str.fs_filename <- function(obj, ...) {
   str(format(obj), ...)
 }
 
-new_fs_filename <- function(x, permissions) {
+new_fs_filename <- function(x, permissions = list(NA_integer_)) {
   structure(Map(function(x, p) list(x, p), x, permissions, USE.NAMES = FALSE), class = "fs_filename")
 }
 
