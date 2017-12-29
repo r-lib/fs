@@ -62,9 +62,10 @@ path_tidy <- function(path) {
 }
 
 #' Provide the path to the users home directory
+#' @inheritParams path_temp
 #' @export
-path_home <- function() {
-  path_expand("~")
+path_home <- function(...) {
+  path_tidy(path(path_expand("~"), ...))
 }
 
 #' Split a path into components
@@ -82,7 +83,8 @@ path_split <- function(path) {
 #' Path to sessions temporary directory
 #'
 #' Analogous to [base::tempdir()].
+#' @param ... Additional paths appended to the temporary directory by `path()`.
 #' @export
-path_temp <- function() {
-  path_tidy(tempdir())
+path_temp <- function(...) {
+  path_tidy(path(tempdir()), ...)
 }
