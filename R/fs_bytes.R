@@ -1,8 +1,55 @@
 units <- c('B' = 1, 'K' = 1024, 'M' = 1024 ^ 2, 'G' = 1024 ^ 3, 'T' = 1024 ^ 4, 'P' = 1024 ^ 5, 'E' = 1024 ^ 6, 'Z' = 1024 ^ 7, 'Y' = 1024 ^ 8)
 
+#' Human readable file sizes
+#'
+#' Construct, manipulate and display vectors of file sizes.
+#'
+#' @param x A numeric or character vector. Character representations can use
+#'   shorthand sizes (see examples).
+#' @examples
+#' fs_bytes("1")
+#' fs_bytes("1K")
+#' fs_bytes("1Kb")
+#' fs_bytes("1Kib")
+#' fs_bytes("1MB")
+#'
+#' fs_bytes("1KB") < "1MB"
+#'
+#' sum(fs_bytes(c("1MB", "5MB", "500KB")))
 #' @export
+as_fs_bytes <- function(x) {
+  UseMethod("as_fs_bytes")
+}
+
+#' @export
+#' @rdname fs_bytes
+fs_bytes <- as_fs_bytes
+
+new_fs_bytes <- function(x) {
+  structure(x, class = "fs_bytes")
+}
+
+#' @export
+as_fs_bytes.default <- function(x) {
+  x <- as.character(x)
+  m <- captures(x, regexpr("^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$", x, perl = TRUE))
+  m$unit[m$unit == ""] <- "B"
+  new_fs_bytes(unname(as.numeric(m$size) * units[m$unit]))
+}
+
+#' @export
+as_fs_bytes.fs_bytes <- function(x) {
+  return(x)
+}
+
+#' @export
+as_fs_bytes.numeric <- function(x) {
+  return(structure(x, class = "fs_bytes"))
+}
+
 # Adapted from https://github.com/gaborcsardi/prettyunits
 # Aims to be consistent with ls -lh, so uses 1024 KiB units, 3 or less digits etc.
+#' @export
 format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
   bytes <- unclass(x)
 
@@ -12,7 +59,7 @@ format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
 
   ## Zero bytes
   res[bytes == 0] <- 0
-  unit[bytes == 0] <- names(units)[1]
+  unit[bytes == 0] <- ""
 
   ## NA and NaN bytes
   res[is.na(bytes)] <- NA_real_
@@ -32,49 +79,50 @@ print.fs_bytes <- function(x, ...) {
   cat(format.fs_bytes(x, ...))
 }
 
-#' Coerce an object to a fs_bytes object
-#' @param x Object to be coerced
-#' @examples
-#' as_fs_bytes("1KB") < "1MB"
 #' @export
-as_fs_bytes <- function(x) {
-  if (inherits(x, "fs_bytes")) {
-    return(x)
-  }
-  if (is.numeric(x)) {
-    return(structure(x, class = "fs_bytes"))
-  }
-  x <- as.character(x)
-  m <- captures(x, regexpr("^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$", x, perl = TRUE))
-  m$unit[m$unit == ""] <- "B"
-  structure(as.numeric(m$size) * units[m$unit], class = "fs_bytes")
+sum.fs_bytes <- function(x, ...) {
+  new_fs_bytes(NextMethod())
 }
 
 #' @export
-sum.fs_bytes <- function(x, ...) {
-  as_fs_bytes(NextMethod())
+min.fs_bytes <- function(x, ...) {
+  new_fs_bytes(NextMethod())
+}
+
+#' @export
+max.fs_bytes <- function(x, ...) {
+  new_fs_bytes(NextMethod())
 }
 
 #' @export
 `[.fs_bytes` <- function(x, i) {
-  cl <- oldClass(x)
-  y <- NextMethod("[")
-  oldClass(y) <- cl
-  y
+  new_fs_bytes(NextMethod("["))
 }
 
 #' @export
 # Adapted from Ops.numeric_version
 Ops.fs_bytes <- function (e1, e2) {
   if (nargs() == 1L) {
-    stop(gettextf("unary '%s' not defined for \"fs_bytes\" objects",
-        .Generic), domain = NA)
+    stop(sprintf("unary '%s' not defined for \"fs_bytes\" objects", .Generic),
+      call. = FALSE)
   }
-  boolean <- switch(.Generic, `<` = , `>` = , `==` = , `!=` = ,
-    `<=` = , `>=` = TRUE, FALSE)
+
+  boolean <- switch(.Generic,
+    `+` = TRUE,
+    `-` = TRUE,
+    `*` = TRUE,
+    `/` = TRUE,
+    `^` = TRUE,
+    `<` = TRUE,
+    `>` = TRUE,
+    `==` = TRUE,
+    `!=` = TRUE,
+    `<=` = TRUE,
+    `>=` = TRUE,
+  FALSE)
   if (!boolean) {
-    stop(gettextf("'%s' not defined for \"fs_bytes\" objects",
-        .Generic), domain = NA)
+    stop(sprintf("'%s' not defined for \"fs_bytes\" objects", .Generic),
+      call. = FALSE)
   }
   e1 <- as_fs_bytes(e1)
   e2 <- as_fs_bytes(e2)

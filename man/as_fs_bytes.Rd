@@ -2,16 +2,25 @@
 % Please edit documentation in R/fs_bytes.R
 \name{as_fs_bytes}
 \alias{as_fs_bytes}
-\title{Coerce an object to a fs_bytes object}
+\title{Human readable file sizes}
 \usage{
 as_fs_bytes(x)
 }
 \arguments{
-\item{x}{Object to be coerced}
+\item{x}{A numeric or character vector. Character representations can use
+shorthand sizes (see examples).}
 }
 \description{
-Coerce an object to a fs_bytes object
+Construct, manipulate and display vectors of file sizes.
 }
 \examples{
-as_fs_bytes("1KB") < "1MB"
+fs_bytes("1")
+fs_bytes("1K")
+fs_bytes("1Kb")
+fs_bytes("1Kib")
+fs_bytes("1MB")
+
+fs_bytes("1KB") < "1MB"
+
+sum(fs_bytes(c("1MB", "5MB", "500KB")))
 }

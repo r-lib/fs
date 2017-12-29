@@ -7,7 +7,7 @@ captures <- function(x, m) {
   strings <- substring(x, starts, starts + attr(m, "capture.length") - 1L)
   res <- data.frame(matrix(strings, ncol = NCOL(starts)), stringsAsFactors = FALSE)
   colnames(res) <- auto_name(attr(m, "capture.names"))
-  res[m == -1, ] <- NA_character_
+  res[is.na(m) | m == -1, ] <- NA_character_
   res
 }
 
