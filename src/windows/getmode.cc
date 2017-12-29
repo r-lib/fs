@@ -172,7 +172,7 @@ std::string strmode_(mode_t mode) {
 }
 #define S_IFLNK 0120000
 
-Rcpp::CharacterVector file_code_(std::string path, mode_t mode) {
+std::string file_code_(std::string path, mode_t mode) {
   switch (mode & S_IFMT) {
     case S_IFDIR:
       return "di";
@@ -189,5 +189,5 @@ Rcpp::CharacterVector file_code_(std::string path, mode_t mode) {
   if (mode & S_IXUSR) {
     return "ex";
   }
-  return NA_STRING;
+  return "";
 }

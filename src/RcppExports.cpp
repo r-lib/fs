@@ -168,7 +168,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // file_code_
-Rcpp::CharacterVector file_code_(std::string path, mode_t mode);
+std::string file_code_(std::string path, mode_t mode);
 RcppExport SEXP _fs_file_code_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

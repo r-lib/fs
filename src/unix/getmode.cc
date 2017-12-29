@@ -31,7 +31,7 @@ std::string strmode_(mode_t mode) {
   return out + 1;
 }
 
-Rcpp::CharacterVector file_code_(std::string path, mode_t mode) {
+std::string file_code_(std::string path, mode_t mode) {
   switch (mode & S_IFMT) {
     case S_IFDIR:
       if (mode & S_IWOTH)
@@ -61,5 +61,5 @@ Rcpp::CharacterVector file_code_(std::string path, mode_t mode) {
     else
       return "ex";
   }
-  return NA_STRING;
+  return "";
 }
