@@ -7,26 +7,26 @@
 \title{List files in a directory}
 \usage{
 dir_list(path = ".", all = FALSE, recursive = FALSE, type = "any",
-  pattern = NULL, ...)
+  regexp = NULL, glob = NULL, ...)
 
-dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any",
-  pattern = NULL, ...)
+dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any")
 
 dir_info(path = ".", all = FALSE, recursive = FALSE, type = "any",
-  pattern = NULL, ...)
+  regexp = NULL, glob = NULL, ...)
 }
 \arguments{
 \item{path}{A character vector of paths.}
 
 \item{all}{If \code{TRUE} hidden files are also returned.}
 
-\item{recursive}{Should directories be listed recursively?}
+\item{recursive}{Should directories be listed recursively?
+the filenames.}
 
 \item{type}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
 
-\item{pattern}{A regular expression pattern used passed to \link{grep} to filter
-the filenames.}
+\item{glob, regexp}{Either a file glob (e.g. \code{*.csv}) or a regular
+expression (e.g. \code{\\.csv$)} passed on to \link{grep} to filter paths.}
 
 \item{...}{Additional arguments passed to \link{grep}.}
 
@@ -44,6 +44,9 @@ the directory.
 }}
 
 \examples{
-dir_list(system.file())
+dir_list(R.home())
+
+dir_list(system.file(package = "base"), recursive = TRUE)
+dir_list(system.file(package = "base"), recursive = TRUE, glob = "*.R")
 dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 }

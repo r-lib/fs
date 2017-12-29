@@ -30,9 +30,10 @@ describe("dir_list", {
         "foo/bar/baz" = "test",
         "foo/bar/test2" = "",
         "foo/bar/test3" = ""), {
-      expect_equal(dir_list(recursive = TRUE, pattern = "baz"), "foo/bar/baz")
-      expect_equal(dir_list(recursive = TRUE, pattern = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
-      expect_equal(dir_list(recursive = TRUE, pattern = "(?<=a)z", perl = TRUE), "foo/bar/baz")
+      expect_equal(dir_list(recursive = TRUE, glob = "*baz"), "foo/bar/baz")
+      expect_equal(dir_list(recursive = TRUE, regexp = "baz"), "foo/bar/baz")
+      expect_equal(dir_list(recursive = TRUE, regexp = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
+      expect_equal(dir_list(recursive = TRUE, regexp = "(?<=a)z", perl = TRUE), "foo/bar/baz")
     })
   })
 

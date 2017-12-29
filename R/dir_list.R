@@ -2,23 +2,32 @@
 #'
 #' @param type File type(s) to return, one or more of "any", "file", "directory",
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
+#' @param glob,regexp Either a file glob (e.g. `*.csv`) or a regular
+#'   expression (e.g. `\\.csv$)` passed on to [grep] to filter paths.
 #' @param recursive Should directories be listed recursively?
-#' @param pattern A regular expression pattern used passed to [grep] to filter
 #'   the filenames.
 #' @param all If `TRUE` hidden files are also returned.
 #' @param ... Additional arguments passed to [grep].
 #' @template fs
 #' @export
 #' @examples
-#' dir_list(system.file())
-dir_list <- function(path = ".", all = FALSE, recursive = FALSE, type = "any", pattern = NULL, ...) {
+#' dir_list(R.home())
+#'
+#' dir_list(system.file(package = "base"), recursive = TRUE)
+#' dir_list(system.file(package = "base"), recursive = TRUE, glob = "*.R")
+dir_list <- function(path = ".", all = FALSE, recursive = FALSE,
+                     type = "any", regexp = NULL, glob = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
 
   files <- scandir_(path, isTRUE(all), sum(directory_entry_types[type]), recursive)
-  if (!is.null(pattern)) {
-    files <- grep(x = files, pattern = pattern, value = TRUE, ...)
+
+  if (!is.null(glob)) {
+    regexp <- utils::glob2rx(glob)
+  }
+  if (!is.null(regexp)) {
+    files <- grep(x = files, pattern = regexp, value = TRUE, ...)
   }
   files
 }
@@ -40,7 +49,7 @@ directory_entry_types <- c(
 #' @examples
 #' dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
 #' @export
-dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any", pattern = NULL, ...) {
+dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
@@ -50,6 +59,8 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "an
 
 #' @describeIn dir_list A shortcut for the combination of `file_info(dir_list())`.
 #' @export
-dir_info <- function(path = ".", all = FALSE, recursive = FALSE, type = "any", pattern = NULL, ...) {
-  file_info(dir_list(path = path, all = all, recursive = recursive, type = type, pattern = pattern, ...))
+dir_info <- function(path = ".", all = FALSE, recursive = FALSE,
+                     type = "any", regexp = NULL, glob = NULL, ...) {
+  file_info(dir_list(path = path, all = all, recursive = recursive, type = type,
+    regexp = regexp, glob = glob, ...))
 }
