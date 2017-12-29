@@ -9,5 +9,5 @@
 link_path <- function(path) {
   path <- path_expand(path)
 
-  readlink_(path)
+  path_tidy(readlink_(path))
 }

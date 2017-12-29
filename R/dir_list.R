@@ -29,7 +29,7 @@ dir_list <- function(path = ".", all = FALSE, recursive = FALSE,
   if (!is.null(regexp)) {
     files <- grep(x = files, pattern = regexp, value = TRUE, ...)
   }
-  new_fs_filename(files)
+  path_tidy(files)
 }
 
 directory_entry_types <- c(

@@ -7,7 +7,7 @@ file_info <- function(path) {
 
   res <- stat_(path)
 
-  res$path <- new_fs_filename(res$path, res$permissions)
+  res$path <- path_tidy(res$path)
 
   res$type <- factor(res$type, levels = file_types, labels = names(file_types))
 
@@ -54,7 +54,7 @@ file_chmod <- function(path, mode) {
 
   chmod_(path, mode)
 
-  invisible(path)
+  invisible(path_tidy(path))
 }
 
 #' Delete a file
@@ -69,7 +69,7 @@ file_delete <- function(path) {
   path <- path_expand(path)
   unlink_(path)
 
-  invisible(path)
+  invisible(path_tidy(path))
 }
 
 #' Copy a file
@@ -89,7 +89,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
   new_path <- path_expand(new_path)
   copyfile_(path, new_path, isTRUE(overwrite))
 
-  invisible(new_path)
+  invisible(path_tidy(new_path))
 }
 
 #' Change ownership or group of a file
@@ -123,7 +123,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
   # uid / gid as names in addition to integers.
   chown_(path, user_id, group_id)
 
-  invisible(path)
+  invisible(path_tidy(path))
 }
 
 #' Open the file(s) directory in an interactive explorer
@@ -140,5 +140,5 @@ file_show <- function(path = ".") {
     browseURL(p)
   }
 
-  invisible(dirs)
+  invisible(path_tidy(dirs))
 }

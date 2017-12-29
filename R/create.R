@@ -27,7 +27,7 @@ file_create <- function(path, mode = "u+rw,go+r") {
   stopifnot(length(mode) == 1)
 
   create_(path_expand(path), mode)
-  invisible(path)
+  invisible(path_tidy(path))
 }
 
 #' @export
@@ -43,7 +43,7 @@ dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
     }
   }
 
-  invisible(path)
+  invisible(path_tidy(path))
 }
 
 #' @export
@@ -63,5 +63,5 @@ link_create <- function(path, new_path, symbolic = TRUE) {
     link_create_hard_(path, new_path)
   }
 
-  invisible(new_path)
+  invisible(path_tidy(new_path))
 }

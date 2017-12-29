@@ -2,8 +2,11 @@
 .onLoad <- function(...) {
   register_s3_method("pillar", "pillar_shaft", "fs_filename")
   register_s3_method("pillar", "type_sum", "fs_filename")
+  register_s3_method("testthat", "compare", "fs_filename")
+
   register_s3_method("pillar", "pillar_shaft", "fs_bytes")
   register_s3_method("pillar", "type_sum", "fs_bytes")
+
   register_s3_method("pillar", "pillar_shaft", "fs_perms")
   register_s3_method("pillar", "type_sum", "fs_perms")
 

@@ -40,11 +40,11 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
     return(x)
   }
 
-  files <- vapply(x, .subset2, character(1), 1)
-  perms <- vapply(x, .subset2, integer(1), 2)
   if (!(requireNamespace("crayon") && crayon::has_color())) {
     return(x)
   }
+
+  perms <- file_info(x)$permissions
 
   vals <- strsplit(colors, ":")[[1]]
   nms <- strsplit(vals, "=")
@@ -54,52 +54,35 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
   file_types <- map[grepl("^[*][.]", names(map))]
   names(file_types) <- sub("^[*][.]", "", names(file_types))
   res <- character(length(x))
-  missing_perms <- is.na(perms)
-  perms[missing_perms] <- file_info(files[missing_perms])$permissions
 
   for (i in seq_along(x)) {
-    code <- map[file_code_(files[[i]], perms[[i]])]
+    code <- map[file_code_(x[[i]], perms[[i]])]
     if (is.na(code)) {
-      code <- file_types[tools::file_ext(files[[i]])]
+      code <- file_types[tools::file_ext(x[[i]])]
     }
     if (!is.na(code)) {
-      res[[i]] <- paste0("\033[", code, "m", files[[i]], "\033[0m")
+      res[[i]] <- paste0("\033[", code, "m", x[[i]], "\033[0m")
     } else {
-      res[[i]] <- files[[i]]
+      res[[i]] <- x[[i]]
     }
   }
   res
 }
 
-#' @export
-as.character.fs_filename <- function(x, ...) {
-  vapply(x, .subset2, character(1), 1, USE.NAMES = FALSE)
+new_fs_filename <- function(x) {
+  structure(enc2utf8(x), class = c("fs_filename", "character"))
 }
 
 #' @export
-format.fs_filename <- as.character.fs_filename
-
-#' @export
-str.fs_filename <- function(obj, ...) {
-  str(format(obj), ...)
-}
-
-new_fs_filename <- function(x, permissions = list(NA_integer_)) {
-  structure(Map(function(x, p) list(x, p), x, permissions, USE.NAMES = FALSE), class = "fs_filename")
-}
-
-#' @export
-print.fs_filename <- function(x, ...) {
-  cat(colourise_fs_filename(x, ...))
+print.fs_filename <- function(x, ..., max = getOption("max.print")) {
+  cat(colourise_fs_filename(x[seq_len(min(length(x), max))], ...))
 
   invisible(x)
 }
 
 #' @export
 `[.fs_filename` <- function(x, i) {
-  perms <- vapply(x, .subset2, integer(1), 2, USE.NAMES = FALSE)[i]
-  files <- vapply(x, .subset2, character(1), 1, USE.NAMES = FALSE)[i]
-  new_fs_filename(files, perms)
+  new_fs_filename(NextMethod("["))
 }
 
 pillar_shaft.fs_filename <- function(x, ...) {

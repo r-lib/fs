@@ -37,7 +37,7 @@ describe("path_split", {
 })
 
 describe("path_temp", {
-  it("behaves identically to tempdir()", {
-    expect_equal(path_temp(), tempdir())
+  it("returned tidies tempdir()", {
+    expect_equal(path_temp(), path_tidy(tempdir()))
   })
 })
