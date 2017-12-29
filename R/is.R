@@ -36,3 +36,18 @@ is_link <- function(path) {
   res <- file_info(path)
   setNames(res$type == "symlink", res$path)
 }
+
+#' Test if a path is an absolute path
+#'
+#' @template fs
+#' @export
+#' @examples
+#' is_absolute_path("/foo")
+#' is_absolute_path("C:\\foo")
+#' is_absolute_path("\\\\myserver\\foo\\bar")
+#'
+#' is_absolute_path("foo/bar")
+is_absolute_path <- function(path) {
+  tidy_path <- path_tidy(path)
+  grepl("^~", path) | grepl("^(/+|[A-Za-z]:)", tidy_path)
+}
