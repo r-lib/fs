@@ -28,7 +28,7 @@ is_windows <- function() {
 # tests.
 compare.fs_filename <- function(x, y) {
   if (identical(class(y), "character")) {
-    class(x) <- "character"
+    class(x) <- NULL
   }
   NextMethod("compare")
 }

@@ -38,7 +38,6 @@ path_expand <- function(path) {
 #' Tidy paths
 #'
 #' untidy paths are all different, tidy paths are all the same.
-#'
 #' Tidy paths always expand `~`, use `/` to delimit directories, never have
 #' multiple `/` or trailing `/` and have colourised output based on the file
 #' type.
@@ -59,7 +58,7 @@ path_tidy <- function(path) {
   # Remove trailing / from paths
   path <- sub("/$", "", path)
 
-  path
+  new_fs_filename(path)
 }
 
 #' Provide the path to the users home directory
