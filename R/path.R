@@ -44,7 +44,7 @@ path_expand <- function(path) {
 #'
 #' @return A fs_filename object
 #' @template fs
-#' @return a 
+#' @return a
 #' @export
 path_tidy <- function(path) {
   path <- path_expand(path)
@@ -62,12 +62,6 @@ path_tidy <- function(path) {
   new_fs_filename(path)
 }
 
-#' Provide the path to the users home directory
-#' @inheritParams path_temp
-#' @export
-path_home <- function(...) {
-  path_tidy(path(path_expand("~"), ...))
-}
 
 #' Split a path into components
 #'
@@ -81,11 +75,26 @@ path_split <- function(path) {
   strsplit(path, "(?<!^)(?<!^/)/+", perl = TRUE)
 }
 
-#' Path to sessions temporary directory
+
+#' Paths starting from useful directories
 #'
-#' Analogous to [base::tempdir()].
+#' * `path_temp()` starts the path with the session temporary directory
+#' * `path_home()` starts the path with the users home directory
+#'
 #' @param ... Additional paths appended to the temporary directory by `path()`.
 #' @export
+#' @examples
+#' path_home()
+#' path_home("R")
+#'
+#' path_temp()
+#' path_temp("does-not-exist")
+path_home <- function(...) {
+  path(path_expand("~"), ...)
+}
+
+#' @export
+#' @rdname path_home
 path_temp <- function(...) {
-  path_tidy(path(tempdir()), ...)
+  path(tempdir(), ...)
 }
