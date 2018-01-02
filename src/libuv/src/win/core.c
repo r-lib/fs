@@ -207,7 +207,7 @@ static void uv_init(void) {
   uv_fs_init();
 
   /* Initialize signal stuff */
-  uv_signals_init();
+  /*uv_signals_init();*/
 
   /* Initialize console */
   uv_console_init();
