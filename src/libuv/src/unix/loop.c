@@ -67,10 +67,10 @@ int uv_loop_init(uv_loop_t* loop) {
   if (err)
     return err;
 
-  uv__signal_global_once_init();
-  err = uv_signal_init(loop, &loop->child_watcher);
-  if (err)
-    goto fail_signal_init;
+  /*uv__signal_global_once_init();*/
+  /*err = uv_signal_init(loop, &loop->child_watcher);*/
+  /*if (err)*/
+    /*goto fail_signal_init;*/
 
   uv__handle_unref(&loop->child_watcher);
   loop->child_watcher.flags |= UV__HANDLE_INTERNAL;
