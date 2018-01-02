@@ -11,8 +11,6 @@ path_tidy(path)
 }
 \value{
 A fs_filename object
-
-a
 }
 \description{
 untidy paths are all different, tidy paths are all the same.

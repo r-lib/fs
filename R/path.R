@@ -44,7 +44,6 @@ path_expand <- function(path) {
 #'
 #' @return A fs_filename object
 #' @template fs
-#' @return a
 #' @export
 path_tidy <- function(path) {
   path <- path_expand(path)
@@ -97,4 +96,45 @@ path_home <- function(...) {
 #' @rdname path_home
 path_temp <- function(...) {
   path(tempdir(), ...)
+}
+
+#' Manipulate path extensions
+#'
+#' `path_ext()` returns the last extension (if any) for a path.
+#' `path_ext_remove()` removes the last extension and returns the rest of the
+#' path. `path_ext_set()` replaces the extension with a new extension. If there
+#' is no existing extension the new extension is appended.
+#' @template fs
+#' @param ext,value The new file extension.
+#' @export
+#' @examples
+#' path_ext("file.zip")
+#' path_ext("file.tar.gz")
+#'
+#' path_ext_remove("file.tar.gz")
+#'
+#' # Only one level of extensions is removed
+#' path_ext_set(path_ext_remove("file.tar.gz"), "zip")
+path_ext <- function(path) {
+  res <- captures(path, regexpr("(?<!^|[.])[.]([^.]+)$", path, perl = TRUE))[[1]]
+  res[is.na(res)] <- ""
+  path_tidy(res)
+}
+
+#' @rdname path_ext
+#' @export
+path_ext_remove <- function(path) {
+  path_tidy(sub("(?<!^|[.])[.][^.]+$", "", path, perl = TRUE))
+}
+
+#' @rdname path_ext
+#' @export
+path_ext_set <- function(path, ext) {
+  path_tidy(paste0(path_ext_remove(path), ".", ext))
+}
+
+#' @rdname path_ext
+#' @export
+`path_ext<-` <- function(path, value) {
+  path_ext_set(path, value)
 }

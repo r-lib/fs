@@ -63,3 +63,62 @@ describe("path_temp", {
     expect_equal(path_temp(), path_tidy(tempdir()))
   })
 })
+
+describe("path_ext", {
+  it ("returns the path extension, or \"\" if one does not exist", {
+    expect_equal(path_ext("foo.bar"), "bar")
+    expect_equal(path_ext("foo.boo.bar"), "bar")
+    expect_equal(path_ext("foo.boo.biff.bar"), "bar")
+    expect_equal(path_ext(".csh.rc"), "rc")
+    expect_equal(path_ext("nodots"), "")
+    expect_equal(path_ext(".cshrc"), "")
+    expect_equal(path_ext("...manydots"), "")
+    expect_equal(path_ext("...manydots.ext"), "ext")
+    expect_equal(path_ext("."), "")
+    expect_equal(path_ext(".."), "")
+    expect_equal(path_ext("........"), "")
+    expect_equal(path_ext(""), "")
+  })
+})
+
+describe("path_ext_remove", {
+  it ("removes the path extension", {
+    expect_equal(path_ext_remove("foo.bar"), "foo")
+    expect_equal(path_ext_remove("foo.boo.bar"), "foo.boo")
+    expect_equal(path_ext_remove("foo.boo.biff.bar"), "foo.boo.biff")
+    expect_equal(path_ext_remove(".csh.rc"), ".csh")
+    expect_equal(path_ext_remove("nodots"), "nodots")
+    expect_equal(path_ext_remove(".cshrc"), ".cshrc")
+    expect_equal(path_ext_remove("...manydots"), "...manydots")
+    expect_equal(path_ext_remove("...manydots.ext"), "...manydots")
+    expect_equal(path_ext_remove("."), ".")
+    expect_equal(path_ext_remove(".."), "..")
+    expect_equal(path_ext_remove("........"), "........")
+    expect_equal(path_ext_remove(""), "")
+  })
+})
+
+describe("path_ext_set", {
+  it ("replaces the path extension", {
+    expect_equal(path_ext_set("foo.bar", "baz"), "foo.baz")
+    expect_equal(path_ext_set("foo.boo.bar", "baz"), "foo.boo.baz")
+    expect_equal(path_ext_set("foo.boo.biff.bar", "baz"), "foo.boo.biff.baz")
+    expect_equal(path_ext_set(".csh.rc", "gz"), ".csh.gz")
+    expect_equal(path_ext_set("nodots", "bar"), "nodots.bar")
+    expect_equal(path_ext_set(".cshrc", "bar"), ".cshrc.bar")
+    expect_equal(path_ext_set("...manydots", "bar"), "...manydots.bar")
+    expect_equal(path_ext_set("...manydots.ext", "bar"), "...manydots.bar")
+    expect_equal(path_ext_set(".", "bar"), "..bar")
+    expect_equal(path_ext_set("..", "bar"), "...bar")
+    expect_equal(path_ext_set("........", "bar"), ".........bar")
+    expect_equal(path_ext_set("", "bar"), ".bar")
+  })
+})
+
+describe("path_ext<-", {
+  it ("replaces the path extension", {
+    x <- "...manydots"
+    path_ext(x) <- "bar"
+    expect_equal(x, "...manydots.bar")
+  })
+})
