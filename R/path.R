@@ -130,7 +130,8 @@ path_ext_remove <- function(path) {
 #' @rdname path_ext
 #' @export
 path_ext_set <- function(path, ext) {
-  path_tidy(paste0(path_ext_remove(path), ".", ext))
+  path[!is.na(path)] <- paste0(path_ext_remove(path[!is.na(path)]), ".", ext)
+  path_tidy(path)
 }
 
 #' @rdname path_ext
