@@ -4,7 +4,7 @@
 \alias{file_show}
 \title{Open the file(s) directory in an interactive explorer}
 \usage{
-file_show(path = ".")
+file_show(path = ".", browser = getOption("browser"))
 }
 \arguments{
 \item{path}{A character vector of paths.}

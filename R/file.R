@@ -131,14 +131,12 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 #' @template fs
 #' @return The directories that were opened (invisibly).
 #' @importFrom utils browseURL
+#' @inheritParams utils browseURL
 #' @export
-file_show <- function(path = ".") {
-  dirs <- path
-  dirs[is_file(path)] <- dirname(path)
-
-  for (p in dirs) {
+file_show <- function(path = ".", browser = getOption("browser")) {
+  for (p in path) {
     browseURL(p)
   }
 
-  invisible(path_tidy(dirs))
+  invisible(path_tidy(path))
 }
