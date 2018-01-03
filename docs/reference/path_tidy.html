@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Path to sessions temporary directory — path_temp • fs</title>
+<title>Tidy paths — path_tidy • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,21 +80,40 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Path to sessions temporary directory</h1>
+    <h1>Tidy paths</h1>
     </div>
 
     
-    <p>Analogous to <code><a href='http://www.rdocumentation.org/packages/base/topics/tempfile'>base::tempdir()</a></code>.</p>
+    <p>untidy paths are all different, tidy paths are all the same.
+Tidy paths always expand <code>~</code>, use <code>/</code> to delimit directories, never have
+multiple <code>/</code> or trailing <code>/</code> and have colourised output based on the file
+type.</p>
     
 
-    <pre class="usage"><span class='fu'>path_temp</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>path_tidy</span>(<span class='no'>path</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>path</th>
+      <td><p>A character vector of paths.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A fs_path object</p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

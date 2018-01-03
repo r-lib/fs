@@ -104,6 +104,12 @@
         <tr>
           <!--  -->
           <td>
+            <p><code><a href="delete.html">file_delete</a></code> <code><a href="delete.html">dir_delete</a></code> <code><a href="delete.html">link_delete</a></code> </p>
+          </td>
+          <td><p>Delete a file, directory, or link.</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="file_access.html">file_access</a></code> <code><a href="file_access.html">file_exists</a></code> <code><a href="file_access.html">dir_exists</a></code> <code><a href="file_access.html">link_exists</a></code> </p>
           </td>
           <td><p>Query for existence and access permissions</p></td>
@@ -134,12 +140,6 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="file_delete.html">file_delete</a></code> </p>
-          </td>
-          <td><p>Delete a file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="file_info.html">file_info</a></code> </p>
           </td>
           <td><p>Query file metadata</p></td>
@@ -149,6 +149,18 @@
             <p><code><a href="file_move.html">file_move</a></code> </p>
           </td>
           <td><p>Move/rename a file</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="file_show.html">file_show</a></code> </p>
+          </td>
+          <td><p>Open the file(s) directory in an interactive explorer</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="file_temp.html">file_temp</a></code> <code><a href="file_temp.html">file_temp_push</a></code> <code><a href="file_temp.html">file_temp_pop</a></code> </p>
+          </td>
+          <td><p>Create names for temporary files</p></td>
         </tr>
       </tbody><tbody>
         <tr>
@@ -158,6 +170,12 @@
           </th>
         </tr>
         <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="delete.html">file_delete</a></code> <code><a href="delete.html">dir_delete</a></code> <code><a href="delete.html">link_delete</a></code> </p>
+          </td>
+          <td><p>Delete a file, directory, or link.</p></td>
+        </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="dir_copy.html">dir_copy</a></code> </p>
@@ -187,12 +205,6 @@
             <p><code><a href="file_create.html">file_create</a></code> <code><a href="file_create.html">dir_create</a></code> <code><a href="file_create.html">link_create</a></code> </p>
           </td>
           <td><p>Create a file, directory, or link.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_norm.html">path_norm</a></code> </p>
-          </td>
-          <td><p>Return the canonicalized absolute pathname</p></td>
         </tr>
       </tbody><tbody>
         <tr>
@@ -202,6 +214,12 @@
           </th>
         </tr>
         <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="delete.html">file_delete</a></code> <code><a href="delete.html">dir_delete</a></code> <code><a href="delete.html">link_delete</a></code> </p>
+          </td>
+          <td><p>Delete a file, directory, or link.</p></td>
+        </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="file_access.html">file_access</a></code> <code><a href="file_access.html">file_exists</a></code> <code><a href="file_access.html">dir_exists</a></code> <code><a href="file_access.html">link_exists</a></code> </p>
@@ -242,9 +260,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="path_home.html">path_home</a></code> </p>
+            <p><code><a href="path_ext.html">path_ext</a></code> <code><a href="path_ext.html">path_ext_remove</a></code> <code><a href="path_ext.html">path_ext_set</a></code> <code><a href="path_ext.html">path_ext<-</a></code> </p>
           </td>
-          <td><p>Provide the path to the users home directory</p></td>
+          <td><p>Manipulate path extensions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="path_home.html">path_home</a></code> <code><a href="path_home.html">path_temp</a></code> </p>
+          </td>
+          <td><p>Paths starting from useful directories</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -260,9 +284,9 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="path_temp.html">path_temp</a></code> </p>
+            <p><code><a href="path_tidy.html">path_tidy</a></code> </p>
           </td>
-          <td><p>Path to sessions temporary directory</p></td>
+          <td><p>Tidy paths</p></td>
         </tr>
       </tbody><tbody>
         <tr>
@@ -280,9 +304,9 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="as_bytes.html">as_bytes</a></code> </p>
+            <p><code><a href="fs_bytes.html">as_fs_bytes</a></code> <code><a href="fs_bytes.html">fs_bytes</a></code> </p>
           </td>
-          <td><p>Coerce an object to a fs_bytes object</p></td>
+          <td><p>Human readable file sizes</p></td>
         </tr><tr>
           <!--  -->
           <td>

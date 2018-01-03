@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Query file metadata — file_info • fs</title>
+<title>Manipulate path extensions — path_ext • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,14 +80,23 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Query file metadata</h1>
+    <h1>Manipulate path extensions</h1>
     </div>
 
     
-    <p>Query file metadata</p>
+    <p><code>path_ext()</code> returns the last extension (if any) for a path.
+<code>path_ext_remove()</code> removes the last extension and returns the rest of the
+path. <code>path_ext_set()</code> replaces the extension with a new extension. If there
+is no existing extension the new extension is appended.</p>
     
 
-    <pre class="usage"><span class='fu'>file_info</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>path_ext</span>(<span class='no'>path</span>)
+
+<span class='fu'>path_ext_remove</span>(<span class='no'>path</span>)
+
+<span class='fu'>path_ext_set</span>(<span class='no'>path</span>, <span class='no'>ext</span>)
+
+<span class='fu'>path_ext</span>(<span class='no'>path</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -96,30 +105,24 @@
       <th>path</th>
       <td><p>A character vector of paths.</p></td>
     </tr>
+    <tr>
+      <th>ext, value</th>
+      <td><p>The new file extension.</p></td>
+    </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A data.frame with metadata for each file</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>write.csv</span>(<span class='no'>mtcars</span>, <span class='st'>"/tmp/mtcars.csv"</span>)
-<span class='fu'>file_info</span>(<span class='st'>"mtcars.csv"</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 18
-#&gt;   path       type   size permissio… modification_time   user  group devi… hard…
-#&gt;   &lt;fs::file&gt; &lt;fct&gt; &lt;fs:&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 mtcars.csv &lt;NA&gt;     NA ---------  NA                  &lt;NA&gt;  &lt;NA&gt;     NA    NA
-#&gt; # ... with 9 more variables: special_device_id &lt;dbl&gt;, inode &lt;dbl&gt;, block_size
-#&gt; #   &lt;dbl&gt;, blocks &lt;dbl&gt;, flags &lt;int&gt;, generation &lt;dbl&gt;, access_time &lt;dttm&gt;,
-#&gt; #   creation_time &lt;dttm&gt;, birth_time &lt;dttm&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>path_ext</span>(<span class='st'>"file.zip"</span>)</div><div class='output co'>#&gt; zip</div><div class='input'><span class='fu'>path_ext</span>(<span class='st'>"file.tar.gz"</span>)</div><div class='output co'>#&gt; gz</div><div class='input'>
+<span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>)</div><div class='output co'>#&gt; file.tar</div><div class='input'>
+<span class='co'># Only one level of extensions is removed</span>
+<span class='fu'>path_ext_set</span>(<span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>), <span class='st'>"zip"</span>)</div><div class='output co'>#&gt; file.zip</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

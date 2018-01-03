@@ -85,8 +85,8 @@
 
     
     <p>These functions ensure that <code>path</code> exists; if it already exists it will
-be left unchanged. That means that ompared to <code>file.create()</code>,
-<code>file_create()</code> will not truncate an existing, and compared to
+be left unchanged. That means that compared to <code>file.create()</code>,
+<code>file_create()</code> will not truncate an existing file, and compared to
 <code>dir.create()</code>, <code>dir_create()</code> will silently ignore
 existing directories.</p>
     
@@ -127,14 +127,14 @@ exist?</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>file_create</span>(<span class='fu'>tempfile</span>())
-<span class='fu'><a href='is_file.html'>is_file</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/RtmphFDyIk/file1117539d525ce 
-#&gt;                              TRUE </div><div class='input'><span class='co'># dir_create applied to the same path will fail</span>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>file_create</span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
+<span class='fu'><a href='is_file.html'>is_file</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpBbDsnS/file13cbd33b6ad0a 
+#&gt;                                                                          TRUE </div><div class='input'><span class='co'># dir_create applied to the same path will fail</span>
 <span class='fu'>try</span>(<span class='fu'>dir_create</span>(<span class='no'>x</span>))
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>dir_create</span>(<span class='fu'>tempfile</span>())
-<span class='fu'><a href='is_file.html'>is_dir</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/RtmphFDyIk/file1117558a5150b 
-#&gt;                              TRUE </div><div class='input'><span class='co'># file_create applied to the same path will fail</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>dir_create</span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
+<span class='fu'><a href='is_file.html'>is_dir</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpBbDsnS/file13cbd1e1a860c 
+#&gt;                                                                          TRUE </div><div class='input'><span class='co'># file_create applied to the same path will fail</span>
 <span class='fu'>try</span>(<span class='fu'>file_create</span>(<span class='no'>x</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

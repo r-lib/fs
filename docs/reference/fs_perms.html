@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Coerce an object to a fs_bytes object — as_bytes • fs</title>
+<title>File permissions — fs_perms • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,28 +80,36 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Coerce an object to a fs_bytes object</h1>
+    <h1>File permissions</h1>
     </div>
 
     
-    <p>Coerce an object to a fs_bytes object</p>
+    <p>File permissions</p>
     
 
-    <pre class="usage"><span class='fu'>as_bytes</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>as_fs_perms</span>(<span class='no'>x</span>)
+
+<span class='fu'>fs_perms</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>Object to be coerced</p></td>
+      <td><p>An object which is to be coerced to a fs_perms object. Can be an
+number or octal character representation, including symbolic
+representations.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as_bytes</span>(<span class='st'>"1KB"</span>) <span class='kw'>&lt;</span> <span class='st'>"1MB"</span></div><div class='output co'>#&gt;    K 
-#&gt; TRUE </div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Integer and numeric</span>
+<span class='fu'>fs_perms</span>(<span class='fl'>420L</span>)</div><div class='output co'>#&gt; [1] rw-r--r-- </div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='fl'>511</span>, <span class='fl'>420</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx  rw-r--r-- </div><div class='input'>
+<span class='co'># Octal</span>
+<span class='fu'>fs_perms</span>(<span class='st'>"777"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx </div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='st'>"777"</span>, <span class='st'>"644"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx  rw-r--r-- </div><div class='input'>
+<span class='co'># Symbolic</span>
+<span class='fu'>fs_perms</span>(<span class='st'>"a+rwx"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx </div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='st'>"a+rwx"</span>, <span class='st'>"u+rw,go+r"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx  rw-r--r-- </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

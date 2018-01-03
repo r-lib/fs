@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Provide the path to the users home directory — path_home • fs</title>
+<title>Paths starting from useful directories — path_home • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,21 +80,41 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Provide the path to the users home directory</h1>
+    <h1>Paths starting from useful directories</h1>
     </div>
 
     
-    <p>Provide the path to the users home directory</p>
+    <ul>
+<li><p><code>path_temp()</code> starts the path with the session temporary directory</p></li>
+<li><p><code>path_home()</code> starts the path with the users home directory</p></li>
+</ul>
     
 
-    <pre class="usage"><span class='fu'>path_home</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>path_home</span>(<span class='no'>...</span>)
 
+<span class='fu'>path_temp</span>(<span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>...</th>
+      <td><p>Additional paths appended to the temporary directory by <code><a href='path.html'>path()</a></code>.</p></td>
+    </tr>
+    </table>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>path_home</span>()</div><div class='output co'>#&gt; /Users/jhester</div><div class='input'><span class='fu'>path_home</span>(<span class='st'>"R"</span>)</div><div class='output co'>#&gt; /Users/jhester/R</div><div class='input'>
+<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpBbDsnS</div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpBbDsnS/does-not-exist</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -87,14 +87,13 @@
     <p>List files in a directory</p>
     
 
-    <pre class="usage"><span class='fu'>dir_list</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>dir_list</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
 
-<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>)
 
-<span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -109,7 +108,8 @@
     </tr>
     <tr>
       <th>recursive</th>
-      <td><p>Should directories be listed recursively?</p></td>
+      <td><p>Should directories be listed recursively?
+the filenames.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -117,9 +117,9 @@
 "symlink", "FIFO", "socket", "character_device" or "block_device".</p></td>
     </tr>
     <tr>
-      <th>pattern</th>
-      <td><p>A regular expression pattern used passed to grep to filter
-the filenames.</p></td>
+      <th>glob, regexp</th>
+      <td><p>Either a file glob (e.g. <code>*.csv</code>) or a regular
+expression (e.g. <code>\.csv$)</code> passed on to grep to filter paths.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -141,35 +141,35 @@ the directory.</p></li>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>dir_list</span>(<span class='fu'>system.file</span>())</div><div class='output co'>#&gt;  [1] "/Library/Frameworks/R.framework/Resources/library/base/CITATION"             
-#&gt;  [2] "/Library/Frameworks/R.framework/Resources/library/base/DESCRIPTION"          
-#&gt;  [3] "/Library/Frameworks/R.framework/Resources/library/base/INDEX"                
-#&gt;  [4] "/Library/Frameworks/R.framework/Resources/library/base/Meta"                 
-#&gt;  [5] "/Library/Frameworks/R.framework/Resources/library/base/Meta/Rd.rds"          
-#&gt;  [6] "/Library/Frameworks/R.framework/Resources/library/base/Meta/demo.rds"        
-#&gt;  [7] "/Library/Frameworks/R.framework/Resources/library/base/Meta/features.rds"    
-#&gt;  [8] "/Library/Frameworks/R.framework/Resources/library/base/Meta/hsearch.rds"     
-#&gt;  [9] "/Library/Frameworks/R.framework/Resources/library/base/Meta/links.rds"       
-#&gt; [10] "/Library/Frameworks/R.framework/Resources/library/base/Meta/package.rds"     
-#&gt; [11] "/Library/Frameworks/R.framework/Resources/library/base/R"                    
-#&gt; [12] "/Library/Frameworks/R.framework/Resources/library/base/R/Rprofile"           
-#&gt; [13] "/Library/Frameworks/R.framework/Resources/library/base/R/base"               
-#&gt; [14] "/Library/Frameworks/R.framework/Resources/library/base/R/base.rdb"           
-#&gt; [15] "/Library/Frameworks/R.framework/Resources/library/base/R/base.rdx"           
-#&gt; [16] "/Library/Frameworks/R.framework/Resources/library/base/demo"                 
-#&gt; [17] "/Library/Frameworks/R.framework/Resources/library/base/demo/error.catching.R"
-#&gt; [18] "/Library/Frameworks/R.framework/Resources/library/base/demo/is.things.R"     
-#&gt; [19] "/Library/Frameworks/R.framework/Resources/library/base/demo/recursion.R"     
-#&gt; [20] "/Library/Frameworks/R.framework/Resources/library/base/demo/scoping.R"       
-#&gt; [21] "/Library/Frameworks/R.framework/Resources/library/base/help"                 
-#&gt; [22] "/Library/Frameworks/R.framework/Resources/library/base/help/AnIndex"         
-#&gt; [23] "/Library/Frameworks/R.framework/Resources/library/base/help/aliases.rds"     
-#&gt; [24] "/Library/Frameworks/R.framework/Resources/library/base/help/base.rdb"        
-#&gt; [25] "/Library/Frameworks/R.framework/Resources/library/base/help/base.rdx"        
-#&gt; [26] "/Library/Frameworks/R.framework/Resources/library/base/help/paths.rds"       
-#&gt; [27] "/Library/Frameworks/R.framework/Resources/library/base/html"                 
-#&gt; [28] "/Library/Frameworks/R.framework/Resources/library/base/html/00Index.html"    
-#&gt; [29] "/Library/Frameworks/R.framework/Resources/library/base/html/R.css"           </div><div class='input'><span class='fu'>dir_walk</span>(<span class='fu'>system.file</span>(), <span class='kw'>function</span>(<span class='no'>p</span>) <span class='kw'>if</span> (<span class='fu'>grepl</span>(<span class='st'>"profile"</span>, <span class='no'>p</span>)) <span class='fu'>print</span>(<span class='no'>p</span>))</div><div class='output co'>#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/R/Rprofile"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>dir_list</span>(<span class='fu'>R.home</span>(<span class='st'>"share/R"</span>))</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/share/R/REMOVE.R
+#&gt; /Library/Frameworks/R.framework/Resources/share/R/examples-footer.R
+#&gt; /Library/Frameworks/R.framework/Resources/share/R/examples-header.R
+#&gt; /Library/Frameworks/R.framework/Resources/share/R/nspackloader.R
+#&gt; /Library/Frameworks/R.framework/Resources/share/R/tests-startup.R</div><div class='input'>
+<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"..."</span>)</div><div class='output co'>#&gt; <span class='error'>Error: [EEXIST] Failed to link '/Library/Frameworks/R.framework/Resources/library/base' to '...': file already exists</span></div><div class='input'>
+<span class='fu'>dir_list</span>(<span class='st'>"..."</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; .../demo/error.catching.R .../demo/is.things.R      .../demo/recursion.R      
+#&gt; .../demo/scoping.R        </div><div class='input'><span class='fu'>dir_walk</span>(<span class='fu'>system.file</span>(), <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/CITATION"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/DESCRIPTION"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/INDEX"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/Meta"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/R"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/demo"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/help"
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/html"</div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"..."</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
+#&gt;   path            type          size permissio… modification_time   user  group
+#&gt;   &lt;fs::filename&gt;  &lt;fctr&gt;   &lt;fs::byt&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
+#&gt; 1 .../CITATION    file           956 rw-rw-r--  2017-12-06 21:16:12 root  admin
+#&gt; 2 .../DESCRIPTION file           286 rw-rw-r--  2017-12-06 21:16:12 root  admin
+#&gt; 3 .../INDEX       file         23.2K rw-rw-r--  2017-12-06 21:16:12 root  admin
+#&gt; 4 .../Meta        directo…       272 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 5 .../R           directo…       204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 6 .../demo        directo…       204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 7 .../help        directo…       238 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 8 .../html        directo…       136 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; # ... with 11 more variables: device_id &lt;dbl&gt;, hard_links &lt;dbl&gt;,
+#&gt; #   special_device_id &lt;dbl&gt;, inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;, flags
+#&gt; #   &lt;int&gt;, generation &lt;dbl&gt;, access_time &lt;dttm&gt;, creation_time &lt;dttm&gt;,
+#&gt; #   birth_time &lt;dttm&gt;</div><div class='input'><span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"..."</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

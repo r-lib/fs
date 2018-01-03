@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Query file metadata — file_info • fs</title>
+<title>Delete a file, directory, or link. — delete • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,14 +80,19 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Query file metadata</h1>
+    <h1>Delete a file, directory, or link.</h1>
     </div>
 
     
-    <p>Query file metadata</p>
+    <p><code>dir_delete()</code> will first delete the contents of the directory, then remove
+the directory.</p>
     
 
-    <pre class="usage"><span class='fu'>file_info</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>file_delete</span>(<span class='no'>path</span>)
+
+<span class='fu'>dir_delete</span>(<span class='no'>path</span>)
+
+<span class='fu'>link_delete</span>(<span class='no'>path</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -96,22 +101,23 @@
       <th>path</th>
       <td><p>A character vector of paths.</p></td>
     </tr>
+    <tr>
+      <th>path</th>
+      <td><p>A character vector of paths.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with metadata for each file</p>
+    <p>The deleted paths.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>write.csv</span>(<span class='no'>mtcars</span>, <span class='st'>"/tmp/mtcars.csv"</span>)
-<span class='fu'>file_info</span>(<span class='st'>"mtcars.csv"</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 18
-#&gt;   path       type   size permissio… modification_time   user  group devi… hard…
-#&gt;   &lt;fs::file&gt; &lt;fct&gt; &lt;fs:&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt; 1 mtcars.csv &lt;NA&gt;     NA ---------  NA                  &lt;NA&gt;  &lt;NA&gt;     NA    NA
-#&gt; # ... with 9 more variables: special_device_id &lt;dbl&gt;, inode &lt;dbl&gt;, block_size
-#&gt; #   &lt;dbl&gt;, blocks &lt;dbl&gt;, flags &lt;int&gt;, generation &lt;dbl&gt;, access_time &lt;dttm&gt;,
-#&gt; #   creation_time &lt;dttm&gt;, birth_time &lt;dttm&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='file_create.html'>file_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
+#&gt;                  TRUE </div><div class='input'><span class='fu'>file_delete</span>(<span class='no'>x</span>)
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
+#&gt;                 FALSE </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
