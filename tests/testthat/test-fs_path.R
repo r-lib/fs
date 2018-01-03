@@ -59,25 +59,25 @@ describe("multicol", {
 
   it("Uses 1 column when width is less than the max size", {
     withr::with_options(c(width = 10), {
-      expect_equal(max(nchar(multicol(files))), max(nchar(files)))
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), max(nchar(files, keepNA = FALSE)))
     })
   })
 
   it("Uses 2 column when width is less than the max size * 2", {
     withr::with_options(c(width = 50), {
-      expect_equal(max(nchar(multicol(files))), 42)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 42)
     })
   })
 
   it("Uses 3 column when width is less than the max size * 3", {
     withr::with_options(c(width = 70), {
-      expect_equal(max(nchar(multicol(files))), 63)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 63)
     })
   })
 
   it("Uses 4 column when width is less than the max size * 4", {
     withr::with_options(c(width = 90), {
-      expect_equal(max(nchar(multicol(files))), 84)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 84)
     })
   })
 
@@ -90,7 +90,7 @@ describe("multicol", {
 
   it("Ignores colors when calculating width", {
     withr::with_options(c(crayon.enabled = TRUE, width = 90), {
-      expect_equal(max(nchar(multicol(files))), 84)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 84)
     })
   })
 })

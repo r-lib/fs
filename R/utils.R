@@ -34,7 +34,8 @@ compare.fs_path <- function(x, y) {
 }
 
 nchar <- function(x, type = "chars", allowNA = FALSE, keepNA = NA) {
-  # keepNA was introduced in R 3.2.1
+  # keepNA was introduced in R 3.2.1, previous behavior was equivalent to keepNA
+  # = FALSE
   if (getRversion() < "3.2.1") {
     if (!identical(keepNA, FALSE)) {
       stop("`keepNA` must be `FALSE` for R < 3.2.1", call. = FALSE)
