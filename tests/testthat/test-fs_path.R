@@ -59,38 +59,38 @@ describe("multicol", {
 
   it("Uses 1 column when width is less than the max size", {
     withr::with_options(c(width = 10), {
-      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), max(nchar(files, keepNA = FALSE)))
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), max(nchar(files, keepNA = FALSE)) + 1)
     })
   })
 
   it("Uses 2 column when width is less than the max size * 2", {
     withr::with_options(c(width = 50), {
-      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 42)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 43)
     })
   })
 
   it("Uses 3 column when width is less than the max size * 3", {
     withr::with_options(c(width = 70), {
-      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 63)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 64)
     })
   })
 
   it("Uses 4 column when width is less than the max size * 4", {
     withr::with_options(c(width = 90), {
-      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 84)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 85)
     })
   })
 
   it("works with NA values", {
     withr::with_options(c(width = 10), {
-      expect_equal(multicol(NA_character_), "NA")
-      expect_equal(multicol(c("foo", NA_character_)), "foo NA  ")
+      expect_equal(multicol(NA_character_), "NA\n")
+      expect_equal(multicol(c("foo", NA_character_)), "foo NA  \n")
     })
   })
 
   it("Ignores colors when calculating width", {
     withr::with_options(c(crayon.enabled = TRUE, width = 90), {
-      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 84)
+      expect_equal(max(nchar(multicol(files), keepNA = FALSE)), 85)
     })
   })
 })
