@@ -11,7 +11,6 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-library(dplyr)
 if (basename(getwd()) == "docs") {
   knitr::opts_knit$set(root.dir = file.path(getwd(), ".."))
 }
@@ -24,7 +23,11 @@ fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
 [![Coverage status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
 
-The goal of **fs** is to provide a uniform interface to file and directory operations, built on top of the [libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. libuv is used by [nodejs](https://nodejs.org), so is widely in the javascript community and tested by a large community on diverse systems. The name, and some of the interface, is inspired by Rust's [fs module](https://doc.rust-lang.org/std/fs/index.html).
+The goal of **fs** is to provide a uniform interface to file and directory
+operations, built on top of the [libuv](http://docs.libuv.org/en/v1.x/fs.html)
+C library. libuv is used by [nodejs](https://nodejs.org), so is widely in the
+javascript community and tested by a large community on diverse systems. The
+name, and some of the interface, is inspired by Rust's [fs module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation
 
@@ -63,14 +66,22 @@ will generally also work when applied to a directory or link.
 ```{r}
 library(fs)
 
+# list files in the current directory
+dir_list()
+
+# create a new directory
 tmp <- dir_create(file_temp())
 tmp
 
+# create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_list(tmp)
+
+# remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
 dir_list(tmp)
 
+# remove the directory
 dir_delete(tmp)
 ```
 
@@ -90,14 +101,20 @@ paths
 paths %>% file_delete()
 ```
 
-`dir_info()` returns a data frame, which works particularly nicely in conjunction with dplyr and the S3 helper classes for permissions and file sizes.
+`dir_info()` returns a data frame, which works particularly nicely in
+conjunction with dplyr and other tidyverse packages.
 
 ```{r}
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
+# Filter files by type, permission and size
 dir_info("src", recursive = FALSE) %>%
-  as_tibble() %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, creation_time)
+
+# Tally size of folders
+dir_info("src", recursive = TRUE) %>%
+  group_by(directory = path_dir(path)) %>%
+  tally(wt = size, sort = TRUE)
 ```

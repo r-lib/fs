@@ -146,7 +146,8 @@ the directory.</p></li>
 #&gt; /Library/Frameworks/R.framework/Resources/share/R/examples-header.R
 #&gt; /Library/Frameworks/R.framework/Resources/share/R/nspackloader.R
 #&gt; /Library/Frameworks/R.framework/Resources/share/R/tests-startup.R</div><div class='input'>
-<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"..."</span>)</div><div class='output co'>#&gt; <span class='error'>Error: [EEXIST] Failed to link '/Library/Frameworks/R.framework/Resources/library/base' to '...': file already exists</span></div><div class='input'>
+<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"..."</span>)
+
 <span class='fu'>dir_list</span>(<span class='st'>"..."</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; .../demo/error.catching.R .../demo/is.things.R      .../demo/recursion.R      
 #&gt; .../demo/scoping.R        </div><div class='input'><span class='fu'>dir_walk</span>(<span class='fu'>system.file</span>(), <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/CITATION"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/DESCRIPTION"

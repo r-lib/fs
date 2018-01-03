@@ -58,18 +58,30 @@ functions will generally also work when applied to a directory or link.
 ``` r
 library(fs)
 
+# list files in the current directory
+dir_list()
+#> Loading required namespace: crayon
+#> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
+#> README.md    _pkgdown.yml appveyor.yml codecov.yml  demo.json    
+#> doc          docs         fs.Rproj     man          man-roxygen  
+#> script.R     src          tests        tools
+
+# create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> Loading required namespace: crayon
 #> /tmp/filedd463d6d7e0f
 
+# create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_list(tmp)
 #> /tmp/filedd463d6d7e0f/my-file.txt
+
+# remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
 dir_list(tmp)
 #> character(0)
 
+# remove the directory
 dir_delete(tmp)
 ```
 
@@ -85,20 +97,20 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
+#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c 
+#> /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
 
 paths %>% file_delete()
 ```
 
 `dir_info()` returns a data frame, which works particularly nicely in
-conjunction with dplyr and the S3 helper classes for permissions and
-file sizes.
+conjunction with dplyr and other tidyverse packages.
 
 ``` r
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 
+# Filter files by type, permission and size
 dir_info("src", recursive = FALSE) %>%
-  as_tibble() %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, creation_time)
@@ -114,4 +126,23 @@ dir_info("src", recursive = FALSE) %>%
 #> 7 src/path.o          rw-r--r--        216.8K 2018-01-03 13:21:59
 #> 8 src/error.o         rw-r--r--         17.3K 2018-01-03 07:40:04
 #> 9 src/RcppExports.cpp rw-r--r--         10.8K 2018-01-03 13:19:24
+
+# Tally size of folders
+dir_info("src", recursive = TRUE) %>%
+  group_by(directory = path_dir(path)) %>%
+  tally(wt = size, sort = TRUE)
+#> # A tibble: 53 x 2
+#>    directory                                        n
+#>    <fs::filename>                         <fs::bytes>
+#>  1 src                                          2.61M
+#>  2 src/libuv                                    2.53M
+#>  3 src/libuv/autom4te.cache                     2.13M
+#>  4 src/libuv/src/unix                           1.08M
+#>  5 src/libuv/test                             865.36K
+#>  6 src/libuv/src/win                           683.1K
+#>  7 src/libuv/m4                               334.61K
+#>  8 src/libuv/docs/src/static                  328.32K
+#>  9 src/libuv/include                          192.33K
+#> 10 src/libuv/docs/src/static/diagrams.key     184.04K
+#> # ... with 43 more rows
 ```

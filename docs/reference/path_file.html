@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Delete a file, directory, or link. — delete • fs</title>
+<title>Manipulate file paths — path_file • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,19 +80,28 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Delete a file, directory, or link.</h1>
+    <h1>Manipulate file paths</h1>
     </div>
 
     
-    <p><code>dir_delete()</code> will first delete the contents of the directory, then remove
-the directory.</p>
+    <p><code>path_file()</code> returns the filename portion of the path, <code>path_dir()</code> returns
+the directory portion. <code>path_ext()</code> returns the last extension (if any) for a path.
+<code>path_ext_remove()</code> removes the last extension and returns the rest of the
+path. <code>path_ext_set()</code> replaces the extension with a new extension. If there
+is no existing extension the new extension is appended.</p>
     
 
-    <pre class="usage"><span class='fu'>file_delete</span>(<span class='no'>path</span>)
+    <pre class="usage"><span class='fu'>path_file</span>(<span class='no'>path</span>)
 
-<span class='fu'>dir_delete</span>(<span class='no'>path</span>)
+<span class='fu'>path_dir</span>(<span class='no'>path</span>)
 
-<span class='fu'>link_delete</span>(<span class='no'>path</span>)</pre>
+<span class='fu'>path_ext</span>(<span class='no'>path</span>)
+
+<span class='fu'>path_ext_remove</span>(<span class='no'>path</span>)
+
+<span class='fu'>path_ext_set</span>(<span class='no'>path</span>, <span class='no'>ext</span>)
+
+<span class='fu'>path_ext</span>(<span class='no'>path</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -101,26 +110,32 @@ the directory.</p>
       <th>path</th>
       <td><p>A character vector of paths.</p></td>
     </tr>
+    <tr>
+      <th>ext, value</th>
+      <td><p>The new file extension.</p></td>
+    </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p>The deleted paths.</p>
+    <p><code>basename()</code>, <code>dirname()</code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='file_create.html'>file_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
-<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
-#&gt;                  TRUE </div><div class='input'><span class='fu'>file_delete</span>(<span class='no'>x</span>)
-<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
-#&gt;                 FALSE </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>path_file</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; file.zip</div><div class='input'>
+<span class='fu'>path_dir</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; dir</div><div class='input'>
+<span class='fu'>path_ext</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; zip</div><div class='input'>
+<span class='fu'>path_ext</span>(<span class='st'>"file.tar.gz"</span>)</div><div class='output co'>#&gt; gz</div><div class='input'>
+<span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>)</div><div class='output co'>#&gt; file.tar</div><div class='input'>
+<span class='co'># Only one level of extension is removed</span>
+<span class='fu'>path_ext_set</span>(<span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>), <span class='st'>"zip"</span>)</div><div class='output co'>#&gt; file.zip</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
