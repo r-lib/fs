@@ -15,8 +15,6 @@ link_delete(path)
 }
 \arguments{
 \item{path}{A character vector of paths.}
-
-\item{path}{A character vector of paths.}
 }
 \value{
 The deleted paths.

@@ -1,18 +1,3 @@
-#' Delete files in a directory
-#'
-#' @inheritParams dir_list
-#' @export
-dir_delete <- function(path) {
-  dirs <- dir_list(path, type = "directory", recursive = TRUE)
-  files <- dir_list(path,
-    type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
-    recursive = TRUE)
-  file_delete(files)
-  rmdir_(rev(c(path, dirs)))
-
-  invisible(path_tidy(path))
-}
-
 #' Copy a directory
 #' @template fs
 #' @param new_path new location to copy to.
