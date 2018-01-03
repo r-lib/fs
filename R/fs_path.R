@@ -31,14 +31,16 @@ has_color <- function() {
 multicol <- function(x) {
   xs <- if (has_color()) crayon::strip_style(x) else x
   max_len <- max(nchar(xs, keepNA = FALSE)) + 1
-  to_add <- max_len - nchar(xs, keepNA = FALSE)
-  x <- paste0(x, substring(paste0(collapse = "", rep(" ", max_len)), 1, to_add))
   screen_width <- getOption("width")
-  num_cols <- max(trunc(screen_width / max_len), 1)
+  num_cols <- min(length(x), max(trunc(screen_width / max_len), 1))
+  if (num_cols > 1) {
+    to_add <- max_len - nchar(xs, keepNA = FALSE)
+    x <- paste0(x, substring(paste0(collapse = "", rep(" ", max_len)), 1, to_add))
+  }
   num_rows <- ceiling(length(x) / num_cols)
   x <- c(x, rep("", num_cols * num_rows - length(x)))
   xm <- matrix(x, ncol = num_cols, byrow = TRUE)
-  paste0(apply(xm, 1, paste0, collapse = ""), "\n")
+  apply(xm, 1, paste0, collapse = "")
 }
 
 # from defaults of dircolors version 8.28
