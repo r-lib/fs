@@ -49,6 +49,10 @@ chown_ <- function(path, uid, gid) {
     invisible(.Call(`_fs_chown_`, path, uid, gid))
 }
 
+cleanup_ <- function() {
+    invisible(.Call(`_fs_cleanup_`))
+}
+
 getmode_ <- function(mode_str, mode) {
     .Call(`_fs_getmode_`, mode_str, mode)
 }

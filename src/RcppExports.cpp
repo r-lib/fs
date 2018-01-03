@@ -144,6 +144,15 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// cleanup_
+void cleanup_();
+RcppExport SEXP _fs_cleanup_() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    cleanup_();
+    return R_NilValue;
+END_RCPP
+}
 // getmode_
 mode_t getmode_(const char* mode_str, mode_t mode);
 RcppExport SEXP _fs_getmode_(SEXP mode_strSEXP, SEXP modeSEXP) {
@@ -279,6 +288,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_unlink_", (DL_FUNC) &_fs_unlink_, 1},
     {"_fs_copyfile_", (DL_FUNC) &_fs_copyfile_, 3},
     {"_fs_chown_", (DL_FUNC) &_fs_chown_, 3},
+    {"_fs_cleanup_", (DL_FUNC) &_fs_cleanup_, 0},
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 2},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
     {"_fs_file_code_", (DL_FUNC) &_fs_file_code_, 2},
