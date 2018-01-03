@@ -4,7 +4,7 @@ gnu_ls_defaults <- "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=4
 # LS mappings are at https://github.com/wertarbyte/coreutils/blob/f70c7b785b93dd436788d34827b209453157a6f2/src/dircolors.c#L60-L75
 
 #' @importFrom stats setNames
-colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
+colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
   if (length(x) == 0 || !has_color()) {
     return(x)
   }
@@ -34,28 +34,28 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
   res
 }
 
-new_fs_filename <- function(x) {
-  structure(enc2utf8(x), class = c("fs_filename", "character"))
+new_fs_path <- function(x) {
+  structure(enc2utf8(x), class = c("fs_path", "character"))
 }
 
 #' @export
-print.fs_filename <- function(x, ..., max = getOption("max.print")) {
+print.fs_path <- function(x, ..., max = getOption("max.print")) {
   x <- x[seq_len(min(length(x), max))]
-  cat(multicol(colourise_fs_filename(x, ...)), sep = "")
+  cat(multicol(colourise_fs_path(x, ...)), sep = "")
 
   invisible(x)
 }
 
 #' @export
-`[.fs_filename` <- function(x, i) {
-  new_fs_filename(NextMethod("["))
+`[.fs_path` <- function(x, i) {
+  new_fs_path(NextMethod("["))
 }
 
-pillar_shaft.fs_filename <- function(x, ...) {
-  pillar::new_pillar_shaft_simple(colourise_fs_filename(x), ...)
+pillar_shaft.fs_path <- function(x, ...) {
+  pillar::new_pillar_shaft_simple(colourise_fs_path(x), ...)
 }
 
-type_sum.fs_filename <- function(x) {
+type_sum.fs_path <- function(x) {
   "fs::filename"
 }
 

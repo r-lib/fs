@@ -32,7 +32,7 @@ path_norm <- function(path) {
 path_expand <- function(path) {
   path <- enc2utf8(path)
 
-  new_fs_filename(path.expand(path))
+  new_fs_path(path.expand(path))
 }
 
 #' Tidy paths
@@ -42,7 +42,7 @@ path_expand <- function(path) {
 #' multiple `/` or trailing `/` and have colourised output based on the file
 #' type.
 #'
-#' @return A fs_filename object
+#' @return A fs_path object
 #' @template fs
 #' @export
 path_tidy <- function(path) {
@@ -58,7 +58,7 @@ path_tidy <- function(path) {
   # Remove trailing / from paths (that aren't also the beginning)
   path <- sub("(?<!^)/$", "", path, perl = TRUE)
 
-  new_fs_filename(path)
+  new_fs_path(path)
 }
 
 

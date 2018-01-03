@@ -10,7 +10,7 @@ path_tidy(path)
 \item{path}{A character vector of paths.}
 }
 \value{
-A fs_filename object
+A fs_path object
 }
 \description{
 untidy paths are all different, tidy paths are all the same.
