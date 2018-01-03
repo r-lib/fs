@@ -46,10 +46,10 @@ the directory.
 \examples{
 dir_list(R.home("share/R"))
 
-link_create(system.file(package = "base"), "...")
+link_create(system.file(package = "base"), "base")
 
-dir_list("...", recursive = TRUE, glob = "*.R")
+dir_list("base", recursive = TRUE, glob = "*.R")
 dir_walk(system.file(), str)
-dir_info("...")
-link_delete("...")
+dir_info("base")
+link_delete("base")
 }

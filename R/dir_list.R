@@ -13,9 +13,9 @@
 #' @examples
 #' dir_list(R.home("share/R"))
 #'
-#' link_create(system.file(package = "base"), "...")
+#' link_create(system.file(package = "base"), "base")
 #'
-#' dir_list("...", recursive = TRUE, glob = "*.R")
+#' dir_list("base", recursive = TRUE, glob = "*.R")
 dir_list <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
@@ -61,8 +61,8 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "an
 #' @describeIn dir_list A shortcut for the combination of `file_info(dir_list())`.
 #' @export
 #' @examples
-#' dir_info("...")
-#' link_delete("...")
+#' dir_info("base")
+#' link_delete("base")
 dir_info <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
   file_info(dir_list(path = path, all = all, recursive = recursive, type = type,

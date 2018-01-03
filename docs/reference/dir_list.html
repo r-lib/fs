@@ -146,31 +146,31 @@ the directory.</p></li>
 #&gt; /Library/Frameworks/R.framework/Resources/share/R/examples-header.R
 #&gt; /Library/Frameworks/R.framework/Resources/share/R/nspackloader.R
 #&gt; /Library/Frameworks/R.framework/Resources/share/R/tests-startup.R</div><div class='input'>
-<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"..."</span>)
+<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"base"</span>)
 
-<span class='fu'>dir_list</span>(<span class='st'>"..."</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; .../demo/error.catching.R .../demo/is.things.R      .../demo/recursion.R      
-#&gt; .../demo/scoping.R        </div><div class='input'><span class='fu'>dir_walk</span>(<span class='fu'>system.file</span>(), <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/CITATION"
+<span class='fu'>dir_list</span>(<span class='st'>"base"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; base/demo/error.catching.R base/demo/is.things.R      
+#&gt; base/demo/recursion.R      base/demo/scoping.R        </div><div class='input'><span class='fu'>dir_walk</span>(<span class='fu'>system.file</span>(), <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/CITATION"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/DESCRIPTION"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/INDEX"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/Meta"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/R"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/demo"
 #&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/help"
-#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/html"</div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"..."</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
-#&gt;   path            type          size permissio… modification_time   user  group
-#&gt;   &lt;fs::filename&gt;  &lt;fctr&gt;   &lt;fs::byt&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
-#&gt; 1 .../CITATION    file           956 rw-rw-r--  2017-12-06 21:16:12 root  admin
-#&gt; 2 .../DESCRIPTION file           286 rw-rw-r--  2017-12-06 21:16:12 root  admin
-#&gt; 3 .../INDEX       file         23.2K rw-rw-r--  2017-12-06 21:16:12 root  admin
-#&gt; 4 .../Meta        directo…       272 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 5 .../R           directo…       204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 6 .../demo        directo…       204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 7 .../help        directo…       238 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 8 .../html        directo…       136 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt;  chr "/Library/Frameworks/R.framework/Resources/library/base/html"</div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
+#&gt;   path             type         size permissio… modification_time   user  group
+#&gt;   &lt;fs::filename&gt;   &lt;fctr&gt;  &lt;fs::byt&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
+#&gt; 1 base/CITATION    file          956 rw-rw-r--  2017-12-06 21:16:12 root  admin
+#&gt; 2 base/DESCRIPTION file          286 rw-rw-r--  2017-12-06 21:16:12 root  admin
+#&gt; 3 base/INDEX       file        23.2K rw-rw-r--  2017-12-06 21:16:12 root  admin
+#&gt; 4 base/Meta        direct…       272 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 5 base/R           direct…       204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 6 base/demo        direct…       204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 7 base/help        direct…       238 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt; 8 base/html        direct…       136 rwxrwxr-x  2017-12-06 21:16:12 root  admin
 #&gt; # ... with 11 more variables: device_id &lt;dbl&gt;, hard_links &lt;dbl&gt;,
 #&gt; #   special_device_id &lt;dbl&gt;, inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;, flags
 #&gt; #   &lt;int&gt;, generation &lt;dbl&gt;, access_time &lt;dttm&gt;, creation_time &lt;dttm&gt;,
-#&gt; #   birth_time &lt;dttm&gt;</div><div class='input'><span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"..."</span>)</div></pre>
+#&gt; #   birth_time &lt;dttm&gt;</div><div class='input'><span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"base"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
