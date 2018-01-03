@@ -48,7 +48,7 @@ gnu_ls_defaults <- "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=4
 
 # LS mappings are at https://github.com/wertarbyte/coreutils/blob/f70c7b785b93dd436788d34827b209453157a6f2/src/dircolors.c#L60-L75
 
-#' @importFrom stats setNames
+#' @importFrom stats setNames na.omit
 colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
   if (length(x) == 0 || !has_color()) {
     return(x)
