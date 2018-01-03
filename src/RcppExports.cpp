@@ -274,6 +274,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// path_
+CharacterVector path_(List paths, const char* ext);
+RcppExport SEXP _fs_path_(SEXP pathsSEXP, SEXP extSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type paths(pathsSEXP);
+    Rcpp::traits::input_parameter< const char* >::type ext(extSEXP);
+    rcpp_result_gen = Rcpp::wrap(path_(paths, ext));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_mkdir_", (DL_FUNC) &_fs_mkdir_, 2},
@@ -300,6 +312,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
     {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
     {"_fs_normalize_", (DL_FUNC) &_fs_normalize_, 1},
+    {"_fs_path_", (DL_FUNC) &_fs_path_, 2},
     {NULL, NULL, 0}
 };
 

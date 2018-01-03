@@ -1,11 +1,13 @@
 #' Construct path to a file or directory
 #'
 #' @template fs
-#' @param ... character vectors
+#' @param ... character vectors, if any values are NA, the result will also be
+#'   NA.
+#' @param ext An optional extension to append to the generated path.
 #' @export
 #' @seealso [base::file.path()]
-path <- function(...) {
-  path_tidy(enc2utf8(file.path(..., fsep = "/")))
+path <- function(..., ext = "") {
+  path_tidy(path_(lapply(list(...), as.character), ext))
 }
 
 #' Return the canonicalized absolute pathname

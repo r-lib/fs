@@ -4,10 +4,13 @@
 \alias{path}
 \title{Construct path to a file or directory}
 \usage{
-path(...)
+path(..., ext = "")
 }
 \arguments{
-\item{...}{character vectors}
+\item{...}{character vectors, if any values are NA, the result will also be
+NA.}
+
+\item{ext}{An optional extension to append to the generated path.}
 
 \item{path}{A character vector of paths.}
 }
