@@ -57,21 +57,6 @@ file_chmod <- function(path, mode) {
   invisible(path_tidy(path))
 }
 
-#' Delete a file
-#' @template fs
-#' @examples
-#' x <- file_create(tempfile())
-#' file_exists(x)
-#' file_delete(x)
-#' file_exists(x)
-#' @export
-file_delete <- function(path) {
-  path <- path_expand(path)
-  unlink_(path)
-
-  invisible(path_tidy(path))
-}
-
 #' Copy a file
 #' @param new_path Character vector of paths to the new files.
 #' @param overwrite Overwrite files if they exist. If this is `FALSE` and a
