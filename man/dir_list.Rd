@@ -44,9 +44,12 @@ the directory.
 }}
 
 \examples{
-dir_list(R.home())
+dir_list(R.home("share/R"))
 
-dir_list(system.file(package = "base"), recursive = TRUE)
-dir_list(system.file(package = "base"), recursive = TRUE, glob = "*.R")
-dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
+link_create(system.file(package = "base"), "...")
+
+dir_list("...", recursive = TRUE, glob = "*.R")
+dir_walk(system.file(), str)
+dir_info("...")
+link_delete("...")
 }

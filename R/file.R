@@ -2,6 +2,9 @@
 #' @template fs
 #' @return A data.frame with metadata for each file
 #' @export
+#' @examples
+#' write.csv(mtcars, "/tmp/mtcars.csv")
+#' file_info("mtcars.csv")
 file_info <- function(path) {
   path <- path_expand(path)
 
@@ -36,7 +39,8 @@ file_types <- c(
 #' @param mode A character representation of the mode, in either hexidecimal or symbolic format.
 #' @export
 #' @examples
-#' x <- file_create(tempfile(), "000")
+#' \dontshow{fs:::pkgdown_tmp("/tmp/filedd4670e2bc60")}
+#' x <- file_create(file_temp(), "000")
 #' file_chmod(x, "777")
 #' file_info(x)$permissions
 #'
@@ -58,17 +62,18 @@ file_chmod <- function(path, mode) {
 }
 
 #' Copy a file
+#'
 #' @param new_path Character vector of paths to the new files.
 #' @param overwrite Overwrite files if they exist. If this is `FALSE` and a
 #'   file exists and error will be thrown.
 #' @template fs
+#' @export
 #' @examples
 #' file_create("foo")
 #' file_copy("foo", "bar")
 #' try(file_copy("foo", "bar"))
 #' file_copy("foo", "bar", overwrite = TRUE)
 #' file_delete(c("foo", "bar"))
-#' @export
 file_copy <- function(path, new_path, overwrite = FALSE) {
   path <- path_expand(path)
   new_path <- path_expand(new_path)
@@ -116,7 +121,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 #' @template fs
 #' @return The directories that were opened (invisibly).
 #' @importFrom utils browseURL
-#' @inheritParams utils browseURL
+#' @inheritParams utils::browseURL
 #' @export
 file_show <- function(path = ".", browser = getOption("browser")) {
   for (p in path) {

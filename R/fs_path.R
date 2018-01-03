@@ -5,7 +5,11 @@ new_fs_path <- function(x) {
 #' @export
 print.fs_path <- function(x, ..., max = getOption("max.print")) {
   x <- x[seq_len(min(length(x), max))]
-  cat(multicol(colourise_fs_path(x, ...)), sep = "")
+  if (length(x) == 0) {
+    print(character(0))
+  } else {
+    cat(multicol(colourise_fs_path(x, ...)), sep = "")
+  }
 
   invisible(x)
 }
@@ -29,6 +33,9 @@ has_color <- function() {
 
 # From gaborcsardi/crayon/R/utils.r
 multicol <- function(x) {
+  if (length(x) == 0) {
+    return(character())
+  }
   xs <- if (has_color()) crayon::strip_style(x) else x
   max_len <- max(nchar(xs, keepNA = FALSE)) + 1
   screen_width <- getOption("width")
@@ -40,7 +47,7 @@ multicol <- function(x) {
   num_rows <- ceiling(length(x) / num_cols)
   x <- c(x, rep("", num_cols * num_rows - length(x)))
   xm <- matrix(x, ncol = num_cols, byrow = TRUE)
-  apply(xm, 1, paste0, collapse = "")
+  paste0(apply(xm, 1, paste0, collapse = ""), "\n")
 }
 
 # from defaults of dircolors version 8.28

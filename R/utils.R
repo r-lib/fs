@@ -44,3 +44,12 @@ nchar <- function(x, type = "chars", allowNA = FALSE, keepNA = NA) {
   }
   base::nchar(x, type, allowNA, keepNA)
 }
+
+`%||%` <- function(x, y) if (is.null(x)) y else x
+
+# Only use deterministic entries if we are building documentation in pkgdown.
+pkgdown_tmp <- function(path) {
+  if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
+    file_temp_push(path)
+  }
+}

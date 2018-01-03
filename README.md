@@ -58,13 +58,14 @@ functions will generally also work when applied to a directory or link.
 ``` r
 library(fs)
 
-tmp <- dir_create(tempfile())
+tmp <- dir_create(file_temp())
 tmp
-#> [1] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e060777196"
+#> Loading required namespace: crayon
+#> /tmp/filedd463d6d7e0f
 
 file_create(path(tmp, "my-file.txt"))
 dir_list(tmp)
-#> [1] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e060777196/my-file.txt"
+#> /tmp/filedd463d6d7e0f/my-file.txt
 file_delete(path(tmp, "my-file.txt"))
 dir_list(tmp)
 #> character(0)
@@ -79,16 +80,12 @@ You’ll need to attach magrittr or similar.
 ``` r
 library(magrittr)
 
-paths <- tempfile() %>%
+paths <- file_temp() %>%
   dir_create() %>%
   path(letters[1:5]) %>%
-  file_create() 
+  file_create()
 paths
-#> [1] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/a"
-#> [2] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/b"
-#> [3] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/c"
-#> [4] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/d"
-#> [5] "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T//Rtmpl6TqFq/file176e040424c86/e"
+#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
 
 paths %>% file_delete()
 ```
@@ -105,15 +102,16 @@ dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, creation_time)
-#> # A tibble: 8 x 4
-#>                path    permissions           size       creation_time
-#>               <chr> <S3: fs_perms> <S3: fs_bytes>              <dttm>
-#> 1        src/fs.dll     rw-rw-rw-         1003.5K 2017-12-27 14:36:06
-#> 2 src/RcppExports.o     rw-r--r--          601.2K 2017-12-27 14:56:23
-#> 3         src/dir.o     rw-r--r--          452.6K 2017-12-27 14:56:23
-#> 4         src/fs.so     rwxr-xr-x          367.1K 2017-12-27 14:56:41
-#> 5        src/file.o     rw-r--r--          292.4K 2017-12-27 14:56:23
-#> 6        src/link.o     rw-r--r--          219.6K 2017-12-27 14:56:26
-#> 7        src/path.o     rw-r--r--          216.8K 2017-12-27 14:56:23
-#> 8       src/error.o     rw-r--r--           17.3K 2017-12-27 14:56:23
+#> # A tibble: 9 x 4
+#>   path                permissions        size creation_time      
+#>   <fs::filename>      <fs::perms> <fs::bytes> <dttm>             
+#> 1 src/RcppExports.o   rw-r--r--          624K 2018-01-03 13:21:57
+#> 2 src/dir.o           rw-r--r--        452.6K 2018-01-03 09:43:07
+#> 3 src/fs.so           rwxr-xr-x        408.7K 2018-01-03 13:21:59
+#> 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08
+#> 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07
+#> 6 src/link.o          rw-r--r--        219.6K 2018-01-03 09:43:06
+#> 7 src/path.o          rw-r--r--        216.8K 2018-01-03 13:21:59
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-03 07:40:04
+#> 9 src/RcppExports.cpp rw-r--r--         10.8K 2018-01-03 13:19:24
 ```

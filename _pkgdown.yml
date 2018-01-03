@@ -25,5 +25,5 @@ reference:
 - title: Helpers
   contents:
   - is_file
-  - as_bytes
+  - as_fs_bytes
   - as_fs_perms

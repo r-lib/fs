@@ -23,7 +23,8 @@ object does not exist, \code{NA} is returned.
 Functions to test for file types
 }
 \examples{
-tmp <- dir_create(tempfile())
+\dontshow{fs:::pkgdown_tmp("/tmp/filedd46c01c6ad")}
+tmp <- dir_create(file_temp())
 
 file_create(path(tmp, "file.txt"))
 dir_create(path(tmp, "dir"))

@@ -1,8 +1,8 @@
 #' Create a file, directory, or link.
 #'
 #' These functions ensure that `path` exists; if it already exists it will
-#' be left unchanged. That means that ompared to [file.create()],
-#' `file_create()` will not truncate an existing, and compared to
+#' be left unchanged. That means that compared to [file.create()],
+#' `file_create()` will not truncate an existing file, and compared to
 #' [dir.create()], `dir_create()` will silently ignore
 #' existing directories.
 #'
@@ -13,12 +13,13 @@
 #' @param recursive should intermediate directories be created if they do not
 #'   exist?
 #' @examples
-#' x <- file_create(tempfile())
+#' \dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769")}
+#' x <- file_create(file_temp())
 #' is_file(x)
 #' # dir_create applied to the same path will fail
 #' try(dir_create(x))
 #'
-#' x <- dir_create(tempfile())
+#' x <- dir_create(file_temp())
 #' is_dir(x)
 #' # file_create applied to the same path will fail
 #' try(file_create(x))

@@ -29,18 +29,19 @@ exist?}
 }
 \description{
 These functions ensure that \code{path} exists; if it already exists it will
-be left unchanged. That means that ompared to \code{\link[=file.create]{file.create()}},
-\code{file_create()} will not truncate an existing, and compared to
+be left unchanged. That means that compared to \code{\link[=file.create]{file.create()}},
+\code{file_create()} will not truncate an existing file, and compared to
 \code{\link[=dir.create]{dir.create()}}, \code{dir_create()} will silently ignore
 existing directories.
 }
 \examples{
-x <- file_create(tempfile())
+\dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769")}
+x <- file_create(file_temp())
 is_file(x)
 # dir_create applied to the same path will fail
 try(dir_create(x))
 
-x <- dir_create(tempfile())
+x <- dir_create(file_temp())
 is_dir(x)
 # file_create applied to the same path will fail
 try(file_create(x))

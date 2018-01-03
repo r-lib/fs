@@ -11,10 +11,11 @@
 #' @template fs
 #' @export
 #' @examples
-#' dir_list(R.home())
+#' dir_list(R.home("share/R"))
 #'
-#' dir_list(system.file(package = "base"), recursive = TRUE)
-#' dir_list(system.file(package = "base"), recursive = TRUE, glob = "*.R")
+#' link_create(system.file(package = "base"), "...")
+#'
+#' dir_list("...", recursive = TRUE, glob = "*.R")
 dir_list <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
@@ -47,7 +48,7 @@ directory_entry_types <- c(
 #'   the directory.
 #' @param fun A function, taking one parameter, the current path entry.
 #' @examples
-#' dir_walk(system.file(), function(p) if (grepl("profile", p)) print(p))
+#' dir_walk(system.file(), str)
 #' @export
 dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
@@ -59,6 +60,9 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "an
 
 #' @describeIn dir_list A shortcut for the combination of `file_info(dir_list())`.
 #' @export
+#' @examples
+#' dir_info("...")
+#' link_delete("...")
 dir_info <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
   file_info(dir_list(path = path, all = all, recursive = recursive, type = type,

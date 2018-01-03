@@ -15,3 +15,7 @@ A data.frame with metadata for each file
 \description{
 Query file metadata
 }
+\examples{
+write.csv(mtcars, "/tmp/mtcars.csv")
+file_info("mtcars.csv")
+}

@@ -15,7 +15,8 @@ file_chmod(path, mode)
 Change file permissions
 }
 \examples{
-x <- file_create(tempfile(), "000")
+\dontshow{fs:::pkgdown_tmp("/tmp/filedd4670e2bc60")}
+x <- file_create(file_temp(), "000")
 file_chmod(x, "777")
 file_info(x)$permissions
 
