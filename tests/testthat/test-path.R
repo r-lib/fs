@@ -56,6 +56,11 @@ describe("path_tidy", {
     expect_equal(path_tidy("foo\\\\bar\\\\baz\\"), "foo/bar/baz")
     expect_equal(path_tidy("foo\\\\bar\\\\baz\\\\"), "foo/bar/baz")
   })
+
+  it("passes NA along", {
+    expect_equal(path_tidy(NA_character_), NA_character_)
+    expect_equal(path_tidy(c("foo/bar", NA_character_)), c("foo/bar", NA_character_))
+  })
 })
 
 describe("path_temp", {

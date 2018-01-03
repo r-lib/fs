@@ -23,9 +23,9 @@ colourise_fs_filename <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_l
   for (i in seq_along(x)) {
     code <- map[file_code_(x[[i]], perms[[i]])]
     if (is.na(code)) {
-      code <- file_types[tools::file_ext(x[[i]])]
+      code <- file_types[na.omit(tools::file_ext(x[[i]]))]
     }
-    if (!is.na(code)) {
+    if (length(code) > 0 && !is.na(code)) {
       res[[i]] <- paste0("\033[", code, "m", x[[i]], "\033[0m")
     } else {
       res[[i]] <- x[[i]]
@@ -66,8 +66,8 @@ has_color <- function() {
 # From gaborcsardi/crayon/R/utils.r
 multicol <- function(x) {
   xs <- if (has_color()) crayon::strip_style(x) else x
-  max_len <- max(nchar(xs)) + 1
-  to_add <- max_len - nchar(xs)
+  max_len <- max(nchar(xs, keepNA = FALSE)) + 1
+  to_add <- max_len - nchar(xs, keepNA = FALSE)
   x <- paste0(x, substring(paste0(collapse = "", rep(" ", max_len)), 1, to_add))
   screen_width <- getOption("width")
   num_cols <- max(trunc(screen_width / max_len), 1)
