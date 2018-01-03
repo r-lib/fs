@@ -13,6 +13,19 @@ describe("path", {
   it("returns empty strings unchanged", {
     expect_equal(path(""), "")
     expect_equal(path(character()), character())
+    expect_equal(path("foo", character(), "bar"), "foo/bar")
+  })
+
+  it("propagates NA strings", {
+    expect_equal(path(NA_character_), NA_character_)
+    expect_equal(path("foo", NA_character_), NA_character_)
+    expect_equal(path(c("foo", "bar"), c("baz", NA_character_)), c("foo/baz", NA_character_))
+  })
+
+  it("appends a ext if provided", {
+    expect_equal(path("foo", ext = "bar"), "foo.bar")
+    expect_equal(path(c("foo", "baz"), ext = "bar"), c("foo.bar", "baz.bar"))
+    expect_equal(path(c("foo", "baz", NA_character_), ext = "bar"), c("foo.bar", "baz.bar", NA_character_))
   })
 })
 

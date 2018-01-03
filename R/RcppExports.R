@@ -97,3 +97,7 @@ normalize_ <- function(path) {
     .Call(`_fs_normalize_`, path)
 }
 
+path_ <- function(paths, ext) {
+    .Call(`_fs_path_`, paths, ext)
+}
+
