@@ -117,7 +117,7 @@ path_temp <- function(...) {
 #' path_ext_set(path_ext_remove("file.tar.gz"), "zip")
 path_ext <- function(path) {
   res <- captures(path, regexpr("(?<!^|[.])[.]([^.]+)$", path, perl = TRUE))[[1]]
-  res[is.na(res)] <- ""
+  res[!is.na(path) & is.na(res)] <- ""
   path_tidy(res)
 }
 
