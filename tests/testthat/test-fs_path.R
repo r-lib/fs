@@ -1,17 +1,22 @@
 context("test-fs_path.R")
 
-describe("new_fs_path", {
-  it("returns a new fs_path object", {
-    x <- new_fs_path("foo/bar")
+describe("as_fs_path", {
+  it("returns a new fs_path object from character inputs", {
+    x <- as_fs_path("foo/bar")
     expect_is(x, "fs_path")
     expect_is(x, "character")
     expect_equal(length(x), 1)
 
-    x <- new_fs_path(c("foo/bar", "foo", NA))
+    x <- as_fs_path(c("foo/bar", "foo", NA))
     expect_is(x, "fs_path")
     expect_is(x, "character")
     expect_equal(length(x), 3)
     expect_equal(x, c("foo/bar", "foo", NA))
+  })
+
+  it("fails with non-character inputs", {
+    expect_error(as_fs_path(1), "no applicable method")
+    expect_error(as_fs_path(TRUE), "no applicable method")
   })
 })
 

@@ -1,3 +1,27 @@
+#' File paths
+#'
+#' Constructs tidy file paths, colored by file type on capable terminals.
+#' Coloring can be customized by setting the `LS_COLORS` environment variable,
+#' the format is the same as that used by GNU ls / dircolors.
+#' @param x vector to be coerced to a fs_path object.
+#' @seealso
+#' <https://geoff.greer.fm/lscolors>,
+#' <https://github.com/trapd00r/LS_COLORS>,
+#' <https://github.com/seebi/dircolors-solarized>
+#' @export
+as_fs_path <- function(x) {
+  UseMethod("as_fs_path")
+}
+
+#' @export
+as_fs_path.character <- function(x) {
+  path_tidy(x)
+}
+
+#' @rdname as_fs_path
+#' @export
+fs_path <- as_fs_path
+
 new_fs_path <- function(x) {
   structure(enc2utf8(x), class = c("fs_path", "character"))
 }
