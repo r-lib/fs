@@ -3,7 +3,7 @@
 \name{path_home}
 \alias{path_home}
 \alias{path_temp}
-\title{Paths from useful directories}
+\title{Paths starting from useful directories}
 \usage{
 path_home(...)
 
