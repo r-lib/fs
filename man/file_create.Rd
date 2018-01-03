@@ -35,7 +35,7 @@ be left unchanged. That means that compared to \code{\link[=file.create]{file.cr
 existing directories.
 }
 \examples{
-\dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769")}
+\dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769"))}
 x <- file_create(file_temp())
 is_file(x)
 # dir_create applied to the same path will fail

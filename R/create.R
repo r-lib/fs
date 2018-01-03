@@ -13,7 +13,7 @@
 #' @param recursive should intermediate directories be created if they do not
 #'   exist?
 #' @examples
-#' \dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769")}
+#' \dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769"))}
 #' x <- file_create(file_temp())
 #' is_file(x)
 #' # dir_create applied to the same path will fail
