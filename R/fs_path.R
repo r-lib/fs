@@ -52,7 +52,7 @@ type_sum.fs_path <- function(x) {
 }
 
 has_color <- function() {
-  requireNamespace("crayon") && crayon::has_color()
+  requireNamespace("crayon", quietly = TRUE) && crayon::has_color()
 }
 
 # From gaborcsardi/crayon/R/utils.r
