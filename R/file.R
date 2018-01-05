@@ -61,27 +61,6 @@ file_chmod <- function(path, mode) {
   invisible(path_tidy(path))
 }
 
-#' Copy a file
-#'
-#' @param new_path Character vector of paths to the new files.
-#' @param overwrite Overwrite files if they exist. If this is `FALSE` and a
-#'   file exists and error will be thrown.
-#' @template fs
-#' @export
-#' @examples
-#' file_create("foo")
-#' file_copy("foo", "bar")
-#' try(file_copy("foo", "bar"))
-#' file_copy("foo", "bar", overwrite = TRUE)
-#' file_delete(c("foo", "bar"))
-file_copy <- function(path, new_path, overwrite = FALSE) {
-  path <- path_expand(path)
-  new_path <- path_expand(new_path)
-  copyfile_(path, new_path, isTRUE(overwrite))
-
-  invisible(path_tidy(new_path))
-}
-
 #' Change ownership or group of a file
 #' @template fs
 #' @param user_id The user id of the new owner, specified as a numeric ID or
