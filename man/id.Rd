@@ -19,3 +19,10 @@ or group ids.
 These functions use the GETPWENT(3) and GETGRENT(3) system calls to query
 users and groups respectively.
 }
+\examples{
+# list all groups
+group_ids()
+
+# list all users
+user_ids()
+}
