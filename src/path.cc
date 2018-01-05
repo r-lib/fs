@@ -45,10 +45,13 @@ CharacterVector path_(List paths, const char* ext) {
           has_na = true;
           break;
         }
+
         const char* s = Rf_translateCharUTF8(str);
         strcpy(b, s);
         b += strlen(s);
-        if (c != (max_col - 1)) {
+
+        bool trailing_slash = (b > buf) && (*(b - 1) == '/' || *(b - 1) == '\\');
+        if (!(trailing_slash || c == (max_col - 1))) {
           *b++ = '/';
         }
       }

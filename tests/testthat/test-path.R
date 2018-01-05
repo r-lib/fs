@@ -27,6 +27,18 @@ describe("path", {
     expect_equal(path(c("foo", "baz"), ext = "bar"), c("foo.bar", "baz.bar"))
     expect_equal(path(c("foo", "baz", NA_character_), ext = "bar"), c("foo.bar", "baz.bar", NA_character_))
   })
+
+  it("does not double paths", {
+    expect_equal(path("/", "foo"), "/foo")
+    expect_equal(path("\\", "foo"), "/foo")
+    expect_equal(path("", "foo"), "/foo")
+    expect_equal(path("foo/", "bar"), "foo/bar")
+    expect_equal(path("foo\\", "bar"), "foo/bar")
+    expect_equal(path("foo//", "bar"), "foo/bar")
+
+    # This could be a UNC path, so we keep the doubled path.
+    expect_equal(path("//", "foo"), "//foo")
+  })
 })
 
 describe("path_norm", {
