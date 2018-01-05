@@ -30,6 +30,8 @@ compare.fs_path <- function(x, y) {
   if (identical(class(y), "character")) {
     class(x) <- NULL
   }
+  names(x) <- NULL
+  names(y) <- NULL
   NextMethod("compare")
 }
 
