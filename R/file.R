@@ -3,7 +3,7 @@
 #' @return A data.frame with metadata for each file
 #' @export
 #' @examples
-#' write.csv(mtcars, "/tmp/mtcars.csv")
+#' write.csv(mtcars, "mtcars.csv")
 #' file_info("mtcars.csv")
 file_info <- function(path) {
   path <- path_expand(path)
