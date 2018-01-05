@@ -14,7 +14,7 @@ status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://c
 The goal of **fs** is to provide a uniform interface to file and
 directory operations, built on top of the
 [libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. libuv is used
-by [nodejs](https://nodejs.org), so is widely in the javascript
+by [nodejs](https://nodejs.org), so is widely used in the javascript
 community and tested by a large community on diverse systems. The name,
 and some of the interface, is inspired by Rust’s [fs
 module](https://doc.rust-lang.org/std/fs/index.html).
@@ -40,8 +40,8 @@ devtools::install_github("r-lib/fs")
     a failure.
 
   - **fs** functions always convert the input paths to UTF-8 and return
-    results as UTF-8 encoded paths. This gives you path encoding
-    consistency across OSs.
+    results as UTF-8. This gives you path encoding consistency across
+    OSs.
 
   - **fs** functions use a consistent naming convention. Because base
     R’s functions were gradually added over time there are a number of
@@ -59,12 +59,11 @@ functions will generally also work when applied to a directory or link.
 library(fs)
 
 # list files in the current directory
-dir_list()
-#> Loading required namespace: crayon
-#> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
-#> README.md    _pkgdown.yml appveyor.yml codecov.yml  demo.json    
-#> doc          docs         fs.Rproj     man          man-roxygen  
-#> script.R     src          tests        tools
+file_list()
+#> DESCRIPTION    LICENSE.md     NAMESPACE      R              README.Rmd     
+#> README.knit.md README.md      _pkgdown.yml   appveyor.yml   codecov.yml    
+#> demo.json      doc            docs           fs.Rproj       man            
+#> man-roxygen    script.R       src            tests          tools
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -73,12 +72,12 @@ tmp
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
-dir_list(tmp)
+file_list(tmp)
 #> /tmp/filedd463d6d7e0f/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
-dir_list(tmp)
+file_list(tmp)
 #> character(0)
 
 # remove the directory
@@ -103,8 +102,8 @@ paths
 paths %>% file_delete()
 ```
 
-`dir_info()` returns a data frame, which works particularly nicely in
-conjunction with dplyr and other tidyverse packages.
+**fs** functions also works well in conjunction with dplyr, purrr and
+other tidyverse packages.
 
 ``` r
 suppressMessages(
@@ -118,15 +117,15 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size creation_time      
 #>   <fs::filename>      <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--          624K 2018-01-04 17:04:50
+#> 1 src/RcppExports.o   rw-r--r--        646.1K 2018-01-05 08:20:05
 #> 2 src/dir.o           rw-r--r--        452.6K 2018-01-03 09:43:07
-#> 3 src/fs.so           rwxr-xr-x        408.7K 2018-01-04 17:04:51
+#> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-05 08:34:28
 #> 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08
 #> 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07
-#> 6 src/link.o          rw-r--r--        219.6K 2018-01-03 09:43:06
-#> 7 src/path.o          rw-r--r--        216.8K 2018-01-04 17:04:51
+#> 6 src/path.o          rw-r--r--        244.8K 2018-01-05 08:34:28
+#> 7 src/link.o          rw-r--r--        219.6K 2018-01-03 09:43:06
 #> 8 src/error.o         rw-r--r--         17.3K 2018-01-03 07:40:04
-#> 9 src/RcppExports.cpp rw-r--r--         10.8K 2018-01-04 16:58:07
+#> 9 src/RcppExports.cpp rw-r--r--         11.2K 2018-01-05 08:18:33
 
 # Tally size of folders
 dir_info("src", recursive = TRUE) %>%
@@ -135,7 +134,7 @@ dir_info("src", recursive = TRUE) %>%
 #> # A tibble: 53 x 2
 #>    directory                                        n
 #>    <fs::filename>                         <fs::bytes>
-#>  1 src                                          2.61M
+#>  1 src                                          2.67M
 #>  2 src/libuv                                    2.53M
 #>  3 src/libuv/autom4te.cache                     2.13M
 #>  4 src/libuv/src/unix                           1.08M
@@ -149,7 +148,7 @@ dir_info("src", recursive = TRUE) %>%
 
 # Read a collection of similar files into one data frame
 system.file("extdata", package = "readr") %>%
-  dir_list(glob = "*mtcars*") %>%
+  file_list(glob = "*mtcars*") %>%
   set_names(path_file(.)) %>%
   map_df(read_csv, .id = "file", col_types = cols())
 #> # A tibble: 96 x 12

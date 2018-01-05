@@ -54,13 +54,13 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
     dir_delete(new_path[to_delete])
   }
 
-  dirs <- dir_list(path, type = "directory", recursive = TRUE)
+  dirs <- dir_list(path, recursive = TRUE)
 
   # Remove first path from directories and prepend new path
   new_dirs <- path(new_path, sub("[^/]*/", "", dirs))
   dir_create(c(new_path, new_dirs))
 
-  files <- dir_list(path, recursive = TRUE,
+  files <- file_list(path, recursive = TRUE,
     type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"))
 
   if (length(files) > 0) {
@@ -69,7 +69,7 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
     file_copy(files, new_files)
   }
 
-  links <- dir_list(path, type = "symlink", recursive = TRUE)
+  links <- file_list(path, type = "symlink", recursive = TRUE)
   if (length(links) > 0) {
     new_links <- path(new_path, sub("[^/]*/", "", links))
     link_copy(links, new_links)

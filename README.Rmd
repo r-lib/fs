@@ -68,7 +68,7 @@ will generally also work when applied to a directory or link.
 library(fs)
 
 # list files in the current directory
-dir_list()
+file_list()
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -76,11 +76,11 @@ tmp
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
-dir_list(tmp)
+file_list(tmp)
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
-dir_list(tmp)
+file_list(tmp)
 
 # remove the directory
 dir_delete(tmp)
@@ -122,7 +122,7 @@ dir_info("src", recursive = TRUE) %>%
 
 # Read a collection of similar files into one data frame
 system.file("extdata", package = "readr") %>%
-  dir_list(glob = "*mtcars*") %>%
+  file_list(glob = "*mtcars*") %>%
   set_names(path_file(.)) %>%
   map_df(read_csv, .id = "file", col_types = cols())
 ```
