@@ -107,7 +107,8 @@ paths %>% file_delete()
 conjunction with dplyr and other tidyverse packages.
 
 ``` r
-library(dplyr, warn.conflicts = FALSE)
+suppressMessages(
+  library(tidyverse))
 
 # Filter files by type, permission and size
 dir_info("src", recursive = FALSE) %>%
@@ -117,15 +118,15 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size creation_time      
 #>   <fs::filename>      <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--          624K 2018-01-03 13:21:57
+#> 1 src/RcppExports.o   rw-r--r--          624K 2018-01-04 17:04:50
 #> 2 src/dir.o           rw-r--r--        452.6K 2018-01-03 09:43:07
-#> 3 src/fs.so           rwxr-xr-x        408.7K 2018-01-03 13:21:59
+#> 3 src/fs.so           rwxr-xr-x        408.7K 2018-01-04 17:04:51
 #> 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08
 #> 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07
 #> 6 src/link.o          rw-r--r--        219.6K 2018-01-03 09:43:06
-#> 7 src/path.o          rw-r--r--        216.8K 2018-01-03 13:21:59
+#> 7 src/path.o          rw-r--r--        216.8K 2018-01-04 17:04:51
 #> 8 src/error.o         rw-r--r--         17.3K 2018-01-03 07:40:04
-#> 9 src/RcppExports.cpp rw-r--r--         10.8K 2018-01-03 13:19:24
+#> 9 src/RcppExports.cpp rw-r--r--         10.8K 2018-01-04 16:58:07
 
 # Tally size of folders
 dir_info("src", recursive = TRUE) %>%
@@ -145,4 +146,24 @@ dir_info("src", recursive = TRUE) %>%
 #>  9 src/libuv/include                          192.33K
 #> 10 src/libuv/docs/src/static/diagrams.key     184.04K
 #> # ... with 43 more rows
+
+# Read a collection of similar files into one data frame
+system.file("extdata", package = "readr") %>%
+  dir_list(glob = "*mtcars*") %>%
+  set_names(path_file(.)) %>%
+  map_df(read_csv, .id = "file", col_types = cols())
+#> # A tibble: 96 x 12
+#>    file    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#>    <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 mtca…  21.0  6.00   160 110    3.90  2.62  16.5  0     1.00  4.00  4.00
+#>  2 mtca…  21.0  6.00   160 110    3.90  2.88  17.0  0     1.00  4.00  4.00
+#>  3 mtca…  22.8  4.00   108  93.0  3.85  2.32  18.6  1.00  1.00  4.00  1.00
+#>  4 mtca…  21.4  6.00   258 110    3.08  3.22  19.4  1.00  0     3.00  1.00
+#>  5 mtca…  18.7  8.00   360 175    3.15  3.44  17.0  0     0     3.00  2.00
+#>  6 mtca…  18.1  6.00   225 105    2.76  3.46  20.2  1.00  0     3.00  1.00
+#>  7 mtca…  14.3  8.00   360 245    3.21  3.57  15.8  0     0     3.00  4.00
+#>  8 mtca…  24.4  4.00   147  62.0  3.69  3.19  20.0  1.00  0     4.00  2.00
+#>  9 mtca…  22.8  4.00   141  95.0  3.92  3.15  22.9  1.00  0     4.00  2.00
+#> 10 mtca…  19.2  6.00   168 123    3.92  3.44  18.3  1.00  0     4.00  4.00
+#> # ... with 86 more rows
 ```

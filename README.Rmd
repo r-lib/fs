@@ -105,7 +105,8 @@ paths %>% file_delete()
 conjunction with dplyr and other tidyverse packages.
 
 ```{r}
-library(dplyr, warn.conflicts = FALSE)
+suppressMessages(
+  library(tidyverse))
 
 # Filter files by type, permission and size
 dir_info("src", recursive = FALSE) %>%
@@ -117,4 +118,10 @@ dir_info("src", recursive = FALSE) %>%
 dir_info("src", recursive = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
+
+# Read a collection of similar files into one data frame
+system.file("extdata", package = "readr") %>%
+  dir_list(glob = "*mtcars*") %>%
+  set_names(path_file(.)) %>%
+  map_df(read_csv, .id = "file", col_types = cols())
 ```
