@@ -9,6 +9,9 @@ link_path(path)
 \arguments{
 \item{path}{A character vector of paths.}
 }
+\value{
+A tidy path to the object the link points to.
+}
 \description{
 Read the value of a symbolic link
 }
