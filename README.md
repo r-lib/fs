@@ -60,10 +60,10 @@ library(fs)
 
 # list files in the current directory
 file_list()
-#> DESCRIPTION    LICENSE.md     NAMESPACE      R              README.Rmd     
-#> README.knit.md README.md      _pkgdown.yml   appveyor.yml   codecov.yml    
-#> demo.json      doc            docs           fs.Rproj       man            
-#> man-roxygen    script.R       src            tests          tools
+#> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
+#> README.md    _pkgdown.yml appveyor.yml codecov.yml  demo.json    
+#> doc          docs         fs.Rproj     man          man-roxygen  
+#> script.R     src          tests        tools
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -147,22 +147,23 @@ dir_info("src", recursive = TRUE) %>%
 #> # ... with 43 more rows
 
 # Read a collection of similar files into one data frame
+# `file_list()` returns a named vector, so it can be used directly with
+# `purrr::map_df(.id)`.
 system.file("extdata", package = "readr") %>%
   file_list(glob = "*mtcars*") %>%
-  set_names(path_file(.)) %>%
   map_df(read_csv, .id = "file", col_types = cols())
 #> # A tibble: 96 x 12
 #>    file    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #>    <chr> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 mtca…  21.0  6.00   160 110    3.90  2.62  16.5  0     1.00  4.00  4.00
-#>  2 mtca…  21.0  6.00   160 110    3.90  2.88  17.0  0     1.00  4.00  4.00
-#>  3 mtca…  22.8  4.00   108  93.0  3.85  2.32  18.6  1.00  1.00  4.00  1.00
-#>  4 mtca…  21.4  6.00   258 110    3.08  3.22  19.4  1.00  0     3.00  1.00
-#>  5 mtca…  18.7  8.00   360 175    3.15  3.44  17.0  0     0     3.00  2.00
-#>  6 mtca…  18.1  6.00   225 105    2.76  3.46  20.2  1.00  0     3.00  1.00
-#>  7 mtca…  14.3  8.00   360 245    3.21  3.57  15.8  0     0     3.00  4.00
-#>  8 mtca…  24.4  4.00   147  62.0  3.69  3.19  20.0  1.00  0     4.00  2.00
-#>  9 mtca…  22.8  4.00   141  95.0  3.92  3.15  22.9  1.00  0     4.00  2.00
-#> 10 mtca…  19.2  6.00   168 123    3.92  3.44  18.3  1.00  0     4.00  4.00
+#>  1 /Use…  21.0  6.00   160 110    3.90  2.62  16.5  0     1.00  4.00  4.00
+#>  2 /Use…  21.0  6.00   160 110    3.90  2.88  17.0  0     1.00  4.00  4.00
+#>  3 /Use…  22.8  4.00   108  93.0  3.85  2.32  18.6  1.00  1.00  4.00  1.00
+#>  4 /Use…  21.4  6.00   258 110    3.08  3.22  19.4  1.00  0     3.00  1.00
+#>  5 /Use…  18.7  8.00   360 175    3.15  3.44  17.0  0     0     3.00  2.00
+#>  6 /Use…  18.1  6.00   225 105    2.76  3.46  20.2  1.00  0     3.00  1.00
+#>  7 /Use…  14.3  8.00   360 245    3.21  3.57  15.8  0     0     3.00  4.00
+#>  8 /Use…  24.4  4.00   147  62.0  3.69  3.19  20.0  1.00  0     4.00  2.00
+#>  9 /Use…  22.8  4.00   141  95.0  3.92  3.15  22.9  1.00  0     4.00  2.00
+#> 10 /Use…  19.2  6.00   168 123    3.92  3.44  18.3  1.00  0     4.00  4.00
 #> # ... with 86 more rows
 ```
