@@ -22,23 +22,26 @@ file_access <- function(path, mode = "exists") {
   mode <- match.arg(mode, names(access_types), several.ok = TRUE)
   mode <- sum(access_types[mode])
 
-  access_(path, mode)
+  access_(unclass(path), mode)
 }
 
 #' @rdname file_access
 #' @export
 file_exists <- function(path) {
-  file_access(path, "exists")
+  res <- file_info(path)
+  setNames(!is.na(res$type), res$path)
 }
 
 #' @rdname file_access
 #' @export
 dir_exists <- function(path) {
-  file_exists(path) && is_dir(path)
+  res <- is_dir(path)
+  !is.na(res) & res
 }
 
 #' @rdname file_access
 #' @export
 link_exists <- function(path) {
-  file_exists(path) && is_link(path)
+  res <- is_link(path)
+  !is.na(res) & res
 }
