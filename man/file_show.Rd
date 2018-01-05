@@ -2,7 +2,7 @@
 % Please edit documentation in R/file.R
 \name{file_show}
 \alias{file_show}
-\title{Open the file(s) directory in an interactive explorer}
+\title{Open files or directories}
 \usage{
 file_show(path = ".", browser = getOption("browser"))
 }
@@ -22,5 +22,5 @@ file_show(path = ".", browser = getOption("browser"))
 The directories that were opened (invisibly).
 }
 \description{
-Open the file(s) directory in an interactive explorer
+Open files or directories
 }

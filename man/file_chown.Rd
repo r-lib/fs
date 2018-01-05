@@ -2,7 +2,7 @@
 % Please edit documentation in R/file.R
 \name{file_chown}
 \alias{file_chown}
-\title{Change ownership or group of a file}
+\title{Change owner or group of a file}
 \usage{
 file_chown(path, user_id = NULL, group_id = NULL)
 }
@@ -16,5 +16,5 @@ name. The R process must be privileged to change this.}
 name.}
 }
 \description{
-Change ownership or group of a file
+Change owner or group of a file
 }

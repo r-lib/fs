@@ -1,4 +1,4 @@
-#' Move/rename a file
+#' Move or rename files
 #'
 #' @template fs
 #' @param new_path New file path. If `new_path` is existing directory, the file

@@ -64,7 +64,7 @@ file_chmod <- function(path, mode) {
   invisible(path_tidy(path))
 }
 
-#' Change ownership or group of a file
+#' Change owner or group of a file
 #' @template fs
 #' @param user_id The user id of the new owner, specified as a numeric ID or
 #'   name. The R process must be privileged to change this.
@@ -98,7 +98,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
   invisible(path_tidy(path))
 }
 
-#' Open the file(s) directory in an interactive explorer
+#' Open files or directories
 #'
 #' @template fs
 #' @return The directories that were opened (invisibly).

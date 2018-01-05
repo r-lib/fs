@@ -5,7 +5,7 @@
 \alias{file_delete}
 \alias{dir_delete}
 \alias{link_delete}
-\title{Delete a file, directory, or link.}
+\title{Delete files, directories, or links}
 \usage{
 file_delete(path)
 

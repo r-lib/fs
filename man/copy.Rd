@@ -5,7 +5,7 @@
 \alias{file_copy}
 \alias{dir_copy}
 \alias{link_copy}
-\title{Copy a files, directories and links.}
+\title{Copy files, directories or links}
 \usage{
 file_copy(path, new_path, overwrite = FALSE)
 
