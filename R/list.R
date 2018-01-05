@@ -32,7 +32,7 @@ file_list <- function(path = ".", all = FALSE, recursive = FALSE,
   if (!is.null(regexp)) {
     files <- grep(x = files, pattern = regexp, value = TRUE, ...)
   }
-  path_tidy(files)
+  setNames(path_tidy(files), files)
 }
 
 #' @rdname file_list
