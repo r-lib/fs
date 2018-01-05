@@ -3,8 +3,8 @@
 
 # fs
 
-![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
-[![Travis build
+<https://img.shields.io/badge/lifecycle-maturing-blue.svg> [![Travis
+build
 status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)

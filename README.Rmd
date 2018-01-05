@@ -18,7 +18,7 @@ fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
 ```
 
 # fs
-![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://img.shields.io/badge/lifecycle-maturing-blue.svg)
 [![Travis build status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
 [![Coverage status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
