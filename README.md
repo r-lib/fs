@@ -3,8 +3,8 @@
 
 # fs
 
-<https://img.shields.io/badge/lifecycle-maturing-blue.svg> [![Travis
-build
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://tidyverse.org)
+[![Travis build
 status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
@@ -61,9 +61,9 @@ library(fs)
 # list files in the current directory
 file_list()
 #> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
-#> README.md    _pkgdown.yml appveyor.yml codecov.yml  demo.json    
-#> doc          docs         fs.Rproj     man          man-roxygen  
-#> script.R     src          tests        tools
+#> README.html  README.md    _pkgdown.yml appveyor.yml codecov.yml  
+#> demo.json    doc          docs         fs.Rproj     man          
+#> man-roxygen  script.R     src          tests        tools
 
 # create a new directory
 tmp <- dir_create(file_temp())
