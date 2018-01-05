@@ -1,4 +1,4 @@
-#' Delete a file, directory, or link.
+#' Delete files, directories, or links
 #'
 #' `dir_delete()` will first delete the contents of the directory, then remove
 #' the directory.

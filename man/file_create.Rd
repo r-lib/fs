@@ -4,7 +4,7 @@
 \alias{file_create}
 \alias{dir_create}
 \alias{link_create}
-\title{Create a file, directory, or link.}
+\title{Create files, directories, or links}
 \usage{
 file_create(path, mode = "u+rw,go+r")
 

@@ -1,4 +1,4 @@
-#' Copy a files, directories and links.
+#' Copy files, directories or links
 #'
 #' `file_copy()` copies files. `link_copy()` creates a new link pointing to the
 #' same location as the previous link. `dir_copy()` copies the directory

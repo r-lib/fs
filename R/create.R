@@ -1,4 +1,4 @@
-#' Create a file, directory, or link.
+#' Create files, directories, or links
 #'
 #' These functions ensure that `path` exists; if it already exists it will
 #' be left unchanged. That means that compared to [file.create()],

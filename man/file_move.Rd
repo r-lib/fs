@@ -2,7 +2,7 @@
 % Please edit documentation in R/file_move.R
 \name{file_move}
 \alias{file_move}
-\title{Move/rename a file}
+\title{Move or rename files}
 \usage{
 file_move(path, new_path)
 }
@@ -16,5 +16,5 @@ the full path.
 Should either be the same length as \code{path}, or a single directory.}
 }
 \description{
-Move/rename a file
+Move or rename files
 }
