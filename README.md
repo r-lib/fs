@@ -11,6 +11,12 @@ Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=maste
 [![Coverage
 status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
 
+<p align="center">
+
+<img src="https://i.imgur.com/NAux1Xc.png" width = "75%"/>
+
+</p>
+
 The goal of **fs** is to provide a uniform interface to file and
 directory operations, built on top of the
 [libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. libuv is used
