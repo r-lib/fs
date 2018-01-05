@@ -6,6 +6,7 @@ describe("file_access", {
       expect_equal(file_access("foo", "exists"), c(foo = TRUE))
     })
     it("checks for file read and write ability", {
+      skip_on_os("windows")
       file_chmod("foo/bar", "-rw")
       expect_equal(file_access("foo/bar", "read"), c("foo/bar" = FALSE))
       expect_equal(file_access("foo/bar", "write"), c("foo/bar" = FALSE))
