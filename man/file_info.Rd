@@ -18,4 +18,7 @@ Query file metadata
 \examples{
 write.csv(mtcars, "mtcars.csv")
 file_info("mtcars.csv")
+
+# Cleanup
+file_delete("mtcars.csv")
 }

@@ -42,6 +42,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 #'
 #' # Cleanup
 #' dir_delete(c("foo", "foo2"))
+#' link_delete(c("loo", "loo2"))
 #' @export
 dir_copy <- function(path, new_path, overwrite = FALSE) {
   path <- path_expand(path)

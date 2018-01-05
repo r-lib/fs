@@ -49,4 +49,5 @@ link_path("loo2")
 
 # Cleanup
 dir_delete(c("foo", "foo2"))
+link_delete(c("loo", "loo2"))
 }

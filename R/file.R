@@ -5,6 +5,9 @@
 #' @examples
 #' write.csv(mtcars, "mtcars.csv")
 #' file_info("mtcars.csv")
+#'
+#' # Cleanup
+#' file_delete("mtcars.csv")
 file_info <- function(path) {
   path <- path_expand(path)
 
