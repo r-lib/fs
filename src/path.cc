@@ -61,6 +61,7 @@ CharacterVector path_(List paths, const char* ext) {
         strcpy(b, ext);
         b += strlen(ext) + 1;
       }
+      *b = '\0';
       out[r] = buf;
     }
   }
