@@ -35,7 +35,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 #' file_exists(path("foo2", path_file(files)))
 #'
 #' # Create a link to the directory
-#' link_create("foo", "loo")
+#' link_create(path_norm("foo"), "loo")
 #' link_path("loo")
 #' link_copy("loo", "loo2")
 #' link_path("loo2")
