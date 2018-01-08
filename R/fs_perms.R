@@ -16,13 +16,26 @@
 #' If the second character of each set is a "w", the file is writable for those
 #' users, if a "-", it is not writable.
 #'
-#' The third character is more complex, and is the first of the following characters which apply.
-#' - 'S' If the character is part of the owner permissions and the file is not executable or the directory is not searchable by the owner, and the set-user-id bit is set.
-#' - 'S' If the character is part of the group permissions and the file is not executable or the directory is not searchable by the group, and the set-group-id bit is set.
-#' - 'T' If the character is part of the other permissions and the file is not executable or the directory is not searchable by others, and the 'sticky' (S_ISVTX) bit is set.
-#' - 's' If the character is part of the owner permissions and the file is executable or the directory searchable by the owner, and the set-user-id bit is set.
-#' - 's' If the character is part of the group permissions and the file is executable or the directory searchable by the group, and the set-group-id bit is set.
-#' - 't' If the character is part of the other permissions and the file is executable or the directory searchable by others, and the ''sticky'' (S_ISVTX) bit is set.
+#' The third character is more complex, and is the first of the following
+#' characters which apply.
+#' - 'S' If the character is part of the owner permissions and the file is not
+#'   executable or the directory is not searchable by the owner, and the
+#'   set-user-id bit is set.
+#' - 'S' If the character is part of the group permissions and the file is not
+#'   executable or the directory is not searchable by the group, and the
+#'   set-group-id bit is set.
+#' - 'T' If the character is part of the other permissions and the file is not
+#'   executable or the directory is not searchable by others, and the 'sticky'
+#'   (S_ISVTX) bit is set.
+#' - 's' If the character is part of the owner permissions and the file is
+#'   executable or the directory searchable by the owner, and the set-user-id bit
+#'   is set.
+#' - 's' If the character is part of the group permissions and the file is
+#'   executable or the directory searchable by the group, and the set-group-id
+#'   bit is set.
+#' - 't' If the character is part of the other permissions and the file is
+#'   executable or the directory searchable by others, and the ''sticky''
+#'   (S_ISVTX) bit is set.
 #' - 'x' The file is executable or the directory is searchable.
 #' - '-' If none of the above apply.
 #' Most commonly the third character is either 'x' or `-`.
