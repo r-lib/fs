@@ -1,14 +1,22 @@
 #' File paths
 #'
-#' Constructs tidy file paths, colored by file type on capable terminals.
-#' Coloring can be customized by setting the `LS_COLORS` environment variable,
-#' the format is the same as that used by GNU ls / dircolors.
+#' @description
+#' Tidy file paths, character vectors which are coloured by file type on
+#' capable terminals.
+#'
+#' Colouring can be customized by setting the `LS_COLORS` environment variable,
+#' the format is the same as that read by GNU ls / dircolors.
+#'
+#' Colouring of file paths can be disabled by setting `LS_COLORS` to an empty
+#' string e.g. `Sys.setenv(LS_COLORS = "")`.
 #' @param x vector to be coerced to a fs_path object.
 #' @seealso
 #' <https://geoff.greer.fm/lscolors>,
 #' <https://github.com/trapd00r/LS_COLORS>,
-#' <https://github.com/seebi/dircolors-solarized>
+#' <https://github.com/seebi/dircolors-solarized> for some example color
+#' settings.
 #' @export
+#' @name fs_path
 as_fs_path <- function(x) {
   UseMethod("as_fs_path")
 }
@@ -18,7 +26,7 @@ as_fs_path.character <- function(x) {
   path_tidy(x)
 }
 
-#' @rdname as_fs_path
+#' @rdname fs_path
 #' @export
 fs_path <- as_fs_path
 
@@ -81,7 +89,7 @@ gnu_ls_defaults <- "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=4
 
 #' @importFrom stats setNames na.omit
 colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
-  if (length(x) == 0 || !has_color()) {
+  if (length(x) == 0 || !has_color() || !nzchar(colors)) {
     return(x)
   }
 
