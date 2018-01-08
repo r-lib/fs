@@ -15,7 +15,9 @@ fs_bytes(x)
 shorthand sizes (see examples).}
 }
 \description{
-Construct, manipulate and display vectors of file sizes.
+Construct, manipulate and display vectors of file sizes. These are numeric
+vectors, so you can compare them numerically, but they can also be compared
+to human readable values such as '10MB'.
 }
 \examples{
 fs_bytes("1")

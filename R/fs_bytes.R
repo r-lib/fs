@@ -2,7 +2,9 @@ units <- c('B' = 1, 'K' = 1024, 'M' = 1024 ^ 2, 'G' = 1024 ^ 3, 'T' = 1024 ^ 4, 
 
 #' Human readable file sizes
 #'
-#' Construct, manipulate and display vectors of file sizes.
+#' Construct, manipulate and display vectors of file sizes. These are numeric
+#' vectors, so you can compare them numerically, but they can also be compared
+#' to human readable values such as '10MB'.
 #'
 #' @param x A numeric or character vector. Character representations can use
 #'   shorthand sizes (see examples).
