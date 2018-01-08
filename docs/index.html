@@ -74,8 +74,9 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"r-lib/fs"</span>)</a></code></pre></div>
 </section><section id="motivation-vs-base-equivalents" class="level2"><h2>Motivation vs base equivalents</h2>
 <ul>
-<li><p>All <strong>fs</strong> functions are vectorized, accepting multiple paths as input. All functions either return a character vector of paths, or a named integer or logical vector (where the names give the paths).</p></li>
-<li><p>If an operation fails, <strong>fs</strong> throws an error. Base R file manipulation functions tend to generate a warning and return a logical vector of successes and failures. This makes it easy to miss a failure.</p></li>
+<li><p>All <strong>fs</strong> functions are vectorized, accepting multiple paths as input. Base functions are inconsistently vectorized.</p></li>
+<li><p>All <strong>fs</strong> functions return a character vector of paths, a named integer or a logical vector (where the names give the paths). Base return values are more varied.</p></li>
+<li><p>If <strong>fs</strong> operations fail, they throw an error. Base R file manipulation functions tend to generate a warning and return a logical vector of successes and failures. This makes it easy to miss a failure.</p></li>
 <li><p><strong>fs</strong> functions always convert the input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSs.</p></li>
 <li><p><strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code>path.expand()</code> vs <code>normalizePath()</code>; <code>Sys.chmod()</code> vs <code>file.access()</code>).</p></li>
 </ul></section><section id="usage" class="level2"><h2>Usage</h2>
@@ -87,25 +88,26 @@
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   </span></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; README.html  README.md    _pkgdown.yml appveyor.yml codecov.yml  </span></a>
 <a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; demo.json    doc          docs         fs.Rproj     man          </span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; man-roxygen  script.R     src          tests        tools</span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># create a new directory</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/file_create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">tmp</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; /tmp/filedd463d6d7e0f</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co"># create new files in that directory</span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw"><a href="reference/file_create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="kw"><a href="reference/file_list.html">file_list</a></span>(tmp)</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; /tmp/filedd463d6d7e0f/my-file.txt</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># remove files from the directory</span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="kw"><a href="reference/file_list.html">file_list</a></span>(tmp)</a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt; character(0)</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co"># remove the directory</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; man-roxygen  script.R     src          test.R       tests        </span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; tools</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># create a new directory</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/file_create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">tmp</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; /tmp/filedd463d6d7e0f</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># create new files in that directory</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="kw"><a href="reference/file_create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="kw"><a href="reference/file_list.html">file_list</a></span>(tmp)</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; /tmp/filedd463d6d7e0f/my-file.txt</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co"># remove files from the directory</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="kw"><a href="reference/file_list.html">file_list</a></span>(tmp)</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co"># remove the directory</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
 <p><strong>fs</strong> is designed to work well with the pipe, although it doesn’t provide the pipe itself because it’s a low-level infrastructure package. You’ll need to attach magrittr or similar.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
@@ -118,7 +120,7 @@
 <a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11">paths <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/delete.html">file_delete</a></span>()</a></code></pre></div>
-<p><strong>fs</strong> functions also works well in conjunction with dplyr, purrr and other tidyverse packages.</p>
+<p><strong>fs</strong> functions also work well in conjunction with dplyr, purrr and other tidyverse packages.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">suppressMessages</span>(</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="kw">library</span>(tidyverse))</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"></a>
@@ -131,8 +133,8 @@
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;   path                permissions        size creation_time      </span></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt;   &lt;fs::filename&gt;      &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></a>
 <a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        646.1K 2018-01-05 08:20:05</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        452.6K 2018-01-03 09:43:07</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-05 08:34:28</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        452.6K 2018-01-07 21:23:54</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-07 21:23:54</span></a>
 <a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08</span></a>
 <a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07</span></a>
 <a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt; 6 src/path.o          rw-r--r--        244.8K 2018-01-05 08:34:28</span></a>

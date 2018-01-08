@@ -30,7 +30,7 @@ file_create(path(tmp, "file.txt"))
 dir_create(path(tmp, "dir"))
 link_create(path(tmp, "file.txt"), path(tmp, "link"))
 
-paths <- file_list(tmp)
+paths <- dir_ls(tmp)
 is_file(paths)
 is_dir(paths)
 is_link(paths)

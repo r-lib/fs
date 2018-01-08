@@ -1,27 +1,27 @@
 context("test-list.R")
 
-describe("file_list", {
+describe("dir_ls", {
   it("Does not include '.' or double '/' in results", {
     with_dir_tree(list("foo" = "test"), {
-      expect_equal(file_list(), "foo")
-      expect_equal(file_list("."), "foo")
-      expect_equal(file_list("./"), "./foo")
+      expect_equal(dir_ls(), "foo")
+      expect_equal(dir_ls("."), "foo")
+      expect_equal(dir_ls("./"), "./foo")
     })
 
     with_dir_tree(list("foo/bar" = "test"), {
-      expect_equal(file_list(recursive = TRUE), c("foo", "foo/bar"))
-      expect_equal(file_list(recursive = TRUE, type = "file"), "foo/bar")
-      expect_equal(file_list("./", recursive = TRUE), c("./foo", "./foo/bar"))
-      expect_equal(file_list("foo"), "foo/bar")
-      expect_equal(file_list("foo/"), "foo/bar")
+      expect_equal(dir_ls(recursive = TRUE), c("foo", "foo/bar"))
+      expect_equal(dir_ls(recursive = TRUE, type = "file"), "foo/bar")
+      expect_equal(dir_ls("./", recursive = TRUE), c("./foo", "./foo/bar"))
+      expect_equal(dir_ls("foo"), "foo/bar")
+      expect_equal(dir_ls("foo/"), "foo/bar")
     })
   })
 
   it("Does not follow symbolic links", {
     with_dir_tree(list("foo/bar/baz" = "test"), {
       link_create(path_norm("foo"), "foo/bar/qux")
-      expect_equal(file_list(recursive = TRUE), c("foo", "foo/bar", "foo/bar/baz", "foo/bar/qux"))
-      expect_equal(file_list(recursive = TRUE, type = "symlink"), "foo/bar/qux")
+      expect_equal(dir_ls(recursive = TRUE), c("foo", "foo/bar", "foo/bar/baz", "foo/bar/qux"))
+      expect_equal(dir_ls(recursive = TRUE, type = "symlink"), "foo/bar/qux")
     })
   })
 
@@ -30,10 +30,10 @@ describe("file_list", {
         "foo/bar/baz" = "test",
         "foo/bar/test2" = "",
         "foo/bar/test3" = ""), {
-      expect_equal(file_list(recursive = TRUE, glob = "*baz"), "foo/bar/baz")
-      expect_equal(file_list(recursive = TRUE, regexp = "baz"), "foo/bar/baz")
-      expect_equal(file_list(recursive = TRUE, regexp = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
-      expect_equal(file_list(recursive = TRUE, regexp = "(?<=a)z", perl = TRUE), "foo/bar/baz")
+      expect_equal(dir_ls(recursive = TRUE, glob = "*baz"), "foo/bar/baz")
+      expect_equal(dir_ls(recursive = TRUE, regexp = "baz"), "foo/bar/baz")
+      expect_equal(dir_ls(recursive = TRUE, regexp = "[23]"), c("foo/bar/test2", "foo/bar/test3"))
+      expect_equal(dir_ls(recursive = TRUE, regexp = "(?<=a)z", perl = TRUE), "foo/bar/baz")
     })
   })
 
@@ -41,8 +41,8 @@ describe("file_list", {
     with_dir_tree(list(
         ".foo" = "foo",
         "bar" = "bar"), {
-      expect_equal(file_list(), "bar")
-      expect_equal(file_list(all = TRUE), c(".foo", "bar"))
+      expect_equal(dir_ls(), "bar")
+      expect_equal(dir_ls(all = TRUE), c(".foo", "bar"))
     })
   })
 
@@ -51,22 +51,11 @@ describe("file_list", {
         "file" = "foo",
         "dir"), {
       link_create(path_norm("dir"), "link")
-      expect_equal(file_list(type = "file"), "file")
-      expect_equal(file_list(type = "directory"), "dir")
-      expect_equal(file_list(type = "symlink"), "link")
-      expect_equal(file_list(type = c("directory", "symlink")), c("dir", "link"))
-      expect_equal(file_list(type = c("file", "directory", "symlink")), c("dir", "file", "link"))
-    })
-  })
-})
-
-describe("dir_list", {
-  it("is equivlent to `file_list(type = \"dir\")`", {
-    with_dir_tree(list(
-        "file" = "foo",
-        "dir"), {
-      expect_equal(dir_list(), "dir")
-      expect_equal(dir_list(), file_list(type = "dir"))
+      expect_equal(dir_ls(type = "file"), "file")
+      expect_equal(dir_ls(type = "directory"), "dir")
+      expect_equal(dir_ls(type = "symlink"), "link")
+      expect_equal(dir_ls(type = c("directory", "symlink")), c("dir", "link"))
+      expect_equal(dir_ls(type = c("file", "directory", "symlink")), c("dir", "file", "link"))
     })
   })
 })

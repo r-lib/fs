@@ -76,7 +76,7 @@ will generally also work when applied to a directory or link.
 library(fs)
 
 # list files in the current directory
-file_list()
+dir_ls()
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -84,11 +84,11 @@ tmp
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
-file_list(tmp)
+dir_ls(tmp)
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
-file_list(tmp)
+dir_ls(tmp)
 
 # remove the directory
 dir_delete(tmp)
@@ -129,9 +129,9 @@ dir_info("src", recursive = TRUE) %>%
   tally(wt = size, sort = TRUE)
 
 # Read a collection of similar files into one data frame
-# `file_list()` returns a named vector, so it can be used directly with
+# `dir_ls()` returns a named vector, so it can be used directly with
 # `purrr::map_df(.id)`.
 system.file("extdata", package = "readr") %>%
-  file_list(glob = "*mtcars*") %>%
+  dir_ls(glob = "*mtcars*") %>%
   map_df(read_csv, .id = "file", col_types = cols())
 ```

@@ -68,7 +68,7 @@ functions will generally also work when applied to a directory or link.
 library(fs)
 
 # list files in the current directory
-file_list()
+dir_ls()
 #> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
 #> README.html  README.md    _pkgdown.yml appveyor.yml codecov.yml  
 #> demo.json    doc          docs         fs.Rproj     man          
@@ -78,16 +78,16 @@ file_list()
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /tmp/filedd463d6d7e0f
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5dbf9a7a
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
-file_list(tmp)
-#> /tmp/filedd463d6d7e0f/my-file.txt
+dir_ls(tmp)
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5dbf9a7a/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
-file_list(tmp)
+dir_ls(tmp)
 #> character(0)
 
 # remove the directory
@@ -100,14 +100,22 @@ You’ll need to attach magrittr or similar.
 
 ``` r
 library(magrittr)
+#> 
+#> Attaching package: 'magrittr'
+#> The following objects are masked from 'package:testthat':
+#> 
+#>     equals, is_less_than, not
 
 paths <- file_temp() %>%
   dir_create() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c 
-#> /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/a
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/b
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/c
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/d
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/e
 
 paths %>% file_delete()
 ```
@@ -128,8 +136,8 @@ dir_info("src", recursive = FALSE) %>%
 #>   path                permissions        size creation_time      
 #>   <fs::filename>      <fs::perms> <fs::bytes> <dttm>             
 #> 1 src/RcppExports.o   rw-r--r--        646.1K 2018-01-05 08:20:05
-#> 2 src/dir.o           rw-r--r--        452.6K 2018-01-07 21:23:54
-#> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-07 21:23:54
+#> 2 src/dir.o           rw-r--r--        452.6K 2018-01-07 22:10:14
+#> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-07 22:10:14
 #> 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08
 #> 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07
 #> 6 src/path.o          rw-r--r--        244.8K 2018-01-05 08:34:28
@@ -157,10 +165,10 @@ dir_info("src", recursive = TRUE) %>%
 #> # ... with 43 more rows
 
 # Read a collection of similar files into one data frame
-# `file_list()` returns a named vector, so it can be used directly with
+# `dir_ls()` returns a named vector, so it can be used directly with
 # `purrr::map_df(.id)`.
 system.file("extdata", package = "readr") %>%
-  file_list(glob = "*mtcars*") %>%
+  dir_ls(glob = "*mtcars*") %>%
   map_df(read_csv, .id = "file", col_types = cols())
 #> # A tibble: 96 x 12
 #>    file    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb

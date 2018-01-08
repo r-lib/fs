@@ -170,7 +170,6 @@ path_ext_set <- function(path, ext) {
 #'
 #' The input paths must be either all relative or all absolute.
 #' @template fs
-#' '
 #' @export
 path_common <- function(path) {
   path <- sort(path_tidy(path))
