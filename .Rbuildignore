@@ -15,3 +15,4 @@
 ^doc$
 ^appveyor\.yml$
 ^script\.R$
+^src/\.clang-format$
