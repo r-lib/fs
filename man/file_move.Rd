@@ -7,7 +7,7 @@
 file_move(path, new_path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{new_path}{New file path. If \code{new_path} is existing directory, the file
 will be moved into that directory; otherwise it will be moved/renamed to
@@ -15,6 +15,16 @@ the full path.
 
 Should either be the same length as \code{path}, or a single directory.}
 }
+\value{
+The new path (invisibly).
+}
 \description{
-Move or rename files
+Compared to \link{file.rename} \code{file_move()} always fails if it is unable to move
+a file, rather than signaling a Warning and returning an error code.
+}
+\examples{
+file_create("foo")
+file_move("foo", "bar")
+file_exists(c("foo", "bar"))
+file_delete("bar")
 }
