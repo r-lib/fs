@@ -30,6 +30,7 @@ if (!is_windows()) {
   describe("file_chmod", {
     with_dir_tree(list("foo/bar" = "test"), {
       it("returns the input path and changes permissions with symbolic input", {
+        expect_equal(file_chmod("foo/bar", "u=rw,go=r"), "foo/bar")
         expect_equal(file_info("foo/bar")$permissions, "644")
         expect_equal(file_chmod("foo/bar", "u+x"), "foo/bar")
         expect_equal(file_info("foo/bar")$permissions, "744")
