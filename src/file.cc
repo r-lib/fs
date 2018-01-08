@@ -118,7 +118,7 @@ List stat_(CharacterVector path) {
   SET_STRING_ELT(names, 15, Rf_mkChar("modification_time"));
   SET_VECTOR_ELT(out, 15, Rf_allocVector(REALSXP, n));
 
-  SET_STRING_ELT(names, 16, Rf_mkChar("creation_time"));
+  SET_STRING_ELT(names, 16, Rf_mkChar("change_time"));
   SET_VECTOR_ELT(out, 16, Rf_allocVector(REALSXP, n));
 
   SET_STRING_ELT(names, 17, Rf_mkChar("birth_time"));

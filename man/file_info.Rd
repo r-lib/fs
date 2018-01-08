@@ -7,18 +7,47 @@
 file_info(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
-A data.frame with metadata for each file
+A data.frame with metadata for each file. Columns returned are as follows.
+\item{path}{The input path, as a \code{\link[=fs_path]{fs_path()}} character vector.}
+\item{type}{The file type, as a factor of file types.}
+\item{size}{The file size, as a \code{\link[=fs_bytes]{fs_bytes()}} numeric vector.}
+\item{permissions}{The file permissions, as a \code{\link[=fs_perms]{fs_perms()}} integer vector.}
+\item{modification_time}{The time of last data modification, as a \link{POSIXct} datetime.}
+\item{user}{The file owner name - as a character vector.}
+\item{group}{The file group name - as a character vector.}
+\item{device_id}{The file device id - as a numeric vector.}
+\item{hard_links}{The number of hard links to the file - as a numeric vector.}
+\item{special_device_id}{The special device id of the file - as a numeric vector.}
+\item{inode}{The inode of the file - as a numeric vector.}
+\item{block_size}{The optimal block for the file - as a numeric vector.}
+\item{blocks}{The number of blocks allocated for the file - as a numeric vector.}
+\item{flags}{The user defined flags for the file - as an integer vector.}
+\item{generation}{The generation number for the file - as a numeric vector.}
+\item{access_time}{The time of last access - as a \link{POSIXct} datetime.}
+\item{change_time}{The time of last file status change - as a \link{POSIXct} datetime.}
+\item{birth_time}{The time when the inode was created - as a \link{POSIXct} datetime.}
 }
 \description{
-Query file metadata
+Compared to \code{[file.info]} the full results of a \code{stat(2)} system call are
+returned and some columns are returned as S3 classes to make manipulation
+more natural. On systems which do not support all metadata (such as Windows)
+default values are used.
 }
 \examples{
 write.csv(mtcars, "mtcars.csv")
 file_info("mtcars.csv")
 
+# Files in directory modified more than 20 days ago
+files <- file_info(dir_ls())
+files$path[difftime(Sys.time(), files$modification_time, units = "days") > 20]
+
 # Cleanup
 file_delete("mtcars.csv")
+}
+\seealso{
+\code{\link[=dir_info]{dir_info()}} to display file information for files in a given
+directory.
 }
