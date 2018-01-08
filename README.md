@@ -78,12 +78,12 @@ dir_ls()
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5356ea0
+#> /tmp/filedd463d6d7e0f
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5356ea0/my-file.txt
+#> /tmp/filedd463d6d7e0f/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -95,8 +95,8 @@ dir_delete(tmp)
 ```
 
 **fs** is designed to work well with the pipe, although it doesn’t
-provide the pipe itself because it’s a low-level infrastructure package.
-You’ll need to attach magrittr or similar.
+provide the pipe itself because it’s a low-level infrastructure package
+so has minimal dependencies. You’ll need to attach magrittr or similar.
 
 ``` r
 library(magrittr)
@@ -106,11 +106,8 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/a
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/b
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/c
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/d
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/e
+#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c 
+#> /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
 
 paths %>% file_delete()
 ```
@@ -121,8 +118,11 @@ other tidyverse packages.
 ``` r
 suppressMessages(
   library(tidyverse))
+```
 
-# Filter files by type, permission and size
+Filter files by type, permission and size
+
+``` r
 dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
@@ -139,8 +139,11 @@ dir_info("src", recursive = FALSE) %>%
 #> 7 src/link.o          rw-r--r--        219.6K 2018-01-03 09:43:06
 #> 8 src/error.o         rw-r--r--         17.3K 2018-01-03 07:40:04
 #> 9 src/RcppExports.cpp rw-r--r--         11.2K 2018-01-05 08:18:33
+```
 
-# Tally size of folders
+Display folder size
+
+``` r
 dir_info("src", recursive = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
@@ -158,11 +161,12 @@ dir_info("src", recursive = TRUE) %>%
 #>  9 src/libuv/include                          192.33K
 #> 10 src/libuv/docs/src/static/diagrams.key     184.04K
 #> # ... with 43 more rows
+```
 
-# Read a collection of similar files into one data frame
-# `dir_ls()` returns a named vector, so it can be used directly with
-# `purrr::map_df(.id)`.
+Read a collection of files into one data frame. `dir_ls()` returns a
+named vector, so it can be used directly with `purrr::map_df(.id)`.
 
+``` r
 # Create separate files for each species
 iris %>%
   split(.$Species) %>%

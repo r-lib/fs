@@ -94,9 +94,9 @@ dir_ls(tmp)
 dir_delete(tmp)
 ```
 
-**fs** is designed to work well with the pipe, although it doesn't provide the 
-pipe itself because it's a low-level infrastructure package. You'll need to
-attach magrittr or similar.
+**fs** is designed to work well with the pipe, although it doesn't provide the
+pipe itself because it's a low-level infrastructure package so has minimal
+dependencies. You'll need to attach magrittr or similar.
 
 ```{r}
 library(magrittr)
@@ -116,22 +116,28 @@ tidyverse packages.
 ```{r}
 suppressMessages(
   library(tidyverse))
+```
 
-# Filter files by type, permission and size
+Filter files by type, permission and size
+
+```{r}
 dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, creation_time)
+```
 
-# Tally size of folders
+Display folder size
+```{r}
 dir_info("src", recursive = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
+```
 
-# Read a collection of similar files into one data frame
-# `dir_ls()` returns a named vector, so it can be used directly with
-# `purrr::map_df(.id)`.
+Read a collection of files into one data frame. `dir_ls()` returns a named
+vector, so it can be used directly with `purrr::map_df(.id)`.
 
+```{r}
 # Create separate files for each species
 iris %>%
   split(.$Species) %>%
