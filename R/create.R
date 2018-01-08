@@ -12,6 +12,8 @@
 #'   Links do not have mode; they inherit the mode of the file they link to.
 #' @param recursive should intermediate directories be created if they do not
 #'   exist?
+#' @return The path to the created object (invisibly).
+#' @name create
 #' @examples
 #' \dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769"))}
 #' x <- file_create(file_temp())
@@ -32,7 +34,7 @@ file_create <- function(path, mode = "u+rw,go+r") {
 }
 
 #' @export
-#' @rdname file_create
+#' @rdname create
 dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
   paths <- path_split(path)
   for (p in paths) {
@@ -48,7 +50,7 @@ dir_create <- function(path, mode = "u+rwx,go+rx", recursive = TRUE) {
 }
 
 #' @export
-#' @rdname file_create
+#' @rdname create
 #' @param new_path The path where the link should be created.
 #' @param symbolic Boolean value determining if the link should be a symbolic
 #'   (the default) or hard link.
