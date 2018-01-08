@@ -23,6 +23,33 @@ They support both numeric input, octal and symbolic character
 representations. Compared to \link{octmode} they support symbolic representations
 and display the mode the same format as \code{ls} on POSIX systems.
 }
+\details{
+On POSIX systems the permissions are displayed as a 9 character string with
+three sets of three characters. Each set corresponds to the permissions for
+the user, the group and other (or default) users.
+
+If the first character of each set is a "r", the file is readable for those
+users, if a "-", it is not readable.
+
+If the second character of each set is a "w", the file is writable for those
+users, if a "-", it is not writable.
+
+The third character is more complex, and is the first of the following characters which apply.
+\itemize{
+\item 'S' If the character is part of the owner permissions and the file is not executable or the directory is not searchable by the owner, and the set-user-id bit is set.
+\item 'S' If the character is part of the group permissions and the file is not executable or the directory is not searchable by the group, and the set-group-id bit is set.
+\item 'T' If the character is part of the other permissions and the file is not executable or the directory is not searchable by others, and the 'sticky' (S_ISVTX) bit is set.
+\item 's' If the character is part of the owner permissions and the file is executable or the directory searchable by the owner, and the set-user-id bit is set.
+\item 's' If the character is part of the group permissions and the file is executable or the directory searchable by the group, and the set-group-id bit is set.
+\item 't' If the character is part of the other permissions and the file is executable or the directory searchable by others, and the ''sticky'' (S_ISVTX) bit is set.
+\item 'x' The file is executable or the directory is searchable.
+\item '-' If none of the above apply.
+Most commonly the third character is either 'x' or \code{-}.
+}
+
+On Windows the permissions are displayed as a 3 character string where the
+third character is only \code{-} or \code{x}.
+}
 \examples{
 # Integer and numeric
 fs_perms(420L)
