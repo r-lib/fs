@@ -1,4 +1,9 @@
-#' File permissions
+#' Create, modify and view file permissions
+#'
+#' `fs_perms()` objects help one create and modify file permissions easily.
+#' They support both numeric input, octal and symbolic character
+#' representations. Compared to [octmode] they support symbolic representations
+#' and display the mode the same format as `ls` on POSIX systems.
 #'
 #' @param x An object which is to be coerced to a fs_perms object. Can be an
 #'   number or octal character representation, including symbolic

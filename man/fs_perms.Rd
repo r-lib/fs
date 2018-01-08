@@ -4,7 +4,7 @@
 \alias{fs_perms}
 \alias{as_fs_perms}
 \alias{fs_perms}
-\title{File permissions}
+\title{Create, modify and view file permissions}
 \usage{
 as_fs_perms(x)
 
@@ -16,7 +16,10 @@ number or octal character representation, including symbolic
 representations.}
 }
 \description{
-File permissions
+\code{fs_perms()} objects help one create and modify file permissions easily.
+They support both numeric input, octal and symbolic character
+representations. Compared to \link{octmode} they support symbolic representations
+and display the mode the same format as \code{ls} on POSIX systems.
 }
 \examples{
 # Integer and numeric
