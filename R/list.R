@@ -1,7 +1,17 @@
 #' List files
 #'
-#' `dir_ls()` is equivalent to the `ls` command. `dir_info()` is equivalent to
-#' `ls -l`.
+#' @description
+#' `dir_ls()` is equivalent to the `ls` command. It returns filenames as a
+#' `fs_path` character vector.
+#'
+#' `dir_info()` is equivalent to `ls -l` and a shortcut for
+#' `file_info(dir_ls())`.
+#'
+#' `dir_map()` applies a function `fun()` to each entry in the path and returns
+#' the result in a list.
+#'
+#' `dir_walk()` calls `fun` for its side-effect and returns the input `path`.
+#'
 #' @param type File type(s) to return, one or more of "any", "file", "directory",
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
 #' @param glob,regexp Either a file glob (e.g. `*.csv`) or a regular
@@ -20,11 +30,7 @@
 #' dir_ls("base", recursive = TRUE, glob = "*.R")
 dir_ls <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
-  type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
-
-  path <- path_expand(path)
-
-  files <- scandir_(path, isTRUE(all), sum(directory_entry_types[type]), recursive)
+  files <- as.character(dir_map(path, identity, all, recursive, type))
 
   if (!is.null(glob)) {
     regexp <- utils::glob2rx(glob)
@@ -46,21 +52,29 @@ directory_entry_types <- c(
   "character_device" = 64L,
   "block_device" = 128L)
 
-#' @describeIn dir_ls Walk along a directory, calling `f` for each entry in
-#'   the directory.
+#' @rdname dir_ls
 #' @param fun A function, taking one parameter, the current path entry.
 #' @examples
-#' dir_walk(system.file(), str)
+#' dir_map(system.file(), identity)
 #' @export
-dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
+dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
 
-  dir_walk_(path, fun, all, sum(directory_entry_types[type]), recursive)
+  dir_map_(path, fun, all, sum(directory_entry_types[type]), recursive)
 }
 
-#' @describeIn dir_ls A shortcut for the combination of `file_info(dir_ls())`.
+#' @rdname dir_ls
+#' @examples
+#' dir_map(system.file(), identity)
+#' @export
+dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
+  dir_map(path, fun, all, recursive, type)
+  invisible(path_tidy(path))
+}
+
+#' @rdname dir_ls
 #' @export
 #' @examples
 #' dir_info("base")

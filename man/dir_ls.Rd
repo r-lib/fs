@@ -2,12 +2,15 @@
 % Please edit documentation in R/list.R
 \name{dir_ls}
 \alias{dir_ls}
+\alias{dir_map}
 \alias{dir_walk}
 \alias{dir_info}
 \title{List files}
 \usage{
 dir_ls(path = ".", all = FALSE, recursive = FALSE, type = "any",
   regexp = NULL, glob = NULL, ...)
+
+dir_map(path = ".", fun, all = FALSE, recursive = FALSE, type = "any")
 
 dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any")
 
@@ -33,24 +36,24 @@ expression (e.g. \code{\\.csv$)} passed on to \link{grep} to filter paths.}
 \item{fun}{A function, taking one parameter, the current path entry.}
 }
 \description{
-\code{dir_ls()} is equivalent to the \code{ls} command. \code{dir_info()} is equivalent to
-\code{ls -l}.
+\code{dir_ls()} is equivalent to the \code{ls} command.
+
+\code{dir_info()} is equivalent to \code{ls -l} and a shortcut for
+\code{file_info(dir_ls())}.
+
+\code{dir_map()} applies a function \code{fun()} to each entry in the path and returns
+the result in a list.
+
+\code{dir_walk()} calls \code{fun} for its side-effect and returns the input \code{path}.
 }
-\section{Functions}{
-\itemize{
-\item \code{dir_walk}: Walk along a directory, calling \code{f} for each entry in
-the directory.
-
-\item \code{dir_info}: A shortcut for the combination of \code{file_info(dir_ls())}.
-}}
-
 \examples{
 dir_ls(R.home("share"), type = "directory")
 
 link_create(system.file(package = "base"), "base")
 
 dir_ls("base", recursive = TRUE, glob = "*.R")
-dir_walk(system.file(), str)
+dir_map(system.file(), identity)
+dir_map(system.file(), identity)
 dir_info("base")
 
 # Cleanup

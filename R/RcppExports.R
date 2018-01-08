@@ -5,16 +5,12 @@ mkdir_ <- function(path, mode_str) {
     invisible(.Call(`_fs_mkdir_`, path, mode_str))
 }
 
-scandir_ <- function(path, all, type, recurse) {
-    .Call(`_fs_scandir_`, path, all, type, recurse)
-}
-
 rmdir_ <- function(path) {
     invisible(.Call(`_fs_rmdir_`, path))
 }
 
-dir_walk_ <- function(path, fun, all, type, recurse) {
-    invisible(.Call(`_fs_dir_walk_`, path, fun, all, type, recurse))
+dir_map_ <- function(path, fun, all, type, recurse) {
+    .Call(`_fs_dir_map_`, path, fun, all, type, recurse)
 }
 
 move_ <- function(path, new_path) {

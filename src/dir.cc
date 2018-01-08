@@ -5,6 +5,7 @@
 
 #include "Rcpp.h"
 #include "error.h"
+#include "CollectorList.h"
 
 using namespace Rcpp;
 
@@ -75,58 +76,6 @@ uv_dirent_type_t get_dirent_type(const char* path,
   return entry_type;
 }
 
-void list_dir(std::vector<std::string>* files, const char* path, bool all,
-              int file_type, bool recurse) {
-  uv_fs_t req;
-  uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
-  stop_for_error(req, "Failed to search directory '%s'", path);
-
-  uv_dirent_t e;
-  for (int next_res = uv_fs_scandir_next(&req, &e); next_res != UV_EOF;
-       next_res = uv_fs_scandir_next(&req, &e)) {
-    if (!all && e.name[0] == '.') {
-      continue;
-    }
-    std::string name;
-
-    // If path is '.', just return the name
-    if (strcmp(path, ".") == 0) {
-      name = e.name;
-    }
-    // If path already ends with '/' just concatenate them.
-    else if (path[strlen(path) - 1] == '/') {
-      name = std::string(path) + e.name;
-    } else {
-      name = std::string(path) + '/' + e.name;
-    }
-    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type);
-    if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
-      files->push_back(name);
-    }
-
-    if (recurse && entry_type == UV_DIRENT_DIR) {
-      list_dir(files, name.c_str(), all, file_type, true);
-    }
-    if (next_res != UV_EOF) {
-      stop_for_error(req, "Failed to search directory '%s'", path);
-    }
-  }
-  uv_fs_req_cleanup(&req);
-}
-
-// [[Rcpp::export]]
-CharacterVector scandir_(CharacterVector path, bool all, IntegerVector type,
-                         bool recurse) {
-  int file_type = INTEGER(type)[0];
-
-  std::vector<std::string> files;
-  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
-    const char* p = CHAR(STRING_ELT(path, i));
-    list_dir(&files, p, all, file_type, recurse);
-  }
-  return wrap(files);
-}
-
 // [[Rcpp::export]]
 void rmdir_(CharacterVector path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
@@ -139,8 +88,8 @@ void rmdir_(CharacterVector path) {
   }
 }
 
-void dir_walk(Function fun, const char* path, bool all, int file_type,
-              bool recurse) {
+void dir_map(Function fun, const char* path, bool all, int file_type,
+              bool recurse, CollectorList* value) {
   uv_fs_t req;
   uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
   stop_for_error(req, "Failed to search directory '%s'", path);
@@ -166,11 +115,11 @@ void dir_walk(Function fun, const char* path, bool all, int file_type,
     }
     uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type);
     if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
-      fun(name);
+      value->push_back(fun(name));
     }
 
     if (recurse && entry_type == UV_DIRENT_DIR) {
-      dir_walk(fun, name.c_str(), all, file_type, true);
+      dir_map(fun, name.c_str(), all, file_type, true, value);
     }
     if (next_res != UV_EOF) {
       stop_for_error(req, "Failed to search directory '%s'", path);
@@ -180,12 +129,14 @@ void dir_walk(Function fun, const char* path, bool all, int file_type,
 }
 
 // [[Rcpp::export]]
-void dir_walk_(CharacterVector path, Function fun, bool all, IntegerVector type,
+List dir_map_(CharacterVector path, Function fun, bool all, IntegerVector type,
                bool recurse) {
   int file_type = INTEGER(type)[0];
 
+  CollectorList out;
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     const char* p = CHAR(STRING_ELT(path, i));
-    dir_walk(fun, p, all, file_type, recurse);
+    dir_map(fun, p, all, file_type, recurse, &out);
   }
+  return out.vector();
 }
