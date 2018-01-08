@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create files, directories, or links — file_create • fs</title>
+<title>Find the common parts of two (or more) paths — path_common • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,22 +80,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create files, directories, or links</h1>
+    <h1>Find the common parts of two (or more) paths</h1>
     </div>
 
     
-    <p>These functions ensure that <code>path</code> exists; if it already exists it will
-be left unchanged. That means that compared to <code>file.create()</code>,
-<code>file_create()</code> will not truncate an existing file, and compared to
-<code>dir.create()</code>, <code>dir_create()</code> will silently ignore
-existing directories.</p>
+    <p>The input paths must be either all relative or all absolute.</p>
     
 
-    <pre class="usage"><span class='fu'>file_create</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u+rw,go+r"</span>)
-
-<span class='fu'>dir_create</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u+rwx,go+rx"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='fu'>link_create</span>(<span class='no'>path</span>, <span class='no'>new_path</span>, <span class='kw'>symbolic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>path_common</span>(<span class='no'>path</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -104,46 +96,15 @@ existing directories.</p>
       <th>path</th>
       <td><p>A character vector of paths.</p></td>
     </tr>
-    <tr>
-      <th>mode</th>
-      <td><p>If file/directory is created, what mode should it have?</p>
-<p>Links do not have mode; they inherit the mode of the file they link to.</p></td>
-    </tr>
-    <tr>
-      <th>recursive</th>
-      <td><p>should intermediate directories be created if they do not
-exist?</p></td>
-    </tr>
-    <tr>
-      <th>new_path</th>
-      <td><p>The path where the link should be created.</p></td>
-    </tr>
-    <tr>
-      <th>symbolic</th>
-      <td><p>Boolean value determining if the link should be a symbolic
-(the default) or hard link.</p></td>
-    </tr>
     </table>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>file_create</span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
-<span class='fu'><a href='is_file.html'>is_file</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/filedd461e481b37 
-#&gt;                  TRUE </div><div class='input'><span class='co'># dir_create applied to the same path will fail</span>
-<span class='fu'>try</span>(<span class='fu'>dir_create</span>(<span class='no'>x</span>))
-
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>dir_create</span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
-<span class='fu'><a href='is_file.html'>is_dir</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; /tmp/filedd46ff2c769 
-#&gt;                 TRUE </div><div class='input'><span class='co'># file_create applied to the same path will fail</span>
-<span class='fu'>try</span>(<span class='fu'>file_create</span>(<span class='no'>x</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+                </ul>
 
   </div>
 </div>

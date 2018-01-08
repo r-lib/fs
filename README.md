@@ -129,7 +129,7 @@ dir_info("src", recursive = FALSE) %>%
   select(path, permissions, size, creation_time)
 #> # A tibble: 9 x 4
 #>   path                permissions        size creation_time      
-#>   <fs::filename>      <fs::perms> <fs::bytes> <dttm>             
+#>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
 #> 1 src/RcppExports.o   rw-r--r--        646.1K 2018-01-05 08:20:05
 #> 2 src/dir.o           rw-r--r--        452.6K 2018-01-07 22:10:14
 #> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-07 22:10:14
@@ -149,7 +149,7 @@ dir_info("src", recursive = TRUE) %>%
   tally(wt = size, sort = TRUE)
 #> # A tibble: 53 x 2
 #>    directory                                        n
-#>    <fs::filename>                         <fs::bytes>
+#>    <fs::path>                             <fs::bytes>
 #>  1 src                                          2.67M
 #>  2 src/libuv                                    2.53M
 #>  3 src/libuv/autom4te.cache                     2.13M

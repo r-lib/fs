@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Copy a files, directories and links. — copy • fs</title>
+<title>Copy files, directories or links — copy • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,7 +80,7 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Copy a files, directories and links.</h1>
+    <h1>Copy files, directories or links</h1>
     </div>
 
     
@@ -130,9 +130,9 @@ file exists an error will be thrown.</p></td>
 <span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='st'>"foo2"</span>, <span class='fu'><a href='path_file.html'>path_file</a></span>(<span class='no'>files</span>)))</div><div class='output co'>#&gt; foo2/bar foo2/baz 
 #&gt;     TRUE     TRUE </div><div class='input'>
 <span class='co'># Create a link to the directory</span>
-<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='st'>"foo"</span>, <span class='st'>"loo"</span>)
-<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo"</span>)</div><div class='output co'>#&gt; foo</div><div class='input'><span class='fu'>link_copy</span>(<span class='st'>"loo"</span>, <span class='st'>"loo2"</span>)
-<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo2"</span>)</div><div class='output co'>#&gt; foo</div><div class='input'>
+<span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'><a href='path_norm.html'>path_norm</a></span>(<span class='st'>"foo"</span>), <span class='st'>"loo"</span>)
+<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo"</span>)</div><div class='output co'>#&gt; .../docs/reference/foo</div><div class='input'><span class='fu'>link_copy</span>(<span class='st'>"loo"</span>, <span class='st'>"loo2"</span>)
+<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo2"</span>)</div><div class='output co'>#&gt; .../docs/reference/foo</div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>dir_delete</a></span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"foo2"</span>))
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='fu'>c</span>(<span class='st'>"loo"</span>, <span class='st'>"loo2"</span>))</div></pre>
