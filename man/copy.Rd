@@ -14,17 +14,22 @@ dir_copy(path, new_path, overwrite = FALSE)
 link_copy(path, new_path, overwrite = FALSE)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
-\item{new_path}{Character vector of paths to the new locations}
+\item{new_path}{A character vector of paths to the new locations.}
 
 \item{overwrite}{Overwrite files if they exist. If this is \code{FALSE} and the
 file exists an error will be thrown.}
 }
+\value{
+The new path (invisibly).
+}
 \description{
-\code{file_copy()} copies files. \code{link_copy()} creates a new link pointing to the
-same location as the previous link. \code{dir_copy()} copies the directory
-recursively to the new location.
+\code{file_copy()} copies files.
+
+\code{link_copy()} creates a new link pointing to the same location as the previous link.
+
+\code{dir_copy()} copies the directory recursively at the new location.
 }
 \examples{
 file_create("foo")

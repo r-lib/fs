@@ -1,12 +1,16 @@
 #' Copy files, directories or links
 #'
-#' `file_copy()` copies files. `link_copy()` creates a new link pointing to the
-#' same location as the previous link. `dir_copy()` copies the directory
-#' recursively to the new location.
-#' @param new_path Character vector of paths to the new locations
+#' @description
+#' `file_copy()` copies files.
+#'
+#' `link_copy()` creates a new link pointing to the same location as the previous link.
+#'
+#' `dir_copy()` copies the directory recursively at the new location.
+#' @param new_path A character vector of paths to the new locations.
 #' @param overwrite Overwrite files if they exist. If this is `FALSE` and the
 #'   file exists an error will be thrown.
 #' @template fs
+#' @return The new path (invisibly).
 #' @name copy
 #' @export
 #' @examples
