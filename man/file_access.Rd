@@ -16,17 +16,17 @@ dir_exists(path)
 link_exists(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{mode}{A character vector containing one or more of 'exists', 'read',
 'write', 'execute'.}
 }
 \value{
-A logical vector, with names giving paths
+A logical vector, with names corresponding to the input \code{path}.
 }
 \description{
 \code{file_exists(path)} is a shortcut for \code{file_access(x, "exists")};
-\code{dir_exists(path)} and \code{link_exists(path)} are similar but also checks that
+\code{dir_exists(path)} and \code{link_exists(path)} are similar but also check that
 the path is a directory or link, respectively.
 }
 \examples{

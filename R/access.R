@@ -3,13 +3,13 @@ access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
 #' Query for existence and access permissions
 #'
 #' `file_exists(path)` is a shortcut for `file_access(x, "exists")`;
-#' `dir_exists(path)` and `link_exists(path)` are similar but also checks that
+#' `dir_exists(path)` and `link_exists(path)` are similar but also check that
 #' the path is a directory or link, respectively.
 #'
 #' @template fs
 #' @param mode A character vector containing one or more of 'exists', 'read',
 #'   'write', 'execute'.
-#' @return A logical vector, with names giving paths
+#' @return A logical vector, with names corresponding to the input `path`.
 #' @export
 #' @examples
 #' file_access("/")
