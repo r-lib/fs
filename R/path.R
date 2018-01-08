@@ -73,7 +73,10 @@ path_split <- function(path) {
   path <- path_tidy(path)
 
   # Split drive / UNC parts
-  strsplit(path, "(?<!^)(?<!^/)/+", perl = TRUE)
+  # split keep unc paths together, but keep root paths as first part.
+  # //foo => '//foo' 'bar'
+  # /foo/bar => '/' 'foo' 'bar'
+  strsplit(path, "^(?=/)(?!//)|(?<!^)(?<!^/)/", perl = TRUE)
 }
 
 
@@ -160,4 +163,43 @@ path_ext_set <- function(path, ext) {
 #' @export
 `path_ext<-` <- function(path, value) {
   path_ext_set(path, value)
+}
+
+
+#' Find the common parts of two (or more) paths
+#'
+#' The input paths must be either all relative or all absolute.
+#' @template fs
+#' '
+#' @export
+path_common <- function(path) {
+  path <- sort(path_tidy(path))
+  is_abs <- is_absolute_path(path)
+
+  # We must either have all absolute paths, or all relative paths.
+  if (!(all(is_abs) || all(!is_abs))) {
+    stop("Can't mix absolute and relative paths", call. = FALSE)
+  }
+
+  # remove . entries from the split paths
+  path <- lapply(path_split(path), function(x) x[x != "."])
+
+  s1 <- path[[1]]
+  s2 <- path[[length(path)]]
+  common <- s1
+  for (i in seq_along(s1)) {
+    if (s1[[i]] != s2[[i]]) {
+      if (i == 1) {
+        common <- ""
+      } else {
+        common <- s1[seq(1, i - 1)]
+      }
+      break;
+    }
+  }
+
+  if (isTRUE(is_abs[[1]])) {
+    return(path_tidy(paste0(common[[1]], paste0(common[-1], collapse = "/"))))
+  }
+  return(path_tidy(paste0(common, collapse = "/")))
 }

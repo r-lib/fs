@@ -57,7 +57,7 @@ describe("path_split", {
   })
 
   it("does not split the root path", {
-    expect_equal(path_split("/usr/bin")[[1]], c("/usr", "bin"))
+    expect_equal(path_split("/usr/bin")[[1]], c("/", "usr", "bin"))
     expect_equal(path_split("c:/usr/bin")[[1]], c("c:", "usr", "bin"))
     expect_equal(path_split("X:/usr/bin")[[1]], c("X:", "usr", "bin"))
     expect_equal(path_split("//server/usr/bin")[[1]], c("//server", "usr", "bin"))
@@ -155,5 +155,43 @@ describe("path_ext<-", {
     x <- "...manydots"
     path_ext(x) <- "bar"
     expect_equal(x, "...manydots.bar")
+  })
+})
+
+
+# Test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py
+
+describe("path_common", {
+  it ("finds the common path", {
+    expect_error(path_common(c("/usr", "usr")), "Can't mix")
+    expect_error(path_common(c("usr", "/usr")), "Can't mix")
+
+    expect_equal(path_common(c("/usr/local")), "/usr/local")
+    expect_equal(path_common(c("/usr/local", "/usr/local")), "/usr/local")
+    expect_equal(path_common(c("/usr/local/", "/usr/local")), "/usr/local")
+    expect_equal(path_common(c("/usr/local/", "/usr/local/")), "/usr/local")
+    expect_equal(path_common(c("/usr//local/bin", "/usr/local//bin")), "/usr/local/bin")
+    expect_equal(path_common(c("/usr/./local", "/./usr/local")), "/usr/local")
+    expect_equal(path_common(c("/", "/dev")), "/")
+    expect_equal(path_common(c("/usr", "/dev")), "/")
+    expect_equal(path_common(c("/usr/lib/", "/usr/lib/python3")), "/usr/lib")
+    expect_equal(path_common(c("/usr/lib/", "/usr/lib64/")), "/usr")
+
+    expect_equal(path_common(c("/usr/lib", "/usr/lib64")), "/usr")
+    expect_equal(path_common(c("/usr/lib/", "/usr/lib64")), "/usr")
+
+    expect_equal(path_common(c("spam")), "spam")
+    expect_equal(path_common(c("spam", "spam")), "spam")
+    expect_equal(path_common(c("spam", "alot")), "")
+    expect_equal(path_common(c("and/jam", "and/spam")), "and")
+    expect_equal(path_common(c("and//jam", "and/spam//")), "and")
+    expect_equal(path_common(c("and/./jam", "./and/spam")), "and")
+    expect_equal(path_common(c("and/jam", "and/spam", "alot")), "")
+    expect_equal(path_common(c("and/jam", "and/spam", "and")), "and")
+
+    expect_equal(path_common(c("")), "")
+    expect_equal(path_common(c("", "spam/alot")), "")
+
+    expect_error(path_common(c("", "/spam/alot")), "Can't mix")
   })
 })
