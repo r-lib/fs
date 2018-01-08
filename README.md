@@ -37,10 +37,13 @@ devtools::install_github("r-lib/fs")
 ## Motivation vs base equivalents
 
   - All **fs** functions are vectorized, accepting multiple paths as
-    input. All functions either return a character vector of paths, or a
-    named integer or logical vector (where the names give the paths).
+    input. Base functions are inconsistently vectorized.
 
-  - If an operation fails, **fs** throws an error. Base R file
+  - All **fs** functions return a character vector of paths, a named
+    integer or a logical vector (where the names give the paths). Base
+    return values are more varied.
+
+  - If **fs** operations fail, they throw an error. Base R file
     manipulation functions tend to generate a warning and return a
     logical vector of successes and failures. This makes it easy to miss
     a failure.
@@ -69,7 +72,8 @@ file_list()
 #> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
 #> README.html  README.md    _pkgdown.yml appveyor.yml codecov.yml  
 #> demo.json    doc          docs         fs.Rproj     man          
-#> man-roxygen  script.R     src          tests        tools
+#> man-roxygen  script.R     src          test.R       tests        
+#> tools
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -108,7 +112,7 @@ paths
 paths %>% file_delete()
 ```
 
-**fs** functions also works well in conjunction with dplyr, purrr and
+**fs** functions also work well in conjunction with dplyr, purrr and
 other tidyverse packages.
 
 ``` r
@@ -124,8 +128,8 @@ dir_info("src", recursive = FALSE) %>%
 #>   path                permissions        size creation_time      
 #>   <fs::filename>      <fs::perms> <fs::bytes> <dttm>             
 #> 1 src/RcppExports.o   rw-r--r--        646.1K 2018-01-05 08:20:05
-#> 2 src/dir.o           rw-r--r--        452.6K 2018-01-03 09:43:07
-#> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-05 08:34:28
+#> 2 src/dir.o           rw-r--r--        452.6K 2018-01-07 21:23:54
+#> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-07 21:23:54
 #> 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08
 #> 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07
 #> 6 src/path.o          rw-r--r--        244.8K 2018-01-05 08:34:28

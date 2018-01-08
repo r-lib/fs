@@ -47,10 +47,13 @@ devtools::install_github("r-lib/fs")
 ## Motivation vs base equivalents
 
 * All **fs** functions are vectorized, accepting multiple paths as input.
-  All functions either return a character vector of paths, or
-  a named integer or logical vector (where the names give the paths).
+  Base functions are inconsistently vectorized.
 
-* If an operation fails, **fs** throws an error. Base R file manipulation functions
+* All **fs** functions return a character vector of paths, a named integer or a
+  logical vector (where the names give the paths). Base return values are more
+  varied.
+
+* If **fs** operations fail, they throw an error. Base R file manipulation functions
   tend to generate a warning and return a logical vector of successes and
   failures. This makes it easy to miss a failure.
 
@@ -107,7 +110,7 @@ paths
 paths %>% file_delete()
 ```
 
-**fs** functions also works well in conjunction with dplyr, purrr and other
+**fs** functions also work well in conjunction with dplyr, purrr and other
 tidyverse packages.
 
 ```{r}
