@@ -35,12 +35,12 @@ mode_t getmode_(const char* mode_str, mode_t mode) {
   /* First, find out which bits might be modified. */
   for (;; ++p) {
     switch (*p) {
-      case 'a':
-      case 'u':
-        who |= S_IRWXU;
-        break;
-      default:
-        goto getop;
+    case 'a':
+    case 'u':
+      who |= S_IRWXU;
+      break;
+    default:
+      goto getop;
     }
   }
 
@@ -51,32 +51,32 @@ getop:
   }
   for (perm = 0;; ++p) {
     switch (*p) {
-      case 'r':
-        perm |= S_IRUSR;
-        break;
-      case 'w':
-        perm |= S_IWUSR;
-        break;
-      case 'x':
-        perm |= S_IXUSR;
-        break;
-      default:
-        goto apply;
+    case 'r':
+      perm |= S_IRUSR;
+      break;
+    case 'w':
+      perm |= S_IWUSR;
+      break;
+    case 'x':
+      perm |= S_IXUSR;
+      break;
+    default:
+      goto apply;
     }
   }
 apply:
   switch (op) {
-    case '=':
-      out = perm;
-      break;
-    case '+':
-      out = mode | perm;
-      break;
-    case '-':
-      out = mode & ~perm;
-      break;
-    default:
-      Rf_error("Invalid mode '%s'", mode_str);
+  case '=':
+    out = perm;
+    break;
+  case '+':
+    out = mode | perm;
+    break;
+  case '-':
+    out = mode & ~perm;
+    break;
+  default:
+    Rf_error("Invalid mode '%s'", mode_str);
   }
   out &= who;
   errno = 0;
@@ -126,21 +126,21 @@ static char sccsid[] = "@(#)strmode.c	8.3 (Berkeley) 8/15/94";
 void strmode(mode_t mode, char* p) {
   /* print type */
   switch (mode & S_IFMT) {
-    case S_IFDIR: /* directory */
-      *p++ = 'd';
-      break;
-    case S_IFCHR: /* character special */
-      *p++ = 'c';
-      break;
-    case S_IFBLK: /* block special */
-      *p++ = 'b';
-      break;
-    case S_IFREG: /* regular */
-      *p++ = '-';
-      break;
-    default: /* unknown */
-      *p++ = '?';
-      break;
+  case S_IFDIR: /* directory */
+    *p++ = 'd';
+    break;
+  case S_IFCHR: /* character special */
+    *p++ = 'c';
+    break;
+  case S_IFBLK: /* block special */
+    *p++ = 'b';
+    break;
+  case S_IFREG: /* regular */
+    *p++ = '-';
+    break;
+  default: /* unknown */
+    *p++ = '?';
+    break;
   }
   /* usr */
   if (mode & S_IRUSR)
@@ -152,12 +152,12 @@ void strmode(mode_t mode, char* p) {
   else
     *p++ = '-';
   switch (mode & (S_IXUSR)) {
-    case 0:
-      *p++ = '-';
-      break;
-    case S_IXUSR:
-      *p++ = 'x';
-      break;
+  case 0:
+    *p++ = '-';
+    break;
+  case S_IXUSR:
+    *p++ = 'x';
+    break;
   }
   *p++ = ' '; /* will be a '+' if ACL's implemented */
   *p = '\0';
@@ -174,17 +174,17 @@ std::string strmode_(mode_t mode) {
 
 std::string file_code_(std::string path, mode_t mode) {
   switch (mode & S_IFMT) {
-    case S_IFDIR:
-      return "di";
-    case S_IFLNK:
-      return "ln";
-    case S_IFIFO:
-      return "pi";
-    case S_IFBLK:
-      return "db";
-    case S_IFCHR:
-      return "cd";
-    default:;
+  case S_IFDIR:
+    return "di";
+  case S_IFLNK:
+    return "ln";
+  case S_IFIFO:
+    return "pi";
+  case S_IFBLK:
+    return "db";
+  case S_IFCHR:
+    return "cd";
+  default:;
   }
   if (mode & S_IXUSR) {
     return "ex";

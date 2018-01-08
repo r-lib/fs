@@ -1,7 +1,7 @@
 #pragma once
 
-#include <sys/types.h>
 #include <string>
+#include <sys/types.h>
 
 // [[Rcpp::export]]
 mode_t getmode_(const char* mode_str, mode_t mode);

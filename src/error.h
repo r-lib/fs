@@ -14,7 +14,7 @@ extern "C" {
 #define STRING_I(x) #x
 #define STRING(x) STRING_I(x)
 
-#define stop_for_error(req, format, ...) \
+#define stop_for_error(req, format, ...)                                       \
   error_condition(req, __FILE__ ":" STRING(__LINE__), format, __VA_ARGS__)
 
 #ifdef __cplusplus

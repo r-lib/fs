@@ -33,25 +33,25 @@ std::string strmode_(mode_t mode) {
 
 std::string file_code_(std::string path, mode_t mode) {
   switch (mode & S_IFMT) {
-    case S_IFDIR:
-      if (mode & S_IWOTH)
-        if (mode & S_ISTXT)
-          return "tw";
-        else
-          return "ow";
+  case S_IFDIR:
+    if (mode & S_IWOTH)
+      if (mode & S_ISTXT)
+        return "tw";
       else
-        return "di";
-    case S_IFLNK:
-      return "ln";
-    case S_IFSOCK:
-      return "so";
-    case S_IFIFO:
-      return "pi";
-    case S_IFBLK:
-      return "db";
-    case S_IFCHR:
-      return "cd";
-    default:;
+        return "ow";
+    else
+      return "di";
+  case S_IFLNK:
+    return "ln";
+  case S_IFSOCK:
+    return "so";
+  case S_IFIFO:
+    return "pi";
+  case S_IFBLK:
+    return "db";
+  case S_IFCHR:
+    return "cd";
+  default:;
   }
   if (mode & (S_IXUSR | S_IXGRP | S_IXOTH)) {
     if (mode & S_ISUID)

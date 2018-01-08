@@ -32,8 +32,8 @@ void create_(CharacterVector path, std::string mode_str) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    int fd = uv_fs_open(uv_default_loop(), &req, p,
-                        UV_FS_O_CREAT | UV_FS_O_WRONLY, mode, NULL);
+    int fd = uv_fs_open(
+        uv_default_loop(), &req, p, UV_FS_O_CREAT | UV_FS_O_WRONLY, mode, NULL);
     stop_for_error(req, "Failed to open '%s'", p);
 
     uv_fs_close(uv_default_loop(), &req, fd, NULL);
@@ -158,32 +158,32 @@ List stat_(CharacterVector path) {
     REAL(VECTOR_ELT(out, 1))[i] = st.st_dev;
     int type;
     switch (st.st_mode & S_IFMT) {
-      case S_IFBLK:
-        type = 0;
-        break;
-      case S_IFCHR:
-        type = 1;
-        break;
-      case S_IFDIR:
-        type = 2;
-        break;
-      case S_IFIFO:
-        type = 3;
-        break;
-      case S_IFLNK:
-        type = 4;
-        break;
-      case S_IFREG:
-        type = 5;
-        break;
+    case S_IFBLK:
+      type = 0;
+      break;
+    case S_IFCHR:
+      type = 1;
+      break;
+    case S_IFDIR:
+      type = 2;
+      break;
+    case S_IFIFO:
+      type = 3;
+      break;
+    case S_IFLNK:
+      type = 4;
+      break;
+    case S_IFREG:
+      type = 5;
+      break;
 #ifndef __WIN32
-      case S_IFSOCK:
-        type = 6;
-        break;
+    case S_IFSOCK:
+      type = 6;
+      break;
 #endif
-      default:
-        type = NA_INTEGER;
-        break;
+    default:
+      type = NA_INTEGER;
+      break;
     }
     INTEGER(VECTOR_ELT(out, 2))[i] = type;
     INTEGER(VECTOR_ELT(out, 3))[i] = st.st_mode;
@@ -227,8 +227,10 @@ List stat_(CharacterVector path) {
     uv_fs_req_cleanup(&req);
   }
   Rf_setAttrib(out, R_NamesSymbol, names);
-  Rf_setAttrib(out, R_ClassSymbol,
-               CharacterVector::create("tbl", "tbl_df", "data.frame"));
+  Rf_setAttrib(
+      out,
+      R_ClassSymbol,
+      CharacterVector::create("tbl", "tbl_df", "data.frame"));
   SEXP attr =
       Rf_setAttrib(out, Rf_install("row.names"), Rf_allocVector(INTSXP, 2));
   INTEGER(attr)[0] = NA_INTEGER;
@@ -286,8 +288,13 @@ void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
-    uv_fs_copyfile(uv_default_loop(), &req, p, n,
-                   !overwrite ? UV_FS_COPYFILE_EXCL : 0, NULL);
+    uv_fs_copyfile(
+        uv_default_loop(),
+        &req,
+        p,
+        n,
+        !overwrite ? UV_FS_COPYFILE_EXCL : 0,
+        NULL);
     stop_for_error(req, "Failed to copy '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }

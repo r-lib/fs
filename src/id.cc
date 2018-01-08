@@ -15,7 +15,7 @@ IntegerVector getpwnam_(CharacterVector name) {
 
 #ifndef __WIN32
   for (R_xlen_t i = 0; i < Rf_xlength(name); ++i) {
-    passwd *pwd;
+    passwd* pwd;
     pwd = getpwnam(CHAR(STRING_ELT(name, i)));
     if (pwd != NULL) {
       out[i] = pwd->pw_uid;
@@ -33,7 +33,7 @@ IntegerVector getgrnam_(CharacterVector name) {
 
 #ifndef __WIN32
   for (R_xlen_t i = 0; i < Rf_xlength(name); ++i) {
-    group *grp;
+    group* grp;
     grp = getgrnam(CHAR(STRING_ELT(name, i)));
     if (grp != NULL) {
       out[i] = grp->gr_gid;
@@ -50,7 +50,7 @@ List groups_() {
   std::vector<std::string> names;
   std::vector<int> ids;
 #ifndef __WIN32
-  group *grp = getgrent();
+  group* grp = getgrent();
   while (grp != NULL) {
     names.push_back(grp->gr_name);
     ids.push_back(grp->gr_gid);
@@ -70,7 +70,7 @@ List users_() {
   std::vector<std::string> names;
   std::vector<int> ids;
 #ifndef __WIN32
-  passwd *pwd = getpwent();
+  passwd* pwd = getpwent();
   while (pwd != NULL) {
     names.push_back(pwd->pw_name);
     ids.push_back(pwd->pw_uid);
