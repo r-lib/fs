@@ -48,7 +48,7 @@ pillar_shaft.fs_path <- function(x, ...) {
 }
 
 type_sum.fs_path <- function(x) {
-  "fs::filename"
+  "fs::path"
 }
 
 has_color <- function() {
