@@ -131,7 +131,20 @@ dir_info("src", recursive = TRUE) %>%
 # Read a collection of similar files into one data frame
 # `dir_ls()` returns a named vector, so it can be used directly with
 # `purrr::map_df(.id)`.
-system.file("extdata", package = "readr") %>%
-  dir_ls(glob = "*mtcars*") %>%
-  map_df(read_csv, .id = "file", col_types = cols())
+
+# Create separate files for each species
+iris %>%
+  split(.$Species) %>%
+  map(select, -Species) %>%
+  iwalk(~ write_tsv(.x, paste0(.y, ".tsv")))
+
+# Show the files
+iris_files <- dir_ls(glob = "*.tsv")
+iris_files
+
+# Read the data into a single table, including the filenames.
+iris_files %>%
+  map_df(read_tsv, .id = "file", col_types = cols(), n_max = 2)
+
+file_delete(iris_files)
 ```

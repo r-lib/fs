@@ -78,12 +78,12 @@ dir_ls()
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5dbf9a7a
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5356ea0
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5dbf9a7a/my-file.txt
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca5356ea0/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -100,22 +100,17 @@ You’ll need to attach magrittr or similar.
 
 ``` r
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 
 paths <- file_temp() %>%
   dir_create() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/a
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/b
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/c
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/d
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca78b0ebaa/e
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/a
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/b
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/c
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/d
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp3bnLU2/file169ca7cccca2e/e
 
 paths %>% file_delete()
 ```
@@ -167,21 +162,30 @@ dir_info("src", recursive = TRUE) %>%
 # Read a collection of similar files into one data frame
 # `dir_ls()` returns a named vector, so it can be used directly with
 # `purrr::map_df(.id)`.
-system.file("extdata", package = "readr") %>%
-  dir_ls(glob = "*mtcars*") %>%
-  map_df(read_csv, .id = "file", col_types = cols())
-#> # A tibble: 96 x 12
-#>    file    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
-#>    <chr> <dbl> <int> <dbl> <int> <dbl> <dbl> <dbl> <int> <int> <int> <int>
-#>  1 /Use…  21.0     6   160   110  3.90  2.62  16.5     0     1     4     4
-#>  2 /Use…  21.0     6   160   110  3.90  2.88  17.0     0     1     4     4
-#>  3 /Use…  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
-#>  4 /Use…  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
-#>  5 /Use…  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2
-#>  6 /Use…  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1
-#>  7 /Use…  14.3     8   360   245  3.21  3.57  15.8     0     0     3     4
-#>  8 /Use…  24.4     4   147    62  3.69  3.19  20.0     1     0     4     2
-#>  9 /Use…  22.8     4   141    95  3.92  3.15  22.9     1     0     4     2
-#> 10 /Use…  19.2     6   168   123  3.92  3.44  18.3     1     0     4     4
-#> # ... with 86 more rows
+
+# Create separate files for each species
+iris %>%
+  split(.$Species) %>%
+  map(select, -Species) %>%
+  iwalk(~ write_tsv(.x, paste0(.y, ".tsv")))
+
+# Show the files
+iris_files <- dir_ls(glob = "*.tsv")
+iris_files
+#> setosa.tsv     versicolor.tsv virginica.tsv
+
+# Read the data into a single table, including the filenames.
+iris_files %>%
+  map_df(read_tsv, .id = "file", col_types = cols(), n_max = 2)
+#> # A tibble: 6 x 5
+#>   file           Sepal.Length Sepal.Width Petal.Length Petal.Width
+#>   <chr>                 <dbl>       <dbl>        <dbl>       <dbl>
+#> 1 setosa.tsv             5.10        3.50         1.40       0.200
+#> 2 setosa.tsv             4.90        3.00         1.40       0.200
+#> 3 versicolor.tsv         7.00        3.20         4.70       1.40 
+#> 4 versicolor.tsv         6.40        3.20         4.50       1.50 
+#> 5 virginica.tsv          6.30        3.30         6.00       2.50 
+#> 6 virginica.tsv          5.80        2.70         5.10       1.90
+
+file_delete(iris_files)
 ```
