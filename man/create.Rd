@@ -7,9 +7,9 @@
 \alias{link_create}
 \title{Create files, directories, or links}
 \usage{
-file_create(path, mode = "rw-r--r--")
+file_create(path, mode = "u=rw,go=r")
 
-dir_create(path, mode = "rwxr-xr-x", recursive = TRUE)
+dir_create(path, mode = "u=rwx,go=rx", recursive = TRUE)
 
 link_create(path, new_path, symbolic = TRUE)
 }

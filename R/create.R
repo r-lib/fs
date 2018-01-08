@@ -26,7 +26,7 @@
 #' # file_create applied to the same path will fail
 #' try(file_create(x))
 #' @export
-file_create <- function(path, mode = "rw-r--r--") {
+file_create <- function(path, mode = "u=rw,go=r") {
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode)
 
@@ -36,7 +36,7 @@ file_create <- function(path, mode = "rw-r--r--") {
 
 #' @export
 #' @rdname create
-dir_create <- function(path, mode = "rwxr-xr-x", recursive = TRUE) {
+dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode)
 
