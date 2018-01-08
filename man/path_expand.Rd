@@ -7,7 +7,7 @@
 path_expand(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \description{
 equivalent to \link[base:path.expand]{base::path.expand}

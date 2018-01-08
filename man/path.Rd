@@ -12,7 +12,7 @@ NA.}
 
 \item{ext}{An optional extension to append to the generated path.}
 
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \description{
 Construct path to a file or directory

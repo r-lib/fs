@@ -7,7 +7,7 @@
 path_norm(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
 \code{[character(1)]} the fully resolved path.

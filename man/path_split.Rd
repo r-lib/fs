@@ -7,7 +7,7 @@
 path_split(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
 A list of separated paths

@@ -7,7 +7,7 @@
 path_common(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \description{
 The input paths must be either all relative or all absolute.

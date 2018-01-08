@@ -7,7 +7,7 @@
 file_chown(path, user_id = NULL, group_id = NULL)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{user_id}{The user id of the new owner, specified as a numeric ID or
 name. The R process must be privileged to change this.}

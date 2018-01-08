@@ -19,7 +19,7 @@ file_temp_pop()
 
 \item{ext}{The file extension of the temporary file.}
 
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \description{
 \code{file_temp()} returns the name which can be used as a temporary file.

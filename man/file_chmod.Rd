@@ -7,7 +7,7 @@
 file_chmod(path, mode)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{mode}{A character representation of the mode, in either hexidecimal or symbolic format.}
 }

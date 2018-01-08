@@ -7,7 +7,7 @@
 file_show(path = ".", browser = getOption("browser"))
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{browser}{a non-empty character string giving the name of the
     program to be used as the HTML browser.  It should be in the PATH,

@@ -18,7 +18,7 @@ dir_info(path = ".", all = FALSE, recursive = FALSE, type = "any",
   regexp = NULL, glob = NULL, ...)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{all}{If \code{TRUE} hidden files are also returned.}
 
@@ -36,7 +36,8 @@ expression (e.g. \code{\\.csv$)} passed on to \link{grep} to filter paths.}
 \item{fun}{A function, taking one parameter, the current path entry.}
 }
 \description{
-\code{dir_ls()} is equivalent to the \code{ls} command.
+\code{dir_ls()} is equivalent to the \code{ls} command. It returns filenames as a
+\code{fs_path} character vector.
 
 \code{dir_info()} is equivalent to \code{ls -l} and a shortcut for
 \code{file_info(dir_ls())}.

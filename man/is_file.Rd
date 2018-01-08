@@ -13,7 +13,7 @@ is_dir(path)
 is_link(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
 A named logical vector, where the names give the paths. If the given

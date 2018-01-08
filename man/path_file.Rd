@@ -22,7 +22,7 @@ path_ext_set(path, ext)
 path_ext(path) <- value
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 
 \item{ext, value}{The new file extension.}
 }

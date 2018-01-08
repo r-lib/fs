@@ -7,7 +7,7 @@
 is_absolute_path(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \description{
 Test if a path is an absolute path

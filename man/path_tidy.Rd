@@ -7,7 +7,7 @@
 path_tidy(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
 A fs_path object

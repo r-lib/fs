@@ -1,1 +1,1 @@
-#' @param path A character vector of paths.
+#' @param path A character vector of one or more paths.

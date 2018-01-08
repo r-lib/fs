@@ -7,7 +7,7 @@
 link_path(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
 A tidy path to the object the link points to.
