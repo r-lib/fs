@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>File permissions — fs_perms • fs</title>
+<title>Create, modify and view file permissions — fs_perms • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,16 +80,19 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>File permissions</h1>
+    <h1>Create, modify and view file permissions</h1>
     </div>
 
     
-    <p>File permissions</p>
+    <p><code>fs_perms()</code> objects help one create and modify file permissions easily.
+They support both numeric input, octal and symbolic character
+representations. Compared to octmode they support symbolic representations
+and display the mode the same format as <code>ls</code> on POSIX systems.</p>
     
 
-    <pre class="usage"><span class='fu'>as_fs_perms</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>as_fs_perms</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='fu'>fs_perms</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>fs_perms</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -100,22 +103,64 @@
 number or octal character representation, including symbolic
 representations.</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed to methods.</p></td>
+    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>On POSIX systems the permissions are displayed as a 9 character string with
+three sets of three characters. Each set corresponds to the permissions for
+the user, the group and other (or default) users.</p>
+<p>If the first character of each set is a "r", the file is readable for those
+users, if a "-", it is not readable.</p>
+<p>If the second character of each set is a "w", the file is writable for those
+users, if a "-", it is not writable.</p>
+<p>The third character is more complex, and is the first of the following
+characters which apply.</p><ul>
+<li><p>'S' If the character is part of the owner permissions and the file is not
+executable or the directory is not searchable by the owner, and the
+set-user-id bit is set.</p></li>
+<li><p>'S' If the character is part of the group permissions and the file is not
+executable or the directory is not searchable by the group, and the
+set-group-id bit is set.</p></li>
+<li><p>'T' If the character is part of the other permissions and the file is not
+executable or the directory is not searchable by others, and the 'sticky'
+(S_ISVTX) bit is set.</p></li>
+<li><p>'s' If the character is part of the owner permissions and the file is
+executable or the directory searchable by the owner, and the set-user-id bit
+is set.</p></li>
+<li><p>'s' If the character is part of the group permissions and the file is
+executable or the directory searchable by the group, and the set-group-id
+bit is set.</p></li>
+<li><p>'t' If the character is part of the other permissions and the file is
+executable or the directory searchable by others, and the ''sticky''
+(S_ISVTX) bit is set.</p></li>
+<li><p>'x' The file is executable or the directory is searchable.</p></li>
+<li><p>'-' If none of the above apply.
+Most commonly the third character is either 'x' or <code>-</code>.</p></li>
+</ul>
+    <p>On Windows the permissions are displayed as a 3 character string where the
+third character is only <code>-</code> or <code>x</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Integer and numeric</span>
-<span class='fu'>fs_perms</span>(<span class='fl'>420L</span>)</div><div class='output co'>#&gt; [1] rw-r--r-- </div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='fl'>511</span>, <span class='fl'>420</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx  rw-r--r-- </div><div class='input'>
+<span class='fu'>fs_perms</span>(<span class='fl'>420L</span>)</div><div class='output co'>#&gt; [1] rw-r--r--</div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='fl'>511</span>, <span class='fl'>420</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx rw-r--r--</div><div class='input'>
 <span class='co'># Octal</span>
-<span class='fu'>fs_perms</span>(<span class='st'>"777"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx </div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='st'>"777"</span>, <span class='st'>"644"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx  rw-r--r-- </div><div class='input'>
+<span class='fu'>fs_perms</span>(<span class='st'>"777"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='st'>"777"</span>, <span class='st'>"644"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx rw-r--r--</div><div class='input'>
 <span class='co'># Symbolic</span>
-<span class='fu'>fs_perms</span>(<span class='st'>"a+rwx"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx </div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='st'>"a+rwx"</span>, <span class='st'>"u+rw,go+r"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx  rw-r--r-- </div></pre>
+<span class='fu'>fs_perms</span>(<span class='st'>"a+rwx"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'>c</span>(<span class='st'>"a+rwx"</span>, <span class='st'>"u+rw,go+r"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx rw-r--r--</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -85,7 +85,7 @@
 
     
     <p><code>file_exists(path)</code> is a shortcut for <code>file_access(x, "exists")</code>;
-<code>dir_exists(path)</code> and <code>link_exists(path)</code> are similar but also checks that
+<code>dir_exists(path)</code> and <code>link_exists(path)</code> are similar but also check that
 the path is a directory or link, respectively.</p>
     
 
@@ -102,7 +102,7 @@ the path is a directory or link, respectively.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>A character vector of paths.</p></td>
+      <td><p>A character vector of one or more paths.</p></td>
     </tr>
     <tr>
       <th>mode</th>
@@ -113,7 +113,7 @@ the path is a directory or link, respectively.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A logical vector, with names giving paths</p>
+    <p>A logical vector, with names corresponding to the input <code>path</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

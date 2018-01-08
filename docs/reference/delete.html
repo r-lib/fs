@@ -84,8 +84,13 @@
     </div>
 
     
-    <p><code>dir_delete()</code> will first delete the contents of the directory, then remove
-the directory.</p>
+    <p><code>file_delete()</code> and <code>link_delete()</code> delete file and links. Compared to
+file.remove they always fail if they cannot delete the object rather than
+changing return value or signaling a warning.
+
+    <code>dir_delete()</code> will first delete the contents of the directory, then remove
+the directory. Compared to unlink it will always throw an error if the
+directory cannot be deleted rather than being silent or signaling a warning.</p>
     
 
     <pre class="usage"><span class='fu'>file_delete</span>(<span class='no'>path</span>)
@@ -99,20 +104,20 @@ the directory.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>A character vector of paths.</p></td>
+      <td><p>A character vector of one or more paths.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The deleted paths.</p>
+    <p>The deleted paths (invisibly).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create a directory, with some files and a link to it</span>
-<span class='no'>dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='file_create.html'>dir_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
-<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='file_create.html'>file_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>dir</span>, <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]))
-<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='file_create.html'>link_create</a></span>(<span class='fu'><a href='path_norm.html'>path_norm</a></span>(<span class='no'>dir</span>), <span class='st'>"link"</span>)
+<span class='no'>dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>dir_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>dir</span>, <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]))
+<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_norm.html'>path_norm</a></span>(<span class='no'>dir</span>), <span class='st'>"link"</span>)
 
 <span class='co'># All files created</span>
 <span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='no'>dir</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 

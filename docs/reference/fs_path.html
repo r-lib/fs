@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Copy a file — file_copy • fs</title>
+<title>File paths — fs_path • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,48 +80,47 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Copy a file</h1>
+    <h1>File paths</h1>
     </div>
 
     
-    <p>Copy a file</p>
+    <p>Tidy file paths, character vectors which are coloured by file type on
+capable terminals.</p>
+<p>Colouring can be customized by setting the <code>LS_COLORS</code> environment variable,
+the format is the same as that read by GNU ls / dircolors.</p>
+<p>Colouring of file paths can be disabled by setting <code>LS_COLORS</code> to an empty
+string e.g. <code>Sys.setenv(LS_COLORS = "")</code>.</p>
     
 
-    <pre class="usage"><span class='fu'>file_copy</span>(<span class='no'>path</span>, <span class='no'>new_path</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>as_fs_path</span>(<span class='no'>x</span>)
+
+<span class='fu'>fs_path</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>A character vector of paths.</p></td>
-    </tr>
-    <tr>
-      <th>new_path</th>
-      <td><p>Character vector of paths to the new files.</p></td>
-    </tr>
-    <tr>
-      <th>overwrite</th>
-      <td><p>Overwrite files if they exist. If this is <code>FALSE</code> and a
-file exists and error will be thrown.</p></td>
+      <th>x</th>
+      <td><p>vector to be coerced to a fs_path object.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='file_create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
-<span class='fu'>file_copy</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>)
-<span class='fu'>try</span>(<span class='fu'>file_copy</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))
-<span class='fu'>file_copy</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='delete.html'>file_delete</a></span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))</div></pre>
+    <p><a href='https://geoff.greer.fm/lscolors'>https://geoff.greer.fm/lscolors</a>,
+<a href='https://github.com/trapd00r/LS_COLORS'>https://github.com/trapd00r/LS_COLORS</a>,
+<a href='https://github.com/seebi/dircolors-solarized'>https://github.com/seebi/dircolors-solarized</a> for some example color
+settings.</p>
+    
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+          </ul>
 
   </div>
 </div>

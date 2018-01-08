@@ -94,7 +94,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>A character vector of paths.</p></td>
+      <td><p>A character vector of one or more paths.</p></td>
     </tr>
     <tr>
       <th>mode</th>
@@ -104,15 +104,15 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='file_create.html'>file_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>(), <span class='st'>"000"</span>)
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>(), <span class='st'>"000"</span>)
 <span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"777"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rwxrwxrwx </div><div class='input'>
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'>
 <span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"u-x"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-rwxrwx </div><div class='input'>
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-rwxrwx</div><div class='input'>
 <span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"a-wrx"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] --------- </div><div class='input'>
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] ---------</div><div class='input'>
 <span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"u+wr"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw------- </div></pre>
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

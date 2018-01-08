@@ -70,10 +70,9 @@ library(fs)
 # list files in the current directory
 dir_ls()
 #> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
-#> README.html  README.md    _pkgdown.yml appveyor.yml codecov.yml  
-#> demo.json    doc          docs         fs.Rproj     man          
-#> man-roxygen  script.R     src          test.R       tests        
-#> tools
+#> README.md    _pkgdown.yml appveyor.yml codecov.yml  doc          
+#> docs         fs.Rproj     man          man-roxygen  script.R     
+#> src          tests        tools
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -126,19 +125,19 @@ Filter files by type, permission and size
 dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
-  select(path, permissions, size, creation_time)
+  select(path, permissions, size, modification_time)
 #> # A tibble: 9 x 4
-#>   path                permissions        size creation_time      
+#>   path                permissions        size modification_time  
 #>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--        646.1K 2018-01-05 08:20:05
-#> 2 src/dir.o           rw-r--r--        452.6K 2018-01-07 22:10:14
-#> 3 src/fs.so           rwxr-xr-x        419.2K 2018-01-07 22:10:14
-#> 4 src/id.o            rw-r--r--        388.5K 2018-01-03 07:40:08
-#> 5 src/file.o          rw-r--r--        311.7K 2018-01-03 09:43:07
-#> 6 src/path.o          rw-r--r--        244.8K 2018-01-05 08:34:28
-#> 7 src/link.o          rw-r--r--        219.6K 2018-01-03 09:43:06
-#> 8 src/error.o         rw-r--r--         17.3K 2018-01-03 07:40:04
-#> 9 src/RcppExports.cpp rw-r--r--         11.2K 2018-01-05 08:18:33
+#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-08 14:26:15
+#> 2 src/dir.o           rw-r--r--        434.8K 2018-01-08 14:26:14
+#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-08 14:26:15
+#> 4 src/id.o            rw-r--r--        388.5K 2018-01-08 10:14:48
+#> 5 src/file.o          rw-r--r--        310.1K 2018-01-08 13:49:40
+#> 6 src/path.o          rw-r--r--        244.8K 2018-01-08 10:14:48
+#> 7 src/link.o          rw-r--r--        219.6K 2018-01-08 10:14:45
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-08 10:14:45
+#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-08 14:26:11
 ```
 
 Display folder size
@@ -150,7 +149,7 @@ dir_info("src", recursive = TRUE) %>%
 #> # A tibble: 53 x 2
 #>    directory                                        n
 #>    <fs::path>                             <fs::bytes>
-#>  1 src                                          2.67M
+#>  1 src                                          2.65M
 #>  2 src/libuv                                    2.53M
 #>  3 src/libuv/autom4te.cache                     2.13M
 #>  4 src/libuv/src/unix                           1.08M
