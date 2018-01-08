@@ -14,14 +14,19 @@ dir_delete(path)
 link_delete(path)
 }
 \arguments{
-\item{path}{A character vector of paths.}
+\item{path}{A character vector of one or more paths.}
 }
 \value{
-The deleted paths.
+The deleted paths (invisibly).
 }
 \description{
+\code{file_delete()} and \code{link_delete()} delete file and links. Compared to
+\link{file.remove} they always fail if they cannot delete the object rather than
+changing return value or signaling a warning.
+
 \code{dir_delete()} will first delete the contents of the directory, then remove
-the directory.
+the directory. Compared to \link{unlink} it will always throw an error if the
+directory cannot be deleted rather than being silent or signaling a warning.
 }
 \examples{
 \dontshow{fs:::pkgdown_tmp("/tmp/filedd4635bd7c86")}

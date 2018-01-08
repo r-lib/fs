@@ -1,11 +1,16 @@
 #' Delete files, directories, or links
 #'
-#' `dir_delete()` will first delete the contents of the directory, then remove
-#' the directory.
+#' @description
+#' `file_delete()` and `link_delete()` delete file and links. Compared to
+#' [file.remove] they always fail if they cannot delete the object rather than
+#' changing return value or signaling a warning.
 #'
+#' `dir_delete()` will first delete the contents of the directory, then remove
+#' the directory. Compared to [unlink] it will always throw an error if the
+#' directory cannot be deleted rather than being silent or signaling a warning.
 #' @template fs
 #' @export
-#' @return The deleted paths.
+#' @return The deleted paths (invisibly).
 #' @name delete
 #' @examples
 #' \dontshow{fs:::pkgdown_tmp("/tmp/filedd4635bd7c86")}
