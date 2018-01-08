@@ -6,14 +6,16 @@
 \alias{fs_perms}
 \title{Create, modify and view file permissions}
 \usage{
-as_fs_perms(x)
+as_fs_perms(x, ...)
 
-fs_perms(x)
+fs_perms(x, ...)
 }
 \arguments{
 \item{x}{An object which is to be coerced to a fs_perms object. Can be an
 number or octal character representation, including symbolic
 representations.}
+
+\item{...}{Additional arguments passed to methods.}
 }
 \description{
 \code{fs_perms()} objects help one create and modify file permissions easily.

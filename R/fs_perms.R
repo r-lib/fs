@@ -8,6 +8,7 @@
 #' @param x An object which is to be coerced to a fs_perms object. Can be an
 #'   number or octal character representation, including symbolic
 #'   representations.
+#' @param ... Additional arguments passed to methods.
 #' @examples
 #' # Integer and numeric
 #' fs_perms(420L)
@@ -54,7 +55,7 @@ as.character.fs_perms <- format.fs_perms
 as_fs_perms.fs_perms <- function(x, ...) x
 
 #' @export
-as_fs_perms.character <- function(x, mode = 0) {
+as_fs_perms.character <- function(x, ..., mode = 0) {
   # matches inputs in rwxrwxrwx mode
   res <- x
 
