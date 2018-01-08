@@ -86,6 +86,8 @@ file_types <- c(
 #' file_info(x)$permissions
 file_chmod <- function(path, mode) {
   stopifnot(length(mode) == 1)
+  mode <- as_fs_perms(mode, mode = file_info(path)$permissions)
+
   path <- path_expand(path)
 
   chmod_(path, mode)

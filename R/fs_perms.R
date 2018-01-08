@@ -22,7 +22,7 @@
 #' fs_perms(c("a+rwx", "u+rw,go+r"))
 #' @export
 #' @name fs_perms
-as_fs_perms <- function(x) {
+as_fs_perms <- function(x, ...) {
   UseMethod("as_fs_perms")
 }
 
@@ -51,10 +51,10 @@ as.character.fs_perms <- format.fs_perms
 }
 
 #' @export
-as_fs_perms.fs_perms <- identity
+as_fs_perms.fs_perms <- function(x, ...) x
 
 #' @export
-as_fs_perms.character <- function(x) {
+as_fs_perms.character <- function(x, mode = 0) {
   # matches inputs in rwxrwxrwx mode
   res <- x
 
@@ -65,25 +65,25 @@ as_fs_perms.character <- function(x) {
     is_display_mode <- grepl("^[rwxXst-]{3}$", x)
     res[is_display_mode] <- display_mode_to_symbolic_mode_windows(res[is_display_mode])
   }
-  res <- as.integer(lapply(res, getmode_, mode = 0))
+  res <- as.integer(lapply(res, getmode_, mode = mode))
   structure(res, class = "fs_perms")
 }
 
 display_mode_to_symbolic_mode_posix <- function(x) {
-  paste0("u=", substring(x, 1, 3), ",g+", substring(x, 4,6), ",o+", substring(x, 7, 9))
+  paste0("u=", substring(x, 1, 3), ",g=", substring(x, 4,6), ",o=", substring(x, 7, 9))
 }
 display_mode_to_symbolic_mode_windows <- function(x) {
   paste0("u=", substring(x, 1, 3))
 }
 
 #' @export
-as_fs_perms.octmode <- function(x) {
+as_fs_perms.octmode <- function(x, ...) {
   class(x) <- "fs_perms"
   x
 }
 
 #' @export
-as_fs_perms.numeric <- function(x) {
+as_fs_perms.numeric <- function(x, ...) {
   if (all(is.na(x) | x == as.integer(x))) {
     x <- as.integer(x)
     return(structure(x, class = "fs_perms"))
@@ -92,7 +92,7 @@ as_fs_perms.numeric <- function(x) {
 }
 
 #' @export
-as_fs_perms.integer <- function(x) {
+as_fs_perms.integer <- function(x, ...) {
   return(structure(x, class = "fs_perms"))
 }
 

@@ -9,6 +9,7 @@
 
   register_s3_method("pillar", "pillar_shaft", "fs_perms")
   register_s3_method("pillar", "type_sum", "fs_perms")
+  register_s3_method("testthat", "compare", "fs_perms")
 
   invisible()
 }

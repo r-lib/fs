@@ -35,6 +35,14 @@ compare.fs_path <- function(x, y) {
   NextMethod("compare")
 }
 
+compare.fs_perms <- function(x, y) {
+  if (!inherits(y, "fs_perms")) {
+    y <- as.character(as_fs_perms(y))
+    x <- as.character(x)
+  }
+  NextMethod("compare")
+}
+
 nchar <- function(x, type = "chars", allowNA = FALSE, keepNA = NA) {
   # keepNA was introduced in R 3.2.1, previous behavior was equivalent to keepNA
   # = FALSE

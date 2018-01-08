@@ -24,19 +24,49 @@ describe("file_info", {
   })
 })
 
-describe("file_chmod", {
-  with_dir_tree(list("foo/bar" = "test"), {
-    it("returns the input path and changes permissions", {
-      expect_true(file_info("foo/bar")$permissions == "644")
-      expect_equal(file_chmod("foo/bar", "u+x"), "foo/bar")
-      expect_true((file_info("foo/bar")$permissions & 448) > 0)
-    })
+# Windows permissions only really allow setting read only, so we will skip
+# the more thorough tests
+if (!is_windows()) {
+  describe("file_chmod", {
+    with_dir_tree(list("foo/bar" = "test"), {
+      it("returns the input path and changes permissions with symbolic input", {
+        expect_equal(file_info("foo/bar")$permissions, "644")
+        expect_equal(file_chmod("foo/bar", "u+x"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "744")
+        expect_equal(file_chmod("foo/bar", "g-r"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "704")
+        expect_equal(file_chmod("foo/bar", "o-r"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "700")
+      })
 
-    it("errors if given an invalid mode", {
-      expect_error(file_chmod("foo", "g+S"), "Invalid mode 'g\\+S'")
+      it("returns the input path and changes permissions with octal input", {
+        expect_equal(file_chmod("foo/bar", "644"), "foo/bar")
+        expect_true(file_info("foo/bar")$permissions == "644")
+        expect_equal(file_chmod("foo/bar", "744"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "744")
+        expect_equal(file_chmod("foo/bar", "704"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "704")
+        expect_equal(file_chmod("foo/bar", "700"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "700")
+      })
+
+      it("returns the input path and changes permissions with display input", {
+        expect_equal(file_chmod("foo/bar", "rw-r--r--"), "foo/bar")
+        expect_true(file_info("foo/bar")$permissions == "644")
+        expect_equal(file_chmod("foo/bar", "rwxr--r--"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "744")
+        expect_equal(file_chmod("foo/bar", "rwx---r--"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "704")
+        expect_equal(file_chmod("foo/bar", "rwx------"), "foo/bar")
+        expect_equal(file_info("foo/bar")$permissions, "700")
+      })
+
+      it("errors if given an invalid mode", {
+        expect_error(file_chmod("foo", "g+S"), "Invalid mode 'g\\+S'")
+      })
     })
   })
-})
+}
 
 describe("file_delete", {
   with_dir_tree(list("foo/bar" = "test"), {

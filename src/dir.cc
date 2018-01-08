@@ -10,9 +10,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-void mkdir_(CharacterVector path, std::string mode_str) {
-  mode_t mode = getmode_(mode_str.c_str(), 0);
-
+void mkdir_(CharacterVector path, mode_t mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));

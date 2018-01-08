@@ -26,9 +26,7 @@ void move_(CharacterVector path, CharacterVector new_path) {
 }
 
 // [[Rcpp::export]]
-void create_(CharacterVector path, std::string mode_str) {
-  mode_t mode = getmode_(mode_str.c_str(), 0);
-
+void create_(CharacterVector path, mode_t mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -254,7 +252,7 @@ LogicalVector access_(CharacterVector path, int mode) {
 }
 
 // [[Rcpp::export]]
-void chmod_(CharacterVector path, std::string mode_str) {
+void chmod_(CharacterVector path, mode_t mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -264,7 +262,6 @@ void chmod_(CharacterVector path, std::string mode_str) {
     uv_fs_req_cleanup(&req);
 
     uv_fs_t req2;
-    mode_t mode = getmode_(mode_str.c_str(), st.st_mode);
     uv_fs_chmod(uv_default_loop(), &req2, p, mode, NULL);
     stop_for_error(req2, "Failed to chmod '%s'", p);
     uv_fs_req_cleanup(&req2);

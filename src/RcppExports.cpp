@@ -6,13 +6,13 @@
 using namespace Rcpp;
 
 // mkdir_
-void mkdir_(CharacterVector path, std::string mode_str);
-RcppExport SEXP _fs_mkdir_(SEXP pathSEXP, SEXP mode_strSEXP) {
+void mkdir_(CharacterVector path, mode_t mode);
+RcppExport SEXP _fs_mkdir_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< std::string >::type mode_str(mode_strSEXP);
-    mkdir_(path, mode_str);
+    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    mkdir_(path, mode);
     return R_NilValue;
 END_RCPP
 }
@@ -53,13 +53,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // create_
-void create_(CharacterVector path, std::string mode_str);
-RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP mode_strSEXP) {
+void create_(CharacterVector path, mode_t mode);
+RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< std::string >::type mode_str(mode_strSEXP);
-    create_(path, mode_str);
+    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    create_(path, mode);
     return R_NilValue;
 END_RCPP
 }
@@ -87,13 +87,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // chmod_
-void chmod_(CharacterVector path, std::string mode_str);
-RcppExport SEXP _fs_chmod_(SEXP pathSEXP, SEXP mode_strSEXP) {
+void chmod_(CharacterVector path, mode_t mode);
+RcppExport SEXP _fs_chmod_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< std::string >::type mode_str(mode_strSEXP);
-    chmod_(path, mode_str);
+    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    chmod_(path, mode);
     return R_NilValue;
 END_RCPP
 }

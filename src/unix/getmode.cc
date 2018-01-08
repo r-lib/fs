@@ -27,7 +27,10 @@ std::string strmode_(mode_t mode) {
   char out[12];
   strmode(mode, out);
 
-  // The first character is the file type, so we do not return it.
+  // The last character is always a space, we will set it to NUL
+  out[10] = '\0';
+
+  // The first character is the file type, so we skip it.
   return out + 1;
 }
 
