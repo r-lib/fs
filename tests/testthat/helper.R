@@ -21,3 +21,7 @@ with_dir_tree <- function(files, code, base = tempfile()) {
   }
   force(code)
 }
+
+expect_error_free <- function(...) {
+  expect_error(..., regexp = NA)
+}
