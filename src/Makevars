@@ -1,7 +1,19 @@
 # Use C++11 if available, so we have C99 support for variadic macros
 CXX_STD=CXX11
 
+UNAME := $(shell uname)
+
 PKG_LIBS = ./libuv/.libs/libuv.a `pkg-config libbsd --libs 2>/dev/null`
+
+ifeq ($(UNAME), SunOS)
+PKG_LIBS += -lkstat -lsendfile -lsocket -lxnet
+endif
+ifeq ($(UNAME), FreeBSD)
+PKG_LIBS += -lkvm
+endif
+ifeq ($(UNAME), OpenBSD)
+PKG_LIBS += -lkvm
+endif
 
 PKG_CPPFLAGS = -I./libuv/include -I.
 

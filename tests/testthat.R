@@ -1,4 +1,6 @@
 library(testthat)
 library(fs)
 
-test_check("fs")
+if (Sys.info()[["sysname"]] != "SunOS") {
+  test_check("fs")
+}
