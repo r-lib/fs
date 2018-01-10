@@ -17,7 +17,7 @@ path <- function(..., ext = "") {
 #' @template fs
 #' @return `[character(1)]` the fully resolved path.
 #' @export
-path_norm <- function(path) {
+path_realize <- function(path) {
   path <- enc2utf8(path)
 
   path_tidy(normalize_(path_expand(path)))

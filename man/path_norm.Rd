@@ -2,16 +2,16 @@
 % Please edit documentation in R/path.R
 \name{path_norm}
 \alias{path_norm}
-\title{Return the canonicalized absolute pathname}
+\title{Normalize a path}
 \usage{
 path_norm(path)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
 }
-\value{
-\code{[character(1)]} the fully resolved path.
-}
 \description{
-This is functionally equivalent to \code{\link[base:normalizePath]{base::normalizePath()}}.
+\code{path_norm()} collapses redundant separators and up-level references, so \code{A//B},
+\code{A/B}, \code{A/.B} and \code{A/foo/../B} all become \code{A/B}. If one of the paths is a
+symbolic link, this may change the meaning of the path, in this case one can
+use \code{path_realize()} beforehand to follow the symlink.
 }
