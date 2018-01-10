@@ -18,9 +18,7 @@ void mkdir_(CharacterVector path, mode_t mode) {
     // we cannot make the root directory, so just continue;
     if (strcmp(p, "/") == 0 || strcmp(p, "//") == 0 ||
         (strlen(p) == 2 && p[1] == ':' &&
-          (p[0] >= 'a' && p[0] <= 'z' ||
-            p[0] >= 'A' && p[0] <='Z'))
-        ) {
+         ((p[0] >= 'a' && p[0] <= 'z') || (p[0] >= 'A' && p[0] <= 'Z')))) {
       continue;
     }
 
