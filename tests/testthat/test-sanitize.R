@@ -79,8 +79,8 @@ test_that("invalid replacement", {
 
 test_that("255 characters max", {
   string <- paste0(rep("a", 300), collapse = "")
-  expect_true(nchar(string) > 255)
-  expect_true(nchar(path_file_sanitize(string)) <= 255)
+  expect_true(nchar(string, keepNA = FALSE) > 255)
+  expect_true(nchar(path_file_sanitize(string), keepNA = FALSE) <= 255)
 })
 
 test_string_fs <- function(str, tmpdir) {
@@ -94,7 +94,7 @@ test_string_fs <- function(str, tmpdir) {
   expect_equal(path_dir(path("/abs/path", sanitized)), "/abs/path")
 
   # Should be max 255 bytes
-  expect_true(nchar(sanitized, "bytes") <= 255, info = sanitized)
+  expect_true(nchar(sanitized, "bytes", keepNA = FALSE) <= 255, info = sanitized)
 
   # Should write and read file to disk
   expect_equal(path_dir(path_tidy(filepath)), tmpdir)
