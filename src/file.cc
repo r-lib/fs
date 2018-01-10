@@ -256,15 +256,9 @@ void chmod_(CharacterVector path, mode_t mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    uv_fs_lstat(uv_default_loop(), &req, p, NULL);
-    stop_for_error(req, "Failed to stat '%s'", p);
-    uv_stat_t st = req.statbuf;
+    uv_fs_chmod(uv_default_loop(), &req, p, mode, NULL);
+    stop_for_error(req, "Failed to chmod '%s'", p);
     uv_fs_req_cleanup(&req);
-
-    uv_fs_t req2;
-    uv_fs_chmod(uv_default_loop(), &req2, p, mode, NULL);
-    stop_for_error(req2, "Failed to chmod '%s'", p);
-    uv_fs_req_cleanup(&req2);
   }
 }
 
