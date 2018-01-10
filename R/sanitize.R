@@ -17,10 +17,10 @@
 #' @examples
 #' # potentially unsafe string
 #' str <- "~/.\u0001ssh/authorized_keys"
-#' path_file_sanitize(str)
+#' path_sanitize(str)
 #'
-#' path_file_sanitize("..")
-path_file_sanitize <- function(filename, replacement = "") {
+#' path_sanitize("..")
+path_sanitize <- function(filename, replacement = "") {
   illegal <- "[/\\?<>\\:*|\":]"
   control <- "[[:cntrl:]]"
   reserved <- "^[.]+$"
@@ -39,5 +39,5 @@ path_file_sanitize <- function(filename, replacement = "") {
   if (replacement == "") {
     return(filename)
   }
-  path_file_sanitize(filename, "")
+  path_sanitize(filename, "")
 }
