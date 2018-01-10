@@ -4149,7 +4149,7 @@ typedef const UNICODE_STRING *PCUNICODE_STRING;
       struct {
         UCHAR  DataBuffer[1];
       } GenericReparseBuffer;
-    };
+    } u;
   } REPARSE_DATA_BUFFER, *PREPARSE_DATA_BUFFER;
 #endif
 
@@ -4157,7 +4157,7 @@ typedef struct _IO_STATUS_BLOCK {
   union {
     NTSTATUS Status;
     PVOID Pointer;
-  };
+  } u;
   ULONG_PTR Information;
 } IO_STATUS_BLOCK, *PIO_STATUS_BLOCK;
 
