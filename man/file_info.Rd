@@ -40,7 +40,7 @@ default values are used.
 write.csv(mtcars, "mtcars.csv")
 file_info("mtcars.csv")
 
-# Files in directory modified more than 20 days ago
+# Files in the working directory modified more than 20 days ago
 files <- file_info(dir_ls())
 files$path[difftime(Sys.time(), files$modification_time, units = "days") > 20]
 

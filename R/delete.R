@@ -3,11 +3,11 @@
 #' @description
 #' `file_delete()` and `link_delete()` delete file and links. Compared to
 #' [file.remove] they always fail if they cannot delete the object rather than
-#' changing return value or signaling a warning.
+#' changing return value or signalling a warning.
 #'
 #' `dir_delete()` will first delete the contents of the directory, then remove
 #' the directory. Compared to [unlink] it will always throw an error if the
-#' directory cannot be deleted rather than being silent or signaling a warning.
+#' directory cannot be deleted rather than being silent or signalling a warning.
 #' @template fs
 #' @export
 #' @return The deleted paths (invisibly).

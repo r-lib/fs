@@ -55,7 +55,7 @@ directory_entry_types <- c(
 #' @rdname dir_ls
 #' @param fun A function, taking one parameter, the current path entry.
 #' @examples
-#' dir_map(system.file(), identity)
+#' dir_map("base", identity)
 #' @export
 dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
@@ -67,7 +67,7 @@ dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any
 
 #' @rdname dir_ls
 #' @examples
-#' dir_map(system.file(), identity)
+#' dir_walk("base", str)
 #' @export
 dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   dir_map(path, fun, all, recursive, type)

@@ -22,11 +22,11 @@ The deleted paths (invisibly).
 \description{
 \code{file_delete()} and \code{link_delete()} delete file and links. Compared to
 \link{file.remove} they always fail if they cannot delete the object rather than
-changing return value or signaling a warning.
+changing return value or signalling a warning.
 
 \code{dir_delete()} will first delete the contents of the directory, then remove
 the directory. Compared to \link{unlink} it will always throw an error if the
-directory cannot be deleted rather than being silent or signaling a warning.
+directory cannot be deleted rather than being silent or signalling a warning.
 }
 \examples{
 \dontshow{fs:::pkgdown_tmp("/tmp/filedd4635bd7c86")}

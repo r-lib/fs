@@ -53,8 +53,8 @@ dir_ls(R.home("share"), type = "directory")
 link_create(system.file(package = "base"), "base")
 
 dir_ls("base", recursive = TRUE, glob = "*.R")
-dir_map(system.file(), identity)
-dir_map(system.file(), identity)
+dir_map("base", identity)
+dir_walk("base", str)
 dir_info("base")
 
 # Cleanup

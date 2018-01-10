@@ -28,37 +28,44 @@ fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
   <img src="https://i.imgur.com/NAux1Xc.png" width = "75%"/>
 </p>
 
-The goal of **fs** is to provide a uniform interface to file and directory
-operations, built on top of the [libuv](http://docs.libuv.org/en/v1.x/fs.html)
-C library. libuv is used by [nodejs](https://nodejs.org), so is widely used in
-the javascript community and tested by a large community on diverse systems.
-The name, and some of the interface, is inspired by Rust's [fs
+**fs** provides a cross-platform, uniform interface to file system operations.
+It is built on top of the [libuv](http://docs.libuv.org/en/v1.x/fs.html)
+C library. The JavaScript community uses libuv extensively, as it is the
+back-end component of [nodejs](https://nodejs.org). libuv is therefore
+rigorously tested across a diverse set of systems. The name, and some of the
+interface, is partially inspired by Rust's [fs
 module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation
 
-You can install **fs** from github with:
+You can install the release version of **fs** from [CRAN](https://cloud.r-project.org/) with:
 
 ``` r
+install.packages("fs")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+```r
 # install.packages("devtools")
 devtools::install_github("r-lib/fs")
 ```
 
-## Motivation vs base equivalents
+## Comparison vs base equivalents
 
 * All **fs** functions are vectorized, accepting multiple paths as input.
   Base functions are inconsistently vectorized.
 
 * All **fs** functions return a character vector of paths, a named integer or a
   logical vector (where the names give the paths). Base return values are more
-  varied.
+  varied and typically return error codes which need to be manually checked.
 
-* If **fs** operations fail, they throw an error. Base R file manipulation functions
-  tend to generate a warning and return a logical vector of successes and
-  failures. This makes it easy to miss a failure.
+* If **fs** operations fail, they throw an error. Base functions
+  tend to generate a warning and a system dependent error code. This makes it
+  easy to miss a failure.
 
-* **fs** functions always convert the input paths to UTF-8 and return results as
-  UTF-8. This gives you path encoding consistency across OSs.
+* **fs** functions always convert input paths to UTF-8 and return results as
+  UTF-8. This gives you path encoding consistency across OSs. Base functions
+  rely on the native system encoding.
 
 * **fs** functions use a consistent naming convention. Because base R's functions
   were gradually added over time there are a number of different conventions
@@ -67,9 +74,9 @@ devtools::install_github("r-lib/fs")
 
 ## Usage
 
-**fs** functions are divided into four main categories: manipulating paths 
-(`path_`), files (`file_`), directories (`dir_`), and links (`link_`). 
-Directories and links are special types of files, so `file_` functions 
+**fs** functions are divided into four main categories: manipulating paths
+(`path_`), files (`file_`), directories (`dir_`), and links (`link_`).
+Directories and links are special types of files, so `file_` functions
 will generally also work when applied to a directory or link.
 
 ```{r}
@@ -94,9 +101,9 @@ dir_ls(tmp)
 dir_delete(tmp)
 ```
 
-**fs** is designed to work well with the pipe, although it doesn't provide the
-pipe itself because it's a low-level infrastructure package so has minimal
-dependencies. You'll need to attach magrittr or similar.
+**fs** is designed to work well with the pipe, although because it is a
+minimal-dependency infrastructure package it doesn't provide the pipe itself.
+You will need to attach [magrittr](http://magrittr.tidyverse.org) or similar.
 
 ```{r}
 library(magrittr)
@@ -110,8 +117,9 @@ paths
 paths %>% file_delete()
 ```
 
-**fs** functions also work well in conjunction with dplyr, purrr and other
-tidyverse packages.
+**fs** functions also work well in conjunction with other
+[tidyverse](https://www.tidyverse.org/) packages like
+[dplyr](http://dplyr.tidyverse.org) and [purrr](http://purrr.tidyverse.org).
 
 ```{r}
 suppressMessages(
@@ -119,7 +127,6 @@ suppressMessages(
 ```
 
 Filter files by type, permission and size
-
 ```{r}
 dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
@@ -136,7 +143,6 @@ dir_info("src", recursive = TRUE) %>%
 
 Read a collection of files into one data frame. `dir_ls()` returns a named
 vector, so it can be used directly with `purrr::map_df(.id)`.
-
 ```{r}
 # Create separate files for each species
 iris %>%

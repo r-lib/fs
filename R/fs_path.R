@@ -13,7 +13,7 @@
 #' @seealso
 #' <https://geoff.greer.fm/lscolors>,
 #' <https://github.com/trapd00r/LS_COLORS>,
-#' <https://github.com/seebi/dircolors-solarized> for some example color
+#' <https://github.com/seebi/dircolors-solarized> for some example colour
 #' settings.
 #' @export
 #' @name fs_path

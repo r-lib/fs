@@ -26,6 +26,6 @@ string e.g. \code{Sys.setenv(LS_COLORS = "")}.
 \seealso{
 \url{https://geoff.greer.fm/lscolors},
 \url{https://github.com/trapd00r/LS_COLORS},
-\url{https://github.com/seebi/dircolors-solarized} for some example color
+\url{https://github.com/seebi/dircolors-solarized} for some example colour
 settings.
 }
