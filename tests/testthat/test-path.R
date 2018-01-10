@@ -158,6 +158,51 @@ describe("path_ext<-", {
   })
 })
 
+# test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L276
+
+describe("path_norm", {
+  it ("works with POSIX paths", {
+    expect_equal(path_norm(""), ".")
+    expect_equal(path_norm(""), ".")
+    expect_equal(path_norm(".."), "..")
+    expect_equal(path_norm("/../../.."), "/")
+    expect_equal(path_norm("/../.././.."), "/")
+    expect_equal(path_norm("../.././.."), "../../..")
+    expect_equal(path_norm("/"), "/")
+    expect_equal(path_norm("//"), "/")
+    expect_equal(path_norm("///"), "/")
+    expect_equal(path_norm("//foo"), "//foo")
+    expect_equal(path_norm("//foo/.//bar//"), "//foo/bar")
+    expect_equal(path_norm("/foo/.//bar//.//..//.//baz"), "/foo/baz")
+    expect_equal(path_norm("/..//./foo/.//bar"), "/foo/bar")
+  })
+
+  it ("works with POSIX paths", {
+    expect_equal(path_norm("A//////././//.//B"), "A/B")
+    expect_equal(path_norm("A/./B"), "A/B")
+    expect_equal(path_norm("A/foo/../B"), "A/B")
+    expect_equal(path_norm("C:A//B"), "C:A/B")
+    expect_equal(path_norm("D:A/./B"), "D:A/B")
+    expect_equal(path_norm("e:A/foo/../B"), "e:A/B")
+
+    expect_equal(path_norm("C:///A//B"), "C:/A/B")
+    expect_equal(path_norm("D:///A/./B"), "D:/A/B")
+    expect_equal(path_norm("e:///A/foo/../B"), "e:/A/B")
+
+    expect_equal(path_norm(".."), "..")
+    expect_equal(path_norm("."), ".")
+    expect_equal(path_norm(""), ".")
+    expect_equal(path_norm("/"), "/")
+    expect_equal(path_norm("c:/"), "c:")
+    expect_equal(path_norm("/../.././.."), "/")
+    expect_equal(path_norm("c:/../../.."), "c:")
+    expect_equal(path_norm("../.././.."), "../../..")
+    expect_equal(path_norm("C:////a/b"), "C:/a/b")
+    expect_equal(path_norm("//machine/share//a/b"), "//machine/share/a/b")
+
+    expect_equal(path_norm("\\\\?\\D:/XY\\Z"), "//?/D:/XY/Z")
+  })
+})
 
 # Test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py
 

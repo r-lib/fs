@@ -92,6 +92,44 @@ path_join <- function(parts) {
   path_tidy(path_(parts, ""))
 }
 
+#' Normalize a path
+#'
+#' `path_norm()` collapses redundant separators and up-level references, so `A//B`,
+#' `A/B`, `A/.B` and `A/foo/../B` all become `A/B`. If one of the paths is a
+#' symbolic link, this may change the meaning of the path, in this case one can
+#' use `path_realize()` beforehand to follow the symlink.
+#' @template fs
+#' @export
+path_norm <- function(path) {
+  parts <- path_split(path)
+  path_norm_one <- function(p) {
+    p <- p[p != "."]
+    double_dots <- p == ".."
+    if (any(double_dots)) {
+      res <- character(length(p))
+      size <- 0
+      is_abs <- is_absolute_path(p[[1]])
+      for (i in seq_along(p)) {
+        if (p[[i]] != ".." || (! is_abs && size == 0) || (size > 0 && res[[size]] == "..")) {
+          res[[size <- size + 1]] <- p[[i]]
+        } else if (size > 0) {
+          size <- size - 1
+        }
+      }
+      res <- res[seq(1, size)]
+      if (is_abs && res[[1]] != p[[1]]) {
+        res <- c(p[[1]], res)
+      }
+      p <- res
+    }
+    if (length(p) == 0) {
+      return(path_tidy("."))
+    }
+    path_join(p)
+  }
+  path_tidy(vapply(parts, path_norm_one, character(1)))
+}
+
 #' Paths starting from useful directories
 #'
 #' * `path_temp()` starts the path with the session temporary directory
