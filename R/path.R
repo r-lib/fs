@@ -64,11 +64,15 @@ path_tidy <- function(path) {
 }
 
 
-#' Split a path into components
+#' Split and join a path
 #'
+#' `path_split()` splits a path into it's components, `path_join()` joins a
+#' split list back together.
 #' @template fs
+#' @param parts A list of character vectors, corresponding to split paths.
 #' @return A list of separated paths
 #' @export
+# TODO: examples
 path_split <- function(path) {
   path <- path_tidy(path)
 
@@ -79,6 +83,14 @@ path_split <- function(path) {
   strsplit(path, "^(?=/)(?!//)|(?<!^)(?<!^/)/", perl = TRUE)
 }
 
+#' @rdname path_split
+#' @export
+path_join <- function(parts) {
+  if (length(parts) == 0) {
+    return(path_tidy(""))
+  }
+  path_tidy(path_(parts, ""))
+}
 
 #' Paths starting from useful directories
 #'
@@ -197,8 +209,5 @@ path_common <- function(path) {
     }
   }
 
-  if (isTRUE(is_abs[[1]])) {
-    return(path_tidy(paste0(common[[1]], paste0(common[-1], collapse = "/"))))
-  }
-  return(path_tidy(paste0(common, collapse = "/")))
+  path_join(common)
 }

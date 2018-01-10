@@ -2,16 +2,22 @@
 % Please edit documentation in R/path.R
 \name{path_split}
 \alias{path_split}
-\title{Split a path into components}
+\alias{path_join}
+\title{Split and join a path}
 \usage{
 path_split(path)
+
+path_join(parts)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
+
+\item{parts}{A list of character vectors, corresponding to split paths.}
 }
 \value{
 A list of separated paths
 }
 \description{
-Split a path into components
+\code{path_split()} splits a path into it's components, \code{path_join()} joins a
+split list back together.
 }
