@@ -17,40 +17,48 @@ status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://c
 
 </p>
 
-The goal of **fs** is to provide a uniform interface to file and
-directory operations, built on top of the
-[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. libuv is used
-by [nodejs](https://nodejs.org), so is widely used in the javascript
-community and tested by a large community on diverse systems. The name,
-and some of the interface, is inspired by Rust’s [fs
+**fs** provides a cross-platform, uniform interface to file system
+operations. It is built on top of the
+[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. The JavaScript
+community uses libuv extensively, as it is the back-end component of
+[nodejs](https://nodejs.org). libuv is therefore rigorously tested
+across a diverse set of systems. The name, and some of the interface, is
+partially inspired by Rust’s [fs
 module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation
 
-You can install **fs** from github with:
+You can install the release version of **fs** from
+[CRAN](https://cloud.r-project.org/) with:
+
+``` r
+install.packages("fs")
+```
+
+And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("r-lib/fs")
 ```
 
-## Motivation vs base equivalents
+## Comparison vs base equivalents
 
   - All **fs** functions are vectorized, accepting multiple paths as
     input. Base functions are inconsistently vectorized.
 
   - All **fs** functions return a character vector of paths, a named
     integer or a logical vector (where the names give the paths). Base
-    return values are more varied.
+    return values are more varied and typically return error codes which
+    need to be manually checked.
 
-  - If **fs** operations fail, they throw an error. Base R file
-    manipulation functions tend to generate a warning and return a
-    logical vector of successes and failures. This makes it easy to miss
-    a failure.
+  - If **fs** operations fail, they throw an error. Base functions tend
+    to generate a warning and a system dependent error code. This makes
+    it easy to miss a failure.
 
-  - **fs** functions always convert the input paths to UTF-8 and return
+  - **fs** functions always convert input paths to UTF-8 and return
     results as UTF-8. This gives you path encoding consistency across
-    OSs.
+    OSs. Base functions rely on the native system encoding.
 
   - **fs** functions use a consistent naming convention. Because base
     R’s functions were gradually added over time there are a number of
@@ -93,9 +101,10 @@ dir_ls(tmp)
 dir_delete(tmp)
 ```
 
-**fs** is designed to work well with the pipe, although it doesn’t
-provide the pipe itself because it’s a low-level infrastructure package
-so has minimal dependencies. You’ll need to attach magrittr or similar.
+**fs** is designed to work well with the pipe, although because it is a
+minimal-dependency infrastructure package it doesn’t provide the pipe
+itself. You will need to attach
+[magrittr](http://magrittr.tidyverse.org) or similar.
 
 ``` r
 library(magrittr)
@@ -111,8 +120,10 @@ paths
 paths %>% file_delete()
 ```
 
-**fs** functions also work well in conjunction with dplyr, purrr and
-other tidyverse packages.
+**fs** functions also work well in conjunction with other
+[tidyverse](https://www.tidyverse.org/) packages like
+[dplyr](http://dplyr.tidyverse.org) and
+[purrr](http://purrr.tidyverse.org).
 
 ``` r
 suppressMessages(
@@ -129,15 +140,15 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size modification_time  
 #>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-08 14:26:15
-#> 2 src/dir.o           rw-r--r--        434.8K 2018-01-08 14:26:14
-#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-08 14:26:15
-#> 4 src/id.o            rw-r--r--        388.5K 2018-01-08 10:14:48
-#> 5 src/file.o          rw-r--r--        310.1K 2018-01-08 13:49:40
-#> 6 src/path.o          rw-r--r--        244.8K 2018-01-08 10:14:48
-#> 7 src/link.o          rw-r--r--        219.6K 2018-01-08 10:14:45
-#> 8 src/error.o         rw-r--r--         17.3K 2018-01-08 10:14:45
-#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-08 14:26:11
+#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-10 13:03:49
+#> 2 src/dir.o           rw-r--r--        434.9K 2018-01-10 13:03:49
+#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-10 13:04:07
+#> 4 src/id.o            rw-r--r--        388.5K 2018-01-10 13:03:49
+#> 5 src/file.o          rw-r--r--        309.8K 2018-01-10 13:03:51
+#> 6 src/path.o          rw-r--r--        244.8K 2018-01-10 13:03:49
+#> 7 src/link.o          rw-r--r--        219.6K 2018-01-10 13:03:49
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-10 13:03:48
+#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-09 22:35:39
 ```
 
 Display folder size
@@ -154,7 +165,7 @@ dir_info("src", recursive = TRUE) %>%
 #>  3 src/libuv/autom4te.cache                     2.13M
 #>  4 src/libuv/src/unix                           1.08M
 #>  5 src/libuv/test                             865.36K
-#>  6 src/libuv/src/win                           683.1K
+#>  6 src/libuv/src/win                          683.14K
 #>  7 src/libuv/m4                               334.61K
 #>  8 src/libuv/docs/src/static                  328.32K
 #>  9 src/libuv/include                          192.33K

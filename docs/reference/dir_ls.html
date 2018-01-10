@@ -63,12 +63,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/r-lib/fs">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -157,53 +152,37 @@ expression (e.g. <code>\.csv$)</code> passed on to grep to filter paths.</p></td
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"base"</span>)
 
 <span class='fu'>dir_ls</span>(<span class='st'>"base"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; base/demo/error.catching.R base/demo/is.things.R      
-#&gt; base/demo/recursion.R      base/demo/scoping.R        </div><div class='input'><span class='fu'>dir_map</span>(<span class='fu'>system.file</span>(), <span class='no'>identity</span>)</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/CITATION"
+#&gt; base/demo/recursion.R      base/demo/scoping.R        </div><div class='input'><span class='fu'>dir_map</span>(<span class='st'>"base"</span>, <span class='no'>identity</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; [1] "base/CITATION"
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/DESCRIPTION"
+#&gt; [1] "base/DESCRIPTION"
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/INDEX"
+#&gt; [1] "base/INDEX"
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/Meta"
+#&gt; [1] "base/Meta"
 #&gt; 
 #&gt; [[5]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/R"
+#&gt; [1] "base/R"
 #&gt; 
 #&gt; [[6]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/demo"
+#&gt; [1] "base/demo"
 #&gt; 
 #&gt; [[7]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/help"
+#&gt; [1] "base/help"
 #&gt; 
 #&gt; [[8]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/html"
-#&gt; </div><div class='input'><span class='fu'>dir_map</span>(<span class='fu'>system.file</span>(), <span class='no'>identity</span>)</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/CITATION"
-#&gt; 
-#&gt; [[2]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/DESCRIPTION"
-#&gt; 
-#&gt; [[3]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/INDEX"
-#&gt; 
-#&gt; [[4]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/Meta"
-#&gt; 
-#&gt; [[5]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/R"
-#&gt; 
-#&gt; [[6]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/demo"
-#&gt; 
-#&gt; [[7]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/help"
-#&gt; 
-#&gt; [[8]]
-#&gt; [1] "/Library/Frameworks/R.framework/Resources/library/base/html"
-#&gt; </div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
+#&gt; [1] "base/html"
+#&gt; </div><div class='input'><span class='fu'>dir_walk</span>(<span class='st'>"base"</span>, <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "base/CITATION"
+#&gt;  chr "base/DESCRIPTION"
+#&gt;  chr "base/INDEX"
+#&gt;  chr "base/Meta"
+#&gt;  chr "base/R"
+#&gt;  chr "base/demo"
+#&gt;  chr "base/help"
+#&gt;  chr "base/html"</div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
 #&gt;   path             type         size permissio… modification_time   user  group
 #&gt;   &lt;fs::path&gt;       &lt;fctr&gt;   &lt;fs::by&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
 #&gt; 1 base/CITATION    file          956 rw-rw-r--  2017-12-06 21:16:12 root  admin

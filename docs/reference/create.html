@@ -63,12 +63,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/r-lib/fs">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -91,9 +86,9 @@ be left unchanged. That means that compared to <code>file.create()</code>,
 existing directories.</p>
     
 
-    <pre class="usage"><span class='fu'>file_create</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"rw-r--r--"</span>)
+    <pre class="usage"><span class='fu'>file_create</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u=rw,go=r"</span>)
 
-<span class='fu'>dir_create</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"rwxr-xr-x"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>dir_create</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u=rwx,go=rx"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>link_create</span>(<span class='no'>path</span>, <span class='no'>new_path</span>, <span class='kw'>symbolic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     

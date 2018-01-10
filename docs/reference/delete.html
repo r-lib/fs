@@ -63,12 +63,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/r-lib/fs">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -86,11 +81,11 @@
     
     <p><code>file_delete()</code> and <code>link_delete()</code> delete file and links. Compared to
 file.remove they always fail if they cannot delete the object rather than
-changing return value or signaling a warning.
+changing return value or signalling a warning.
 
     <code>dir_delete()</code> will first delete the contents of the directory, then remove
 the directory. Compared to unlink it will always throw an error if the
-directory cannot be deleted rather than being silent or signaling a warning.</p>
+directory cannot be deleted rather than being silent or signalling a warning.</p>
     
 
     <pre class="usage"><span class='fu'>file_delete</span>(<span class='no'>path</span>)
