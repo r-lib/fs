@@ -249,7 +249,6 @@ path_ext_set <- function(path, ext) {
 #' @template fs
 #' @export
 path_common <- function(path) {
-  path <- sort(path_tidy(path))
   is_abs <- is_absolute_path(path)
 
   # We must either have all absolute paths, or all relative paths.
@@ -257,11 +256,13 @@ path_common <- function(path) {
     stop("Can't mix absolute and relative paths", call. = FALSE)
   }
 
-  # remove . entries from the split paths
-  path <- lapply(path_split(path), function(x) x[x != "."])
+  path <- path_norm(path)
+  path <- sort(path)
 
-  s1 <- path[[1]]
-  s2 <- path[[length(path)]]
+  # remove . entries from the split paths
+  parts <- lapply(path_split(path), function(x) x[x != "."])
+  s1 <- parts[[1]]
+  s2 <- parts[[length(parts)]]
   common <- s1
   for (i in seq_along(s1)) {
     if (s1[[i]] != s2[[i]]) {
@@ -273,6 +274,5 @@ path_common <- function(path) {
       break;
     }
   }
-
   path_join(common)
 }
