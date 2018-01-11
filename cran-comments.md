@@ -1,14 +1,14 @@
 This is a resubmission.
 
-I have now included the libuv LICENSE in the file LICENSE in the package root
-directory. The copyright holders listed in the previous reply are contributors
-to the libuv library and are now included in the LICENSE file.
+I have now included the libuv license and copyright holders in the file LICENSE
+in the package root directory. The copyright holders listed in the previous
+reply are contributors to the libuv library and are now included in this file.
 
 As mentioned in my comments in the previous submission, and in the
 SystemRequirements field in the DESCRIPTION, this package requires libbsd to be
 installed on linux systems (libbsd: libbsd-dev (deb), libbsd-devel (yum)). The
 package was failing to install on your system because you did not install this
-dependency.
+dependency before trying to install fs.
 
 ## Test environments
 * local OS X install, R 3.4.3
