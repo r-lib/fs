@@ -16,3 +16,4 @@
 ^appveyor\.yml$
 ^script\.R$
 ^src/\.clang-format$
+^cran-comments\.md$
