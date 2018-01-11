@@ -35,8 +35,14 @@ path_common(path)
 
 \item{start}{A starting directory to compute relative path to.}
 }
+\value{
+The new path as a character vector. For \code{\link[=path_split]{path_split()}}, a list of
+character vectors of path components is returned instead.
+}
 \description{
-Path computations
+All functions apart from \code{\link[=path_expand]{path_expand()}} and \code{\link[=path_realize]{path_realize()}} are purely
+path computations, so the files in question do not need to exist on the
+filesystem.
 }
 \section{Functions}{
 \itemize{
@@ -55,9 +61,46 @@ links.
 \item \code{path_norm}: collapses redundant separators and
 up-level references, so \code{A//B}, \code{A/B}, \code{A/.B} and \code{A/foo/../B} all become
 \code{A/B}. If one of the paths is a symbolic link, this may change the meaning
-of the path, in this case one can use \code{path_realize()} beforehand to follow
-the symlink.
+of the path, in this case one should use \code{\link[=path_realize]{path_realize()}} prior to calling
+\code{\link[=path_norm]{path_norm()}}.
 
-\item \code{path_common}: Find the common parts of two (or more) paths
+\item \code{path_relative}: computes the path relative to the \code{start} path,
+which can be either a absolute or relative path.
+
+\item \code{path_common}: finds the common parts of two (or more) paths.
 }}
 
+\examples{
+# Expand a path
+path_expand("~/bin")
+
+dir_create("a")
+file_create("b")
+link_create(path_absolute("a"), "c")
+
+# Realize the path
+path_realize("c")
+
+# Split a path
+parts <- path_split("a/b")
+parts
+
+# Join it together
+path_join(parts)
+
+# Find the absolute path
+path_absolute("..")
+
+# Normalize a path
+path_norm("a/../b\\\\c/.")
+
+# Compute a relative path
+path_relative("/foo/abc", "/foo/bar/baz")
+
+# Find the common path between multiple paths
+path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))
+
+# Cleanup
+dir_delete("a")
+link_delete("c")
+}

@@ -1,7 +1,45 @@
 #' Path computations
 #'
+#' All functions apart from [path_expand()] and [path_realize()] are purely
+#' path computations, so the files in question do not need to exist on the
+#' filesystem.
 #' @template fs
 #' @name path_math
+#' @return The new path as a character vector. For [path_split()], a list of
+#'   character vectors of path components is returned instead.
+#' @examples
+#' # Expand a path
+#' path_expand("~/bin")
+#'
+#' dir_create("a")
+#' file_create("b")
+#' link_create(path_absolute("a"), "c")
+#'
+#' # Realize the path
+#' path_realize("c")
+#'
+#' # Split a path
+#' parts <- path_split("a/b")
+#' parts
+#'
+#' # Join it together
+#' path_join(parts)
+#'
+#' # Find the absolute path
+#' path_absolute("..")
+#'
+#' # Normalize a path
+#' path_norm("a/../b\\c/.")
+#'
+#' # Compute a relative path
+#' path_relative("/foo/abc", "/foo/bar/baz")
+#'
+#' # Find the common path between multiple paths
+#' path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))
+#'
+#' # Cleanup
+#' dir_delete("a")
+#' link_delete("c")
 NULL
 
 #' Construct path to a file or directory
@@ -84,7 +122,10 @@ path_join <- function(parts) {
   if (length(parts) == 0) {
     return(path_tidy(""))
   }
-  path_tidy(path_(parts, ""))
+  if (is.character(parts)) {
+    return(path_tidy(path_(parts, "")))
+  }
+  path_tidy(vapply(parts, path_join, character(1)))
 }
 
 #' @describeIn path_math returns a normalized, absolute version of a path.
@@ -100,8 +141,8 @@ path_absolute <- function(path) {
 #' @describeIn path_math collapses redundant separators and
 #' up-level references, so `A//B`, `A/B`, `A/.B` and `A/foo/../B` all become
 #' `A/B`. If one of the paths is a symbolic link, this may change the meaning
-#' of the path, in this case one can use `path_realize()` beforehand to follow
-#' the symlink.
+#' of the path, in this case one should use [path_realize()] prior to calling
+#' [path_norm()].
 #' @export
 path_norm <- function(path) {
   parts <- path_split(path)
@@ -133,8 +174,9 @@ path_norm <- function(path) {
   path_tidy(vapply(parts, path_norm_one, character(1)))
 }
 
+#' @describeIn path_math computes the path relative to the `start` path,
+#'   which can be either a absolute or relative path.
 #' @export
-#' @rdname path_math
 #' @param start A starting directory to compute relative path to.
 # This implementation is partially derived from
 # https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
@@ -144,22 +186,22 @@ path_relative <- function(path, start = ".") {
 
   path_relative_one <- function(p) {
     common <- path_common(c(start, p))
-    start_lst <- path_split(start)[[1]]
-    path_lst <- path_split(p)[[1]]
+    starts <- path_split(start)[[1]]
+    paths <- path_split(p)[[1]]
 
     i <- length(path_split(common)[[1]])
-    double_dot_part <- rep("..", (length(start_lst) - i))
-    if (i + 1 <= length(path_lst)) {
-      path_part <- path_lst[seq(i + 1, length(path_lst))]
+    double_dot_part <- rep("..", (length(starts) - i))
+    if (i + 1 <= length(paths)) {
+      path_part <- paths[seq(i + 1, length(paths))]
     } else {
-      path_part <- list()
+      path_part <- character()
     }
-    rel_lst = c(double_dot_part, path_part)
-    if (length(rel_lst) == 0) {
+    rels <- c(double_dot_part, path_part)
+    if (length(rels) == 0) {
       return(path_tidy("."))
     }
 
-    path_join(rel_lst)
+    path_join(rels)
   }
   path_tidy(vapply(path, path_relative_one, character(1)))
 }
@@ -249,7 +291,7 @@ path_ext_set <- function(path, ext) {
   path_ext_set(path, value)
 }
 
-#' @describeIn path_math Find the common parts of two (or more) paths
+#' @describeIn path_math finds the common parts of two (or more) paths.
 #' @export
 path_common <- function(path) {
   is_abs <- is_absolute_path(path)
