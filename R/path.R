@@ -136,6 +136,8 @@ path_norm <- function(path) {
 #' @export
 #' @rdname path_math
 #' @param start A starting directory to compute relative path to.
+# This implementation is partially derived from
+# https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
 path_relative <- function(path, start = ".") {
   start <- path_absolute(start)
   path <- path_absolute(path)
