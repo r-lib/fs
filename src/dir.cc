@@ -15,13 +15,6 @@ void mkdir_(CharacterVector path, mode_t mode) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
 
-    // we cannot make the root directory, so just continue;
-    if (strcmp(p, "/") == 0 || strcmp(p, "//") == 0 ||
-        (strlen(p) == 2 && p[1] == ':' &&
-         ((p[0] >= 'a' && p[0] <= 'z') || (p[0] >= 'A' && p[0] <= 'Z')))) {
-      continue;
-    }
-
     int fd = uv_fs_mkdir(uv_default_loop(), &req, p, mode, NULL);
 
     // We want to fail silently if the directory already exists

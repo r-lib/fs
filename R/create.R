@@ -44,9 +44,12 @@ dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
   for (p in paths) {
     if (length(p) == 1 || !isTRUE(recursive)) {
       mkdir_(p, mode)
-    }
-    else {
-      mkdir_(Reduce(file.path, p, accumulate = TRUE), mode)
+    } else {
+      p_paths <- Reduce(file.path, p, accumulate = TRUE)
+      if (is_absolute_path(p[[1]])) {
+        p_paths <- p_paths[-1]
+      }
+      mkdir_(p_paths, mode)
     }
   }
 
