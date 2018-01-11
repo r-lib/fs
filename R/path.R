@@ -12,11 +12,11 @@
 #' path_expand("~/bin")
 #'
 #' dir_create("a")
-#' file_create("b")
+#' file_create("a/b")
 #' link_create(path_abs("a"), "c")
 #'
 #' # Realize the path
-#' path_real("c")
+#' path_real("c/b")
 #'
 #' # Split a path
 #' parts <- path_split("a/b")

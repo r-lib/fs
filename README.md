@@ -140,15 +140,15 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size modification_time  
 #>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-10 13:03:49
-#> 2 src/dir.o           rw-r--r--        434.9K 2018-01-10 13:03:49
-#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-10 13:04:07
-#> 4 src/id.o            rw-r--r--        388.5K 2018-01-10 13:03:49
-#> 5 src/file.o          rw-r--r--        309.8K 2018-01-10 13:03:51
-#> 6 src/path.o          rw-r--r--        244.8K 2018-01-10 13:03:49
-#> 7 src/link.o          rw-r--r--        219.6K 2018-01-10 13:03:49
-#> 8 src/error.o         rw-r--r--         17.3K 2018-01-10 13:03:48
-#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-09 22:35:39
+#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-11 09:53:17
+#> 2 src/dir.o           rw-r--r--        434.9K 2018-01-11 09:53:17
+#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-11 09:53:36
+#> 4 src/id.o            rw-r--r--        388.5K 2018-01-11 09:53:17
+#> 5 src/file.o          rw-r--r--        309.8K 2018-01-11 09:53:17
+#> 6 src/path.o          rw-r--r--        244.8K 2018-01-11 09:53:17
+#> 7 src/link.o          rw-r--r--        219.6K 2018-01-11 09:53:17
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-11 09:53:17
+#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-10 22:10:06
 ```
 
 Display folder size

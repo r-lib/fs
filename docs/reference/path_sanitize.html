@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find the common parts of two (or more) paths — path_common • fs</title>
+<title>Sanitize a filename by removing directory paths and invalid characters — path_sanitize • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -75,31 +75,58 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find the common parts of two (or more) paths</h1>
+    <h1>Sanitize a filename by removing directory paths and invalid characters</h1>
     </div>
 
     
-    <p>The input paths must be either all relative or all absolute.</p>
+    <p><code>path_file_sanitize()</code> removes the following:</p><ul>
+<li><p><a href='https://en.wikipedia.org/wiki/C0_and_C1_control_codes'>Control characters</a></p></li>
+<li><p><a href='https://kb.acronis.com/content/39790'>Reserved characters</a></p></li>
+<li><p>Unix reserved filenames (<code>.</code> and <code>..</code>)</p></li>
+<li><p>Trailing periods and spaces (invalid on Windows)</p></li>
+<li><p>Windows reserved filenames (<code>CON</code>, <code>PRN</code>, <code>AUX</code>, <code>NUL</code>, <code>COM1</code>, <code>COM2</code>,
+<code>COM3</code>, COM4, <code>COM5</code>, <code>COM6</code>, <code>COM7</code>, <code>COM8</code>, <code>COM9</code>, <code>LPT1</code>, <code>LPT2</code>,
+<code>LPT3</code>, <code>LPT4</code>, <code>LPT5</code>, <code>LPT6</code>, LPT7, <code>LPT8</code>, and <code>LPT9</code>)
+The resulting string is then truncated to <a href='https://en.wikipedia.org/wiki/Comparison_of_file_systems#Limits'>255 bytes in length</a></p></li>
+</ul>
     
 
-    <pre class="usage"><span class='fu'>path_common</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>path_sanitize</span>(<span class='no'>filename</span>, <span class='kw'>replacement</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>A character vector of one or more paths.</p></td>
+      <th>filename</th>
+      <td><p>A character vector to be sanitized.</p></td>
+    </tr>
+    <tr>
+      <th>replacement</th>
+      <td><p>A character vector used to replace invalid characters.</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
+    <p><a href='https://www.npmjs.com/package/sanitize-filename'>https://www.npmjs.com/package/sanitize-filename</a>, upon which this
+function is based.</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># potentially unsafe string</span>
+<span class='no'>str</span> <span class='kw'>&lt;-</span> <span class='st'>"~/.\u0001ssh/authorized_keys"</span>
+<span class='fu'>path_sanitize</span>(<span class='no'>str</span>)</div><div class='output co'>#&gt; [1] "~.sshauthorized_keys"</div><div class='input'>
+<span class='fu'>path_sanitize</span>(<span class='st'>".."</span>)</div><div class='output co'>#&gt; [1] ""</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
