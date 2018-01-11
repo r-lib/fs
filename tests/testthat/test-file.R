@@ -2,7 +2,7 @@ context("test-file.R")
 
 describe("file_info", {
   with_dir_tree(list("foo/bar" = "test"), {
-    link_create(path_norm("foo"), "foo2")
+    link_create(path_absolute("foo"), "foo2")
 
     it("returns a correct tibble", {
       x <- file_info(c("foo", "foo/bar", "foo2"))

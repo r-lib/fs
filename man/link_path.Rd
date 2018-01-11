@@ -17,7 +17,7 @@ Read the value of a symbolic link
 }
 \examples{
 file_create("foo")
-link_create(path_norm("foo"), "bar")
+link_create(path_absolute("foo"), "bar")
 link_path("bar")
 file_delete(c("foo", "bar"))
 }

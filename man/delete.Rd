@@ -33,7 +33,7 @@ directory cannot be deleted rather than being silent or signalling a warning.
 # create a directory, with some files and a link to it
 dir <- dir_create(file_temp())
 files <- file_create(path(dir, letters[1:5]))
-link <- link_create(path_norm(dir), "link")
+link <- link_create(path_absolute(dir), "link")
 
 # All files created
 dir_exists(dir)
