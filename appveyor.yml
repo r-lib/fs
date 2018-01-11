@@ -17,6 +17,7 @@ cache:
 
 build_script:
   - travis-tool.sh install_deps
+  - travis-tool.sh install_github covr
 
 test_script:
   - travis-tool.sh run_tests

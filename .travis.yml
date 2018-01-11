@@ -4,6 +4,8 @@ language: R
 sudo: false
 cache: packages
 
+r_github_packages: covr
+
 addons:
   apt:
     packages:
