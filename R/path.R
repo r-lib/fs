@@ -1,3 +1,9 @@
+#' Path computations
+#'
+#' @template fs
+#' @name path_math
+NULL
+
 #' Construct path to a file or directory
 #'
 #' @template fs
@@ -10,12 +16,8 @@ path <- function(..., ext = "") {
   path_tidy(path_(lapply(list(...), as.character), ext))
 }
 
-#' Return the canonicalized absolute pathname
-#'
-#' This is functionally equivalent to [base::normalizePath()].
-#'
-#' @template fs
-#' @return `[character(1)]` the fully resolved path.
+#' @describeIn path_math returns the canonical path, eliminating any symbolic
+#' links.
 #' @export
 path_realize <- function(path) {
   path <- enc2utf8(path)
@@ -24,10 +26,8 @@ path_realize <- function(path) {
 }
 
 
-#' Perform tilde expansion of a pathname
-#'
-#' equivalent to [base::path.expand]
-#' @template fs
+#' @describeIn path_math performs tilde expansion on a path, replacing instances of
+#' `~` or `~user` with the user's home directory.
 #' @export
 # TODO: so far it looks like libuv does not provide a cross platform version of
 # this https://github.com/libuv/libuv/issues/11
@@ -64,13 +64,7 @@ path_tidy <- function(path) {
 }
 
 
-#' Split and join a path
-#'
-#' `path_split()` splits a path into it's components, `path_join()` joins a
-#' split list back together.
-#' @template fs
-#' @param parts A list of character vectors, corresponding to split paths.
-#' @return A list of separated paths
+#' @describeIn path_math splits paths into parts.
 #' @export
 # TODO: examples
 path_split <- function(path) {
@@ -83,7 +77,8 @@ path_split <- function(path) {
   strsplit(path, "^(?=/)(?!//)|(?<!^)(?<!^/)/", perl = TRUE)
 }
 
-#' @rdname path_split
+#' @describeIn path_math joins parts together.
+#' @param parts A list of character vectors, corresponding to split paths.
 #' @export
 path_join <- function(parts) {
   if (length(parts) == 0) {
@@ -92,8 +87,8 @@ path_join <- function(parts) {
   path_tidy(path_(parts, ""))
 }
 
-#' Normalize a path
-#'
+#' @describeIn path_math returns a normalized, absolute version of a path.
+#' @export
 path_absolute <- function(path) {
   is_abs <- is_absolute_path(path)
   path[is_abs] <- path_norm(path[is_abs])
@@ -101,6 +96,12 @@ path_absolute <- function(path) {
   path[!is_abs] <- path_norm(path(cwd, path[!is_abs]))
   path
 }
+
+#' @describeIn path_math collapses redundant separators and
+#' up-level references, so `A//B`, `A/B`, `A/.B` and `A/foo/../B` all become
+#' `A/B`. If one of the paths is a symbolic link, this may change the meaning
+#' of the path, in this case one can use `path_realize()` beforehand to follow
+#' the symlink.
 #' @export
 path_norm <- function(path) {
   parts <- path_split(path)
@@ -132,6 +133,9 @@ path_norm <- function(path) {
   path_tidy(vapply(parts, path_norm_one, character(1)))
 }
 
+#' @export
+#' @rdname path_math
+#' @param start A starting directory to compute relative path to.
 path_relative <- function(path, start = ".") {
   start <- path_absolute(start)
   path <- path_absolute(path)
@@ -157,6 +161,7 @@ path_relative <- function(path, start = ".") {
   }
   path_tidy(vapply(path, path_relative_one, character(1)))
 }
+
 #' Paths starting from useful directories
 #'
 #' * `path_temp()` starts the path with the session temporary directory
@@ -242,11 +247,7 @@ path_ext_set <- function(path, ext) {
   path_ext_set(path, value)
 }
 
-
-#' Find the common parts of two (or more) paths
-#'
-#' The input paths must be either all relative or all absolute.
-#' @template fs
+#' @describeIn path_math Find the common parts of two (or more) paths
 #' @export
 path_common <- function(path) {
   is_abs <- is_absolute_path(path)
