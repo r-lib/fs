@@ -274,6 +274,6 @@ describe("path_relative", {
 
 describe("path_home", {
   it("is equivalent to path_expand(\"~\")", {
-    expect_equal(path_home(), path_expand("~"))
+    expect_equal(path_home(), path_tidy(path_expand("~")))
   })
 })
