@@ -271,3 +271,9 @@ describe("path_relative", {
     expect_equal(path_relative("//conky/mountpoint/a", "//conky/mountpoint/b/c"), "../../a")
   })
 })
+
+describe("path_home", {
+  it("is equivalent to path_expand(\"~\")", {
+    expect_equal(path_home(), path_expand("~"))
+  })
+})
