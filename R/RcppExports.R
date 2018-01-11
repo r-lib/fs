@@ -89,8 +89,8 @@ readlink_ <- function(path) {
     .Call(`_fs_readlink_`, path)
 }
 
-normalize_ <- function(path) {
-    .Call(`_fs_normalize_`, path)
+realize_ <- function(path) {
+    .Call(`_fs_realize_`, path)
 }
 
 path_ <- function(paths, ext) {

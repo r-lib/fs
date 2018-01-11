@@ -20,7 +20,7 @@ path <- function(..., ext = "") {
 path_realize <- function(path) {
   path <- enc2utf8(path)
 
-  path_tidy(normalize_(path_expand(path)))
+  path_tidy(realize_(path_expand(path)))
 }
 
 
