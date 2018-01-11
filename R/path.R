@@ -132,6 +132,31 @@ path_norm <- function(path) {
   path_tidy(vapply(parts, path_norm_one, character(1)))
 }
 
+path_relative <- function(path, start = ".") {
+  start <- path_absolute(start)
+  path <- path_absolute(path)
+
+  path_relative_one <- function(p) {
+    common <- path_common(c(start, p))
+    start_lst <- path_split(start)[[1]]
+    path_lst <- path_split(p)[[1]]
+
+    i <- length(path_split(common)[[1]])
+    double_dot_part <- rep("..", (length(start_lst) - i))
+    if (i + 1 <= length(path_lst)) {
+      path_part <- path_lst[seq(i + 1, length(path_lst))]
+    } else {
+      path_part <- list()
+    }
+    rel_lst = c(double_dot_part, path_part)
+    if (length(rel_lst) == 0) {
+      return(path_tidy("."))
+    }
+
+    path_join(rel_lst)
+  }
+  path_tidy(vapply(path, path_relative_one, character(1)))
+}
 #' Paths starting from useful directories
 #'
 #' * `path_temp()` starts the path with the session temporary directory
