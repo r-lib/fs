@@ -241,6 +241,7 @@ describe("path_common", {
   })
 })
 
+# derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
 describe("path_relative", {
   it("works for posix paths", {
     cur_dir <- path_file(getwd())
@@ -263,5 +264,10 @@ describe("path_relative", {
     expect_equal(path_relative("/a/b", "/a/b"), ".")
 
     expect_equal(path_relative(c("a", "a/b", "a/b/c"), "a/b"), c("..", ".", "c"))
+  })
+
+  it("works for windows paths", {
+    expect_equal(path_relative("c:/foo/bar/bat", "c:/x/y"), "../../foo/bar/bat")
+    expect_equal(path_relative("//conky/mountpoint/a", "//conky/mountpoint/b/c"), "../../a")
   })
 })
