@@ -4,7 +4,7 @@ language: R
 sudo: false
 cache: packages
 
-r_github_packages: covr
+r_github_packages: r-lib/covr
 
 addons:
   apt:
