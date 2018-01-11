@@ -29,11 +29,10 @@ fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
 </p>
 
 **fs** provides a cross-platform, uniform interface to file system operations.
-It is built on top of the [libuv](http://docs.libuv.org/en/v1.x/fs.html)
-C library. The JavaScript community uses libuv extensively, as it is the
-back-end component of [nodejs](https://nodejs.org). libuv is therefore
-rigorously tested across a diverse set of systems. The name, and some of the
-interface, is partially inspired by Rust's [fs
+It shares the same back-end component as [nodejs](https://nodejs.org), the
+[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library, which brings the
+benefit of extensive real-world use and rigorous cross-platform testing. The
+name, and some of the interface, is partially inspired by Rust's [fs
 module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation

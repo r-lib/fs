@@ -18,13 +18,12 @@ status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://c
 </p>
 
 **fs** provides a cross-platform, uniform interface to file system
-operations. It is built on top of the
-[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library. The JavaScript
-community uses libuv extensively, as it is the back-end component of
-[nodejs](https://nodejs.org). libuv is therefore rigorously tested
-across a diverse set of systems. The name, and some of the interface, is
-partially inspired by Rust’s [fs
-module](https://doc.rust-lang.org/std/fs/index.html).
+operations. It shares the same back-end component as
+[nodejs](https://nodejs.org), the
+[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library, which brings
+the benefit of extensive real-world use and rigorous cross-platform
+testing. The name, and some of the interface, is partially inspired by
+Rust’s [fs module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation
 
@@ -77,11 +76,11 @@ library(fs)
 
 # list files in the current directory
 dir_ls()
-#> DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          
-#> R                README.Rmd       README.md        _pkgdown.yml     
-#> appveyor.yml     codecov.yml      cran-comments.md doc              
-#> docs             fs.Rproj         man              man-roxygen      
-#> script.R         src              tests            tools
+#> DESCRIPTION      LICENSE          LICENSE.md       NAMESPACE        
+#> NEWS.md          R                README.Rmd       README.md        
+#> _pkgdown.yml     appveyor.yml     codecov.yml      configure        
+#> cran-comments.md docs             fs.Rproj         man              
+#> man-roxygen      src              tests
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -141,14 +140,14 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size modification_time  
 #>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-11 09:53:17
-#> 2 src/dir.o           rw-r--r--        434.9K 2018-01-11 09:53:17
-#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-11 09:53:36
-#> 4 src/id.o            rw-r--r--        388.5K 2018-01-11 09:53:17
-#> 5 src/file.o          rw-r--r--        309.8K 2018-01-11 09:53:17
-#> 6 src/path.o          rw-r--r--        244.8K 2018-01-11 09:53:17
-#> 7 src/link.o          rw-r--r--        219.6K 2018-01-11 09:53:17
-#> 8 src/error.o         rw-r--r--         17.3K 2018-01-11 09:53:17
+#> 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-11 16:39:23
+#> 2 src/dir.o           rw-r--r--        434.8K 2018-01-11 16:39:23
+#> 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-11 16:39:51
+#> 4 src/id.o            rw-r--r--        388.5K 2018-01-11 16:39:23
+#> 5 src/file.o          rw-r--r--        309.8K 2018-01-11 16:39:23
+#> 6 src/path.o          rw-r--r--        244.8K 2018-01-11 16:39:23
+#> 7 src/link.o          rw-r--r--        219.6K 2018-01-11 16:39:23
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-11 16:39:23
 #> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-10 22:10:06
 ```
 
@@ -163,8 +162,8 @@ dir_info("src", recursive = TRUE) %>%
 #>    <fs::path>                             <fs::bytes>
 #>  1 src                                          2.65M
 #>  2 src/libuv                                    2.53M
-#>  3 src/libuv/autom4te.cache                     2.13M
-#>  4 src/libuv/src/unix                           1.08M
+#>  3 src/libuv/src/unix                           1.08M
+#>  4 src/libuv/autom4te.cache                     1.08M
 #>  5 src/libuv/test                             865.36K
 #>  6 src/libuv/src/win                          683.14K
 #>  7 src/libuv/m4                               334.61K
