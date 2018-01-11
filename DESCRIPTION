@@ -12,7 +12,7 @@ Description: A cross-platform interface to file system operations, built on
   top of the 'libuv' C library.
 Depends: 
     R (>= 3.1)
-License: GPL-3
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
