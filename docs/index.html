@@ -62,7 +62,7 @@
 
 <p align="center">
 <img src="https://i.imgur.com/NAux1Xc.png" width="75%"></p>
-<p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It is built on top of the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library. The JavaScript community uses libuv extensively, as it is the back-end component of <a href="https://nodejs.org">nodejs</a>. libuv is therefore rigorously tested across a diverse set of systems. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
+<p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as <a href="https://nodejs.org">nodejs</a>, the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
 <section id="installation" class="level2"><h2>Installation</h2>
 <p>You can install the release version of <strong>fs</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"fs"</span>)</a></code></pre></div>
@@ -82,11 +82,11 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># list files in the current directory</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>()</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; R                README.Rmd       README.md        _pkgdown.yml     </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; appveyor.yml     codecov.yml      cran-comments.md doc              </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; docs             fs.Rproj         man              man-roxygen      </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; script.R         src              tests            tools</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE          LICENSE.md       NAMESPACE        </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; NEWS.md          R                README.Rmd       README.md        </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; _pkgdown.yml     appveyor.yml     codecov.yml      configure        </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; cran-comments.md docs             fs.Rproj         man              </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; man-roxygen      src              tests</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># create a new directory</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
@@ -128,14 +128,14 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; # A tibble: 9 x 4</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   path                permissions        size modification_time  </span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   &lt;fs::path&gt;          &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-11 09:53:17</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        434.9K 2018-01-11 09:53:17</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-11 09:53:36</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/id.o            rw-r--r--        388.5K 2018-01-11 09:53:17</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        309.8K 2018-01-11 09:53:17</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        244.8K 2018-01-11 09:53:17</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        219.6K 2018-01-11 09:53:17</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-11 09:53:17</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-11 16:39:23</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        434.8K 2018-01-11 16:39:23</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-11 16:39:51</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/id.o            rw-r--r--        388.5K 2018-01-11 16:39:23</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        309.8K 2018-01-11 16:39:23</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        244.8K 2018-01-11 16:39:23</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        219.6K 2018-01-11 16:39:23</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-11 16:39:23</span></a>
 <a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-10 22:10:06</span></a></code></pre></div>
 <p>Display folder size</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
@@ -146,8 +146,8 @@
 <a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;    &lt;fs::path&gt;                             &lt;fs::bytes&gt;</span></a>
 <a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                          2.65M</span></a>
 <a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  2 src/libuv                                    2.53M</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/autom4te.cache                     2.13M</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/src/unix                           1.08M</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/src/unix                           1.08M</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/autom4te.cache                     1.08M</span></a>
 <a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  5 src/libuv/test                             865.36K</span></a>
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  6 src/libuv/src/win                          683.14K</span></a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  7 src/libuv/m4                               334.61K</span></a>
@@ -193,7 +193,7 @@
 </li>
 </ul>
 <h2>License</h2>
-<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></p>
+<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> | file <a href="LICENSE.html">LICENSE</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
