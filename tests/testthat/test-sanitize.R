@@ -100,7 +100,7 @@ test_that("filesystems can read, write and delete sanitized files", {
  strings <- c(
    # Windows R functions cannot handle the unicode filenames or long filenames + paths correctly.
    if (!is_windows()) {
-     readLines(testthat::test_path("blns.txt.xz"), encoding = "UTF-8"))
+     readLines(testthat::test_path("blns.txt.xz"), encoding = "UTF-8")
    },
    "the quick brown fox jumped over the lazy dog",
    "résumé",
