@@ -41,11 +41,11 @@ describe("path", {
   })
 })
 
-describe("path_realize", {
+describe("path_real", {
   it("returns the real path for symbolic links", {
     with_dir_tree(list("foo/bar" = "test"), {
-      link_create(path_realize("foo"), "foo2")
-      expect_equal(path_realize("foo2"), path_realize("foo"))
+      link_create(path_real("foo"), "foo2")
+      expect_equal(path_real("foo2"), path_real("foo"))
     })
   })
 })
@@ -242,33 +242,33 @@ describe("path_common", {
 })
 
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
-describe("path_relative", {
+describe("path_rel", {
   it("works for posix paths", {
     cur_dir <- path_file(getwd())
-    expect_equal(path_relative("a"), "a")
-    expect_equal(path_relative(path_absolute("a")), "a")
-    expect_equal(path_relative("a/b"), "a/b")
-    expect_equal(path_relative("../a/b"), "../a/b")
-    expect_equal(path_relative("a", "../b"), path_join(c("..", cur_dir, "a")))
-    expect_equal(path_relative("a/b", "../c"), path_join(c("..", cur_dir, "a", "b")))
-    expect_equal(path_relative("a", "b/c"), "../../a")
-    expect_equal(path_relative("a", "a"), ".")
-    expect_equal(path_relative("/foo/bar/bat", "/x/y/z"), "../../../foo/bar/bat")
-    expect_equal(path_relative("/foo/bar/bat", "/foo/bar"), "bat")
-    expect_equal(path_relative("/foo/bar/bat", "/"), "foo/bar/bat")
-    expect_equal(path_relative("/", "/foo/bar/bat"), "../../..")
-    expect_equal(path_relative("/foo/bar/bat", "/x"), "../foo/bar/bat")
-    expect_equal(path_relative("/x", "/foo/bar/bat"), "../../../x")
-    expect_equal(path_relative("/", "/"), ".")
-    expect_equal(path_relative("/a", "/a"), ".")
-    expect_equal(path_relative("/a/b", "/a/b"), ".")
+    expect_equal(path_rel("a"), "a")
+    expect_equal(path_rel(path_abs("a")), "a")
+    expect_equal(path_rel("a/b"), "a/b")
+    expect_equal(path_rel("../a/b"), "../a/b")
+    expect_equal(path_rel("a", "../b"), path_join(c("..", cur_dir, "a")))
+    expect_equal(path_rel("a/b", "../c"), path_join(c("..", cur_dir, "a", "b")))
+    expect_equal(path_rel("a", "b/c"), "../../a")
+    expect_equal(path_rel("a", "a"), ".")
+    expect_equal(path_rel("/foo/bar/bat", "/x/y/z"), "../../../foo/bar/bat")
+    expect_equal(path_rel("/foo/bar/bat", "/foo/bar"), "bat")
+    expect_equal(path_rel("/foo/bar/bat", "/"), "foo/bar/bat")
+    expect_equal(path_rel("/", "/foo/bar/bat"), "../../..")
+    expect_equal(path_rel("/foo/bar/bat", "/x"), "../foo/bar/bat")
+    expect_equal(path_rel("/x", "/foo/bar/bat"), "../../../x")
+    expect_equal(path_rel("/", "/"), ".")
+    expect_equal(path_rel("/a", "/a"), ".")
+    expect_equal(path_rel("/a/b", "/a/b"), ".")
 
-    expect_equal(path_relative(c("a", "a/b", "a/b/c"), "a/b"), c("..", ".", "c"))
+    expect_equal(path_rel(c("a", "a/b", "a/b/c"), "a/b"), c("..", ".", "c"))
   })
 
   it("works for windows paths", {
-    expect_equal(path_relative("c:/foo/bar/bat", "c:/x/y"), "../../foo/bar/bat")
-    expect_equal(path_relative("//conky/mountpoint/a", "//conky/mountpoint/b/c"), "../../a")
+    expect_equal(path_rel("c:/foo/bar/bat", "c:/x/y"), "../../foo/bar/bat")
+    expect_equal(path_rel("//conky/mountpoint/a", "//conky/mountpoint/b/c"), "../../a")
   })
 })
 

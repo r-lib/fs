@@ -19,7 +19,7 @@ describe("dir_ls", {
 
   it("Does not follow symbolic links", {
     with_dir_tree(list("foo/bar/baz" = "test"), {
-      link_create(path_absolute("foo"), "foo/bar/qux")
+      link_create(path_abs("foo"), "foo/bar/qux")
       expect_equal(dir_ls(recursive = TRUE), c("foo", "foo/bar", "foo/bar/baz", "foo/bar/qux"))
       expect_equal(dir_ls(recursive = TRUE, type = "symlink"), "foo/bar/qux")
     })
@@ -50,7 +50,7 @@ describe("dir_ls", {
     with_dir_tree(list(
         "file" = "foo",
         "dir"), {
-      link_create(path_absolute("dir"), "link")
+      link_create(path_abs("dir"), "link")
       expect_equal(dir_ls(type = "file"), "file")
       expect_equal(dir_ls(type = "directory"), "dir")
       expect_equal(dir_ls(type = "symlink"), "link")
@@ -68,7 +68,7 @@ describe("dir_walk", {
     with_dir_tree(list(
         "file" = "foo",
         "dir"), {
-      link_create(path_absolute("dir"), "link")
+      link_create(path_abs("dir"), "link")
 
       dir_walk(type = "file", fun = f)
       expect_equal(x, "file")

@@ -34,7 +34,7 @@ describe("file_copy", {
 describe("link_copy", {
   it("copies links and returns the new path", {
     with_dir_tree(list("foo"), {
-      link_create(path_absolute("foo"), "loo")
+      link_create(path_abs("foo"), "loo")
       expect_true(dir_exists("foo"))
       expect_true(link_exists("loo"))
       expect_equal(link_copy("loo", "loo2"), "loo2")
@@ -79,7 +79,7 @@ describe("dir_copy", {
   it("copies links and returns the path", {
     with_dir_tree(
       list("foo/bar/baz" = "test"), {
-        link_create(path_absolute("foo/bar"), "foo/foo")
+        link_create(path_abs("foo/bar"), "foo/foo")
         expect_equal(dir_copy("foo", "foo2"), "foo2")
         expect_true(dir_exists("foo2"))
         expect_true(link_exists("foo2/foo"))

@@ -32,7 +32,7 @@ describe("colourise_fs_path", {
         "file.R" = "test",
         "file.Rmd" = "test"
         ), {
-      link_create(path_absolute("foo/bar"), "baz")
+      link_create(path_abs("foo/bar"), "baz")
 
       # folder
       expect_equal(colourise_fs_path("foo"), "\033[01;34mfoo\033[0m")

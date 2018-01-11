@@ -2,17 +2,17 @@
 % Please edit documentation in R/path.R
 \name{path_math}
 \alias{path_math}
-\alias{path_realize}
+\alias{path_real}
 \alias{path_expand}
 \alias{path_split}
 \alias{path_join}
-\alias{path_absolute}
+\alias{path_abs}
 \alias{path_norm}
-\alias{path_relative}
+\alias{path_rel}
 \alias{path_common}
 \title{Path computations}
 \usage{
-path_realize(path)
+path_real(path)
 
 path_expand(path)
 
@@ -20,11 +20,11 @@ path_split(path)
 
 path_join(parts)
 
-path_absolute(path)
+path_abs(path)
 
 path_norm(path)
 
-path_relative(path, start = ".")
+path_rel(path, start = ".")
 
 path_common(path)
 }
@@ -40,13 +40,13 @@ The new path as a character vector. For \code{\link[=path_split]{path_split()}},
 character vectors of path components is returned instead.
 }
 \description{
-All functions apart from \code{\link[=path_expand]{path_expand()}} and \code{\link[=path_realize]{path_realize()}} are purely
+All functions apart from \code{\link[=path_expand]{path_expand()}} and \code{\link[=path_real]{path_real()}} are purely
 path computations, so the files in question do not need to exist on the
 filesystem.
 }
 \section{Functions}{
 \itemize{
-\item \code{path_realize}: returns the canonical path, eliminating any symbolic
+\item \code{path_real}: returns the canonical path, eliminating any symbolic
 links.
 
 \item \code{path_expand}: performs tilde expansion on a path, replacing instances of
@@ -56,15 +56,15 @@ links.
 
 \item \code{path_join}: joins parts together.
 
-\item \code{path_absolute}: returns a normalized, absolute version of a path.
+\item \code{path_abs}: returns a normalized, absolute version of a path.
 
 \item \code{path_norm}: collapses redundant separators and
 up-level references, so \code{A//B}, \code{A/B}, \code{A/.B} and \code{A/foo/../B} all become
 \code{A/B}. If one of the paths is a symbolic link, this may change the meaning
-of the path, in this case one should use \code{\link[=path_realize]{path_realize()}} prior to calling
+of the path, in this case one should use \code{\link[=path_real]{path_real()}} prior to calling
 \code{\link[=path_norm]{path_norm()}}.
 
-\item \code{path_relative}: computes the path relative to the \code{start} path,
+\item \code{path_rel}: computes the path relative to the \code{start} path,
 which can be either a absolute or relative path.
 
 \item \code{path_common}: finds the common parts of two (or more) paths.
@@ -76,10 +76,10 @@ path_expand("~/bin")
 
 dir_create("a")
 file_create("b")
-link_create(path_absolute("a"), "c")
+link_create(path_abs("a"), "c")
 
 # Realize the path
-path_realize("c")
+path_real("c")
 
 # Split a path
 parts <- path_split("a/b")
@@ -89,13 +89,13 @@ parts
 path_join(parts)
 
 # Find the absolute path
-path_absolute("..")
+path_abs("..")
 
 # Normalize a path
 path_norm("a/../b\\\\c/.")
 
 # Compute a relative path
-path_relative("/foo/abc", "/foo/bar/baz")
+path_rel("/foo/abc", "/foo/bar/baz")
 
 # Find the common path between multiple paths
 path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))

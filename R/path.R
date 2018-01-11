@@ -1,6 +1,6 @@
 #' Path computations
 #'
-#' All functions apart from [path_expand()] and [path_realize()] are purely
+#' All functions apart from [path_expand()] and [path_real()] are purely
 #' path computations, so the files in question do not need to exist on the
 #' filesystem.
 #' @template fs
@@ -13,10 +13,10 @@
 #'
 #' dir_create("a")
 #' file_create("b")
-#' link_create(path_absolute("a"), "c")
+#' link_create(path_abs("a"), "c")
 #'
 #' # Realize the path
-#' path_realize("c")
+#' path_real("c")
 #'
 #' # Split a path
 #' parts <- path_split("a/b")
@@ -26,13 +26,13 @@
 #' path_join(parts)
 #'
 #' # Find the absolute path
-#' path_absolute("..")
+#' path_abs("..")
 #'
 #' # Normalize a path
 #' path_norm("a/../b\\c/.")
 #'
 #' # Compute a relative path
-#' path_relative("/foo/abc", "/foo/bar/baz")
+#' path_rel("/foo/abc", "/foo/bar/baz")
 #'
 #' # Find the common path between multiple paths
 #' path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))
@@ -57,7 +57,7 @@ path <- function(..., ext = "") {
 #' @describeIn path_math returns the canonical path, eliminating any symbolic
 #' links.
 #' @export
-path_realize <- function(path) {
+path_real <- function(path) {
   path <- enc2utf8(path)
 
   path_tidy(realize_(path_expand(path)))
@@ -130,7 +130,7 @@ path_join <- function(parts) {
 
 #' @describeIn path_math returns a normalized, absolute version of a path.
 #' @export
-path_absolute <- function(path) {
+path_abs <- function(path) {
   is_abs <- is_absolute_path(path)
   path[is_abs] <- path_norm(path[is_abs])
   cwd <- getwd()
@@ -141,7 +141,7 @@ path_absolute <- function(path) {
 #' @describeIn path_math collapses redundant separators and
 #' up-level references, so `A//B`, `A/B`, `A/.B` and `A/foo/../B` all become
 #' `A/B`. If one of the paths is a symbolic link, this may change the meaning
-#' of the path, in this case one should use [path_realize()] prior to calling
+#' of the path, in this case one should use [path_real()] prior to calling
 #' [path_norm()].
 #' @export
 path_norm <- function(path) {
@@ -180,11 +180,11 @@ path_norm <- function(path) {
 #' @param start A starting directory to compute relative path to.
 # This implementation is partially derived from
 # https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
-path_relative <- function(path, start = ".") {
-  start <- path_absolute(start)
-  path <- path_absolute(path)
+path_rel <- function(path, start = ".") {
+  start <- path_abs(start)
+  path <- path_abs(path)
 
-  path_relative_one <- function(p) {
+  path_rel_one <- function(p) {
     common <- path_common(c(start, p))
     starts <- path_split(start)[[1]]
     paths <- path_split(p)[[1]]
@@ -203,7 +203,7 @@ path_relative <- function(path, start = ".") {
 
     path_join(rels)
   }
-  path_tidy(vapply(path, path_relative_one, character(1)))
+  path_tidy(vapply(path, path_rel_one, character(1)))
 }
 
 #' Paths starting from useful directories
