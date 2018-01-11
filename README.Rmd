@@ -38,7 +38,7 @@ module](https://doc.rust-lang.org/std/fs/index.html).
 
 ## Installation
 
-You can install the release version of **fs** from [CRAN](https://cloud.r-project.org/) with:
+You can install the release version of **fs** from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("fs")

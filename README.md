@@ -29,7 +29,7 @@ module](https://doc.rust-lang.org/std/fs/index.html).
 ## Installation
 
 You can install the release version of **fs** from
-[CRAN](https://cloud.r-project.org/) with:
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("fs")
@@ -77,10 +77,11 @@ library(fs)
 
 # list files in the current directory
 dir_ls()
-#> DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   
-#> README.md    _pkgdown.yml appveyor.yml codecov.yml  doc          
-#> docs         fs.Rproj     man          man-roxygen  script.R     
-#> src          tests        tools
+#> DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          
+#> R                README.Rmd       README.md        _pkgdown.yml     
+#> appveyor.yml     codecov.yml      cran-comments.md doc              
+#> docs             fs.Rproj         man              man-roxygen      
+#> script.R         src              tests            tools
 
 # create a new directory
 tmp <- dir_create(file_temp())

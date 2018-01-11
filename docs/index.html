@@ -37,6 +37,9 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="news/index.html">News</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -61,7 +64,7 @@
 <img src="https://i.imgur.com/NAux1Xc.png" width="75%"></p>
 <p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It is built on top of the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library. The JavaScript community uses libuv extensively, as it is the back-end component of <a href="https://nodejs.org">nodejs</a>. libuv is therefore rigorously tested across a diverse set of systems. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
 <section id="installation" class="level2"><h2>Installation</h2>
-<p>You can install the release version of <strong>fs</strong> from <a href="https://cloud.r-project.org/">CRAN</a> with:</p>
+<p>You can install the release version of <strong>fs</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"fs"</span>)</a></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
@@ -79,28 +82,29 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># list files in the current directory</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>()</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION  LICENSE.md   NAMESPACE    R            README.Rmd   </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; README.md    _pkgdown.yml appveyor.yml codecov.yml  doc          </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; docs         fs.Rproj     man          man-roxygen  script.R     </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; src          tests        tools</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co"># create a new directory</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">tmp</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; /tmp/filedd463d6d7e0f</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co"># create new files in that directory</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="kw"><a href="reference/create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; /tmp/filedd463d6d7e0f/my-file.txt</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co"># remove files from the directory</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; character(0)</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co"># remove the directory</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; R                README.Rmd       README.md        _pkgdown.yml     </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; appveyor.yml     codecov.yml      cran-comments.md doc              </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; docs             fs.Rproj         man              man-roxygen      </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; script.R         src              tests            tools</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># create a new directory</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">tmp</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; /tmp/filedd463d6d7e0f</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co"># create new files in that directory</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw"><a href="reference/create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; /tmp/filedd463d6d7e0f/my-file.txt</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co"># remove files from the directory</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co"># remove the directory</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
 <p><strong>fs</strong> is designed to work well with the pipe, although because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"></a>
