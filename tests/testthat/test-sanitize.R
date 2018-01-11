@@ -77,12 +77,6 @@ test_that("invalid replacement", {
   expect_equal(path_sanitize("valid.txt", "\\/:*?\"<>|"), "valid.txt")
 })
 
-test_that("255 characters max", {
-  string <- paste0(rep("a", 300), collapse = "")
-  expect_true(nchar(string, keepNA = FALSE) > 255)
-  expect_true(nchar(path_sanitize(string), keepNA = FALSE) <= 255)
-})
-
 test_string_fs <- function(str, tmpdir) {
   sanitized <- path_sanitize(str)
   if (sanitized == "") {
@@ -106,7 +100,6 @@ test_that("filesystems can read, write and delete sanitized files", {
  strings <- c(
    # Windows R functions cannot handle the unicode filenames or long filenames + paths correctly.
    if (!is_windows()) {
-     c(paste0(rep("a", 300), collapse = ""),
      readLines(testthat::test_path("blns.txt.xz"), encoding = "UTF-8"))
    },
    "the quick brown fox jumped over the lazy dog",
