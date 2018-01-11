@@ -240,3 +240,28 @@ describe("path_common", {
     expect_error(path_common(c("", "/spam/alot")), "Can't mix")
   })
 })
+
+describe("path_relative", {
+  it("works for posix paths", {
+    cur_dir <- path_file(getwd())
+    expect_equal(path_relative("a"), "a")
+    expect_equal(path_relative(path_absolute("a")), "a")
+    expect_equal(path_relative("a/b"), "a/b")
+    expect_equal(path_relative("../a/b"), "../a/b")
+    expect_equal(path_relative("a", "../b"), path_join(c("..", cur_dir, "a")))
+    expect_equal(path_relative("a/b", "../c"), path_join(c("..", cur_dir, "a", "b")))
+    expect_equal(path_relative("a", "b/c"), "../../a")
+    expect_equal(path_relative("a", "a"), ".")
+    expect_equal(path_relative("/foo/bar/bat", "/x/y/z"), "../../../foo/bar/bat")
+    expect_equal(path_relative("/foo/bar/bat", "/foo/bar"), "bat")
+    expect_equal(path_relative("/foo/bar/bat", "/"), "foo/bar/bat")
+    expect_equal(path_relative("/", "/foo/bar/bat"), "../../..")
+    expect_equal(path_relative("/foo/bar/bat", "/x"), "../foo/bar/bat")
+    expect_equal(path_relative("/x", "/foo/bar/bat"), "../../../x")
+    expect_equal(path_relative("/", "/"), ".")
+    expect_equal(path_relative("/a", "/a"), ".")
+    expect_equal(path_relative("/a/b", "/a/b"), ".")
+
+    expect_equal(path_relative(c("a", "a/b", "a/b/c"), "a/b"), c("..", ".", "c"))
+  })
+})
