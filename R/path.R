@@ -94,11 +94,13 @@ path_join <- function(parts) {
 
 #' Normalize a path
 #'
-#' `path_norm()` collapses redundant separators and up-level references, so `A//B`,
-#' `A/B`, `A/.B` and `A/foo/../B` all become `A/B`. If one of the paths is a
-#' symbolic link, this may change the meaning of the path, in this case one can
-#' use `path_realize()` beforehand to follow the symlink.
-#' @template fs
+path_absolute <- function(path) {
+  is_abs <- is_absolute_path(path)
+  path[is_abs] <- path_norm(path[is_abs])
+  cwd <- getwd()
+  path[!is_abs] <- path_norm(path(cwd, path[!is_abs]))
+  path
+}
 #' @export
 path_norm <- function(path) {
   parts <- path_split(path)
