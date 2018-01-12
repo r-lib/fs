@@ -14,12 +14,10 @@
 #'
 #' @param type File type(s) to return, one or more of "any", "file", "directory",
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
-#' @param glob,regexp Either a file glob (e.g. `*.csv`) or a regular
-#'   expression (e.g. `\\.csv$)` passed on to [grep] to filter paths.
 #' @param recursive Should directories be listed recursively?
 #'   the filenames.
+#' @inheritParams path_filter
 #' @param all If `TRUE` hidden files are also returned.
-#' @param ... Additional arguments passed to [grep].
 #' @template fs
 #' @export
 #' @examples
@@ -28,17 +26,11 @@
 #' link_create(system.file(package = "base"), "base")
 #'
 #' dir_ls("base", recursive = TRUE, glob = "*.R")
-dir_ls <- function(path = ".", all = FALSE, recursive = FALSE,
-                     type = "any", regexp = NULL, glob = NULL, ...) {
+dir_ls <- function(path = ".", all = FALSE, recursive = FALSE, type = "any",
+                   glob = NULL, regexp = NULL, invert = FALSE, ...) {
   files <- as.character(dir_map(path, identity, all, recursive, type))
 
-  if (!is.null(glob)) {
-    regexp <- utils::glob2rx(glob)
-  }
-  if (!is.null(regexp)) {
-    files <- grep(x = files, pattern = regexp, value = TRUE, ...)
-  }
-  setNames(path_tidy(files), files)
+  path_filter(files, glob, regexp, ...)
 }
 
 directory_entry_types <- c(

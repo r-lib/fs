@@ -8,7 +8,7 @@
 \title{List files}
 \usage{
 dir_ls(path = ".", all = FALSE, recursive = FALSE, type = "any",
-  regexp = NULL, glob = NULL, ...)
+  glob = NULL, regexp = NULL, invert = FALSE, ...)
 
 dir_map(path = ".", fun, all = FALSE, recursive = FALSE, type = "any")
 
@@ -28,8 +28,13 @@ the filenames.}
 \item{type}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
 
-\item{glob, regexp}{Either a file glob (e.g. \code{*.csv}) or a regular
-expression (e.g. \code{\\.csv$)} passed on to \link{grep} to filter paths.}
+\item{glob}{Either a glob (e.g. \code{*.csv}) or a regular
+expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+
+\item{regexp}{Either a glob (e.g. \code{*.csv}) or a regular
+expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+
+\item{invert}{If \code{TRUE} return files which do \emph{not} match}
 
 \item{...}{Additional arguments passed to \link{grep}.}
 

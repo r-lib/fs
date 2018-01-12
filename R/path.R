@@ -321,3 +321,29 @@ path_common <- function(path) {
   }
   path_join(common)
 }
+
+#' Filter paths
+#'
+#' @template fs
+#' @param glob,regexp Either a glob (e.g. `*.csv`) or a regular
+#'   expression (e.g. `[.]csv$`) passed on to [grep()] to filter paths.
+#' @param invert If `TRUE` return files which do _not_ match
+#' @param ... Additional arguments passed to [grep].
+#' @export
+#' @examples
+#' path_filter(c("foo", "boo", "bar"), glob = "*oo")
+#' path_filter(c("foo", "boo", "bar"), glob = "*oo", invert = TRUE)
+#'
+#' path_filter(c("foo", "boo", "bar"), regexp = "b.r")
+path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
+  if (!is.null(glob)) {
+    if (!is.null(regexp)) {
+      stop("`glob` and `regexp` cannot both be set.", call. = FALSE)
+    }
+    regexp <- utils::glob2rx(glob)
+  }
+  if (!is.null(regexp)) {
+    path <- grep(x = path, pattern = regexp, value = TRUE, invert = isTRUE(invert), ...)
+  }
+  setNames(path_tidy(path), path)
+}
