@@ -131,6 +131,17 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// watch_
+void watch_(CharacterVector path, Function fun);
+RcppExport SEXP _fs_watch_(SEXP pathSEXP, SEXP funSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Function >::type fun(funSEXP);
+    watch_(path, fun);
+    return R_NilValue;
+END_RCPP
+}
 // cleanup_
 void cleanup_();
 RcppExport SEXP _fs_cleanup_() {
@@ -286,6 +297,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_unlink_", (DL_FUNC) &_fs_unlink_, 1},
     {"_fs_copyfile_", (DL_FUNC) &_fs_copyfile_, 3},
     {"_fs_chown_", (DL_FUNC) &_fs_chown_, 3},
+    {"_fs_watch_", (DL_FUNC) &_fs_watch_, 2},
     {"_fs_cleanup_", (DL_FUNC) &_fs_cleanup_, 0},
     {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 2},
     {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},

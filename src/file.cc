@@ -301,3 +301,27 @@ void chown_(CharacterVector path, int uid, int gid) {
     uv_fs_req_cleanup(&req);
   }
 }
+
+void call_function(
+    uv_fs_event_t* handle, const char* filename, int events, int status) {
+  char path[1024];
+  size_t size = 1023;
+  // Does not handle error if path is longer than 1023.
+  uv_fs_event_getpath(handle, path, &size);
+  path[size] = '\0';
+  Function* fun = (Function*)handle->data;
+  (*fun)(path);
+}
+
+// [[Rcpp::export]]
+void watch_(CharacterVector path, Function fun) {
+  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+    const char* p = CHAR(STRING_ELT(path, i));
+    uv_fs_event_t* fs_event_req = (uv_fs_event_t*)malloc(sizeof(uv_fs_event_t));
+    fs_event_req->data = &fun;
+    uv_fs_event_init(uv_default_loop(), fs_event_req);
+    uv_fs_t req;
+    uv_fs_event_start(fs_event_req, call_function, p, UV_FS_EVENT_RECURSIVE);
+  }
+  uv_run(uv_default_loop(), UV_RUN_DEFAULT);
+}

@@ -143,3 +143,7 @@ file_show <- function(path = ".", browser = getOption("browser")) {
 
   invisible(path_tidy(path))
 }
+
+file_watch <- function(path, fun) {
+  watch_(path, fun)
+}

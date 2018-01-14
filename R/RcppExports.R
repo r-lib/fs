@@ -45,6 +45,10 @@ chown_ <- function(path, uid, gid) {
     invisible(.Call(`_fs_chown_`, path, uid, gid))
 }
 
+watch_ <- function(path, fun) {
+    invisible(.Call(`_fs_watch_`, path, fun))
+}
+
 cleanup_ <- function() {
     invisible(.Call(`_fs_cleanup_`))
 }
