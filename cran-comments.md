@@ -1,8 +1,9 @@
 This is a resubmission.
 
-I have now included the libuv license and copyright holders in the file LICENSE
-in the package root directory. The copyright holders listed in the previous
-reply are contributors to the libuv library and are now included in this file.
+I have now included the libuv license and copyright holders in the file inst/NOTICE
+and made the license in the DESCRIPTION GPL-3. The "missing" copyright holders listed in
+the previous replies are contributors to the libuv library and are now included
+in this file.
 
 As mentioned in my comments in the previous submission, and in the
 SystemRequirements field in the DESCRIPTION, this package requires libbsd to be
@@ -23,5 +24,5 @@ dependency before trying to install fs.
 * This is a new release.
 
 * GNU make is a SystemRequirements.
-  This is needed by the libuv dependency, it is not practical to convert this
-  to a POSIX Makefile.
+  This is needed by the Makefile for the libuv dependency, it is not practical
+  to convert this to a POSIX compatible Makefile.
