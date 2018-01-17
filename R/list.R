@@ -30,7 +30,7 @@ dir_ls <- function(path = ".", all = FALSE, recursive = FALSE, type = "any",
                    glob = NULL, regexp = NULL, invert = FALSE, ...) {
   files <- as.character(dir_map(path, identity, all, recursive, type))
 
-  path_filter(files, glob, regexp, ...)
+  path_filter(files, glob, regexp, invert = invert,...)
 }
 
 directory_entry_types <- c(
