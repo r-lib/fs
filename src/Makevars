@@ -3,7 +3,10 @@ CXX_STD=CXX11
 
 UNAME := $(shell uname)
 
-PKG_LIBS = ./libuv/.libs/libuv.a @libs@
+PKG_LIBS = ./libuv/.libs/libuv.a
+
+SOURCES = $(wildcard *.cc unix/*.cc)
+OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
 
 ifeq ($(UNAME), SunOS)
 PKG_LIBS += -lkstat -lsendfile -lsocket -lxnet
@@ -14,13 +17,13 @@ endif
 ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
+ifeq ($(UNAME), Linux)
+OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
+endif
 
-PKG_CPPFLAGS = -I./libuv/include -I. @cflags@
+PKG_CPPFLAGS = -I./libuv/include -I.
 
 all: $(SHLIB)
-
-SOURCES = $(wildcard *.cc unix/*.cc)
-OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
 
 $(SHLIB): libuv/.libs/libuv.a
 

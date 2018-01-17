@@ -6,11 +6,6 @@ cache: packages
 
 r_github_packages: r-lib/covr
 
-addons:
-  apt:
-    packages:
-      libbsd-dev
-
 r:
 - 3.1
 - 3.2

@@ -17,4 +17,3 @@
 ^script\.R$
 ^src/\.clang-format$
 ^cran-comments\.md$
-^src/Makevars$
