@@ -1,3 +1,4 @@
+/* clang-format off */
 /*	$NetBSD: setmode.c,v 1.34 2012/06/25 22:32:43 abs Exp $	*/
 
 /*
@@ -32,15 +33,15 @@
  * SUCH DAMAGE.
  */
 
-#include <sys/cdefs.h>
-#include <sys/types.h>
+#include "bsd/cdefs.h"
 #include <sys/stat.h>
+#include <sys/types.h>
 
 #include <ctype.h>
 #include <errno.h>
+#include <limits.h>
 #include <signal.h>
 #include <stdlib.h>
-#include <limits.h>
 #include <unistd.h>
 
 #ifdef SETMODE_DEBUG

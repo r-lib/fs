@@ -28,8 +28,9 @@
  * SUCH DAMAGE.
  */
 
+#include "bsd/cdefs.h"
+
 #include <string.h>
-#include <sys/cdefs.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 

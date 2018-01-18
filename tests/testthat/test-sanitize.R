@@ -96,6 +96,7 @@ test_string_fs <- function(str, tmpdir) {
 }
 
 test_that("filesystems can read, write and delete sanitized files", {
+  skip_on_os("solaris")
 
  strings <- c(
    # Windows R functions cannot handle the unicode filenames or long filenames + paths correctly.

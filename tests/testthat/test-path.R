@@ -2,11 +2,12 @@ context("path")
 
 describe("path", {
   it("returns paths UTF-8 encoded", {
+    skip_on_os("solaris")
     expect_equal(Encoding(path("föö")), "UTF-8")
   })
 
   it("returns paths UTF-8 encoded", {
-    skip_on_os("windows")
+    skip_on_os(c("windows", "solaris"))
     expect_equal(Encoding(path("\U4F60\U597D.R")), "UTF-8")
   })
 

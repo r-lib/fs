@@ -1,3 +1,4 @@
+/* clang-format off */
 /*
  * Copyright © 2006 Robert Millan
  * Copyright © 2008-2011 Guillem Jover <guillem@hadrons.org>
@@ -34,7 +35,7 @@
 #ifndef LIBBSD_UNISTD_H
 #define LIBBSD_UNISTD_H
 
-#include <sys/cdefs.h>
+#include "bsd/cdefs.h"
 #include <sys/stat.h>
 
 #ifndef S_ISTXT

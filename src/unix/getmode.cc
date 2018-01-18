@@ -1,7 +1,6 @@
 #include "getmode.h"
 
-#if (defined(__APPLE__) && defined(__MACH__)) || defined(__BSD__) ||           \
-    defined(__sun)
+#if (defined(__APPLE__) && defined(__MACH__)) || defined(__BSD__)
 #include <string.h> /* for strmode */
 #include <unistd.h> /* for getmode / setmode */
 #else
@@ -12,12 +11,6 @@
 #include <Rcpp.h> /* for Rf_error */
 
 #include <sys/stat.h>
-
-#if defined(__sun)
-mode_t getmode_(const char* mode_str, mode_t mode) { return (mode_t)0; }
-std::string strmode_(mode_t mode) { return ""; }
-std::string file_code_(std::string path, mode_t mode) { return ""; }
-#else
 
 mode_t getmode_(const char* mode_str, mode_t mode) {
   void* out = setmode(mode_str);
@@ -73,4 +66,3 @@ std::string file_code_(std::string path, mode_t mode) {
   }
   return "";
 }
-#endif

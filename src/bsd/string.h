@@ -1,3 +1,4 @@
+/* clang-format off */
 /*
  * Copyright © 2004, 2005, 2009, 2011 Guillem Jover <guillem@hadrons.org>
  *
@@ -33,7 +34,7 @@
 #ifndef LIBBSD_STRING_H
 #define LIBBSD_STRING_H
 
-#include <sys/cdefs.h>
+#include "bsd/cdefs.h"
 #include <sys/types.h>
 
 __BEGIN_DECLS

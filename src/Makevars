@@ -10,6 +10,7 @@ OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
 
 ifeq ($(UNAME), SunOS)
 PKG_LIBS += -lkstat -lsendfile -lsocket -lxnet
+OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 ifeq ($(UNAME), FreeBSD)
 PKG_LIBS += -lkvm
