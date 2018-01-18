@@ -1,9 +1,6 @@
 This is a resubmission.
 
-I have now included the libuv license and copyright holders in the file inst/COPYRIGHTS.
-
-I have also removed the previous libbsd system dependency on linux, so the only
-system dependency for the fs package is now GNU make.
+I added all copyrights holders explicitly as requested.
 
 Thank you for your time.
 

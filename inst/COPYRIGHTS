@@ -75,6 +75,14 @@ The externally maintained libraries used by libuv are:
     Inc, Kenneth MacKay and Emergya (Cloud4all, FP7/2007-2013, grant agreement
     n° 289016). Three clause BSD license.
 
+Additional copyrights in libuv which do not appear above:
+
+Copyright Fedor Indutny. All rights reserved.
+Copyright (c) 2015 Saúl Ibarra Corretgé <saghul@gmail.com>.
+Copyright (c) 2013, Ben Noordhuis
+Copyright StrongLoop, Inc.
+Copyright (c) 2016, Kari Tristan Helgason <kthelgason@gmail.com>
+
 The files in src/bsd are from libbsd (https://cgit.freedesktop.org/libbsd) and
 use one of the following licenses:
 
