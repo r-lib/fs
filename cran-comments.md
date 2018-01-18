@@ -1,15 +1,11 @@
 This is a resubmission.
 
-I have now included the libuv license and copyright holders in the file inst/NOTICE
-and made the license in the DESCRIPTION GPL-3. The "missing" copyright holders listed in
-the previous replies are contributors to the libuv library and are now included
-in this file.
+I have now included the libuv license and copyright holders in the file inst/COPYRIGHTS.
 
-As mentioned in my comments in the previous submission, and in the
-SystemRequirements field in the DESCRIPTION, this package requires libbsd to be
-installed on linux systems (libbsd: libbsd-dev (deb), libbsd-devel (yum)). The
-package was failing to install on your system because you did not install this
-dependency before trying to install fs.
+I have also removed the previous libbsd system dependency on linux, so the only
+system dependency for the fs package is now GNU make.
+
+Thank you for your time.
 
 ## Test environments
 * local OS X install, R 3.4.3
