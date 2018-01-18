@@ -6,10 +6,6 @@ Authors@R: c(
     person("Hadley", "Wickham", , "hadley@rstudio.com", "aut"),
     person("libuv project contributors", role = "cph", comment = "libuv library"),
     person("Joyent, Inc. and other Node contributors", role = "cph", comment = "libuv library"),
-    person("Guillem Jover", role = "cph", comment = "libbsd functions"),
-    person("Robert Millan", role = "cph", comment = "libbsd functions"),
-    person("The Regents of the University of California", role = "cph", comment = "libbsd functions"),
-    person("Otto Moerbeek", role = "cph", comment = "libbsd functions"),
     person("RStudio", role = c("cph", "fnd"))
     )
 Description: A cross-platform interface to file system operations, built on
@@ -29,6 +25,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 URL: http://fs.r-lib.org
 BugReports: https://github.com/r-lib/fs/issues
+Copyright: file COPYRIGHTS
 Suggests: 
     testthat,
     covr,
