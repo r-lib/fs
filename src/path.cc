@@ -46,7 +46,7 @@ CharacterVector path_(List paths, const char* ext) {
           break;
         }
 
-        const char* s = Rf_translateCharUTF8(str);
+        const char* s = CHAR(str);
         strcpy(b, s);
         b += strlen(s);
 
@@ -66,7 +66,22 @@ CharacterVector path_(List paths, const char* ext) {
         b += strlen(ext) + 1;
       }
       *b = '\0';
-      out[r] = buf;
+      out[r] = Rf_mkCharCE(buf, CE_UTF8);
+    }
+  }
+  return out;
+}
+
+// [[Rcpp::export]]
+CharacterVector expand_(CharacterVector path) {
+  CharacterVector out = CharacterVector(path.size());
+
+  for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
+    if (STRING_ELT(path, i) == R_NaString) {
+      SET_STRING_ELT(out, i, R_NaString);
+    } else {
+      const char* p = CHAR(STRING_ELT(path, i));
+      SET_STRING_ELT(out, i, Rf_mkCharCE(R_ExpandFileName(p), CE_UTF8));
     }
   }
   return out;

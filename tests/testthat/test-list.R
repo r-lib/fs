@@ -58,6 +58,17 @@ describe("dir_ls", {
       expect_equal(dir_ls(type = c("file", "directory", "symlink")), c("dir", "file", "link"))
     })
   })
+  it("works with UTF-8 encoded filenames", {
+    with_dir_tree("\U7684\U6D4B\U8BD5\U6587\U4EF6", {
+      file_create("fs\U7684\U6D4B\U8BD5\U6587\U4EF6.docx")
+      link_create(path_abs("\U7684\U6D4B\U8BD5\U6587\U4EF6"), "\U7684\U6D4B")
+
+      expect_equal(dir_ls(type = "file"), "fs\U7684\U6D4B\U8BD5\U6587\U4EF6.docx")
+      expect_equal(dir_ls(type = "directory"), "\U7684\U6D4B\U8BD5\U6587\U4EF6")
+      expect_equal(dir_ls(type = "symlink"), "\U7684\U6D4B")
+      expect_equal(path_file(link_path("\U7684\U6D4B")), "\U7684\U6D4B\U8BD5\U6587\U4EF6")
+    })
+  })
 })
 
 describe("dir_walk", {

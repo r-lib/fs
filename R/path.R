@@ -51,7 +51,7 @@ NULL
 #' @export
 #' @seealso [base::file.path()]
 path <- function(..., ext = "") {
-  path_tidy(path_(lapply(list(...), as.character), ext))
+  path_tidy(path_(lapply(list(...), function(x) enc2utf8(as.character(x))), ext))
 }
 
 #' @describeIn path_math returns the canonical path, eliminating any symbolic
@@ -72,7 +72,7 @@ path_real <- function(path) {
 path_expand <- function(path) {
   path <- enc2utf8(path)
 
-  new_fs_path(path.expand(path))
+  new_fs_path(expand_(path))
 }
 
 #' Tidy paths
@@ -123,7 +123,7 @@ path_join <- function(parts) {
     return(path_tidy(""))
   }
   if (is.character(parts)) {
-    return(path_tidy(path_(parts, "")))
+    return(path_tidy(path_(enc2utf8(parts), "")))
   }
   path_tidy(vapply(parts, path_join, character(1)))
 }
