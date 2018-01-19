@@ -64,29 +64,52 @@
 <img src="https://i.imgur.com/NAux1Xc.png" width="75%"></p>
 <p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as <a href="https://nodejs.org">nodejs</a>, the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
 <section id="installation" class="level2"><h2>Installation</h2>
-<p>You can install the release version of <strong>fs</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<p>You can install the released version of <strong>fs</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"fs"</span>)</a></code></pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"r-lib/fs"</span>)</a></code></pre></div>
 </section><section id="comparison-vs-base-equivalents" class="level2"><h2>Comparison vs base equivalents</h2>
+<p><strong>fs</strong> functions smooth over some of the idiosyncrasies of file handling with base R functions:</p>
 <ul>
-<li><p>All <strong>fs</strong> functions are vectorized, accepting multiple paths as input. Base functions are inconsistently vectorized.</p></li>
-<li><p>All <strong>fs</strong> functions return a character vector of paths, a named integer or a logical vector (where the names give the paths). Base return values are more varied and typically return error codes which need to be manually checked.</p></li>
-<li><p>If <strong>fs</strong> operations fail, they throw an error. Base functions tend to generate a warning and a system dependent error code. This makes it easy to miss a failure.</p></li>
-<li><p><strong>fs</strong> functions always convert input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSs. Base functions rely on the native system encoding.</p></li>
-<li><p><strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code>path.expand()</code> vs <code>normalizePath()</code>; <code>Sys.chmod()</code> vs <code>file.access()</code>).</p></li>
-</ul></section><section id="usage" class="level2"><h2>Usage</h2>
-<p><strong>fs</strong> functions are divided into four main categories: manipulating paths (<code>path_</code>), files (<code>file_</code>), directories (<code>dir_</code>), and links (<code>link_</code>). Directories and links are special types of files, so <code>file_</code> functions will generally also work when applied to a directory or link.</p>
+<li><p>Vectorization. All <strong>fs</strong> functions are vectorized, accepting multiple paths as input. Base functions are inconsistently vectorized.</p></li>
+<li><p>Predictable return values that always convey a path. All <strong>fs</strong> functions return a character vector of paths, a named integer or a logical vector, where the names give the paths. Base return values are more varied: they are often logical or contain error codes which require downstream processing.</p></li>
+<li><p>Explicit failure. If <strong>fs</strong> operations fail, they throw an error. Base functions tend to generate a warning and a system dependent error code. This makes it easy to miss a failure.</p></li>
+<li><p>UTF-8 all the things. <strong>fs</strong> functions always convert input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSes. Base functions rely on the native system encoding.</p></li>
+<li><p>Naming convention. <strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code>path.expand()</code> vs <code>normalizePath()</code>; <code>Sys.chmod()</code> vs <code>file.access()</code>).</p></li>
+</ul>
+<section id="tidy-paths" class="level3"><h3>Tidy paths</h3>
+<p><strong>fs</strong> functions always return ‘tidy’ paths. Tidy paths</p>
+<ul>
+<li>always expand <code>~</code>
+</li>
+<li>use <code>/</code> to delimit directories</li>
+<li>never have multiple <code>/</code> or trailing <code>/</code>
+</li>
+</ul>
+<p>Tidy paths are also coloured (if your terminal supports it) based on the file permissions and file type. This colouring can be customised or extended by setting the <code>LS_COLORS</code> environment variable, in the same output format as <a href="http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors">GNU dircolors</a>.</p>
+</section></section><section id="usage" class="level2"><h2>Usage</h2>
+<p><strong>fs</strong> functions are divided into four main categories:</p>
+<ul>
+<li>
+<code>path_</code> for manipulating paths</li>
+<li>
+<code>file_</code> for files</li>
+<li>
+<code>dir_</code> for directories</li>
+<li>
+<code>link_</code> for links</li>
+</ul>
+<p>Directories and links are special types of files, so <code>file_</code> functions will generally also work when applied to a directory or link.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(fs)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># list files in the current directory</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>()</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE          LICENSE.md       NAMESPACE        </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; NEWS.md          R                README.Rmd       README.md        </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; _pkgdown.yml     appveyor.yml     codecov.yml      configure        </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; cran-comments.md docs             fs.Rproj         man              </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; man-roxygen      src              tests</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; R                README.Rmd       README.md        _pkgdown.yml     </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; appveyor.yml     codecov.yml      cran-comments.md docs             </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; fs.Rproj         inst             man              man-roxygen      </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; src              tests</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># create a new directory</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
@@ -105,7 +128,7 @@
 <a class="sourceLine" id="cb3-25" data-line-number="25"></a>
 <a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co"># remove the directory</span></a>
 <a class="sourceLine" id="cb3-27" data-line-number="27"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
-<p><strong>fs</strong> is designed to work well with the pipe, although because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
+<p><strong>fs</strong> is designed to work well with the pipe, though because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">paths &lt;-<span class="st"> </span><span class="kw"><a href="reference/file_temp.html">file_temp</a></span>() <span class="op">%&gt;%</span></a>
@@ -117,7 +140,8 @@
 <a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e</span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb4-11" data-line-number="11">paths <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/delete.html">file_delete</a></span>()</a></code></pre></div>
-<p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/">tidyverse</a> packages like <a href="http://dplyr.tidyverse.org">dplyr</a> and <a href="http://purrr.tidyverse.org">purrr</a>.</p>
+<p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/">tidyverse</a> packages, like <a href="http://dplyr.tidyverse.org">dplyr</a> and <a href="http://purrr.tidyverse.org">purrr</a>.</p>
+<p>Some examples…</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">suppressMessages</span>(</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="kw">library</span>(tidyverse))</a></code></pre></div>
 <p>Filter files by type, permission and size</p>
@@ -128,34 +152,35 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; # A tibble: 9 x 4</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   path                permissions        size modification_time  </span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   &lt;fs::path&gt;          &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        641.5K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        434.8K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/fs.so           rwxr-xr-x        415.3K 2018-01-11 16:39:51</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/id.o            rw-r--r--        388.5K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        309.8K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        244.8K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        219.6K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-11 16:39:23</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-10 22:10:06</span></a></code></pre></div>
-<p>Display folder size</p>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        753.8K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        460.3K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/id.o            rw-r--r--        377.7K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/fs.so           rwxr-xr-x        328.6K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        313.1K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        238.9K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        215.9K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-19 08:32:18</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-18 09:58:59</span></a></code></pre></div>
+<p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">directory =</span> <span class="kw"><a href="reference/path_file.html">path_dir</a></span>(path)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">tally</span>(<span class="dt">wt =</span> size, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; # A tibble: 53 x 2</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; # A tibble: 54 x 2</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;    directory                                        n</span></a>
 <a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;    &lt;fs::path&gt;                             &lt;fs::bytes&gt;</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                          2.65M</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                          2.68M</span></a>
 <a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  2 src/libuv                                    2.53M</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/src/unix                           1.08M</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/autom4te.cache                     1.08M</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  5 src/libuv/test                             865.36K</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  6 src/libuv/src/win                          683.14K</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/autom4te.cache                     2.15M</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/test                             865.36K</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  5 src/libuv/src/win                          683.14K</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  6 src/libuv/src/unix                          525.9K</span></a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  7 src/libuv/m4                               334.61K</span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;  8 src/libuv/docs/src/static                  328.32K</span></a>
 <a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;  9 src/libuv/include                          192.33K</span></a>
 <a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; 10 src/libuv/docs/src/static/diagrams.key     184.04K</span></a>
-<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; # ... with 43 more rows</span></a></code></pre></div>
-<p>Read a collection of files into one data frame. <code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map">purrr::map_df(.id)</a></code>.</p>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; # ... with 44 more rows</span></a></code></pre></div>
+<p>Read a collection of files into one data frame.</p>
+<p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code><a href="http://www.rdocumentation.org/packages/purrr/topics/map">purrr::map_df(.id)</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Create separate files for each species</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">iris <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">split</span>(.<span class="op">$</span>Species) <span class="op">%&gt;%</span></a>
@@ -167,7 +192,7 @@
 <a class="sourceLine" id="cb8-9" data-line-number="9">iris_files</a>
 <a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; setosa.tsv     versicolor.tsv virginica.tsv</span></a>
 <a class="sourceLine" id="cb8-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co"># Read the data into a single table, including the filenames.</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co"># Read the data into a single table, including the filenames</span></a>
 <a class="sourceLine" id="cb8-13" data-line-number="13">iris_files <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-14" data-line-number="14"><span class="st">  </span><span class="kw">map_df</span>(read_tsv, <span class="dt">.id =</span> <span class="st">"file"</span>, <span class="dt">col_types =</span> <span class="kw">cols</span>(), <span class="dt">n_max =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt; # A tibble: 6 x 5</span></a>
@@ -181,6 +206,9 @@
 <a class="sourceLine" id="cb8-23" data-line-number="23"><span class="co">#&gt; 6 virginica.tsv          5.80        2.70         5.10       1.90</span></a>
 <a class="sourceLine" id="cb8-24" data-line-number="24"></a>
 <a class="sourceLine" id="cb8-25" data-line-number="25"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(iris_files)</a></code></pre></div>
+</section><section id="feedback-wanted" class="level2"><h2>Feedback wanted!</h2>
+<p>We hope <strong>fs</strong> is a useful tool for both analysis scripts and packages. Please open <a href="https://github.com/r-lib/fs">GitHub issues</a> for any feature requests or bugs.</p>
+<p>In particular, we have found non-ASCII filenames in non-English locales on Windows to be especially tricky to reproduce and handle correctly. Feedback from users who use commonly have this situation is greatly appreciated.</p>
 </section></section>
 </div>
   </div>
@@ -193,7 +221,7 @@
 </li>
 </ul>
 <h2>License</h2>
-<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> | file <a href="LICENSE.html">LICENSE</a></p>
+<p><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
@@ -206,7 +234,7 @@
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://tidyverse.org"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
+<li><a href="https://tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
 <li><a href="https://travis-ci.org/r-lib/fs"><img src="https://travis-ci.org/r-lib/fs.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://ci.appveyor.com/project/r-lib/fs"><img src="https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/r-lib/fs?branch=master"><img src="https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg" alt="Coverage status"></a></li>

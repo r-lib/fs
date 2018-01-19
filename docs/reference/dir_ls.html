@@ -95,7 +95,7 @@ the result in a list.
     
 
     <pre class="usage"><span class='fu'>dir_ls</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
 
 <span class='fu'>dir_map</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>)
 
@@ -126,9 +126,18 @@ the filenames.</p></td>
 "symlink", "FIFO", "socket", "character_device" or "block_device".</p></td>
     </tr>
     <tr>
-      <th>glob, regexp</th>
-      <td><p>Either a file glob (e.g. <code>*.csv</code>) or a regular
-expression (e.g. <code>\.csv$)</code> passed on to grep to filter paths.</p></td>
+      <th>glob</th>
+      <td><p>Either a glob (e.g. <code>*.csv</code>) or a regular
+expression (e.g. <code>[.]csv$</code>) passed on to <code>grep()</code> to filter paths.</p></td>
+    </tr>
+    <tr>
+      <th>regexp</th>
+      <td><p>Either a glob (e.g. <code>*.csv</code>) or a regular
+expression (e.g. <code>[.]csv$</code>) passed on to <code>grep()</code> to filter paths.</p></td>
+    </tr>
+    <tr>
+      <th>invert</th>
+      <td><p>If <code>TRUE</code> return files which do <em>not</em> match</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -186,16 +195,16 @@ expression (e.g. <code>\.csv$)</code> passed on to grep to filter paths.</p></td
 #&gt;  chr "base/demo"
 #&gt;  chr "base/help"
 #&gt;  chr "base/html"</div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
-#&gt;   path             type         size permissio… modification_time   user  group
-#&gt;   &lt;fs::path&gt;       &lt;fctr&gt;   &lt;fs::by&gt; &lt;fs::perm&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
-#&gt; 1 base/CITATION    file          956 rw-rw-r--  2017-12-06 21:16:12 root  admin
-#&gt; 2 base/DESCRIPTION file          286 rw-rw-r--  2017-12-06 21:16:12 root  admin
-#&gt; 3 base/INDEX       file        23.2K rw-rw-r--  2017-12-06 21:16:12 root  admin
-#&gt; 4 base/Meta        directo…      272 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 5 base/R           directo…      204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 6 base/demo        directo…      204 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 7 base/help        directo…      238 rwxrwxr-x  2017-12-06 21:16:12 root  admin
-#&gt; 8 base/html        directo…      136 rwxrwxr-x  2017-12-06 21:16:12 root  admin
+#&gt;   path             type        size permissions modification_time   user  group
+#&gt;   &lt;fs::path&gt;       &lt;fct&gt;   &lt;fs::by&gt; &lt;fs::perms&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
+#&gt; 1 base/CITATION    file         956 rw-rw-r--   2017-12-06 21:16:12 root  admin
+#&gt; 2 base/DESCRIPTION file         286 rw-rw-r--   2017-12-06 21:16:12 root  admin
+#&gt; 3 base/INDEX       file       23.2K rw-rw-r--   2017-12-06 21:16:12 root  admin
+#&gt; 4 base/Meta        direct…      272 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 5 base/R           direct…      204 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 6 base/demo        direct…      204 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 7 base/help        direct…      238 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 8 base/html        direct…      136 rwxrwxr-x   2017-12-06 21:16:12 root  admin
 #&gt; # ... with 11 more variables: device_id &lt;dbl&gt;, hard_links &lt;dbl&gt;,
 #&gt; #   special_device_id &lt;dbl&gt;, inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;, flags
 #&gt; #   &lt;int&gt;, generation &lt;dbl&gt;, access_time &lt;dttm&gt;, change_time &lt;dttm&gt;, birth_time
