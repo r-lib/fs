@@ -75,6 +75,19 @@ base R functions:
   of different conventions used (e.g. `path.expand()` vs `normalizePath()`;
   `Sys.chmod()` vs `file.access()`).
   
+### Tidy paths
+
+**fs** functions always return 'tidy' paths. Tidy paths
+
+  - always expand `~`
+  - use `/` to delimit directories
+  - never have multiple `/` or trailing `/`
+
+Tidy paths are also coloured (if your terminal supports it) based on the
+file permissions and file type. This colouring can be customised or extended by
+setting the `LS_COLORS` environment variable, in the same output format as [GNU
+dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors).
+
 ## Usage
 
 **fs** functions are divided into four main categories:
@@ -109,7 +122,7 @@ dir_ls(tmp)
 dir_delete(tmp)
 ```
 
-**fs** is designed to work well with the pipe, although because it is a
+**fs** is designed to work well with the pipe, though because it is a
 minimal-dependency infrastructure package it doesn't provide the pipe itself.
 You will need to attach [magrittr](http://magrittr.tidyverse.org) or similar.
 
@@ -126,8 +139,10 @@ paths %>% file_delete()
 ```
 
 **fs** functions also work well in conjunction with other
-[tidyverse](https://www.tidyverse.org/) packages like
+[tidyverse](https://www.tidyverse.org/) packages, like
 [dplyr](http://dplyr.tidyverse.org) and [purrr](http://purrr.tidyverse.org).
+
+Some examples...
 
 ```{r}
 suppressMessages(
@@ -135,6 +150,7 @@ suppressMessages(
 ```
 
 Filter files by type, permission and size
+
 ```{r}
 dir_info("src", recursive = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
@@ -142,15 +158,19 @@ dir_info("src", recursive = FALSE) %>%
   select(path, permissions, size, modification_time)
 ```
 
-Display folder size
+Tabulate and display folder size.
+
 ```{r}
 dir_info("src", recursive = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
 ```
 
-Read a collection of files into one data frame. `dir_ls()` returns a named
-vector, so it can be used directly with `purrr::map_df(.id)`.
+Read a collection of files into one data frame.
+
+`dir_ls()` returns a named vector, so it can be used directly with
+`purrr::map_df(.id)`.
+
 ```{r}
 # Create separate files for each species
 iris %>%
@@ -162,9 +182,18 @@ iris %>%
 iris_files <- dir_ls(glob = "*.tsv")
 iris_files
 
-# Read the data into a single table, including the filenames.
+# Read the data into a single table, including the filenames
 iris_files %>%
   map_df(read_tsv, .id = "file", col_types = cols(), n_max = 2)
 
 file_delete(iris_files)
 ```
+
+## Feedback wanted!
+
+We hope **fs** is a useful tool for both analysis scripts and packages.
+Please open [GitHub issues](https://github.com/r-lib/fs) for any feature requests or bugs.
+
+In particular, we have found non-ASCII filenames in non-English locales on
+Windows to be especially tricky to reproduce and handle correctly. Feedback
+from users who use commonly have this situation is greatly appreciated.

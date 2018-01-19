@@ -1,19 +1,34 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-fs
-==
 
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://tidyverse.org/lifecycle/#maturing) [![Travis build status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs) [![Coverage status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
+# fs
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://tidyverse.org/lifecycle/#maturing)
+[![Travis build
+status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
+[![Coverage
+status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
 
 <p align="center">
+
 <img src="https://i.imgur.com/NAux1Xc.png" width = "75%"/>
+
 </p>
-**fs** provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as [nodejs](https://nodejs.org), the [libuv](http://docs.libuv.org/en/v1.x/fs.html) C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rust's [fs module](https://doc.rust-lang.org/std/fs/index.html).
 
-Installation
-------------
+**fs** provides a cross-platform, uniform interface to file system
+operations. It shares the same back-end component as
+[nodejs](https://nodejs.org), the
+[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library, which brings
+the benefit of extensive real-world use and rigorous cross-platform
+testing. The name, and some of the interface, is partially inspired by
+Rust’s [fs module](https://doc.rust-lang.org/std/fs/index.html).
 
-You can install the released version of **fs** from [CRAN](https://CRAN.R-project.org) with:
+## Installation
+
+You can install the released version of **fs** from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("fs")
@@ -26,32 +41,61 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("r-lib/fs")
 ```
 
-Comparison vs base equivalents
-------------------------------
+## Comparison vs base equivalents
 
-**fs** functions smooth over some of the idiosyncrasies of file handling with base R functions:
+**fs** functions smooth over some of the idiosyncrasies of file handling
+with base R functions:
 
--   Vectorization. All **fs** functions are vectorized, accepting multiple paths as input. Base functions are inconsistently vectorized.
+  - Vectorization. All **fs** functions are vectorized, accepting
+    multiple paths as input. Base functions are inconsistently
+    vectorized.
 
--   Predictable return values that always convey a path. All **fs** functions return a character vector of paths, a named integer or a logical vector, where the names give the paths. Base return values are more varied: they are often logical or contain error codes which require downstream processing.
+  - Predictable return values that always convey a path. All **fs**
+    functions return a character vector of paths, a named integer or a
+    logical vector, where the names give the paths. Base return values
+    are more varied: they are often logical or contain error codes which
+    require downstream processing.
 
--   Explicit failure. If **fs** operations fail, they throw an error. Base functions tend to generate a warning and a system dependent error code. This makes it easy to miss a failure.
+  - Explicit failure. If **fs** operations fail, they throw an error.
+    Base functions tend to generate a warning and a system dependent
+    error code. This makes it easy to miss a failure.
 
--   UTF-8 all the things. **fs** functions always convert input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSes. Base functions rely on the native system encoding.
+  - UTF-8 all the things. **fs** functions always convert input paths to
+    UTF-8 and return results as UTF-8. This gives you path encoding
+    consistency across OSes. Base functions rely on the native system
+    encoding.
 
--   Naming convention. **fs** functions use a consistent naming convention. Because base R's functions were gradually added over time there are a number of different conventions used (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs `file.access()`).
+  - Naming convention. **fs** functions use a consistent naming
+    convention. Because base R’s functions were gradually added over
+    time there are a number of different conventions used (e.g.
+    `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs
+    `file.access()`).
 
-Usage
------
+### Tidy paths
+
+**fs** functions always return ‘tidy’ paths. Tidy paths
+
+  - always expand `~`
+  - use `/` to delimit directories
+  - never have multiple `/` or trailing `/`
+
+Tidy paths are also coloured (if your terminal supports it) based on the
+file permissions and file type. This colouring can be customised or
+extended by setting the `LS_COLORS` environment variable, in the same
+output format as [GNU
+dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors).
+
+## Usage
 
 **fs** functions are divided into four main categories:
 
--   `path_` for manipulating paths
--   `file_` for files
--   `dir_` for directories
--   `link_` for links
+  - `path_` for manipulating paths
+  - `file_` for files
+  - `dir_` for directories
+  - `link_` for links
 
-Directories and links are special types of files, so `file_` functions will generally also work when applied to a directory or link.
+Directories and links are special types of files, so `file_` functions
+will generally also work when applied to a directory or link.
 
 ``` r
 library(fs)
@@ -67,12 +111,12 @@ dir_ls()
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file99384aa17916
+#> /tmp/filedd463d6d7e0f
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file99384aa17916/my-file.txt
+#> /tmp/filedd463d6d7e0f/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -83,7 +127,10 @@ dir_ls(tmp)
 dir_delete(tmp)
 ```
 
-**fs** is designed to work well with the pipe, although because it is a minimal-dependency infrastructure package it doesn't provide the pipe itself. You will need to attach [magrittr](http://magrittr.tidyverse.org) or similar.
+**fs** is designed to work well with the pipe, though because it is a
+minimal-dependency infrastructure package it doesn’t provide the pipe
+itself. You will need to attach
+[magrittr](http://magrittr.tidyverse.org) or similar.
 
 ``` r
 library(magrittr)
@@ -93,16 +140,18 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file993879a7112c/a
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file993879a7112c/b
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file993879a7112c/c
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file993879a7112c/d
-#> /var/folders/vr/gzrbtprx6ybg85y5pvwm1ct40000gn/T/Rtmp4onijA/file993879a7112c/e
+#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c 
+#> /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
 
 paths %>% file_delete()
 ```
 
-**fs** functions also work well in conjunction with other [tidyverse](https://www.tidyverse.org/) packages like [dplyr](http://dplyr.tidyverse.org) and [purrr](http://purrr.tidyverse.org).
+**fs** functions also work well in conjunction with other
+[tidyverse](https://www.tidyverse.org/) packages, like
+[dplyr](http://dplyr.tidyverse.org) and
+[purrr](http://purrr.tidyverse.org).
+
+Some examples…
 
 ``` r
 suppressMessages(
@@ -119,18 +168,18 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size modification_time  
 #>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--        646.4K 2018-01-18 22:37:23
-#> 2 src/dir.o           rw-r--r--        408.8K 2018-01-18 22:37:11
-#> 3 src/id.o            rw-r--r--        334.9K 2018-01-18 22:37:15
-#> 4 src/fs.so           rwxr-xr-x        323.3K 2018-01-18 22:37:55
-#> 5 src/file.o          rw-r--r--        280.8K 2018-01-18 22:37:13
-#> 6 src/path.o          rw-r--r--        221.7K 2018-01-18 22:37:19
-#> 7 src/link.o          rw-r--r--        198.8K 2018-01-18 22:37:17
-#> 8 src/error.o         rw-r--r--         17.1K 2018-01-18 22:37:11
-#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-18 22:17:44
+#> 1 src/RcppExports.o   rw-r--r--        753.8K 2018-01-19 08:32:18
+#> 2 src/dir.o           rw-r--r--        460.3K 2018-01-19 08:32:18
+#> 3 src/id.o            rw-r--r--        377.7K 2018-01-19 08:32:18
+#> 4 src/fs.so           rwxr-xr-x        328.6K 2018-01-19 08:32:18
+#> 5 src/file.o          rw-r--r--        313.1K 2018-01-19 08:32:18
+#> 6 src/path.o          rw-r--r--        238.9K 2018-01-19 08:32:18
+#> 7 src/link.o          rw-r--r--        215.9K 2018-01-19 08:32:18
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-19 08:32:18
+#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-18 09:58:59
 ```
 
-Display folder size
+Tabulate and display folder size.
 
 ``` r
 dir_info("src", recursive = TRUE) %>%
@@ -139,12 +188,12 @@ dir_info("src", recursive = TRUE) %>%
 #> # A tibble: 54 x 2
 #>    directory                                        n
 #>    <fs::path>                             <fs::bytes>
-#>  1 src/libuv                                    2.52M
-#>  2 src                                          2.41M
-#>  3 src/libuv/src/unix                           1.08M
-#>  4 src/libuv/autom4te.cache                     1.08M
-#>  5 src/libuv/test                             865.36K
-#>  6 src/libuv/src/win                          683.14K
+#>  1 src                                          2.68M
+#>  2 src/libuv                                    2.53M
+#>  3 src/libuv/autom4te.cache                     2.15M
+#>  4 src/libuv/test                             865.36K
+#>  5 src/libuv/src/win                          683.14K
+#>  6 src/libuv/src/unix                          525.9K
 #>  7 src/libuv/m4                               334.61K
 #>  8 src/libuv/docs/src/static                  328.32K
 #>  9 src/libuv/include                          192.33K
@@ -152,7 +201,10 @@ dir_info("src", recursive = TRUE) %>%
 #> # ... with 44 more rows
 ```
 
-Read a collection of files into one data frame. `dir_ls()` returns a named vector, so it can be used directly with `purrr::map_df(.id)`.
+Read a collection of files into one data frame.
+
+`dir_ls()` returns a named vector, so it can be used directly with
+`purrr::map_df(.id)`.
 
 ``` r
 # Create separate files for each species
@@ -166,7 +218,7 @@ iris_files <- dir_ls(glob = "*.tsv")
 iris_files
 #> setosa.tsv     versicolor.tsv virginica.tsv
 
-# Read the data into a single table, including the filenames.
+# Read the data into a single table, including the filenames
 iris_files %>%
   map_df(read_tsv, .id = "file", col_types = cols(), n_max = 2)
 #> # A tibble: 6 x 5
@@ -181,3 +233,14 @@ iris_files %>%
 
 file_delete(iris_files)
 ```
+
+## Feedback wanted\!
+
+We hope **fs** is a useful tool for both analysis scripts and packages.
+Please open [GitHub issues](https://github.com/r-lib/fs) for any feature
+requests or bugs.
+
+In particular, we have found non-ASCII filenames in non-English locales
+on Windows to be especially tricky to reproduce and handle correctly.
+Feedback from users who use commonly have this situation is greatly
+appreciated.
