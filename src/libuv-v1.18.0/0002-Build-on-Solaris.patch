@@ -1,0 +1,95 @@
+From d01530c4b9d8a4a98f1e0713bb0e135bc5878162 Mon Sep 17 00:00:00 2001
+From: Jim Hester <james.f.hester@gmail.com>
+Date: Tue, 9 Jan 2018 09:42:34 -0500
+Subject: [PATCH] Build on Solaris
+
+---
+ src/Makevars          | 12 ++++++++++++
+ src/libuv-v1.18.0Makefile.am |  2 +-
+ src/unix/getmode.cc   |  9 ++++++++-
+ tests/testthat.R      |  4 +++-
+ 4 files changed, 24 insertions(+), 3 deletions(-)
+
+diff --git a/src/Makevars b/src/Makevars
+index 13d6e6a5..a88c4e5b 100644
+--- a/src/Makevars
++++ b/src/Makevars
+@@ -1,8 +1,20 @@
+ # Use C++11 if available, so we have C99 support for variadic macros
+ CXX_STD=CXX11
+ 
++UNAME := $(shell uname)
++
+ PKG_LIBS = ./libuv/.libs/libuv.a `pkg-config libbsd --libs 2>/dev/null`
+ 
++ifeq ($(UNAME), SunOS)
++PKG_LIBS += -lkstat -lsendfile -lsocket -lxnet
++endif
++ifeq ($(UNAME), FreeBSD)
++PKG_LIBS += -lkvm
++endif
++ifeq ($(UNAME), OpenBSD)
++PKG_LIBS += -lkvm
++endif
++
+ PKG_CPPFLAGS = -I./libuv/include -I.
+ 
+ all: $(SHLIB)
+diff --git a/src/libuv-v1.18.0Makefile.am b/src/libuv-v1.18.0Makefile.am
+index e01cf416..504d9625 100644
+--- a/src/libuv-v1.18.0Makefile.am
++++ b/src/libuv-v1.18.0Makefile.am
+@@ -432,7 +432,7 @@ endif
+ 
+ if SUNOS
+ include_HEADERS += include/uv-sunos.h
+-libuv_la_CFLAGS += -D__EXTENSIONS__ -D_XOPEN_SOURCE=500
++libuv_la_CFLAGS += -D__EXTENSIONS__ -D_XOPEN_SOURCE=500 -DSUNOS_NO_IFADDRS
+ libuv_la_SOURCES += src/unix/no-proctitle.c \
+                     src/unix/sunos.c
+ endif
+diff --git a/src/unix/getmode.cc b/src/unix/getmode.cc
+index 4257d67b..a61f3ae3 100644
+--- a/src/unix/getmode.cc
++++ b/src/unix/getmode.cc
+@@ -1,6 +1,7 @@
+ #include "getmode.h"
+ 
+-#if (defined(__APPLE__) && defined(__MACH__)) || defined(__BSD__)
++#if (defined(__APPLE__) && defined(__MACH__)) || defined(__BSD__) ||           \
++    defined(__sun)
+ #include <string.h> /* for strmode */
+ #include <unistd.h> /* for getmode / setmode */
+ #else
+@@ -12,6 +13,11 @@
+ 
+ #include <sys/stat.h>
+ 
++#if defined(__sun)
++mode_t getmode_(const char* mode_str, mode_t mode) { return (mode_t)0; }
++std::string strmode_(mode_t mode) { return ""; }
++std::string file_code_(std::string path, mode_t mode) { return ""; }
++#else
+ mode_t getmode_(const char* mode_str, mode_t mode) {
+   void* out = setmode(mode_str);
+   if (out == NULL) {
+@@ -66,3 +72,4 @@ std::string file_code_(std::string path, mode_t mode) {
+   }
+   return "";
+ }
++#endif
+diff --git a/tests/testthat.R b/tests/testthat.R
+index fe2281cb..55d155c4 100644
+--- a/tests/testthat.R
++++ b/tests/testthat.R
+@@ -1,4 +1,6 @@
+ library(testthat)
+ library(fs)
+ 
+-test_check("fs")
++if (Sys.info()[["sysname"]] != "SunOS") {
++  test_check("fs")
++}
+-- 
+2.14.2
+

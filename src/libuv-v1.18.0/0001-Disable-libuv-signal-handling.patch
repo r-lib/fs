@@ -1,0 +1,51 @@
+From feb23749b4a0417ceed23ea7a650856c57c73156 Mon Sep 17 00:00:00 2001
+From: Jim Hester <james.f.hester@gmail.com>
+Date: Tue, 2 Jan 2018 16:51:34 -0500
+Subject: [PATCH] Disable libuv signal handling
+
+The signal handlers set by libuv were not be unset when calling
+`uv_loop_close()`, so would cause crashes when fs was unloaded and the R
+process was later forked by processx, parallel, sys or other packages.
+
+Disabling the signal initialization fixes the issue, as we do not use
+any signal handlers in fs.
+---
+ src/libuv-v1.18.0src/unix/loop.c | 8 ++++----
+ src/libuv-v1.18.0src/win/core.c  | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/libuv-v1.18.0src/unix/loop.c b/src/libuv-v1.18.0src/unix/loop.c
+index 5b5b0e09..ccfdfce7 100644
+--- a/src/libuv-v1.18.0src/unix/loop.c
++++ b/src/libuv-v1.18.0src/unix/loop.c
+@@ -67,10 +67,10 @@ int uv_loop_init(uv_loop_t* loop) {
+   if (err)
+     return err;
+ 
+-  uv__signal_global_once_init();
+-  err = uv_signal_init(loop, &loop->child_watcher);
+-  if (err)
+-    goto fail_signal_init;
++  /*uv__signal_global_once_init();*/
++  /*err = uv_signal_init(loop, &loop->child_watcher);*/
++  /*if (err)*/
++    /*goto fail_signal_init;*/
+ 
+   uv__handle_unref(&loop->child_watcher);
+   loop->child_watcher.flags |= UV__HANDLE_INTERNAL;
+diff --git a/src/libuv-v1.18.0src/win/core.c b/src/libuv-v1.18.0src/win/core.c
+index 9ed4e824..6a3eb6f3 100644
+--- a/src/libuv-v1.18.0src/win/core.c
++++ b/src/libuv-v1.18.0src/win/core.c
+@@ -207,7 +207,7 @@ static void uv_init(void) {
+   uv_fs_init();
+ 
+   /* Initialize signal stuff */
+-  uv_signals_init();
++  /*uv_signals_init();*/
+ 
+   /* Initialize console */
+   uv_console_init();
+-- 
+2.14.2
+

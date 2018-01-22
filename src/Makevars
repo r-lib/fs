@@ -3,7 +3,7 @@ CXX_STD=CXX11
 
 UNAME := $(shell uname)
 
-PKG_LIBS = ./libuv/.libs/libuv.a
+PKG_LIBS = ./libuv-v1.18.0/.libs/libuv.a
 
 SOURCES = $(wildcard *.cc unix/*.cc)
 OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
@@ -22,17 +22,17 @@ ifeq ($(UNAME), Linux)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
-PKG_CPPFLAGS = -I./libuv/include -I.
+PKG_CPPFLAGS = -I./libuv-v1.18.0/include -I.
 
 all: $(SHLIB)
 
-$(SHLIB): libuv/.libs/libuv.a
+$(SHLIB): libuv-v1.18.0/.libs/libuv.a
 
-libuv/Makefile:
-	(cd libuv && sh autogen.sh && ./configure --quiet)
+libuv-v1.18.0/Makefile:
+	(cd libuv-v1.18.0 && ./configure --quiet)
 
-libuv/.libs/libuv.a: libuv/Makefile
-	$(MAKE) --directory=libuv \
+libuv-v1.18.0/.libs/libuv.a: libuv-v1.18.0/Makefile
+	$(MAKE) --directory=libuv-v1.18.0 \
 		CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" \
 		HAVE_DTRACE=0
 
@@ -40,6 +40,6 @@ libuv/.libs/libuv.a: libuv/Makefile
 
 shlib-clean: clean
 
-clean: libuv/Makefile
-	$(MAKE) --directory=libuv distclean
+clean: libuv-v1.18.0/Makefile
+	$(MAKE) --directory=libuv-v1.18.0 clean
 	rm -f $(OBJECTS) windows/getmode.o
