@@ -29,7 +29,7 @@ all: $(SHLIB)
 $(SHLIB): libuv/.libs/libuv.a
 
 libuv/Makefile:
-	(cd libuv && sh autogen.sh && ./configure --quiet)
+	(cd libuv && ./configure --quiet)
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
