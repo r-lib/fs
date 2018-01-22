@@ -1,5 +1,7 @@
 # fs 1.0.0.9000
 
+* Removed the autotool system dependency on non-windows systems.
+
 ## Bugfixes
 
 * `link_path()` now checks for an error before trying to make a string,
