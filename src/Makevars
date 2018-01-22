@@ -29,7 +29,7 @@ all: $(SHLIB)
 $(SHLIB): libuv/.libs/libuv.a
 
 libuv/Makefile:
-	(cd libuv && sh autogen.sh && ./configure --quiet)
+	(cd libuv && mv m4/lt_obsolete.m4 m4/lt~obsolete.m4 && ./configure --quiet)
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
@@ -40,6 +40,6 @@ libuv/.libs/libuv.a: libuv/Makefile
 
 shlib-clean: clean
 
-clean: libuv/Makefile
-	$(MAKE) --directory=libuv distclean
-	rm -f $(OBJECTS) windows/getmode.o
+clean:
+	#$(MAKE) --directory=libuv distclean
+	rm -f $(OBJECTS)
