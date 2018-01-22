@@ -5,6 +5,9 @@
 * `link_path()` now checks for an error before trying to make a string,
   avoiding a crash (#43).
 
+* libuv return paths now marked as UTF-8 strings in C code, fixing encoding
+  issues on windows. (#42)
+
 # fs 1.0.0
 
 * Removed the libbsd system dependency on linux
