@@ -48,8 +48,8 @@ CharacterVector readlink_(CharacterVector path) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     uv_fs_readlink(uv_default_loop(), &req, p, NULL);
-    SET_STRING_ELT(out, i, Rf_mkCharCE((const char*)req.ptr, CE_UTF8));
     stop_for_error(req, "Failed to read link '%s'", p);
+    SET_STRING_ELT(out, i, Rf_mkCharCE((const char*)req.ptr, CE_UTF8));
     uv_fs_req_cleanup(&req);
   }
   return out;
