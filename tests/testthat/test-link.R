@@ -4,7 +4,7 @@ describe("link_path", {
   with_dir_tree("foo", {
     link_create(path_abs("foo"), "loo")
     it("fails if given a non-link", {
-      expect_error(link_path("foo"), "could not link")
+      expect_error(link_path("foo"), "Failed to read link")
     })
     it("returns the link path if given a link", {
       expect_equal(link_path("loo"), path_abs("foo"))
