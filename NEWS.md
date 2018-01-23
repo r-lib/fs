@@ -1,5 +1,7 @@
 # fs 1.0.0.9000
 
+* Filesystem modification functions now error for NA inputs. (#48)
+
 * Removed the autotool system dependency on non-windows systems.
 
 ## Bugfixes
