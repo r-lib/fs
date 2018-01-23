@@ -128,8 +128,9 @@ List stat_(CharacterVector path) {
     const char* p = CHAR(STRING_ELT(path, i));
     int res = uv_fs_lstat(uv_default_loop(), &req, p, NULL);
 
-    // If file does not exist mark all results as NA
-    if (res == UV_ENOENT || res == UV_ENOTDIR) {
+    // If file does not exist or the input is NA mark all results as NA
+    if (STRING_ELT(path, i) == NA_STRING || res == UV_ENOENT ||
+        res == UV_ENOTDIR) {
       REAL(VECTOR_ELT(out, 1))[i] = NA_REAL;
       INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
       INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
