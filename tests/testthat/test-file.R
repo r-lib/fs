@@ -75,6 +75,9 @@ if (!is_windows()) {
       it("errors if given an invalid mode", {
         expect_error(file_chmod("foo", "g+S"), "Invalid mode 'g\\+S'")
       })
+      it("errors on missing input", {
+        expect_error(file_chmod(NA, "u+x"), class = "invalid_argument")
+      })
     })
   })
 }
@@ -93,13 +96,17 @@ describe("file_copy", {
       expect_error(file_copy("baz/bar", "foo/bar3"), class = "ENOENT")
       expect_error(file_copy("foo/bar", "baz/qux"), class = "ENOENT")
     })
+    it("errors on missing input", {
+      expect_error(file_copy(NA, "foo"), class = "invalid_argument")
+      expect_error(file_copy("foo/bar", NA), class = "invalid_argument")
+    })
   })
 })
 
 describe("file_chown", {
+  skip("need elevated permissions to change uid")
   with_dir_tree(list("foo/bar" = "test"), {
     it("changes the ownership of a file, returns the input path", {
-      skip("need elevated permissions to change uid")
 
       # Make everyone have write access, so we can delete this after changing ownership
       file_chmod("foo/bar", "a+w")
@@ -107,6 +114,9 @@ describe("file_chown", {
       # Change ownership to root
       expect_equal(file_chown("foo/bar", user_id = 0), "foo/bar")
       expect_true(file_info("foo/bar")$user_id == 0)
+    })
+    it("errors on missing input", {
+      expect_error(file_copy(NA, user_id = 0), class = "invalid_argument")
     })
   })
 })
