@@ -75,8 +75,7 @@ with base R functions:
 
 **fs** functions always return ‘tidy’ paths. Tidy paths
 
-  - always expand `~`
-  - use `/` to delimit directories
+  - Always use `/` to delimit directories
   - never have multiple `/` or trailing `/`
 
 Tidy paths are also coloured (if your terminal supports it) based on the
@@ -102,11 +101,13 @@ library(fs)
 
 # list files in the current directory
 dir_ls()
-#> DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          
-#> R                README.Rmd       README.md        _pkgdown.yml     
-#> appveyor.yml     codecov.yml      cran-comments.md docs             
-#> fs.Rproj         inst             man              man-roxygen      
-#> src              tests
+#> DESCRIPTION          LICENSE.md           NAMESPACE            
+#> NEWS.md              R                    README.Rmd           
+#> README.md            _pkgdown.yml         appveyor.yml         
+#> codecov.yml          cran-comments.md     docs                 
+#> fs.Rcheck            fs.Rproj             fs_1.0.0.9000.tar.gz 
+#> inst                 man                  man-roxygen          
+#> src                  tests
 
 # create a new directory
 tmp <- dir_create(file_temp())
@@ -168,15 +169,15 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 9 x 4
 #>   path                permissions        size modification_time  
 #>   <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#> 1 src/RcppExports.o   rw-r--r--        753.8K 2018-01-19 08:32:18
-#> 2 src/dir.o           rw-r--r--        460.3K 2018-01-19 08:32:18
-#> 3 src/id.o            rw-r--r--        377.7K 2018-01-19 08:32:18
-#> 4 src/fs.so           rwxr-xr-x        328.6K 2018-01-19 08:32:18
-#> 5 src/file.o          rw-r--r--        313.1K 2018-01-19 08:32:18
-#> 6 src/path.o          rw-r--r--        238.9K 2018-01-19 08:32:18
-#> 7 src/link.o          rw-r--r--        215.9K 2018-01-19 08:32:18
-#> 8 src/error.o         rw-r--r--         17.3K 2018-01-19 08:32:18
-#> 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-18 09:58:59
+#> 1 src/RcppExports.o   rw-r--r--        761.7K 2018-01-23 16:08:06
+#> 2 src/dir.o           rw-r--r--        468.3K 2018-01-23 16:08:05
+#> 3 src/id.o            rw-r--r--        377.7K 2018-01-23 16:08:05
+#> 4 src/fs.so           rwxr-xr-x          333K 2018-01-23 16:08:11
+#> 5 src/file.o          rw-r--r--        313.3K 2018-01-23 16:08:05
+#> 6 src/path.o          rw-r--r--        241.6K 2018-01-23 16:08:05
+#> 7 src/link.o          rw-r--r--        215.8K 2018-01-23 16:08:05
+#> 8 src/error.o         rw-r--r--         17.3K 2018-01-23 16:08:01
+#> 9 src/RcppExports.cpp rw-r--r--         10.9K 2018-01-22 17:59:06
 ```
 
 Tabulate and display folder size.
@@ -188,14 +189,14 @@ dir_info("src", recursive = TRUE) %>%
 #> # A tibble: 54 x 2
 #>    directory                                        n
 #>    <fs::path>                             <fs::bytes>
-#>  1 src                                          2.68M
-#>  2 src/libuv                                    2.53M
-#>  3 src/libuv/autom4te.cache                     2.15M
-#>  4 src/libuv/test                             865.36K
-#>  5 src/libuv/src/win                          683.14K
-#>  6 src/libuv/src/unix                          525.9K
-#>  7 src/libuv/m4                               334.61K
-#>  8 src/libuv/docs/src/static                  328.32K
+#>  1 src                                           2.7M
+#>  2 src/libuv                                    2.43M
+#>  3 src/libuv/src/unix                           1.09M
+#>  4 src/libuv/autom4te.cache                     1.08M
+#>  5 src/libuv/test                             865.36K
+#>  6 src/libuv/src/win                          683.14K
+#>  7 src/libuv/docs/src/static                  328.32K
+#>  8 src/libuv/m4                               319.95K
 #>  9 src/libuv/include                          192.33K
 #> 10 src/libuv/docs/src/static/diagrams.key     184.04K
 #> # ... with 44 more rows

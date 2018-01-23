@@ -81,9 +81,7 @@
 <section id="tidy-paths" class="level3"><h3>Tidy paths</h3>
 <p><strong>fs</strong> functions always return ‘tidy’ paths. Tidy paths</p>
 <ul>
-<li>always expand <code>~</code>
-</li>
-<li>use <code>/</code> to delimit directories</li>
+<li>Always use <code>/</code> to delimit directories</li>
 <li>never have multiple <code>/</code> or trailing <code>/</code>
 </li>
 </ul>
@@ -105,29 +103,31 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># list files in the current directory</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>()</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; R                README.Rmd       README.md        _pkgdown.yml     </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; appveyor.yml     codecov.yml      cran-comments.md docs             </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; fs.Rproj         inst             man              man-roxygen      </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; src              tests</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># create a new directory</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">tmp</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; /tmp/filedd463d6d7e0f</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co"># create new files in that directory</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="kw"><a href="reference/create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; /tmp/filedd463d6d7e0f/my-file.txt</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co"># remove files from the directory</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; character(0)</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co"># remove the directory</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION          LICENSE.md           NAMESPACE            </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; NEWS.md              R                    README.Rmd           </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; README.md            _pkgdown.yml         appveyor.yml         </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; codecov.yml          cran-comments.md     docs                 </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; fs.Rcheck            fs.Rproj             fs_1.0.0.9000.tar.gz </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; inst                 man                  man-roxygen          </span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; src                  tests</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># create a new directory</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">tmp</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; /tmp/filedd463d6d7e0f</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co"># create new files in that directory</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="kw"><a href="reference/create.html">file_create</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; /tmp/filedd463d6d7e0f/my-file.txt</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co"># remove files from the directory</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="kw"><a href="reference/delete.html">file_delete</a></span>(<span class="kw"><a href="reference/path.html">path</a></span>(tmp, <span class="st">"my-file.txt"</span>))</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>(tmp)</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; character(0)</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co"># remove the directory</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="kw"><a href="reference/delete.html">dir_delete</a></span>(tmp)</a></code></pre></div>
 <p><strong>fs</strong> is designed to work well with the pipe, though because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(magrittr)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"></a>
@@ -152,15 +152,15 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; # A tibble: 9 x 4</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   path                permissions        size modification_time  </span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   &lt;fs::path&gt;          &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        753.8K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        460.3K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/id.o            rw-r--r--        377.7K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/fs.so           rwxr-xr-x        328.6K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        313.1K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        238.9K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        215.9K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-19 08:32:18</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; 9 src/RcppExports.cpp rw-r--r--         10.5K 2018-01-18 09:58:59</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        761.7K 2018-01-23 16:08:06</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        468.3K 2018-01-23 16:08:05</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/id.o            rw-r--r--        377.7K 2018-01-23 16:08:05</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/fs.so           rwxr-xr-x          333K 2018-01-23 16:08:11</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        313.3K 2018-01-23 16:08:05</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        241.6K 2018-01-23 16:08:05</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        215.8K 2018-01-23 16:08:05</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-23 16:08:01</span></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; 9 src/RcppExports.cpp rw-r--r--         10.9K 2018-01-22 17:59:06</span></a></code></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">directory =</span> <span class="kw"><a href="reference/path_file.html">path_dir</a></span>(path)) <span class="op">%&gt;%</span></a>
@@ -168,14 +168,14 @@
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; # A tibble: 54 x 2</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;    directory                                        n</span></a>
 <a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;    &lt;fs::path&gt;                             &lt;fs::bytes&gt;</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                          2.68M</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  2 src/libuv                                    2.53M</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/autom4te.cache                     2.15M</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/test                             865.36K</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  5 src/libuv/src/win                          683.14K</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  6 src/libuv/src/unix                          525.9K</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  7 src/libuv/m4                               334.61K</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;  8 src/libuv/docs/src/static                  328.32K</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                           2.7M</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  2 src/libuv                                    2.43M</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/src/unix                           1.09M</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/autom4te.cache                     1.08M</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  5 src/libuv/test                             865.36K</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  6 src/libuv/src/win                          683.14K</span></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  7 src/libuv/docs/src/static                  328.32K</span></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;  8 src/libuv/m4                               319.95K</span></a>
 <a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;  9 src/libuv/include                          192.33K</span></a>
 <a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt; 10 src/libuv/docs/src/static/diagrams.key     184.04K</span></a>
 <a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt; # ... with 44 more rows</span></a></code></pre></div>
@@ -217,6 +217,8 @@
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=fs">https://​cran.r-project.org/​package=fs</a>
+</li>
 <li>Report a bug at <br><a href="https://github.com/r-lib/fs/issues">https://​github.com/​r-lib/​fs/​issues</a>
 </li>
 </ul>
@@ -249,7 +251,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
