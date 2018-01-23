@@ -31,4 +31,5 @@ test_that("link_create does not modify existing links", {
   expect_equal(link_path(path(x, "link")), path(x, "dir1"))
 
   expect_error(link_create(NA), class = "invalid_argument")
+  expect_error(link_create(path(x, "dir2"), NA), class = "invalid_argument")
 })

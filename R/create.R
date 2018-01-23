@@ -69,6 +69,7 @@ dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
 #'   (the default) or hard link.
 link_create <- function(path, new_path, symbolic = TRUE) {
   assert_no_missing(path)
+  assert_no_missing(new_path)
 
   path <- path_expand(path)
   new_path <- path_expand(new_path)
