@@ -1,5 +1,5 @@
-#ifndef CONDITION_H_
-#define CONDITION_H_
+#ifndef ERROR_H_
+#define ERROR_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,4 +22,4 @@ SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...);
 }
 #endif
 
-#endif /* CONDITION_H_ */
+#endif /* ERROR_H_ */
