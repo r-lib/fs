@@ -15,7 +15,7 @@ path_temp(...)
 \description{
 \itemize{
 \item \code{path_temp()} starts the path with the session temporary directory
-\item \code{path_home()} starts the path with the users home directory
+\item \code{path_home()} starts the path with the expanded users home directory
 }
 }
 \examples{

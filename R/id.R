@@ -9,11 +9,11 @@
 #' @name id
 #' @export
 #' @examples
-#' # list all groups
-#' group_ids()
+#' # list first 6 groups
+#' head(group_ids())
 #'
-#' # list all users
-#' user_ids()
+#' # list first 6 users
+#' head(user_ids())
 group_ids <- function() {
   res <- groups_()
   res <- unique(res[order(res$group_id), ])
