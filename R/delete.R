@@ -42,6 +42,8 @@
 #' link_delete(link)
 #' link_exists(link)
 file_delete <- function(path) {
+  assert_no_missing(path)
+
   path <- path_expand(path)
   unlink_(path)
 
@@ -51,6 +53,8 @@ file_delete <- function(path) {
 #' @rdname delete
 #' @export
 dir_delete <- function(path) {
+  assert_no_missing(path)
+
   path <- path_expand(path)
 
   dirs <- dir_ls(path, type = "directory", recursive = TRUE, all = TRUE)

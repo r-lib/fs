@@ -1,16 +1,18 @@
 context("test-file.R")
 
 describe("file_info", {
-  with_dir_tree(list("foo/bar" = "test"), {
+  with_dir_tree(list(
+      "foo/bar" = "test",
+      "NA" = ""), {
     link_create(path_abs("foo"), "foo2")
 
     it("returns a correct tibble", {
-      x <- file_info(c("foo", "foo/bar", "foo2"))
+      x <- file_info(c("foo", "foo/bar", "foo2", "NA"))
       expect_is(x, c("tbl", "tbl_df", "data.frame"))
       expect_length(x, 18)
-      expect_equal(nrow(x), 3)
-      expect_equal(as.character(x$path), c("foo", "foo/bar", "foo2"))
-      expect_equal(as.character(x$type), c("directory", "file", "symlink"))
+      expect_equal(nrow(x), 4)
+      expect_equal(as.character(x$path), c("foo", "foo/bar", "foo2", "NA"))
+      expect_equal(as.character(x$type), c("directory", "file", "symlink", "file"))
     })
 
     it("returns NA if a file does not exist", {
@@ -20,6 +22,14 @@ describe("file_info", {
       expect_equal(nrow(x), 1)
       expect_equal(as.character(x$path), "missing")
       expect_equal(sum(is.na(x)), 17)
+    })
+    it("returns NA on NA input", {
+      x <- file_info(NA_character_)
+      expect_is(x, c("tbl", "tbl_df", "data.frame"))
+      expect_length(x, 18)
+      expect_equal(nrow(x), 1)
+      expect_equal(as.character(x$path), NA_character_)
+      expect_equal(sum(is.na(x)), 18)
     })
   })
 })
@@ -69,17 +79,7 @@ if (!is_windows()) {
   })
 }
 
-describe("file_delete", {
-  with_dir_tree(list("foo/bar" = "test"), {
-    it("returns the input path and deletes the file", {
-      expect_true(file_exists("foo/bar"))
-      expect_equal(file_delete("foo/bar"), "foo/bar")
-      expect_false(file_exists("foo/bar"))
-    })
-  })
-})
-
-describe("file_delete", {
+describe("file_copy", {
   with_dir_tree(list("foo/bar" = "test"), {
     it("returns the new path and copies the file", {
       expect_true(file_exists("foo/bar"))

@@ -1,4 +1,17 @@
-context("test-dir.R")
+context("test-delete.R")
+
+describe("file_delete", {
+  with_dir_tree(list("foo/bar" = "test"), {
+    it("returns the input path and deletes the file", {
+      expect_true(file_exists("foo/bar"))
+      expect_equal(file_delete("foo/bar"), "foo/bar")
+      expect_false(file_exists("foo/bar"))
+    })
+    it("errors on missing input", {
+      expect_error(file_delete(NA), class = "invalid_argument")
+    })
+  })
+})
 
 describe("dir_delete", {
   it("deletes an empty directory and returns the path", {
@@ -36,5 +49,8 @@ describe("dir_delete", {
       expect_equal(dir_delete("foo"), "foo")
       expect_false(dir_exists("foo"))
     })
+  })
+  it("errors on missing input", {
+    expect_error(dir_delete(NA), class = "invalid_argument")
   })
 })
