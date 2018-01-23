@@ -28,6 +28,8 @@
 #' dir_ls("base", recursive = TRUE, glob = "*.R")
 dir_ls <- function(path = ".", all = FALSE, recursive = FALSE, type = "any",
                    glob = NULL, regexp = NULL, invert = FALSE, ...) {
+  assert_no_missing(path)
+
   files <- as.character(dir_map(path, identity, all, recursive, type))
 
   path_filter(files, glob, regexp, invert = invert,...)
@@ -50,6 +52,8 @@ directory_entry_types <- c(
 #' dir_map("base", identity)
 #' @export
 dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
+  assert_no_missing(path)
+
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
   path <- path_expand(path)
@@ -62,6 +66,8 @@ dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any
 #' dir_walk("base", str)
 #' @export
 dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
+  assert_no_missing(path)
+
   dir_map(path, fun, all, recursive, type)
   invisible(path_tidy(path))
 }
@@ -75,6 +81,8 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "an
 #' link_delete("base")
 dir_info <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
+  assert_no_missing(path)
+
   file_info(dir_ls(path = path, all = all, recursive = recursive, type = type,
     regexp = regexp, glob = glob, ...))
 }

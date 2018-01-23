@@ -69,6 +69,24 @@ describe("dir_ls", {
       expect_equal(path_file(link_path("\U7684\U6D4B")), "\U7684\U6D4B\U8BD5\U6587\U4EF6")
     })
   })
+  it("errors on missing input", {
+    expect_error(dir_ls(NA), class = "invalid_argument")
+  })
+})
+
+describe("dir_map", {
+  it("can find multiple types", {
+    with_dir_tree(list(
+        "file" = "foo",
+        "dir"), {
+      expect_equal(dir_map(type = "file", fun = nchar), list(4))
+      expect_equal(dir_map(type = "directory", fun = nchar), list(3))
+      expect_equal(dir_map(type = c("file", "directory"), fun = nchar), list(3, 4))
+    })
+  })
+  it("errors on missing input", {
+    expect_error(dir_map(NA, fun = identity), class = "invalid_argument")
+  })
 })
 
 describe("dir_walk", {
@@ -98,5 +116,22 @@ describe("dir_walk", {
       dir_walk(type = c("file", "directory", "symlink"), fun = function(p) x <<- c(x, p))
       expect_equal(x, c("dir", "file", "link"))
     })
+  })
+  it("errors on missing input", {
+    expect_error(dir_walk(NA, fun = identity), class = "invalid_argument")
+  })
+})
+
+describe("dir_info", {
+  it("is identical to file_info(dir_ls())", {
+    with_dir_tree(list(
+        "file" = "foo",
+        "dir"), {
+      link_create(path_abs("dir"), "link")
+      expect_identical(dir_info(), file_info(dir_ls()))
+    })
+  })
+  it("errors on missing input", {
+    expect_error(dir_info(NA), class = "invalid_argument")
   })
 })
