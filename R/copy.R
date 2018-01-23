@@ -20,6 +20,9 @@
 #' file_copy("foo", "bar", overwrite = TRUE)
 #' file_delete(c("foo", "bar"))
 file_copy <- function(path, new_path, overwrite = FALSE) {
+  assert_no_missing(path)
+  assert_no_missing(new_path)
+
   path <- path_expand(path)
   new_path <- path_expand(new_path)
   copyfile_(path, new_path, isTRUE(overwrite))
@@ -49,6 +52,9 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 #' link_delete(c("loo", "loo2"))
 #' @export
 dir_copy <- function(path, new_path, overwrite = FALSE) {
+  assert_no_missing(path)
+  assert_no_missing(new_path)
+
   path <- path_expand(path)
   new_path <- path_expand(new_path)
 
@@ -86,6 +92,9 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
 #' @rdname copy
 #' @export
 link_copy <- function(path, new_path, overwrite = FALSE) {
+  assert_no_missing(path)
+  assert_no_missing(new_path)
+
   path <- path_expand(path)
   new_path <- path_expand(new_path)
 

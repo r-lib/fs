@@ -29,6 +29,10 @@ describe("file_copy", {
       expect_equal(readLines("bar2"), readLines("bar"))
     })
   })
+  it("errors on missing input", {
+    expect_error(file_copy(NA, "foo2"), class = "invalid_argument")
+    expect_error(file_copy("foo", NA), class = "invalid_argument")
+  })
 })
 
 describe("link_copy", {
@@ -42,6 +46,10 @@ describe("link_copy", {
       expect_true(link_exists("loo2"))
       expect_equal(link_path("loo2"), link_path("loo"))
     })
+  })
+  it("errors on missing input", {
+    expect_error(link_copy(NA, "foo2"), class = "invalid_argument")
+    expect_error(link_copy("foo", NA), class = "invalid_argument")
   })
 })
 
@@ -85,5 +93,9 @@ describe("dir_copy", {
         expect_true(link_exists("foo2/foo"))
         expect_equal(link_path("foo2/foo"), link_path("foo/foo"))
     })
+  })
+  it("errors on missing input", {
+    expect_error(dir_copy(NA, "foo2"), class = "invalid_argument")
+    expect_error(dir_copy("foo", NA), class = "invalid_argument")
   })
 })
