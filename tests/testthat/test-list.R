@@ -79,9 +79,10 @@ describe("dir_map", {
     with_dir_tree(list(
         "file" = "foo",
         "dir"), {
-      expect_equal(dir_map(type = "file", fun = nchar), list(4))
-      expect_equal(dir_map(type = "directory", fun = nchar), list(3))
-      expect_equal(dir_map(type = c("file", "directory"), fun = nchar), list(3, 4))
+      nc <- function(x) nchar(x, keepNA = FALSE)
+      expect_equal(dir_map(type = "file", fun = nc), list(4))
+      expect_equal(dir_map(type = "directory", fun = nc), list(3))
+      expect_equal(dir_map(type = c("file", "directory"), fun = nc), list(3, 4))
     })
   })
   it("errors on missing input", {

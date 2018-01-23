@@ -80,7 +80,7 @@ collapse <- function(x, sep = "", width = Inf, last = "") {
   }
   x <- paste0(x, collapse = sep)
   if (width < Inf) {
-    x_width <- nchar(x, "width")
+    x_width <- nchar(x, "width", keepNA = FALSE)
     too_wide <- x_width > width
     if (too_wide) {
       x <- paste0(substr(x, 1, width - 3), "...")
@@ -94,7 +94,7 @@ assert_no_missing <- function(x) {
   idx <- which(is.na(x))
   if (length(idx) > 0) {
     number <- prettyNum(length(idx), big.mark = ",")
-    remaining_width <- getOption("width") - nchar(number) - 29
+    remaining_width <- getOption("width") - nchar(number, keepNA = FALSE) - 29
     indexes <- collapse(idx, width = remaining_width, sep = ", ", last = " and ")
     msg <- sprintf(
 "`%s` must not have missing values
