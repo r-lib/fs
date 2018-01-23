@@ -2,6 +2,9 @@ context("test-access.R")
 
 describe("file_access", {
   with_dir_tree(list("foo/bar" = "test"), {
+    it("errors on missing input", {
+      expect_error(file_access(NA), class = "invalid_argument")
+    })
     it("checks for file existence", {
       expect_equal(file_access("foo", "exists"), c(foo = TRUE))
     })
@@ -36,6 +39,9 @@ with_dir_tree(list("foo/bar"  = "test"), {
         file_exists(c("foo", "missing", "foo/bar", "loo")),
         c(foo = TRUE, missing = FALSE, "foo/bar" = TRUE, "loo" = TRUE))
     })
+    it("returns FALSE on missing input", {
+      expect_identical(file_exists(NA_character_), structure(names = NA, FALSE))
+    })
   })
 
   describe("dir_exists", {
@@ -46,6 +52,9 @@ with_dir_tree(list("foo/bar"  = "test"), {
         dir_exists(c("foo", "missing", "foo/bar", "loo")),
         c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE, "loo" = FALSE))
     })
+    it("returns FALSE on missing input", {
+      expect_identical(dir_exists(NA_character_), structure(names = NA, FALSE))
+    })
   })
 
   describe("link_exists", {
@@ -55,6 +64,9 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(
         link_exists(c("foo", "missing", "foo/bar", "loo")),
         c(foo = FALSE, missing = FALSE, "foo/bar" = FALSE, "loo" = TRUE))
+    })
+    it("returns FALSE on missing input", {
+      expect_identical(link_exists(NA_character_), structure(names = NA, FALSE))
     })
   })
 })

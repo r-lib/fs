@@ -18,6 +18,8 @@ access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
 #'
 #' file_exists("WOMBATS")
 file_access <- function(path, mode = "exists") {
+  assert_no_missing(path)
+
   path <- path_expand(path)
   mode <- match.arg(mode, names(access_types), several.ok = TRUE)
   mode <- sum(access_types[mode])
