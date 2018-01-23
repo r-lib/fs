@@ -18,3 +18,7 @@ test_that("file_temp() can use have deterministic results if desired", {
   x <- file_temp()
   expect_true(x != "bar" && x != prev)
 })
+
+test_that("file_temp() errors if given NA input", {
+  expect_error(file_temp(tmp_dir = NA), class = "invalid_argument")
+})
