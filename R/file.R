@@ -87,10 +87,10 @@ file_types <- c(
 file_chmod <- function(path, mode) {
   assert_no_missing(path)
 
+  path <- path_expand(path)
+
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode, mode = file_info(path)$permissions)
-
-  path <- path_expand(path)
 
   chmod_(path, mode)
 
@@ -142,6 +142,8 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 #' @export
 file_show <- function(path = ".", browser = getOption("browser")) {
   assert_no_missing(path)
+
+  path <- path_expand(path)
 
   for (p in path) {
     browseURL(p)

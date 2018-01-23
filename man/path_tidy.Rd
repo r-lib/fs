@@ -14,7 +14,7 @@ A fs_path object
 }
 \description{
 untidy paths are all different, tidy paths are all the same.
-Tidy paths always expand \code{~}, use \code{/} to delimit directories, never have
+Tidy paths always use \code{/} to delimit directories, never have
 multiple \code{/} or trailing \code{/} and have colourised output based on the file
 type.
 }

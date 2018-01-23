@@ -29,10 +29,12 @@
 file_create <- function(path, mode = "u=rw,go=r") {
   assert_no_missing(path)
 
+  path <- path_expand(path)
+
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode)
 
-  create_(path_expand(path), mode)
+  create_(path, mode)
   invisible(path_tidy(path))
 }
 

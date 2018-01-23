@@ -33,6 +33,8 @@ env$temp_names <- character()
 file_temp <- function(pattern = "file", tmp_dir = tempdir(), ext = "") {
   assert_no_missing(tmp_dir)
 
+  tmp_dir <- path_expand(tmp_dir)
+
   path_tidy(file_temp_pop() %||% tempfile(pattern, tmp_dir, ext))
 }
 
@@ -40,6 +42,8 @@ file_temp <- function(pattern = "file", tmp_dir = tempdir(), ext = "") {
 #' @rdname file_temp
 file_temp_push <- function(path) {
   assert_no_missing(path)
+
+  path <- path_expand(path)
 
   env$temp_names <- c(env$temp_names, path)
 

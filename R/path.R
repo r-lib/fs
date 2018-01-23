@@ -78,7 +78,7 @@ path_expand <- function(path) {
 #' Tidy paths
 #'
 #' untidy paths are all different, tidy paths are all the same.
-#' Tidy paths always expand `~`, use `/` to delimit directories, never have
+#' Tidy paths always use `/` to delimit directories, never have
 #' multiple `/` or trailing `/` and have colourised output based on the file
 #' type.
 #'
@@ -86,8 +86,6 @@ path_expand <- function(path) {
 #' @template fs
 #' @export
 path_tidy <- function(path) {
-  path <- path_expand(path)
-
   # convert `\\` to `/`
   path <- gsub("\\", "/", path, fixed = TRUE)
 
@@ -209,7 +207,7 @@ path_rel <- function(path, start = ".") {
 #' Paths starting from useful directories
 #'
 #' * `path_temp()` starts the path with the session temporary directory
-#' * `path_home()` starts the path with the users home directory
+#' * `path_home()` starts the path with the expanded users home directory
 #'
 #' @param ... Additional paths appended to the temporary directory by `path()`.
 #' @export

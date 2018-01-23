@@ -67,8 +67,12 @@ describe("path_split", {
 })
 
 describe("path_tidy", {
-  it("always expands ~", {
-    expect_equal(path_tidy("~/foo"), gsub("\\\\", "/", path_expand("~/foo")))
+  it("does not expand ~", {
+    expect_equal(path_tidy("~/foo"), "~/foo")
+    expect_equal(path_tidy("~/foo/"), "~/foo")
+    expect_equal(path_tidy("~//foo"), "~/foo")
+    expect_equal(path_tidy("~//foo"), "~/foo")
+    expect_equal(path_tidy("~\\foo\\"), "~/foo")
   })
 
   it("always uses / for delimiting, never multiple / or trailing /", {

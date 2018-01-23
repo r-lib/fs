@@ -79,8 +79,7 @@ base R functions:
 
 **fs** functions always return 'tidy' paths. Tidy paths
 
-  - always expand `~`
-  - use `/` to delimit directories
+  - Always use `/` to delimit directories
   - never have multiple `/` or trailing `/`
 
 Tidy paths are also coloured (if your terminal supports it) based on the
