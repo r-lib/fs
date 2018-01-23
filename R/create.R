@@ -37,6 +37,8 @@ file_create <- function(path, mode = "u=rw,go=r") {
 #' @export
 #' @rdname create
 dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
+  path <- path_expand(path)
+
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode)
 
