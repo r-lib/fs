@@ -51,10 +51,11 @@ file_delete <- function(path) {
 #' @rdname delete
 #' @export
 dir_delete <- function(path) {
-  dirs <- dir_ls(path, type = "directory", recursive = TRUE)
+  dirs <- dir_ls(path, type = "directory", recursive = TRUE, all = TRUE)
   files <- dir_ls(path,
     type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
-    recursive = TRUE)
+    recursive = TRUE,
+    all = TRUE)
   file_delete(files)
   rmdir_(rev(c(path, dirs)))
 

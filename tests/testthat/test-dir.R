@@ -26,4 +26,15 @@ describe("dir_delete", {
       expect_false(dir_exists("foo"))
     })
   })
+  it("deletes a non-empty directory with hidden files and directories and returns the path", {
+    with_dir_tree(
+      list("foo/bar" = "test",
+        "foo/baz" = "test2",
+        "foo/.blah" = "foo",
+        ".dir"), {
+      expect_true(dir_exists("foo"))
+      expect_equal(dir_delete("foo"), "foo")
+      expect_false(dir_exists("foo"))
+    })
+  })
 })

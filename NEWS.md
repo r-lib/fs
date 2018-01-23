@@ -4,6 +4,8 @@
 
 ## Bugfixes
 
+* `dir_delete()` is now correctly deletes hidden files and directories (#46).
+
 * `link_path()` now checks for an error before trying to make a string,
   avoiding a crash (#43).
 
