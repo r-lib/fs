@@ -10,4 +10,7 @@ describe("link_path", {
       expect_equal(link_path("loo"), path_abs("foo"))
     })
   })
+  it("errors on missing input", {
+    expect_error(link_path(NA), class = "invalid_argument")
+  })
 })

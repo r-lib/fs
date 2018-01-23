@@ -9,6 +9,8 @@
 #' link_path("bar")
 #' file_delete(c("foo", "bar"))
 link_path <- function(path) {
+  assert_no_missing(path)
+
   path <- path_expand(path)
 
   path_tidy(readlink_(path))
