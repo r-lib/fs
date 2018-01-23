@@ -63,3 +63,47 @@ pkgdown_tmp <- function(path) {
     file_temp_push(path)
   }
 }
+
+# This is adapted from glue::collapse
+# https://github.com/tidyverse/glue/blob/cac874724d09d430036d1bdeba77982e953f29a2/R/glue.R#L140-L161
+collapse <- function(x, sep = "", width = Inf, last = "") {
+  if (length(x) == 0) {
+    return(character())
+  }
+  if (any(is.na(x))) {
+    return(NA_character_)
+  }
+
+  if (nzchar(last) && length(x) > 1) {
+    res <- collapse(x[seq(1, length(x) - 1)], sep = sep, width = Inf)
+    return(collapse(paste0(res, last, x[length(x)]), width = width))
+  }
+  x <- paste0(x, collapse = sep)
+  if (width < Inf) {
+    x_width <- nchar(x, "width")
+    too_wide <- x_width > width
+    if (too_wide) {
+      x <- paste0(substr(x, 1, width - 3), "...")
+    }
+  }
+  x
+}
+
+assert_no_missing <- function(x) {
+  nme <- as.character(substitute(x))
+  idx <- which(is.na(x))
+  if (length(idx) > 0) {
+    number <- prettyNum(length(idx), big.mark = ",")
+    remaining_width <- getOption("width") - nchar(number) - 29
+    indexes <- collapse(idx, width = remaining_width, sep = ", ", last = " and ")
+    msg <- sprintf(
+"`%s` must not have missing values
+  * NAs found at %s locations: %s",
+    nme,
+    number,
+    indexes)
+
+    stop(structure(class = c("invalid_argument", "fs_error", "error", "condition"),
+        list(message = msg)))
+  }
+}
