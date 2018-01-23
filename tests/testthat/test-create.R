@@ -5,6 +5,7 @@ test_that("file_create works with new and existing files", {
 
   expect_true(file_exists(x1))
   expect_error(file_create(x1), NA)
+  expect_error(file_create(NA), class = "invalid_argument")
 })
 
 test_that("dir_create works with new and existing files", {
@@ -12,6 +13,7 @@ test_that("dir_create works with new and existing files", {
 
   expect_true(file_exists(x1))
   expect_error(dir_create(x1), NA)
+  expect_error(dir_create(NA), class = "invalid_argument")
 })
 
 test_that("link_create does not modify existing links", {
@@ -27,4 +29,6 @@ test_that("link_create does not modify existing links", {
   link_create(path(x, "dir1"), path(x, "link"))
   expect_error(link_create(path(x, "dir2"), path(x, "link")), "file already exists")
   expect_equal(link_path(path(x, "link")), path(x, "dir1"))
+
+  expect_error(link_create(NA), class = "invalid_argument")
 })

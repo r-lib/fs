@@ -27,6 +27,8 @@
 #' try(file_create(x))
 #' @export
 file_create <- function(path, mode = "u=rw,go=r") {
+  assert_no_missing(path)
+
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode)
 
@@ -37,6 +39,8 @@ file_create <- function(path, mode = "u=rw,go=r") {
 #' @export
 #' @rdname create
 dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
+  assert_no_missing(path)
+
   path <- path_expand(path)
 
   stopifnot(length(mode) == 1)
@@ -64,6 +68,8 @@ dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
 #' @param symbolic Boolean value determining if the link should be a symbolic
 #'   (the default) or hard link.
 link_create <- function(path, new_path, symbolic = TRUE) {
+  assert_no_missing(path)
+
   path <- path_expand(path)
   new_path <- path_expand(new_path)
 
