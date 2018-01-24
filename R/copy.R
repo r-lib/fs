@@ -60,9 +60,15 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
 
   stopifnot(all(is_dir(path)))
 
-  to_delete <- isTRUE(overwrite) & dir_exists(new_path)
+  stopifnot(length(new_path) == 1)
+
+  if (isTRUE(unname(is_dir(new_path)))) {
+    return(dir_copy(path, path(new_path, path)))
+  }
+
+  to_delete <- isTRUE(overwrite) & file_exists(new_path)
   if (any(to_delete)) {
-    dir_delete(new_path[to_delete])
+    file_delete(new_path[to_delete])
   }
 
   dirs <- dir_ls(path, type = "directory", recursive = TRUE)

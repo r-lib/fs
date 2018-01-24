@@ -73,6 +73,17 @@ describe("dir_copy", {
       expect_true(file_exists("foo2/bar"))
     })
   })
+  it("copies directories into other directories", {
+    with_dir_tree(
+      list("foo/bar" = "test"), {
+        dir_create("foo2")
+        expect_equal(dir_copy("foo", "foo2"), "foo2/foo")
+        expect_true(dir_exists("foo"))
+        expect_true(dir_exists("foo2"))
+        expect_true(dir_exists("foo2/foo"))
+        expect_true(file_exists("foo2/foo/bar"))
+    })
+  })
   it("copies nested directories and returns the path", {
     with_dir_tree(
       list("foo/bar/baz" = "test",

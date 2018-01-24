@@ -18,6 +18,9 @@
 * libuv return paths now marked as UTF-8 strings in C code, fixing encoding
   issues on windows. (#42)
 
+* `dir_copy()` now copies the directory inside the target if the target is a
+  directory (#51).
+
 # fs 1.0.0
 
 * Removed the libbsd system dependency on linux

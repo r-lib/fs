@@ -1,8 +1,6 @@
-This is a resubmission.
-
-I added all copyrights holders explicitly as requested.
-
-Thank you for your time.
+This release removes the (implicit) autotool / libtool dependencies and should
+fix build errors on CRAN's Solaris and MacOS builders. It also fixes the
+valgrind errors.
 
 ## Test environments
 * local OS X install, R 3.4.3
