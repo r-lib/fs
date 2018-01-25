@@ -95,6 +95,26 @@ describe("dir_copy", {
       expect_true(file_exists("foo2/bar/baz"))
     })
   })
+  it("copies absolute paths", {
+    with_dir_tree(
+      list("foo/bar/baz" = "test",
+        "foo/baz/qux" = "test2"), {
+      expect_equal(dir_copy(path_abs("foo"), path_abs("foo2")), path_abs("foo2"))
+      expect_true(dir_exists("foo2"))
+      expect_true(dir_exists(path_abs("foo2")))
+    })
+  })
+  it("copies hidden files, directories and links", {
+    with_dir_tree(
+      list("foo/.bar/.baz" = "test"), {
+        link_create(path_abs("foo/.bar"), "foo/.qux")
+      expect_equal(dir_copy("foo", "foo2"), "foo2")
+      expect_true(dir_exists("foo2"))
+      expect_true(dir_exists("foo2/.bar"))
+      expect_true(file_exists("foo2/.bar/.baz"))
+      expect_true(link_exists("foo2/.qux"))
+    })
+  })
   it("copies links and returns the path", {
     with_dir_tree(
       list("foo/bar/baz" = "test"), {

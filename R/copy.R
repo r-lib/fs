@@ -20,6 +20,7 @@
 #' file_copy("foo", "bar", overwrite = TRUE)
 #' file_delete(c("foo", "bar"))
 file_copy <- function(path, new_path, overwrite = FALSE) {
+  # TODO: copy attributes, e.g. cp -p?
   assert_no_missing(path)
   assert_no_missing(new_path)
 
@@ -60,36 +61,23 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
 
   stopifnot(all(is_dir(path)))
 
-  stopifnot(length(new_path) == 1)
+  stopifnot(length(path) == length(new_path))
 
-  if (isTRUE(unname(is_dir(new_path)))) {
-    return(dir_copy(path, path(new_path, path)))
-  }
+  for (i in seq_along(path)) {
+    if (isTRUE(unname(is_dir(new_path[[i]])))) {
+      new_path[[i]] <- path(new_path[[i]], path_file(path))
+    }
+    file_copy(path[[i]], new_path[[i]])
+    dirs <- dir_ls(path[[i]], type = "directory", recursive = TRUE, all = TRUE)
+    file_copy(dirs, path(new_path[[i]], path_rel(dirs, path[[i]])))
 
-  to_delete <- isTRUE(overwrite) & file_exists(new_path)
-  if (any(to_delete)) {
-    file_delete(new_path[to_delete])
-  }
+    files <- dir_ls(path, recursive = TRUE,
+      type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"), all = TRUE)
+    file_copy(files, path(new_path[[i]], path_rel(files, path[[i]])))
 
-  dirs <- dir_ls(path, type = "directory", recursive = TRUE)
-
-  # Remove first path from directories and prepend new path
-  new_dirs <- path(new_path, sub("[^/]*/", "", dirs))
-  dir_create(c(new_path, new_dirs))
-
-  files <- dir_ls(path, recursive = TRUE,
-    type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"))
-
-  if (length(files) > 0) {
-    # Remove first path from files and prepend new path
-    new_files <- path(new_path, sub("[^/]*/", "", files))
-    file_copy(files, new_files)
-  }
-
-  links <- dir_ls(path, type = "symlink", recursive = TRUE)
-  if (length(links) > 0) {
-    new_links <- path(new_path, sub("[^/]*/", "", links))
-    link_copy(links, new_links)
+    links <- dir_ls(path, recursive = TRUE,
+      type = "symlink", all = TRUE)
+    link_copy(links, path(new_path[[i]], path_rel(links, path[[i]])))
   }
 
   invisible(path_tidy(new_path))
