@@ -11,10 +11,10 @@ describe("path", {
     expect_equal(Encoding(path("\U4F60\U597D.R")), "UTF-8")
   })
 
-  it("returns empty strings unchanged", {
+  it("returns empty strings for empty inputs", {
     expect_equal(path(""), "")
     expect_equal(path(character()), character())
-    expect_equal(path("foo", character(), "bar"), "foo/bar")
+    expect_equal(path("foo", character(), "bar"), character())
   })
 
   it("propagates NA strings", {

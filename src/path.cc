@@ -29,6 +29,9 @@ CharacterVector path_(List paths, const char* ext) {
   char* b = buf;
   for (R_xlen_t c = 0; c < max_col; ++c) {
     R_xlen_t len = Rf_xlength(VECTOR_ELT(paths, c));
+    if (len == 0) {
+      return CharacterVector();
+    }
     if (len > max_row) {
       max_row = len;
     }
