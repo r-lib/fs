@@ -67,7 +67,8 @@ dir_copy <- function(path, new_path) {
     if (isTRUE(unname(is_dir(new_path[[i]])))) {
       new_path[[i]] <- path(new_path[[i]], path_file(path))
     }
-    file_copy(path[[i]], new_path[[i]])
+    dir_create(new_path[[i]])
+
     dirs <- dir_ls(path[[i]], type = "directory", recursive = TRUE, all = TRUE)
     dir_create(path(new_path[[i]], path_rel(dirs, path[[i]])))
 
