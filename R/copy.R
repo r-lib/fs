@@ -69,7 +69,7 @@ dir_copy <- function(path, new_path) {
     }
     file_copy(path[[i]], new_path[[i]])
     dirs <- dir_ls(path[[i]], type = "directory", recursive = TRUE, all = TRUE)
-    file_copy(dirs, path(new_path[[i]], path_rel(dirs, path[[i]])))
+    dir_create(path(new_path[[i]], path_rel(dirs, path[[i]])))
 
     files <- dir_ls(path, recursive = TRUE,
       type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"), all = TRUE)
