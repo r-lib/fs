@@ -9,7 +9,7 @@
 \usage{
 file_copy(path, new_path, overwrite = FALSE)
 
-dir_copy(path, new_path, overwrite = FALSE)
+dir_copy(path, new_path)
 
 link_copy(path, new_path, overwrite = FALSE)
 }

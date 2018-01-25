@@ -52,7 +52,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 #' dir_delete(c("foo", "foo2"))
 #' link_delete(c("loo", "loo2"))
 #' @export
-dir_copy <- function(path, new_path, overwrite = FALSE) {
+dir_copy <- function(path, new_path) {
   assert_no_missing(path)
   assert_no_missing(new_path)
 
