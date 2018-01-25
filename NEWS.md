@@ -6,6 +6,8 @@
 
 * Removed the autotool system dependency on non-windows systems.
 
+* `path()` now returns 0 length output if given any 0 length inputs (#54).
+
 ## Bugfixes
 
 * `dir_delete()` now correctly expands paths (#47).
@@ -20,6 +22,9 @@
 
 * `dir_copy()` now copies the directory inside the target if the target is a
   directory (#51).
+
+* `dir_copy()` now works correctly with absolute paths and no longer removes
+  files when `overwrite = TRUE`.
 
 # fs 1.0.0
 
