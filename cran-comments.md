@@ -10,9 +10,7 @@ valgrind errors.
 
 ## R CMD check results
 
-0 errors | 0 warnings | 2 note
-
-* This is a new release.
+0 errors | 0 warnings | 1 note
 
 * GNU make is a SystemRequirements.
   This is needed by the Makefile for the libuv dependency, it is not practical
