@@ -1,12 +1,16 @@
-# fs 1.0.0.9000
+# fs 1.1.0
+
+## Breaking changes
 
 * Tidy paths no longer expand `~`.
 
 * Filesystem modification functions now error for NA inputs. (#48)
 
-* Removed the autotool system dependency on non-windows systems.
-
 * `path()` now returns 0 length output if given any 0 length inputs (#54).
+
+## New features
+
+* Removed the autotool system dependency on non-windows systems.
 
 ## Bugfixes
 
