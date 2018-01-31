@@ -32,7 +32,7 @@ libuv/m4/lt~obsolete.m4: libuv/m4/lt_obsolete.m4
 	cp -p -f libuv/m4/lt_obsolete.m4 libuv/m4/lt~obsolete.m4
 
 libuv/Makefile: libuv/m4/lt~obsolete.m4
-	(cd libuv && ./configure --quiet)
+	(cd libuv && CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" ./configure --quiet)
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
