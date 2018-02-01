@@ -1,3 +1,7 @@
+# fs 1.1.0.9000
+
+* Fix home expansion on systems without readline (#60).
+
 # fs 1.1.0
 
 ## Breaking changes

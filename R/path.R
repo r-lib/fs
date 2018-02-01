@@ -218,7 +218,7 @@ path_rel <- function(path, start = ".") {
 #' path_temp()
 #' path_temp("does-not-exist")
 path_home <- function(...) {
-  path(path_expand("~"), ...)
+  path(path_expand("~/"), ...)
 }
 
 #' @export

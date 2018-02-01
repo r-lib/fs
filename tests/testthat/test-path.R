@@ -278,7 +278,9 @@ describe("path_rel", {
 })
 
 describe("path_home", {
-  it("is equivalent to path_expand(\"~\")", {
-    expect_equal(path_home(), path_tidy(path_expand("~")))
+  # The trailing slash is needed to ensure we get path expansion
+  # on POSIX systems when readline support is not built in. (#60)
+  it("is equivalent to path_expand(\"~/\")", {
+    expect_equal(path_home(), path_tidy(path_expand("~/")))
   })
 })
