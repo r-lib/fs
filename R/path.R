@@ -143,6 +143,8 @@ path_abs <- function(path) {
 #' [path_norm()].
 #' @export
 path_norm <- function(path) {
+  non_missing <- !is.na(path)
+
   parts <- path_split(path)
   path_norm_one <- function(p) {
     p <- p[p != "."]
@@ -169,7 +171,8 @@ path_norm <- function(path) {
     }
     path_join(p)
   }
-  path_tidy(vapply(parts, path_norm_one, character(1)))
+  parts[non_missing] <- vapply(parts[non_missing], path_norm_one, character(1))
+  path_tidy(parts)
 }
 
 #' @describeIn path_math computes the path relative to the `start` path,

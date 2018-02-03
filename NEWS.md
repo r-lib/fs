@@ -1,6 +1,9 @@
 # fs 1.1.0.9000
 
+## Bugfixes
+
 * Fix home expansion on systems without readline (#60).
+* Fix propagation of NA values in path_norm (#63).
 
 # fs 1.1.0
 

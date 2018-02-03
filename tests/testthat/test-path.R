@@ -207,6 +207,12 @@ describe("path_norm", {
 
     expect_equal(path_norm("\\\\?\\D:/XY\\Z"), "//?/D:/XY/Z")
   })
+
+  it ("works with missing values", {
+    expect_equal(path_norm(NA), NA_character_)
+    expect_equal(path_norm(c("foo", NA)), c("foo", NA))
+    expect_equal(path_norm(c(NA, NA)), c(NA_character_, NA_character_))
+  })
 })
 
 # Test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py
