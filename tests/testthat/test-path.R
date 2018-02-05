@@ -281,6 +281,11 @@ describe("path_rel", {
     expect_equal(path_rel("c:/foo/bar/bat", "c:/x/y"), "../../foo/bar/bat")
     expect_equal(path_rel("//conky/mountpoint/a", "//conky/mountpoint/b/c"), "../../a")
   })
+
+  it("expands path before computing relativity", {
+    expect_equal(path_rel("/foo/bar/baz", "~"), path_rel("/foo/bar/baz", path_expand("~")))
+    expect_equal(path_rel("~/foo/bar/baz", "~"), "foo/bar/baz")
+  })
 })
 
 describe("path_home", {
