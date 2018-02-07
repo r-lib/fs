@@ -2,6 +2,11 @@
 
 ## Breaking changes
 
+* Handling missing values are more consistent. In general `is_*` functions
+  always return `FALSE` for missing values, `path_*` functions always propagate
+  NA values (NA inputs become NA outputs) and `dir_*` `file_*` and `link_*`
+  functions error with NA inputs.
+
 * fs functions now preserve tildes in their outputs. Previously paths were
   always returned with tildes expanded. Users can use `path_expand()` to expand
   tildes if desired.

@@ -49,6 +49,15 @@ describe("path_real", {
       expect_equal(path_real("foo2"), path_real("foo"))
     })
   })
+
+  it("propegates NAs", {
+    with_dir_tree(list("foo/bar" = "test"), {
+      link_create(path_real("foo"), "foo2")
+      expect_equal(path_real(NA_character_), NA_character_)
+      expect_equal(path_real(c("foo2", NA_character_)), c(path_real("foo"), NA_character_))
+    })
+
+  })
 })
 
 describe("path_split", {
@@ -250,6 +259,12 @@ describe("path_common", {
 
     expect_error(path_common(c("", "/spam/alot")), "Can't mix")
   })
+
+  it("returns NA if any input is NA", {
+    expect_equal(path_common(NA), NA_character_)
+    expect_equal(path_common(c("and/jam", NA)), NA_character_)
+    expect_equal(path_common(c("and/jam", NA, "and")), NA_character_)
+  })
 })
 
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
@@ -286,6 +301,11 @@ describe("path_rel", {
     expect_equal(path_rel("/foo/bar/baz", "~"), path_rel("/foo/bar/baz", path_expand("~")))
     expect_equal(path_rel("~/foo/bar/baz", "~"), "foo/bar/baz")
   })
+
+  it("propagates NAs", {
+    expect_equal(path_rel(NA_character_), NA_character_)
+    expect_equal(path_rel("/foo/bar/baz", NA_character_), NA_character_)
+  })
 })
 
 describe("path_home", {
@@ -293,5 +313,29 @@ describe("path_home", {
   # on POSIX systems when readline support is not built in. (#60)
   it("is equivalent to path_expand(\"~/\")", {
     expect_equal(path_home(), path_tidy(path_expand("~/")))
+  })
+})
+
+describe("path_dir", {
+  it("works like dirname for normal paths", {
+    expect_equal(path_dir("foo/bar"), "foo")
+    expect_equal(path_dir("bar"), ".")
+    expect_equal(path_dir(c("foo/bar", "baz")), c("foo", "."))
+  })
+  it("propegates NAs", {
+    expect_equal(path_dir(NA_character_), NA_character_)
+    expect_equal(path_dir(c("foo/bar", NA)), c("foo", NA_character_))
+  })
+})
+
+describe("path_file", {
+  it("works like dirname for normal paths", {
+    expect_equal(path_file("foo/bar"), "bar")
+    expect_equal(path_file("bar"), "bar")
+    expect_equal(path_file(c("foo/bar", "baz")), c("bar", "baz"))
+  })
+  it("propegates NAs", {
+    expect_equal(path_file(NA_character_), NA_character_)
+    expect_equal(path_file(c("foo/bar", NA)), c("bar", NA_character_))
   })
 })

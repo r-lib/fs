@@ -65,7 +65,10 @@ path_real <- function(path) {
   path <- enc2utf8(path)
   old <- path_expand(path)
 
-  path_tidy(realize_(old))
+  is_missing <- is.na(path)
+  old[!is_missing] <- realize_(old[!is_missing])
+
+  path_tidy(old)
 }
 
 
@@ -210,7 +213,15 @@ path_rel <- function(path, start = ".") {
 
     path_join(rels)
   }
-  path_tidy(vapply(path, path_rel_one, character(1)))
+  if (is.na(start)) {
+    return(path_tidy(NA_character_))
+  }
+
+  is_missing <- is.na(path)
+
+  path[!is_missing] <- vapply(path[!is_missing], path_rel_one, character(1))
+
+  path_tidy(path)
 }
 
 #' Paths starting from useful directories
@@ -262,13 +273,17 @@ path_temp <- function(...) {
 #' path_ext_set(path_ext_remove("file.tar.gz"), "zip")
 #' @export
 path_file <- function(path) {
-  path_tidy(basename(path))
+  is_missing <- is.na(path)
+  path[!is_missing] <- basename(path[!is_missing])
+  path_tidy(path)
 }
 
 #' @rdname path_file
 #' @export
 path_dir <- function(path) {
-  path_tidy(dirname(path))
+  is_missing <- is.na(path)
+  path[!is_missing] <- dirname(path[!is_missing])
+  path_tidy(path)
 }
 
 #' @rdname path_file
@@ -301,6 +316,13 @@ path_ext_set <- function(path, ext) {
 #' @describeIn path_math finds the common parts of two (or more) paths.
 #' @export
 path_common <- function(path) {
+
+  is_missing <- is.na(path)
+
+  if (any(is_missing)) {
+    return(path_tidy(NA))
+  }
+
   is_abs <- is_absolute_path(path)
 
   # We must either have all absolute paths, or all relative paths.

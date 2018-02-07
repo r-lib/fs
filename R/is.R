@@ -21,21 +21,21 @@
 #' is_link(paths)
 is_file <- function(path) {
   res <- file_info(path)
-  setNames(res$type == "file", res$path)
+  setNames(!is.na(res$type) & res$type == "file", res$path)
 }
 
 #' @rdname is_file
 #' @export
 is_dir <- function(path) {
   res <- file_info(path)
-  setNames(res$type == "directory", res$path)
+  setNames(!is.na(res$type) & res$type == "directory", res$path)
 }
 
 #' @rdname is_file
 #' @export
 is_link <- function(path) {
   res <- file_info(path)
-  setNames(res$type == "symlink", res$path)
+  setNames(!is.na(res$type) & res$type == "symlink", res$path)
 }
 
 #' Test if a path is an absolute path
