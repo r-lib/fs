@@ -24,9 +24,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
   assert_no_missing(path)
   assert_no_missing(new_path)
 
-  path <- path_expand(path)
-  new_path <- path_expand(new_path)
-  copyfile_(path, new_path, isTRUE(overwrite))
+  copyfile_(path_expand(path), path_expand(new_path), isTRUE(overwrite))
 
   invisible(path_tidy(new_path))
 }
@@ -55,12 +53,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 dir_copy <- function(path, new_path) {
   assert_no_missing(path)
   assert_no_missing(new_path)
-
-  path <- path_expand(path)
-  new_path <- path_expand(new_path)
-
   stopifnot(all(is_dir(path)))
-
   stopifnot(length(path) == length(new_path))
 
   for (i in seq_along(path)) {
@@ -89,16 +82,15 @@ dir_copy <- function(path, new_path) {
 link_copy <- function(path, new_path, overwrite = FALSE) {
   assert_no_missing(path)
   assert_no_missing(new_path)
-
-  path <- path_expand(path)
-  new_path <- path_expand(new_path)
-
   stopifnot(all(is_link(path)))
 
-  to_delete <- isTRUE(overwrite) & link_exists(new_path)
+  old <- path_expand(path)
+  new <- path_expand(new_path)
+
+  to_delete <- isTRUE(overwrite) & link_exists(new)
   if (any(to_delete)) {
-    link_delete(new_path[to_delete])
+    link_delete(new[to_delete])
   }
 
-  invisible(link_create(link_path(path), new_path))
+  invisible(link_create(link_path(old), new))
 }

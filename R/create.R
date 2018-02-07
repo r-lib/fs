@@ -28,13 +28,12 @@
 #' @export
 file_create <- function(path, mode = "u=rw,go=r") {
   assert_no_missing(path)
-
-  path <- path_expand(path)
-
   stopifnot(length(mode) == 1)
-  mode <- as_fs_perms(mode)
 
-  create_(path, mode)
+  mode <- as_fs_perms(mode)
+  new <- path_expand(path)
+
+  create_(new, mode)
   invisible(path_tidy(path))
 }
 
@@ -42,13 +41,12 @@ file_create <- function(path, mode = "u=rw,go=r") {
 #' @rdname create
 dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
   assert_no_missing(path)
-
-  path <- path_expand(path)
-
   stopifnot(length(mode) == 1)
-  mode <- as_fs_perms(mode)
 
-  paths <- path_split(path)
+  mode <- as_fs_perms(mode)
+  new <- path_expand(path)
+
+  paths <- path_split(new)
   for (p in paths) {
     if (length(p) == 1 || !isTRUE(recursive)) {
       mkdir_(p, mode)
@@ -72,16 +70,15 @@ dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
 link_create <- function(path, new_path, symbolic = TRUE) {
   assert_no_missing(path)
   assert_no_missing(new_path)
-
-  path <- path_expand(path)
-  new_path <- path_expand(new_path)
-
   stopifnot(length(path) == length(new_path))
 
+  old <- path_expand(path)
+  new <- path_expand(new_path)
+
   if (isTRUE(symbolic)) {
-    link_create_symbolic_(path, new_path)
+    link_create_symbolic_(old, new)
   } else {
-    link_create_hard_(path, new_path)
+    link_create_hard_(old, new)
   }
 
   invisible(path_tidy(new_path))

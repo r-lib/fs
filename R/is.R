@@ -20,8 +20,6 @@
 #' is_dir(paths)
 #' is_link(paths)
 is_file <- function(path) {
-  path <- path_expand(path)
-
   res <- file_info(path)
   setNames(res$type == "file", res$path)
 }
@@ -29,8 +27,6 @@ is_file <- function(path) {
 #' @rdname is_file
 #' @export
 is_dir <- function(path) {
-  path <- path_expand(path)
-
   res <- file_info(path)
   setNames(res$type == "directory", res$path)
 }
@@ -38,8 +34,6 @@ is_dir <- function(path) {
 #' @rdname is_file
 #' @export
 is_link <- function(path) {
-  path <- path_expand(path)
-
   res <- file_info(path)
   setNames(res$type == "symlink", res$path)
 }

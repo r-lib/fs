@@ -1,5 +1,11 @@
 # fs 1.1.0.9000
 
+## Breaking changes
+
+* fs functions now preserve tildes in their outputs. Previously paths were
+  always returned with tildes expanded. Users can use `path_expand()` to expand
+  tildes if desired.
+
 ## Bugfixes
 
 * Fix home expansion on systems without readline (#60).

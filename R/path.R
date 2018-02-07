@@ -63,8 +63,9 @@ path <- function(..., ext = "") {
 #' @export
 path_real <- function(path) {
   path <- enc2utf8(path)
+  old <- path_expand(path)
 
-  path_tidy(realize_(path_expand(path)))
+  path_tidy(realize_(old))
 }
 
 

@@ -30,9 +30,9 @@ dir_ls <- function(path = ".", all = FALSE, recursive = FALSE, type = "any",
                    glob = NULL, regexp = NULL, invert = FALSE, ...) {
   assert_no_missing(path)
 
-  path <- path_expand(path)
+  old <- path_expand(path)
 
-  files <- as.character(dir_map(path, identity, all, recursive, type))
+  files <- as.character(dir_map(old, identity, all, recursive, type))
 
   path_filter(files, glob, regexp, invert = invert,...)
 }
@@ -56,11 +56,11 @@ directory_entry_types <- c(
 dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   assert_no_missing(path)
 
-  path <- path_expand(path)
-
   type <- match.arg(type, names(directory_entry_types), several.ok = TRUE)
 
-  dir_map_(path, fun, all, sum(directory_entry_types[type]), recursive)
+  old <- path_expand(path)
+
+  dir_map_(old, fun, all, sum(directory_entry_types[type]), recursive)
 }
 
 #' @rdname dir_ls
@@ -70,9 +70,9 @@ dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any
 dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   assert_no_missing(path)
 
-  path <- path_expand(path)
+  old <- path_expand(path)
 
-  dir_map(path, fun, all, recursive, type)
+  dir_map(old, fun, all, recursive, type)
   invisible(path_tidy(path))
 }
 
@@ -86,8 +86,6 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "an
 dir_info <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
   assert_no_missing(path)
-
-  path <- path_expand(path)
 
   file_info(dir_ls(path = path, all = all, recursive = recursive, type = type,
     regexp = regexp, glob = glob, ...))

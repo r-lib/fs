@@ -38,11 +38,11 @@
 #' file_delete("mtcars.csv")
 #' @export
 file_info <- function(path) {
-  path <- path_expand(path)
+  old <- path_expand(path)
 
-  res <- stat_(path)
+  res <- stat_(old)
 
-  res$path <- path_tidy(res$path)
+  res$path <- path_tidy(path)
 
   res$type <- factor(res$type, levels = file_types, labels = names(file_types))
 
@@ -86,13 +86,12 @@ file_types <- c(
 #' file_info(x)$permissions
 file_chmod <- function(path, mode) {
   assert_no_missing(path)
-
-  path <- path_expand(path)
-
   stopifnot(length(mode) == 1)
   mode <- as_fs_perms(mode, mode = file_info(path)$permissions)
 
-  chmod_(path, mode)
+  old <- path_expand(path)
+
+  chmod_(old, mode)
 
   invisible(path_tidy(path))
 }
@@ -107,7 +106,7 @@ file_chmod <- function(path, mode) {
 file_chown <- function(path, user_id = NULL, group_id = NULL) {
   assert_no_missing(path)
 
-  path <- path_expand(path)
+  old <- path_expand(path)
 
   if (is.null(user_id)) {
     user_id <- -1
@@ -125,10 +124,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
     user_id <- getgrnam_(user_id)
   }
 
-  # TODO: use [getpwnam(3)](https://linux.die.net/man/3/getpwnam),
-  # [getgrnam(3)](https://linux.die.net/man/3/getgrnam) to support specifying
-  # uid / gid as names in addition to integers.
-  chown_(path, user_id, group_id)
+  chown_(old, user_id, group_id)
 
   invisible(path_tidy(path))
 }
@@ -143,7 +139,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
 file_show <- function(path = ".", browser = getOption("browser")) {
   assert_no_missing(path)
 
-  path <- path_expand(path)
+  old <- path_expand(path)
 
   for (p in path) {
     browseURL(p)
@@ -174,19 +170,19 @@ file_move <- function(path, new_path) {
   assert_no_missing(path)
   assert_no_missing(new_path)
 
-  path <- path_expand(path)
-  new_path <- path_expand(new_path)
+  old <- path_expand(path)
+  new <- path_expand(new_path)
 
-  is_directory <- file_exists(new_path) && is_dir(new_path)
+  is_directory <- file_exists(new) && is_dir(new)
 
-  if (length(new_path) == 1 && is_directory[[1]]) {
-    new_path <- rep(new_path, length(path))
+  if (length(new) == 1 && is_directory[[1]]) {
+    new <- rep(new, length(path))
   }
-  stopifnot(length(path) == length(new_path))
+  stopifnot(length(old) == length(new))
 
-  new_path[is_directory] <- path(new_path[is_directory], basename(path))
+  new[is_directory] <- path(new[is_directory], basename(new))
 
-  move_(path, new_path)
+  move_(old, new)
 
   invisible(path_tidy(new_path))
 }

@@ -11,7 +11,7 @@
 link_path <- function(path) {
   assert_no_missing(path)
 
-  path <- path_expand(path)
+  old <- path_expand(path)
 
-  path_tidy(readlink_(path))
+  path_tidy(readlink_(old))
 }
