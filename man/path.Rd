@@ -17,6 +17,11 @@ NA.}
 \description{
 Construct path to a file or directory
 }
+\examples{
+path("foo", "bar", "baz", ext = "zip")
+
+path("foo", letters[1:3], ext = "txt")
+}
 \seealso{
 \code{\link[base:file.path]{base::file.path()}}
 }

@@ -54,7 +54,8 @@ links.
 
 \item \code{path_split}: splits paths into parts.
 
-\item \code{path_join}: joins parts together.
+\item \code{path_join}: joins parts together. The inverse of \code{\link[=path_split]{path_split()}}.
+See \code{\link[=path]{path()}} to concatenate vectorized strings into a path.
 
 \item \code{path_abs}: returns a normalized, absolute version of a path.
 

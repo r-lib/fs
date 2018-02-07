@@ -50,6 +50,10 @@ NULL
 #' @param ext An optional extension to append to the generated path.
 #' @export
 #' @seealso [base::file.path()]
+#' @examples
+#' path("foo", "bar", "baz", ext = "zip")
+#'
+#' path("foo", letters[1:3], ext = "txt")
 path <- function(..., ext = "") {
   path_tidy(path_(lapply(list(...), function(x) enc2utf8(as.character(x))), ext))
 }
@@ -113,7 +117,8 @@ path_split <- function(path) {
   strsplit(path, "^(?=/)(?!//)|(?<!^)(?<!^/)/", perl = TRUE)
 }
 
-#' @describeIn path_math joins parts together.
+#' @describeIn path_math joins parts together. The inverse of [path_split()].
+#' See [path()] to concatenate vectorized strings into a path.
 #' @param parts A list of character vectors, corresponding to split paths.
 #' @export
 path_join <- function(parts) {
@@ -133,7 +138,7 @@ path_abs <- function(path) {
   path[is_abs] <- path_norm(path[is_abs])
   cwd <- getwd()
   path[!is_abs] <- path_norm(path(cwd, path[!is_abs]))
-  path
+  path_tidy(path)
 }
 
 #' @describeIn path_math collapses redundant separators and
