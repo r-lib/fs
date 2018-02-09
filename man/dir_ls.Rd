@@ -28,11 +28,9 @@ the filenames.}
 \item{type}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
 
-\item{glob}{Either a glob (e.g. \code{*.csv}) or a regular
-expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+\item{glob}{A wildcard aka globbing pattern (e.g. \code{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
-\item{regexp}{Either a glob (e.g. \code{*.csv}) or a regular
-expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+\item{regexp}{A regular expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
 \item{invert}{If \code{TRUE} return files which do \emph{not} match}
 

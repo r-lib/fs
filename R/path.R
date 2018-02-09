@@ -354,8 +354,8 @@ path_common <- function(path) {
 #' Filter paths
 #'
 #' @template fs
-#' @param glob,regexp Either a glob (e.g. `*.csv`) or a regular
-#'   expression (e.g. `[.]csv$`) passed on to [grep()] to filter paths.
+#' @param glob A wildcard aka globbing pattern (e.g. `*.csv`) passed on to [grep()] to filter paths.
+#' @param regexp A regular expression (e.g. `[.]csv$`) passed on to [grep()] to filter paths.
 #' @param invert If `TRUE` return files which do _not_ match
 #' @param ... Additional arguments passed to [grep].
 #' @export
