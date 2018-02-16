@@ -102,7 +102,7 @@ fail_mutex_init:
 fail_rwlock_init:
   uv__signal_loop_cleanup(loop);
 
-fail_signal_init:
+/*fail_signal_init:*/
   uv__platform_loop_delete(loop);
 
   return err;
