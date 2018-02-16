@@ -41,7 +41,14 @@
   <a href="news/index.html">News</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/r-lib/fs">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -103,13 +110,13 @@
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># list files in the current directory</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/dir_ls.html">dir_ls</a></span>()</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION          LICENSE.md           NAMESPACE            </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; NEWS.md              R                    README.Rmd           </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; README.md            _pkgdown.yml         appveyor.yml         </span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; codecov.yml          cran-comments.md     docs                 </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; fs.Rcheck            fs.Rproj             fs_1.0.0.9000.tar.gz </span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; inst                 man                  man-roxygen          </span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; src                  tests</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; R                R2               README.Rmd       README.md        </span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; _pkgdown.yml     appveyor.yml     codecov.yml      cran-comments.md </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; demo.R           docs             error.json       foo2             </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; fs.Rproj         inst             man              man-roxygen      </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; script.R         src              tag_versions.pl  test.xlsx        </span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; tests</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co"># create a new directory</span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14">tmp &lt;-<span class="st"> </span><span class="kw"><a href="reference/create.html">dir_create</a></span>(<span class="kw"><a href="reference/file_temp.html">file_temp</a></span>())</a>
@@ -152,14 +159,14 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; # A tibble: 9 x 4</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   path                permissions        size modification_time  </span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   &lt;fs::path&gt;          &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        761.7K 2018-01-23 16:08:06</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        468.3K 2018-01-23 16:08:05</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/id.o            rw-r--r--        377.7K 2018-01-23 16:08:05</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/fs.so           rwxr-xr-x          333K 2018-01-23 16:08:11</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/file.o          rw-r--r--        313.3K 2018-01-23 16:08:05</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        241.6K 2018-01-23 16:08:05</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        215.8K 2018-01-23 16:08:05</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-01-23 16:08:01</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.o   rw-r--r--        769.1K 2018-02-16 11:20:24</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/dir.o           rw-r--r--        474.8K 2018-02-16 11:20:23</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; 3 src/id.o            rw-r--r--        383.7K 2018-02-16 11:20:23</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; 4 src/file.o          rw-r--r--        348.5K 2018-02-16 11:20:23</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; 5 src/fs.so           rwxr-xr-x        338.9K 2018-02-16 11:20:32</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; 6 src/path.o          rw-r--r--        246.5K 2018-02-16 11:20:23</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt; 7 src/link.o          rw-r--r--        215.8K 2018-02-16 11:20:23</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; 8 src/error.o         rw-r--r--         17.3K 2018-02-16 11:20:17</span></a>
 <a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; 9 src/RcppExports.cpp rw-r--r--         10.9K 2018-01-22 17:59:06</span></a></code></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
@@ -168,7 +175,7 @@
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; # A tibble: 54 x 2</span></a>
 <a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;    directory                                        n</span></a>
 <a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;    &lt;fs::path&gt;                             &lt;fs::bytes&gt;</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                           2.7M</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  1 src                                          2.77M</span></a>
 <a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  2 src/libuv                                    2.43M</span></a>
 <a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  3 src/libuv/src/unix                           1.09M</span></a>
 <a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  4 src/libuv/autom4te.cache                     1.08M</span></a>
@@ -218,6 +225,8 @@
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cran.r-project.org/package=fs">https://​cran.r-project.org/​package=fs</a>
+</li>
+<li>Browse source code at <br><a href="https://github.com/r-lib/fs">https://​github.com/​r-lib/​fs</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/r-lib/fs/issues">https://​github.com/​r-lib/​fs/​issues</a>
 </li>

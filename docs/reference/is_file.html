@@ -66,7 +66,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/r-lib/fs">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -116,7 +121,8 @@ to ensure that the path also exists.</p>
 
 <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>tmp</span>, <span class='st'>"file.txt"</span>))
 <span class='fu'><a href='create.html'>dir_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>tmp</span>, <span class='st'>"dir"</span>))
-<span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>tmp</span>, <span class='st'>"file.txt"</span>), <span class='fu'><a href='path.html'>path</a></span>(<span class='no'>tmp</span>, <span class='st'>"link"</span>))</div><div class='output co'>#&gt; <span class='error'>Error: [EEXIST] Failed to link '/tmp/filedd46c01c6ad/file.txt' to '/tmp/filedd46c01c6ad/link': file already exists</span></div><div class='input'>
+<span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>tmp</span>, <span class='st'>"file.txt"</span>), <span class='fu'><a href='path.html'>path</a></span>(<span class='no'>tmp</span>, <span class='st'>"link"</span>))
+
 <span class='no'>paths</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dir_ls.html'>dir_ls</a></span>(<span class='no'>tmp</span>)
 <span class='fu'>is_file</span>(<span class='no'>paths</span>)</div><div class='output co'>#&gt;      /tmp/filedd46c01c6ad/dir /tmp/filedd46c01c6ad/file.txt 
 #&gt;                         FALSE                          TRUE 

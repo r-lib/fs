@@ -66,7 +66,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/r-lib/fs">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -98,227 +103,22 @@ or group ids.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># list all groups</span>
-<span class='fu'>group_ids</span>()</div><div class='output co'>#&gt;     group_id                     group_name
-#&gt; 1         -2                         nobody
-#&gt; 2         -1                        nogroup
-#&gt; 3          0                          wheel
-#&gt; 4          1                         daemon
-#&gt; 5          2                           kmem
-#&gt; 6          3                            sys
-#&gt; 7          4                            tty
-#&gt; 8          5                       operator
-#&gt; 9          6                           mail
-#&gt; 10         7                            bin
-#&gt; 11         8                       procview
-#&gt; 12         9                        procmod
-#&gt; 13        10                          owner
-#&gt; 14        12                       everyone
-#&gt; 15        13                     _taskgated
-#&gt; 16        16                          group
-#&gt; 17        20                          staff
-#&gt; 18        24                      _networkd
-#&gt; 19        25              _installassistant
-#&gt; 20        26                            _lp
-#&gt; 21        27                       _postfix
-#&gt; 22        28                      _postdrop
-#&gt; 23        29                      certusers
-#&gt; 24        30                   _keytabusers
-#&gt; 25        31                          _scsd
-#&gt; 26        32                           _ces
-#&gt; 27        33                      _appstore
-#&gt; 28        45                           utmp
-#&gt; 29        50                    authedusers
-#&gt; 30        51                  interactusers
-#&gt; 31        52                       netusers
-#&gt; 32        53                   consoleusers
-#&gt; 33        54                        _mcxalr
-#&gt; 34        55                   _appleevents
-#&gt; 35        56                          _geod
-#&gt; 36        58                 _serialnumberd
-#&gt; 37        59                       _devdocs
-#&gt; 38        60                       _sandbox
-#&gt; 39        61                  localaccounts
-#&gt; 40        62                    netaccounts
-#&gt; 41        65                 _mdnsresponder
-#&gt; 42        66                          _uucp
-#&gt; 43        67                           _ard
-#&gt; 44        68                         dialer
-#&gt; 45        69                        network
-#&gt; 46        70                           _www
-#&gt; 47        71                          _eppc
-#&gt; 48        72                           _cvs
-#&gt; 49        73                           _svn
-#&gt; 50        74                         _mysql
-#&gt; 51        75                          _sshd
-#&gt; 52        76                          _qtss
-#&gt; 53        78                       _mailman
-#&gt; 54        79                  _appserverusr
-#&gt; 55        80                          admin
-#&gt; 56        81                  _appserveradm
-#&gt; 57        82                        _clamav
-#&gt; 58        83                       _amavisd
-#&gt; 59        84                        _jabber
-#&gt; 60        87                      _appowner
-#&gt; 61        88                  _windowserver
-#&gt; 62        89                     _spotlight
-#&gt; 63        90                  accessibility
-#&gt; 64        91                        _tokend
-#&gt; 65        92                 _securityagent
-#&gt; 66        93                      _calendar
-#&gt; 67        94                   _teamsserver
-#&gt; 68        95                _update_sharing
-#&gt; 69        96                     _installer
-#&gt; 70        97                     _atsserver
-#&gt; 71        98                       _lpadmin
-#&gt; 72        99                       _unknown
-#&gt; 73       100                    _lpoperator
-#&gt; 74       200                _softwareupdate
-#&gt; 75       201                         _guest
-#&gt; 76       202                    _coreaudiod
-#&gt; 77       203                   _screensaver
-#&gt; 78       204                     _developer
-#&gt; 79       205                     _locationd
-#&gt; 80       207                   _detachedsig
-#&gt; 81       208          _trustevaluationagent
-#&gt; 82       209                      _odchpass
-#&gt; 83       210                      _timezone
-#&gt; 84       211                           _lda
-#&gt; 85       212                          _cvms
-#&gt; 86       213                       _usbmuxd
-#&gt; 87       216                      _postgres
-#&gt; 88       220                     _devicemgr
-#&gt; 89       221                 _webauthserver
-#&gt; 90       222                       _netbios
-#&gt; 91       224                         _warmd
-#&gt; 92       227                      _dovenull
-#&gt; 93       228                 _netstatistics
-#&gt; 94       235                    _assetcache
-#&gt; 95       236                  _coremediaiod
-#&gt; 96       239               _launchservicesd
-#&gt; 97       240                  _iconservices
-#&gt; 98       241                      _distnote
-#&gt; 99       242                 _nsurlsessiond
-#&gt; 100      243                 _nsurlstoraged
-#&gt; 101      244                _displaypolicyd
-#&gt; 102      245                        _astris
-#&gt; 103      247               _gamecontrollerd
-#&gt; 104      248                   _mbsetupuser
-#&gt; 105      249                      _ondemand
-#&gt; 106      251                   _xserverdocs
-#&gt; 107      252                      _wwwproxy
-#&gt; 108      253                   _mobileasset
-#&gt; 109      254                  _findmydevice
-#&gt; 110      257                 _datadetectors
-#&gt; 111      258                  _captiveagent
-#&gt; 112      259                          _ctkd
-#&gt; 113      260                      _applepay
-#&gt; 114      261                          _hidd
-#&gt; 115      265                          _fpsd
-#&gt; 116      395           com.apple.access_ftp
-#&gt; 117      396      com.apple.access_disabled
-#&gt; 118      397    com.apple.access_sessionkey
-#&gt; 119      398 com.apple.access_screensharing
-#&gt; 120      399           com.apple.access_ssh
-#&gt; 121      701   com.apple.sharepoint.group.1
-#&gt; 122      702   com.apple.sharepoint.group.2</div><div class='input'>
-<span class='co'># list all users</span>
-<span class='fu'>user_ids</span>()</div><div class='output co'>#&gt;    user_id             user_name
-#&gt; 1       -2                nobody
-#&gt; 2        0                  root
-#&gt; 3        1                daemon
-#&gt; 4        4                 _uucp
-#&gt; 5       13            _taskgated
-#&gt; 6       24             _networkd
-#&gt; 7       25     _installassistant
-#&gt; 8       26                   _lp
-#&gt; 9       27              _postfix
-#&gt; 10      31                 _scsd
-#&gt; 11      32                  _ces
-#&gt; 12      54               _mcxalr
-#&gt; 13      55          _appleevents
-#&gt; 14      56                 _geod
-#&gt; 15      58        _serialnumberd
-#&gt; 16      59              _devdocs
-#&gt; 17      60              _sandbox
-#&gt; 18      65        _mdnsresponder
-#&gt; 19      67                  _ard
-#&gt; 20      70                  _www
-#&gt; 21      71                 _eppc
-#&gt; 22      72                  _cvs
-#&gt; 23      73                  _svn
-#&gt; 24      74                _mysql
-#&gt; 25      75                 _sshd
-#&gt; 26      76                 _qtss
-#&gt; 27      77                _cyrus
-#&gt; 28      78              _mailman
-#&gt; 29      79            _appserver
-#&gt; 30      82               _clamav
-#&gt; 31      83              _amavisd
-#&gt; 32      84               _jabber
-#&gt; 33      87             _appowner
-#&gt; 34      88         _windowserver
-#&gt; 35      89            _spotlight
-#&gt; 36      91               _tokend
-#&gt; 37      92        _securityagent
-#&gt; 38      93             _calendar
-#&gt; 39      94          _teamsserver
-#&gt; 40      95       _update_sharing
-#&gt; 41      96            _installer
-#&gt; 42      97            _atsserver
-#&gt; 43      98                  _ftp
-#&gt; 44      99              _unknown
-#&gt; 45     200       _softwareupdate
-#&gt; 46     202           _coreaudiod
-#&gt; 47     203          _screensaver
-#&gt; 48     205            _locationd
-#&gt; 49     208 _trustevaluationagent
-#&gt; 50     210             _timezone
-#&gt; 51     211                  _lda
-#&gt; 52     212             _cvmsroot
-#&gt; 53     213              _usbmuxd
-#&gt; 54     214              _dovecot
-#&gt; 55     215              _dpaudio
-#&gt; 56     216             _postgres
-#&gt; 57     217               _krbtgt
-#&gt; 58     218         _kadmin_admin
-#&gt; 59     219      _kadmin_changepw
-#&gt; 60     220            _devicemgr
-#&gt; 61     221        _webauthserver
-#&gt; 62     222              _netbios
-#&gt; 63     224                _warmd
-#&gt; 64     227             _dovenull
-#&gt; 65     228        _netstatistics
-#&gt; 66     229           _avbdeviced
-#&gt; 67     230           _krb_krbtgt
-#&gt; 68     231           _krb_kadmin
-#&gt; 69     232         _krb_changepw
-#&gt; 70     233         _krb_kerberos
-#&gt; 71     234        _krb_anonymous
-#&gt; 72     235           _assetcache
-#&gt; 73     236         _coremediaiod
-#&gt; 74     239      _launchservicesd
-#&gt; 75     240         _iconservices
-#&gt; 76     241             _distnote
-#&gt; 77     242        _nsurlsessiond
-#&gt; 78     243        _nsurlstoraged
-#&gt; 79     244       _displaypolicyd
-#&gt; 80     245               _astris
-#&gt; 81     246              _krbfast
-#&gt; 82     247      _gamecontrollerd
-#&gt; 83     248          _mbsetupuser
-#&gt; 84     249             _ondemand
-#&gt; 85     251          _xserverdocs
-#&gt; 86     252             _wwwproxy
-#&gt; 87     253          _mobileasset
-#&gt; 88     254         _findmydevice
-#&gt; 89     257        _datadetectors
-#&gt; 90     258         _captiveagent
-#&gt; 91     259                 _ctkd
-#&gt; 92     260             _applepay
-#&gt; 93     261                 _hidd
-#&gt; 94     265                 _fpsd
-#&gt; 95     501               jhester</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># list first 6 groups</span>
+<span class='fu'>head</span>(<span class='fu'>group_ids</span>())</div><div class='output co'>#&gt;   group_id group_name
+#&gt; 1       -2     nobody
+#&gt; 2       -1    nogroup
+#&gt; 3        0      wheel
+#&gt; 4        1     daemon
+#&gt; 5        2       kmem
+#&gt; 6        3        sys</div><div class='input'>
+<span class='co'># list first 6 users</span>
+<span class='fu'>head</span>(<span class='fu'>user_ids</span>())</div><div class='output co'>#&gt;   user_id  user_name
+#&gt; 1      -2     nobody
+#&gt; 2       0       root
+#&gt; 3       1     daemon
+#&gt; 4       4      _uucp
+#&gt; 5      13 _taskgated
+#&gt; 6      24  _networkd</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

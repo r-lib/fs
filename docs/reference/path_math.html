@@ -66,7 +66,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/r-lib/fs">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -133,7 +138,8 @@ links.</p></li>
 <li><p><code>path_expand</code>: performs tilde expansion on a path, replacing instances of
 <code>~</code> or <code>~user</code> with the user's home directory.</p></li>
 <li><p><code>path_split</code>: splits paths into parts.</p></li>
-<li><p><code>path_join</code>: joins parts together.</p></li>
+<li><p><code>path_join</code>: joins parts together. The inverse of <code>path_split()</code>.
+See <code><a href='path.html'>path()</a></code> to concatenate vectorized strings into a path.</p></li>
 <li><p><code>path_abs</code>: returns a normalized, absolute version of a path.</p></li>
 <li><p><code>path_norm</code>: collapses redundant separators and
 up-level references, so <code>A//B</code>, <code>A/B</code>, <code>A/.B</code> and <code>A/foo/../B</code> all become
@@ -163,7 +169,7 @@ which can be either a absolute or relative path.</p></li>
 <span class='co'># Join it together</span>
 <span class='fu'>path_join</span>(<span class='no'>parts</span>)</div><div class='output co'>#&gt; a/b</div><div class='input'>
 <span class='co'># Find the absolute path</span>
-<span class='fu'>path_abs</span>(<span class='st'>".."</span>)</div><div class='output co'>#&gt; [1] ".../docs"</div><div class='input'>
+<span class='fu'>path_abs</span>(<span class='st'>".."</span>)</div><div class='output co'>#&gt; .../docs</div><div class='input'>
 <span class='co'># Normalize a path</span>
 <span class='fu'>path_norm</span>(<span class='st'>"a/../b\\c/."</span>)</div><div class='output co'>#&gt; b/c</div><div class='input'>
 <span class='co'># Compute a relative path</span>
