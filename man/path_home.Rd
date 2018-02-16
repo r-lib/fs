@@ -18,6 +18,17 @@ path_temp(...)
 \item \code{path_home()} starts the path with the expanded users home directory
 }
 }
+\details{
+On Windows the home directory is set as follows:
+If environment variable \code{R_USER} is set, its value is used. Otherwise if
+environment variable \code{HOME} is set, its value is used. After those two
+user-controllable settings, R tries to find system-defined home directories.
+It first tries to use the Windows "personal" directory (typically
+\code{C:\\Users\\username\\Documents}). If that fails, if both environment
+variables \code{HOMEDRIVE} and \code{HOMEPATH} are set (and they normally are), the
+value is \code{${HOMEDRIVE}${HOMEPATH}}. If all of these fail, the current
+working directory is used. Source: \href{https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f}{R for Windows FAQ - 2.14}.
+}
 \examples{
 path_home()
 path_home("R")

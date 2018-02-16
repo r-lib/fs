@@ -13,6 +13,7 @@ top of the 'libuv' C library.
 Useful links:
 \itemize{
   \item \url{http://fs.r-lib.org}
+  \item \url{https://github.com/r-lib/fs}
   \item Report bugs at \url{https://github.com/r-lib/fs/issues}
 }
 

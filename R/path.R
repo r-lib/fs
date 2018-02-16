@@ -230,6 +230,15 @@ path_rel <- function(path, start = ".") {
 #' * `path_home()` starts the path with the expanded users home directory
 #'
 #' @param ... Additional paths appended to the temporary directory by `path()`.
+#' @details On Windows the home directory is set as follows:
+#' If environment variable `R_USER` is set, its value is used. Otherwise if
+#' environment variable `HOME` is set, its value is used. After those two
+#' user-controllable settings, R tries to find system-defined home directories.
+#' It first tries to use the Windows "personal" directory (typically
+#' `C:\\Users\\username\\Documents`). If that fails, if both environment
+#' variables `HOMEDRIVE` and `HOMEPATH` are set (and they normally are), the
+#' value is `${HOMEDRIVE}${HOMEPATH}`. If all of these fail, the current
+#' working directory is used. Source: [R for Windows FAQ - 2.14](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f).
 #' @export
 #' @examples
 #' path_home()
