@@ -104,9 +104,9 @@ describe("file_copy", {
 })
 
 describe("file_chown", {
-  skip("need elevated permissions to change uid")
   with_dir_tree(list("foo/bar" = "test"), {
     it("changes the ownership of a file, returns the input path", {
+      skip("need elevated permissions to change uid")
 
       # Make everyone have write access, so we can delete this after changing ownership
       file_chmod("foo/bar", "a+w")
@@ -116,7 +116,7 @@ describe("file_chown", {
       expect_true(file_info("foo/bar")$user_id == 0)
     })
     it("errors on missing input", {
-      expect_error(file_copy(NA, user_id = 0), class = "invalid_argument")
+      expect_error(file_chown(NA, user_id = 0), class = "invalid_argument")
     })
   })
 })
