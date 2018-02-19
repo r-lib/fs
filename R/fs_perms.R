@@ -103,8 +103,28 @@ as_fs_perms.character <- function(x, ..., mode = 0) {
     is_display_mode <- grepl("^[rwxXst-]{3}$", x)
     res[is_display_mode] <- display_mode_to_symbolic_mode_windows(res[is_display_mode])
   }
-  res <- as.integer(lapply(res, getmode_, mode = mode))
-  structure(res, class = "fs_perms")
+
+  if (length(x) > 1 && length(mode) > 1 && length(x) != length(mode)) {
+
+    msg <- sprintf(paste0(
+        "`x` and `mode` must have compatible lengths:\n",
+        "* `x` has length %i\n",
+        "* `mode` has length %i\n"), length(x), length(mode))
+
+    stop(structure(class = c("invalid_argument", "fs_error", "error", "condition"),
+        list(message = msg)))
+  }
+
+  # Recycled over both res and mode
+  n <- max(length(res), length(mode))
+  out <- integer(n)
+  for (i in seq_len(n)) {
+    out[[i]] <- as.integer(
+      getmode_(
+        res[[((i + 1) %% length(res)) + 1L]],
+        mode[[((i + 1) %% length(mode)) + 1L]]))
+  }
+  structure(out, class = "fs_perms")
 }
 
 display_mode_to_symbolic_mode_posix <- function(x) {

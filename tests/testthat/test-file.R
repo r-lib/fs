@@ -78,6 +78,21 @@ if (!is_windows()) {
       it("errors on missing input", {
         expect_error(file_chmod(NA, "u+x"), class = "invalid_argument")
       })
+
+      it("is vectorized over files and permissions", {
+        file_create("foo/baz")
+        files <- c("foo/bar", "foo/baz")
+        expect_equal(file_chmod(files, "000"), files)
+        expect_true(all(file_info(files)$permissions == c("000", "000")))
+
+        expect_equal(file_chmod(files, "644"), files)
+        expect_true(all(file_info(files)$permissions == c("644", "644")))
+
+        expect_equal(file_chmod(files, c("u+x", "o+x")), files)
+        expect_true(all(file_info(files)$permissions == c("744", "645")))
+
+        expect_error(file_chmod(files, c("u+x", "o+x", "g+x")), class = "invalid_argument")
+      })
     })
   })
 }

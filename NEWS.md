@@ -16,6 +16,10 @@
 * Fix home expansion on systems without readline (#60).
 * Fix propagation of NA values in path_norm (#63).
 
+## Features
+
+* `file_chmod()` is now vectorized over both of its arguments (#71).
+
 # fs 1.1.0
 
 ## Breaking changes

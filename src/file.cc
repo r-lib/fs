@@ -247,11 +247,12 @@ LogicalVector access_(CharacterVector path, int mode) {
 }
 
 // [[Rcpp::export]]
-void chmod_(CharacterVector path, mode_t mode) {
+void chmod_(CharacterVector path, IntegerVector mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
-    uv_fs_chmod(uv_default_loop(), &req, p, mode, NULL);
+    mode_t m = INTEGER(mode)[i];
+    uv_fs_chmod(uv_default_loop(), &req, p, m, NULL);
     stop_for_error(req, "Failed to chmod '%s'", p);
     uv_fs_req_cleanup(&req);
   }

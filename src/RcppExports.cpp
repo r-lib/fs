@@ -87,12 +87,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // chmod_
-void chmod_(CharacterVector path, mode_t mode);
+void chmod_(CharacterVector path, IntegerVector mode);
 RcppExport SEXP _fs_chmod_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type mode(modeSEXP);
     chmod_(path, mode);
     return R_NilValue;
 END_RCPP
