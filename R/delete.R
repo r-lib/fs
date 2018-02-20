@@ -3,7 +3,9 @@
 #' @description
 #' `file_delete()` and `link_delete()` delete file and links. Compared to
 #' [file.remove] they always fail if they cannot delete the object rather than
-#' changing return value or signalling a warning.
+#' changing return value or signalling a warning. If any inputs are
+#' directories, they are passed to `dir_delete()`, so `file_delete()` can
+#' therefore be used to delete any filesystem object.
 #'
 #' `dir_delete()` will first delete the contents of the directory, then remove
 #' the directory. Compared to [unlink] it will always throw an error if the
@@ -45,7 +47,11 @@ file_delete <- function(path) {
   assert_no_missing(path)
 
   old <- path_expand(path)
-  unlink_(old)
+
+  dirs <- is_dir(old)
+  dir_delete(old[dirs])
+
+  unlink_(old[!dirs])
 
   invisible(path_tidy(path))
 }
@@ -62,7 +68,7 @@ dir_delete <- function(path) {
     type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
     recursive = TRUE,
     all = TRUE)
-  file_delete(files)
+  unlink_(files)
   rmdir_(rev(c(old, dirs)))
 
   invisible(path_tidy(path))

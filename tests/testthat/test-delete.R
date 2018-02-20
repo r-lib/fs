@@ -7,6 +7,24 @@ describe("file_delete", {
       expect_equal(file_delete("foo/bar"), "foo/bar")
       expect_false(file_exists("foo/bar"))
     })
+    it("can delete directories and files", {
+      dir_create("baz")
+
+      expect_true(dir_exists("baz"))
+      expect_equal(file_delete("baz"), "baz")
+      expect_false(dir_exists("baz"))
+
+      dir_create("baz")
+      file_create(c("baz/bar", "faz"))
+
+      expect_true(dir_exists("baz"))
+      expect_true(file_exists("faz"))
+
+      expect_equal(file_delete(c("baz", "faz")), c("baz", "faz"))
+
+      expect_false(dir_exists("baz"))
+      expect_false(file_exists("faz"))
+    })
     it("errors on missing input", {
       expect_error(file_delete(NA), class = "invalid_argument")
     })
