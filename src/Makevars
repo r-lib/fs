@@ -32,11 +32,10 @@ libuv/m4/lt~obsolete.m4: libuv/m4/lt_obsolete.m4
 	cp -p -f libuv/m4/lt_obsolete.m4 libuv/m4/lt~obsolete.m4
 
 libuv/Makefile: libuv/m4/lt~obsolete.m4
-	(cd libuv && CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" ./configure --quiet)
+	(cd libuv && CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \
-		CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" \
 		HAVE_DTRACE=0
 
 .PHONY: shlib-clean clean
