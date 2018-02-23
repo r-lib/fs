@@ -213,13 +213,15 @@ path_rel <- function(path, start = ".") {
   path_tidy(path)
 }
 
-#' Finding Users Home Directory
+#' Finding the User Home Directory
 #'
 #' * `path_expand()` performs tilde expansion on a path, replacing instances of
 #' `~` or `~user` with the user's home directory.
-#' * `path_home()` constructs a path within the expanded users home directory
+#' * `path_home()` constructs a path within the expanded users home directory,
+#'   calling it with _no_ arguments can be useful to verify what fs considers the
+#'   home directory.
 #' @details
-#' [path_expand()] Differs from [path.expand()] in the interpretation of the
+#' `path_expand()` Differs from [path.expand()] in the interpretation of the
 #' home directory of Windows. In particular `path_expand()` uses the path set
 #' in `USERPROFILE`, if unset then `HOMEDRIVE`/`HOMEPATH` is used.
 #'
@@ -233,12 +235,17 @@ path_rel <- function(path, start = ".") {
 #' on Windows in other languages, such as
 #' [python](https://docs.python.org/3/library/os.path.html#os.path.expanduser)
 #' and [rust](https://doc.rust-lang.org/std/env/fn.home_dir.html#windows).
+#' This is also more compatible with external tools such as git and ssh, both of
+#' which put user-level files in `USERPROFILE` by default. It also allows you
+#' to write portable paths, such as `~/Desktop` that points to the Desktop
+#' location on Windows, MacOS and (most) Linux systems.
 #'
 #' Users can set the `R_FS_HOME` environment variable to override the
 #' definitions on any platform.
 #' @seealso [R for Windows FAQ - 2.14](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f)
 #' for behavior of [base::path.expand()].
 #' @param ... Additional paths appended to the home directory by `path()`.
+#' @inheritParams path_math
 #' @export
 #' @examples
 #' # Make fs home equivalent to R definition of home

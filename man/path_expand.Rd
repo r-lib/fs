@@ -3,24 +3,28 @@
 \name{path_expand}
 \alias{path_expand}
 \alias{path_home}
-\title{Finding Users Home Directory}
+\title{Finding the User Home Directory}
 \usage{
 path_expand(path)
 
 path_home(...)
 }
 \arguments{
+\item{path}{A character vector of one or more paths.}
+
 \item{...}{Additional paths appended to the home directory by \code{path()}.}
 }
 \description{
 \itemize{
 \item \code{path_expand()} performs tilde expansion on a path, replacing instances of
 \code{~} or \code{~user} with the user's home directory.
-\item \code{path_home()} constructs a path within the expanded users home directory
+\item \code{path_home()} constructs a path within the expanded users home directory,
+calling it with \emph{no} arguments can be useful to verify what fs considers the
+home directory.
 }
 }
 \details{
-\code{\link[=path_expand]{path_expand()}} Differs from \code{\link[=path.expand]{path.expand()}} in the interpretation of the
+\code{path_expand()} Differs from \code{\link[=path.expand]{path.expand()}} in the interpretation of the
 home directory of Windows. In particular \code{path_expand()} uses the path set
 in \code{USERPROFILE}, if unset then \code{HOMEDRIVE}/\code{HOMEPATH} is used.
 
@@ -34,6 +38,10 @@ This definition makes fs more consistent with the definition of home directory u
 on Windows in other languages, such as
 \href{https://docs.python.org/3/library/os.path.html#os.path.expanduser}{python}
 and \href{https://doc.rust-lang.org/std/env/fn.home_dir.html#windows}{rust}.
+This is also more compatible with external tools such as git and ssh, both of
+which put user-level files in \code{USERPROFILE} by default. It also allows you
+to write portable paths, such as \code{~/Desktop} that points to the Desktop
+location on Windows, MacOS and (most) Linux systems.
 
 Users can set the \code{R_FS_HOME} environment variable to override the
 definitions on any platform.
