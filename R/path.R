@@ -72,17 +72,6 @@ path_real <- function(path) {
 }
 
 
-#' @describeIn path_math performs tilde expansion on a path, replacing instances of
-#' `~` or `~user` with the user's home directory.
-#' @export
-# TODO: so far it looks like libuv does not provide a cross platform version of
-# this https://github.com/libuv/libuv/issues/11
-path_expand <- function(path) {
-  path <- enc2utf8(path)
-
-  new_fs_path(expand_(path))
-}
-
 #' Tidy paths
 #'
 #' untidy paths are all different, tidy paths are all the same.
@@ -224,36 +213,52 @@ path_rel <- function(path, start = ".") {
   path_tidy(path)
 }
 
-#' Paths starting from useful directories
+#' Finding Users Home Directory
 #'
-#' * `path_temp()` starts the path with the session temporary directory
-#' * `path_home()` starts the path with the expanded users home directory
+#' * `path_expand()` performs tilde expansion on a path, replacing instances of
+#' `~` or `~user` with the user's home directory.
+#' * `path_home()` constructs a path within the expanded users home directory
+#' @details
+#' [path_expand()] Differs from [path.expand()] in the interpretation of the
+#' home directory of Windows. In particular `path_expand()` uses the path set
+#' in `USERPROFILE`, if unset then `HOMEDRIVE`/`HOMEPATH` is used.
 #'
-#' @param ... Additional paths appended to the temporary directory by `path()`.
-#' @details On Windows the home directory is set as follows:
-#' If environment variable `R_USER` is set, its value is used. Otherwise if
-#' environment variable `HOME` is set, its value is used. After those two
-#' user-controllable settings, R tries to find system-defined home directories.
-#' It first tries to use the Windows "personal" directory (typically
-#' `C:\\Users\\username\\Documents`). If that fails, if both environment
-#' variables `HOMEDRIVE` and `HOMEPATH` are set (and they normally are), the
-#' value is `${HOMEDRIVE}${HOMEPATH}`. If all of these fail, the current
-#' working directory is used. Source: [R for Windows FAQ - 2.14](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f).
+#' In contrast [path.expand()] first checks for `R_USER` then `HOME`, which in the default
+#' configuration of R on Windows are both set to the users document directory, e.g.
+#' `C:\\Users\\username\\Documents`. `path.expand()` also does not support
+#' `~otheruser` syntax on Windows, whereas `path_expand()` does support this
+#' syntax on all systems.
+#'
+#' This definition makes fs more consistent with the definition of home directory used
+#' on Windows in other languages, such as
+#' [python](https://docs.python.org/3/library/os.path.html#os.path.expanduser)
+#' and [rust](https://doc.rust-lang.org/std/env/fn.home_dir.html#windows).
+#'
+#' Users can set the `R_FS_HOME` environment variable to override the
+#' definitions on any platform.
+#' @seealso [R for Windows FAQ - 2.14](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f)
+#' for behavior of [base::path.expand()].
+#' @param ... Additional paths appended to the home directory by `path()`.
 #' @export
 #' @examples
+#' # Make fs home equivalent to R definition of home
+#' \dontrun{
+#' Sys.setenv("R_FS_HOME" = Sys.getenv("R_USER"))
+#' path_expand("~")
+#' }
 #' path_home()
 #' path_home("R")
-#'
-#' path_temp()
-#' path_temp("does-not-exist")
-path_home <- function(...) {
-  path(path_expand("~/"), ...)
+path_expand <- function(path) {
+  path <- enc2utf8(path)
+
+  # We use the windows implementation if R_FS_HOME is set or if on windows
+  path_tidy(expand_(path, Sys.getenv("R_FS_HOME") != "" || is_windows()))
 }
 
+#' @rdname path_expand
 #' @export
-#' @rdname path_home
-path_temp <- function(...) {
-  path(tempdir(), ...)
+path_home <- function(...) {
+  path(path_expand("~/"), ...)
 }
 
 #' Manipulate file paths

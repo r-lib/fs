@@ -22,7 +22,9 @@ The deleted paths (invisibly).
 \description{
 \code{file_delete()} and \code{link_delete()} delete file and links. Compared to
 \link{file.remove} they always fail if they cannot delete the object rather than
-changing return value or signalling a warning.
+changing return value or signalling a warning. If any inputs are
+directories, they are passed to \code{dir_delete()}, so \code{file_delete()} can
+therefore be used to delete any filesystem object.
 
 \code{dir_delete()} will first delete the contents of the directory, then remove
 the directory. Compared to \link{unlink} it will always throw an error if the

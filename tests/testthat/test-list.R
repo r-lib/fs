@@ -5,13 +5,12 @@ describe("dir_ls", {
     with_dir_tree(list("foo" = "test"), {
       expect_equal(dir_ls(), "foo")
       expect_equal(dir_ls("."), "foo")
-      expect_equal(dir_ls("./"), "./foo")
     })
 
     with_dir_tree(list("foo/bar" = "test"), {
       expect_equal(dir_ls(recursive = TRUE), c("foo", "foo/bar"))
       expect_equal(dir_ls(recursive = TRUE, type = "file"), "foo/bar")
-      expect_equal(dir_ls("./", recursive = TRUE), c("./foo", "./foo/bar"))
+      expect_equal(dir_ls("./", recursive = TRUE), c("foo", "foo/bar"))
       expect_equal(dir_ls("foo"), "foo/bar")
       expect_equal(dir_ls("foo/"), "foo/bar")
     })

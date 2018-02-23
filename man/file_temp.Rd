@@ -4,6 +4,7 @@
 \alias{file_temp}
 \alias{file_temp_push}
 \alias{file_temp_pop}
+\alias{path_temp}
 \title{Create names for temporary files}
 \usage{
 file_temp(pattern = "file", tmp_dir = tempdir(), ext = "")
@@ -11,6 +12,8 @@ file_temp(pattern = "file", tmp_dir = tempdir(), ext = "")
 file_temp_push(path)
 
 file_temp_pop()
+
+path_temp(...)
 }
 \arguments{
 \item{pattern}{A character vector with the non-random portion of the name.}
@@ -20,6 +23,8 @@ file_temp_pop()
 \item{ext}{The file extension of the temporary file.}
 
 \item{path}{A character vector of one or more paths.}
+
+\item{...}{Additional paths appended to the temporary directory by \code{path()}.}
 }
 \description{
 \code{file_temp()} returns the name which can be used as a temporary file.
@@ -32,9 +37,15 @@ documentation and vignettes.
 \code{file_temp_pop()} can be used to explicitly remove an entry from the
 internal stack, however generally this is done instead by calling
 \code{file_temp()}.
+
+\code{path_temp()} constructs a path within the session temporary directory.
 }
 \examples{
 \dontshow{file_temp_push("/tmp/filedd461c46df20")}
+
+path_temp()
+path_temp("does-not-exist")
+
 # default just passes the arguments to `tempfile()`
 file_temp()
 

@@ -97,7 +97,7 @@ path_ <- function(paths, ext) {
     .Call(`_fs_path_`, paths, ext)
 }
 
-expand_ <- function(path) {
-    .Call(`_fs_expand_`, path)
+expand_ <- function(path, windows) {
+    .Call(`_fs_expand_`, path, windows)
 }
 

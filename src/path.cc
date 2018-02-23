@@ -4,6 +4,7 @@
 
 #include "Rcpp.h"
 #include "error.h"
+#include <libgen.h>
 
 using namespace Rcpp;
 
@@ -75,8 +76,79 @@ CharacterVector path_(List paths, const char* ext) {
   return out;
 }
 
+// Sets the destination with the source and translates slashes if needed
+void set_path(
+    char* destination,
+    const char* source,
+    size_t start = 0,
+    size_t size = PATH_MAX) {
+  size_t i = 0;
+  for (; (i + start) < size && source[i] != '\0'; ++i) {
+    if (source[i] == '\\') {
+      destination[start + i] = '/';
+    } else {
+      destination[start + i] = source[i];
+    }
+  }
+  destination[start + i] = '\0';
+}
+
+std::string expand_windows(const char* p) {
+  size_t np = strlen(p);
+  if (np == 0) {
+    return "";
+  }
+  if (p[0] != '~') {
+    return p;
+  }
+
+  size_t i = 0;
+  for (; i < np; ++i) {
+    if (p[i] == '/' || p[i] == '\\') {
+      break;
+    }
+  }
+
+  const char* env;
+  char home[PATH_MAX] = {'\0'};
+  size_t n;
+
+  if ((env = getenv("R_FS_HOME"))) {
+    set_path(home, env);
+  } else if ((env = getenv("USERPROFILE"))) {
+    set_path(home, env);
+  } else {
+    env = getenv("HOMEDRIVE");
+    if (env) {
+      set_path(home, env);
+    }
+    env = getenv("HOMEPATH");
+    if (!env) {
+      return p;
+    }
+    set_path(home, env, strlen(home), PATH_MAX);
+  }
+
+  // # ~user case
+  if (i != 1) {
+    strncpy(home, dirname(home), PATH_MAX);
+
+    // only copy enough characters to i
+    n = strlen(home);
+    strncat(home, p, i);
+    home[n] = '/';
+  }
+  if (np > i) {
+    n = strlen(home);
+    strncat(home, p + i, PATH_MAX - n);
+    home[n] = '/';
+  }
+
+  return home;
+}
+
 // [[Rcpp::export]]
-CharacterVector expand_(CharacterVector path) {
+CharacterVector expand_(CharacterVector path, bool windows) {
   CharacterVector out = CharacterVector(path.size());
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
@@ -84,7 +156,12 @@ CharacterVector expand_(CharacterVector path) {
       SET_STRING_ELT(out, i, R_NaString);
     } else {
       const char* p = CHAR(STRING_ELT(path, i));
-      SET_STRING_ELT(out, i, Rf_mkCharCE(R_ExpandFileName(p), CE_UTF8));
+      if (windows) {
+        std::string res = expand_windows(p);
+        SET_STRING_ELT(out, i, Rf_mkCharCE(res.c_str(), CE_UTF8));
+      } else {
+        SET_STRING_ELT(out, i, Rf_mkCharCE(R_ExpandFileName(p), CE_UTF8));
+      }
     }
   }
   return out;
