@@ -3,7 +3,6 @@
 \name{path_math}
 \alias{path_math}
 \alias{path_real}
-\alias{path_expand}
 \alias{path_split}
 \alias{path_join}
 \alias{path_abs}
@@ -13,8 +12,6 @@
 \title{Path computations}
 \usage{
 path_real(path)
-
-path_expand(path)
 
 path_split(path)
 
@@ -48,9 +45,6 @@ filesystem.
 \itemize{
 \item \code{path_real}: returns the canonical path, eliminating any symbolic
 links.
-
-\item \code{path_expand}: performs tilde expansion on a path, replacing instances of
-\code{~} or \code{~user} with the user's home directory.
 
 \item \code{path_split}: splits paths into parts.
 

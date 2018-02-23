@@ -274,13 +274,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // expand_
-CharacterVector expand_(CharacterVector path);
-RcppExport SEXP _fs_expand_(SEXP pathSEXP) {
+CharacterVector expand_(CharacterVector path, bool windows);
+RcppExport SEXP _fs_expand_(SEXP pathSEXP, SEXP windowsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(expand_(path));
+    Rcpp::traits::input_parameter< bool >::type windows(windowsSEXP);
+    rcpp_result_gen = Rcpp::wrap(expand_(path, windows));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -310,7 +311,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
     {"_fs_realize_", (DL_FUNC) &_fs_realize_, 1},
     {"_fs_path_", (DL_FUNC) &_fs_path_, 2},
-    {"_fs_expand_", (DL_FUNC) &_fs_expand_, 1},
+    {"_fs_expand_", (DL_FUNC) &_fs_expand_, 2},
     {NULL, NULL, 0}
 };
 

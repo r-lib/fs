@@ -12,13 +12,20 @@ env$temp_names <- character()
 #' `file_temp_pop()` can be used to explicitly remove an entry from the
 #' internal stack, however generally this is done instead by calling
 #' `file_temp()`.
+#'
+#' `path_temp()` constructs a path within the session temporary directory.
 #' @param pattern A character vector with the non-random portion of the name.
 #' @param tmp_dir The directory the file will be created in.
 #' @param ext The file extension of the temporary file.
+#' @param ... Additional paths appended to the temporary directory by `path()`.
 #' @template fs
 #' @export
 #' @examples
 #' \dontshow{file_temp_push("/tmp/filedd461c46df20")}
+#'
+#' path_temp()
+#' path_temp("does-not-exist")
+#'
 #' # default just passes the arguments to `tempfile()`
 #' file_temp()
 #'
@@ -61,3 +68,10 @@ file_temp_pop <- function() {
   env$temp_names <- env$temp_names[-1]
   path_tidy(out)
 }
+
+#' @export
+#' @rdname file_temp
+path_temp <- function(...) {
+  path(tempdir(), ...)
+}
+

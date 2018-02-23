@@ -339,3 +339,47 @@ describe("path_file", {
     expect_equal(path_file(c("foo/bar", NA)), c("bar", NA_character_))
   })
 })
+
+# These tests were adapted from
+# https://github.com/python/cpython/blob/48e8c82fc63d2ddcddce8aa637a892839b551619/Lib/test/test_ntpath.py,
+# hence the flying circus names, but I like dead parrots too, so keeping them.
+describe("path_expand", {
+  it("works on windows", {
+    with_mock("fs:::is_windows" = function() TRUE, {
+      withr::with_envvar(c("USERPROFILE" = NA, "HOMEDRIVE" = NA, "HOMEPATH" = NA), {
+        expect_equal(path_expand("~test"), "~test")
+      })
+      withr::with_envvar(c("USERPROFILE" = NA, "HOMEDRIVE" = "C:\\", "HOMEPATH" = "eric\\idle"), {
+        expect_equal(path_expand("~"), "C:/eric/idle")
+        expect_equal(path_expand("~test"), "C:/eric/test")
+      })
+      withr::with_envvar(c("USERPROFILE" = NA, "HOMEDRIVE" = NA, "HOMEPATH" = "eric/idle"), {
+        expect_equal(path_expand("~"), "eric/idle")
+        expect_equal(path_expand("~test"), "eric/test")
+      })
+      withr::with_envvar(c("USERPROFILE" = "C:\\idle\\eric"), {
+        expect_equal(path_expand("~"), "C:/idle/eric")
+        expect_equal(path_expand("~test"), "C:/idle/test")
+
+
+        expect_equal(path_expand("~test/foo/bar"), "C:/idle/test/foo/bar")
+        expect_equal(path_expand("~test/foo/bar/"), "C:/idle/test/foo/bar")
+        expect_equal(path_expand("~test\\foo\\bar"), "C:/idle/test/foo/bar")
+        expect_equal(path_expand("~test\\foo\\bar\\"), "C:/idle/test/foo/bar")
+        expect_equal(path_expand("~/foo/bar"), "C:/idle/eric/foo/bar")
+        expect_equal(path_expand("~\\foo\\bar"), "C:/idle/eric/foo/bar")
+      })
+      withr::with_envvar(c("USERPROFILE" = "C:\\idle\\eric", "R_FS_HOME" = "C:\\john\\cleese"), {
+        # R_FS_HOME overrides userprofile
+        expect_equal(path_expand("~"), "C:/john/cleese")
+        expect_equal(path_expand("~test"), "C:/john/test")
+      })
+    })
+  })
+  it("repects R_FS_HOME", {
+    withr::with_envvar(c("R_FS_HOME" = "/foo/bar"), {
+      expect_equal(path_expand("~"), "/foo/bar")
+      expect_equal(path_expand("~test"), "/foo/test")
+    })
+  })
+})

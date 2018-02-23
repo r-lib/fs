@@ -2,6 +2,12 @@
 
 ## Breaking changes
 
+* `path_expand()` and `path_home()` now use `USERPROFILE` or
+  `HOMEDRIVE`/`HOMEPATH` as the user home directory on Windows. This differs
+  from the definition used in `path.expand()` but is consistent with
+  definitions from other programming environments such as python and rust. To
+  mimic R's (and previous) behavior use `Sys.setenv("R_FS_HOME" = Sys.getenv("R_USER"))`
+
 * Handling missing values are more consistent. In general `is_*` functions
   always return `FALSE` for missing values, `path_*` functions always propagate
   NA values (NA inputs become NA outputs) and `dir_*` `file_*` and `link_*`
