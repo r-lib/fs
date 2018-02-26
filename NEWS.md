@@ -1,4 +1,4 @@
-# fs 1.1.0.9000
+# fs 1.2.0
 
 ## Breaking changes
 
