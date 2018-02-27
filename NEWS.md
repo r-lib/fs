@@ -1,4 +1,4 @@
-# fs 1.2.0
+# fs 1.1.0.9000
 
 ## Breaking changes
 
@@ -27,6 +27,7 @@
 ## Features
 
 * `file_chmod()` is now vectorized over both of its arguments (#71).
+* `link_create()` now fails silently if an identical link already exists (#77).
 
 # fs 1.1.0
 

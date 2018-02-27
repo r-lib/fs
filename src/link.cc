@@ -4,6 +4,7 @@
 
 #include "Rcpp.h"
 #include "error.h"
+#include "utils.h"
 
 using namespace Rcpp;
 
@@ -35,6 +36,18 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
     flags = UV_FS_SYMLINK_JUNCTION;
 #endif
     uv_fs_symlink(uv_default_loop(), &req, p, n, flags, NULL);
+    if (req.result == UV_EEXIST && get_dirent_type(n) == UV_DIRENT_LINK) {
+      // check that the link points to where we want to point to
+      uv_fs_t l_req;
+      uv_fs_readlink(uv_default_loop(), &l_req, n, NULL);
+      stop_for_error(l_req, "Failed to read link '%s'", n);
+      if (strcmp((const char*)l_req.ptr, p) == 0) {
+        uv_fs_req_cleanup(&req);
+        uv_fs_req_cleanup(&l_req);
+        continue;
+      }
+      uv_fs_req_cleanup(&l_req);
+    }
     stop_for_error(req, "Failed to link '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }

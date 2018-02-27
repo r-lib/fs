@@ -16,6 +16,13 @@ test_that("dir_create works with new and existing files", {
   expect_error(dir_create(NA), class = "invalid_argument")
 })
 
+test_that("dir_create fails silently if the directory or link exists and fails if a file exists", {
+  with_dir_tree(c("foo/bar" = ""), {
+    expect_error_free(dir_create("foo"))
+    expect_error(dir_create("foo/bar"), class = "EEXIST")
+  })
+})
+
 test_that("link_create does not modify existing links", {
 
   # Windows does not currently support file based symlinks
