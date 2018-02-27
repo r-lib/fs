@@ -220,6 +220,8 @@ path_rel <- function(path, start = ".") {
 #' * `path_home()` constructs a path within the expanded users home directory,
 #'   calling it with _no_ arguments can be useful to verify what fs considers the
 #'   home directory.
+#' * `path_expand_r()` and `path_home_r()` are equivalents which always use R's
+#'   definition of the home directory.
 #' @details
 #' `path_expand()` Differs from [path.expand()] in the interpretation of the
 #' home directory of Windows. In particular `path_expand()` uses the path set
@@ -248,13 +250,13 @@ path_rel <- function(path, start = ".") {
 #' @inheritParams path_math
 #' @export
 #' @examples
-#' # Make fs home equivalent to R definition of home
-#' \dontrun{
-#' Sys.setenv("R_FS_HOME" = Sys.getenv("R_USER"))
-#' path_expand("~")
-#' }
+#' # You can use `path_home()` without arguments to see what is being used as
+#' the home diretory.
 #' path_home()
 #' path_home("R")
+#'
+#' # This will likely differ from the above on Windows
+#' path_home_r()
 path_expand <- function(path) {
   path <- enc2utf8(path)
 
@@ -264,8 +266,23 @@ path_expand <- function(path) {
 
 #' @rdname path_expand
 #' @export
+path_expand_r <- function(path) {
+  path <- enc2utf8(path)
+
+  # Unconditionally use R_ExpandFileName
+  path_tidy(expand_(path, FALSE))
+}
+
+#' @rdname path_expand
+#' @export
 path_home <- function(...) {
   path(path_expand("~/"), ...)
+}
+
+#' @rdname path_expand
+#' @export
+path_home_r <- function(...) {
+  path(path_expand_r("~/"), ...)
 }
 
 #' Manipulate file paths

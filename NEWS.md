@@ -1,4 +1,4 @@
-# fs 1.1.0.9000
+# fs 1.2.0
 
 ## Breaking changes
 
@@ -8,7 +8,7 @@
   definitions from other programming environments such as python and rust. This
   is also more compatible with external tools such as git and ssh, both of
   which put user-level files in `USERPROFILE` by default. To mimic R's (and
-  previous) behavior use `Sys.setenv("R_FS_HOME" = Sys.getenv("R_USER"))`
+  previous) behavior there are functions `path_expand_r()` and `path_home_r()`.
 
 * Handling missing values are more consistent. In general `is_*` functions
   always return `FALSE` for missing values, `path_*` functions always propagate
@@ -22,7 +22,7 @@
 ## Bugfixes
 
 * Fix home expansion on systems without readline (#60).
-* Fix propagation of NA values in path_norm (#63).
+* Fix propagation of NA values in `path_norm()` (#63).
 
 ## Features
 

@@ -2,12 +2,18 @@
 % Please edit documentation in R/path.R
 \name{path_expand}
 \alias{path_expand}
+\alias{path_expand_r}
 \alias{path_home}
+\alias{path_home_r}
 \title{Finding the User Home Directory}
 \usage{
 path_expand(path)
 
+path_expand_r(path)
+
 path_home(...)
+
+path_home_r(...)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
@@ -21,6 +27,8 @@ path_home(...)
 \item \code{path_home()} constructs a path within the expanded users home directory,
 calling it with \emph{no} arguments can be useful to verify what fs considers the
 home directory.
+\item \code{path_expand_r()} and \code{path_home_r()} are equivalents which always use R's
+definition of the home directory.
 }
 }
 \details{
@@ -47,13 +55,13 @@ Users can set the \code{R_FS_HOME} environment variable to override the
 definitions on any platform.
 }
 \examples{
-# Make fs home equivalent to R definition of home
-\dontrun{
-Sys.setenv("R_FS_HOME" = Sys.getenv("R_USER"))
-path_expand("~")
-}
+# You can use `path_home()` without arguments to see what is being used as
+the home diretory.
 path_home()
 path_home("R")
+
+# This will likely differ from the above on Windows
+path_home_r()
 }
 \seealso{
 \href{https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f}{R for Windows FAQ - 2.14}
