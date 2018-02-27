@@ -6,8 +6,15 @@
 \alias{fs-package}
 \title{fs: Cross-Platform File System Operations Based on 'libuv'}
 \description{
-A cross-platform interface to file system operations, built on
-top of the 'libuv' C library.
+\ifelse{html}{
+\out{
+<a href="https://www.tidyverse.org/lifecycle/#stable">
+  <img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="Stable lifecycle">
+</a>
+}
+}{
+\url{https://www.tidyverse.org/lifecycle/#stable}
+}
 }
 \seealso{
 Useful links:
