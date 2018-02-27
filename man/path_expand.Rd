@@ -56,7 +56,7 @@ definitions on any platform.
 }
 \examples{
 # You can use `path_home()` without arguments to see what is being used as
-the home diretory.
+# the home diretory.
 path_home()
 path_home("R")
 
