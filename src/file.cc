@@ -192,16 +192,26 @@ List stat_(CharacterVector path) {
     SET_STRING_ELT(VECTOR_ELT(out, 5), i, NA_STRING);
 #else
     passwd* pwd;
-    pwd = getpwuid(st.st_uid);
-    SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(pwd->pw_name, CE_UTF8));
+    if ((pwd = getpwuid(st.st_uid)) != nullptr) {
+      SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(pwd->pw_name, CE_UTF8));
+    } else {
+      char buf[20];
+      sprintf(buf, "%" PRIu64, st.st_uid);
+      SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(buf, CE_UTF8));
+    }
 #endif
 
 #ifdef __WIN32
     SET_STRING_ELT(VECTOR_ELT(out, 6), i, NA_STRING);
 #else
     group* grp;
-    grp = getgrgid(st.st_gid);
-    SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(grp->gr_name, CE_UTF8));
+    if ((grp = getgrgid(st.st_gid)) != nullptr) {
+      SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(grp->gr_name, CE_UTF8));
+    } else {
+      char buf[20];
+      sprintf(buf, "%" PRIu64, st.st_gid);
+      SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(buf, CE_UTF8));
+    }
 #endif
 
     REAL(VECTOR_ELT(out, 7))[i] = st.st_rdev;

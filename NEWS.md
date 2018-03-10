@@ -21,6 +21,8 @@
 
 ## Bugfixes
 
+* Fix crash when a files user or group id did not exist in the respective
+  database (#84, #58)
 * Fix home expansion on systems without readline (#60).
 * Fix propagation of NA values in `path_norm()` (#63).
 
