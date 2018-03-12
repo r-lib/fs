@@ -8,6 +8,7 @@
 #' @return The new path as a character vector. For [path_split()], a list of
 #'   character vectors of path components is returned instead.
 #' @examples
+#' \dontshow{.old_wd <- setwd(tempdir())}
 #' # Expand a path
 #' path_expand("~/bin")
 #'
@@ -40,6 +41,7 @@
 #' # Cleanup
 #' dir_delete("a")
 #' link_delete("c")
+#' \dontshow{setwd(.old_wd)}
 NULL
 
 #' Construct path to a file or directory

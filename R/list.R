@@ -21,11 +21,23 @@
 #' @template fs
 #' @export
 #' @examples
+#' \dontshow{.old_wd <- setwd(tempdir())}
 #' dir_ls(R.home("share"), type = "directory")
 #'
+#' # Create a shorter link
 #' link_create(system.file(package = "base"), "base")
 #'
 #' dir_ls("base", recursive = TRUE, glob = "*.R")
+#'
+#' dir_map("base", identity)
+#'
+#' dir_walk("base", str)
+#'
+#' dir_info("base")
+#'
+#' # Cleanup
+#' link_delete("base")
+#' \dontshow{setwd(.old_wd)}
 dir_ls <- function(path = ".", all = FALSE, recursive = FALSE, type = "any",
                    glob = NULL, regexp = NULL, invert = FALSE, ...) {
   assert_no_missing(path)
@@ -50,8 +62,6 @@ directory_entry_types <- c(
 
 #' @rdname dir_ls
 #' @param fun A function, taking one parameter, the current path entry.
-#' @examples
-#' dir_map("base", identity)
 #' @export
 dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   assert_no_missing(path)
@@ -64,8 +74,6 @@ dir_map <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any
 }
 
 #' @rdname dir_ls
-#' @examples
-#' dir_walk("base", str)
 #' @export
 dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "any") {
   assert_no_missing(path)
@@ -78,11 +86,6 @@ dir_walk <- function(path = ".", fun, all = FALSE, recursive = FALSE, type = "an
 
 #' @rdname dir_ls
 #' @export
-#' @examples
-#' dir_info("base")
-#'
-#' # Cleanup
-#' link_delete("base")
 dir_info <- function(path = ".", all = FALSE, recursive = FALSE,
                      type = "any", regexp = NULL, glob = NULL, ...) {
   assert_no_missing(path)

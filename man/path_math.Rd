@@ -66,6 +66,7 @@ which can be either a absolute or relative path.
 }}
 
 \examples{
+\dontshow{.old_wd <- setwd(tempdir())}
 # Expand a path
 path_expand("~/bin")
 
@@ -98,4 +99,5 @@ path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))
 # Cleanup
 dir_delete("a")
 link_delete("c")
+\dontshow{setwd(.old_wd)}
 }

@@ -39,14 +39,19 @@ be left unchanged. That means that compared to \code{\link[=file.create]{file.cr
 existing directories.
 }
 \examples{
-\dontshow{fs:::pkgdown_tmp(c("/tmp/filedd461e481b37", "/tmp/filedd46ff2c769"))}
-x <- file_create(file_temp())
-is_file(x)
+\dontshow{.old_wd <- setwd(tempdir())}
+file_create("foo")
+is_file("foo")
 # dir_create applied to the same path will fail
-try(dir_create(x))
+try(dir_create("foo"))
 
-x <- dir_create(file_temp())
-is_dir(x)
+dir_create("bar")
+is_dir("bar")
 # file_create applied to the same path will fail
-try(file_create(x))
+try(file_create("bar"))
+
+# Cleanup
+file_delete("foo")
+dir_delete("bar")
+\dontshow{setwd(.old_wd)}
 }

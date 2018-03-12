@@ -1,5 +1,5 @@
-This fix will hopefully fix the MacOS build failures (although I am still
-unable to reproduce them locally).
+This should fix the MacOS build failures and also ensures all example are run
+in R sessions temporary directory.
 
 ## Test environments
 * local OS X install, R 3.4.3

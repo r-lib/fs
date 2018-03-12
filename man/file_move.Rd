@@ -23,8 +23,10 @@ Compared to \link{file.rename} \code{file_move()} always fails if it is unable t
 a file, rather than signaling a Warning and returning an error code.
 }
 \examples{
+\dontshow{.old_wd <- setwd(tempdir())}
 file_create("foo")
 file_move("foo", "bar")
 file_exists(c("foo", "bar"))
 file_delete("bar")
+\dontshow{setwd(.old_wd)}
 }

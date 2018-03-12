@@ -14,23 +14,13 @@
 #' @name copy
 #' @export
 #' @examples
+#' \dontshow{.old_wd <- setwd(tempdir())}
 #' file_create("foo")
 #' file_copy("foo", "bar")
 #' try(file_copy("foo", "bar"))
 #' file_copy("foo", "bar", overwrite = TRUE)
 #' file_delete(c("foo", "bar"))
-file_copy <- function(path, new_path, overwrite = FALSE) {
-  # TODO: copy attributes, e.g. cp -p?
-  assert_no_missing(path)
-  assert_no_missing(new_path)
-
-  copyfile_(path_expand(path), path_expand(new_path), isTRUE(overwrite))
-
-  invisible(path_tidy(new_path))
-}
-
-#' @rdname copy
-#' @examples
+#'
 #' dir_create("foo")
 #' # Create a directory and put a few files in it
 #' files <- file_create(c("foo/bar", "foo/baz"))
@@ -49,6 +39,18 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 #' # Cleanup
 #' dir_delete(c("foo", "foo2"))
 #' link_delete(c("loo", "loo2"))
+#' \dontshow{setwd(.old_wd)}
+file_copy <- function(path, new_path, overwrite = FALSE) {
+  # TODO: copy attributes, e.g. cp -p?
+  assert_no_missing(path)
+  assert_no_missing(new_path)
+
+  copyfile_(path_expand(path), path_expand(new_path), isTRUE(overwrite))
+
+  invisible(path_tidy(new_path))
+}
+
+#' @rdname copy
 #' @export
 dir_copy <- function(path, new_path) {
   assert_no_missing(path)

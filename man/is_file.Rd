@@ -23,17 +23,21 @@ object does not exist, \code{NA} is returned.
 Functions to test for file types
 }
 \examples{
-\dontshow{fs:::pkgdown_tmp("/tmp/filedd46c01c6ad")}
-tmp <- dir_create(file_temp())
+\dontshow{.old_wd <- setwd(tempdir())}
+dir_create("d")
 
-file_create(path(tmp, "file.txt"))
-dir_create(path(tmp, "dir"))
-link_create(path(tmp, "file.txt"), path(tmp, "link"))
+file_create("d/file.txt")
+dir_create("d/dir")
+link_create(path(path_abs("d"), "file.txt"), "d/link")
 
-paths <- dir_ls(tmp)
+paths <- dir_ls("d")
 is_file(paths)
 is_dir(paths)
 is_link(paths)
+
+# Cleanup
+dir_delete("d")
+\dontshow{setwd(.old_wd)}
 }
 \seealso{
 \code{\link[=file_exists]{file_exists()}}, \code{\link[=dir_exists]{dir_exists()}} and \code{\link[=link_exists]{link_exists()}} if you want

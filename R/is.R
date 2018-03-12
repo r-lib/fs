@@ -8,17 +8,21 @@
 #' @importFrom stats setNames
 #' @export
 #' @examples
-#' \dontshow{fs:::pkgdown_tmp("/tmp/filedd46c01c6ad")}
-#' tmp <- dir_create(file_temp())
+#' \dontshow{.old_wd <- setwd(tempdir())}
+#' dir_create("d")
 #'
-#' file_create(path(tmp, "file.txt"))
-#' dir_create(path(tmp, "dir"))
-#' link_create(path(tmp, "file.txt"), path(tmp, "link"))
+#' file_create("d/file.txt")
+#' dir_create("d/dir")
+#' link_create(path(path_abs("d"), "file.txt"), "d/link")
 #'
-#' paths <- dir_ls(tmp)
+#' paths <- dir_ls("d")
 #' is_file(paths)
 #' is_dir(paths)
 #' is_link(paths)
+#'
+#' # Cleanup
+#' dir_delete("d")
+#' \dontshow{setwd(.old_wd)}
 is_file <- function(path) {
   res <- file_info(path)
   setNames(!is.na(res$type) & res$type == "file", res$path)

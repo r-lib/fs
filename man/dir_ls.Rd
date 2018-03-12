@@ -51,15 +51,21 @@ the result in a list.
 \code{dir_walk()} calls \code{fun} for its side-effect and returns the input \code{path}.
 }
 \examples{
+\dontshow{.old_wd <- setwd(tempdir())}
 dir_ls(R.home("share"), type = "directory")
 
+# Create a shorter link
 link_create(system.file(package = "base"), "base")
 
 dir_ls("base", recursive = TRUE, glob = "*.R")
+
 dir_map("base", identity)
+
 dir_walk("base", str)
+
 dir_info("base")
 
 # Cleanup
 link_delete("base")
+\dontshow{setwd(.old_wd)}
 }
