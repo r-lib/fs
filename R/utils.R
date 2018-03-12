@@ -103,7 +103,10 @@ assert_no_missing <- function(x) {
     number,
     indexes)
 
-    stop(structure(class = c("invalid_argument", "fs_error", "error", "condition"),
-        list(message = msg)))
+    stop(fs_error(msg))
   }
+}
+
+fs_error <- function(msg, class = "invalid_argument") {
+  structure(class = c(class, "fs_error", "error", "condition"), list(message = msg))
 }

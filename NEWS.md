@@ -30,6 +30,8 @@
 
 * `file_chmod()` is now vectorized over both of its arguments (#71).
 * `link_create()` now fails silently if an identical link already exists (#77).
+* `path_package()` function created as an analog to `system.file()` which
+  always fails if the package or file does not exist (#75)
 
 # fs 1.1.0
 

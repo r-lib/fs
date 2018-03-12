@@ -51,7 +51,8 @@ NULL
 #'   NA.
 #' @param ext An optional extension to append to the generated path.
 #' @export
-#' @seealso [base::file.path()]
+#' @seealso [path_home()], [path_package()] for functions to construct paths
+#'   relative to the home and package directories respectively.
 #' @examples
 #' path("foo", "bar", "baz", ext = "zip")
 #'

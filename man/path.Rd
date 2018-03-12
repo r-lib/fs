@@ -23,5 +23,6 @@ path("foo", "bar", "baz", ext = "zip")
 path("foo", letters[1:3], ext = "txt")
 }
 \seealso{
-\code{\link[base:file.path]{base::file.path()}}
+\code{\link[=path_home]{path_home()}}, \code{\link[=path_package]{path_package()}} for functions to construct paths
+relative to the home and package directories respectively.
 }

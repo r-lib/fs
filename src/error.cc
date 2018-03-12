@@ -16,8 +16,8 @@ SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...) {
   PROTECT(condition = Rf_mkNamed(VECSXP, nms));
 
   PROTECT(c = Rf_allocVector(STRSXP, 4));
-  SET_STRING_ELT(c, 0, Rf_mkChar("fs_error"));
-  SET_STRING_ELT(c, 1, Rf_mkChar(uv_err_name(err)));
+  SET_STRING_ELT(c, 0, Rf_mkChar(uv_err_name(err)));
+  SET_STRING_ELT(c, 1, Rf_mkChar("fs_error"));
   SET_STRING_ELT(c, 2, Rf_mkChar("error"));
   SET_STRING_ELT(c, 3, Rf_mkChar("condition"));
 
