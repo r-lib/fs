@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read the value of a symbolic link — link_path • fs</title>
+<title>Construct a path to a location within an installed package — path_package • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -27,9 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
-<meta property="og:title" content="Read the value of a symbolic link — link_path" />
+<meta property="og:title" content="Construct a path to a location within an installed package — path_package" />
 
-<meta property="og:description" content="Read the value of a symbolic link" />
+<meta property="og:description" content="path_package differs from system.file() in that it always returns an
+error if the package does not exist. It also returns a different error if
+the file within the package does not exist." />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -89,43 +91,39 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read the value of a symbolic link</h1>
+    <h1>Construct a path to a location within an installed package</h1>
     </div>
 
     
-    <p>Read the value of a symbolic link</p>
+    <p><code>path_package</code> differs from <code>system.file()</code> in that it always returns an
+error if the package does not exist. It also returns a different error if
+the file within the package does not exist.</p>
     
 
-    <pre class="usage"><span class='fu'>link_path</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>path_package</span>(<span class='no'>package</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>A character vector of one or more paths.</p></td>
+      <th>package</th>
+      <td><p>Name of the package to in which to search</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional paths appended to the package path by <code><a href='path.html'>path()</a></code>.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A tidy path to the object the link points to.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
-<span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='st'>"foo"</span>), <span class='st'>"bar"</span>)
-<span class='fu'>link_path</span>(<span class='st'>"bar"</span>)</div><div class='output co'>#&gt; .../docs/reference/foo</div><div class='input'>
-<span class='co'># Cleanup</span>
-<span class='fu'><a href='delete.html'>file_delete</a></span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/base</div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/stats</div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>, <span class='st'>"INDEX"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/base/INDEX</div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"splines"</span>, <span class='st'>"help"</span>, <span class='st'>"AnIndex"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/splines/help/AnIndex</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,19 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="List files — dir_ls" />
+
+<meta property="og:description" content="dir_ls() is equivalent to the ls command. It returns filenames as a
+fs_path character vector." />
+
+<meta property="og:description" content="dir_info() is equivalent to ls -l and a shortcut for
+file_info(dir_ls())." />
+
+<meta property="og:description" content="dir_map() applies a function fun() to each entry in the path and returns
+the result in a list." />
+
+<meta property="og:description" content="dir_walk() calls fun for its side-effect and returns the input path." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -164,10 +179,12 @@ the filenames.</p></td>
 #&gt; /Library/Frameworks/R.framework/Resources/share/sh
 #&gt; /Library/Frameworks/R.framework/Resources/share/texmf
 #&gt; /Library/Frameworks/R.framework/Resources/share/zoneinfo</div><div class='input'>
+<span class='co'># Create a shorter link</span>
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'>system.file</span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"base"</span>)
 
 <span class='fu'>dir_ls</span>(<span class='st'>"base"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; base/demo/error.catching.R base/demo/is.things.R      
-#&gt; base/demo/recursion.R      base/demo/scoping.R        </div><div class='input'><span class='fu'>dir_map</span>(<span class='st'>"base"</span>, <span class='no'>identity</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; base/demo/recursion.R      base/demo/scoping.R        </div><div class='input'>
+<span class='fu'>dir_map</span>(<span class='st'>"base"</span>, <span class='no'>identity</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "base/CITATION"
 #&gt; 
 #&gt; [[2]]
@@ -190,14 +207,16 @@ the filenames.</p></td>
 #&gt; 
 #&gt; [[8]]
 #&gt; [1] "base/html"
-#&gt; </div><div class='input'><span class='fu'>dir_walk</span>(<span class='st'>"base"</span>, <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "base/CITATION"
+#&gt; </div><div class='input'>
+<span class='fu'>dir_walk</span>(<span class='st'>"base"</span>, <span class='no'>str</span>)</div><div class='output co'>#&gt;  chr "base/CITATION"
 #&gt;  chr "base/DESCRIPTION"
 #&gt;  chr "base/INDEX"
 #&gt;  chr "base/Meta"
 #&gt;  chr "base/R"
 #&gt;  chr "base/demo"
 #&gt;  chr "base/help"
-#&gt;  chr "base/html"</div><div class='input'><span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
+#&gt;  chr "base/html"</div><div class='input'>
+<span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
 #&gt;   path             type        size permissions modification_time   user  group
 #&gt;   &lt;fs::path&gt;       &lt;fct&gt;   &lt;fs::by&gt; &lt;fs::perms&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
 #&gt; 1 base/CITATION    file         956 rw-rw-r--   2017-12-06 21:16:12 root  admin
@@ -228,7 +247,7 @@ the filenames.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,7 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="All news" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -88,6 +91,72 @@
     </div>
 
     <div class="contents">
+    <div class="section level1">
+<h1>fs 1.2.0</h1>
+<div class="section level2">
+<h2>Breaking changes</h2>
+<ul>
+<li><p><code><a href="../reference/path_expand.html">path_expand()</a></code> and <code><a href="../reference/path_expand.html">path_home()</a></code> now use <code>USERPROFILE</code> or <code>HOMEDRIVE</code>/<code>HOMEPATH</code> as the user home directory on Windows. This differs from the definition used in <code>path.expand()</code> but is consistent with definitions from other programming environments such as python and rust. This is also more compatible with external tools such as git and ssh, both of which put user-level files in <code>USERPROFILE</code> by default. To mimic R’s (and previous) behavior there are functions <code><a href="../reference/path_expand.html">path_expand_r()</a></code> and <code><a href="../reference/path_expand.html">path_home_r()</a></code>.</p></li>
+<li><p>Handling missing values are more consistent. In general <code>is_*</code> functions always return <code>FALSE</code> for missing values, <code>path_*</code> functions always propagate NA values (NA inputs become NA outputs) and <code>dir_*</code> <code>file_*</code> and <code>link_*</code> functions error with NA inputs.</p></li>
+<li><p>fs functions now preserve tildes in their outputs. Previously paths were always returned with tildes expanded. Users can use <code><a href="../reference/path_expand.html">path_expand()</a></code> to expand tildes if desired.</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>Bugfixes</h2>
+<ul>
+<li>Fix crash when a files user or group id did not exist in the respective database (<a href='https://github.com/r-lib/fs/issues/84'>#84</a>, <a href='https://github.com/r-lib/fs/issues/58'>#58</a>)</li>
+<li>Fix home expansion on systems without readline (<a href='https://github.com/r-lib/fs/issues/60'>#60</a>).</li>
+<li>Fix propagation of NA values in <code><a href="../reference/path_math.html">path_norm()</a></code> (<a href='https://github.com/r-lib/fs/issues/63'>#63</a>).</li>
+</ul>
+</div>
+<div class="section level2">
+<h2>Features</h2>
+<ul>
+<li>
+<code><a href="../reference/file_chmod.html">file_chmod()</a></code> is now vectorized over both of its arguments (<a href='https://github.com/r-lib/fs/issues/71'>#71</a>).</li>
+<li>
+<code><a href="../reference/create.html">link_create()</a></code> now fails silently if an identical link already exists (<a href='https://github.com/r-lib/fs/issues/77'>#77</a>).</li>
+<li>
+<code><a href="../reference/path_package.html">path_package()</a></code> function created as an analog to <code>system.file()</code> which always fails if the package or file does not exist (<a href='https://github.com/r-lib/fs/issues/75'>#75</a>)</li>
+</ul>
+</div>
+</div>
+    <div class="section level1">
+<h1>fs 1.1.0</h1>
+<div class="section level2">
+<h2>Breaking changes</h2>
+<ul>
+<li><p>Tidy paths no longer expand <code>~</code>.</p></li>
+<li><p>Filesystem modification functions now error for NA inputs. (<a href='https://github.com/r-lib/fs/issues/48'>#48</a>)</p></li>
+<li><p><code><a href="../reference/path.html">path()</a></code> now returns 0 length output if given any 0 length inputs (<a href='https://github.com/r-lib/fs/issues/54'>#54</a>).</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2>New features</h2>
+<ul>
+<li>Removed the autotool system dependency on non-windows systems.</li>
+</ul>
+</div>
+<div class="section level2">
+<h2>Bugfixes</h2>
+<ul>
+<li><p><code><a href="../reference/delete.html">dir_delete()</a></code> now correctly expands paths (<a href='https://github.com/r-lib/fs/issues/47'>#47</a>).</p></li>
+<li><p><code><a href="../reference/delete.html">dir_delete()</a></code> now correctly deletes hidden files and directories (<a href='https://github.com/r-lib/fs/issues/46'>#46</a>).</p></li>
+<li><p><code><a href="../reference/link_path.html">link_path()</a></code> now checks for an error before trying to make a string, avoiding a crash (<a href='https://github.com/r-lib/fs/issues/43'>#43</a>).</p></li>
+<li><p>libuv return paths now marked as UTF-8 strings in C code, fixing encoding issues on windows. (<a href='https://github.com/r-lib/fs/issues/42'>#42</a>)</p></li>
+<li><p><code><a href="../reference/copy.html">dir_copy()</a></code> now copies the directory inside the target if the target is a directory (<a href='https://github.com/r-lib/fs/issues/51'>#51</a>).</p></li>
+<li><p><code><a href="../reference/copy.html">dir_copy()</a></code> now works correctly with absolute paths and no longer removes files when <code>overwrite = TRUE</code>.</p></li>
+</ul>
+</div>
+</div>
+    <div class="section level1">
+<h1>fs 1.0.0</h1>
+<ul>
+<li>Removed the libbsd system dependency on linux</li>
+<li>Initial release</li>
+<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
+</ul>
+</div>
     </div>
   </div>
 
@@ -95,6 +164,9 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#NA">1.2.0</a></li>
+        <li><a href="#NA">1.1.0</a></li>
+        <li><a href="#NA">1.0.0</a></li>
       </ul>
     </div>
   </div>
@@ -103,7 +175,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">

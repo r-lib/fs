@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,14 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Copy files, directories or links — copy" />
+
+<meta property="og:description" content="file_copy() copies files." />
+
+<meta property="og:description" content="link_copy() creates a new link pointing to the same location as the previous link." />
+
+<meta property="og:description" content="dir_copy() copies the directory recursively at the new location." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -129,6 +139,7 @@ file exists an error will be thrown.</p></td>
 <span class='fu'>try</span>(<span class='fu'>file_copy</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))
 <span class='fu'>file_copy</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>, <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='delete.html'>file_delete</a></span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))
+
 <span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"foo"</span>)
 <span class='co'># Create a directory and put a few files in it</span>
 <span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'>c</span>(<span class='st'>"foo/bar"</span>, <span class='st'>"foo/baz"</span>))
@@ -161,7 +172,7 @@ file exists an error will be thrown.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,7 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Function reference" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -85,7 +88,7 @@
     <div class="page-header">
       <h1>
         Reference
-        <small>version&nbsp;1.1.0.9000</small>
+        <small>version&nbsp;1.2.0</small>
       </h1>
     </div>
 
@@ -161,7 +164,7 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="file_temp.html">file_temp</a></code> <code><a href="file_temp.html">file_temp_push</a></code> <code><a href="file_temp.html">file_temp_pop</a></code> </p>
+            <p><code><a href="file_temp.html">file_temp</a></code> <code><a href="file_temp.html">file_temp_push</a></code> <code><a href="file_temp.html">file_temp_pop</a></code> <code><a href="file_temp.html">path_temp</a></code> </p>
           </td>
           <td><p>Create names for temporary files</p></td>
         </tr>
@@ -257,6 +260,18 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="file_temp.html">file_temp</a></code> <code><a href="file_temp.html">file_temp_push</a></code> <code><a href="file_temp.html">file_temp_pop</a></code> <code><a href="file_temp.html">path_temp</a></code> </p>
+          </td>
+          <td><p>Create names for temporary files</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="path_expand.html">path_expand</a></code> <code><a href="path_expand.html">path_expand_r</a></code> <code><a href="path_expand.html">path_home</a></code> <code><a href="path_expand.html">path_home_r</a></code> </p>
+          </td>
+          <td><p>Finding the User Home Directory</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="path_file.html">path_file</a></code> <code><a href="path_file.html">path_dir</a></code> <code><a href="path_file.html">path_ext</a></code> <code><a href="path_file.html">path_ext_remove</a></code> <code><a href="path_file.html">path_ext_set</a></code> <code><a href="path_file.html">path_ext<-</a></code> </p>
           </td>
           <td><p>Manipulate file paths</p></td>
@@ -269,15 +284,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="path_home.html">path_home</a></code> <code><a href="path_home.html">path_temp</a></code> </p>
+            <p><code><a href="path_math.html">path_real</a></code> <code><a href="path_math.html">path_split</a></code> <code><a href="path_math.html">path_join</a></code> <code><a href="path_math.html">path_abs</a></code> <code><a href="path_math.html">path_norm</a></code> <code><a href="path_math.html">path_rel</a></code> <code><a href="path_math.html">path_common</a></code> </p>
           </td>
-          <td><p>Paths starting from useful directories</p></td>
+          <td><p>Path computations</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="path_math.html">path_real</a></code> <code><a href="path_math.html">path_expand</a></code> <code><a href="path_math.html">path_split</a></code> <code><a href="path_math.html">path_join</a></code> <code><a href="path_math.html">path_abs</a></code> <code><a href="path_math.html">path_norm</a></code> <code><a href="path_math.html">path_rel</a></code> <code><a href="path_math.html">path_common</a></code> </p>
+            <p><code><a href="path_package.html">path_package</a></code> </p>
           </td>
-          <td><p>Path computations</p></td>
+          <td><p>Construct a path to a location within an installed package</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -342,7 +357,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">

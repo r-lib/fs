@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,10 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Change file permissions — file_chmod" />
+
+<meta property="og:description" content="Change file permissions" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -107,15 +113,21 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>(), <span class='st'>"000"</span>)
-<span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"777"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'>
-<span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"u-x"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-rwxrwx</div><div class='input'>
-<span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"a-wrx"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] ---------</div><div class='input'>
-<span class='fu'>file_chmod</span>(<span class='no'>x</span>, <span class='st'>"u+wr"</span>)
-<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>x</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-------</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"foo"</span>, <span class='st'>"000"</span>)
+<span class='fu'>file_chmod</span>(<span class='st'>"foo"</span>, <span class='st'>"777"</span>)
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='st'>"foo"</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'>
+<span class='fu'>file_chmod</span>(<span class='st'>"foo"</span>, <span class='st'>"u-x"</span>)
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='st'>"foo"</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-rwxrwx</div><div class='input'>
+<span class='fu'>file_chmod</span>(<span class='st'>"foo"</span>, <span class='st'>"a-wrx"</span>)
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='st'>"foo"</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] ---------</div><div class='input'>
+<span class='fu'>file_chmod</span>(<span class='st'>"foo"</span>, <span class='st'>"u+wr"</span>)
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='st'>"foo"</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-------</div><div class='input'>
+<span class='co'># It is also vectorized</span>
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"bar"</span>, <span class='st'>"000"</span>))
+<span class='fu'>file_chmod</span>(<span class='no'>files</span>, <span class='st'>"a+rwx"</span>)
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>files</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rwxrwxrwx rwxrwxrwx</div><div class='input'>
+<span class='fu'>file_chmod</span>(<span class='no'>files</span>, <span class='fu'>c</span>(<span class='st'>"644"</span>, <span class='st'>"600"</span>))
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='no'>files</span>)$<span class='no'>permissions</span></div><div class='output co'>#&gt; [1] rw-r--r-- rw-------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -130,7 +142,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">

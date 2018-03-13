@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,18 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Delete files, directories, or links — delete" />
+
+<meta property="og:description" content="file_delete() and link_delete() delete file and links. Compared to
+file.remove they always fail if they cannot delete the object rather than
+changing return value or signalling a warning. If any inputs are
+directories, they are passed to dir_delete(), so file_delete() can
+therefore be used to delete any filesystem object." />
+
+<meta property="og:description" content="dir_delete() will first delete the contents of the directory, then remove
+the directory. Compared to unlink it will always throw an error if the
+directory cannot be deleted rather than being silent or signalling a warning." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -89,7 +103,9 @@
     
     <p><code>file_delete()</code> and <code>link_delete()</code> delete file and links. Compared to
 file.remove they always fail if they cannot delete the object rather than
-changing return value or signalling a warning.
+changing return value or signalling a warning. If any inputs are
+directories, they are passed to <code>dir_delete()</code>, so <code>file_delete()</code> can
+therefore be used to delete any filesystem object.
 
     <code>dir_delete()</code> will first delete the contents of the directory, then remove
 the directory. Compared to unlink it will always throw an error if the
@@ -118,36 +134,32 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create a directory, with some files and a link to it</span>
-<span class='no'>dir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>dir_create</a></span>(<span class='fu'><a href='file_temp.html'>file_temp</a></span>())
-<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='no'>dir</span>, <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]))
-<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='no'>dir</span>), <span class='st'>"link"</span>)
+<span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"dir"</span>)
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='st'>"dir"</span>, <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]))
+<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='st'>"dir"</span>), <span class='st'>"link"</span>)
 
 <span class='co'># All files created</span>
-<span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='no'>dir</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
-#&gt;                  TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86/a /tmp/filedd4635bd7c86/b /tmp/filedd4635bd7c86/c 
-#&gt;                    TRUE                    TRUE                    TRUE 
-#&gt; /tmp/filedd4635bd7c86/d /tmp/filedd4635bd7c86/e 
-#&gt;                    TRUE                    TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='no'>link</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='no'>link</span>))</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
-#&gt;                  TRUE </div><div class='input'>
+<span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;  dir 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
+#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; .../docs/reference/dir 
+#&gt;                                                  TRUE </div><div class='input'>
 <span class='co'># Delete a file</span>
 <span class='fu'>file_delete</span>(<span class='no'>files</span>[<span class='fl'>1</span>])
-<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86/a 
-#&gt;                   FALSE </div><div class='input'>
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; dir/a 
+#&gt; FALSE </div><div class='input'>
 <span class='co'># Delete the directory (which deletes the files as well)</span>
-<span class='fu'>dir_delete</span>(<span class='no'>dir</span>)
-<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86/a /tmp/filedd4635bd7c86/b /tmp/filedd4635bd7c86/c 
-#&gt;                   FALSE                   FALSE                   FALSE 
-#&gt; /tmp/filedd4635bd7c86/d /tmp/filedd4635bd7c86/e 
-#&gt;                   FALSE                   FALSE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='no'>dir</span>)</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
-#&gt;                 FALSE </div><div class='input'>
+<span class='fu'>dir_delete</span>(<span class='st'>"dir"</span>)
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
+#&gt; FALSE FALSE FALSE FALSE FALSE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;   dir 
+#&gt; FALSE </div><div class='input'>
 <span class='co'># The link still exists, but what it points to does not.</span>
-<span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='no'>link</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='no'>link</span>))</div><div class='output co'>#&gt; /tmp/filedd4635bd7c86 
-#&gt;                 FALSE </div><div class='input'>
+<span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; .../docs/reference/dir 
+#&gt;                                                 FALSE </div><div class='input'>
 <span class='co'># Delete the link</span>
-<span class='fu'>link_delete</span>(<span class='no'>link</span>)
-<span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='no'>link</span>)</div><div class='output co'>#&gt;  link 
+<span class='fu'>link_delete</span>(<span class='st'>"link"</span>)
+<span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt;  link 
 #&gt; FALSE </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -165,7 +177,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
