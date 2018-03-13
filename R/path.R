@@ -86,17 +86,8 @@ path_real <- function(path) {
 #' @template fs
 #' @export
 path_tidy <- function(path) {
-  # convert `\\` to `/`
-  path <- gsub("\\", "/", path, fixed = TRUE)
-
-  # convert multiple // to single /, as long as they are not at the start (when
-  # they could be UNC paths).
-  path <- gsub("(?<!^)//+", "/", path, perl = TRUE)
-
-  # Remove trailing / from paths (that aren't also the beginning)
-  path <- sub("(?<!^)/$", "", path, perl = TRUE)
-
-  new_fs_path(path)
+  path <- as.character(path)
+  new_fs_path(tidy_(path))
 }
 
 

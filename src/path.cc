@@ -4,6 +4,7 @@
 
 #include "Rcpp.h"
 #include "error.h"
+#include "utils.h"
 #include <libgen.h>
 
 using namespace Rcpp;
@@ -162,6 +163,21 @@ CharacterVector expand_(CharacterVector path, bool windows) {
       } else {
         SET_STRING_ELT(out, i, Rf_mkCharCE(R_ExpandFileName(p), CE_UTF8));
       }
+    }
+  }
+  return out;
+}
+
+// [[Rcpp::export]]
+CharacterVector tidy_(CharacterVector path) {
+  CharacterVector out = CharacterVector(path.size());
+
+  for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
+    if (STRING_ELT(path, i) == R_NaString) {
+      SET_STRING_ELT(out, i, R_NaString);
+    } else {
+      std::string p = path_tidy_(CHAR(STRING_ELT(path, i)));
+      SET_STRING_ELT(out, i, Rf_mkCharCE(p.c_str(), CE_UTF8));
     }
   }
   return out;

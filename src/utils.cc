@@ -44,3 +44,41 @@ get_dirent_type(const char* path, const uv_dirent_type_t& entry_type) {
 
   return entry_type;
 }
+
+std::string path_tidy_(const std::string in) {
+  std::string out;
+  out.reserve(in.size());
+  char prev = '\0';
+  size_t i = 0;
+  size_t n = in.length();
+  while (i < n) {
+    char curr = in.at(i++);
+
+    // convert `\\` to `/`
+    if (curr == '\\') {
+      curr = '/';
+    }
+
+    // convert multiple // to single /, as long as they are not at the start
+    // (when they could be UNC paths).
+    if (i > 2 && prev == '/' && curr == '/') {
+      while (i < n && prev == '/' && curr == '/') {
+        prev = curr;
+        curr = in.at(i++);
+      }
+      if (i == n && curr == '/') {
+        break;
+      }
+    }
+
+    prev = curr;
+    out.push_back(prev);
+  }
+
+  // Remove trailing / from paths (that aren't also the beginning)
+  if (out.length() > 1 && out.back() == '/') {
+    out.pop_back();
+  }
+
+  return out;
+}

@@ -285,6 +285,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// tidy_
+CharacterVector tidy_(CharacterVector path);
+RcppExport SEXP _fs_tidy_(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(tidy_(path));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_fs_mkdir_", (DL_FUNC) &_fs_mkdir_, 2},
@@ -312,6 +323,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_fs_realize_", (DL_FUNC) &_fs_realize_, 1},
     {"_fs_path_", (DL_FUNC) &_fs_path_, 2},
     {"_fs_expand_", (DL_FUNC) &_fs_expand_, 2},
+    {"_fs_tidy_", (DL_FUNC) &_fs_tidy_, 1},
     {NULL, NULL, 0}
 };
 

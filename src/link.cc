@@ -41,7 +41,7 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
       uv_fs_t l_req;
       uv_fs_readlink(uv_default_loop(), &l_req, n, NULL);
       stop_for_error(l_req, "Failed to read link '%s'", n);
-      if (strcmp((const char*)l_req.ptr, p) == 0) {
+      if (strcmp(path_tidy_((const char*)l_req.ptr).c_str(), p) == 0) {
         uv_fs_req_cleanup(&req);
         uv_fs_req_cleanup(&l_req);
         continue;

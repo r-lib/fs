@@ -101,3 +101,7 @@ expand_ <- function(path, windows) {
     .Call(`_fs_expand_`, path, windows)
 }
 
+tidy_ <- function(path) {
+    .Call(`_fs_tidy_`, path)
+}
+

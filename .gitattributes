@@ -1,1 +1,2 @@
 src/libuv/* linguist-vendored
+*.Rproj eol=lf
