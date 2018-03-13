@@ -3,13 +3,15 @@
 #' `path_package` differs from [system.file()] in that it always returns an
 #' error if the package does not exist. It also returns a different error if
 #' the file within the package does not exist.
+#'
 #' @param package Name of the package to in which to search
-#' @param Additional arguments passed to [path()].
+#' @param ... Additional paths appended to the package path by [path()].
 #' @examples
 #' path_package("base")
 #' path_package("stats")
 #' path_package("base", "INDEX")
 #' path_package("splines", "help", "AnIndex")
+#' @export
 path_package <- function(package, ...) {
   if (!is.character(package) || length(package) != 1L) {
     stop(fs_error(sprintf("`package` must be a character vector of length 1")))

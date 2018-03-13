@@ -9,7 +9,7 @@ path_package(package, ...)
 \arguments{
 \item{package}{Name of the package to in which to search}
 
-\item{Additional}{arguments passed to \code{\link[=path]{path()}}.}
+\item{...}{Additional paths appended to the package path by \code{\link[=path]{path()}}.}
 }
 \description{
 \code{path_package} differs from \code{\link[=system.file]{system.file()}} in that it always returns an
