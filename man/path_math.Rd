@@ -6,6 +6,7 @@
 \alias{path_split}
 \alias{path_join}
 \alias{path_abs}
+\alias{path_norm}
 \alias{path_rel}
 \alias{path_common}
 \title{Path computations}
@@ -17,6 +18,8 @@ path_split(path)
 path_join(parts)
 
 path_abs(path, start = ".")
+
+path_norm(path)
 
 path_rel(path, start = ".")
 
@@ -49,6 +52,12 @@ links.
 See \code{\link[=path]{path()}} to concatenate vectorized strings into a path.
 
 \item \code{path_abs}: returns a normalized, absolute version of a path.
+
+\item \code{path_norm}: collapses redundant separators and
+up-level references, so \code{A//B}, \code{A/B}, \code{A/.B} and \code{A/foo/../B} all become
+\code{A/B}. If one of the paths is a symbolic link, this may change the meaning
+of the path, in this case one should use \code{\link[=path_real]{path_real()}} prior to calling
+\code{\link[=path_norm]{path_norm()}}.
 
 \item \code{path_rel}: computes the path relative to the \code{start} path,
 which can be either a absolute or relative path.
