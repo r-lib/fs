@@ -1,3 +1,7 @@
+# fs 1.2.1
+
+* Fix for a memory issue reported by ASAN and valgrind.
+
 # fs 1.2.0
 
 ## Breaking changes
