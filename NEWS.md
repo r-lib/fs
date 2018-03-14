@@ -1,5 +1,8 @@
 # fs 1.2.1
 
+* `path_abs()` gains a `start` argument, to specify where the absolute path
+  should be calculated from (#87).
+
 * Fix for a memory issue reported by ASAN and valgrind.
 
 # fs 1.2.0

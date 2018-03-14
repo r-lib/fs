@@ -269,7 +269,7 @@ describe("path_common", {
 
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
 describe("path_rel", {
-  it("works for posix paths", {
+  it("works for POSIX paths", {
     cur_dir <- path_file(getwd())
     expect_equal(path_rel("a"), "a")
     expect_equal(path_rel(path_abs("a")), "a")
@@ -305,6 +305,12 @@ describe("path_rel", {
   it("propagates NAs", {
     expect_equal(path_rel(NA_character_), NA_character_)
     expect_equal(path_rel("/foo/bar/baz", NA_character_), NA_character_)
+  })
+})
+
+describe("path_abs", {
+  it("uses the start parameter", {
+    expect_equal(path_abs("b", "a"), path_abs("a/b"))
   })
 })
 
