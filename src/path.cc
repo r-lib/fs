@@ -132,7 +132,9 @@ std::string expand_windows(const char* p) {
 
   // # ~user case
   if (i != 1) {
-    strncpy(home, dirname(home), PATH_MAX);
+    char* home_str = strdup(home);
+    strncpy(home, dirname(home_str), PATH_MAX);
+    delete[] home_str;
 
     // only copy enough characters to i
     n = strlen(home);
