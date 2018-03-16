@@ -324,9 +324,13 @@ path_dir <- function(path) {
 #' @rdname path_file
 #' @export
 path_ext <- function(path) {
+  if (length(path) == 0) {
+    return(character())
+  }
+
   res <- captures(path, regexpr("(?<!^|[.])[.]([^.]+)$", path, perl = TRUE))[[1]]
   res[!is.na(path) & is.na(res)] <- ""
-  path_tidy(res)
+  res
 }
 
 #' @rdname path_file

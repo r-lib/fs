@@ -109,6 +109,10 @@ describe("path_temp", {
 })
 
 describe("path_ext", {
+  it ("returns 0 length outputs for 0 length inputs", {
+    expect_equal(path_ext(character()), character())
+  })
+
   it ("returns the path extension, or \"\" if one does not exist", {
     expect_equal(path_ext("foo.bar"), "bar")
     expect_equal(path_ext("foo.boo.bar"), "bar")
