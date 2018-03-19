@@ -111,8 +111,8 @@ as_fs_perms.character <- function(x, ..., mode = 0) {
         "* `x` has length %i\n",
         "* `mode` has length %i\n"), length(x), length(mode))
 
-    stop(structure(class = c("invalid_argument", "fs_error", "error", "condition"),
-        list(message = msg)))
+
+    stop(fs_error(msg))
   }
 
   # Recycled over both res and mode
@@ -155,7 +155,7 @@ as_fs_perms.integer <- function(x, ...) {
 }
 
 new_fs_perms <- function(x) {
-  stopifnot(is.integer(x))
+  assert("`x` must be an integer", is.integer(x))
   structure(x, class = "fs_perms")
 }
 

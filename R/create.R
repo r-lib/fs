@@ -33,7 +33,7 @@
 #' @export
 file_create <- function(path, mode = "u=rw,go=r") {
   assert_no_missing(path)
-  stopifnot(length(mode) == 1)
+  assert("`mode` must be of length 1", length(mode) == 1)
 
   mode <- as_fs_perms(mode)
   new <- path_expand(path)
@@ -46,7 +46,7 @@ file_create <- function(path, mode = "u=rw,go=r") {
 #' @rdname create
 dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
   assert_no_missing(path)
-  stopifnot(length(mode) == 1)
+  assert("`mode` must be of length 1", length(mode) == 1)
 
   mode <- as_fs_perms(mode)
   new <- path_expand(path)
@@ -75,7 +75,7 @@ dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
 link_create <- function(path, new_path, symbolic = TRUE) {
   assert_no_missing(path)
   assert_no_missing(new_path)
-  stopifnot(length(path) == length(new_path))
+  assert("Length of `path` must equal length of `new_path`", length(path) == length(new_path))
 
   old <- path_expand(path)
   new <- path_expand(new_path)

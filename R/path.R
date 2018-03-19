@@ -366,7 +366,7 @@ path_common <- function(path) {
 
   # We must either have all absolute paths, or all relative paths.
   if (!(all(is_abs) || all(!is_abs))) {
-    stop("Can't mix absolute and relative paths", call. = FALSE)
+    stop(fs_error("Can't mix absolute and relative paths"))
   }
 
   path <- path_norm(path)
@@ -406,7 +406,7 @@ path_common <- function(path) {
 path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
   if (!is.null(glob)) {
     if (!is.null(regexp)) {
-      stop("`glob` and `regexp` cannot both be set.", call. = FALSE)
+      stop(fs_error("`glob` and `regexp` cannot both be set."))
     }
     regexp <- utils::glob2rx(glob)
   }

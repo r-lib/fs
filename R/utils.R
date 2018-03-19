@@ -1,6 +1,7 @@
 captures <- function(x, m) {
-  stopifnot(is.character(x))
-  stopifnot(class(m) == "integer" &&
+  assert("`x` must be a character", is.character(x))
+  assert("`m` must be a match object from `regexpr()`",
+    inherits(m, "integer") &&
     all(c("match.length", "useBytes", "capture.start", "capture.length", "capture.names") %in% names(attributes(m))))
 
   starts <- attr(m, "capture.start")
@@ -104,6 +105,14 @@ assert_no_missing <- function(x) {
     indexes)
 
     stop(fs_error(msg))
+  }
+}
+
+assert <- function(msg, ..., class = "invalid_argument") {
+  tests <- unlist(list(...))
+
+  if (!all(tests)) {
+    stop(fs_error(msg, ..., class = class))
   }
 }
 

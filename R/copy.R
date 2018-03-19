@@ -55,8 +55,8 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 dir_copy <- function(path, new_path) {
   assert_no_missing(path)
   assert_no_missing(new_path)
-  stopifnot(all(is_dir(path)))
-  stopifnot(length(path) == length(new_path))
+  assert("`path` must be a directory", all(is_dir(path)))
+  assert("Length of `path` must equal length of `new_path`", length(path) == length(new_path))
 
   for (i in seq_along(path)) {
     if (isTRUE(unname(is_dir(new_path[[i]])))) {
