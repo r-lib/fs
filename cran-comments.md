@@ -1,5 +1,4 @@
-This should fix the MacOS build failures and also ensures all example are run
-in R sessions temporary directory.
+This should fix the Valgrind and ASAN issues in the CRAN checks.
 
 ## Test environments
 * local OS X install, R 3.4.3

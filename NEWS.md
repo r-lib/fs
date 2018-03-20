@@ -1,10 +1,12 @@
 # fs 1.2.1
 
 ## Features
+
 * `path_abs()` gains a `start` argument, to specify where the absolute path
   should be calculated from (#87).
 
 ## Bugfixes
+
 * `path_ext()` now returns `character()` if given 0 length inputs (#89)
 
 * Fix for a memory issue reported by ASAN and valgrind.
