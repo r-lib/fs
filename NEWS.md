@@ -1,3 +1,10 @@
+# fs 1.2.1.9000
+
+## Bugfixes
+
+* `fs_path` `fs_bytes` and `fs_perm` objects now use `methods::setOldClass()`
+  so that S4 dispatch to their base classes works as intended (#91).
+
 # fs 1.2.1
 
 ## Features
