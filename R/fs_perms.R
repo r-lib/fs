@@ -124,7 +124,7 @@ as_fs_perms.character <- function(x, ..., mode = 0) {
         res[[((i + 1) %% length(res)) + 1L]],
         mode[[((i + 1) %% length(mode)) + 1L]]))
   }
-  structure(out, class = "fs_perms")
+  new_fs_perms(out)
 }
 
 display_mode_to_symbolic_mode_posix <- function(x) {
@@ -136,7 +136,7 @@ display_mode_to_symbolic_mode_windows <- function(x) {
 
 #' @export
 as_fs_perms.octmode <- function(x, ...) {
-  class(x) <- "fs_perms"
+  class(x) <- c("fs_perms", "integer")
   x
 }
 
@@ -144,20 +144,21 @@ as_fs_perms.octmode <- function(x, ...) {
 as_fs_perms.numeric <- function(x, ...) {
   if (all(is.na(x) | x == as.integer(x))) {
     x <- as.integer(x)
-    return(structure(x, class = "fs_perms"))
+    return(new_fs_perms(x))
   }
   stop("'x' cannot be coerced to class \"fs_perms\"", call. = FALSE)
 }
 
 #' @export
 as_fs_perms.integer <- function(x, ...) {
-  return(structure(x, class = "fs_perms"))
+  new_fs_perms(x)
 }
 
 new_fs_perms <- function(x) {
   assert("`x` must be an integer", is.integer(x))
-  structure(x, class = "fs_perms")
+  structure(x, class = c("fs_perms", "integer"))
 }
+methods::setOldClass(c("fs_perms", "integer"), integer())
 
 #' @export
 `!.fs_perms` <- function(a) {

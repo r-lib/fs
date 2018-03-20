@@ -18,7 +18,8 @@ LazyData: true
 ByteCompile: true
 LinkingTo: 
     Rcpp
-Imports: 
+Imports:
+    methods,
     Rcpp
 SystemRequirements: GNU make
 Roxygen: list(markdown = TRUE)

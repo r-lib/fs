@@ -29,8 +29,9 @@ as_fs_bytes <- function(x) {
 fs_bytes <- as_fs_bytes
 
 new_fs_bytes <- function(x) {
-  structure(x, class = "fs_bytes")
+  structure(x, class = c("fs_bytes", "numeric"))
 }
+methods::setOldClass(c("fs_bytes", "numeric"), numeric())
 
 #' @export
 as_fs_bytes.default <- function(x) {
@@ -47,7 +48,7 @@ as_fs_bytes.fs_bytes <- function(x) {
 
 #' @export
 as_fs_bytes.numeric <- function(x) {
-  return(structure(x, class = "fs_bytes"))
+  new_fs_bytes(x)
 }
 
 # Adapted from https://github.com/gaborcsardi/prettyunits
