@@ -1,5 +1,8 @@
 This should fix the malloc / delete inconsistency in the Valgrind and ASAN
-issues in the CRAN checks. Apologies for the oversight.
+issues in the CRAN checks. As directed by CRAN maintainers I am submitting ASAP
+to avoid removal from CRAN on March 28th.
+
+Apologies for the oversight and for the quick submissions.
 
 ## Test environments
 * local OS X install, R 3.4.3
