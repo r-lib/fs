@@ -158,7 +158,7 @@ new_fs_perms <- function(x) {
   assert("`x` must be an integer", is.integer(x))
   structure(x, class = c("fs_perms", "integer"))
 }
-methods::setOldClass(c("fs_perms", "integer"), integer())
+setOldClass(c("fs_perms", "integer"), integer())
 
 #' @export
 `!.fs_perms` <- function(a) {

@@ -33,7 +33,7 @@ fs_path <- as_fs_path
 new_fs_path <- function(x) {
   structure(enc2utf8(x), class = c("fs_path", "character"))
 }
-methods::setOldClass(c("fs_path", "character"), character())
+setOldClass(c("fs_path", "character"), character())
 
 #' @export
 print.fs_path <- function(x, ..., max = getOption("max.print")) {

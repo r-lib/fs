@@ -31,7 +31,7 @@ fs_bytes <- as_fs_bytes
 new_fs_bytes <- function(x) {
   structure(x, class = c("fs_bytes", "numeric"))
 }
-methods::setOldClass(c("fs_bytes", "numeric"), numeric())
+setOldClass(c("fs_bytes", "numeric"), numeric())
 
 #' @export
 as_fs_bytes.default <- function(x) {
