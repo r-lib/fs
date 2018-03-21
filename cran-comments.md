@@ -1,4 +1,5 @@
-This should fix the Valgrind and ASAN issues in the CRAN checks.
+This should fix the malloc / delete inconsistency in the Valgrind and ASAN
+issues in the CRAN checks. Apologies for the oversight.
 
 ## Test environments
 * local OS X install, R 3.4.3
