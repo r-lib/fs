@@ -1,5 +1,10 @@
 # fs 1.2.1.9000
 
+## Features
+
+* fs no longer needs a C++11 compiler, it now works with compilers which
+  support only C++03 (#90).
+
 ## Bugfixes
 
 * `fs_path` `fs_bytes` and `fs_perm` objects now use `methods::setOldClass()`

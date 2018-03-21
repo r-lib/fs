@@ -26,7 +26,7 @@ void move_(CharacterVector path, CharacterVector new_path) {
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
     uv_fs_rename(uv_default_loop(), &req, p, n, NULL);
-    stop_for_error(req, "Failed to move '%s'to '%s'", p, n);
+    stop_for_error2(req, "Failed to move '%s'to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
 }
@@ -198,7 +198,7 @@ List stat_(CharacterVector path) {
     SET_STRING_ELT(VECTOR_ELT(out, 5), i, NA_STRING);
 #else
     passwd* pwd;
-    if ((pwd = getpwuid(st.st_uid)) != nullptr) {
+    if ((pwd = getpwuid(st.st_uid)) != NULL) {
       SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(pwd->pw_name, CE_UTF8));
     } else {
       char buf[20];
@@ -211,7 +211,7 @@ List stat_(CharacterVector path) {
     SET_STRING_ELT(VECTOR_ELT(out, 6), i, NA_STRING);
 #else
     group* grp;
-    if ((grp = getgrgid(st.st_gid)) != nullptr) {
+    if ((grp = getgrgid(st.st_gid)) != NULL) {
       SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(grp->gr_name, CE_UTF8));
     } else {
       char buf[20];
@@ -298,7 +298,7 @@ void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite) {
         n,
         !overwrite ? UV_FS_COPYFILE_EXCL : 0,
         NULL);
-    stop_for_error(req, "Failed to copy '%s' to '%s'", p, n);
+    stop_for_error2(req, "Failed to copy '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
 }

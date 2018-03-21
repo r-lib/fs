@@ -133,7 +133,7 @@ std::string expand_windows(const char* p) {
   // # ~user case
   if (i != 1) {
     char* home_str = strdup(home);
-    if (home_str == nullptr) {
+    if (home_str == NULL) {
       Rf_error("Allocation Failed");
     }
     strncpy(home, dirname(home_str), PATH_MAX);

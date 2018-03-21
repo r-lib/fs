@@ -15,7 +15,7 @@ void link_create_hard_(CharacterVector path, CharacterVector new_path) {
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
     uv_fs_link(uv_default_loop(), &req, p, n, NULL);
-    stop_for_error(req, "Failed to link '%s' to '%s'", p, n);
+    stop_for_error2(req, "Failed to link '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
 }
@@ -48,7 +48,7 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
       }
       uv_fs_req_cleanup(&l_req);
     }
-    stop_for_error(req, "Failed to link '%s' to '%s'", p, n);
+    stop_for_error2(req, "Failed to link '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
 }

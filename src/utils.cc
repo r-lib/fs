@@ -76,8 +76,8 @@ std::string path_tidy_(const std::string in) {
   }
 
   // Remove trailing / from paths (that aren't also the beginning)
-  if (out.length() > 1 && out.back() == '/') {
-    out.pop_back();
+  if (out.length() > 1 && *out.rbegin() == '/') {
+    out.erase(out.end() - 1);
   }
 
   return out;

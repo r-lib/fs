@@ -1,6 +1,3 @@
-# Use C++11 if available, so we have C99 support for variadic macros
-CXX_STD=CXX11
-
 UNAME := $(shell uname)
 
 PKG_LIBS = ./libuv/.libs/libuv.a
