@@ -126,6 +126,8 @@ describe("path_ext", {
     expect_equal(path_ext(".."), "")
     expect_equal(path_ext("........"), "")
     expect_equal(path_ext(""), "")
+    expect_equal(path_ext(".bar"), "")
+    expect_equal(path_ext("foo/.bar"), "")
     expect_equal(path_ext(c("foo.bar", NA_character_)), c("bar", NA_character_))
   })
 })
@@ -146,6 +148,8 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove(""), "")
     expect_equal(path_ext_remove(NA_character_), NA_character_)
     expect_equal(path_ext_remove(c("foo.bar", NA_character_)), c("foo", NA_character_))
+    expect_equal(path_ext_remove(".bar"), ".bar")
+    expect_equal(path_ext_remove("foo/.bar"), "foo/.bar")
   })
 })
 
@@ -165,6 +169,8 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("", "bar"), ".bar")
     expect_equal(path_ext_set(NA_character_, "bar"), NA_character_)
     expect_equal(path_ext_set(c("foo", NA_character_), "bar"), c("foo.bar", NA_character_))
+    expect_equal(path_ext_set(".bar", "baz"), ".bar.baz")
+    expect_equal(path_ext_set("foo/.bar", "baz"), "foo/.bar.baz")
   })
 })
 

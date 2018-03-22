@@ -328,7 +328,7 @@ path_ext <- function(path) {
     return(character())
   }
 
-  res <- captures(path, regexpr("(?<!^|[.])[.]([^.]+)$", path, perl = TRUE))[[1]]
+  res <- captures(path, regexpr("(?<!^|[.]|/)[.]([^.]+)$", path, perl = TRUE))[[1]]
   res[!is.na(path) & is.na(res)] <- ""
   res
 }
@@ -336,7 +336,7 @@ path_ext <- function(path) {
 #' @rdname path_file
 #' @export
 path_ext_remove <- function(path) {
-  path_tidy(sub("(?<!^|[.])[.][^.]+$", "", path, perl = TRUE))
+  path_tidy(sub("(?<!^|[.]|/)[.][^.]+$", "", path, perl = TRUE))
 }
 
 #' @rdname path_file

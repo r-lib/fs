@@ -1,5 +1,10 @@
 # fs 1.2.2.9000
 
+## Bugfixes
+
+* `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
+  directories including hidden files without extensions (#92).
+
 # fs 1.2.2
 
 ## Features
