@@ -1,3 +1,7 @@
+#ifndef __STDC_FORMAT_MACROS
+#define __STDC_FORMAT_MACROS 1
+#endif
+
 #include "getmode.h"
 #include "uv.h"
 
@@ -9,10 +13,6 @@
 #ifndef __WIN32
 #include <grp.h>
 #include <pwd.h>
-#endif
-
-#ifndef __STDC_FORMAT_MACROS
-#define __STDC_FORMAT_MACROS 1
 #endif
 
 #include <inttypes.h>
