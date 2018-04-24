@@ -27,7 +27,7 @@ is_windows <- function() {
 
 # This is needed to avoid checking the class of fs_path objects in the
 # tests.
-compare.fs_path <- function(x, y) {
+compare.fs_path <- function(x, y, ...) {
   if (identical(class(y), "character")) {
     class(x) <- NULL
   }
@@ -36,7 +36,7 @@ compare.fs_path <- function(x, y) {
   NextMethod("compare")
 }
 
-compare.fs_perms <- function(x, y) {
+compare.fs_perms <- function(x, y, ...) {
   if (!inherits(y, "fs_perms")) {
     y <- as.character(as_fs_perms(y))
     x <- as.character(x)

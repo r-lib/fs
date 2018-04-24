@@ -3,7 +3,6 @@
 \name{fs_perms}
 \alias{fs_perms}
 \alias{as_fs_perms}
-\alias{fs_perms}
 \title{Create, modify and view file permissions}
 \usage{
 as_fs_perms(x, ...)
