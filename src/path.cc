@@ -136,7 +136,7 @@ std::string expand_windows(const char* p) {
     if (home_str == NULL) {
       Rf_error("Allocation Failed");
     }
-    strncpy(home, dirname(home_str), PATH_MAX);
+    strncpy(home, dirname(home_str), PATH_MAX - 1);
     free(home_str);
 
     // only copy enough characters to i
