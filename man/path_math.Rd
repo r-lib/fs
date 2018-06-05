@@ -54,7 +54,7 @@ See \code{\link[=path]{path()}} to concatenate vectorized strings into a path.
 \item \code{path_abs}: returns a normalized, absolute version of a path.
 
 \item \code{path_norm}: collapses redundant separators and
-up-level references, so \code{A//B}, \code{A/B}, \code{A/.B} and \code{A/foo/../B} all become
+up-level references, so \code{A//B}, \code{A/B}, \code{A/./B} and \code{A/foo/../B} all become
 \code{A/B}. If one of the paths is a symbolic link, this may change the meaning
 of the path, in this case one should use \code{\link[=path_real]{path_real()}} prior to calling
 \code{\link[=path_norm]{path_norm()}}.

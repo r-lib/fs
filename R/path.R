@@ -132,7 +132,7 @@ path_abs <- function(path, start = ".") {
 
 
 #' @describeIn path_math collapses redundant separators and
-#' up-level references, so `A//B`, `A/B`, `A/.B` and `A/foo/../B` all become
+#' up-level references, so `A//B`, `A/B`, `A/./B` and `A/foo/../B` all become
 #' `A/B`. If one of the paths is a symbolic link, this may change the meaning
 #' of the path, in this case one should use [path_real()] prior to calling
 #' [path_norm()].
