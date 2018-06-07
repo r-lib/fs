@@ -9,6 +9,9 @@
 
 * Experimental support for `/` and `+` methods for `fs_path` objects (#110).
 
+* `file_create()` and `dir_create()` now take `...`, which is passed to
+  `path()` to make construction a little nicer (#80).
+
 # fs 1.2.2
 
 ## Features
