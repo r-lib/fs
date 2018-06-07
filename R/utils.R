@@ -114,7 +114,7 @@ assert <- function(msg, ..., class = "invalid_argument") {
   tests <- unlist(list(...))
 
   if (!all(tests)) {
-    stop(fs_error(msg, ..., class = class))
+    stop(fs_error(msg, class = class))
   }
 }
 
