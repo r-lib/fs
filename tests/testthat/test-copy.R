@@ -33,6 +33,37 @@ describe("file_copy", {
     expect_error(file_copy(NA, "foo2"), class = "invalid_argument")
     expect_error(file_copy("foo", NA), class = "invalid_argument")
   })
+  with_dir_tree(list("foo/bar" = "test"), {
+    it("returns the new path and copies the file", {
+      expect_true(file_exists("foo/bar"))
+      expect_false(file_exists("foo/bar2"))
+      expect_equal(file_copy("foo/bar", "foo/bar2"), "foo/bar2")
+      expect_true(file_exists("foo/bar"))
+      expect_true(file_exists("foo/bar2"))
+    })
+    it("fails if the new or existing directory does not exist", {
+      expect_true(file_exists("foo/bar"))
+      expect_error(file_copy("baz/bar", "foo/bar3"), class = "ENOENT")
+      expect_error(file_copy("foo/bar", "baz/qux"), class = "ENOENT")
+    })
+    it("errors on missing input", {
+      expect_error(file_copy(NA, "foo"), class = "invalid_argument")
+      expect_error(file_copy("foo/bar", NA), class = "invalid_argument")
+    })
+  })
+  it("copies files in different directories", {
+    with_dir_tree(list("foo/bar" = "test", "foo3/bar2" = "test2", "foo2"), {
+      expect_true(file_exists("foo/bar"))
+      expect_true(file_exists("foo2"))
+      expect_equal(file_copy(c("foo/bar", "foo3/bar2"), "foo2"), c("foo2/bar", "foo2/bar2"))
+      expect_true(file_exists("foo/bar"))
+      expect_true(file_exists("foo3/bar2"))
+      expect_true(file_exists("foo2/bar"))
+      expect_true(file_exists("foo2/bar2"))
+
+      expect_error(file_copy("foo/bar", c("foo2", "foo3")), class = "fs_error")
+    })
+  })
 })
 
 describe("link_copy", {

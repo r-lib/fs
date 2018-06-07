@@ -45,9 +45,21 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
   assert_no_missing(path)
   assert_no_missing(new_path)
 
-  copyfile_(path_expand(path), path_expand(new_path), isTRUE(overwrite))
+  old <- path_expand(path)
+  new <- path_expand(new_path)
 
-  invisible(path_tidy(new_path))
+  is_directory <- file_exists(new) && is_dir(new)
+
+  if (length(new) == 1 && is_directory[[1]]) {
+    new <- rep(new, length(path))
+  }
+  assert("Length of `path` must equal length of `new_path`", length(old) == length(new))
+
+  new[is_directory] <- path(new[is_directory], basename(old))
+
+  copyfile_(old, new, isTRUE(overwrite))
+
+  invisible(path_tidy(new))
 }
 
 #' @rdname copy
