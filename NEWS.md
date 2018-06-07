@@ -1,9 +1,4 @@
-# fs 1.2.2.9000
-
-## Bugfixes
-
-* `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
-  directories including hidden files without extensions (#92).
+# fs 1.2.3
 
 ## Features
 
@@ -11,6 +6,14 @@
 
 * `file_create()` and `dir_create()` now take `...`, which is passed to
   `path()` to make construction a little nicer (#80).
+
+## Bugfixes
+
+* `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
+  directories including hidden files without extensions (#92).
+
+* `file_copy()` now copies files into the directory if the target is a
+  directory (#102).
 
 # fs 1.2.2
 
