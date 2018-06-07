@@ -12,6 +12,7 @@
 #'   Links do not have mode; they inherit the mode of the file they link to.
 #' @param recursive should intermediate directories be created if they do not
 #'   exist?
+#' @param ... Additional arguments passed to [path()]
 #' @return The path to the created object (invisibly).
 #' @name create
 #' @examples
@@ -31,12 +32,12 @@
 #' dir_delete("bar")
 #' \dontshow{setwd(.old_wd)}
 #' @export
-file_create <- function(path, mode = "u=rw,go=r") {
+file_create <- function(path, ..., mode = "u=rw,go=r") {
   assert_no_missing(path)
   assert("`mode` must be of length 1", length(mode) == 1)
 
   mode <- as_fs_perms(mode)
-  new <- path_expand(path)
+  new <- path_expand(path(path, ...))
 
   create_(new, mode)
   invisible(path_tidy(path))
@@ -44,12 +45,12 @@ file_create <- function(path, mode = "u=rw,go=r") {
 
 #' @export
 #' @rdname create
-dir_create <- function(path, mode = "u=rwx,go=rx", recursive = TRUE) {
+dir_create <- function(path, ..., mode = "u=rwx,go=rx", recursive = TRUE) {
   assert_no_missing(path)
   assert("`mode` must be of length 1", length(mode) == 1)
 
   mode <- as_fs_perms(mode)
-  new <- path_expand(path)
+  new <- path_expand(path(path, ...))
 
   paths <- path_split(new)
   for (p in paths) {

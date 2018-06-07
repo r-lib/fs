@@ -7,14 +7,16 @@
 \alias{link_create}
 \title{Create files, directories, or links}
 \usage{
-file_create(path, mode = "u=rw,go=r")
+file_create(path, ..., mode = "u=rw,go=r")
 
-dir_create(path, mode = "u=rwx,go=rx", recursive = TRUE)
+dir_create(path, ..., mode = "u=rwx,go=rx", recursive = TRUE)
 
 link_create(path, new_path, symbolic = TRUE)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
+
+\item{...}{Additional arguments passed to \code{\link[=path]{path()}}}
 
 \item{mode}{If file/directory is created, what mode should it have?
 

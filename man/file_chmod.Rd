@@ -16,7 +16,7 @@ Change file permissions
 }
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
-file_create("foo", "000")
+file_create("foo", mode = "000")
 file_chmod("foo", "777")
 file_info("foo")$permissions
 
@@ -30,7 +30,7 @@ file_chmod("foo", "u+wr")
 file_info("foo")$permissions
 
 # It is also vectorized
-files <- c("foo", file_create("bar", "000"))
+files <- c("foo", file_create("bar", mode = "000"))
 file_chmod(files, "a+rwx")
 file_info(files)$permissions
 
