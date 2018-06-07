@@ -52,6 +52,16 @@ print.fs_path <- function(x, ..., max = getOption("max.print")) {
   new_fs_path(NextMethod("["))
 }
 
+#' @export
+`/.fs_path` <- function(e1, e2) {
+  path(e1, e2)
+}
+
+#' @export
+`+.fs_path` <- function(e1, e2) {
+  new_fs_path(paste0(e1, e2))
+}
+
 pillar_shaft.fs_path <- function(x, ...) {
   pillar::new_pillar_shaft_simple(colourise_fs_path(x), ...)
 }

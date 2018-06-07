@@ -3,6 +3,7 @@
 \name{fs_bytes}
 \alias{fs_bytes}
 \alias{as_fs_bytes}
+\alias{fs_bytes}
 \title{Human readable file sizes}
 \usage{
 as_fs_bytes(x)

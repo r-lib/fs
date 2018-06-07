@@ -5,6 +5,10 @@
 * `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
   directories including hidden files without extensions (#92).
 
+## Features
+
+* Experimental support for `/` and `+` methods for `fs_path` objects (#110).
+
 # fs 1.2.2
 
 ## Features

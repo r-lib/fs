@@ -3,6 +3,7 @@
 \name{fs_path}
 \alias{fs_path}
 \alias{as_fs_path}
+\alias{fs_path}
 \title{File paths}
 \usage{
 as_fs_path(x)
