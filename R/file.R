@@ -192,9 +192,9 @@ file_move <- function(path, new_path) {
   }
   assert("Length of `path` must equal length of `new_path`", length(old) == length(new))
 
-  new[is_directory] <- path(new[is_directory], basename(new))
+  new[is_directory] <- path(new[is_directory], basename(old))
 
   move_(old, new)
 
-  invisible(path_tidy(new_path))
+  invisible(path_tidy(new))
 }
