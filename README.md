@@ -88,7 +88,7 @@ dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_col
 
 **fs** functions are divided into four main categories:
 
-  - `path_` for manipulating paths
+  - `path_` for manipulating and constructing paths
   - `file_` for files
   - `dir_` for directories
   - `link_` for links
@@ -99,23 +99,31 @@ will generally also work when applied to a directory or link.
 ``` r
 library(fs)
 
+# Construct a path to a file with `path()`
+path("foo", "bar", letters[1:3], ext = "txt")
+#> foo/bar/a.txt foo/bar/b.txt foo/bar/c.txt
+
 # list files in the current directory
 dir_ls()
-#> DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          
-#> R                README.Rmd       README.md        _pkgdown.yml     
-#> appveyor.yml     codecov.yml      cran-comments.md docs             
-#> example          fs.Rproj         inst             man              
-#> man-roxygen      script.R         src              tests
+#> CRAN-RELEASE         DESCRIPTION          LICENSE.md           
+#> NAMESPACE            NEWS.md              R                    
+#> README.Rmd           README.md            _pkgdown.yml         
+#> appveyor.yml         bar                  check.R              
+#> codecov.yml          cran-comments.md     docs                 
+#> example              follow.R             fs.Rcheck            
+#> fs.Rproj             fs_1.2.2.9000.tar.gz inst                 
+#> man                  man-roxygen          script.R             
+#> src                  tests
 
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /tmp/filedd463d6d7e0f
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f7126ece07c
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /tmp/filedd463d6d7e0f/my-file.txt
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f7126ece07c/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -139,8 +147,11 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /tmp/filedd464dbb3467/a /tmp/filedd464dbb3467/b /tmp/filedd464dbb3467/c 
-#> /tmp/filedd464dbb3467/d /tmp/filedd464dbb3467/e
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f713ca22ebf/a
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f713ca22ebf/b
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f713ca22ebf/c
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f713ca22ebf/d
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpM84M38/file16f713ca22ebf/e
 
 paths %>% file_delete()
 ```
@@ -167,16 +178,16 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 10 x 4
 #>    path                permissions        size modification_time  
 #>    <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#>  1 src/RcppExports.o   rw-r--r--        653.5K 2018-03-13 14:56:21
-#>  2 src/fs.so           rwxr-xr-x        609.9K 2018-03-13 14:56:21
-#>  3 src/dir.o           rw-r--r--        445.3K 2018-03-13 14:39:50
-#>  4 src/id.o            rw-r--r--        407.1K 2018-03-13 14:39:50
-#>  5 src/file.o          rw-r--r--        343.2K 2018-03-13 14:39:50
-#>  6 src/path.o          rw-r--r--        256.9K 2018-03-13 14:39:50
-#>  7 src/link.o          rw-r--r--        223.9K 2018-03-13 14:39:54
-#>  8 src/utils.o         rw-r--r--        115.4K 2018-03-13 14:39:50
-#>  9 src/error.o         rw-r--r--         17.6K 2018-03-13 14:39:50
-#> 10 src/RcppExports.cpp rw-r--r--         11.4K 2018-03-13 14:42:52
+#>  1 src/RcppExports.o   rw-r--r--        655.5K 2018-05-20 17:39:19
+#>  2 src/dir.o           rw-r--r--        442.7K 2018-05-20 17:39:19
+#>  3 src/fs.so           rwxr-xr-x        435.3K 2018-05-20 17:39:29
+#>  4 src/id.o            rw-r--r--        383.2K 2018-05-20 17:39:18
+#>  5 src/file.o          rw-r--r--        347.5K 2018-05-20 17:39:18
+#>  6 src/path.o          rw-r--r--        257.4K 2018-05-20 17:39:18
+#>  7 src/link.o          rw-r--r--        224.3K 2018-05-20 17:39:18
+#>  8 src/utils.o         rw-r--r--        117.9K 2018-05-20 17:39:18
+#>  9 src/error.o         rw-r--r--         17.3K 2018-05-20 17:39:15
+#> 10 src/RcppExports.cpp rw-r--r--         11.4K 2018-05-20 17:39:14
 ```
 
 Tabulate and display folder size.
@@ -188,9 +199,9 @@ dir_info("src", recursive = TRUE) %>%
 #> # A tibble: 54 x 2
 #>    directory                                        n
 #>    <fs::path>                             <fs::bytes>
-#>  1 src                                          3.04M
+#>  1 src                                          2.86M
 #>  2 src/libuv                                    2.44M
-#>  3 src/libuv/src/unix                           1.09M
+#>  3 src/libuv/src/unix                           1.08M
 #>  4 src/libuv/autom4te.cache                     1.08M
 #>  5 src/libuv/test                             865.36K
 #>  6 src/libuv/src/win                          683.14K
@@ -224,12 +235,12 @@ iris_files %>%
 #> # A tibble: 6 x 5
 #>   file           Sepal.Length Sepal.Width Petal.Length Petal.Width
 #>   <chr>                 <dbl>       <dbl>        <dbl>       <dbl>
-#> 1 setosa.tsv             5.10        3.50         1.40       0.200
-#> 2 setosa.tsv             4.90        3.00         1.40       0.200
-#> 3 versicolor.tsv         7.00        3.20         4.70       1.40 
-#> 4 versicolor.tsv         6.40        3.20         4.50       1.50 
-#> 5 virginica.tsv          6.30        3.30         6.00       2.50 
-#> 6 virginica.tsv          5.80        2.70         5.10       1.90
+#> 1 setosa.tsv              5.1         3.5          1.4         0.2
+#> 2 setosa.tsv              4.9         3            1.4         0.2
+#> 3 versicolor.tsv          7           3.2          4.7         1.4
+#> 4 versicolor.tsv          6.4         3.2          4.5         1.5
+#> 5 virginica.tsv           6.3         3.3          6           2.5
+#> 6 virginica.tsv           5.8         2.7          5.1         1.9
 
 file_delete(iris_files)
 ```

@@ -91,7 +91,7 @@ dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_col
 
 **fs** functions are divided into four main categories:
 
-  * `path_` for manipulating paths
+  * `path_` for manipulating and constructing paths
   * `file_` for files
   * `dir_` for directories
   * `link_` for links
@@ -101,6 +101,9 @@ will generally also work when applied to a directory or link.
 
 ```{r}
 library(fs)
+
+# Construct a path to a file with `path()`
+path("foo", "bar", letters[1:3], ext = "txt")
 
 # list files in the current directory
 dir_ls()
