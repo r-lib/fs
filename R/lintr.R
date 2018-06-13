@@ -1,37 +1,67 @@
 base_functions <- c(
-  "file.append",
-  "Sys.setFileTime",
-  "file.mode",
-  "file.mtime",
-  "file.size",
-  "Sys.umask",
-  "dir.create",
-  "dir",
-  "file.access",
   "Sys.chmod",
+  "Sys.readlink",
+  "Sys.setFileTime",
+  "Sys.umask",
+  "dir",
+  "dir.create",
+  "dir.exists",
+  "file.access",
+  "file.append",
   "file.copy",
   "file.create",
-  "file.remove",
-  "unlink",
-  "file.info",
-  "file.rename",
-  "dir.exists",
   "file.exists",
-  "file.symlink",
+  "file.info",
   "file.link",
-  "Sys.readlink",
+  "file.mode",
+  "file.mtime",
   "file.path",
-  "path.expand",
+  "file.remove",
+  "file.rename",
+  "file.size",
+  "file.symlink",
+  "list.files",
+  "list.dirs",
   "normalizePath",
-  "tempdir")
+  "path.expand",
+  "tempdir",
+  "tempfile",
+  "unlink")
+
+function_linter <- function(source_file, funcs, type,
+  msg, linter) {
+
+  bad <- which(
+    source_file$parsed_content$token == "SYMBOL_FUNCTION_CALL" &
+    source_file$parsed_content$text %in% funcs
+  )
+
+  lapply(
+    bad,
+    function(line) {
+      parsed <- source_file$parsed_content[line, ]
+      msg <- gsub("%s", source_file$parsed_content$text[line], msg)
+      lintr::Lint(
+        filename = source_file$filename,
+        line_number = parsed$line1,
+        column_number = parsed$col1,
+        type = type,
+        message = msg,
+        line = source_file$lines[as.character(parsed$line1)],
+        ranges = list(c(parsed$col1, parsed$col2)),
+        linter = linter
+      )
+    }
+  )
+}
 
 base_fs_funs <- function(path = ".") {
   lintr::lint_package(path = path,
     linters = list(base_fs_linter = function(source_file) {
-      goodpractice:::dangerous_functions_linter(source_file,
-        funcs = c("file.rename", "file.create", "file.exists"),
+      function_linter(source_file,
+        funcs = base_functions,
         type = "warning",
-        msg = "Avoid base filesystem functions",
+        msg = "Avoid base filesystem functions (%s)",
         linter = "base_fs_linter") 
   }))
 }
