@@ -28,23 +28,25 @@ path_common(path)
 \arguments{
 \item{path}{A character vector of one or more paths.}
 
-\item{parts}{A list of character vectors, corresponding to split paths.}
+\item{parts}{A character vector or a list of character vectors, corresponding
+to split paths.}
 
-\item{start}{A starting directory to compute the path to.}
+\item{start}{A starting directory to compute the path relative to.}
 }
 \value{
-The new path as a character vector. For \code{\link[=path_split]{path_split()}}, a list of
-character vectors of path components is returned instead.
+The new path(s) in an \code{fs_path} object, which is a character vector
+that also has class \code{fs_path}. Except \code{path_split()}, which returns a list
+of character vectors of path components.
 }
 \description{
-All functions apart from \code{\link[=path_expand]{path_expand()}} and \code{\link[=path_real]{path_real()}} are purely
-path computations, so the files in question do not need to exist on the
-filesystem.
+All functions apart from \code{path_real()} are purely path computations, so the
+files in question do not need to exist on the filesystem.
 }
 \section{Functions}{
 \itemize{
 \item \code{path_real}: returns the canonical path, eliminating any symbolic
-links.
+links and the special references \code{~}, \code{~user}, \code{.}, and \code{..}, , i.e. it
+calls \code{path_expand()} (literally) and \code{path_norm()} (effectively).
 
 \item \code{path_split}: splits paths into parts.
 
@@ -53,23 +55,19 @@ See \code{\link[=path]{path()}} to concatenate vectorized strings into a path.
 
 \item \code{path_abs}: returns a normalized, absolute version of a path.
 
-\item \code{path_norm}: collapses redundant separators and
-up-level references, so \code{A//B}, \code{A/B}, \code{A/./B} and \code{A/foo/../B} all become
-\code{A/B}. If one of the paths is a symbolic link, this may change the meaning
-of the path, in this case one should use \code{\link[=path_real]{path_real()}} prior to calling
-\code{\link[=path_norm]{path_norm()}}.
+\item \code{path_norm}: collapses redundant separators and up-level references,
+so \code{A//B}, \code{A/B}, \code{A/./B} and \code{A/foo/../B} all become \code{A/B}. If one of the
+paths is a symbolic link, this may change the meaning of the path, in this
+case one should use \code{path_real()} prior to calling \code{path_norm()}.
 
 \item \code{path_rel}: computes the path relative to the \code{start} path,
-which can be either a absolute or relative path.
+which can be either an absolute or relative path.
 
 \item \code{path_common}: finds the common parts of two (or more) paths.
 }}
 
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
-# Expand a path
-path_expand("~/bin")
-
 dir_create("a")
 file_create("a/b")
 link_create(path_abs("a"), "c")
@@ -100,4 +98,7 @@ path_common(c("/foo/bar/baz", "/foo/bar/abc", "/foo/xyz/123"))
 dir_delete("a")
 link_delete("c")
 \dontshow{setwd(.old_wd)}
+}
+\seealso{
+\code{\link[=path_expand]{path_expand()}} for expansion of user's home directory.
 }

@@ -18,7 +18,7 @@ path_home_r(...)
 \arguments{
 \item{path}{A character vector of one or more paths.}
 
-\item{...}{Additional paths appended to the home directory by \code{path()}.}
+\item{...}{Additional paths appended to the home directory by \code{\link[=path]{path()}}.}
 }
 \description{
 \itemize{
@@ -32,29 +32,33 @@ definition of the home directory.
 }
 }
 \details{
-\code{path_expand()} Differs from \code{\link[=path.expand]{path.expand()}} in the interpretation of the
-home directory of Windows. In particular \code{path_expand()} uses the path set
-in \code{USERPROFILE}, if unset then \code{HOMEDRIVE}/\code{HOMEPATH} is used.
+\code{path_expand()} differs from \code{\link[base:path.expand]{base::path.expand()}} in the interpretation of
+the home directory of Windows. In particular \code{path_expand()} uses the path
+set in the \code{USERPROFILE} environment variable and, if unset, then uses
+\code{HOMEDRIVE}/\code{HOMEPATH}.
 
-In contrast \code{\link[=path.expand]{path.expand()}} first checks for \code{R_USER} then \code{HOME}, which in the default
-configuration of R on Windows are both set to the users document directory, e.g.
-\code{C:\\Users\\username\\Documents}. \code{path.expand()} also does not support
-\code{~otheruser} syntax on Windows, whereas \code{path_expand()} does support this
-syntax on all systems.
+In contrast \code{\link[base:path.expand]{base::path.expand()}} first checks for \code{R_USER} then \code{HOME},
+which in the default configuration of R on Windows are both set to the user's
+document directory, e.g. \code{C:\\Users\\username\\Documents}.
+\code{\link[base:path.expand]{base::path.expand()}} also does not support \code{~otheruser} syntax on Windows,
+whereas \code{path_expand()} does support this syntax on all systems.
 
-This definition makes fs more consistent with the definition of home directory used
-on Windows in other languages, such as
+This definition makes fs more consistent with the definition of home
+directory used on Windows in other languages, such as
 \href{https://docs.python.org/3/library/os.path.html#os.path.expanduser}{python}
-and \href{https://doc.rust-lang.org/std/env/fn.home_dir.html#windows}{rust}.
-This is also more compatible with external tools such as git and ssh, both of
-which put user-level files in \code{USERPROFILE} by default. It also allows you
-to write portable paths, such as \code{~/Desktop} that points to the Desktop
-location on Windows, MacOS and (most) Linux systems.
+and \href{https://doc.rust-lang.org/std/env/fn.home_dir.html#windows}{rust}. This
+is also more compatible with external tools such as git and ssh, both of
+which put user-level files in \code{USERPROFILE} by default. It also allows you to
+write portable paths, such as \code{~/Desktop} that points to the Desktop location
+on Windows, MacOS and (most) Linux systems.
 
 Users can set the \code{R_FS_HOME} environment variable to override the
 definitions on any platform.
 }
 \examples{
+# Expand a path
+path_expand("~/bin")
+
 # You can use `path_home()` without arguments to see what is being used as
 # the home diretory.
 path_home()
