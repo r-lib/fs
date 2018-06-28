@@ -13,7 +13,7 @@ SOURCES = $(wildcard *.cc windows/*.cc)
 OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
 
 # Additional flags for libuv borrowed from libuv/Makefile.mingw
-LIBUV_CFLAGS = -Iinclude -Isrc -Isrc/win -DWIN32_LEAN_AND_MEAN
+LIBUV_CFLAGS = -Iinclude -Isrc -Isrc/win -DWIN32_LEAN_AND_MEAN -D_WIN32_WINNT=0x0600
 
 $(SHLIB): libuv/libuv.a
 
