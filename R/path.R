@@ -132,10 +132,10 @@ path_abs <- function(path, start = ".") {
 }
 
 
-#' @describeIn path_math collapses redundant separators and up-level references,
-#'   so `A//B`, `A/B`, `A/./B` and `A/foo/../B` all become `A/B`. If one of the
-#'   paths is a symbolic link, this may change the meaning of the path, in this
-#'   case one should use `path_real()` prior to calling `path_norm()`.
+#' @describeIn path_math eliminates `.` references and rationalizes up-level
+#'   `..` references, so `A/./B` and `A/foo/../B` both become `A/B`, but `../B`
+#'   is not changed. If one of the paths is a symbolic link, this may change the
+#'   meaning of the path, so consider using `path_real()` instead.
 #' @export
 path_norm <- function(path) {
   non_missing <- !is.na(path)
