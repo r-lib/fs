@@ -1,17 +1,15 @@
 #' Path computations
 #'
-#' All functions apart from [path_expand()] and [path_real()] are purely
-#' path computations, so the files in question do not need to exist on the
-#' filesystem.
+#' All functions apart from `path_real()` are purely path computations, so the
+#' files in question do not need to exist on the filesystem.
 #' @template fs
 #' @name path_math
-#' @return The new path as a character vector. For [path_split()], a list of
-#'   character vectors of path components is returned instead.
+#' @return The new path(s) in an `fs_path` object, which is a character vector
+#'   that also has class `fs_path`. Except `path_split()`, which returns a list
+#'   of character vectors of path components.
+#' @seealso [path_expand()] for expansion of user's home directory.
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}
-#' # Expand a path
-#' path_expand("~/bin")
-#'
 #' dir_create("a")
 #' file_create("a/b")
 #' link_create(path_abs("a"), "c")
@@ -62,7 +60,8 @@ path <- function(..., ext = "") {
 }
 
 #' @describeIn path_math returns the canonical path, eliminating any symbolic
-#' links.
+#'   links and the special references `~`, `~user`, `.`, and `..`, , i.e. it
+#'   calls `path_expand()` (literally) and `path_norm()` (effectively).
 #' @export
 path_real <- function(path) {
   path <- enc2utf8(path)
@@ -82,7 +81,8 @@ path_real <- function(path) {
 #' multiple `/` or trailing `/` and have colourised output based on the file
 #' type.
 #'
-#' @return A fs_path object
+#' @return An `fs_path` object, which is a character vector that also has class
+#'   `fs_path`
 #' @template fs
 #' @export
 path_tidy <- function(path) {
@@ -106,7 +106,8 @@ path_split <- function(path) {
 
 #' @describeIn path_math joins parts together. The inverse of [path_split()].
 #' See [path()] to concatenate vectorized strings into a path.
-#' @param parts A list of character vectors, corresponding to split paths.
+#' @param parts A character vector or a list of character vectors, corresponding
+#'   to split paths.
 #' @export
 path_join <- function(parts) {
   if (length(parts) == 0) {
@@ -131,11 +132,10 @@ path_abs <- function(path, start = ".") {
 }
 
 
-#' @describeIn path_math collapses redundant separators and
-#' up-level references, so `A//B`, `A/B`, `A/./B` and `A/foo/../B` all become
-#' `A/B`. If one of the paths is a symbolic link, this may change the meaning
-#' of the path, in this case one should use [path_real()] prior to calling
-#' [path_norm()].
+#' @describeIn path_math eliminates `.` references and rationalizes up-level
+#'   `..` references, so `A/./B` and `A/foo/../B` both become `A/B`, but `../B`
+#'   is not changed. If one of the paths is a symbolic link, this may change the
+#'   meaning of the path, so consider using `path_real()` instead.
 #' @export
 path_norm <- function(path) {
   non_missing <- !is.na(path)
@@ -171,9 +171,9 @@ path_norm <- function(path) {
 }
 
 #' @describeIn path_math computes the path relative to the `start` path,
-#'   which can be either a absolute or relative path.
+#'   which can be either an absolute or relative path.
 #' @export
-#' @param start A starting directory to compute the path to.
+#' @param start A starting directory to compute the path relative to.
 # This implementation is partially derived from
 # https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
 path_rel <- function(path, start = ".") {
@@ -215,38 +215,42 @@ path_rel <- function(path, start = ".") {
 #' * `path_expand()` performs tilde expansion on a path, replacing instances of
 #' `~` or `~user` with the user's home directory.
 #' * `path_home()` constructs a path within the expanded users home directory,
-#'   calling it with _no_ arguments can be useful to verify what fs considers the
-#'   home directory.
+#' calling it with _no_ arguments can be useful to verify what fs considers the
+#' home directory.
 #' * `path_expand_r()` and `path_home_r()` are equivalents which always use R's
-#'   definition of the home directory.
+#' definition of the home directory.
 #' @details
-#' `path_expand()` Differs from [path.expand()] in the interpretation of the
-#' home directory of Windows. In particular `path_expand()` uses the path set
-#' in `USERPROFILE`, if unset then `HOMEDRIVE`/`HOMEPATH` is used.
+#' `path_expand()` differs from [base::path.expand()] in the interpretation of
+#' the home directory of Windows. In particular `path_expand()` uses the path
+#' set in the `USERPROFILE` environment variable and, if unset, then uses
+#' `HOMEDRIVE`/`HOMEPATH`.
 #'
-#' In contrast [path.expand()] first checks for `R_USER` then `HOME`, which in the default
-#' configuration of R on Windows are both set to the users document directory, e.g.
-#' `C:\\Users\\username\\Documents`. `path.expand()` also does not support
-#' `~otheruser` syntax on Windows, whereas `path_expand()` does support this
-#' syntax on all systems.
+#' In contrast [base::path.expand()] first checks for `R_USER` then `HOME`,
+#' which in the default configuration of R on Windows are both set to the user's
+#' document directory, e.g. `C:\\Users\\username\\Documents`.
+#' [base::path.expand()] also does not support `~otheruser` syntax on Windows,
+#' whereas `path_expand()` does support this syntax on all systems.
 #'
-#' This definition makes fs more consistent with the definition of home directory used
-#' on Windows in other languages, such as
+#' This definition makes fs more consistent with the definition of home
+#' directory used on Windows in other languages, such as
 #' [python](https://docs.python.org/3/library/os.path.html#os.path.expanduser)
-#' and [rust](https://doc.rust-lang.org/std/env/fn.home_dir.html#windows).
-#' This is also more compatible with external tools such as git and ssh, both of
-#' which put user-level files in `USERPROFILE` by default. It also allows you
-#' to write portable paths, such as `~/Desktop` that points to the Desktop
-#' location on Windows, MacOS and (most) Linux systems.
+#' and [rust](https://doc.rust-lang.org/std/env/fn.home_dir.html#windows). This
+#' is also more compatible with external tools such as git and ssh, both of
+#' which put user-level files in `USERPROFILE` by default. It also allows you to
+#' write portable paths, such as `~/Desktop` that points to the Desktop location
+#' on Windows, MacOS and (most) Linux systems.
 #'
 #' Users can set the `R_FS_HOME` environment variable to override the
 #' definitions on any platform.
 #' @seealso [R for Windows FAQ - 2.14](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f)
 #' for behavior of [base::path.expand()].
-#' @param ... Additional paths appended to the home directory by `path()`.
+#' @param ... Additional paths appended to the home directory by [path()].
 #' @inheritParams path_math
 #' @export
 #' @examples
+#' # Expand a path
+#' path_expand("~/bin")
+#'
 #' # You can use `path_home()` without arguments to see what is being used as
 #' # the home diretory.
 #' path_home()
@@ -285,13 +289,13 @@ path_home_r <- function(...) {
 #' Manipulate file paths
 #'
 #' `path_file()` returns the filename portion of the path, `path_dir()` returns
-#' the directory portion. `path_ext()` returns the last extension (if any) for a path.
-#' `path_ext_remove()` removes the last extension and returns the rest of the
-#' path. `path_ext_set()` replaces the extension with a new extension. If there
-#' is no existing extension the new extension is appended.
+#' the directory portion. `path_ext()` returns the last extension (if any) for a
+#' path. `path_ext_remove()` removes the last extension and returns the rest of
+#' the path. `path_ext_set()` replaces the extension with a new extension. If
+#' there is no existing extension the new extension is appended.
 #' @template fs
 #' @param ext,value The new file extension.
-#' @seealso [basename()], [dirname()]
+#' @seealso [base::basename()], [base::dirname()]
 #' @export
 #' @examples
 #' path_file("dir/file.zip")

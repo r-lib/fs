@@ -10,7 +10,8 @@ path_tidy(path)
 \item{path}{A character vector of one or more paths.}
 }
 \value{
-A fs_path object
+An \code{fs_path} object, which is a character vector that also has class
+\code{fs_path}
 }
 \description{
 untidy paths are all different, tidy paths are all the same.

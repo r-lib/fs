@@ -28,10 +28,10 @@ path_ext(path) <- value
 }
 \description{
 \code{path_file()} returns the filename portion of the path, \code{path_dir()} returns
-the directory portion. \code{path_ext()} returns the last extension (if any) for a path.
-\code{path_ext_remove()} removes the last extension and returns the rest of the
-path. \code{path_ext_set()} replaces the extension with a new extension. If there
-is no existing extension the new extension is appended.
+the directory portion. \code{path_ext()} returns the last extension (if any) for a
+path. \code{path_ext_remove()} removes the last extension and returns the rest of
+the path. \code{path_ext_set()} replaces the extension with a new extension. If
+there is no existing extension the new extension is appended.
 }
 \examples{
 path_file("dir/file.zip")
@@ -48,5 +48,5 @@ path_ext_remove("file.tar.gz")
 path_ext_set(path_ext_remove("file.tar.gz"), "zip")
 }
 \seealso{
-\code{\link[=basename]{basename()}}, \code{\link[=dirname]{dirname()}}
+\code{\link[base:basename]{base::basename()}}, \code{\link[base:dirname]{base::dirname()}}
 }
