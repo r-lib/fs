@@ -1,3 +1,8 @@
+## Bugfixes
+
+* `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
+  non-ASCII characters (#120).
+
 # fs 1.2.3
 
 ## Features

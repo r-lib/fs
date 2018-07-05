@@ -2,7 +2,7 @@ captures <- function(x, m) {
   assert("`x` must be a character", is.character(x))
   assert("`m` must be a match object from `regexpr()`",
     inherits(m, "integer") &&
-    all(c("match.length", "useBytes", "capture.start", "capture.length", "capture.names") %in% names(attributes(m))))
+    all(c("match.length", "capture.start", "capture.length", "capture.names") %in% names(attributes(m))))
 
   starts <- attr(m, "capture.start")
   strings <- substring(x, starts, starts + attr(m, "capture.length") - 1L)

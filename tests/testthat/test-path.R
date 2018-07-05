@@ -130,6 +130,10 @@ describe("path_ext", {
     expect_equal(path_ext("foo/.bar"), "")
     expect_equal(path_ext(c("foo.bar", NA_character_)), c("bar", NA_character_))
   })
+  it ("works with non-ASCII inputs", {
+    expect_equal(path_ext("föö.txt"), "txt")
+    expect_equal(path_ext("föö.tär"), "tär")
+  })
 })
 
 describe("path_ext_remove", {
@@ -151,6 +155,10 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove(".bar"), ".bar")
     expect_equal(path_ext_remove("foo/.bar"), "foo/.bar")
   })
+  it ("works with non-ASCII inputs", {
+    expect_equal(path_ext_remove("föö.txt"), "föö")
+    expect_equal(path_ext_remove("föö.tär"), "föö")
+  })
 })
 
 describe("path_ext_set", {
@@ -171,6 +179,10 @@ describe("path_ext_set", {
     expect_equal(path_ext_set(c("foo", NA_character_), "bar"), c("foo.bar", NA_character_))
     expect_equal(path_ext_set(".bar", "baz"), ".bar.baz")
     expect_equal(path_ext_set("foo/.bar", "baz"), "foo/.bar.baz")
+  })
+  it ("works with non-ASCII inputs", {
+    expect_equal(path_ext_set("föö.txt", "bar"), "föö.bar")
+    expect_equal(path_ext_set("föö.tär", "bar"), "föö.bar")
   })
 })
 
