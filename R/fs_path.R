@@ -104,7 +104,11 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
     return(x)
   }
 
-  perms <- file_info(x)$permissions
+  perms <- try(file_info(x)$permissions, silent = TRUE)
+
+  if (inherits(perms, "try-error")) {
+    return(x)
+  }
 
   vals <- strsplit(colors, ":")[[1]]
   nms <- strsplit(vals, "=")

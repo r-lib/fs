@@ -3,6 +3,9 @@
 * `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
   non-ASCII characters (#120).
 
+* Fix errors when trying to stat files for coloring (if the user does not have
+  permission to stat them) #121.
+
 # fs 1.2.3
 
 ## Features
