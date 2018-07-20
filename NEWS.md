@@ -6,6 +6,10 @@
 * Fix errors when trying to stat files for coloring (if the user does not have
   permission to stat them) #121.
 
+## Features
+
+* `path_wd()` to generate paths from the current working directory (#122)
+
 # fs 1.2.3
 
 ## Features

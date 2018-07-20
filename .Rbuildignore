@@ -1,3 +1,6 @@
+^html$
+^help$
+^Meta$
 ^\.travis\.yml$
 ^src/libuv/\.github$
 ^src/libuv/\.mailmap$

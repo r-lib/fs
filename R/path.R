@@ -44,6 +44,9 @@ NULL
 
 #' Construct path to a file or directory
 #'
+#' `path()` constructs a relative path, `path_wd()` constructs an absolute path
+#' from the current working directory.
+#'
 #' @template fs
 #' @param ... character vectors, if any values are NA, the result will also be
 #'   NA.
@@ -59,6 +62,11 @@ path <- function(..., ext = "") {
   path_tidy(path_(lapply(list(...), function(x) enc2utf8(as.character(x))), ext))
 }
 
+#' @rdname path
+path_wd <- function(..., ext = "") {
+  path(getwd(), ..., ext = ext)
+}
+
 #' @describeIn path_math returns the canonical path, eliminating any symbolic
 #'   links and the special references `~`, `~user`, `.`, and `..`, , i.e. it
 #'   calls `path_expand()` (literally) and `path_norm()` (effectively).
@@ -72,7 +80,6 @@ path_real <- function(path) {
 
   path_tidy(old)
 }
-
 
 #' Tidy paths
 #'

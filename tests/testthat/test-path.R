@@ -42,6 +42,15 @@ describe("path", {
   })
 })
 
+describe("path_wd", {
+  it("returns an absolute path from the working directory", {
+    x <- path_wd()
+    expect_true(is_absolute_path(x))
+
+    expect_equal(x, path(getwd()))
+  })
+})
+
 describe("path_real", {
   it("returns the real path for symbolic links", {
     with_dir_tree(list("foo/bar" = "test"), {

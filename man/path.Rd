@@ -2,9 +2,12 @@
 % Please edit documentation in R/path.R
 \name{path}
 \alias{path}
+\alias{path_wd}
 \title{Construct path to a file or directory}
 \usage{
 path(..., ext = "")
+
+path_wd(..., ext = "")
 }
 \arguments{
 \item{...}{character vectors, if any values are NA, the result will also be
@@ -15,7 +18,8 @@ NA.}
 \item{path}{A character vector of one or more paths.}
 }
 \description{
-Construct path to a file or directory
+\code{path()} constructs a relative path, \code{path_wd()} constructs an absolute path
+from the current working directory.
 }
 \examples{
 path("foo", "bar", "baz", ext = "zip")
