@@ -298,6 +298,16 @@ describe("path_common", {
   })
 })
 
+describe("path_has_parent", {
+  expect_false(path_has_parent("foo", "bar"))
+  expect_false(path_has_parent("foo", "foo/bar"))
+
+  expect_false(path_has_parent("/usr/var2/log", "/usr/var"))
+
+  expect_true(path_has_parent("foo/bar", "foo"))
+  expect_true(path_has_parent("path/myfiles/myfile", "path/to/files/../../myfiles"))
+})
+
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
 describe("path_rel", {
   it("works for POSIX paths", {

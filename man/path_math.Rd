@@ -9,6 +9,7 @@
 \alias{path_norm}
 \alias{path_rel}
 \alias{path_common}
+\alias{path_has_parent}
 \title{Path computations}
 \usage{
 path_real(path)
@@ -24,6 +25,8 @@ path_norm(path)
 path_rel(path, start = ".")
 
 path_common(path)
+
+path_has_parent(path, parent)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
@@ -64,6 +67,8 @@ meaning of the path, so consider using \code{path_real()} instead.
 which can be either an absolute or relative path.
 
 \item \code{path_common}: finds the common parts of two (or more) paths.
+
+\item \code{path_has_parent}: determine if a path has a given parent.
 }}
 
 \examples{

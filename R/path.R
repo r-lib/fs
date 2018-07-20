@@ -426,3 +426,12 @@ path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
   }
   setNames(path_tidy(path), path)
 }
+
+#' @describeIn path_math determine if a path has a given parent.
+#' @export
+path_has_parent <- function(path, parent) {
+  path <- path_abs(path)
+  parent <- path_abs(parent)
+
+  identical(path_common(c(path, parent)), parent)
+}

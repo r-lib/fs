@@ -10,6 +10,8 @@
 
 * `path_wd()` to generate paths from the current working directory (#122)
 
+* `path_has_parent()` to determine if a path has a given parent (#116)
+
 # fs 1.2.3
 
 ## Features
