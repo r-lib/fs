@@ -40,7 +40,9 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
       // check that the link points to where we want to point to
       uv_fs_t l_req;
       uv_fs_readlink(uv_default_loop(), &l_req, n, NULL);
-      stop_for_error(l_req, "Failed to read link '%s'", n);
+      if (stop_for_error(l_req, "Failed to read link '%s'", n) == false) {
+        continue;
+      }
       if (strcmp(path_tidy_((const char*)l_req.ptr).c_str(), p) == 0) {
         uv_fs_req_cleanup(&req);
         uv_fs_req_cleanup(&l_req);
@@ -61,7 +63,10 @@ CharacterVector readlink_(CharacterVector path) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     uv_fs_readlink(uv_default_loop(), &req, p, NULL);
-    stop_for_error(req, "Failed to read link '%s'", p);
+    if (stop_for_error(req, "Failed to read link '%s'", p) == false) {
+      SET_STRING_ELT(out, i, NA_STRING);
+      continue;
+    }
     SET_STRING_ELT(out, i, Rf_mkCharCE((const char*)req.ptr, CE_UTF8));
     uv_fs_req_cleanup(&req);
   }

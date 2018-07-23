@@ -2,12 +2,12 @@
 
 #define BUFSIZE 8192
 
-SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...) {
+bool error_condition(uv_fs_t req, const char* loc, const char* format, ...) {
   SEXP condition, c, signalConditionFun, out;
   va_list ap;
 
   if (req.result >= 0) {
-    return R_NilValue;
+    return true;
   }
   int err = req.result;
   uv_fs_req_cleanup(&req);
@@ -15,10 +15,16 @@ SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...) {
   const char* nms[] = {"message", ""};
   PROTECT(condition = Rf_mkNamed(VECSXP, nms));
 
+  int should_error = Rf_asLogical(Rf_GetOption1(Rf_install("fs.should_error")));
+
   PROTECT(c = Rf_allocVector(STRSXP, 4));
   SET_STRING_ELT(c, 0, Rf_mkChar(uv_err_name(err)));
   SET_STRING_ELT(c, 1, Rf_mkChar("fs_error"));
-  SET_STRING_ELT(c, 2, Rf_mkChar("error"));
+  if (should_error) {
+    SET_STRING_ELT(c, 2, Rf_mkChar("error"));
+  } else {
+    SET_STRING_ELT(c, 2, Rf_mkChar("warning"));
+  }
   SET_STRING_ELT(c, 3, Rf_mkChar("condition"));
 
   char buf[BUFSIZE];
@@ -32,12 +38,16 @@ SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...) {
   SET_VECTOR_ELT(condition, 0, Rf_mkString(buf));
   Rf_setAttrib(condition, R_ClassSymbol, c);
   Rf_setAttrib(condition, Rf_mkString("location"), Rf_mkString(loc));
-  signalConditionFun = Rf_findFun(Rf_install("stop"), R_BaseEnv);
+  if (should_error) {
+    signalConditionFun = Rf_findFun(Rf_install("stop"), R_BaseEnv);
+  } else {
+    signalConditionFun = Rf_findFun(Rf_install("warning"), R_BaseEnv);
+  }
 
   SEXP call = PROTECT(Rf_lang2(signalConditionFun, condition));
   PROTECT(out = Rf_eval(call, R_GlobalEnv));
 
   UNPROTECT(4);
 
-  return out;
+  return false;
 }

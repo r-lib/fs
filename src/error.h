@@ -20,7 +20,7 @@ extern "C" {
 #define stop_for_error2(req, format, one, two)                                 \
   error_condition(req, __FILE__ ":" STRING(__LINE__), format, one, two)
 
-SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...);
+bool error_condition(uv_fs_t req, const char* loc, const char* format, ...);
 
 #ifdef __cplusplus
 }

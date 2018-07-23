@@ -54,7 +54,10 @@ void dir_map(
     CollectorList* value) {
   uv_fs_t req;
   uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
-  stop_for_error(req, "Failed to search directory '%s'", path);
+  if (stop_for_error(req, "Failed to search directory '%s'", path) == false) {
+    uv_fs_req_cleanup(&req);
+    return;
+  }
 
   uv_dirent_t e;
   for (int next_res = uv_fs_scandir_next(&req, &e); next_res != UV_EOF;
@@ -84,7 +87,10 @@ void dir_map(
       dir_map(fun, name.c_str(), all, file_type, true, value);
     }
     if (next_res != UV_EOF) {
-      stop_for_error(req, "Failed to search directory '%s'", path);
+      if (stop_for_error(req, "Failed to search directory '%s'", path) ==
+          false) {
+        break;
+      }
     }
   }
   uv_fs_req_cleanup(&req);
