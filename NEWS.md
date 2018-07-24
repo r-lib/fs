@@ -1,5 +1,8 @@
 ## Bugfixes
 
+* `path_tidy()` now always includes a trailing slash for the windows root
+  directory, e.g. `C:/` (#124).
+
 * `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
   non-ASCII characters (#120).
 

@@ -45,7 +45,17 @@ get_dirent_type(const char* path, const uv_dirent_type_t& entry_type) {
   return entry_type;
 }
 
-std::string path_tidy_(const std::string in) {
+bool is_windows_path(const std::string& x) {
+  if (x.length() < 2) {
+    return false;
+  }
+  char first = x.at(0);
+
+  return ((first >= 'A' && first <= 'Z') || (first >= 'a' && first <= 'z')) &&
+         x.at(1) == ':';
+}
+
+std::string path_tidy_(const std::string& in) {
   std::string out;
   out.reserve(in.size());
   char prev = '\0';
@@ -73,6 +83,16 @@ std::string path_tidy_(const std::string in) {
 
     prev = curr;
     out.push_back(prev);
+  }
+
+  if (is_windows_path(out)) {
+    // Append a / if this is a root path
+    if (out.length() == 2) {
+      out.push_back('/');
+    } else if (out.length() > 3 && *out.rbegin() == '/') {
+      out.erase(out.end() - 1);
+    }
+    return out;
   }
 
   // Remove trailing / from paths (that aren't also the beginning)
