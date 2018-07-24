@@ -313,3 +313,14 @@ void chown_(CharacterVector path, int uid, int gid) {
     uv_fs_req_cleanup(&req);
   }
 }
+
+// [[Rcpp::export]]
+void touch_(CharacterVector path, double atime, double mtime) {
+  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+    uv_fs_t req;
+    const char* p = CHAR(STRING_ELT(path, i));
+    uv_fs_utime(uv_default_loop(), &req, p, atime, mtime, NULL);
+    stop_for_error(req, "Failed to touch '%s'", p);
+    uv_fs_req_cleanup(&req);
+  }
+}

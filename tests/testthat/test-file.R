@@ -141,3 +141,29 @@ describe("file_move", {
     expect_error(file_move("foo", NA), class = "invalid_argument")
   })
 })
+
+describe("file_touch", {
+  it("updates modification_time and access_time", {
+    with_dir_tree("dir", {
+      file_create("foo")
+      now <- Sys.time()
+
+      file_touch("foo", now)
+      old <- file_info("foo")
+
+      file_touch("foo", now + 10, now + 20)
+
+      new <- file_info("foo")
+      expect_true(old$modification_time < new$modification_time)
+      expect_true(old$access_time < new$access_time)
+
+      file_touch("foo", now - 10, now - 20)
+      new2 <- file_info("foo")
+      expect_true(old$modification_time > new2$modification_time)
+      expect_true(old$access_time > new2$access_time)
+    })
+  })
+  it("errors on missing input", {
+    expect_error(file_touch(NA), class = "invalid_argument")
+  })
+})

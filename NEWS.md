@@ -15,6 +15,8 @@
 
 * `path_has_parent()` to determine if a path has a given parent (#116)
 
+* `file_touch()` added to change access and modification times for a file (#98)
+
 # fs 1.2.3
 
 ## Features

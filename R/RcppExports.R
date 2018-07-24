@@ -45,6 +45,10 @@ chown_ <- function(path, uid, gid) {
     invisible(.Call(`_fs_chown_`, path, uid, gid))
 }
 
+touch_ <- function(path, atime, mtime) {
+    invisible(.Call(`_fs_touch_`, path, atime, mtime))
+}
+
 cleanup_ <- function() {
     invisible(.Call(`_fs_cleanup_`))
 }
