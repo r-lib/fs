@@ -428,6 +428,7 @@ path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
 }
 
 #' @describeIn path_math determine if a path has a given parent.
+#' @param parent The parent path.
 #' @export
 path_has_parent <- function(path, parent) {
   path <- path_abs(path)

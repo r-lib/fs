@@ -8,6 +8,9 @@ file_touch(path, access_time = Sys.time(), modification_time = access_time)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
+
+\item{access_time, modification_time}{The times to set, inputs will be
+coerced to \link{POSIXct} objects.}
 }
 \description{
 Unlike the touch POSIX utility this does not create the file if it does not

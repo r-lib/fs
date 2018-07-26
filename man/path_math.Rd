@@ -35,6 +35,8 @@ path_has_parent(path, parent)
 to split paths.}
 
 \item{start}{A starting directory to compute the path relative to.}
+
+\item{parent}{The parent path.}
 }
 \value{
 The new path(s) in an \code{fs_path} object, which is a character vector

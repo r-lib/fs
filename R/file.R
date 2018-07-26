@@ -207,6 +207,8 @@ file_move <- function(path, new_path) {
 #'
 #' @template fs
 #'
+#' @param access_time,modification_time The times to set, inputs will be
+#'   coerced to [POSIXct] objects.
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}
 #' file_create("foo")
