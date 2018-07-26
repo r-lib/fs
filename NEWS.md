@@ -1,5 +1,9 @@
 ## Bugfixes
 
+* `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `file_info()` gain a
+  `fail` argument, to signal warnings rather than errors if they are called on
+  a path which is unavailable due to permissions or locked resources. (#105)
+
 * `path_tidy()` now always includes a trailing slash for the windows root
   directory, e.g. `C:/` (#124).
 

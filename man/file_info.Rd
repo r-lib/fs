@@ -4,10 +4,13 @@
 \alias{file_info}
 \title{Query file metadata}
 \usage{
-file_info(path)
+file_info(path, fail = TRUE)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
+
+\item{fail}{Should the call fail (the default) or warn if a file cannot be
+accessed.}
 }
 \value{
 A data.frame with metadata for each file. Columns returned are as follows.

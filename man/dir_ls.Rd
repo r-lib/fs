@@ -8,14 +8,16 @@
 \title{List files}
 \usage{
 dir_ls(path = ".", all = FALSE, recursive = FALSE, type = "any",
-  glob = NULL, regexp = NULL, invert = FALSE, ...)
+  glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE, ...)
 
-dir_map(path = ".", fun, all = FALSE, recursive = FALSE, type = "any")
+dir_map(path = ".", fun, all = FALSE, recursive = FALSE, type = "any",
+  fail = TRUE)
 
-dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any")
+dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any",
+  fail = TRUE)
 
 dir_info(path = ".", all = FALSE, recursive = FALSE, type = "any",
-  regexp = NULL, glob = NULL, ...)
+  regexp = NULL, glob = NULL, fail = TRUE, ...)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
@@ -33,6 +35,9 @@ the filenames.}
 \item{regexp}{A regular expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
 \item{invert}{If \code{TRUE} return files which do \emph{not} match}
+
+\item{fail}{Should the call fail (the default) or warn if a file cannot be
+accessed.}
 
 \item{...}{Additional arguments passed to \link{grep}.}
 

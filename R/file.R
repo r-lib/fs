@@ -5,6 +5,7 @@
 #' more natural. On systems which do not support all metadata (such as Windows)
 #' default values are used.
 #' @template fs
+#' @inheritParams dir_ls
 #' @return A data.frame with metadata for each file. Columns returned are as follows.
 #'  \item{path}{The input path, as a [fs_path()] character vector.}
 #'  \item{type}{The file type, as a factor of file types.}
@@ -39,10 +40,10 @@
 #' file_delete("mtcars.csv")
 #' \dontshow{setwd(.old_wd)}
 #' @export
-file_info <- function(path) {
+file_info <- function(path, fail = TRUE) {
   old <- path_expand(path)
 
-  res <- stat_(old)
+  res <- stat_(old, fail)
 
   res$path <- path_tidy(path)
 

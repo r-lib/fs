@@ -9,8 +9,8 @@ rmdir_ <- function(path) {
     invisible(.Call(`_fs_rmdir_`, path))
 }
 
-dir_map_ <- function(path, fun, all, type, recurse) {
-    .Call(`_fs_dir_map_`, path, fun, all, type, recurse)
+dir_map_ <- function(path, fun, all, type, recurse, fail) {
+    .Call(`_fs_dir_map_`, path, fun, all, type, recurse, fail)
 }
 
 move_ <- function(path, new_path) {
@@ -21,8 +21,8 @@ create_ <- function(path, mode) {
     invisible(.Call(`_fs_create_`, path, mode))
 }
 
-stat_ <- function(path) {
-    .Call(`_fs_stat_`, path)
+stat_ <- function(path, fail) {
+    .Call(`_fs_stat_`, path, fail)
 }
 
 access_ <- function(path, mode) {

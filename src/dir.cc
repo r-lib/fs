@@ -51,9 +51,16 @@ void dir_map(
     bool all,
     int file_type,
     bool recurse,
-    CollectorList* value) {
+    CollectorList* value,
+    bool fail) {
   uv_fs_t req;
   uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
+
+  if (!fail && warn_for_error(req, "Failed to search directory '%s'", path)) {
+    uv_fs_req_cleanup(&req);
+    return;
+  }
+
   stop_for_error(req, "Failed to search directory '%s'", path);
 
   uv_dirent_t e;
@@ -81,10 +88,14 @@ void dir_map(
     }
 
     if (recurse && entry_type == UV_DIRENT_DIR) {
-      dir_map(fun, name.c_str(), all, file_type, true, value);
+      dir_map(fun, name.c_str(), all, file_type, true, value, fail);
     }
     if (next_res != UV_EOF) {
-      stop_for_error(req, "Failed to search directory '%s'", path);
+
+      if (!fail && warn_for_error(req, "Failed to open directory '%s'", path)) {
+        continue;
+      }
+      stop_for_error(req, "Failed to open directory '%s'", path);
     }
   }
   uv_fs_req_cleanup(&req);
@@ -96,13 +107,14 @@ List dir_map_(
     Function fun,
     bool all,
     IntegerVector type,
-    bool recurse) {
+    bool recurse,
+    bool fail) {
   int file_type = INTEGER(type)[0];
 
   CollectorList out;
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     const char* p = CHAR(STRING_ELT(path, i));
-    dir_map(fun, p, all, file_type, recurse, &out);
+    dir_map(fun, p, all, file_type, recurse, &out, fail);
   }
   return out.vector();
 }

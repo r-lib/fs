@@ -15,12 +15,16 @@ extern "C" {
 #define STRING(x) STRING_I(x)
 
 #define stop_for_error(req, format, one)                                       \
-  error_condition(req, __FILE__ ":" STRING(__LINE__), format, one)
+  signal_condition(req, __FILE__ ":" STRING(__LINE__), true, format, one)
 
 #define stop_for_error2(req, format, one, two)                                 \
-  error_condition(req, __FILE__ ":" STRING(__LINE__), format, one, two)
+  signal_condition(req, __FILE__ ":" STRING(__LINE__), true, format, one, two)
 
-SEXP error_condition(uv_fs_t req, const char* loc, const char* format, ...);
+#define warn_for_error(req, format, one)                                       \
+  signal_condition(req, __FILE__ ":" STRING(__LINE__), false, format, one)
+
+bool signal_condition(
+    uv_fs_t req, const char* loc, bool error, const char* format, ...);
 
 #ifdef __cplusplus
 }
