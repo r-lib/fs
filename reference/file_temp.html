@@ -21,16 +21,22 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="Create names for temporary files — file_temp" />
 
 <meta property="og:description" content="file_temp() returns the name which can be used as a temporary file." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -53,8 +59,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">fs</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">fs</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.2.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,7 +77,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -79,6 +89,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -86,15 +97,19 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create names for temporary files</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/temp.R'><code>R/temp.R</code></a></small>
+    <div class="hidden name"><code>file_temp.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p><code>file_temp()</code> returns the name which can be used as a temporary file.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>file_temp</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"file"</span>, <span class='kw'>tmp_dir</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>(), <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>""</span>)
 
@@ -104,7 +119,7 @@
 
 <span class='fu'>path_temp</span>(<span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -133,16 +148,16 @@
 
     <p><code>file_temp_push()</code> can be used to supply deterministic entries in the
 temporary file stack. This can be useful for reproducibility in like example
-documentation and vignettes.
-    <code>file_temp_pop()</code> can be used to explicitly remove an entry from the
+documentation and vignettes.</p>
+<p><code>file_temp_pop()</code> can be used to explicitly remove an entry from the
 internal stack, however generally this is done instead by calling
-<code>file_temp()</code>.
-    <code>path_temp()</code> constructs a path within the session temporary directory.</p>
+<code>file_temp()</code>.</p>
+<p><code>path_temp()</code> constructs a path within the session temporary directory.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpqBJtm7</div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpqBJtm7/does-not-exist</div><div class='input'>
+<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpLHIKhA</div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpLHIKhA/does-not-exist</div><div class='input'>
 <span class='co'># default just passes the arguments to `tempfile()`</span>
 <span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'>
 <span class='co'># But you can also make the results deterministic</span>
@@ -167,7 +182,7 @@ internal stack, however generally this is done instead by calling
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='https://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -177,5 +192,8 @@ internal stack, however generally this is done instead by calling
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

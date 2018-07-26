@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Filter paths — path_filter • fs</title>
+<title>Change file access and modification times — file_touch • fs</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Filter paths — path_filter" />
+<meta property="og:title" content="Change file access and modification times — file_touch" />
 
-<meta property="og:description" content="Filter paths" />
+<meta property="og:description" content="Unlike the touch POSIX utility this does not create the file if it does not
+exist. Use file_create() to do this if needed." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,18 +101,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Filter paths</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/path.R'><code>R/path.R</code></a></small>
-    <div class="hidden name"><code>path_filter.Rd</code></div>
+    <h1>Change file access and modification times</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/file.R'><code>R/file.R</code></a></small>
+    <div class="hidden name"><code>file_touch.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Filter paths</p>
+    <p>Unlike the touch POSIX utility this does not create the file if it does not
+exist. Use <code><a href='create.html'>file_create()</a></code> to do this if needed.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>path_filter</span>(<span class='no'>path</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>file_touch</span>(<span class='no'>path</span>, <span class='kw'>access_time</span> <span class='kw'>=</span> <span class='fu'>Sys.time</span>(), <span class='kw'>modification_time</span> <span class='kw'>=</span> <span class='no'>access_time</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -121,27 +123,21 @@
       <td><p>A character vector of one or more paths.</p></td>
     </tr>
     <tr>
-      <th>glob</th>
-      <td><p>A wildcard aka globbing pattern (e.g. <code>*.csv</code>) passed on to <code>grep()</code> to filter paths.</p></td>
-    </tr>
-    <tr>
-      <th>regexp</th>
-      <td><p>A regular expression (e.g. <code>[.]csv$</code>) passed on to <code>grep()</code> to filter paths.</p></td>
-    </tr>
-    <tr>
-      <th>invert</th>
-      <td><p>If <code>TRUE</code> return files which do <em>not</em> match</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments passed to grep.</p></td>
+      <th>access_time, modification_time</th>
+      <td><p>The times to set, inputs will be
+coerced to POSIXct objects.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path_filter</span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*oo"</span>)</div><div class='output co'>#&gt; foo boo </div><div class='input'><span class='fu'>path_filter</span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*oo"</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; bar</div><div class='input'>
-<span class='fu'>path_filter</span>(<span class='fu'>c</span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='st'>"b.r"</span>)</div><div class='output co'>#&gt; bar</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
+<span class='fu'>file_touch</span>(<span class='st'>"foo"</span>, <span class='st'>"2018-01-01"</span>)
+<span class='fu'><a href='file_info.html'>file_info</a></span>(<span class='st'>"foo"</span>)[<span class='fu'>c</span>(<span class='st'>"access_time"</span>, <span class='st'>"modification_time"</span>, <span class='st'>"change_time"</span>, <span class='st'>"birth_time"</span>)]</div><div class='output co'>#&gt; # A tibble: 1 x 4
+#&gt;   access_time         modification_time   change_time        
+#&gt;   &lt;dttm&gt;              &lt;dttm&gt;              &lt;dttm&gt;             
+#&gt; 1 2018-01-01 00:00:00 2018-01-01 00:00:00 2018-07-26 09:11:50
+#&gt; # ... with 1 more variable: birth_time &lt;dttm&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

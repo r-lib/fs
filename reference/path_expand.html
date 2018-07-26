@@ -21,12 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="Finding the User Home Directory — path_expand" />
 
 <meta property="og:description" content="
@@ -39,6 +42,9 @@ path_expand_r() and path_home_r() are equivalents which always use R's
 definition of the home directory.
 " />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -61,8 +67,12 @@ definition of the home directory.
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">fs</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">fs</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.2.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -75,7 +85,7 @@ definition of the home directory.
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -87,6 +97,7 @@ definition of the home directory.
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -94,12 +105,15 @@ definition of the home directory.
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Finding the User Home Directory</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/path.R'><code>R/path.R</code></a></small>
+    <div class="hidden name"><code>path_expand.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <ul>
 <li><p><code>path_expand()</code> performs tilde expansion on a path, replacing instances of
@@ -111,6 +125,7 @@ home directory.</p></li>
 definition of the home directory.</p></li>
 </ul>
     
+    </div>
 
     <pre class="usage"><span class='fu'>path_expand</span>(<span class='no'>path</span>)
 
@@ -120,7 +135,7 @@ definition of the home directory.</p></li>
 
 <span class='fu'>path_home_r</span>(<span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -135,33 +150,36 @@ definition of the home directory.</p></li>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>path_expand()</code> Differs from <code>path.expand()</code> in the interpretation of the
-home directory of Windows. In particular <code>path_expand()</code> uses the path set
-in <code>USERPROFILE</code>, if unset then <code>HOMEDRIVE</code>/<code>HOMEPATH</code> is used.</p>
-<p>In contrast <code>path.expand()</code> first checks for <code>R_USER</code> then <code>HOME</code>, which in the default
-configuration of R on Windows are both set to the users document directory, e.g.
-<code>C:\Users\username\Documents</code>. <code>path.expand()</code> also does not support
-<code>~otheruser</code> syntax on Windows, whereas <code>path_expand()</code> does support this
-syntax on all systems.</p>
-<p>This definition makes fs more consistent with the definition of home directory used
-on Windows in other languages, such as
+    <p><code>path_expand()</code> differs from <code><a href='http://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code> in the interpretation of
+the home directory of Windows. In particular <code>path_expand()</code> uses the path
+set in the <code>USERPROFILE</code> environment variable and, if unset, then uses
+<code>HOMEDRIVE</code>/<code>HOMEPATH</code>.</p>
+<p>In contrast <code><a href='http://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code> first checks for <code>R_USER</code> then <code>HOME</code>,
+which in the default configuration of R on Windows are both set to the user's
+document directory, e.g. <code>C:\Users\username\Documents</code>.
+<code><a href='http://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code> also does not support <code>~otheruser</code> syntax on Windows,
+whereas <code>path_expand()</code> does support this syntax on all systems.</p>
+<p>This definition makes fs more consistent with the definition of home
+directory used on Windows in other languages, such as
 <a href='https://docs.python.org/3/library/os.path.html#os.path.expanduser'>python</a>
-and <a href='https://doc.rust-lang.org/std/env/fn.home_dir.html#windows'>rust</a>.
-This is also more compatible with external tools such as git and ssh, both of
-which put user-level files in <code>USERPROFILE</code> by default. It also allows you
-to write portable paths, such as <code>~/Desktop</code> that points to the Desktop
-location on Windows, MacOS and (most) Linux systems.</p>
+and <a href='https://doc.rust-lang.org/std/env/fn.home_dir.html#windows'>rust</a>. This
+is also more compatible with external tools such as git and ssh, both of
+which put user-level files in <code>USERPROFILE</code> by default. It also allows you to
+write portable paths, such as <code>~/Desktop</code> that points to the Desktop location
+on Windows, MacOS and (most) Linux systems.</p>
 <p>Users can set the <code>R_FS_HOME</code> environment variable to override the
 definitions on any platform.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><a href='https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f'>R for Windows FAQ - 2.14</a>
-for behavior of <code><a href='http://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code>.</p>
+    <div class='dont-index'><p><a href='https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f'>R for Windows FAQ - 2.14</a>
+for behavior of <code><a href='http://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code>.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># You can use `path_home()` without arguments to see what is being used as</span>
+    <pre class="examples"><div class='input'><span class='co'># Expand a path</span>
+<span class='fu'>path_expand</span>(<span class='st'>"~/bin"</span>)</div><div class='output co'>#&gt; /Users/jhester/bin</div><div class='input'>
+<span class='co'># You can use `path_home()` without arguments to see what is being used as</span>
 <span class='co'># the home diretory.</span>
 <span class='fu'>path_home</span>()</div><div class='output co'>#&gt; /Users/jhester</div><div class='input'><span class='fu'>path_home</span>(<span class='st'>"R"</span>)</div><div class='output co'>#&gt; /Users/jhester/R</div><div class='input'>
 <span class='co'># This will likely differ from the above on Windows</span>
@@ -184,7 +202,7 @@ for behavior of <code><a href='http://www.rdocumentation.org/packages/base/topic
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='https://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -194,5 +212,8 @@ for behavior of <code><a href='http://www.rdocumentation.org/packages/base/topic
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

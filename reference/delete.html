@@ -21,24 +21,29 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="Delete files, directories, or links — delete" />
 
 <meta property="og:description" content="file_delete() and link_delete() delete file and links. Compared to
 file.remove they always fail if they cannot delete the object rather than
 changing return value or signalling a warning. If any inputs are
 directories, they are passed to dir_delete(), so file_delete() can
-therefore be used to delete any filesystem object." />
-
-<meta property="og:description" content="dir_delete() will first delete the contents of the directory, then remove
+therefore be used to delete any filesystem object.
+dir_delete() will first delete the contents of the directory, then remove
 the directory. Compared to unlink it will always throw an error if the
 directory cannot be deleted rather than being silent or signalling a warning." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -61,8 +66,12 @@ directory cannot be deleted rather than being silent or signalling a warning." /
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">fs</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">fs</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.2.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -75,7 +84,7 @@ directory cannot be deleted rather than being silent or signalling a warning." /
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -87,6 +96,7 @@ directory cannot be deleted rather than being silent or signalling a warning." /
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -94,23 +104,26 @@ directory cannot be deleted rather than being silent or signalling a warning." /
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Delete files, directories, or links</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/delete.R'><code>R/delete.R</code></a></small>
+    <div class="hidden name"><code>delete.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p><code>file_delete()</code> and <code>link_delete()</code> delete file and links. Compared to
 file.remove they always fail if they cannot delete the object rather than
 changing return value or signalling a warning. If any inputs are
 directories, they are passed to <code>dir_delete()</code>, so <code>file_delete()</code> can
-therefore be used to delete any filesystem object.
-
-    <code>dir_delete()</code> will first delete the contents of the directory, then remove
+therefore be used to delete any filesystem object.</p>
+<p><code>dir_delete()</code> will first delete the contents of the directory, then remove
 the directory. Compared to unlink it will always throw an error if the
 directory cannot be deleted rather than being silent or signalling a warning.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>file_delete</span>(<span class='no'>path</span>)
 
@@ -118,7 +131,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 
 <span class='fu'>link_delete</span>(<span class='no'>path</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -142,8 +155,8 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 <span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;  dir 
 #&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
 #&gt;  TRUE  TRUE  TRUE  TRUE  TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; .../reference/dir 
-#&gt;                                                  TRUE </div><div class='input'>
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpLHIKhA/dir 
+#&gt;                                                                    TRUE </div><div class='input'>
 <span class='co'># Delete a file</span>
 <span class='fu'>file_delete</span>(<span class='no'>files</span>[<span class='fl'>1</span>])
 <span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; dir/a 
@@ -155,8 +168,8 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 #&gt; FALSE </div><div class='input'>
 <span class='co'># The link still exists, but what it points to does not.</span>
 <span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; .../reference/dir 
-#&gt;                                                 FALSE </div><div class='input'>
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpLHIKhA/dir 
+#&gt;                                                                   FALSE </div><div class='input'>
 <span class='co'># Delete the link</span>
 <span class='fu'>link_delete</span>(<span class='st'>"link"</span>)
 <span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt;  link 
@@ -177,7 +190,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='https://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -187,5 +200,8 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

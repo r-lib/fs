@@ -21,18 +21,23 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="Path computations — path_math" />
 
-<meta property="og:description" content="All functions apart from path_expand() and path_real() are purely
-path computations, so the files in question do not need to exist on the
-filesystem." />
+<meta property="og:description" content="All functions apart from path_real() are purely path computations, so the
+files in question do not need to exist on the filesystem." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -55,8 +60,12 @@ filesystem." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">fs</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">fs</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.2.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -69,7 +78,7 @@ filesystem." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -81,6 +90,7 @@ filesystem." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -88,17 +98,20 @@ filesystem." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Path computations</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/path.R'><code>R/path.R</code></a></small>
+    <div class="hidden name"><code>path_math.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>All functions apart from <code><a href='path_expand.html'>path_expand()</a></code> and <code>path_real()</code> are purely
-path computations, so the files in question do not need to exist on the
-filesystem.</p>
+    <p>All functions apart from <code>path_real()</code> are purely path computations, so the
+files in question do not need to exist on the filesystem.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>path_real</span>(<span class='no'>path</span>)
 
@@ -112,9 +125,11 @@ filesystem.</p>
 
 <span class='fu'>path_rel</span>(<span class='no'>path</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='st'>"."</span>)
 
-<span class='fu'>path_common</span>(<span class='no'>path</span>)</pre>
+<span class='fu'>path_common</span>(<span class='no'>path</span>)
+
+<span class='fu'>path_has_parent</span>(<span class='no'>path</span>, <span class='no'>parent</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -123,48 +138,57 @@ filesystem.</p>
     </tr>
     <tr>
       <th>parts</th>
-      <td><p>A list of character vectors, corresponding to split paths.</p></td>
+      <td><p>A character vector or a list of character vectors, corresponding
+to split paths.</p></td>
     </tr>
     <tr>
       <th>start</th>
-      <td><p>A starting directory to compute the path to.</p></td>
+      <td><p>A starting directory to compute the path relative to.</p></td>
+    </tr>
+    <tr>
+      <th>parent</th>
+      <td><p>The parent path.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The new path as a character vector. For <code>path_split()</code>, a list of
-character vectors of path components is returned instead.</p>
+    <p>The new path(s) in an <code>fs_path</code> object, which is a character vector
+that also has class <code>fs_path</code>. Except <code>path_split()</code>, which returns a list
+of character vectors of path components.</p>
     
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     <ul>
 <li><p><code>path_real</code>: returns the canonical path, eliminating any symbolic
-links.</p></li>
+links and the special references <code>~</code>, <code>~user</code>, <code>.</code>, and <code>..</code>, , i.e. it
+calls <code><a href='path_expand.html'>path_expand()</a></code> (literally) and <code>path_norm()</code> (effectively).</p></li>
 <li><p><code>path_split</code>: splits paths into parts.</p></li>
 <li><p><code>path_join</code>: joins parts together. The inverse of <code>path_split()</code>.
 See <code><a href='path.html'>path()</a></code> to concatenate vectorized strings into a path.</p></li>
 <li><p><code>path_abs</code>: returns a normalized, absolute version of a path.</p></li>
-<li><p><code>path_norm</code>: collapses redundant separators and
-up-level references, so <code>A//B</code>, <code>A/B</code>, <code>A/.B</code> and <code>A/foo/../B</code> all become
-<code>A/B</code>. If one of the paths is a symbolic link, this may change the meaning
-of the path, in this case one should use <code>path_real()</code> prior to calling
-<code>path_norm()</code>.</p></li>
+<li><p><code>path_norm</code>: eliminates <code>.</code> references and rationalizes up-level
+<code>..</code> references, so <code>A/./B</code> and <code>A/foo/../B</code> both become <code>A/B</code>, but <code>../B</code>
+is not changed. If one of the paths is a symbolic link, this may change the
+meaning of the path, so consider using <code>path_real()</code> instead.</p></li>
 <li><p><code>path_rel</code>: computes the path relative to the <code>start</code> path,
-which can be either a absolute or relative path.</p></li>
+which can be either an absolute or relative path.</p></li>
 <li><p><code>path_common</code>: finds the common parts of two (or more) paths.</p></li>
+<li><p><code>path_has_parent</code>: determine if a path has a given parent.</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='path_expand.html'>path_expand()</a></code> for expansion of user's home directory.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Expand a path</span>
-<span class='fu'><a href='path_expand.html'>path_expand</a></span>(<span class='st'>"~/bin"</span>)</div><div class='output co'>#&gt; /Users/jhester/bin</div><div class='input'>
-<span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"a"</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"a"</span>)
 <span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"a/b"</span>)
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'>path_abs</span>(<span class='st'>"a"</span>), <span class='st'>"c"</span>)
 
 <span class='co'># Realize the path</span>
-<span class='fu'>path_real</span>(<span class='st'>"c/b"</span>)</div><div class='output co'>#&gt; .../reference/a/b</div><div class='input'>
+<span class='fu'>path_real</span>(<span class='st'>"c/b"</span>)</div><div class='output co'>#&gt; /private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpLHIKhA/a/b</div><div class='input'>
 <span class='co'># Split a path</span>
 <span class='no'>parts</span> <span class='kw'>&lt;-</span> <span class='fu'>path_split</span>(<span class='st'>"a/b"</span>)
 <span class='no'>parts</span></div><div class='output co'>#&gt; [[1]]
@@ -173,7 +197,7 @@ which can be either a absolute or relative path.</p></li>
 <span class='co'># Join it together</span>
 <span class='fu'>path_join</span>(<span class='no'>parts</span>)</div><div class='output co'>#&gt; a/b</div><div class='input'>
 <span class='co'># Find the absolute path</span>
-<span class='fu'>path_abs</span>(<span class='st'>".."</span>)</div><div class='output co'>#&gt; ...</div><div class='input'>
+<span class='fu'>path_abs</span>(<span class='st'>".."</span>)</div><div class='output co'>#&gt; /private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T</div><div class='input'>
 <span class='co'># Normalize a path</span>
 <span class='fu'>path_norm</span>(<span class='st'>"a/../b\\c/."</span>)</div><div class='output co'>#&gt; b/c</div><div class='input'>
 <span class='co'># Compute a relative path</span>
@@ -192,6 +216,8 @@ which can be either a absolute or relative path.</p></li>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#functions">Functions</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -201,7 +227,7 @@ which can be either a absolute or relative path.</p></li>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='https://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -211,5 +237,8 @@ which can be either a absolute or relative path.</p></li>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

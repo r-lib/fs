@@ -21,13 +21,19 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="Function reference" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -50,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">fs</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">fs</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.2.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -64,7 +74,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -76,6 +86,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -83,264 +94,266 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;1.2.1</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-file-manipulation" class="hasAnchor"><a href="#section-file-manipulation" class="anchor"></a>File manipulation</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="copy.html">file_copy</a></code> <code><a href="copy.html">dir_copy</a></code> <code><a href="copy.html">link_copy</a></code> </p>
-          </td>
-          <td><p>Copy files, directories or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create.html">file_create</a></code> <code><a href="create.html">dir_create</a></code> <code><a href="create.html">link_create</a></code> </p>
-          </td>
-          <td><p>Create files, directories, or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete.html">file_delete</a></code> <code><a href="delete.html">dir_delete</a></code> <code><a href="delete.html">link_delete</a></code> </p>
-          </td>
-          <td><p>Delete files, directories, or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_access.html">file_access</a></code> <code><a href="file_access.html">file_exists</a></code> <code><a href="file_access.html">dir_exists</a></code> <code><a href="file_access.html">link_exists</a></code> </p>
-          </td>
-          <td><p>Query for existence and access permissions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_chmod.html">file_chmod</a></code> </p>
-          </td>
-          <td><p>Change file permissions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_chown.html">file_chown</a></code> </p>
-          </td>
-          <td><p>Change owner or group of a file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_info.html">file_info</a></code> </p>
-          </td>
-          <td><p>Query file metadata</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_move.html">file_move</a></code> </p>
-          </td>
-          <td><p>Move or rename files</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_show.html">file_show</a></code> </p>
-          </td>
-          <td><p>Open files or directories</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_temp.html">file_temp</a></code> <code><a href="file_temp.html">file_temp_push</a></code> <code><a href="file_temp.html">file_temp_pop</a></code> <code><a href="file_temp.html">path_temp</a></code> </p>
-          </td>
-          <td><p>Create names for temporary files</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-directory-manipulation" class="hasAnchor"><a href="#section-directory-manipulation" class="anchor"></a>Directory manipulation</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="copy.html">file_copy</a></code> <code><a href="copy.html">dir_copy</a></code> <code><a href="copy.html">link_copy</a></code> </p>
-          </td>
-          <td><p>Copy files, directories or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create.html">file_create</a></code> <code><a href="create.html">dir_create</a></code> <code><a href="create.html">link_create</a></code> </p>
-          </td>
-          <td><p>Create files, directories, or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete.html">file_delete</a></code> <code><a href="delete.html">dir_delete</a></code> <code><a href="delete.html">link_delete</a></code> </p>
-          </td>
-          <td><p>Delete files, directories, or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="dir_ls.html">dir_ls</a></code> <code><a href="dir_ls.html">dir_map</a></code> <code><a href="dir_ls.html">dir_walk</a></code> <code><a href="dir_ls.html">dir_info</a></code> </p>
-          </td>
-          <td><p>List files</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_access.html">file_access</a></code> <code><a href="file_access.html">file_exists</a></code> <code><a href="file_access.html">dir_exists</a></code> <code><a href="file_access.html">link_exists</a></code> </p>
-          </td>
-          <td><p>Query for existence and access permissions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-link-manipulation" class="hasAnchor"><a href="#section-link-manipulation" class="anchor"></a>Link manipulation</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="copy.html">file_copy</a></code> <code><a href="copy.html">dir_copy</a></code> <code><a href="copy.html">link_copy</a></code> </p>
-          </td>
-          <td><p>Copy files, directories or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create.html">file_create</a></code> <code><a href="create.html">dir_create</a></code> <code><a href="create.html">link_create</a></code> </p>
-          </td>
-          <td><p>Create files, directories, or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete.html">file_delete</a></code> <code><a href="delete.html">dir_delete</a></code> <code><a href="delete.html">link_delete</a></code> </p>
-          </td>
-          <td><p>Delete files, directories, or links</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_access.html">file_access</a></code> <code><a href="file_access.html">file_exists</a></code> <code><a href="file_access.html">dir_exists</a></code> <code><a href="file_access.html">link_exists</a></code> </p>
-          </td>
-          <td><p>Query for existence and access permissions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="link_path.html">link_path</a></code> </p>
-          </td>
-          <td><p>Read the value of a symbolic link</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-path-manipulation" class="hasAnchor"><a href="#section-path-manipulation" class="anchor"></a>Path manipulation</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path.html">path</a></code> </p>
-          </td>
-          <td><p>Construct path to a file or directory</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="file_temp.html">file_temp</a></code> <code><a href="file_temp.html">file_temp_push</a></code> <code><a href="file_temp.html">file_temp_pop</a></code> <code><a href="file_temp.html">path_temp</a></code> </p>
-          </td>
-          <td><p>Create names for temporary files</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_expand.html">path_expand</a></code> <code><a href="path_expand.html">path_expand_r</a></code> <code><a href="path_expand.html">path_home</a></code> <code><a href="path_expand.html">path_home_r</a></code> </p>
-          </td>
-          <td><p>Finding the User Home Directory</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_file.html">path_file</a></code> <code><a href="path_file.html">path_dir</a></code> <code><a href="path_file.html">path_ext</a></code> <code><a href="path_file.html">path_ext_remove</a></code> <code><a href="path_file.html">path_ext_set</a></code> <code><a href="path_file.html">path_ext<-</a></code> </p>
-          </td>
-          <td><p>Manipulate file paths</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_filter.html">path_filter</a></code> </p>
-          </td>
-          <td><p>Filter paths</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_math.html">path_real</a></code> <code><a href="path_math.html">path_split</a></code> <code><a href="path_math.html">path_join</a></code> <code><a href="path_math.html">path_abs</a></code> <code><a href="path_math.html">path_norm</a></code> <code><a href="path_math.html">path_rel</a></code> <code><a href="path_math.html">path_common</a></code> </p>
-          </td>
-          <td><p>Path computations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_package.html">path_package</a></code> </p>
-          </td>
-          <td><p>Construct a path to a location within an installed package</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_sanitize.html">path_sanitize</a></code> </p>
-          </td>
-          <td><p>Sanitize a filename by removing directory paths and invalid characters</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="path_tidy.html">path_tidy</a></code> </p>
-          </td>
-          <td><p>Tidy paths</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-helpers" class="hasAnchor"><a href="#section-helpers" class="anchor"></a>Helpers</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_file.html">is_file</a></code> <code><a href="is_file.html">is_dir</a></code> <code><a href="is_file.html">is_link</a></code> </p>
-          </td>
-          <td><p>Functions to test for file types</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fs_path.html">as_fs_path</a></code> <code><a href="fs_path.html">fs_path</a></code> </p>
-          </td>
-          <td><p>File paths</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fs_bytes.html">as_fs_bytes</a></code> <code><a href="fs_bytes.html">fs_bytes</a></code> </p>
-          </td>
-          <td><p>Human readable file sizes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fs_perms.html">as_fs_perms</a></code> <code><a href="fs_perms.html">fs_perms</a></code> </p>
-          </td>
-          <td><p>Create, modify and view file permissions</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-file-manipulation" class="hasAnchor"><a href="#section-file-manipulation" class="anchor"></a>File manipulation</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="copy.html">file_copy()</a></code> <code><a href="copy.html">dir_copy()</a></code> <code><a href="copy.html">link_copy()</a></code> </p>
+        </td>
+        <td><p>Copy files, directories or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create.html">file_create()</a></code> <code><a href="create.html">dir_create()</a></code> <code><a href="create.html">link_create()</a></code> </p>
+        </td>
+        <td><p>Create files, directories, or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete.html">file_delete()</a></code> <code><a href="delete.html">dir_delete()</a></code> <code><a href="delete.html">link_delete()</a></code> </p>
+        </td>
+        <td><p>Delete files, directories, or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_access.html">file_access()</a></code> <code><a href="file_access.html">file_exists()</a></code> <code><a href="file_access.html">dir_exists()</a></code> <code><a href="file_access.html">link_exists()</a></code> </p>
+        </td>
+        <td><p>Query for existence and access permissions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_chmod.html">file_chmod()</a></code> </p>
+        </td>
+        <td><p>Change file permissions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_chown.html">file_chown()</a></code> </p>
+        </td>
+        <td><p>Change owner or group of a file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_info.html">file_info()</a></code> </p>
+        </td>
+        <td><p>Query file metadata</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_move.html">file_move()</a></code> </p>
+        </td>
+        <td><p>Move or rename files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_show.html">file_show()</a></code> </p>
+        </td>
+        <td><p>Open files or directories</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_temp.html">file_temp()</a></code> <code><a href="file_temp.html">file_temp_push()</a></code> <code><a href="file_temp.html">file_temp_pop()</a></code> <code><a href="file_temp.html">path_temp()</a></code> </p>
+        </td>
+        <td><p>Create names for temporary files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_touch.html">file_touch()</a></code> </p>
+        </td>
+        <td><p>Change file access and modification times</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-directory-manipulation" class="hasAnchor"><a href="#section-directory-manipulation" class="anchor"></a>Directory manipulation</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="copy.html">file_copy()</a></code> <code><a href="copy.html">dir_copy()</a></code> <code><a href="copy.html">link_copy()</a></code> </p>
+        </td>
+        <td><p>Copy files, directories or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create.html">file_create()</a></code> <code><a href="create.html">dir_create()</a></code> <code><a href="create.html">link_create()</a></code> </p>
+        </td>
+        <td><p>Create files, directories, or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete.html">file_delete()</a></code> <code><a href="delete.html">dir_delete()</a></code> <code><a href="delete.html">link_delete()</a></code> </p>
+        </td>
+        <td><p>Delete files, directories, or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dir_ls.html">dir_ls()</a></code> <code><a href="dir_ls.html">dir_map()</a></code> <code><a href="dir_ls.html">dir_walk()</a></code> <code><a href="dir_ls.html">dir_info()</a></code> </p>
+        </td>
+        <td><p>List files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_access.html">file_access()</a></code> <code><a href="file_access.html">file_exists()</a></code> <code><a href="file_access.html">dir_exists()</a></code> <code><a href="file_access.html">link_exists()</a></code> </p>
+        </td>
+        <td><p>Query for existence and access permissions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-link-manipulation" class="hasAnchor"><a href="#section-link-manipulation" class="anchor"></a>Link manipulation</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="copy.html">file_copy()</a></code> <code><a href="copy.html">dir_copy()</a></code> <code><a href="copy.html">link_copy()</a></code> </p>
+        </td>
+        <td><p>Copy files, directories or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create.html">file_create()</a></code> <code><a href="create.html">dir_create()</a></code> <code><a href="create.html">link_create()</a></code> </p>
+        </td>
+        <td><p>Create files, directories, or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete.html">file_delete()</a></code> <code><a href="delete.html">dir_delete()</a></code> <code><a href="delete.html">link_delete()</a></code> </p>
+        </td>
+        <td><p>Delete files, directories, or links</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_access.html">file_access()</a></code> <code><a href="file_access.html">file_exists()</a></code> <code><a href="file_access.html">dir_exists()</a></code> <code><a href="file_access.html">link_exists()</a></code> </p>
+        </td>
+        <td><p>Query for existence and access permissions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="link_path.html">link_path()</a></code> </p>
+        </td>
+        <td><p>Read the value of a symbolic link</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-path-manipulation" class="hasAnchor"><a href="#section-path-manipulation" class="anchor"></a>Path manipulation</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="path.html">path()</a></code> <code><a href="path.html">path_wd()</a></code> </p>
+        </td>
+        <td><p>Construct path to a file or directory</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="file_temp.html">file_temp()</a></code> <code><a href="file_temp.html">file_temp_push()</a></code> <code><a href="file_temp.html">file_temp_pop()</a></code> <code><a href="file_temp.html">path_temp()</a></code> </p>
+        </td>
+        <td><p>Create names for temporary files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_expand.html">path_expand()</a></code> <code><a href="path_expand.html">path_expand_r()</a></code> <code><a href="path_expand.html">path_home()</a></code> <code><a href="path_expand.html">path_home_r()</a></code> </p>
+        </td>
+        <td><p>Finding the User Home Directory</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_file.html">path_file()</a></code> <code><a href="path_file.html">path_dir()</a></code> <code><a href="path_file.html">path_ext()</a></code> <code><a href="path_file.html">path_ext_remove()</a></code> <code><a href="path_file.html">path_ext_set()</a></code> <code><a href="path_file.html">`path_ext<-`()</a></code> </p>
+        </td>
+        <td><p>Manipulate file paths</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_filter.html">path_filter()</a></code> </p>
+        </td>
+        <td><p>Filter paths</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_math.html">path_real()</a></code> <code><a href="path_math.html">path_split()</a></code> <code><a href="path_math.html">path_join()</a></code> <code><a href="path_math.html">path_abs()</a></code> <code><a href="path_math.html">path_norm()</a></code> <code><a href="path_math.html">path_rel()</a></code> <code><a href="path_math.html">path_common()</a></code> <code><a href="path_math.html">path_has_parent()</a></code> </p>
+        </td>
+        <td><p>Path computations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_package.html">path_package()</a></code> </p>
+        </td>
+        <td><p>Construct a path to a location within an installed package</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_sanitize.html">path_sanitize()</a></code> </p>
+        </td>
+        <td><p>Sanitize a filename by removing directory paths and invalid characters</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="path_tidy.html">path_tidy()</a></code> </p>
+        </td>
+        <td><p>Tidy paths</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-helpers" class="hasAnchor"><a href="#section-helpers" class="anchor"></a>Helpers</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="is_file.html">is_file()</a></code> <code><a href="is_file.html">is_dir()</a></code> <code><a href="is_file.html">is_link()</a></code> </p>
+        </td>
+        <td><p>Functions to test for file types</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fs_path.html">as_fs_path()</a></code> <code><a href="fs_path.html">fs_path()</a></code> </p>
+        </td>
+        <td><p>File paths</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fs_bytes.html">as_fs_bytes()</a></code> <code><a href="fs_bytes.html">fs_bytes()</a></code> </p>
+        </td>
+        <td><p>Human readable file sizes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fs_perms.html">as_fs_perms()</a></code> <code><a href="fs_perms.html">fs_perms()</a></code> </p>
+        </td>
+        <td><p>Create, modify and view file permissions</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -357,7 +370,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='https://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -367,5 +380,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

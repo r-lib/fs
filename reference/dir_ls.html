@@ -21,25 +21,28 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
 <meta property="og:title" content="List files — dir_ls" />
 
 <meta property="og:description" content="dir_ls() is equivalent to the ls command. It returns filenames as a
-fs_path character vector." />
-
-<meta property="og:description" content="dir_info() is equivalent to ls -l and a shortcut for
-file_info(dir_ls())." />
-
-<meta property="og:description" content="dir_map() applies a function fun() to each entry in the path and returns
-the result in a list." />
-
-<meta property="og:description" content="dir_walk() calls fun for its side-effect and returns the input path." />
+fs_path character vector.
+dir_info() is equivalent to ls -l and a shortcut for
+file_info(dir_ls()).
+dir_map() applies a function fun() to each entry in the path and returns
+the result in a list.
+dir_walk() calls fun for its side-effect and returns the input path." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -62,8 +65,12 @@ the result in a list." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">fs</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">fs</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.2.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -76,7 +83,7 @@ the result in a list." />
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -88,6 +95,7 @@ the result in a list." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -95,36 +103,39 @@ the result in a list." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>List files</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/list.R'><code>R/list.R</code></a></small>
+    <div class="hidden name"><code>dir_ls.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p><code>dir_ls()</code> is equivalent to the <code>ls</code> command. It returns filenames as a
-<code>fs_path</code> character vector.
-
-    <code>dir_info()</code> is equivalent to <code>ls -l</code> and a shortcut for
-<code><a href='file_info.html'>file_info(dir_ls())</a></code>.
-
-    <code>dir_map()</code> applies a function <code>fun()</code> to each entry in the path and returns
-the result in a list.
-
-    <code>dir_walk()</code> calls <code>fun</code> for its side-effect and returns the input <code>path</code>.</p>
+<code>fs_path</code> character vector.</p>
+<p><code>dir_info()</code> is equivalent to <code>ls -l</code> and a shortcut for
+<code><a href='file_info.html'>file_info(dir_ls())</a></code>.</p>
+<p><code>dir_map()</code> applies a function <code>fun()</code> to each entry in the path and returns
+the result in a list.</p>
+<p><code>dir_walk()</code> calls <code>fun</code> for its side-effect and returns the input <code>path</code>.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>dir_ls</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>dir_map</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>)
+<span class='fu'>dir_map</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>)
+<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -156,6 +167,11 @@ the filenames.</p></td>
     <tr>
       <th>invert</th>
       <td><p>If <code>TRUE</code> return files which do <em>not</em> match</p></td>
+    </tr>
+    <tr>
+      <th>fail</th>
+      <td><p>Should the call fail (the default) or warn if a file cannot be
+accessed.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -217,16 +233,16 @@ the filenames.</p></td>
 #&gt;  chr "base/help"
 #&gt;  chr "base/html"</div><div class='input'>
 <span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 18
-#&gt;   path             type        size permissions modification_time   user  group
-#&gt;   &lt;fs::path&gt;       &lt;fct&gt;   &lt;fs::by&gt; &lt;fs::perms&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
-#&gt; 1 base/CITATION    file         956 rw-rw-r--   2017-12-06 21:16:12 root  admin
-#&gt; 2 base/DESCRIPTION file         286 rw-rw-r--   2017-12-06 21:16:12 root  admin
-#&gt; 3 base/INDEX       file       23.2K rw-rw-r--   2017-12-06 21:16:12 root  admin
-#&gt; 4 base/Meta        direct…      272 rwxrwxr-x   2017-12-06 21:16:12 root  admin
-#&gt; 5 base/R           direct…      204 rwxrwxr-x   2017-12-06 21:16:12 root  admin
-#&gt; 6 base/demo        direct…      204 rwxrwxr-x   2017-12-06 21:16:12 root  admin
-#&gt; 7 base/help        direct…      238 rwxrwxr-x   2017-12-06 21:16:12 root  admin
-#&gt; 8 base/html        direct…      136 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt;   path             type    size permissions modification_time   user  group
+#&gt;   &lt;fs::path&gt;       &lt;fct&gt; &lt;fs::&gt; &lt;fs::perms&gt; &lt;dttm&gt;              &lt;chr&gt; &lt;chr&gt;
+#&gt; 1 base/CITATION    file     956 rw-rw-r--   2017-12-06 21:16:12 root  admin
+#&gt; 2 base/DESCRIPTION file     286 rw-rw-r--   2017-12-06 21:16:12 root  admin
+#&gt; 3 base/INDEX       file   23.2K rw-rw-r--   2017-12-06 21:16:12 root  admin
+#&gt; 4 base/Meta        dire…    272 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 5 base/R           dire…    204 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 6 base/demo        dire…    204 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 7 base/help        dire…    238 rwxrwxr-x   2017-12-06 21:16:12 root  admin
+#&gt; 8 base/html        dire…    136 rwxrwxr-x   2017-12-06 21:16:12 root  admin
 #&gt; # ... with 11 more variables: device_id &lt;dbl&gt;, hard_links &lt;dbl&gt;,
 #&gt; #   special_device_id &lt;dbl&gt;, inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;,
 #&gt; #   flags &lt;int&gt;, generation &lt;dbl&gt;, access_time &lt;dttm&gt;, change_time &lt;dttm&gt;,
@@ -247,7 +263,7 @@ the filenames.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='http://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
+  <p>Developed by <a href='http://jimhester.com'>Jim Hester</a>, <a href='http://hadley.nz'>Hadley Wickham</a>, <a href='https://www.rstudio.com'><img src='https://tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
@@ -257,5 +273,8 @@ the filenames.</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
