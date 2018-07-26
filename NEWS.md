@@ -1,8 +1,18 @@
-## Bugfixes
+# fs 1.2.4
+
+## New Features
+
+* New `path_wd()` generates paths from the current working directory (#122).
+
+* New `path_has_parent()` determines if a path has a given parent (#116).
+
+* New `file_touch()` used to change access and modification times for a file (#98).
 
 * `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `file_info()` gain a
-  `fail` argument, to signal warnings rather than errors if they are called on
-  a path which is unavailable due to permissions or locked resources. (#105)
+  `fail` parameter, to signal warnings rather than errors if they are called on
+  a path which is unavailable due to permissions or locked resources (#105).
+
+## Minor improvements and fixes
 
 * `path_tidy()` now always includes a trailing slash for the windows root
   directory, e.g. `C:/` (#124).
@@ -10,16 +20,10 @@
 * `path_ext()`, `path_ext_set()` and `path_ext_remove()` now handle paths with
   non-ASCII characters (#120).
 
-* Fix errors when trying to stat files for coloring (if the user does not have
-  permission to stat them) #121.
+* `fs_path` objects now print (without colors) even if the user does not have
+  permission to stat them (#121).
 
-## Features
-
-* `path_wd()` to generate paths from the current working directory (#122)
-
-* `path_has_parent()` to determine if a path has a given parent (#116)
-
-* `file_touch()` added to change access and modification times for a file (#98)
+* compatibility with upcoming gcc 8 based Windows toolchain (#119)
 
 # fs 1.2.3
 
