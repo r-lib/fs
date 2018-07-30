@@ -247,6 +247,7 @@ List stat_(CharacterVector path, bool fail) {
   out.attr("names") = names;
   out.attr("class") = CharacterVector::create("tbl", "tbl_df", "data.frame");
   out.attr("row.names") = IntegerVector::create(NA_INTEGER, -i);
+
   return out;
 }
 

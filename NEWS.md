@@ -1,3 +1,7 @@
+# fs 1.2.5
+
+* Patch release to fix tests which left files in the R session directory
+
 # fs 1.2.4
 
 ## New Features

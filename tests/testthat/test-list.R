@@ -77,13 +77,15 @@ describe("dir_ls", {
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
-      file_chmod("foo", "a-r")
 
+      file_chmod("foo", "a-r")
       expect_error(dir_ls(".", recursive = TRUE), class = "EACCES")
       expect_warning(dir_ls(fail = FALSE, recursive = TRUE), class = "EACCES")
+      file_chmod("foo", "a+r")
 
       file_chmod("foo2/bar", "a-r")
       expect_warning(dir_ls("foo2", fail = FALSE, recursive = TRUE), class = "EACCES")
+      file_chmod("foo2/bar", "a+r")
     })
   })
 })
@@ -108,13 +110,15 @@ describe("dir_map", {
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
-      file_chmod("foo", "a-r")
 
+      file_chmod("foo", "a-r")
       expect_error(dir_map(".", fun = identity, recursive = TRUE), class = "EACCES")
       expect_warning(dir_map(fail = FALSE, fun = identity, recursive = TRUE), class = "EACCES")
+      file_chmod("foo", "a+r")
 
       file_chmod("foo2/bar", "a-r")
       expect_warning(dir_map("foo2", fail = FALSE, fun = identity, recursive = TRUE), class = "EACCES")
+      file_chmod("foo2/bar", "a+r")
     })
   })
 })
@@ -156,13 +160,15 @@ describe("dir_walk", {
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
-      file_chmod("foo", "a-r")
 
+      file_chmod("foo", "a-r")
       expect_error(dir_walk(".", fun = identity, recursive = TRUE), class = "EACCES")
       expect_warning(dir_walk(fail = FALSE, fun = identity, recursive = TRUE), class = "EACCES")
+      file_chmod("foo", "a+r")
 
       file_chmod("foo2/bar", "a-r")
       expect_warning(dir_walk("foo2", fail = FALSE, fun = identity, recursive = TRUE), class = "EACCES")
+      file_chmod("foo2/bar", "a+r")
     })
   })
 })
@@ -185,13 +191,15 @@ describe("dir_info", {
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
-      file_chmod("foo", "a-r")
 
+      file_chmod("foo", "a-r")
       expect_error(dir_info(".", fun = identity, recursive = TRUE), class = "EACCES")
       expect_warning(dir_info(fail = FALSE, fun = identity, recursive = TRUE), class = "EACCES")
+      file_chmod("foo", "a+r")
 
       file_chmod("foo2/bar", "a-r")
       expect_warning(dir_info("foo2", fail = FALSE, fun = identity, recursive = TRUE), class = "EACCES")
+      file_chmod("foo2/bar", "a+r")
     })
   })
 })
