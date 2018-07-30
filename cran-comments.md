@@ -1,5 +1,5 @@
 This fixes an issue with the tests leaving files on disk because of permissions
-set during the tests.
+set during the tests. As requested by Kurt
 
 ## Test environments
 * local OS X install, R 3.5.0
