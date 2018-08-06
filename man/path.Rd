@@ -14,8 +14,6 @@ path_wd(..., ext = "")
 NA.}
 
 \item{ext}{An optional extension to append to the generated path.}
-
-\item{path}{A character vector of one or more paths.}
 }
 \description{
 \code{path()} constructs a relative path, \code{path_wd()} constructs an absolute path
