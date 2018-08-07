@@ -4617,7 +4617,7 @@ distdir: $(DISTFILES)
 	    cp -fpR $$d/$$file "$(distdir)$$dir" || exit 1; \
 	  else \
 	    test -f "$(distdir)/$$file" \
-	    || cp -p $$d/$$file "$(distdir)/$$file" \
+	    || cp $$d/$$file "$(distdir)/$$file" \
 	    || exit 1; \
 	  fi; \
 	done
