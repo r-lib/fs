@@ -26,7 +26,7 @@ all: $(SHLIB)
 $(SHLIB): libuv/.libs/libuv.a
 
 libuv/m4/lt~obsolete.m4: libuv/m4/lt_obsolete.m4
-	cp -p -f libuv/m4/lt_obsolete.m4 libuv/m4/lt~obsolete.m4
+	cp -f libuv/m4/lt_obsolete.m4 libuv/m4/lt~obsolete.m4
 
 libuv/Makefile: libuv/m4/lt~obsolete.m4
 	(cd libuv \
