@@ -1,3 +1,6 @@
+* `file_move()` now fallbacks to copy then remove the file when moving files
+  between devices (which would otherwise fail) (#131).
+
 # fs 1.2.5
 
 * Patch release to fix tests which left files in the R session directory
