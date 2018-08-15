@@ -25,7 +25,23 @@ void move_(CharacterVector path, CharacterVector new_path) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
     const char* n = CHAR(STRING_ELT(new_path, i));
-    uv_fs_rename(uv_default_loop(), &req, p, n, NULL);
+    int res = uv_fs_rename(uv_default_loop(), &req, p, n, NULL);
+
+    // Rename does not work across partitions, so we need to instead copy, then
+    // remove the file.
+    if (res == UV_EXDEV) {
+      uv_fs_req_cleanup(&req);
+
+      uv_fs_copyfile(uv_default_loop(), &req, p, n, 0, NULL);
+      stop_for_error2(req, "Failed to copy '%s' to '%s'", p, n);
+      uv_fs_req_cleanup(&req);
+
+      uv_fs_unlink(uv_default_loop(), &req, p, NULL);
+      stop_for_error(req, "Failed to remove '%s'", p);
+      uv_fs_req_cleanup(&req);
+      continue;
+    }
+
     stop_for_error2(req, "Failed to move '%s'to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
