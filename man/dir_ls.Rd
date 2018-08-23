@@ -10,11 +10,11 @@
 dir_ls(path = ".", all = FALSE, recursive = FALSE, type = "any",
   glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE, ...)
 
-dir_map(path = ".", fun, all = FALSE, recursive = FALSE, type = "any",
-  fail = TRUE)
+dir_map(path = ".", fun, all = FALSE, recursive = FALSE,
+  type = "any", fail = TRUE)
 
-dir_walk(path = ".", fun, all = FALSE, recursive = FALSE, type = "any",
-  fail = TRUE)
+dir_walk(path = ".", fun, all = FALSE, recursive = FALSE,
+  type = "any", fail = TRUE)
 
 dir_info(path = ".", all = FALSE, recursive = FALSE, type = "any",
   regexp = NULL, glob = NULL, fail = TRUE, ...)

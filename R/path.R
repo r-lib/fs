@@ -62,6 +62,7 @@ path <- function(..., ext = "") {
 }
 
 #' @rdname path
+#' @export
 path_wd <- function(..., ext = "") {
   path(getwd(), ..., ext = ext)
 }
