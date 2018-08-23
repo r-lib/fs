@@ -1,37 +1,8 @@
 # batchtools
 
-Version: 0.9.10
+Version: 0.9.11
 
 ## In both
-
-*   checking tests ...
-    ```
-     ERROR
-    Running the tests in ‘tests/testthat.R’ failed.
-    Last 13 lines of output:
-      > test_check("batchtools")
-      ── 1. Failure: findConfFile (@test_findConfFile.R#7)  ──────────────────────────
-      findConfFile() not equal to fs::path_abs(fn).
-      1/1 mismatches
-      x[1]: "/private/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmpvc79h0/batch
-      x[1]: tools.conf.R"
-      y[1]: "/var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmpvc79h0/batchtools.co
-      y[1]: nf.R"
-      
-      ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 1455 SKIPPED: 7 FAILED: 1
-      1. Failure: findConfFile (@test_findConfFile.R#7) 
-      
-      Error: testthat unit tests failed
-      Execution halted
-    ```
-
-*   checking whether package ‘batchtools’ can be installed ... WARNING
-    ```
-    Found the following significant warnings:
-      Warning: package ‘data.table’ was built under R version 3.4.4
-    See ‘.../revdep/checks.noindex/batchtools/new/batchtools.Rcheck/00install.out’ for details.
-    ```
 
 *   checking package dependencies ... NOTE
     ```
@@ -74,7 +45,7 @@ Version: 1.1.0
       Lengths differ: 0 is not 1
       
       ══ testthat results  ═══════════════════════════════════════════════════════════
-      OK: 239 SKIPPED: 9 FAILED: 2
+      OK: 241 SKIPPED: 9 FAILED: 2
       1. Failure: can autodetect published tutorials (@test-tutorials.R#30) 
       2. Failure: can autodetect published tutorials (@test-tutorials.R#31) 
       
@@ -88,12 +59,39 @@ Version: 0.4.0
 
 ## In both
 
-*   checking package dependencies ... ERROR
+*   checking dependencies in R code ... NOTE
     ```
-    Package required and available but unsuitable version: ‘utils’
-    
-    See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-    manual.
+    Namespaces in Imports field not imported from:
+      ‘clipr’ ‘desc’ ‘devtools’
+      All declared Imports should be used.
+    ```
+
+# pulsar
+
+Version: 0.3.3
+
+## In both
+
+*   checking tests ...
+    ```
+     ERROR
+    Running the tests in ‘tests/testthat.R’ failed.
+    Last 13 lines of output:
+      > suppressPackageStartupMessages(library(testthat))
+      > suppressPackageStartupMessages(library(pulsar))
+      > 
+      > testthat::test_check("pulsar")
+      ── 1. Error: (unknown) (@test_pulsar.R#15)  ────────────────────────────────────
+      object 'fp' not found
+      1: batchtools:::fp at testthat/test_pulsar.R:15
+      2: get(name, envir = asNamespace(pkg), inherits = FALSE)
+      
+      ══ testthat results  ═══════════════════════════════════════════════════════════
+      OK: 36 SKIPPED: 0 FAILED: 1
+      1. Error: (unknown) (@test_pulsar.R#15) 
+      
+      Error: testthat unit tests failed
+      Execution halted
     ```
 
 # randomsearch
@@ -101,13 +99,6 @@ Version: 0.4.0
 Version: 0.1.0
 
 ## In both
-
-*   checking whether package ‘randomsearch’ can be installed ... WARNING
-    ```
-    Found the following significant warnings:
-      Warning: package ‘ParamHelpers’ was built under R version 3.4.4
-    See ‘.../revdep/checks.noindex/randomsearch/new/randomsearch.Rcheck/00install.out’ for details.
-    ```
 
 *   checking Rd cross-references ... NOTE
     ```
