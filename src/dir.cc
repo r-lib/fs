@@ -57,7 +57,6 @@ void dir_map(
   uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
 
   if (!fail && warn_for_error(req, "Failed to search directory '%s'", path)) {
-    uv_fs_req_cleanup(&req);
     return;
   }
 
