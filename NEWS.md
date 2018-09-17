@@ -1,3 +1,8 @@
+# Development
+
+* `colourise_fs_path()` now returns paths uncolored if the colors argument /
+  `LS_COLORS` is malformed (#135).
+
 # fs 1.2.6
 
 * This is a small bugfix only release.

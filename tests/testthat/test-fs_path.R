@@ -53,6 +53,13 @@ describe("colourise_fs_path", {
       expect_equal(colourise_fs_path("file.Rmd"), "\033[32mfile.Rmd\033[0m")
     })
   })
+
+  it ("returns uncolored result if LS_COLORS is malformed", {
+    # This has an empty leading :
+    withr::local_envvar(c("LS_COLORS" = ":di=1;38;5;39:ex=1;38;5;34:ln=1;38;5;45:*.py=1;38;5;220:*.pdf=1;38;5;202:*.tex=1;38;5;196"))
+
+    expect_equal(colourise_fs_path("foo"), "foo")
+  })
 })
 
 describe("multicol", {

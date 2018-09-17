@@ -121,3 +121,7 @@ assert <- function(msg, ..., class = "invalid_argument") {
 fs_error <- function(msg, class = "invalid_argument") {
   structure(class = c(class, "fs_error", "error", "condition"), list(message = msg))
 }
+
+lengths <- function(x) {
+  vapply(x, length, integer(1))
+}
