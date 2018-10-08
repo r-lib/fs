@@ -7,6 +7,18 @@ test_that("file_temp() returns unique temporary files", {
   }
 })
 
+test_that("file_temp() extension applied correctly", {
+  tmp_no_ext <- file_temp()
+  tmp_has_ext <- file_temp(ext = "pdf")
+  expect_equal(path_ext(tmp_no_ext), "")
+  expect_equal(path_ext(tmp_has_ext), "pdf")
+
+  exts = c("xlsx", "doc", "")
+  tmpfile_multiple <- tempfile(fileext = paste0(c(".", ".", ""), exts))
+  file_temp_multiple <- file_temp(ext = exts)
+  expect_equal(path_ext(file_temp_multiple), path_ext(tmpfile_multiple))
+})
+
 test_that("file_temp() can use have deterministic results if desired", {
   prev <- file_temp()
   file_temp_push(c("foo", "bar", "baz", "bar"))
