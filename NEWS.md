@@ -2,6 +2,9 @@
 
 * `colourise_fs_path()` now returns paths uncolored if the colors argument /
   `LS_COLORS` is malformed (#135).
+  
+* The `ext` argument of `file_temp()` is now consistent with other functions in
+  fs and prepends a `.` to the file extension if provided.
 
 # fs 1.2.6
 

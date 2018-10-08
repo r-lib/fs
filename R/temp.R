@@ -26,10 +26,12 @@ env$temp_names <- character()
 #' path_temp()
 #' path_temp("does-not-exist")
 #'
-#' # default just passes the arguments to `tempfile()`
 #' file_temp()
+#' file_temp(ext = "png")
+#' file_temp("image", ext = "png")
 #'
-#' # But you can also make the results deterministic
+#'
+#' # You can make the temp file paths deterministic
 #' file_temp_push(letters)
 #' file_temp()
 #' file_temp()
@@ -39,6 +41,9 @@ env$temp_names <- character()
 #' file_temp_pop()
 file_temp <- function(pattern = "file", tmp_dir = tempdir(), ext = "") {
   assert_no_missing(tmp_dir)
+
+  prepend_dot <- function(ext) ifelse(nchar(ext), paste0(".", ext), ext)
+  ext <- vapply(ext, prepend_dot, character(1))
 
   path_tidy(file_temp_pop() %||% tempfile(pattern, tmp_dir, ext))
 }
