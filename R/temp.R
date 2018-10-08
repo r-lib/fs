@@ -42,8 +42,8 @@ env$temp_names <- character()
 file_temp <- function(pattern = "file", tmp_dir = tempdir(), ext = "") {
   assert_no_missing(tmp_dir)
 
-  prepend_dot <- function(ext) ifelse(nchar(ext), paste0(".", ext), ext)
-  ext <- vapply(ext, prepend_dot, character(1))
+  has_extension <- nzchar(ext)
+  ext[has_extension] <- paste0(".", ext[has_extension])
 
   path_tidy(file_temp_pop() %||% tempfile(pattern, tmp_dir, ext))
 }
