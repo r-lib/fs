@@ -11,7 +11,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-void mkdir_(CharacterVector path, mode_t mode) {
+void mkdir_(CharacterVector path, unsigned short mode) {
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {
     uv_fs_t req;

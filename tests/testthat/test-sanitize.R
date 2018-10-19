@@ -108,7 +108,7 @@ test_that("filesystems can read, write and delete sanitized files", {
    "hello\nworld",
    "semi;colon.js",
    ";leading-semi.js",
-   "slash\\.js",
+   "mode_tslash\\.js",
    "slash/.js",
    "col:on.js",
    "star*.js",

@@ -12,7 +12,7 @@
 
 #include <sys/stat.h>
 
-mode_t getmode_(const char* mode_str, mode_t mode) {
+unsigned short getmode_(const char* mode_str, unsigned short mode) {
   void* out = setmode(mode_str);
   if (out == NULL) {
     // TODO: use stop_for_error here

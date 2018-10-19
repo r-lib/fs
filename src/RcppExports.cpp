@@ -6,12 +6,12 @@
 using namespace Rcpp;
 
 // mkdir_
-void mkdir_(CharacterVector path, mode_t mode);
+void mkdir_(CharacterVector path, unsigned short mode);
 RcppExport SEXP _fs_mkdir_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     mkdir_(path, mode);
     return R_NilValue;
 END_RCPP
@@ -54,12 +54,12 @@ BEGIN_RCPP
 END_RCPP
 }
 // create_
-void create_(CharacterVector path, mode_t mode);
+void create_(CharacterVector path, unsigned short mode);
 RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     create_(path, mode);
     return R_NilValue;
 END_RCPP
@@ -155,36 +155,36 @@ BEGIN_RCPP
 END_RCPP
 }
 // getmode_
-mode_t getmode_(const char* mode_str, mode_t mode);
+unsigned short getmode_(const char* mode_str, unsigned short mode);
 RcppExport SEXP _fs_getmode_(SEXP mode_strSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const char* >::type mode_str(mode_strSEXP);
-    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     rcpp_result_gen = Rcpp::wrap(getmode_(mode_str, mode));
     return rcpp_result_gen;
 END_RCPP
 }
 // strmode_
-std::string strmode_(mode_t mode);
+std::string strmode_(unsigned short mode);
 RcppExport SEXP _fs_strmode_(SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     rcpp_result_gen = Rcpp::wrap(strmode_(mode));
     return rcpp_result_gen;
 END_RCPP
 }
 // file_code_
-std::string file_code_(std::string path, mode_t mode);
+std::string file_code_(std::string path, unsigned short mode);
 RcppExport SEXP _fs_file_code_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< mode_t >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     rcpp_result_gen = Rcpp::wrap(file_code_(path, mode));
     return rcpp_result_gen;
 END_RCPP

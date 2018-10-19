@@ -1,13 +1,12 @@
 #pragma once
 
 #include <string>
-#include <sys/types.h>
 
 // [[Rcpp::export]]
-mode_t getmode_(const char* mode_str, mode_t mode);
+unsigned short getmode_(const char* mode_str, unsigned short mode);
 
 // [[Rcpp::export]]
-std::string strmode_(mode_t mode);
+std::string strmode_(unsigned short mode);
 
 // [[Rcpp::export]]
-std::string file_code_(std::string path, mode_t mode);
+std::string file_code_(std::string path, unsigned short mode);

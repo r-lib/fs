@@ -4,7 +4,7 @@
 #include <Rcpp.h> /* for Rf_error */
 
 /* code adapted from https://cgit.freedesktop.org/libbsd/tree/src/setmode.c */
-mode_t getmode_(const char* mode_str, mode_t mode) {
+unsigned short getmode_(const char* mode_str, unsigned short mode) {
   const char* p = mode_str;
   char* ep;
   char op;

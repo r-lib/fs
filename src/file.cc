@@ -48,7 +48,7 @@ void move_(CharacterVector path, CharacterVector new_path) {
 }
 
 // [[Rcpp::export]]
-void create_(CharacterVector path, mode_t mode) {
+void create_(CharacterVector path, unsigned short mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
