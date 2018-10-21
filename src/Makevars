@@ -17,6 +17,7 @@ PKG_LIBS += -lkvm
 endif
 ifeq ($(UNAME), Linux)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
+PKG_LIBS += -pthread
 endif
 
 PKG_CPPFLAGS = -I./libuv/include -I.
