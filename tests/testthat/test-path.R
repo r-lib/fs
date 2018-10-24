@@ -59,6 +59,67 @@ describe("path_real", {
     })
   })
 
+  it("returns the real path for symbolic links even if the full path doesn't exist", {
+    with_dir_tree(list("foo/bar/baz" = "test"), {
+      link_create(path_real("foo"), "foo2")
+      expect_equal(path_real("foo/qux"), path_real("foo/qux"))
+
+      link_create(path_real("foo/bar"), "bar2")
+      expect_equal(path_real("bar2/qux"), path_real("bar2/qux"))
+    })
+  })
+
+  it ("works with indirect symlinks", {
+    with_dir_tree("foo", {
+      wd <- path_wd()
+      link_create(path("..", path_file(wd)), "self")
+      link_create("self", "link")
+      expect_equal(path_real("link"), wd)
+    })
+  })
+
+  it ("works with parent symlinks", {
+    # If there are symlinks in the parents of relative paths we need to resolve
+    # them.
+    # e.g. working directory is /usr/doc with 'doc' being a symlink to
+    # /usr/share/doc. If we call `path_real("a")` we should return
+    # /usr/share/doc/a.
+    with_dir_tree("y", {
+      wd <- path_wd()
+      link_create("y", "k")
+      withr::with_dir("k", {
+        expect_equal(path_real("a"), path(wd, "/y/a"))
+      })
+    })
+  })
+
+  it ("resolves paths before normalizing", {
+    # if we have the following hierarchy: a/k/y
+    # and a symbolic link 'link-y' pointing to 'y' in directory 'a',
+    # then `path_real("link-y/..")` should return 'k', not 'a'.
+    with_dir_tree("a/k/y", {
+      link_create("a/k/y", "link-y")
+
+      expect_equal(path_real("link-y/.."), path_real("a/k"))
+    })
+  })
+
+  it ("resolves paths before normalizing", {
+    # if we have the following hierarchy: a/k/y
+    # and a symbolic link 'link-y' pointing to 'y' in directory 'a',
+    # then `path_real("link-y/..")` should return 'k', not 'a'.
+    with_dir_tree("k", {
+      wd <- path_wd()
+      link_create(wd, "link")
+
+      withr::with_dir(path_dir(wd), {
+        base <- path_file(wd)
+        expect_equal(path_real(path(base, "link")), wd)
+        expect_equal(path_real(path(base, "link/k")), path(wd, "k"))
+      })
+    })
+  })
+
   it("propegates NAs", {
     with_dir_tree(list("foo/bar" = "test"), {
       link_create(path_real("foo"), "foo2")

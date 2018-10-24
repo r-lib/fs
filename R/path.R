@@ -75,8 +75,26 @@ path_real <- function(path) {
   path <- enc2utf8(path)
   old <- path_expand(path)
 
+  # We need to convert all paths to absolute paths, but _not_ to normalize
+  # them, so we cannot use `path_abs()`.
+  is_abs <- is_absolute_path(path)
+  old[!is_abs] <- path(getwd(), path[!is_abs])
+
   is_missing <- is.na(path)
-  old[!is_missing] <- realize_(old[!is_missing])
+  exists <- file_exists(path) == TRUE
+
+  # Realize all paths which fully exist
+  old[!is_missing & exists] <- realize_(old[!is_missing & exists])
+
+  # Handle paths which only partially exist
+  realize_one <- function(splits) {
+    paths <- Reduce(fs::path, splits, accumulate = TRUE)
+    last_link <- which.max(is_link(paths))
+    path(realize_(paths[last_link]), path_join(splits[seq(last_link + 1, length(splits))]))
+  }
+
+  partial <- !is_missing & !exists
+  old[partial] <- vapply(path_split(old[partial]), realize_one, character(1))
 
   path_tidy(old)
 }

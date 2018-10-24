@@ -1,5 +1,8 @@
 # Development
 
+* `path_real()` now works even if the file does not exist, but there are
+  symlinks further up the path hierarchy (#144)
+
 * `colourise_fs_path()` now returns paths uncolored if the colors argument /
   `LS_COLORS` is malformed (#135).
   
