@@ -120,7 +120,7 @@ describe("path_real", {
     })
   })
 
-  it("propegates NAs", {
+  it("propagates NAs", {
     with_dir_tree(list("foo/bar" = "test"), {
       link_create(path_real("foo"), "foo2")
       expect_equal(path_real(NA_character_), NA_character_)
@@ -441,7 +441,7 @@ describe("path_dir", {
     expect_equal(path_dir("bar"), ".")
     expect_equal(path_dir(c("foo/bar", "baz")), c("foo", "."))
   })
-  it("propegates NAs", {
+  it("propagates NAs", {
     expect_equal(path_dir(NA_character_), NA_character_)
     expect_equal(path_dir(c("foo/bar", NA)), c("foo", NA_character_))
   })
@@ -453,7 +453,7 @@ describe("path_file", {
     expect_equal(path_file("bar"), "bar")
     expect_equal(path_file(c("foo/bar", "baz")), c("bar", "baz"))
   })
-  it("propegates NAs", {
+  it("propagates NAs", {
     expect_equal(path_file(NA_character_), NA_character_)
     expect_equal(path_file(c("foo/bar", NA)), c("bar", NA_character_))
   })
