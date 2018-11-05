@@ -1,5 +1,7 @@
 # Development
 
+* Link with -pthread by default (#128, #146)
+
 * `path_real()` now works even if the file does not exist, but there are
   symlinks further up the path hierarchy (#144)
 

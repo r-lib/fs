@@ -1,6 +1,6 @@
 UNAME := $(shell uname)
 
-PKG_LIBS = ./libuv/.libs/libuv.a
+PKG_LIBS = ./libuv/.libs/libuv.a -pthread
 
 SOURCES = $(wildcard *.cc unix/*.cc)
 OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
