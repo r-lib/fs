@@ -153,7 +153,7 @@ file_show <- function(path = ".", browser = getOption("browser")) {
   old <- path_expand(path)
 
   for (p in path) {
-    browseURL(p)
+    browseURL(p, browser = browser)
   }
 
   invisible(path_tidy(path))
