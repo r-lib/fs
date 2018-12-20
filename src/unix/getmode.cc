@@ -23,7 +23,7 @@ unsigned short getmode_(const char* mode_str, unsigned short mode) {
   return res;
 }
 
-std::string strmode_(mode_t mode) {
+std::string strmode_(unsigned short mode) {
   char out[12];
   strmode(mode, out);
 
@@ -34,7 +34,7 @@ std::string strmode_(mode_t mode) {
   return out + 1;
 }
 
-std::string file_code_(std::string path, mode_t mode) {
+std::string file_code_(std::string path, unsigned short mode) {
   switch (mode & S_IFMT) {
   case S_IFDIR:
     if (mode & S_IWOTH)
