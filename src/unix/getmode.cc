@@ -1,6 +1,7 @@
 #include "getmode.h"
 
-#if (defined(__APPLE__) && defined(__MACH__)) || defined(__BSD__)
+#if (defined(__APPLE__) && defined(__MACH__)) || defined(__BSD__) ||    \
+    defined(__FreeBSD__)
 #include <string.h> /* for strmode */
 #include <unistd.h> /* for getmode / setmode */
 #else
