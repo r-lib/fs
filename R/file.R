@@ -132,7 +132,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
   }
 
   if (is.character(group_id)) {
-    user_id <- getgrnam_(user_id)
+    group_id <- getgrnam_(group_id)
   }
 
   chown_(old, user_id, group_id)
