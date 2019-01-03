@@ -1,5 +1,7 @@
 # Development
 
+* `file_chown()` can now take a `group_id` parameter as character (#162 @cderv)
+
 * Parameter `browser` in `file_show()` now works as described in the documentation (#154 by GegznaV) 
 
 * Link with -pthread by default (#128, #146)
