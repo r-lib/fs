@@ -16,6 +16,7 @@ ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
 ifeq ($(UNAME), Linux)
+PKG_LIBS += -lpthread
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
