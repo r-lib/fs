@@ -14,7 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Manage directories
+This vignette contains comparison tables for file system operations in **base R** vs **fs** vs **shell**.
+
+### Manage directories
 
 | base                                                                       | fs                                        | shell                              |
 |----------------------------------------------------------------------------+-------------------------------------------+------------------------------------|
@@ -27,7 +29,7 @@ knitr::opts_chunk$set(
 | `file.rename("/path", "/new-path")`                                        | ~~`dir_move()`~~... (see `fs::file_move`) | `mv /path /new-path`               |
 
 
-## File functions
+### File functions
 
 | base                                | fs                                          | shell                              |
 |-------------------------------------+---------------------------------------------+------------------------------------|
@@ -40,10 +42,9 @@ knitr::opts_chunk$set(
 | `file.info("/path")`                | `file_info("/path")`                        | `ls -al /path`                     |
 | `file.rename("/path", "/new-path")` | `file_move("/path", "/new-path")`           | `mv /path /new-path`               |
 | `browseURL("path")`                 | `file_show("/path")`                        | `open /path`                       |
-| **TODO**                            | `file_temp`                                 | **TODO**                           |
-| **TODO**                            | `file_touch()` (**doesn't create file**)    | **TODO**                           |
+| *No easy way*                       | `file_touch()` (**doesn't create file**)    | `touch /path`                      |
 
-## Path functions
+### Path functions
 
 | base                                             | fs                                                   | shell                         |
 |--------------------------------------------------+------------------------------------------------------+-------------------------------|
