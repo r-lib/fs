@@ -1,0 +1,56 @@
+---
+title: "base vs fs"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{base vs fs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Manage directories
+
+| base                                                                       | fs                                        | shell                              |
+|----------------------------------------------------------------------------+-------------------------------------------+------------------------------------|
+| `list.files("/path")`                                                      | `dir_ls("/path")`                         | `ls /path`                         |
+| `do.call(rbind, lapply(list.files("/path"), file.info))`                   | `dir_info("/path")`                       | `ls -al /path`                     |
+| `dir.create("/new-path"); file.copy("/path", "/new-path", recursive=TRUE)` | `dir_copy("/path", "/new-path")`          | `cp /path /new-path`               |
+| `dir.create("/path")`                                                      | `dir_create("/path")`                     | `mkdir /path`                      |
+| `unlink("/path", recursive = TRUE)`                                        | `dir_delete("/path")`                     | `rm -rf /path`                     |
+| `dir.exists("/path")`                                                      | `dir_exists("/path")`                     | `if [ -d "/path" ]; then ... ; fi` |
+| `file.rename("/path", "/new-path")`                                        | ~~`dir_move()`~~... (see `fs::file_move`) | `mv /path /new-path`               |
+
+
+## File functions
+
+| base                                | fs                                          | shell                              |
+|-------------------------------------+---------------------------------------------+------------------------------------|
+| *No easy way*                       | `file_chmod("/path", "mode")`               | `chmod mode /path`                 |
+| *No easy way*                       | `file_chown("path", "user_id", "group_id")` | `chown options /path `             |
+| `file.copy("/path", "/new-path")`   | `file_copy("/path", "/new-path")`           | `cp /path /new-path`               |
+| `file.create("/new-path")`          | `file_create("/new-path")`                  | `touch /new-path`                  |
+| `unlink("/path")`                   | `file_delete("/path")`                      | `rm /path`                         |
+| `file.exists("/path")`              | `file_exists("/path")`                      | `if [ -f "/path" ]; then ... ; fi` |
+| `file.info("/path")`                | `file_info("/path")`                        | `ls -al /path`                     |
+| `file.rename("/path", "/new-path")` | `file_move("/path", "/new-path")`           | `mv /path /new-path`               |
+| `browseURL("path")`                 | `file_show("/path")`                        | `open /path`                       |
+| **TODO**                            | `file_temp`                                 | **TODO**                           |
+| **TODO**                            | `file_touch()` (**doesn't create file**)    | **TODO**                           |
+
+## Path functions
+
+| base                                             | fs                                                   | shell                         |
+|--------------------------------------------------+------------------------------------------------------+-------------------------------|
+| `file.path("top_dir", "nested_dir", "file.ext")` | `path("top_dir", "nested_dir", "file", ext = "ext")` | `top_dir/nested_dir/file.ext` |
+| `path.expand()`                                  | `path_expand("~/path")`                              | *Need scripting.*             |
+| `dirname("/path")`                               | `path_dir("/path")`                                  | `dirname /path`               |
+| `basename("/path")`                              | `path_file("/path")`                                 | `basename /path`              |
+| `path.expand("~")`                               | `path_home()`                                        | `$HOME`                       |
+| `sub("\\.[a-zA-Z0-9]*$", "", "/path")`           | `path_ext_remove("/path")`                           | *Need scripting.*             |
+| `sub("\\.[a-zA-Z0-9]*$", "new_ext", "/path")`    | `path_ext_set("/path", "new_ext")`                   | *Need scripting.*             |
