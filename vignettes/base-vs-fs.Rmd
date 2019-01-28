@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 This vignette contains comparison tables for file system operations in **base R** vs **fs** vs **shell**.
 
-### Manage directories
+### Directory functions
 
 | base                                                                       | fs                                        | shell                              |
 |----------------------------------------------------------------------------+-------------------------------------------+------------------------------------|
