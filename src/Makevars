@@ -19,7 +19,7 @@ ifeq ($(UNAME), Linux)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
-PKG_CPPFLAGS = -I./libuv/include -I.
+PKG_CPPFLAGS = -I./libuv/include -I. -pthread
 
 all: $(SHLIB)
 
