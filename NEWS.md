@@ -1,5 +1,7 @@
 # Development
 
+* Fix compilation on BSD systems (#145)
+
 * `file_chown()` can now take a `group_id` parameter as character (#162 @cderv)
 
 * Parameter `browser` in `file_show()` now works as described in the documentation (#154 by GegznaV) 
