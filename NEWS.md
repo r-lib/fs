@@ -1,15 +1,17 @@
 # Development
 
+* Add vignette to quickly compare base R, fs and bash (@xvrdm, #168).
+
 * Fix compilation on BSD systems (#145)
 
-* `file_chown()` can now take a `group_id` parameter as character (#162 @cderv)
+* `file_chown()` can now take a `group_id` parameter as character (@cderv, #162).
 
-* Parameter `browser` in `file_show()` now works as described in the documentation (#154 by GegznaV) 
+* Parameter `browser` in `file_show()` now works as described in the documentation (@GegznaV, #154). 
 
-* Link with -pthread by default (#128, #146)
+* Link with -pthread by default (#128, #146).
 
 * `path_real()` now works even if the file does not exist, but there are
-  symlinks further up the path hierarchy (#144)
+  symlinks further up the path hierarchy (#144).
 
 * `colourise_fs_path()` now returns paths uncolored if the colors argument /
   `LS_COLORS` is malformed (#135).

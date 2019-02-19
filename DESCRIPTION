@@ -32,4 +32,7 @@ Suggests:
     covr,
     pillar (>= 1.0.0),
     crayon,
-    withr
+    rmarkdown,
+    knitr,
+    withr,
+VignetteBuilder: knitr
