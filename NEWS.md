@@ -2,6 +2,8 @@
 
 * Add vignette to quickly compare base R, fs and bash (@xvrdm, #168).
 
+* Fix compilation on BSD systems (#145)
+
 * `file_chown()` can now take a `group_id` parameter as character (@cderv, #162).
 
 * Parameter `browser` in `file_show()` now works as described in the documentation (@GegznaV, #154). 
