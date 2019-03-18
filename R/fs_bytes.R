@@ -54,7 +54,7 @@ as_fs_bytes.numeric <- function(x) {
 # Adapted from https://github.com/gaborcsardi/prettyunits
 # Aims to be consistent with ls -lh, so uses 1024 KiB units, 3 or less digits etc.
 #' @export
-format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
+format.fs_bytes <- function(x, scientific = FALSE, digits = 3, drop0trailing = TRUE, ...) {
   bytes <- unclass(x)
 
   exponent <- pmin(floor(log(bytes, 1024)), length(units) - 1)
@@ -70,7 +70,7 @@ format.fs_bytes <- function(x, scientific = FALSE, digits = 3, ...) {
   res[is.nan(bytes)] <- NaN
   unit[is.na(bytes)] <- ""            # Includes NaN as well
 
-  res <- format(res, scientific = scientific, digits = digits, drop0trailing = TRUE, ...)
+  res <- format(res, scientific = scientific, digits = digits, drop0trailing = drop0trailing, ...)
 
   paste0(res, unit)
 }
