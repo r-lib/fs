@@ -86,6 +86,9 @@ std::string path_tidy_(const std::string& in) {
   }
 
   if (is_windows_path(out)) {
+    // Ensure the first letter is capitalized
+    out[0] = toupper(out[0]);
+
     // Append a / if this is a root path
     if (out.length() == 2) {
       out.push_back('/');

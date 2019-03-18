@@ -1,5 +1,7 @@
 # Development
 
+* Tidy paths are now always returned with uppercase drive letters on Windows (#174).
+
 * `format.bench_bytes()` now works with `str()` in R 3.5.1+ (#155).
 
 * Add vignette to quickly compare base R, fs and bash (@xvrdm, #168).

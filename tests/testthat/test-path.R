@@ -148,7 +148,7 @@ describe("path_split", {
 
   it("does not split the root path", {
     expect_equal(path_split("/usr/bin")[[1]], c("/", "usr", "bin"))
-    expect_equal(path_split("c:/usr/bin")[[1]], c("c:", "usr", "bin"))
+    expect_equal(path_split("c:/usr/bin")[[1]], c("C:", "usr", "bin"))
     expect_equal(path_split("X:/usr/bin")[[1]], c("X:", "usr", "bin"))
     expect_equal(path_split("//server/usr/bin")[[1]], c("//server", "usr", "bin"))
     expect_equal(path_split("\\\\server\\usr\\bin")[[1]], c("//server", "usr", "bin"))
@@ -176,15 +176,15 @@ describe("path_tidy", {
     expect_equal(path_tidy("foo\\\\bar\\\\baz\\\\"), "foo/bar/baz")
   })
 
-  it("always appends windows root paths with /", {
+  it("always capitalizes and appends windows root paths with /", {
     expect_equal(path_tidy("C:"), "C:/")
-    expect_equal(path_tidy("c:"), "c:/")
+    expect_equal(path_tidy("c:"), "C:/")
     expect_equal(path_tidy("X:"), "X:/")
-    expect_equal(path_tidy("x:"), "x:/")
-    expect_equal(path_tidy("c:/"), "c:/")
-    expect_equal(path_tidy("c://"), "c:/")
-    expect_equal(path_tidy("c:\\"), "c:/")
-    expect_equal(path_tidy("c:\\\\"), "c:/")
+    expect_equal(path_tidy("x:"), "X:/")
+    expect_equal(path_tidy("c:/"), "C:/")
+    expect_equal(path_tidy("c://"), "C:/")
+    expect_equal(path_tidy("c:\\"), "C:/")
+    expect_equal(path_tidy("c:\\\\"), "C:/")
   })
 
   it("passes NA along", {
@@ -314,19 +314,19 @@ describe("path_norm", {
     expect_equal(path_norm("A/foo/../B"), "A/B")
     expect_equal(path_norm("C:A//B"), "C:A/B")
     expect_equal(path_norm("D:A/./B"), "D:A/B")
-    expect_equal(path_norm("e:A/foo/../B"), "e:A/B")
+    expect_equal(path_norm("e:A/foo/../B"), "E:A/B")
 
     expect_equal(path_norm("C:///A//B"), "C:/A/B")
     expect_equal(path_norm("D:///A/./B"), "D:/A/B")
-    expect_equal(path_norm("e:///A/foo/../B"), "e:/A/B")
+    expect_equal(path_norm("e:///A/foo/../B"), "E:/A/B")
 
     expect_equal(path_norm(".."), "..")
     expect_equal(path_norm("."), ".")
     expect_equal(path_norm(""), ".")
     expect_equal(path_norm("/"), "/")
-    expect_equal(path_norm("c:/"), "c:/")
+    expect_equal(path_norm("c:/"), "C:/")
     expect_equal(path_norm("/../.././.."), "/")
-    expect_equal(path_norm("c:/../../.."), "c:/")
+    expect_equal(path_norm("c:/../../.."), "C:/")
     expect_equal(path_norm("../.././.."), "../../..")
     expect_equal(path_norm("C:////a/b"), "C:/a/b")
     expect_equal(path_norm("//machine/share//a/b"), "//machine/share/a/b")
@@ -422,6 +422,7 @@ describe("path_rel", {
   it("works for windows paths", {
     expect_equal(path_rel("c:/foo/bar/bat", "c:/x/y"), "../../foo/bar/bat")
     expect_equal(path_rel("//conky/mountpoint/a", "//conky/mountpoint/b/c"), "../../a")
+    expect_equal(path_rel("d:/Users/a", "D:/Users/b"), "../a")
   })
 
   it("expands path before computing relativity", {
