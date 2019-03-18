@@ -10,18 +10,18 @@ dir_tree <- function(path) {
 
   get_coloured_name <- function(x) {
     coloured <- colourise_fs_path(x)
-    sub(x, path_file(x), coloured)
+    sub(x, path_file(x), coloured, fixed = TRUE)
   }
 
   print_leaf <- function(x, indent) {
     leafs <- by_dir[[x]]
     for (i in seq_along(leafs)) {
       if (i == length(leafs)) {
-        cat(indent, pc(ch$l, ch$h, ch$h), get_coloured_name(leafs[[i]]), "\n", sep = "")
-        print_leaf(leafs[[i]], paste0(indent, "   "))
+        cat(indent, pc(ch$l, ch$h, ch$h, " "), get_coloured_name(leafs[[i]]), "\n", sep = "")
+        print_leaf(leafs[[i]], paste0(indent, "    "))
       } else {
-        cat(indent, pc(ch$j, ch$h, ch$h), get_coloured_name(leafs[[i]]), "\n", sep = "")
-        print_leaf(leafs[[i]], paste0(indent, pc(ch$v, "  ")))
+        cat(indent, pc(ch$j, ch$h, ch$h, " "), get_coloured_name(leafs[[i]]), "\n", sep = "")
+        print_leaf(leafs[[i]], paste0(indent, pc(ch$v, "   ")))
       }
     }
   }
