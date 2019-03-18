@@ -1,5 +1,8 @@
 # Development
 
+* `dir_tree()` function added to print a command line representation of a
+  directory tree, analogous to the unix `tree` program (#82).
+
 * Tidy paths are now always returned with uppercase drive letters on Windows (#174).
 
 * `format.bench_bytes()` now works with `str()` in R 3.5.1+ (#155).

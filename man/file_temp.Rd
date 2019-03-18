@@ -46,10 +46,12 @@ internal stack, however generally this is done instead by calling
 path_temp()
 path_temp("does-not-exist")
 
-# default just passes the arguments to `tempfile()`
 file_temp()
+file_temp(ext = "png")
+file_temp("image", ext = "png")
 
-# But you can also make the results deterministic
+
+# You can make the temp file paths deterministic
 file_temp_push(letters)
 file_temp()
 file_temp()
