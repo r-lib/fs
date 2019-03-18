@@ -70,6 +70,8 @@ describe("path_real", {
   })
 
   it ("works with indirect symlinks", {
+    skip_on_os("windows")
+
     with_dir_tree("foo", {
       wd <- path_wd()
       link_create(path("..", path_file(wd)), "self")
@@ -79,6 +81,8 @@ describe("path_real", {
   })
 
   it ("works with parent symlinks", {
+    skip_on_os("windows")
+
     # If there are symlinks in the parents of relative paths we need to resolve
     # them.
     # e.g. working directory is /usr/doc with 'doc' being a symlink to
@@ -94,6 +98,9 @@ describe("path_real", {
   })
 
   it ("resolves paths before normalizing", {
+
+    skip_on_os("windows")
+
     # if we have the following hierarchy: a/k/y
     # and a symbolic link 'link-y' pointing to 'y' in directory 'a',
     # then `path_real("link-y/..")` should return 'k', not 'a'.
@@ -105,6 +112,9 @@ describe("path_real", {
   })
 
   it ("resolves paths before normalizing", {
+
+    skip_on_os("windows")
+
     # if we have the following hierarchy: a/k/y
     # and a symbolic link 'link-y' pointing to 'y' in directory 'a',
     # then `path_real("link-y/..")` should return 'k', not 'a'.
