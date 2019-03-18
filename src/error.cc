@@ -32,7 +32,10 @@ bool signal_condition(
 
   SET_VECTOR_ELT(condition, 0, Rf_mkString(buf));
   Rf_setAttrib(condition, R_ClassSymbol, c);
-  Rf_setAttrib(condition, Rf_mkString("location"), Rf_mkString(loc));
+
+  SEXP location = Rf_install("location");
+  Rf_setAttrib(condition, location, Rf_mkString(loc));
+
   signalConditionFun =
       Rf_findFun(Rf_install(error ? "stop" : "warning"), R_BaseEnv);
 
