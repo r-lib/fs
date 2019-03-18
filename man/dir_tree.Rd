@@ -4,7 +4,7 @@
 \alias{dir_tree}
 \title{Print contents of directories in a tree-like format}
 \usage{
-dir_tree(path)
+dir_tree(path = ".")
 }
 \arguments{
 \item{path}{A path to print the tree from}

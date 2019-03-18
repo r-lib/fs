@@ -2,7 +2,7 @@
 #'
 #' @param path A path to print the tree from
 #' @export
-dir_tree <- function(path) {
+dir_tree <- function(path = ".") {
   files <- dir_ls(path, recursive = TRUE)
   by_dir <- split(files, path_dir(files))
 
