@@ -49,8 +49,11 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(dir_exists("foo"), c(foo = TRUE))
       expect_equal(dir_exists("missing"), c(missing = FALSE))
       expect_equal(
-        dir_exists(c("foo", "missing", "foo/bar", "loo")),
-        c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE, "loo" = FALSE))
+        dir_exists(c("foo", "missing", "foo/bar")),
+        c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE))
+    })
+    it("returns true for links to directories, like -d in bash", {
+        expect_equal(dir_exists("loo"), c(loo = TRUE))
     })
     it("returns FALSE on missing input", {
       expect_identical(dir_exists(NA_character_), structure(names = NA, FALSE))
