@@ -186,7 +186,7 @@ file_move <- function(path, new_path) {
   old <- path_expand(path)
   new <- path_expand(new_path)
 
-  is_directory <- file_exists(new) && is_dir(new)
+  is_directory <- file_exists(new) & is_dir(new)
 
   if (length(new) == 1 && is_directory[[1]]) {
     new <- rep(new, length(path))
