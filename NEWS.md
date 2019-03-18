@@ -1,6 +1,7 @@
 # Development
 
 * Add vignette to quickly compare base R, fs and bash (@xvrdm, #168).
+* `path_ext()`, `path_ext_remove()`, and `path_ext_set()` now work on paths with no extension (#153).
 
 * Fix compilation on BSD systems (#145)
 
