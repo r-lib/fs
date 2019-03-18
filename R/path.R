@@ -357,7 +357,7 @@ path_ext <- function(path) {
     return(character())
   }
 
-  res <- captures(path, regexpr("(?<!^|[.]|/)[.]([^.]+)$", path_file(path), perl = TRUE))[[1]]
+  res <- captures(path_file(path), regexpr("(?<!^|[.]|/)[.]([^.]+)$", path_file(path), perl = TRUE))[[1]]
   res[!is.na(path) & is.na(res)] <- ""
   res
 }
