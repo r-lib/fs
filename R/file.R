@@ -224,6 +224,7 @@ file_touch <- function(path, access_time = Sys.time(), modification_time = acces
 
   path <- path_expand(path)
 
+  create_(path, 420)
   touch_(path, access_time, modification_time)
 
   invisible(path_tidy(path))
