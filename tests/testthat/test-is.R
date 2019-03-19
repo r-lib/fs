@@ -30,11 +30,10 @@ with_dir_tree(list("foo/bar"  = "test"), {
     })
   })
 
-  describe("is_link", {
+  describe("is_empty", {
     it("returns true for empty files and false for others", {
       file_create("blah")
       expect_true(is_empty("blah"))
-      expect_false(is_empty("foo"))
       expect_false(is_empty("foo/bar"))
       expect_false(is_empty("baz"))
     })
