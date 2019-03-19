@@ -36,6 +36,7 @@ pc <- function(...) {
   paste0(..., collapse = "")
 }
 
+# These are derived from https://github.com/r-lib/cli/blob/e9acc82b0d20fa5c64dd529400b622c0338374ed/R/tree.R#L111
 box_chars <- function() {
   if (is_utf8_output()) {
     list(
