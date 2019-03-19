@@ -1,4 +1,4 @@
-This is a small bugfix release.
+This release fixes reported rchk errors.
 
 ## Test environments
 * local OS X install, R 3.5.1
@@ -16,6 +16,6 @@ This is a small bugfix release.
 
 ## Downstream dependencies
 
-I ran `R CMD check` on all 12 reverse dependencies
+I ran `R CMD check` on all 24 reverse dependencies
 (https://github.com/r-lib/fs/tree/master/revdep) there were no regressions
 detected.
