@@ -1,40 +1,42 @@
-# Development
+# fs 1.2.7
+
+## New features
 
 * `file_size()` function added as a helper for `file_info("file")$size` (#171)
 
 * `is_empty()` function added to test for empty files` (#171)
 
+* `dir_tree()` function added to print a command line representation of a
+  directory tree, analogous to the unix `tree` program (#82).
+
+* Add a comparision vignette to quickly compare base R, fs and shell
+  alterantives (@xvrdm, #168).
+
+## Minor improvements and fixes
+
 * `path_ext_set()` and `file_temp()` now treat extensions with a leading `.`
   and those without equally. e.g. `path_ext_set("foo", ext = "bar")` and
   `path_ext_set("foo", ext = ".bar")` both result in "foo.bar"
-
-* `dir_tree()` function added to print a command line representation of a
-  directory tree, analogous to the unix `tree` program (#82).
 
 * Tidy paths are now always returned with uppercase drive letters on Windows (#174).
 
 * `format.bench_bytes()` now works with `str()` in R 3.5.1+ (#155).
 
-* Add vignette to quickly compare base R, fs and bash (@xvrdm, #168).
+* `path_ext()`, `path_ext_remove()`, and `path_ext_set()` now work on paths
+  with no extension, and `file_temp()` now prepends a `.` to the file extension
+  (#153).
 
-* `path_ext()`, `path_ext_remove()`, and `path_ext_set()` now work on paths with no extension (#153).
-
-* Fix compilation on BSD systems (#145)
+* Link with -pthread by default and fix on BSD systems (#128, #145, #146).
 
 * `file_chown()` can now take a `group_id` parameter as character (@cderv, #162).
 
-* Parameter `browser` in `file_show()` now works as described in the documentation (@GegznaV, #154). 
-
-* Link with -pthread by default (#128, #146).
+* Parameter `browser` in `file_show()` now works as described in the documentation (@GegznaV, #154).
 
 * `path_real()` now works even if the file does not exist, but there are
   symlinks further up the path hierarchy (#144).
 
 * `colourise_fs_path()` now returns paths uncolored if the colors argument /
   `LS_COLORS` is malformed (#135).
-  
-* The `ext` argument of `file_temp()` is now consistent with other functions in
-  fs and prepends a `.` to the file extension if provided.
 
 # fs 1.2.6
 
