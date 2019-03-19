@@ -16,6 +16,9 @@
     <loc>http://fs.r-lib.org/reference/dir_ls.html</loc>
   </url>
   <url>
+    <loc>http://fs.r-lib.org/reference/dir_tree.html</loc>
+  </url>
+  <url>
     <loc>http://fs.r-lib.org/reference/file_access.html</loc>
   </url>
   <url>
@@ -86,5 +89,8 @@
   </url>
   <url>
     <loc>http://fs.r-lib.org/reference/path_tidy.html</loc>
+  </url>
+  <url>
+    <loc>http://fs.r-lib.org/articles/base-vs-fs.html</loc>
   </url>
 </urlset>
