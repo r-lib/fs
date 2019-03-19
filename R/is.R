@@ -44,7 +44,7 @@ is_link <- function(path) {
 
 #' @rdname is_file
 #' @export
-is_empty <- function(path) {
+is_file_empty <- function(path) {
   res <- file_info(path)
 
   setNames(!is.na(res$size) & res$size == 0, res$path)

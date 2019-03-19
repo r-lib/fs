@@ -4,7 +4,7 @@
 
 * `file_size()` function added as a helper for `file_info("file")$size` (#171)
 
-* `is_empty()` function added to test for empty files` (#171)
+* `is_file_empty()` function added to test for empty files` (#171)
 
 * `dir_tree()` function added to print a command line representation of a
   directory tree, analogous to the unix `tree` program (#82).

@@ -30,12 +30,12 @@ with_dir_tree(list("foo/bar"  = "test"), {
     })
   })
 
-  describe("is_empty", {
+  describe("is_file_empty", {
     it("returns true for empty files and false for others", {
       file_create("blah")
-      expect_true(is_empty("blah"))
-      expect_false(is_empty("foo/bar"))
-      expect_false(is_empty("baz"))
+      expect_true(is_file_empty("blah"))
+      expect_false(is_file_empty("foo/bar"))
+      expect_false(is_file_empty("baz"))
     })
   })
 
