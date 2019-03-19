@@ -2,7 +2,7 @@ pandoc: '2.2'
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
-  base-vs-fs: base-vs-fs.html
+  function-comparisons: function-comparisons.html
 urls:
   reference: http://fs.r-lib.org/reference
   article: http://fs.r-lib.org/articles

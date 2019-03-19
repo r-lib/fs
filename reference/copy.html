@@ -88,7 +88,7 @@ dir_copy() copies the directory recursively at the new location." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/base-vs-fs.html">base vs fs</a>
+      <a href="../articles/function-comparisons.html">Comparision of fs functions, base R, and shell commands</a>
     </li>
   </ul>
 </li>
@@ -175,8 +175,8 @@ file exists an error will be thrown.</p></td>
 #&gt;     TRUE     TRUE </div><div class='input'>
 <span class='co'># Create a link to the directory</span>
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='st'>"foo"</span>), <span class='st'>"loo"</span>)
-<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/tmp/RtmprSqT9u/foo</span><span></div><div class='input'><span class='fu'>link_copy</span>(<span class='st'>"loo"</span>, <span class='st'>"loo2"</span>)
-<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo2"</span>)</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/tmp/RtmprSqT9u/foo</span><span></div><div class='input'>
+<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/tmp/RtmpNIYr0i/foo</span><span></div><div class='input'><span class='fu'>link_copy</span>(<span class='st'>"loo"</span>, <span class='st'>"loo2"</span>)
+<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"loo2"</span>)</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/tmp/RtmpNIYr0i/foo</span><span></div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>dir_delete</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"foo2"</span>))
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"loo"</span>, <span class='st'>"loo2"</span>))</div></span></pre>
