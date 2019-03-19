@@ -34,6 +34,17 @@ describe("file_info", {
   })
 })
 
+describe("file_size", {
+  with_dir_tree(list(
+      "foo" = "test",
+      "bar" = "test2"), {
+      it("returns the correct file size", {
+        expect_equal(file_size("foo"), stats::setNames(file_info("foo")$size, "foo"))
+        expect_equal(file_size("bar"), stats::setNames(file_info("bar")$size, "bar"))
+      })
+  })
+})
+
 # Windows permissions only really allow setting read only, so we will skip
 # the more thorough tests
 if (!is_windows()) {

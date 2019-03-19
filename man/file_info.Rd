@@ -2,9 +2,12 @@
 % Please edit documentation in R/file.R
 \name{file_info}
 \alias{file_info}
+\alias{file_size}
 \title{Query file metadata}
 \usage{
 file_info(path, fail = TRUE)
+
+file_size(path, fail = TRUE)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}

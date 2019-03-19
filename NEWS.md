@@ -1,5 +1,9 @@
 # Development
 
+* `file_size()` function added as a helper for `file_info("file")$size` (#171)
+
+* `is_empty()` function added to test for empty files` (#171)
+
 * `path_ext_set()` and `file_temp()` now treat extensions with a leading `.`
   and those without equally. e.g. `path_ext_set("foo", ext = "bar")` and
   `path_ext_set("foo", ext = ".bar")` both result in "foo.bar"

@@ -4,6 +4,7 @@
 \alias{is_file}
 \alias{is_dir}
 \alias{is_link}
+\alias{is_empty}
 \title{Functions to test for file types}
 \usage{
 is_file(path)
@@ -11,6 +12,8 @@ is_file(path)
 is_dir(path)
 
 is_link(path)
+
+is_empty(path)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}

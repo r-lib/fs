@@ -59,6 +59,14 @@ file_info <- function(path, fail = TRUE) {
   res[c(important, setdiff(names(res), important))]
 }
 
+#' @export
+#' @rdname file_info
+file_size <- function(path, fail = TRUE) {
+  res <- file_info(path, fail)
+
+  stats::setNames(res$size, path)
+}
+
 file_types <- c(
   "any" = -1,
   "block_device" = 0L,

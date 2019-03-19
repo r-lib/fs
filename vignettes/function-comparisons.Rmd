@@ -53,7 +53,7 @@ base R functions:
 | `dir_delete("path")`               | `unlink("path", recursive = TRUE)`                                      | `rm -rf path`                        |
 | `dir_exists("path")`               | `dir.exists("path")`                                                    | `if [ -d "path" ]; then ... ; fi`    |
 | ~~`dir_move()`~~ (see `file_move`) | `file.rename("path", "new-path")`                                       | `mv path new-path`                   |
-| `dir_map("path", fun)`             | *No direct equivalent*                                                  | for file in $(ls path); do ...; done |
+| `dir_map("path", fun)`             | *No direct equivalent*                                                  | `for file in $(ls path); do ...; done` |
 | `dir_tree("path")`                 | *No direct equivalent*                                                  | `tree path`                          |
 
 

@@ -42,6 +42,14 @@ is_link <- function(path) {
   setNames(!is.na(res$type) & res$type == "symlink", res$path)
 }
 
+#' @rdname is_file
+#' @export
+is_empty <- function(path) {
+  res <- file_info(path)
+
+  setNames(!is.na(res$size) & res$size == 0, res$path)
+}
+
 #' Test if a path is an absolute path
 #'
 #' @template fs
