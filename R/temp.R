@@ -43,7 +43,9 @@ file_temp <- function(pattern = "file", tmp_dir = tempdir(), ext = "") {
   assert_no_missing(tmp_dir)
 
   has_extension <- nzchar(ext)
-  ext[has_extension] <- paste0(".", ext[has_extension])
+
+  # ensure the extension starts with _one_ .
+  ext[has_extension] <- paste0(".", sub("^[.]", "", ext[has_extension]))
 
   path_tidy(file_temp_pop() %||% tempfile(pattern, tmp_dir, ext))
 }

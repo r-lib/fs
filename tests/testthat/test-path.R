@@ -275,6 +275,10 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("foo/.bar", "baz"), "foo/.bar.baz")
     expect_equal(path_ext_set("foo", ""), "foo")
   })
+  it ("works the same with and without a leading . for ext", {
+    expect_equal(path_ext_set("foo", "bar"), "foo.bar")
+    expect_equal(path_ext_set("foo", ".bar"), "foo.bar")
+  })
   it ("works with non-ASCII inputs", {
     expect_equal(path_ext_set("föö.txt", "bar"), "föö.bar")
     expect_equal(path_ext_set("föö.tär", "bar"), "föö.bar")

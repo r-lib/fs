@@ -1,5 +1,9 @@
 # Development
 
+* `path_ext_set()` and `file_temp()` now treat extensions with a leading `.`
+  and those without equally. e.g. `path_ext_set("foo", ext = "bar")` and
+  `path_ext_set("foo", ext = ".bar")` both result in "foo.bar"
+
 * `dir_tree()` function added to print a command line representation of a
   directory tree, analogous to the unix `tree` program (#82).
 

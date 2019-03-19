@@ -381,6 +381,9 @@ path_ext_remove <- function(path) {
 #' @rdname path_file
 #' @export
 path_ext_set <- function(path, ext) {
+  # Remove a leading . if present
+  ext <- sub("[.]", "", ext)
+
   has_ext <- nzchar(ext)
   to_set <- !is.na(path) & has_ext
 

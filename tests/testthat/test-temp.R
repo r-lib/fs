@@ -17,6 +17,11 @@ test_that("file_temp() extension applied correctly", {
   tmpfile_multiple <- tempfile(fileext = paste0(c(".", ".", ""), exts))
   file_temp_multiple <- file_temp(ext = exts)
   expect_equal(path_ext(file_temp_multiple), path_ext(tmpfile_multiple))
+
+  expect_equal(
+    path_ext(file_temp(ext = "pdf")),
+    path_ext(file_temp(ext = ".pdf"))
+  )
 })
 
 test_that("file_temp() can use have deterministic results if desired", {
