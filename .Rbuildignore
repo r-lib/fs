@@ -27,3 +27,4 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^revdep$
+^.*\.tar\.gz$
