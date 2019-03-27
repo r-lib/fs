@@ -29,6 +29,11 @@ A logical vector, with names corresponding to the input \code{path}.
 \code{dir_exists(path)} and \code{link_exists(path)} are similar but also check that
 the path is a directory or link, respectively.
 }
+\details{
+\strong{Cross-compatibility warning:} There is no executable bit on
+Windows. Checking a file for mode 'execute' on Windows, e.g.
+\code{file_access(x, "execute")} will always return \code{TRUE}.
+}
 \examples{
 file_access("/")
 file_access("/", "read")

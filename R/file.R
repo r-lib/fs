@@ -36,6 +36,11 @@
 #' files <- file_info(dir_ls())
 #' files$path[difftime(Sys.time(), files$modification_time, units = "days") > 20]
 #'
+#' # Test if group has permission to read and write file
+#' (fs::file_info("mtcars.csv")$permissions & "g=rw") == "g=rw"
+#' # Note that testing user permissions can be done with file_access()
+#' # Also note that the above is not cross-compatible with Windows
+#'
 #' # Cleanup
 #' file_delete("mtcars.csv")
 #' \dontshow{setwd(.old_wd)}
@@ -80,6 +85,16 @@ file_types <- c(
 #' Change file permissions
 #' @template fs
 #' @param mode A character representation of the mode, in either hexidecimal or symbolic format.
+#' @details **Cross-compatibility warning:** File permissions are different on
+#'   Windows, so many of the examples below may not behave as you expect. First,
+#'   there is no executable bit on Windows, so any attempt to change this will
+#'   have no affect. Second, you can only modify user permissions (`u`).
+#'   Attempting to modify the permissions for group (`g`) or others (`o`) will
+#'   throw an error. Modifying the permissions of all users (`a`) will only
+#'   affect the user permissions (`u`). If you have installed a bash emulator on
+#'   your Windows machine, e.g. [Git Bash](https://gitforwindows.org/), you can
+#'   confirm this behavior by running `chmod` and observing that it's not
+#'   possible to modify the permissions for group (`g`) or others (`o`).
 #' @export
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}

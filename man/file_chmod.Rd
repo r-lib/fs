@@ -14,6 +14,18 @@ file_chmod(path, mode)
 \description{
 Change file permissions
 }
+\details{
+\strong{Cross-compatibility warning:} File permissions are different on
+Windows, so many of the examples below may not behave as you expect. First,
+there is no executable bit on Windows, so any attempt to change this will
+have no affect. Second, you can only modify user permissions (\code{u}).
+Attempting to modify the permissions for group (\code{g}) or others (\code{o}) will
+throw an error. Modifying the permissions of all users (\code{a}) will only
+affect the user permissions (\code{u}). If you have installed a bash emulator on
+your Windows machine, e.g. \href{https://gitforwindows.org/}{Git Bash}, you can
+confirm this behavior by running \code{chmod} and observing that it's not
+possible to modify the permissions for group (\code{g}) or others (\code{o}).
+}
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
 file_create("foo", mode = "000")

@@ -9,6 +9,9 @@ access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
 #' @template fs
 #' @param mode A character vector containing one or more of 'exists', 'read',
 #'   'write', 'execute'.
+#' @details **Cross-compatibility warning:** There is no executable bit on
+#'   Windows. Checking a file for mode 'execute' on Windows, e.g.
+#'   `file_access(x, "execute")` will always return `TRUE`.
 #' @return A logical vector, with names corresponding to the input `path`.
 #' @export
 #' @examples
