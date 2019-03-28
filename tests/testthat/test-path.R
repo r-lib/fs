@@ -438,6 +438,13 @@ describe("path_rel", {
     expect_equal(path_rel(NA_character_), NA_character_)
     expect_equal(path_rel("/foo/bar/baz", NA_character_), NA_character_)
   })
+
+  it("can be reversed by path_abs", {
+    f <- file_temp()
+    expect_equal(path_abs(path_rel(f)), f)
+    home <- path_home()
+    expect_equal(path_abs(path_rel(f, start = home), start = home), f)
+  })
 })
 
 describe("path_abs", {
