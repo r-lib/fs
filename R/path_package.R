@@ -4,6 +4,9 @@
 #' error if the package does not exist. It also returns a different error if
 #' the file within the package does not exist.
 #'
+#'`path_package()` also automatically works with packages loaded with devtools
+#'even if the `path_package()` call comes from a different package.
+#'
 #' @param package Name of the package to in which to search
 #' @param ... Additional paths appended to the package path by [path()].
 #' @examples
@@ -38,12 +41,21 @@ path_package <- function(package, ...) {
     stop(fs_error(msg, class = "EEXIST"))
     })
 
-  p <- path(pkg_path, ...)
-  if (!file_exists(p)) {
+
+  files_inst <- path(pkg_path, "inst", ...)
+  present_inst <- file_exists(files_inst)
+  files_top <- path(pkg_path, ...)
+  present_top <- file_exists(files_top)
+  files <- files_top
+  files[present_inst] <- files_inst[present_inst]
+  files <- files[present_inst | present_top]
+
+  if (length(files) == 0) {
     msg <- sprintf(
-      "File '%s' does not exist",
-      p)
+      "File(s) %s do not exist",
+      paste0("'", files_top, "'", collapse = ", ")
+    )
     stop(fs_error(msg, class = "EEXIST"))
   }
-  p
+  files
 }

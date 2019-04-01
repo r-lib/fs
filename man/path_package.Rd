@@ -16,6 +16,10 @@ path_package(package, ...)
 error if the package does not exist. It also returns a different error if
 the file within the package does not exist.
 }
+\details{
+\code{path_package()} also automatically works with packages loaded with devtools
+even if the \code{path_package()} call comes from a different package.
+}
 \examples{
 path_package("base")
 path_package("stats")
