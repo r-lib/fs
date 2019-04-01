@@ -1,7 +1,7 @@
 #' Print contents of directories in a tree-like format
 #'
 #' @param path A path to print the tree from
-#' @param recursive Should directories be printed recursively?
+#' @inheritParams dir_ls
 #' @param ... Additional arguments passed to [dir_ls].
 #'
 #' @export
