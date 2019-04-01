@@ -144,6 +144,11 @@ the file within the package does not exist.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>path_package()</code> also automatically works with packages loaded with devtools
+even if the <code>path_package()</code> call comes from a different package.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/library/base</span><span></div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/library/stats</span><span></div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>, <span class='st'>"INDEX"</span>)</div><div class='output co'>#&gt; /home/travis/R-bin/lib/R/library/base/INDEX</div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"splines"</span>, <span class='st'>"help"</span>, <span class='st'>"AnIndex"</span>)</div><div class='output co'>#&gt; /home/travis/R-bin/lib/R/library/splines/help/AnIndex</div></span></pre>
@@ -152,7 +157,9 @@ the file within the package does not exist.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

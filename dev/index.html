@@ -197,8 +197,8 @@
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; # A tibble: 2 x 4</span></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt;   path                permissions        size modification_time  </span></a>
 <a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt;   &lt;fs::path&gt;          &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.cpp rw-rw-r--         12.2K 2019-03-29 20:20:13</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/file.cc         rw-rw-r--         10.1K 2019-03-29 20:20:13</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; 1 src/RcppExports.cpp rw-rw-r--         12.2K 2019-04-01 15:23:25</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; 2 src/file.cc         rw-rw-r--         10.1K 2019-04-01 15:23:25</span></a></code></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="dt">recursive =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(<span class="dt">directory =</span> <span class="kw"><a href="reference/path_file.html">path_dir</a></span>(path)) <span class="op">%&gt;%</span></a>
