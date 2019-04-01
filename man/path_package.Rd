@@ -2,7 +2,7 @@
 % Please edit documentation in R/path_package.R
 \name{path_package}
 \alias{path_package}
-\title{Construct a path to a location within an installed package}
+\title{Construct a path to a location within an installed or development package}
 \usage{
 path_package(package, ...)
 }

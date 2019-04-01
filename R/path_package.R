@@ -1,4 +1,4 @@
-#' Construct a path to a location within an installed package
+#' Construct a path to a location within an installed or development package
 #'
 #' `path_package` differs from [system.file()] in that it always returns an
 #' error if the package does not exist. It also returns a different error if
