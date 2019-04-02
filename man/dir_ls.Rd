@@ -8,7 +8,8 @@
 \title{List files}
 \usage{
 dir_ls(path = ".", all = FALSE, recurse = FALSE, type = "any",
-  glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE, ...)
+  glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE, ...,
+  recursive)
 
 dir_map(path = ".", fun, all = FALSE, recurse = FALSE,
   type = "any", fail = TRUE)

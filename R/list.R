@@ -41,8 +41,14 @@
 #' link_delete("base")
 #' \dontshow{setwd(.old_wd)}
 dir_ls <- function(path = ".", all = FALSE, recurse = FALSE, type = "any",
-                   glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE, ...) {
+                   glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE,
+                   ..., recursive) {
   assert_no_missing(path)
+
+  if (!missing(recursive)) {
+    recurse <- recursive
+    warning("`recursive` is deprecated, please use `recurse` instead", immediate. = TRUE, call. = FALSE)
+  }
 
   old <- path_expand(path)
 
@@ -65,7 +71,8 @@ directory_entry_types <- c(
 #' @rdname dir_ls
 #' @param fun A function, taking one parameter, the current path entry.
 #' @export
-dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type = "any", fail = TRUE) {
+dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type =
+  "any", fail = TRUE) {
   assert_no_missing(path)
 
   if (is.logical(recurse)) {
