@@ -80,6 +80,10 @@ file_types <- c(
 #' Change file permissions
 #' @template fs
 #' @param mode A character representation of the mode, in either hexidecimal or symbolic format.
+#' @details **Cross-compatibility warning:** File permissions differ on Windows
+#'   from POSIX systems. Windows does not use an executable bit, so attempting
+#'   to change this will have no effect. Windows also does not have user
+#'   groups, so only the user permissions (`u`) are relevant.
 #' @export
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}

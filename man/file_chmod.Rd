@@ -14,6 +14,12 @@ file_chmod(path, mode)
 \description{
 Change file permissions
 }
+\details{
+\strong{Cross-compatibility warning:} File permissions differ on Windows
+from POSIX systems. Windows does not use an executable bit, so attempting
+to change this will have no effect. Windows also does not have user
+groups, so only the user permissions (\code{u}) are relevant.
+}
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
 file_create("foo", mode = "000")
