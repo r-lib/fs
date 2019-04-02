@@ -15,7 +15,6 @@
 #' @param type File type(s) to return, one or more of "any", "file", "directory",
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
 #' @param recursive Should directories be listed recursively?
-#'   the filenames.
 #' @inheritParams path_filter
 #' @param all If `TRUE` hidden files are also returned.
 #' @param fail Should the call fail (the default) or warn if a file cannot be

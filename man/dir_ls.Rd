@@ -24,8 +24,7 @@ dir_info(path = ".", all = FALSE, recursive = FALSE, type = "any",
 
 \item{all}{If \code{TRUE} hidden files are also returned.}
 
-\item{recursive}{Should directories be listed recursively?
-the filenames.}
+\item{recursive}{Should directories be listed recursively?}
 
 \item{type}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
