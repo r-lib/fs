@@ -50,7 +50,7 @@ void dir_map(
     const char* path,
     bool all,
     int file_type,
-    bool recurse,
+    size_t recurse,
     CollectorList* value,
     bool fail) {
   uv_fs_t req;
@@ -86,8 +86,8 @@ void dir_map(
       value->push_back(fun(asCharacterVector(name)));
     }
 
-    if (recurse && entry_type == UV_DIRENT_DIR) {
-      dir_map(fun, name.c_str(), all, file_type, true, value, fail);
+    if (recurse > 0 && entry_type == UV_DIRENT_DIR) {
+      dir_map(fun, name.c_str(), all, file_type, recurse - 1, value, fail);
     }
     if (next_res != UV_EOF) {
 
@@ -106,7 +106,7 @@ List dir_map_(
     Function fun,
     bool all,
     IntegerVector type,
-    bool recurse,
+    size_t recurse,
     bool fail) {
   int file_type = INTEGER(type)[0];
 

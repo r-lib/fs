@@ -10,7 +10,7 @@
 #' @param mode If file/directory is created, what mode should it have?
 #'
 #'   Links do not have mode; they inherit the mode of the file they link to.
-#' @param recursive should intermediate directories be created if they do not
+#' @param recurse should intermediate directories be created if they do not
 #'   exist?
 #' @param ... Additional arguments passed to [path()]
 #' @return The path to the created object (invisibly).
@@ -45,7 +45,7 @@ file_create <- function(path, ..., mode = "u=rw,go=r") {
 
 #' @export
 #' @rdname create
-dir_create <- function(path, ..., mode = "u=rwx,go=rx", recursive = TRUE) {
+dir_create <- function(path, ..., mode = "u=rwx,go=rx", recurse = TRUE) {
   assert_no_missing(path)
   assert("`mode` must be of length 1", length(mode) == 1)
 
@@ -54,7 +54,7 @@ dir_create <- function(path, ..., mode = "u=rwx,go=rx", recursive = TRUE) {
 
   paths <- path_split(new)
   for (p in paths) {
-    if (length(p) == 1 || !isTRUE(recursive)) {
+    if (length(p) == 1 || !isTRUE(recurse)) {
       mkdir_(p, mode)
     } else {
       p_paths <- Reduce(get("path", mode = "function"), p, accumulate = TRUE)

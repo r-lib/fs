@@ -1,5 +1,9 @@
 # fs (development version)
 
+* `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `dir_tree()` gain a
+  `recurse` argument, which can be either a `TRUE` or `FALSE` or a number of
+  levels to recurse. The previous argument `recursive` has been removed.
+
 * `path_package()` now works with paths in development packages automatically
   (#175).
 

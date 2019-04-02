@@ -64,10 +64,10 @@ dir_delete <- function(path) {
 
   old <- path_expand(path)
 
-  dirs <- dir_ls(old, type = "directory", recursive = TRUE, all = TRUE)
+  dirs <- dir_ls(old, type = "directory", recurse = TRUE, all = TRUE)
   files <- dir_ls(old,
     type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
-    recursive = TRUE,
+    recurse = TRUE,
     all = TRUE)
   unlink_(files)
   rmdir_(rev(c(old, dirs)))

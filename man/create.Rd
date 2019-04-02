@@ -9,7 +9,7 @@
 \usage{
 file_create(path, ..., mode = "u=rw,go=r")
 
-dir_create(path, ..., mode = "u=rwx,go=rx", recursive = TRUE)
+dir_create(path, ..., mode = "u=rwx,go=rx", recurse = TRUE)
 
 link_create(path, new_path, symbolic = TRUE)
 }
@@ -22,7 +22,7 @@ link_create(path, new_path, symbolic = TRUE)
 
 Links do not have mode; they inherit the mode of the file they link to.}
 
-\item{recursive}{should intermediate directories be created if they do not
+\item{recurse}{should intermediate directories be created if they do not
 exist?}
 
 \item{new_path}{The path where the link should be created.}
