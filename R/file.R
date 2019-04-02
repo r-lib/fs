@@ -80,16 +80,10 @@ file_types <- c(
 #' Change file permissions
 #' @template fs
 #' @param mode A character representation of the mode, in either hexidecimal or symbolic format.
-#' @details **Cross-compatibility warning:** File permissions are different on
-#'   Windows, so many of the examples below may not behave as you expect. First,
-#'   there is no executable bit on Windows, so any attempt to change this will
-#'   have no affect. Second, you can only modify user permissions (`u`).
-#'   Attempting to modify the permissions for group (`g`) or others (`o`) will
-#'   throw an error. Modifying the permissions of all users (`a`) will only
-#'   affect the user permissions (`u`). If you have installed a bash emulator on
-#'   your Windows machine, e.g. [Git Bash](https://gitforwindows.org/), you can
-#'   confirm this behavior by running `chmod` and observing that it's not
-#'   possible to modify the permissions for group (`g`) or others (`o`).
+#' @details **Cross-compatibility warning:** File permissions differ on Windows
+#'   from POSIX systems. Windows does not use an executable bit, so attempting
+#'   to change this will have no effect. Windows also does not have user
+#'   groups, so only the user permissions (`u`) are relevant.
 #' @export
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}
