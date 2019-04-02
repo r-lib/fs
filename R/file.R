@@ -36,15 +36,6 @@
 #' files <- file_info(dir_ls())
 #' files$path[difftime(Sys.time(), files$modification_time, units = "days") > 20]
 #'
-#' # Test if group has permission to read and write file
-#' # Note that testing user permissions can be done with file_access()
-#' # Also note that the above is not cross-compatible with Windows,
-#' #  which only supports user permissions
-#' if (.Platform$OS.type != "windows")
-#'   (fs::file_info("mtcars.csv")$permissions & "g=rw") == "g=rw"
-#'
-#'
-#'
 #' # Cleanup
 #' file_delete("mtcars.csv")
 #' \dontshow{setwd(.old_wd)}

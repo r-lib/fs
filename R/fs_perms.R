@@ -58,6 +58,9 @@
 #' # Symbolic
 #' fs_perms("a+rwx")
 #' fs_perms(c("a+rwx", "u+rw,go+r"))
+#'
+#' # Use the `&` and `|`operators to check for certain permissions
+#' (fs_perms("777") & "u+r") == "u+r"
 #' @export
 #' @name fs_perms
 as_fs_perms <- function(x, ...) {
