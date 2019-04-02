@@ -9,8 +9,7 @@ dir_tree(path = ".", recursive = TRUE, ...)
 \arguments{
 \item{path}{A path to print the tree from}
 
-\item{recursive}{Should directories be listed recursively?
-the filenames.}
+\item{recursive}{Should directories be listed recursively?}
 
 \item{...}{Additional arguments passed to \link{dir_ls}.}
 }
