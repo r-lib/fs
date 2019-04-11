@@ -58,6 +58,7 @@ describe("dir_ls", {
     })
   })
   it("works with UTF-8 encoded filenames", {
+    skip_on_cran()
     skip_on_os("solaris")
     with_dir_tree("\U7684\U6D4B\U8BD5\U6587\U4EF6", {
       file_create("fs\U7684\U6D4B\U8BD5\U6587\U4EF6.docx")

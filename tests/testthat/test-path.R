@@ -223,8 +223,8 @@ describe("path_ext", {
     expect_equal(path_ext("foo.bar/baz"), "")
   })
   it ("works with non-ASCII inputs", {
-    expect_equal(path_ext("föö.txt"), "txt")
-    expect_equal(path_ext("föö.tär"), "tär")
+    expect_equal(path_ext("f\U00F6\U00F6.txt"), "txt")
+    expect_equal(path_ext("f\U00F6\U00F6.t\U00E4r"), "t\U00E4r")
   })
 })
 
