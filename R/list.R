@@ -16,6 +16,7 @@
 #'   "symlink", "FIFO", "socket", "character_device" or "block_device".
 #' @param recurse If `TRUE` recurse fully, if a positive number the number of levels
 #'   to recurse.
+#' @param recursive (Deprecated) If `TRUE` recurse fully.
 #' @inheritParams path_filter
 #' @param all If `TRUE` hidden files are also returned.
 #' @param fail Should the call fail (the default) or warn if a file cannot be

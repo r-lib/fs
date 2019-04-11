@@ -42,6 +42,8 @@ accessed.}
 
 \item{...}{Additional arguments passed to \link{grep}.}
 
+\item{recursive}{(Deprecated) If \code{TRUE} recurse fully.}
+
 \item{fun}{A function, taking one parameter, the current path entry.}
 }
 \description{
