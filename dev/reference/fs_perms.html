@@ -193,7 +193,9 @@ third character is only <code>-</code> or <code>x</code>.</p>
 <span class='co'># Octal</span>
 <span class='fu'>fs_perms</span>(<span class='st'>"777"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"777"</span>, <span class='st'>"644"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx rw-r--r--</div><div class='input'>
 <span class='co'># Symbolic</span>
-<span class='fu'>fs_perms</span>(<span class='st'>"a+rwx"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"a+rwx"</span>, <span class='st'>"u+rw,go+r"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx rw-r--r--</div></pre>
+<span class='fu'>fs_perms</span>(<span class='st'>"a+rwx"</span>)</div><div class='output co'>#&gt; [1] rwxrwxrwx</div><div class='input'><span class='fu'>fs_perms</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"a+rwx"</span>, <span class='st'>"u+rw,go+r"</span>))</div><div class='output co'>#&gt; [1] rwxrwxrwx rw-r--r--</div><div class='input'>
+<span class='co'># Use the `&amp;` and `|`operators to check for certain permissions</span>
+(<span class='fu'>fs_perms</span>(<span class='st'>"777"</span>) <span class='kw'>&amp;</span> <span class='st'>"u+r"</span>) <span class='kw'>==</span> <span class='st'>"u+r"</span></div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

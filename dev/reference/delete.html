@@ -169,7 +169,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 <span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;  dir 
 #&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
 #&gt;  TRUE  TRUE  TRUE  TRUE  TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /tmp/RtmpBctXKi/dir 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /tmp/RtmpN50P1e/dir 
 #&gt;                TRUE </div><div class='input'>
 <span class='co'># Delete a file</span>
 <span class='fu'>file_delete</span>(<span class='no'>files</span>[<span class='fl'>1</span>])
@@ -182,7 +182,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 #&gt; FALSE </div><div class='input'>
 <span class='co'># The link still exists, but what it points to does not.</span>
 <span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /tmp/RtmpBctXKi/dir 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /tmp/RtmpN50P1e/dir 
 #&gt;               FALSE </div><div class='input'>
 <span class='co'># Delete the link</span>
 <span class='fu'>link_delete</span>(<span class='st'>"link"</span>)

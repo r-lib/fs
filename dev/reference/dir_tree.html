@@ -125,7 +125,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>dir_tree</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dir_tree</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,8 +135,9 @@
       <td><p>A path to print the tree from</p></td>
     </tr>
     <tr>
-      <th>recursive</th>
-      <td><p>Should directories be listed recursively?</p></td>
+      <th>recurse</th>
+      <td><p>If <code>TRUE</code> recurse fully, if a positive number the number of levels
+to recurse.</p></td>
     </tr>
     <tr>
       <th>...</th>
