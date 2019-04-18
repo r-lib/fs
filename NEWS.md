@@ -18,7 +18,7 @@
 * `dir_tree()` function added to print a command line representation of a
   directory tree, analogous to the unix `tree` program (#82).
 
-* Add a comparision vignette to quickly compare base R, fs and shell
+* Add a comparison vignette to quickly compare base R, fs and shell
   alterantives (@xvrdm, #168).
 
 ## Minor improvements and fixes
