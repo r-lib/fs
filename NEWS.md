@@ -19,7 +19,7 @@
   directory tree, analogous to the unix `tree` program (#82).
 
 * Add a comparison vignette to quickly compare base R, fs and shell
-  alterantives (@xvrdm, #168).
+  alternatives (@xvrdm, #168).
 
 ## Minor improvements and fixes
 
