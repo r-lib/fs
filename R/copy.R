@@ -71,7 +71,7 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
   assert("Length of `path` must equal length of `new_path`", length(path) == length(new_path))
 
   for (i in seq_along(path)) {
-    if (isFALSE(overwrite) & isTRUE(unname(is_dir(new_path[[i]])))) {
+    if (!isTRUE(overwrite) && isTRUE(unname(is_dir(new_path[[i]])))) {
       new_path[[i]] <- path(new_path[[i]], path_file(path))
     }
     dir_create(new_path[[i]])
