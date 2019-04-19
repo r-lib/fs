@@ -1,5 +1,8 @@
 # fs (development version)
 
+* `dir_copy()` gains a `overwrite` argument, to overwrite a given directory
+  (@pasipasi123, #193)
+
 * `fs_path` objects now always show 10 characters by default when printed in
   tibbles (#191).
 
