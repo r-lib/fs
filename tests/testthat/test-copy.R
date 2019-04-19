@@ -126,6 +126,16 @@ describe("dir_copy", {
       expect_true(file_exists("foo2/bar/baz"))
     })
   })
+  it("can overwrite directories", {
+    with_dir_tree(
+      list("foo/bar" = "test",
+           "foo2/bar" = "test2"), {
+      cat("test1\n", "foo/bar")
+      cat("test2\n", "foo2/bar")
+      dir_copy("foo", "foo2", overwrite = TRUE)
+      expect_equal(readLines("foo/bar"), readLines("foo2/bar"))
+    })
+  })
   it("copies absolute paths", {
     with_dir_tree(
       list("foo/bar/baz" = "test",
