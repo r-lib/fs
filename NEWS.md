@@ -1,5 +1,8 @@
 # fs (development version)
 
+* `fs_path` objects now always show 10 characters by default when printed in
+  tibbles (#191).
+
 * `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `dir_tree()` gain a
   `recurse` argument, which can be either a `TRUE` or `FALSE` or a number of
   levels to recurse. The previous argument `recursive` has been removed.
