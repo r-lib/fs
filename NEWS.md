@@ -1,5 +1,8 @@
 # fs (development version)
 
+* `fs_path` objects now always show 10 characters by default when printed in
+  tibbles (#191).
+
 * `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `dir_tree()` gain a
   `recurse` argument, which can be either a `TRUE` or `FALSE` or a number of
   levels to recurse. The previous argument `recursive` has been removed.
@@ -18,8 +21,8 @@
 * `dir_tree()` function added to print a command line representation of a
   directory tree, analogous to the unix `tree` program (#82).
 
-* Add a comparision vignette to quickly compare base R, fs and shell
-  alterantives (@xvrdm, #168).
+* Add a comparison vignette to quickly compare base R, fs and shell
+  alternatives (@xvrdm, #168).
 
 ## Minor improvements and fixes
 
