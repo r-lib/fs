@@ -33,7 +33,8 @@
 <meta property="og:title" content="List files — dir_ls" />
 
 <meta property="og:description" content="dir_ls() is equivalent to the ls command. It returns filenames as a
-fs_path character vector.
+named fs_path character vector. The names are equivalent to the values,
+which is useful for passing onto functions like purrr::map_dfr().
 dir_info() is equivalent to ls -l and a shortcut for
 file_info(dir_ls()).
 dir_map() applies a function fun() to each entry in the path and returns
@@ -128,7 +129,8 @@ dir_walk() calls fun for its side-effect and returns the input path." />
     <div class="ref-description">
     
     <p><code>dir_ls()</code> is equivalent to the <code>ls</code> command. It returns filenames as a
-<code>fs_path</code> character vector.</p>
+named <code>fs_path</code> character vector. The names are equivalent to the values,
+which is useful for passing onto functions like <code><a href='https://purrr.tidyverse.org/reference/map.html'>purrr::map_dfr()</a></code>.</p>
 <p><code>dir_info()</code> is equivalent to <code>ls -l</code> and a shortcut for
 <code><a href='file_info.html'>file_info(dir_ls())</a></code>.</p>
 <p><code>dir_map()</code> applies a function <code>fun()</code> to each entry in the path and returns
