@@ -158,25 +158,32 @@ there is no existing extension the new extension is appended.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note because these are not full file paths they return regular character
+vectors, not <code><a href='fs_path.html'>fs_path()</a></code> objects.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/base/topics/basename'>base::basename()</a></code>, <code><a href='https://www.rdocumentation.org/packages/base/topics/basename'>base::dirname()</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path_file</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;font-weight: bold;'>file.zip</span><span></div><div class='input'>
-<span class='fu'>path_dir</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; dir</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>path_file</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; [1] "file.zip"</div><div class='input'>
+<span class='fu'>path_dir</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; [1] "dir"</div><div class='input'>
 <span class='fu'>path_ext</span>(<span class='st'>"dir/file.zip"</span>)</div><div class='output co'>#&gt; [1] "zip"</div><div class='input'>
 <span class='fu'>path_ext</span>(<span class='st'>"file.tar.gz"</span>)</div><div class='output co'>#&gt; [1] "gz"</div><div class='input'>
 <span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>)</div><div class='output co'>#&gt; [1] "file.tar"</div><div class='input'>
 <span class='co'># Only one level of extension is removed</span>
-<span class='fu'>path_ext_set</span>(<span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>), <span class='st'>"zip"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB0000;font-weight: bold;'>file.zip</span><span></div></span></pre>
+<span class='fu'>path_ext_set</span>(<span class='fu'>path_ext_remove</span>(<span class='st'>"file.tar.gz"</span>), <span class='st'>"zip"</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;font-weight: bold;'>file.zip</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
