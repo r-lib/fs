@@ -1,5 +1,8 @@
 # fs (development version)
 
+* `path_file()`, `path_dir()` and `path_ext()` now return normal character
+  vectors rather than tidy paths (#194).
+
 * `fs_path` objects now always show 10 characters by default when printed in
   tibbles (#191).
 
