@@ -90,7 +90,7 @@ existing directories." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/function-comparisons.html">Comparision of fs functions, base R, and shell commands</a>
+      <a href="../articles/function-comparisons.html">Comparison of fs functions, base R, and shell commands</a>
     </li>
   </ul>
 </li>
@@ -135,7 +135,7 @@ existing directories.</p>
 
     <pre class="usage"><span class='fu'>file_create</span>(<span class='no'>path</span>, <span class='no'>...</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u=rw,go=r"</span>)
 
-<span class='fu'>dir_create</span>(<span class='no'>path</span>, <span class='no'>...</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u=rwx,go=rx"</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>dir_create</span>(<span class='no'>path</span>, <span class='no'>...</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u=rwx,go=rx"</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>recursive</span>)
 
 <span class='fu'>link_create</span>(<span class='no'>path</span>, <span class='no'>new_path</span>, <span class='kw'>symbolic</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
@@ -159,6 +159,10 @@ existing directories.</p>
       <th>recurse</th>
       <td><p>should intermediate directories be created if they do not
 exist?</p></td>
+    </tr>
+    <tr>
+      <th>recursive</th>
+      <td><p>(Deprecated) If <code>TRUE</code> recurse fully.</p></td>
     </tr>
     <tr>
       <th>new_path</th>

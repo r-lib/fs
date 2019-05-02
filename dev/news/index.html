@@ -83,7 +83,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/function-comparisons.html">Comparision of fs functions, base R, and shell commands</a>
+      <a href="../articles/function-comparisons.html">Comparison of fs functions, base R, and shell commands</a>
     </li>
   </ul>
 </li>
@@ -119,9 +119,9 @@
 <h1 class="page-header">
 <a href="#fs-1-2-7" class="anchor"></a>fs 1.2.7<small> 2019-03-19 </small>
 </h1>
-<div id="new-features" class="section level2">
+<div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features" class="anchor"></a>New features</h2>
+<a href="#new-features-1" class="anchor"></a>New features</h2>
 <ul>
 <li><p><code><a href="../reference/file_info.html">file_size()</a></code> function added as a helper for <code>file_info("file")$size</code> (<a href='https://github.com/r-lib/fs/issues/171'>#171</a>)</p></li>
 <li><p><code><a href="../reference/is_file.html">is_file_empty()</a></code> function added to test for empty files` (<a href='https://github.com/r-lib/fs/issues/171'>#171</a>)</p></li>
@@ -129,9 +129,9 @@
 <li><p>Add a comparison vignette to quickly compare base R, fs and shell alternatives (<a href='https://github.com/xvrdm'>@xvrdm</a>, <a href='https://github.com/r-lib/fs/issues/168'>#168</a>).</p></li>
 </ul>
 </div>
-<div id="minor-improvements-and-fixes" class="section level2">
+<div id="minor-improvements-and-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-and-fixes" class="anchor"></a>Minor improvements and fixes</h2>
+<a href="#minor-improvements-and-fixes-1" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
 <li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/file_temp.html">file_temp()</a></code> now treat extensions with a leading <code>.</code> and those without equally. e.g. <code><a href="../reference/path_file.html">path_ext_set("foo", ext = "bar")</a></code> and <code><a href="../reference/path_file.html">path_ext_set("foo", ext = ".bar")</a></code> both result in “foo.bar”</p></li>
 <li><p>Tidy paths are now always returned with uppercase drive letters on Windows (<a href='https://github.com/r-lib/fs/issues/174'>#174</a>).</p></li>
@@ -167,9 +167,9 @@
 <h1 class="page-header">
 <a href="#fs-1-2-4" class="anchor"></a>fs 1.2.4<small> 2018-07-26 </small>
 </h1>
-<div id="new-features-1" class="section level2">
+<div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-1" class="anchor"></a>New Features</h2>
+<a href="#new-features-2" class="anchor"></a>New Features</h2>
 <ul>
 <li><p>New <code><a href="../reference/path.html">path_wd()</a></code> generates paths from the current working directory (<a href='https://github.com/r-lib/fs/issues/122'>#122</a>).</p></li>
 <li><p>New <code><a href="../reference/path_math.html">path_has_parent()</a></code> determines if a path has a given parent (<a href='https://github.com/r-lib/fs/issues/116'>#116</a>).</p></li>
@@ -177,9 +177,9 @@
 <li><p><code><a href="../reference/dir_ls.html">dir_ls()</a></code>, <code><a href="../reference/dir_ls.html">dir_map()</a></code>, <code><a href="../reference/dir_ls.html">dir_walk()</a></code>, <code><a href="../reference/dir_ls.html">dir_info()</a></code> and <code><a href="../reference/file_info.html">file_info()</a></code> gain a <code>fail</code> parameter, to signal warnings rather than errors if they are called on a path which is unavailable due to permissions or locked resources (<a href='https://github.com/r-lib/fs/issues/105'>#105</a>).</p></li>
 </ul>
 </div>
-<div id="minor-improvements-and-fixes-1" class="section level2">
+<div id="minor-improvements-and-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-improvements-and-fixes-1" class="anchor"></a>Minor improvements and fixes</h2>
+<a href="#minor-improvements-and-fixes-2" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
 <li><p><code><a href="../reference/path_tidy.html">path_tidy()</a></code> now always includes a trailing slash for the windows root directory, e.g. <code>C:/</code> (<a href='https://github.com/r-lib/fs/issues/124'>#124</a>).</p></li>
 <li><p><code><a href="../reference/path_file.html">path_ext()</a></code>, <code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/path_file.html">path_ext_remove()</a></code> now handle paths with non-ASCII characters (<a href='https://github.com/r-lib/fs/issues/120'>#120</a>).</p></li>
@@ -254,9 +254,9 @@
 <h1 class="page-header">
 <a href="#fs-1-2-0" class="anchor"></a>fs 1.2.0<small> 2018-03-13 </small>
 </h1>
-<div id="breaking-changes" class="section level2">
+<div id="breaking-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li><p><code><a href="../reference/path_expand.html">path_expand()</a></code> and <code><a href="../reference/path_expand.html">path_home()</a></code> now use <code>USERPROFILE</code> or <code>HOMEDRIVE</code>/<code>HOMEPATH</code> as the user home directory on Windows. This differs from the definition used in <code><a href="https://www.rdocumentation.org/packages/base/topics/path.expand">path.expand()</a></code> but is consistent with definitions from other programming environments such as python and rust. This is also more compatible with external tools such as git and ssh, both of which put user-level files in <code>USERPROFILE</code> by default. To mimic R’s (and previous) behavior there are functions <code><a href="../reference/path_expand.html">path_expand_r()</a></code> and <code><a href="../reference/path_expand.html">path_home_r()</a></code>.</p></li>
 <li><p>Handling missing values are more consistent. In general <code>is_*</code> functions always return <code>FALSE</code> for missing values, <code>path_*</code> functions always propagate NA values (NA inputs become NA outputs) and <code>dir_*</code> <code>file_*</code> and <code>link_*</code> functions error with NA inputs.</p></li>
@@ -289,18 +289,18 @@
 <h1 class="page-header">
 <a href="#fs-1-1-0" class="anchor"></a>fs 1.1.0<small> 2018-01-26 </small>
 </h1>
-<div id="breaking-changes-1" class="section level2">
+<div id="breaking-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li><p>Tidy paths no longer expand <code>~</code>.</p></li>
 <li><p>Filesystem modification functions now error for NA inputs. (<a href='https://github.com/r-lib/fs/issues/48'>#48</a>)</p></li>
 <li><p><code><a href="../reference/path.html">path()</a></code> now returns 0 length output if given any 0 length inputs (<a href='https://github.com/r-lib/fs/issues/54'>#54</a>).</p></li>
 </ul>
 </div>
-<div id="new-features-2" class="section level2">
+<div id="new-features-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#new-features-2" class="anchor"></a>New features</h2>
+<a href="#new-features-3" class="anchor"></a>New features</h2>
 <ul>
 <li>Removed the autotool system dependency on non-windows systems.</li>
 </ul>
