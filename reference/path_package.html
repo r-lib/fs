@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Construct a path to a location within an installed package — path_package • fs</title>
+<title>Construct a path to a location within an installed or development package — path_package • fs</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Construct a path to a location within an installed package — path_package" />
+<meta property="og:title" content="Construct a path to a location within an installed or development package — path_package" />
 
 <meta property="og:description" content="path_package differs from system.file() in that it always returns an
 error if the package does not exist. It also returns a different error if
@@ -65,7 +65,7 @@ the file within the package does not exist." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.7.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@ the file within the package does not exist." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/function-comparisons.html">Comparision of fs functions, base R, and shell commands</a>
+      <a href="../articles/function-comparisons.html">Comparison of fs functions, base R, and shell commands</a>
     </li>
   </ul>
 </li>
@@ -116,7 +116,7 @@ the file within the package does not exist." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Construct a path to a location within an installed package</h1>
+    <h1>Construct a path to a location within an installed or development package</h1>
     <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/path_package.R'><code>R/path_package.R</code></a></small>
     <div class="hidden name"><code>path_package.Rd</code></div>
     </div>
@@ -144,6 +144,11 @@ the file within the package does not exist.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>path_package()</code> also automatically works with packages loaded with devtools
+even if the <code>path_package()</code> call comes from a different package.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/library/base</span><span></div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/library/stats</span><span></div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>, <span class='st'>"INDEX"</span>)</div><div class='output co'>#&gt; /home/travis/R-bin/lib/R/library/base/INDEX</div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"splines"</span>, <span class='st'>"help"</span>, <span class='st'>"AnIndex"</span>)</div><div class='output co'>#&gt; /home/travis/R-bin/lib/R/library/splines/help/AnIndex</div></span></pre>
@@ -152,7 +157,9 @@ the file within the package does not exist.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

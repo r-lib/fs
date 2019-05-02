@@ -33,7 +33,8 @@
 <meta property="og:title" content="List files — dir_ls" />
 
 <meta property="og:description" content="dir_ls() is equivalent to the ls command. It returns filenames as a
-fs_path character vector.
+named fs_path character vector. The names are equivalent to the values,
+which is useful for passing onto functions like purrr::map_dfr().
 dir_info() is equivalent to ls -l and a shortcut for
 file_info(dir_ls()).
 dir_map() applies a function fun() to each entry in the path and returns
@@ -69,7 +70,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.7.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -92,7 +93,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/function-comparisons.html">Comparision of fs functions, base R, and shell commands</a>
+      <a href="../articles/function-comparisons.html">Comparison of fs functions, base R, and shell commands</a>
     </li>
   </ul>
 </li>
@@ -128,7 +129,8 @@ dir_walk() calls fun for its side-effect and returns the input path." />
     <div class="ref-description">
     
     <p><code>dir_ls()</code> is equivalent to the <code>ls</code> command. It returns filenames as a
-<code>fs_path</code> character vector.</p>
+named <code>fs_path</code> character vector. The names are equivalent to the values,
+which is useful for passing onto functions like <code><a href='https://purrr.tidyverse.org/reference/map.html'>purrr::map_dfr()</a></code>.</p>
 <p><code>dir_info()</code> is equivalent to <code>ls -l</code> and a shortcut for
 <code><a href='file_info.html'>file_info(dir_ls())</a></code>.</p>
 <p><code>dir_map()</code> applies a function <code>fun()</code> to each entry in the path and returns
@@ -137,16 +139,17 @@ the result in a list.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>dir_ls</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>dir_ls</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>,
+  <span class='no'>recursive</span>)
 
-<span class='fu'>dir_map</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+<span class='fu'>dir_map</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+<span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
   <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -161,9 +164,9 @@ the result in a list.</p>
       <td><p>If <code>TRUE</code> hidden files are also returned.</p></td>
     </tr>
     <tr>
-      <th>recursive</th>
-      <td><p>Should directories be listed recursively?
-the filenames.</p></td>
+      <th>recurse</th>
+      <td><p>If <code>TRUE</code> recurse fully, if a positive number the number of levels
+to recurse.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -192,6 +195,10 @@ accessed.</p></td>
       <td><p>Additional arguments passed to <a href='https://www.rdocumentation.org/packages/base/topics/grep'>grep</a>.</p></td>
     </tr>
     <tr>
+      <th>recursive</th>
+      <td><p>(Deprecated) If <code>TRUE</code> recurse fully.</p></td>
+    </tr>
+    <tr>
       <th>fun</th>
       <td><p>A function, taking one parameter, the current path entry.</p></td>
     </tr>
@@ -211,7 +218,7 @@ accessed.</p></td>
 <span class='co'># Create a shorter link</span>
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"base"</span>)
 
-<span class='fu'>dir_ls</span>(<span class='st'>"base"</span>, <span class='kw'>recursive</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>base/demo/error.catching.R</span><span> </span><span style='color: #00BB00;'>base/demo/is.things.R</span><span>      
+<span class='fu'>dir_ls</span>(<span class='st'>"base"</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*.R"</span>)</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>base/demo/error.catching.R</span><span> </span><span style='color: #00BB00;'>base/demo/is.things.R</span><span>      
 #&gt; </span><span style='color: #00BB00;'>base/demo/recursion.R</span><span>      </span><span style='color: #00BB00;'>base/demo/scoping.R</span><span>        </div><div class='input'>
 <span class='fu'>dir_map</span>(<span class='st'>"base"</span>, <span class='no'>identity</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "base/CITATION"
@@ -246,20 +253,19 @@ accessed.</p></td>
 #&gt;  chr "base/help"
 #&gt;  chr "base/html"</div><div class='input'>
 <span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 8 x 18</span><span>
-#&gt;   path             type    size permissions modification_time   user  group
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fs::path&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fs::&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fs::perms&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> base/CITATION    file     956 rw-r--r--   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> base/DESCRIPTION file     286 rw-r--r--   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> base/INDEX       file   23.3K rw-rw-r--   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/Meta</span><span>        dire…     4K rwxrwxr-x   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/R</span><span>           dire…     4K rwxrwxr-x   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/demo</span><span>        dire…     4K rwxrwxr-x   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/help</span><span>        dire…     4K rwxrwxr-x   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/html</span><span>        dire…     4K rwxrwxr-x   2019-01-04 </span><span style='color: #949494;'>18:17:54</span><span> trav… trav…
-#&gt; </span><span style='color: #949494;'># … with 11 more variables: device_id </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, hard_links </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   special_device_id </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, inode </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, block_size </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, blocks </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   flags </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span style='color: #949494;'>, generation </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, access_time </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #949494;'>, change_time </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #949494;'>,
-#&gt; #   birth_time </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span></div><div class='input'>
+#&gt;   path       type    size permissions modification_time   user  group device_id
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fs::path&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fs::&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fs::perms&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> base/CITA… file     956 rw-r--r--   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> base/DESC… file     286 rw-r--r--   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> base/INDEX file   23.4K rw-rw-r--   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/Meta</span><span>  dire…     4K rwxrwxr-x   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/R</span><span>     dire…     4K rwxrwxr-x   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/demo</span><span>  dire…     4K rwxrwxr-x   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>7</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/help</span><span>  dire…     4K rwxrwxr-x   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #BCBCBC;'>8</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/html</span><span>  dire…     4K rwxrwxr-x   2019-04-29 </span><span style='color: #949494;'>14:22:44</span><span> trav… trav…      </span><span style='text-decoration: underline;'>2</span><span>049
+#&gt; </span><span style='color: #949494;'># … with 10 more variables: hard_links </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, special_device_id </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   inode </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, block_size </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, blocks </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, flags </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span style='color: #949494;'>, generation </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
+#&gt; #   access_time </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #949494;'>, change_time </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #949494;'>, birth_time </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span></div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"base"</span>)</div></span></pre>
   </div>
