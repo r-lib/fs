@@ -24,6 +24,8 @@ test_that("dir_create fails silently if the directory or link exists and fails i
 })
 
 test_that("dir_create fails with EACCES if it cannot create the directory", {
+  skip_on_os("windows")
+
   with_dir_tree("foo", {
     # Set current directly as read-only
     file_chmod(".", "u-w")
