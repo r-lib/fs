@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.3.0
 
 ## Breaking changes
 
