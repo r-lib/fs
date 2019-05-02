@@ -25,6 +25,8 @@ Links do not have mode; they inherit the mode of the file they link to.}
 \item{recurse}{should intermediate directories be created if they do not
 exist?}
 
+\item{recursive}{(Deprecated) If \code{TRUE} recurse fully.}
+
 \item{new_path}{The path where the link should be created.}
 
 \item{symbolic}{Boolean value determining if the link should be a symbolic

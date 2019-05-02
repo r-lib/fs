@@ -12,6 +12,7 @@
 #'   Links do not have mode; they inherit the mode of the file they link to.
 #' @param recurse should intermediate directories be created if they do not
 #'   exist?
+#' @param recursive (Deprecated) If `TRUE` recurse fully.
 #' @param ... Additional arguments passed to [path()]
 #' @return The path to the created object (invisibly).
 #' @name create
