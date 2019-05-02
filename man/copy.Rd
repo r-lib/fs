@@ -9,7 +9,7 @@
 \usage{
 file_copy(path, new_path, overwrite = FALSE)
 
-dir_copy(path, new_path)
+dir_copy(path, new_path, overwrite = FALSE)
 
 link_copy(path, new_path, overwrite = FALSE)
 }
@@ -30,6 +30,11 @@ The new path (invisibly).
 \code{link_copy()} creates a new link pointing to the same location as the previous link.
 
 \code{dir_copy()} copies the directory recursively at the new location.
+}
+\details{
+The behavior of \code{dir_copy()} differs slightly than that of \code{file.copy()} when
+\code{overwrite = TRUE}. The directory will always be copied to \code{new_path}, even
+if the name differs from the basename of \code{path}.
 }
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}

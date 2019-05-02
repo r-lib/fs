@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `dir_copy()` gains a `overwrite` argument, to overwrite a given directory
+  (@pasipasi123, #193)
 * `path_file()`, `path_dir()` and `path_ext()` now return normal character
   vectors rather than tidy paths (#194).
 
