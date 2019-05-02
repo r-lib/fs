@@ -1,4 +1,4 @@
-This release fixes reported rchk errors.
+This release fixes test failures with strict latin-1 locales.
 
 ## Test environments
 * local OS X install, R 3.5.1
