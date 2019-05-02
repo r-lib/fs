@@ -1,13 +1,16 @@
 # fs (development version)
 
-* `dir_copy()` gains a `overwrite` argument, to overwrite a given directory
-  (@pasipasi123, #193)
 ## Breaking changes
 
 * `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `dir_tree()` gain a
   `recurse` argument, which can be either a `TRUE` or `FALSE` (as was supported
   previously) _or_ a number of levels to recurse. The previous argument
   `recursive` has been deprecated.
+
+## New features
+
+* `dir_copy()` gains a `overwrite` argument, to overwrite a given directory
+  (@pasipasi123, #193)
 
 ## Minor improvements and fixes
 
