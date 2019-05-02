@@ -2,15 +2,19 @@
 
 * `dir_copy()` gains a `overwrite` argument, to overwrite a given directory
   (@pasipasi123, #193)
+## Breaking changes
+
+* `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `dir_tree()` gain a
+  `recurse` argument, which can be either a `TRUE` or `FALSE` or a number of
+  levels to recurse. The previous argument `recursive` has been deprecated.
+
+## Minor improvements and fixes
+
 * `path_file()`, `path_dir()` and `path_ext()` now return normal character
   vectors rather than tidy paths (#194).
 
 * `fs_path` objects now always show 10 characters by default when printed in
   tibbles (#191).
-
-* `dir_ls()`, `dir_map()`, `dir_walk()`, `dir_info()` and `dir_tree()` gain a
-  `recurse` argument, which can be either a `TRUE` or `FALSE` or a number of
-  levels to recurse. The previous argument `recursive` has been removed.
 
 * `path_package()` now works with paths in development packages automatically
   (#175).

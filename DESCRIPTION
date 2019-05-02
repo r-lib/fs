@@ -35,4 +35,6 @@ Suggests:
     rmarkdown,
     knitr,
     withr,
+    spelling
 VignetteBuilder: knitr
+Language: en-US

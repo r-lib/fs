@@ -83,7 +83,7 @@ base R functions:
   - never have multiple `/` or trailing `/`
 
 Tidy paths are also coloured (if your terminal supports it) based on the
-file permissions and file type. This colouring can be customised or extended by
+file permissions and file type. This colouring can be customized or extended by
 setting the `LS_COLORS` environment variable, in the same output format as [GNU
 dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors).
 

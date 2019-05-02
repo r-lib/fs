@@ -1,5 +1,5 @@
 ---
-title: "Comparision of fs functions, base R, and shell commands"
+title: "Comparison of fs functions, base R, and shell commands"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{base vs fs}
