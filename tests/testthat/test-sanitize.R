@@ -88,7 +88,7 @@ test_string_fs <- function(str, tmpdir) {
   expect_equal(path_dir(path("/abs/path", sanitized)), "/abs/path")
 
   # Should write and read file to disk
-  expect_equal(path_dir(path_tidy(filepath)), tmpdir)
+  expect_equal(path_dir(path_tidy(filepath)), as.character(tmpdir))
   expect_error_free(
     writeLines("foobar", filepath))
   expect_equal(readLines(filepath), "foobar")

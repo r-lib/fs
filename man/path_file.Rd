@@ -33,6 +33,10 @@ path. \code{path_ext_remove()} removes the last extension and returns the rest o
 the path. \code{path_ext_set()} replaces the extension with a new extension. If
 there is no existing extension the new extension is appended.
 }
+\details{
+Note because these are not full file paths they return regular character
+vectors, not \code{fs_path()} objects.
+}
 \examples{
 path_file("dir/file.zip")
 

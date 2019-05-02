@@ -318,6 +318,9 @@ path_home_r <- function(...) {
 #' path. `path_ext_remove()` removes the last extension and returns the rest of
 #' the path. `path_ext_set()` replaces the extension with a new extension. If
 #' there is no existing extension the new extension is appended.
+#'
+#' Note because these are not full file paths they return regular character
+#' vectors, not `fs_path()` objects.
 #' @template fs
 #' @param ext,value The new file extension.
 #' @seealso [base::basename()], [base::dirname()]
@@ -339,7 +342,7 @@ path_home_r <- function(...) {
 path_file <- function(path) {
   is_missing <- is.na(path)
   path[!is_missing] <- basename(path[!is_missing])
-  path_tidy(path)
+  as.character(path)
 }
 
 #' @rdname path_file
@@ -347,7 +350,7 @@ path_file <- function(path) {
 path_dir <- function(path) {
   is_missing <- is.na(path)
   path[!is_missing] <- dirname(path[!is_missing])
-  path_tidy(path)
+  as.character(path_tidy(path))
 }
 
 #' @rdname path_file

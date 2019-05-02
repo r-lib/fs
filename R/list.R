@@ -2,7 +2,8 @@
 #'
 #' @description
 #' `dir_ls()` is equivalent to the `ls` command. It returns filenames as a
-#' `fs_path` character vector.
+#' named `fs_path` character vector. The names are equivalent to the values,
+#' which is useful for passing onto functions like [purrr::map_dfr()].
 #'
 #' `dir_info()` is equivalent to `ls -l` and a shortcut for
 #' `file_info(dir_ls())`.

@@ -48,7 +48,8 @@ accessed.}
 }
 \description{
 \code{dir_ls()} is equivalent to the \code{ls} command. It returns filenames as a
-\code{fs_path} character vector.
+named \code{fs_path} character vector. The names are equivalent to the values,
+which is useful for passing onto functions like \code{\link[purrr:map_dfr]{purrr::map_dfr()}}.
 
 \code{dir_info()} is equivalent to \code{ls -l} and a shortcut for
 \code{file_info(dir_ls())}.

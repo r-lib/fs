@@ -226,6 +226,9 @@ describe("path_ext", {
     expect_equal(path_ext("f\U00F6\U00F6.txt"), "txt")
     expect_equal(path_ext("f\U00F6\U00F6.t\U00E4r"), "t\U00E4r")
   })
+  it("returns a normal character vector", {
+    expect_equal(class(path_dir("foo.sh")), "character")
+  })
 })
 
 describe("path_ext_remove", {
@@ -471,6 +474,9 @@ describe("path_dir", {
     expect_equal(path_dir(NA_character_), NA_character_)
     expect_equal(path_dir(c("foo/bar", NA)), c("foo", NA_character_))
   })
+  it("returns a normal character vector", {
+    expect_equal(class(path_dir("foo/bar")), "character")
+  })
 })
 
 describe("path_file", {
@@ -482,6 +488,9 @@ describe("path_file", {
   it("propagates NAs", {
     expect_equal(path_file(NA_character_), NA_character_)
     expect_equal(path_file(c("foo/bar", NA)), c("bar", NA_character_))
+  })
+  it("returns a normal character vector", {
+    expect_equal(class(path_dir("foo/bar")), "character")
   })
 })
 
