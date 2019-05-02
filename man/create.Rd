@@ -9,7 +9,7 @@
 \usage{
 file_create(path, ..., mode = "u=rw,go=r")
 
-dir_create(path, ..., mode = "u=rwx,go=rx", recurse = TRUE)
+dir_create(path, ..., mode = "u=rwx,go=rx", recurse = TRUE, recursive)
 
 link_create(path, new_path, symbolic = TRUE)
 }

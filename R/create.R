@@ -45,9 +45,14 @@ file_create <- function(path, ..., mode = "u=rw,go=r") {
 
 #' @export
 #' @rdname create
-dir_create <- function(path, ..., mode = "u=rwx,go=rx", recurse = TRUE) {
+dir_create <- function(path, ..., mode = "u=rwx,go=rx", recurse = TRUE, recursive) {
   assert_no_missing(path)
   assert("`mode` must be of length 1", length(mode) == 1)
+
+  if (!missing(recursive)) {
+    recurse <- recursive
+    warning("`recursive` is deprecated, please use `recurse` instead", immediate. = TRUE, call. = FALSE)
+  }
 
   mode <- as_fs_perms(mode)
   new <- path_expand(path(path, ...))
