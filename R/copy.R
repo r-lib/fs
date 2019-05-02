@@ -6,6 +6,10 @@
 #' `link_copy()` creates a new link pointing to the same location as the previous link.
 #'
 #' `dir_copy()` copies the directory recursively at the new location.
+#' @details
+#' The behavior of `dir_copy()` differs slightly than that of `file.copy()` when
+#' `overwrite = TRUE`. The directory will always be copied to `new_path`, even
+#' if the name differs from the basename of `path`.
 #' @param new_path A character vector of paths to the new locations.
 #' @param overwrite Overwrite files if they exist. If this is `FALSE` and the
 #'   file exists an error will be thrown.

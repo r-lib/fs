@@ -31,6 +31,11 @@ The new path (invisibly).
 
 \code{dir_copy()} copies the directory recursively at the new location.
 }
+\details{
+The behavior of \code{dir_copy()} differs slightly than that of \code{file.copy()} when
+\code{overwrite = TRUE}. The directory will always be copied to \code{new_path}, even
+if the name differs from the basename of \code{path}.
+}
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
 file_create("foo")
