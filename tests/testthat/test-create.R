@@ -42,7 +42,7 @@ test_that("link_create does not modify existing links", {
   dir_create(path(x, "dir2"))
 
   link_create(path(x, "dir1"), path(x, "link"))
-  expect_error(link_create(path(x, "dir2"), path(x, "link")), "file already exists")
+  expect_error(link_create(path(x, "dir2"), path(x, "link")), "file already exists", class = "EEXIST")
   expect_equal(link_path(path(x, "link")), path(x, "dir1"))
 
   expect_error(link_create(NA), class = "invalid_argument")

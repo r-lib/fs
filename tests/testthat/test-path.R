@@ -352,8 +352,8 @@ describe("path_norm", {
 
 describe("path_common", {
   it ("finds the common path", {
-    expect_error(path_common(c("/usr", "usr")), "Can't mix")
-    expect_error(path_common(c("usr", "/usr")), "Can't mix")
+    expect_error(path_common(c("/usr", "usr")), "Can't mix", class = "fs_error")
+    expect_error(path_common(c("usr", "/usr")), "Can't mix", class = "fs_error")
 
     expect_equal(path_common(c("/usr/local")), "/usr/local")
     expect_equal(path_common(c("/usr/local", "/usr/local")), "/usr/local")
@@ -381,7 +381,7 @@ describe("path_common", {
     expect_equal(path_common(c("")), "")
     expect_equal(path_common(c("", "spam/alot")), "")
 
-    expect_error(path_common(c("", "/spam/alot")), "Can't mix")
+    expect_error(path_common(c("", "/spam/alot")), "Can't mix", class = "fs_error")
   })
 
   it("returns NA if any input is NA", {
