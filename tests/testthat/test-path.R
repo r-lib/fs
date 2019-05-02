@@ -445,8 +445,11 @@ describe("path_rel", {
   it("can be reversed by path_abs", {
     f <- file_temp()
     expect_equal(path_abs(path_rel(f)), f)
+
     home <- path_home()
-    expect_equal(path_abs(path_rel(f, start = home), start = home), f)
+    home_f <- path_abs(path_home("../../foo/bar/baz"))
+
+    expect_equal(path_abs(path_rel(home_f, start = home), start = home), home_f)
   })
 })
 
