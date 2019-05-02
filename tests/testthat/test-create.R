@@ -23,6 +23,14 @@ test_that("dir_create fails silently if the directory or link exists and fails i
   })
 })
 
+test_that("dir_create fails with EACCES if it cannot create the directory", {
+  with_dir_tree("foo", {
+    # Set current directly as read-only
+    file_chmod(".", "u-w")
+    expect_error(dir_create("bar"), class = "EACCES")
+  })
+})
+
 test_that("link_create does not modify existing links", {
 
   # Windows does not currently support file based symlinks

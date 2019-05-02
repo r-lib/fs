@@ -14,6 +14,9 @@
 
 ## Minor improvements and fixes
 
+* `dir_create()` now throws a more accurate error message when you try to
+  create a directory in a non-writeable location (#196).
+
 * `fs_path` objects now always show 10 characters by default when printed in
   tibbles (#191).
 

@@ -19,16 +19,23 @@ void mkdir_(CharacterVector path, unsigned short mode) {
 
     int fd = uv_fs_mkdir(uv_default_loop(), &req, p, mode, NULL);
 
-    // We want to fail silently if the directory already exists or if we don't
-    // have permissions to create the directory and it is not the last
-    // directory we are trying to create. (In this case we assume the directory
-    // already exists).
-    uv_dirent_type_t t = get_dirent_type(p);
-    if ((fd == UV_EEXIST && (t == UV_DIRENT_DIR || t == UV_DIRENT_LINK)) ||
-        (fd == UV_EPERM && i < n - 1)) {
+    if (fd == UV_EEXIST) {
+      // Fail silently if the directory already exists
+
+      uv_dirent_type_t t = get_dirent_type(p);
+      if (t == UV_DIRENT_DIR || t == UV_DIRENT_LINK) {
+        uv_fs_req_cleanup(&req);
+        continue;
+      }
+    } else if (fd == UV_EPERM && i < n - 1) {
+      // Fail silently if we do not have permissions to create the directory and
+      // it is not the last directory we are trying to create. (In this case we
+      // assume the directory already exists).
+
       uv_fs_req_cleanup(&req);
       continue;
     }
+
     stop_for_error(req, "Failed to make directory '%s'", p);
   }
 }
