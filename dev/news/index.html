@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.2.7.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.3.0.9000</span>
       </span>
     </div>
 
@@ -115,6 +115,38 @@
       <small>Source: <a href='https://github.com/r-lib/fs/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="fs-1-3-0" class="section level1">
+<h1 class="page-header">
+<a href="#fs-1-3-0" class="anchor"></a>fs 1.3.0<small> 2019-05-02 </small>
+</h1>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<ul>
+<li>
+<code><a href="../reference/dir_ls.html">dir_ls()</a></code>, <code><a href="../reference/dir_ls.html">dir_map()</a></code>, <code><a href="../reference/dir_ls.html">dir_walk()</a></code>, <code><a href="../reference/dir_ls.html">dir_info()</a></code> and <code><a href="../reference/dir_tree.html">dir_tree()</a></code> gain a <code>recurse</code> argument, which can be either a <code>TRUE</code> or <code>FALSE</code> (as was supported previously) <em>or</em> a number of levels to recurse. The previous argument <code>recursive</code> has been deprecated.</li>
+</ul>
+</div>
+<div id="new-features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#new-features" class="anchor"></a>New features</h2>
+<ul>
+<li>
+<code><a href="../reference/copy.html">dir_copy()</a></code> gains a <code>overwrite</code> argument, to overwrite a given directory (<a href='https://github.com/pasipasi123'>@pasipasi123</a>, <a href='https://github.com/r-lib/fs/issues/193'>#193</a>)</li>
+</ul>
+</div>
+<div id="minor-improvements-and-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-improvements-and-fixes" class="anchor"></a>Minor improvements and fixes</h2>
+<ul>
+<li><p><code><a href="../reference/create.html">dir_create()</a></code> now throws a more accurate error message when you try to create a directory in a non-writeable location (<a href='https://github.com/r-lib/fs/issues/196'>#196</a>).</p></li>
+<li><p><code>fs_path</code> objects now always show 10 characters by default when printed in tibbles (<a href='https://github.com/r-lib/fs/issues/191'>#191</a>).</p></li>
+<li><p><code><a href="../reference/path_file.html">path_file()</a></code>, <code><a href="../reference/path_file.html">path_dir()</a></code> and <code><a href="../reference/path_file.html">path_ext()</a></code> now return normal character vectors rather than tidy paths (<a href='https://github.com/r-lib/fs/issues/194'>#194</a>).</p></li>
+<li><p><code><a href="../reference/path_package.html">path_package()</a></code> now works with paths in development packages automatically (<a href='https://github.com/r-lib/fs/issues/175'>#175</a>).</p></li>
+<li><p>tests now pass successfully when run in strict Latin-1 locale</p></li>
+</ul>
+</div>
+</div>
     <div id="fs-1-2-7" class="section level1">
 <h1 class="page-header">
 <a href="#fs-1-2-7" class="anchor"></a>fs 1.2.7<small> 2019-03-19 </small>
@@ -334,6 +366,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#fs-1-3-0">1.3.0</a></li>
         <li><a href="#fs-1-2-7">1.2.7</a></li>
         <li><a href="#fs-1-2-6">1.2.6</a></li>
         <li><a href="#fs-1-2-5">1.2.5</a></li>
