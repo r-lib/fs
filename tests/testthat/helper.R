@@ -10,7 +10,7 @@ with_dir_tree <- function(files, code, base = tempfile()) {
   dir_create(path(base, dirs))
   old_wd <- setwd(base)
   on.exit({
-    unlink(base, recursive = TRUE)
+    unlink(base, recursive = TRUE, force = TRUE)
     setwd(old_wd)
   })
 
