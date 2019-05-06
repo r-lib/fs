@@ -96,7 +96,7 @@ test_string_fs <- function(str, tmpdir) {
 }
 
 test_that("filesystems can read, write and delete sanitized files", {
-  skip_on_cran()
+  skip_if_not_utf8()
   skip_on_os("solaris")
 
  strings <- c(

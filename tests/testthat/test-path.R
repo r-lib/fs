@@ -223,6 +223,8 @@ describe("path_ext", {
     expect_equal(path_ext("foo.bar/baz"), "")
   })
   it ("works with non-ASCII inputs", {
+    skip_if_not_utf8()
+
     expect_equal(path_ext("f\U00F6\U00F6.txt"), "txt")
     expect_equal(path_ext("f\U00F6\U00F6.t\U00E4r"), "t\U00E4r")
   })
@@ -253,8 +255,10 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove("foo.bar/abc"), "foo.bar/abc")
   })
   it ("works with non-ASCII inputs", {
-    expect_equal(path_ext_remove("f\UF6\UF6.txt"), "f\UF6\UF6")
-    expect_equal(path_ext_remove("f\UF6\UF6.t\UE4r"), "f\UF6\UF6")
+    skip_if_not_utf8()
+
+    expect_equal(path_ext_remove("f\U00F6\U00F6.txt"), "f\U00F6\U00F6")
+    expect_equal(path_ext_remove("f\U00F6\U00F6.t\U00E4r"), "f\U00F6\U00F6")
   })
 })
 
@@ -283,8 +287,10 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("foo", ".bar"), "foo.bar")
   })
   it ("works with non-ASCII inputs", {
-    expect_equal(path_ext_set("f\UF6\UF6.txt", "bar"), "f\UF6\UF6.bar")
-    expect_equal(path_ext_set("f\UF6\UF6.t\UE4r", "bar"), "f\UF6\UF6.bar")
+    skip_if_not_utf8()
+
+    expect_equal(path_ext_set("f\U00F6\U00F6.txt", "bar"), "f\U00F6\U00F6.bar")
+    expect_equal(path_ext_set("f\U00F6\U00F6.t\U00E4r", "bar"), "f\U00F6\U00F6.bar")
   })
 })
 
