@@ -1,4 +1,6 @@
-This release fixes test failures with strict latin-1 locales.
+This release fixes test failures with strict latin-1 locales that was missed in
+the previous release. It also fixes a permission issue that made cleaning up
+the temporary directory fail, and a sanitizer issue.
 
 ## Test environments
 * local OS X install, R 3.5.1
