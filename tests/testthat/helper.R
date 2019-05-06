@@ -25,3 +25,7 @@ with_dir_tree <- function(files, code, base = tempfile()) {
 expect_error_free <- function(...) {
   expect_error(..., regexp = NA)
 }
+
+skip_if_not_utf8 <- function() {
+  skip_if_not(l10n_info()$`UTF-8`)
+}

@@ -125,7 +125,3 @@ fs_error <- function(msg, class = "invalid_argument") {
 lengths <- function(x) {
   vapply(x, length, integer(1))
 }
-
-skip_if_not_utf8 <- function() {
-  skip_if_not(l10n_info()$`UTF-8`)
-}
