@@ -23,3 +23,8 @@ matrix:
   - r: 3.3
   - r: 3.2
   - r: 3.1
+  - name: String Latin-1 locale
+    r: release
+    before_script:
+      - sudo locale-gen en_US
+      - export LC_ALL=en_US
