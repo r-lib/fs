@@ -57,9 +57,14 @@ void dir_map(
     const char* path,
     bool all,
     int file_type,
-    size_t recurse,
+    int recurse,
     CollectorList* value,
     bool fail) {
+
+  if (recurse < 0) {
+    recurse = std::numeric_limits<int>::max();
+  }
+
   uv_fs_t req;
   uv_fs_scandir(uv_default_loop(), &req, path, 0, NULL);
 
@@ -113,7 +118,7 @@ List dir_map_(
     Function fun,
     bool all,
     IntegerVector type,
-    size_t recurse,
+    int recurse,
     bool fail) {
   int file_type = INTEGER(type)[0];
 

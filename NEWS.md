@@ -1,5 +1,7 @@
 # fs (development version)
 
+* Fix undefined behavior when casting -1 to `size_t`.
+
 # fs 1.3.0
 
 ## Breaking changes
