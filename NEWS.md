@@ -1,3 +1,5 @@
+# fs (development version)
+
 # fs 1.3.1
 
 * Fix missed test with UTF-8 characters, which now passes on a strict Latin-1 locale.
