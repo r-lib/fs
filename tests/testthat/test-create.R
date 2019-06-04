@@ -6,6 +6,8 @@ test_that("file_create works with new and existing files", {
   expect_true(file_exists(x1))
   expect_error(file_create(x1), NA)
   expect_error(file_create(NA), class = "invalid_argument")
+
+  unlink(x1)
 })
 
 test_that("dir_create works with new and existing files", {
@@ -14,6 +16,16 @@ test_that("dir_create works with new and existing files", {
   expect_true(file_exists(x1))
   expect_error(dir_create(x1), NA)
   expect_error(dir_create(NA), class = "invalid_argument")
+
+  unlink(x1, recursive = TRUE)
+})
+
+test_that("dir_create works with absolute paths and recurse = FALSE (#204)", {
+  x1 <- dir_create(path_abs(tempfile()), recurse = FALSE)
+
+  expect_true(file_exists(x1))
+
+  unlink(x1, recursive = TRUE)
 })
 
 test_that("dir_create fails silently if the directory or link exists and fails if a file exists", {

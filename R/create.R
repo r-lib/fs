@@ -58,9 +58,14 @@ dir_create <- function(path, ..., mode = "u=rwx,go=rx", recurse = TRUE, recursiv
   mode <- as_fs_perms(mode)
   new <- path_expand(path(path, ...))
 
+  if (!isTRUE(recurse)) {
+    mkdir_(path, mode)
+    return(invisible(path_tidy(path)))
+  }
+
   paths <- path_split(new)
   for (p in paths) {
-    if (length(p) == 1 || !isTRUE(recurse)) {
+    if (length(p) == 1) {
       mkdir_(p, mode)
     } else {
       p_paths <- Reduce(get("path", mode = "function"), p, accumulate = TRUE)

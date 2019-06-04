@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
+
 # fs 1.3.1
 
 * Fix missed test with UTF-8 characters, which now passes on a strict Latin-1 locale.
