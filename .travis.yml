@@ -20,9 +20,9 @@ matrix:
         repo: r-lib/fs
         condition: $TRAVIS_BRANCH = master || -n $TRAVIS_TAG
   - r: oldrel
+  - r: 3.4
   - r: 3.3
   - r: 3.2
-  - r: 3.1
   - name: String Latin-1 locale
     r: release
     before_script:
