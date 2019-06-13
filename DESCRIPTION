@@ -31,6 +31,7 @@ Suggests:
     testthat,
     covr,
     pillar (>= 1.0.0),
+    tibble (>= 1.1.0),
     crayon,
     rmarkdown,
     knitr,
