@@ -262,7 +262,7 @@ List stat_(CharacterVector path, bool fail) {
     uv_fs_req_cleanup(&req);
   }
   out.attr("names") = names;
-  out.attr("class") = CharacterVector::create("tbl", "tbl_df", "data.frame");
+  out.attr("class") = CharacterVector::create("data.frame");
   out.attr("row.names") = IntegerVector::create(NA_INTEGER, -i);
 
   return out;
