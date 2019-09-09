@@ -6,6 +6,7 @@
 #'
 #' @export
 dir_tree <- function(path = ".", recurse = TRUE, ...) {
+  path <- path_expand(path)
   files <- dir_ls(path, recurse = recurse, ...)
   by_dir <- split(files, path_dir(files))
 

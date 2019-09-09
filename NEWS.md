@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `dir_tree()` now works with paths that need tilde expansion (@jennybc, #203).
+
 * `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
 
 # fs 1.3.1
