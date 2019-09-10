@@ -30,7 +30,7 @@ dir_tree <- function(path = ".", recurse = TRUE, ...) {
   }
 
   cat(colourise_fs_path(path), "\n", sep = "")
-  print_leaf(path, "")
+  print_leaf(path_expand(path), "")
 
   invisible(files)
 }
