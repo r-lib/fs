@@ -1,6 +1,9 @@
 # fs (development version)
 
 * `dir_tree()` now works with paths that need tilde expansion (@dmurdoch, @jennybc, #203).
+* `is_dir()`, `is_file()`, `is_file_empty()` and `file_info()` gain a `follow`
+  argument, to follow links and return information about the linked file rather
+  than the link itself (#198)
 
 * `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
 

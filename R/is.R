@@ -6,6 +6,7 @@
 #'   to ensure that the path also exists.
 #' @template fs
 #' @importFrom stats setNames
+#' @inheritParams file_info
 #' @export
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}
@@ -23,29 +24,29 @@
 #' # Cleanup
 #' dir_delete("d")
 #' \dontshow{setwd(.old_wd)}
-is_file <- function(path) {
-  res <- file_info(path)
-  setNames(!is.na(res$type) & res$type == "file", res$path)
+is_file <- function(path, follow = TRUE) {
+  res <- file_info(path, follow = follow)
+  setNames(!is.na(res$type) & res$type == "file", path)
 }
 
 #' @rdname is_file
 #' @export
-is_dir <- function(path) {
-  res <- file_info(path)
-  setNames(!is.na(res$type) & res$type == "directory", res$path)
+is_dir <- function(path, follow = TRUE) {
+  res <- file_info(path, follow = follow)
+  setNames(!is.na(res$type) & res$type == "directory", path)
 }
 
 #' @rdname is_file
 #' @export
 is_link <- function(path) {
   res <- file_info(path)
-  setNames(!is.na(res$type) & res$type == "symlink", res$path)
+  setNames(!is.na(res$type) & res$type == "symlink", path)
 }
 
 #' @rdname is_file
 #' @export
-is_file_empty <- function(path) {
-  res <- file_info(path)
+is_file_empty <- function(path, follow = TRUE) {
+  res <- file_info(path, follow = follow)
 
   setNames(!is.na(res$size) & res$size == 0, res$path)
 }

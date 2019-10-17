@@ -1,13 +1,14 @@
 context("test-is.R")
 
 with_dir_tree(list("foo/bar"  = "test"), {
-  link_create(path_abs("foo"), "foo2")
+  link_create(path_abs("foo/bar"), "foo2")
 
   describe("is_file", {
     it("returns true for files, false for non-files, NA if no object exists", {
       expect_true(is_file("foo/bar"))
       expect_false(is_file("foo"))
-      expect_false(is_file("foo2"))
+      expect_false(is_file("foo2", follow = FALSE))
+      expect_true(is_file("foo2", follow = TRUE))
       expect_equal(is_file("baz"), c(baz = FALSE))
     })
   })
@@ -16,7 +17,8 @@ with_dir_tree(list("foo/bar"  = "test"), {
     it("returns true for files, false for non-files, NA if no object exists", {
       expect_true(is_dir("foo"))
       expect_false(is_dir("foo/bar"))
-      expect_false(is_dir("foo2"))
+      expect_false(is_dir("foo2", follow = FALSE))
+      expect_false(is_dir("foo2", follow = TRUE))
       expect_equal(is_dir("baz"), c(baz = FALSE))
     })
   })

@@ -5,6 +5,8 @@
 #' more natural. On systems which do not support all metadata (such as Windows)
 #' default values are used.
 #' @template fs
+#' @param follow If `TRUE`, symbolic links will be followed (recursively) and
+#'   the results will be that of the final file rather than the link.
 #' @inheritParams dir_ls
 #' @return A data.frame with metadata for each file. Columns returned are as follows.
 #'  \item{path}{The input path, as a [fs_path()] character vector.}
@@ -40,7 +42,7 @@
 #' file_delete("mtcars.csv")
 #' \dontshow{setwd(.old_wd)}
 #' @export
-file_info <- function(path, fail = TRUE) {
+file_info <- function(path, fail = TRUE, follow = FALSE) {
   old <- path_expand(path)
 
   res <- stat_(old, fail)
@@ -56,7 +58,15 @@ file_info <- function(path, fail = TRUE) {
   res$birth_time <- .POSIXct(res$birth_time)
 
   important <- c("path", "type", "size", "permissions", "modification_time", "user", "group")
-  res[c(important, setdiff(names(res), important))]
+  res <- res[c(important, setdiff(names(res), important))]
+
+  is_symlink <- !is.na(res$type) & res$type == "symlink"
+  while(follow && any(is_symlink)) {
+    res[is_symlink, ] <- file_info(link_path(path[is_symlink]), fail = fail, follow = FALSE)
+    is_symlink <- !is.na(res$type) & res$type == "symlink"
+  }
+
+  res
 }
 
 #' @export
