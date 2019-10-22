@@ -1,5 +1,8 @@
 # fs (development version)
 
+* fs now passes along CPPFLAGS during compilation of libuv, fixing an issue that could
+  prevent compilation from source on macOS Catalina. (@kevinushey, #229)
+  
 * `dir_tree()` now works with paths that need tilde expansion (@dmurdoch, @jennybc, #203).
 * `is_dir()`, `is_file()`, `is_file_empty()` and `file_info()` gain a `follow`
   argument, to follow links and return information about the linked file rather
