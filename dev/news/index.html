@@ -127,6 +127,7 @@
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p>fs now passes along CPPFLAGS during compilation of libuv, fixing an issue that could prevent compilation from source on macOS Catalina. (<a href='https://github.com/kevinushey'>@kevinushey</a>, <a href='https://github.com/r-lib/fs/issues/229'>#229</a>)</p></li>
 <li>
 <code><a href="../reference/dir_tree.html">dir_tree()</a></code> now works with paths that need tilde expansion (<a href='https://github.com/dmurdoch'>@dmurdoch</a>, <a href='https://github.com/jennybc'>@jennybc</a>, <a href='https://github.com/r-lib/fs/issues/203'>#203</a>).</li>
 <li><p><code><a href="../reference/is_file.html">is_dir()</a></code>, <code><a href="../reference/is_file.html">is_file()</a></code>, <code><a href="../reference/is_file.html">is_file_empty()</a></code> and <code><a href="../reference/file_info.html">file_info()</a></code> gain a <code>follow</code> argument, to follow links and return information about the linked file rather than the link itself (<a href='https://github.com/r-lib/fs/issues/198'>#198</a>)</p></li>
