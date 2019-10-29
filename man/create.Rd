@@ -36,11 +36,11 @@ exist?}
 The path to the created object (invisibly).
 }
 \description{
-These functions ensure that \code{path} exists; if it already exists it will
-be left unchanged. That means that compared to \code{\link[=file.create]{file.create()}},
-\code{file_create()} will not truncate an existing file, and compared to
-\code{\link[=dir.create]{dir.create()}}, \code{dir_create()} will silently ignore
-existing directories.
+The functions \code{file_create()} and \code{dir_create()} ensure that \code{path} exists;
+if it already exists it will be left unchanged. That means that compared to
+\code{\link[=file.create]{file.create()}}, \code{file_create()} will not truncate an existing file, and
+compared to \code{\link[=dir.create]{dir.create()}}, \code{dir_create()} will silently ignore existing
+directories.
 }
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
