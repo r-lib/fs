@@ -36,11 +36,11 @@
 
 
 <meta property="og:title" content="Create files, directories, or links — create" />
-<meta property="og:description" content="These functions ensure that path exists; if it already exists it will
-be left unchanged. That means that compared to file.create(),
-file_create() will not truncate an existing file, and compared to
-dir.create(), dir_create() will silently ignore
-existing directories." />
+<meta property="og:description" content="The functions file_create() and dir_create() ensure that path exists;
+if it already exists it will be left unchanged. That means that compared to
+file.create(), file_create() will not truncate an existing file, and
+compared to dir.create(), dir_create() will silently ignore existing
+directories." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,11 +130,11 @@ existing directories." />
     </div>
 
     <div class="ref-description">
-    <p>These functions ensure that <code>path</code> exists; if it already exists it will
-be left unchanged. That means that compared to <code><a href='https://rdrr.io/r/base/files.html'>file.create()</a></code>,
-<code>file_create()</code> will not truncate an existing file, and compared to
-<code><a href='https://rdrr.io/r/base/files2.html'>dir.create()</a></code>, <code>dir_create()</code> will silently ignore
-existing directories.</p>
+    <p>The functions <code>file_create()</code> and <code>dir_create()</code> ensure that <code>path</code> exists;
+if it already exists it will be left unchanged. That means that compared to
+<code><a href='https://rdrr.io/r/base/files.html'>file.create()</a></code>, <code>file_create()</code> will not truncate an existing file, and
+compared to <code><a href='https://rdrr.io/r/base/files2.html'>dir.create()</a></code>, <code>dir_create()</code> will silently ignore existing
+directories.</p>
     </div>
 
     <pre class="usage"><span class='fu'>file_create</span>(<span class='no'>path</span>, <span class='no'>...</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"u=rw,go=r"</span>)
