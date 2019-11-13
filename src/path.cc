@@ -27,7 +27,7 @@ CharacterVector realize_(CharacterVector path) {
 CharacterVector path_(List paths, const char* ext) {
   R_xlen_t max_row = 0;
   R_xlen_t max_col = Rf_xlength(paths);
-  char buf[1024];
+  char buf[PATH_MAX];
   char* b = buf;
   for (R_xlen_t c = 0; c < max_col; ++c) {
     R_xlen_t len = Rf_xlength(VECTOR_ELT(paths, c));
@@ -50,10 +50,17 @@ CharacterVector path_(List paths, const char* ext) {
           has_na = true;
           break;
         }
+        int str_len = LENGTH(str);
+        int new_len = b - buf + str_len;
+        if (new_len > PATH_MAX) {
+          std::stringstream err;
+          err << "Total path length must be less than PATH_MAX: " << PATH_MAX;
+          throw Rcpp::exception(err.str().c_str(), false);
+        }
 
         const char* s = CHAR(str);
-        strcpy(b, s);
-        b += strlen(s);
+        strncpy(b, s, str_len);
+        b += str_len;
 
         bool trailing_slash =
             (b > buf) && (*(b - 1) == '/' || *(b - 1) == '\\');
