@@ -93,7 +93,7 @@ void dir_map(
     } else {
       name = std::string(path) + '/' + e.name;
     }
-    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type);
+    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type,fail);
     if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
       value->push_back(fun(asCharacterVector(name)));
     }

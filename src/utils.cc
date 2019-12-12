@@ -4,10 +4,13 @@
 // If dirent is not unknown, just return it, otherwise stat the file and get
 // the filetype from that.
 uv_dirent_type_t
-get_dirent_type(const char* path, const uv_dirent_type_t& entry_type) {
+get_dirent_type(const char* path, const uv_dirent_type_t& entry_type,bool fail) {
   if (entry_type == UV_DIRENT_UNKNOWN) {
     uv_fs_t req;
     uv_fs_lstat(uv_default_loop(), &req, path, NULL);
+    if (!fail && warn_for_error(req, "Failed to stat '%s'", path)) {
+      return UV_DIRENT_UNKNOWN;
+    }
     stop_for_error(req, "Failed to stat '%s'", path);
     uv_dirent_type_t type;
     switch (req.statbuf.st_mode & S_IFMT) {
