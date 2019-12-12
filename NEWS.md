@@ -4,6 +4,8 @@
 
 * `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
 
+* fail=FALSE extended to get_dirent_type (@bellma-lilly, #219)
+
 # fs 1.3.1
 
 * Fix missed test with UTF-8 characters, which now passes on a strict Latin-1 locale.
