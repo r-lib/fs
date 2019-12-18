@@ -1,5 +1,7 @@
 # fs (development version)
 
+* Fix compilation issues on alpine linux (#210)
+
 * fs now passes along CPPFLAGS during compilation of libuv, fixing an issue that could
   prevent compilation from source on macOS Catalina. (@kevinushey, #229)
   
