@@ -127,6 +127,7 @@
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code><a href="../reference/file_info.html">file_info()</a></code> now returns file sizes with the proper classes (“fs_bytes” and “numeric”), rather than just “fs_bytes” (<a href='https://github.com/r-lib/fs/issues/239'>#239</a>)</p></li>
 <li><p>Fix compilation issues on alpine linux (<a href='https://github.com/r-lib/fs/issues/210'>#210</a>)</p></li>
 <li><p>fs now passes along CPPFLAGS during compilation of libuv, fixing an issue that could prevent compilation from source on macOS Catalina. (<a href='https://github.com/kevinushey'>@kevinushey</a>, <a href='https://github.com/r-lib/fs/issues/229'>#229</a>)</p></li>
 <li><p><code><a href="../reference/path.html">path()</a></code> now errors if the path given or constructed will exceed <code>PATH_MAX</code> (<a href='https://github.com/r-lib/fs/issues/233'>#233</a>).</p></li>
