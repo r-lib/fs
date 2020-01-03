@@ -1,5 +1,8 @@
 # fs (development version)
 
+* `file_info()` now returns file sizes with the proper classes ("fs_bytes" and
+  "numeric"), rather than just "fs_bytes" (#239)
+
 * Fix compilation issues on alpine linux (#210)
 
 * fs now passes along CPPFLAGS during compilation of libuv, fixing an issue that could
