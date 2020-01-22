@@ -7,16 +7,19 @@
 \alias{is_file_empty}
 \title{Functions to test for file types}
 \usage{
-is_file(path)
+is_file(path, follow = TRUE)
 
-is_dir(path)
+is_dir(path, follow = TRUE)
 
 is_link(path)
 
-is_file_empty(path)
+is_file_empty(path, follow = TRUE)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
+
+\item{follow}{If \code{TRUE}, symbolic links will be followed (recursively) and
+the results will be that of the final file rather than the link.}
 }
 \value{
 A named logical vector, where the names give the paths. If the given

@@ -1,6 +1,6 @@
 #' Sanitize a filename by removing directory paths and invalid characters
 #'
-#' `path_file_sanitize()` removes the following:
+#' `path_sanitize()` removes the following:
 #' - [Control characters](https://en.wikipedia.org/wiki/C0_and_C1_control_codes)
 #' - [Reserved characters](https://kb.acronis.com/content/39790)
 #' - Unix reserved filenames (`.` and `..`)

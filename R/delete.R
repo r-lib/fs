@@ -77,4 +77,16 @@ dir_delete <- function(path) {
 
 #' @rdname delete
 #' @export
-link_delete <- file_delete
+link_delete <- function(path) {
+  assert_no_missing(path)
+
+  assert("`path` must be a link",
+    all(is_link(path))
+  )
+
+  old <- path_expand(path)
+
+  unlink_(old)
+
+  invisible(path_tidy(path))
+}

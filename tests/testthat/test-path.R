@@ -40,6 +40,12 @@ describe("path", {
     # This could be a UNC path, so we keep the doubled path.
     expect_equal(path("//", "foo"), "//foo")
   })
+
+  it("errors on paths which are too long", {
+    expect_error(fs::path(paste(rep("a", 100000), collapse = "")), "less than PATH_MAX")
+
+    expect_error(do.call(fs::path, as.list(rep("a", 100000))), "less than PATH_MAX")
+  })
 })
 
 describe("path_wd", {

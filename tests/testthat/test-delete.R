@@ -72,3 +72,21 @@ describe("dir_delete", {
     expect_error(dir_delete(NA), class = "invalid_argument")
   })
 })
+
+describe("link_delete", {
+  with_dir_tree(list("foo/bar" = "test"), {
+    link_create("foo/bar", "loo")
+    it("returns the input path and deletes the file", {
+      expect_true(file_exists("loo"))
+      expect_equal(link_delete("loo"), "loo")
+      expect_false(file_exists("loo"))
+    })
+    it("errors on missing input", {
+      expect_error(link_delete(NA), class = "invalid_argument")
+    })
+    it("errors on non-link input", {
+      expect_error(link_delete("foo"), class = "invalid_argument")
+      expect_error(link_delete("foo/bar"), class = "invalid_argument")
+    })
+  })
+})

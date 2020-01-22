@@ -25,14 +25,9 @@ all: $(SHLIB)
 
 $(SHLIB): libuv/.libs/libuv.a
 
-libuv/m4/lt~obsolete.m4: libuv/m4/lt_obsolete.m4
-	cp -p -f libuv/m4/lt_obsolete.m4 libuv/m4/lt~obsolete.m4
-
-libuv/Makefile: libuv/m4/lt~obsolete.m4
+libuv/Makefile:
 	(cd libuv \
-		&& touch aclocal.m4 \
-		&& touch -r aclocal.m4 configure Makefile.in \
-	&& CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
+	&& CC="$(CC)" CFLAGS="$(CFLAGS) $(CPPFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
 
 libuv/.libs/libuv.a: libuv/Makefile
 	$(MAKE) --directory=libuv \

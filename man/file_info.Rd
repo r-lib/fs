@@ -5,7 +5,7 @@
 \alias{file_size}
 \title{Query file metadata}
 \usage{
-file_info(path, fail = TRUE)
+file_info(path, fail = TRUE, follow = FALSE)
 
 file_size(path, fail = TRUE)
 }
@@ -14,6 +14,9 @@ file_size(path, fail = TRUE)
 
 \item{fail}{Should the call fail (the default) or warn if a file cannot be
 accessed.}
+
+\item{follow}{If \code{TRUE}, symbolic links will be followed (recursively) and
+the results will be that of the final file rather than the link.}
 }
 \value{
 A data.frame with metadata for each file. Columns returned are as follows.

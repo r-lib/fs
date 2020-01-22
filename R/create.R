@@ -1,10 +1,10 @@
 #' Create files, directories, or links
 #'
-#' These functions ensure that `path` exists; if it already exists it will
-#' be left unchanged. That means that compared to [file.create()],
-#' `file_create()` will not truncate an existing file, and compared to
-#' [dir.create()], `dir_create()` will silently ignore
-#' existing directories.
+#' The functions `file_create()` and `dir_create()` ensure that `path` exists;
+#' if it already exists it will be left unchanged. That means that compared to
+#' [file.create()], `file_create()` will not truncate an existing file, and
+#' compared to [dir.create()], `dir_create()` will silently ignore existing
+#' directories.
 #'
 #' @template fs
 #' @param mode If file/directory is created, what mode should it have?
