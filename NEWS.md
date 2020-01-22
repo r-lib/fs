@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `path_ext_set()` now works with multiple paths (@maurolepore, #208).
+
 * `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
 
 # fs 1.3.1
