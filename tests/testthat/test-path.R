@@ -292,6 +292,10 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("foo", "bar"), "foo.bar")
     expect_equal(path_ext_set("foo", ".bar"), "foo.bar")
   })
+  it ("works with multiple paths (#205)", {
+    multiple_paths <- c("a", "b")
+    expect_equal(path_ext_set(multiple_paths, "csv"), c("a.csv", "b.csv"))
+  })
   it ("works with non-ASCII inputs", {
     skip_if_not_utf8()
 

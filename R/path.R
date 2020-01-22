@@ -390,7 +390,9 @@ path_ext_set <- function(path, ext) {
   has_ext <- nzchar(ext)
   to_set <- !is.na(path) & has_ext
 
-  path[to_set] <- paste0(path_ext_remove(path[to_set]), ".", ext[to_set])
+  path[to_set] <- paste0(
+    path_ext_remove(path[to_set]), ".", rep(ext, sum(to_set))
+  )
 
   path_tidy(path)
 }
