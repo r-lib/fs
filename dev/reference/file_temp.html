@@ -52,6 +52,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115082821-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115082821-1');
+</script>
+
 
   </head>
 
@@ -175,8 +185,8 @@ internal stack, however generally this is done instead by calling
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span>(<span class='st'>"/tmp/filedd461c46df20"</span>)
 
-<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/tmp/Rtmpe8oikR</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /tmp/Rtmpe8oikR/does-not-exist</div><div class='input'>
-<span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(<span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/tmp/Rtmpe8oikR/file2f525bc3b790.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/tmp/Rtmpe8oikR/image2f52273435f0.png</span><span></div><div class='input'>
+<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/tmp/RtmpVJVNh4</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /tmp/RtmpVJVNh4/does-not-exist</div><div class='input'>
+<span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(<span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/tmp/RtmpVJVNh4/file7ffb2158a4ac.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/tmp/RtmpVJVNh4/image7ffb1e6df33.png</span><span></div><div class='input'>
 
 <span class='co'># You can make the temp file paths deterministic</span>
 <span class='fu'>file_temp_push</span>(<span class='no'>letters</span>)
