@@ -48,7 +48,8 @@ NULL
 #' from the current working directory.
 #'
 #' @param ... character vectors, if any values are NA, the result will also be
-#'   NA.
+#'   NA. The paths follow the recycling rules used in the tibble package,
+#'   namely that only length 1 arguments are recycled.
 #' @param ext An optional extension to append to the generated path.
 #' @export
 #' @seealso [path_home()], [path_package()] for functions to construct paths
@@ -58,7 +59,23 @@ NULL
 #'
 #' path("foo", letters[1:3], ext = "txt")
 path <- function(..., ext = "") {
-  path_tidy(path_(lapply(list(...), function(x) enc2utf8(as.character(x))), ext))
+  args <- list(...)
+  assert_recycleable(args)
+
+  path_tidy(path_(lapply(args, function(x) enc2utf8(as.character(x))), ext))
+}
+
+assert_recycleable <- function(x) {
+  if (length(x) == 0) {
+    return()
+  }
+  len <- vapply(x, length, integer(1))
+  max_len <- max(len)
+  different <- which(len != 0 & len != max_len)
+  assert(
+    "path() arguments must have consistent lengths, only values of length one are recycled.",
+    all(len[different] == 1)
+  )
 }
 
 #' @rdname path

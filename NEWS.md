@@ -1,6 +1,7 @@
 # fs (development version)
 
 * `path_ext_set()` now works with multiple paths (@maurolepore, #208).
+* `path()` now follows "tidy" recycling rules, namely only consistent or length 1 inputs are recycled. (#238)
 
 * `file_info()` now returns file sizes with the proper classes ("fs_bytes" and
   "numeric"), rather than just "fs_bytes" (#239)
