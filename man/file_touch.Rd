@@ -4,8 +4,7 @@
 \alias{file_touch}
 \title{Change file access and modification times}
 \usage{
-file_touch(path, access_time = Sys.time(),
-  modification_time = access_time)
+file_touch(path, access_time = Sys.time(), modification_time = access_time)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}

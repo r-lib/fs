@@ -39,7 +39,7 @@ set in the \code{USERPROFILE} environment variable and, if unset, then uses
 
 In contrast \code{\link[base:path.expand]{base::path.expand()}} first checks for \code{R_USER} then \code{HOME},
 which in the default configuration of R on Windows are both set to the user's
-document directory, e.g. \code{C:\\Users\\username\\Documents}.
+document directory, e.g. \verb{C:\\\\Users\\\\username\\\\Documents}.
 \code{\link[base:path.expand]{base::path.expand()}} also does not support \code{~otheruser} syntax on Windows,
 whereas \code{path_expand()} does support this syntax on all systems.
 
@@ -49,8 +49,8 @@ directory used on Windows in other languages, such as
 and \href{https://doc.rust-lang.org/std/env/fn.home_dir.html#windows}{rust}. This
 is also more compatible with external tools such as git and ssh, both of
 which put user-level files in \code{USERPROFILE} by default. It also allows you to
-write portable paths, such as \code{~/Desktop} that points to the Desktop location
-on Windows, MacOS and (most) Linux systems.
+write portable paths, such as \verb{~/Desktop} that points to the Desktop location
+on Windows, macOS and (most) Linux systems.
 
 Users can set the \code{R_FS_HOME} environment variable to override the
 definitions on any platform.

@@ -7,18 +7,47 @@
 \alias{dir_info}
 \title{List files}
 \usage{
-dir_ls(path = ".", all = FALSE, recurse = FALSE, type = "any",
-  glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE, ...,
-  recursive)
+dir_ls(
+  path = ".",
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  glob = NULL,
+  regexp = NULL,
+  invert = FALSE,
+  fail = TRUE,
+  ...,
+  recursive
+)
 
-dir_map(path = ".", fun, all = FALSE, recurse = FALSE,
-  type = "any", fail = TRUE)
+dir_map(
+  path = ".",
+  fun,
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  fail = TRUE
+)
 
-dir_walk(path = ".", fun, all = FALSE, recurse = FALSE,
-  type = "any", fail = TRUE)
+dir_walk(
+  path = ".",
+  fun,
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  fail = TRUE
+)
 
-dir_info(path = ".", all = FALSE, recurse = FALSE, type = "any",
-  regexp = NULL, glob = NULL, fail = TRUE, ...)
+dir_info(
+  path = ".",
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  regexp = NULL,
+  glob = NULL,
+  fail = TRUE,
+  ...
+)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
@@ -31,9 +60,9 @@ to recurse.}
 \item{type}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
 
-\item{glob}{A wildcard aka globbing pattern (e.g. \code{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+\item{glob}{A wildcard aka globbing pattern (e.g. \verb{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
-\item{regexp}{A regular expression (e.g. \code{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+\item{regexp}{A regular expression (e.g. \verb{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
 
 \item{invert}{If \code{TRUE} return files which do \emph{not} match}
 

@@ -11,7 +11,8 @@ path_wd(..., ext = "")
 }
 \arguments{
 \item{...}{character vectors, if any values are NA, the result will also be
-NA.}
+NA. The paths follow the recycling rules used in the tibble package,
+namely that only length 1 arguments are recycled.}
 
 \item{ext}{An optional extension to append to the generated path.}
 }

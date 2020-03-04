@@ -40,7 +40,7 @@ A data.frame with metadata for each file. Columns returned are as follows.
 \item{birth_time}{The time when the inode was created - as a \link{POSIXct} datetime.}
 }
 \description{
-Compared to \code{[file.info]} the full results of a \code{stat(2)} system call are
+Compared to \verb{[file.info]} the full results of a \code{stat(2)} system call are
 returned and some columns are returned as S3 classes to make manipulation
 more natural. On systems which do not support all metadata (such as Windows)
 default values are used.
