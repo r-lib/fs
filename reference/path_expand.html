@@ -8,21 +8,25 @@
 
 <title>Finding the User Home Directory — path_expand • fs</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,9 +34,10 @@
 
 
 
-<meta property="og:title" content="Finding the User Home Directory — path_expand" />
 
+<meta property="og:title" content="Finding the User Home Directory — path_expand" />
 <meta property="og:description" content="
+
 path_expand() performs tilde expansion on a path, replacing instances of
 ~ or ~user with the user's home directory.
 path_home() constructs a path within the expanded users home directory,
@@ -40,8 +45,10 @@ calling it with no arguments can be useful to verify what fs considers the
 home directory.
 path_expand_r() and path_home_r() are equivalents which always use R's
 definition of the home directory.
+
 " />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -53,6 +60,17 @@ definition of the home directory.
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115082821-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-115082821-1');
+</script>
 
 
   </head>
@@ -71,7 +89,7 @@ definition of the home directory.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -79,7 +97,7 @@ definition of the home directory.
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,11 +120,10 @@ definition of the home directory.
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/fs">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,6 +134,7 @@ definition of the home directory.
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -129,7 +147,7 @@ definition of the home directory.
 
     <div class="ref-description">
     
-    <ul>
+<ul>
 <li><p><code>path_expand()</code> performs tilde expansion on a path, replacing instances of
 <code>~</code> or <code>~user</code> with the user's home directory.</p></li>
 <li><p><code>path_home()</code> constructs a path within the expanded users home directory,
@@ -138,7 +156,7 @@ home directory.</p></li>
 <li><p><code>path_expand_r()</code> and <code>path_home_r()</code> are equivalents which always use R's
 definition of the home directory.</p></li>
 </ul>
-    
+
     </div>
 
     <pre class="usage"><span class='fu'>path_expand</span>(<span class='no'>path</span>)
@@ -148,7 +166,7 @@ definition of the home directory.</p></li>
 <span class='fu'>path_home</span>(<span class='no'>...</span>)
 
 <span class='fu'>path_home_r</span>(<span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -161,17 +179,17 @@ definition of the home directory.</p></li>
       <td><p>Additional paths appended to the home directory by <code><a href='path.html'>path()</a></code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>path_expand()</code> differs from <code><a href='https://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code> in the interpretation of
+    <p><code>path_expand()</code> differs from <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> in the interpretation of
 the home directory of Windows. In particular <code>path_expand()</code> uses the path
 set in the <code>USERPROFILE</code> environment variable and, if unset, then uses
 <code>HOMEDRIVE</code>/<code>HOMEPATH</code>.</p>
-<p>In contrast <code><a href='https://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code> first checks for <code>R_USER</code> then <code>HOME</code>,
+<p>In contrast <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> first checks for <code>R_USER</code> then <code>HOME</code>,
 which in the default configuration of R on Windows are both set to the user's
-document directory, e.g. <code>C:\Users\username\Documents</code>.
-<code><a href='https://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code> also does not support <code>~otheruser</code> syntax on Windows,
+document directory, e.g. <code>C:\\Users\\username\\Documents</code>.
+<code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> also does not support <code>~otheruser</code> syntax on Windows,
 whereas <code>path_expand()</code> does support this syntax on all systems.</p>
 <p>This definition makes fs more consistent with the definition of home
 directory used on Windows in other languages, such as
@@ -180,15 +198,13 @@ and <a href='https://doc.rust-lang.org/std/env/fn.home_dir.html#windows'>rust</a
 is also more compatible with external tools such as git and ssh, both of
 which put user-level files in <code>USERPROFILE</code> by default. It also allows you to
 write portable paths, such as <code>~/Desktop</code> that points to the Desktop location
-on Windows, MacOS and (most) Linux systems.</p>
+on Windows, macOS and (most) Linux systems.</p>
 <p>Users can set the <code>R_FS_HOME</code> environment variable to override the
 definitions on any platform.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='https://cran.r-project.org/bin/windows/base/rw-FAQ.html#What-are-HOME-and-working-directories_003f'>R for Windows FAQ - 2.14</a>
-for behavior of <code><a href='https://www.rdocumentation.org/packages/base/topics/path.expand'>base::path.expand()</a></code>.</p></div>
-    
+for behavior of <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Expand a path</span>
@@ -203,16 +219,14 @@ for behavior of <code><a href='https://www.rdocumentation.org/packages/base/topi
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -220,13 +234,16 @@ for behavior of <code><a href='https://www.rdocumentation.org/packages/base/topi
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
