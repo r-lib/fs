@@ -29,7 +29,7 @@ libuv
 lifecycle
 linux
 LPT
-MacOS
+macOS
 magrittr
 nodejs
 pthread
@@ -40,6 +40,7 @@ reproducibility
 signalling
 symlink
 symlinks
+tibble
 tibbles
 tidy’
 tidyverse
@@ -47,3 +48,4 @@ toolchain
 valgrind
 Vectorization
 vectorized
+writeable

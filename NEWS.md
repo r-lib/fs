@@ -8,7 +8,7 @@
 
 * Fix compilation issues on alpine linux (#210)
 
-* fs now passes along CPPFLAGS during compilation of libuv, fixing an issue that could
+* fs now passes along `CPPFLAGS` during compilation of libuv, fixing an issue that could
   prevent compilation from source on macOS Catalina. (@kevinushey, #229)
   
 * `path()` now errors if the path given or constructed will exceed `PATH_MAX` (#233).
@@ -20,7 +20,7 @@
 
 * `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
 
-* fail=FALSE extended to get_dirent_type (@bellma-lilly, #219)
+* `get_dirent_type()` gains a `fail` argument (@bellma-lilly, #219)
 
 # fs 1.3.1
 

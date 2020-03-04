@@ -280,7 +280,7 @@ path_rel <- function(path, start = ".") {
 #' is also more compatible with external tools such as git and ssh, both of
 #' which put user-level files in `USERPROFILE` by default. It also allows you to
 #' write portable paths, such as `~/Desktop` that points to the Desktop location
-#' on Windows, MacOS and (most) Linux systems.
+#' on Windows, macOS and (most) Linux systems.
 #'
 #' Users can set the `R_FS_HOME` environment variable to override the
 #' definitions on any platform.
