@@ -74,6 +74,9 @@ describe("dir_delete", {
 })
 
 describe("link_delete", {
+
+  skip_on_os("windows")
+
   with_dir_tree(list("foo/bar" = "test"), {
     link_create("foo/bar", "loo")
     it("returns the input path and deletes the file", {
