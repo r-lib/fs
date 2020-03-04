@@ -19,10 +19,11 @@ fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
 
 # fs
 
+<!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://tidyverse.org/lifecycle/#maturing)
-[![Travis build status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
+[![R build status](https://github.com/r-lib/fs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/fs/actions)
 [![Coverage status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
+<!-- badges: end -->
 
 <p align="center">
   <img src="https://i.imgur.com/NAux1Xc.png" width = "75%"/>

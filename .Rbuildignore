@@ -28,3 +28,4 @@
 ^CRAN-RELEASE$
 ^revdep$
 ^.*\.tar\.gz$
+^\.github$

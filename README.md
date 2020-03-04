@@ -3,13 +3,14 @@
 
 # fs
 
+<!-- badges: start -->
+
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://tidyverse.org/lifecycle/#maturing)
-[![Travis build
-status](https://travis-ci.org/r-lib/fs.svg?branch=master)](https://travis-ci.org/r-lib/fs)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/r-lib/fs?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/fs)
+[![R build
+status](https://github.com/r-lib/fs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/fs/actions)
 [![Coverage
 status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
+<!-- badges: end -->
 
 <p align="center">
 
@@ -67,8 +68,8 @@ with base R functions:
 
   - Naming convention. **fs** functions use a consistent naming
     convention. Because base R’s functions were gradually added over
-    time there are a number of different conventions used (e.g.
-    `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs
+    time there are a number of different conventions used
+    (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs
     `file.access()`).
 
 ### Tidy paths
@@ -107,21 +108,20 @@ path("foo", "bar", letters[1:3], ext = "txt")
 dir_ls()
 #> DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          
 #> R                README.Rmd       README.md        _pkgdown.yml     
-#> a                appveyor.yml     b                c                
-#> codecov.yml      cran-comments.md docs             fs.Rproj         
-#> fs_1.2.7.tar.gz  inst             man              man-roxygen      
-#> revdep           script.R         src              tests            
-#> top1             top2             vignettes
+#> appveyor.yml     codecov.yml      cran-comments.md docs             
+#> fs.Rcheck        fs.Rproj         inst             man              
+#> man-roxygen      revdep           script.R         src              
+#> tests            vignettes
 
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a698992af
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d157c3b7c
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a698992af/my-file.txt
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d157c3b7c/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -139,22 +139,17 @@ itself. You will need to attach
 
 ``` r
 library(magrittr)
-#> 
-#> Attaching package: 'magrittr'
-#> The following objects are masked from 'package:testthat':
-#> 
-#>     equals, is_less_than, not
 
 paths <- file_temp() %>%
   dir_create() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a21ea91af/a
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a21ea91af/b
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a21ea91af/c
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a21ea91af/d
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/RtmpQMfPEs/file952a21ea91af/e
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/a
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/b
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/c
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/d
+#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/e
 
 paths %>% file_delete()
 ```
@@ -182,17 +177,17 @@ dir_info("src", recursive = FALSE) %>%
 #> # A tibble: 11 x 4
 #>    path                permissions        size modification_time  
 #>    <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#>  1 src/RcppExports.o   rw-r--r--        874.8K 2019-04-02 14:24:08
-#>  2 src/dir.o           rw-r--r--        493.9K 2019-04-02 14:24:08
-#>  3 src/id.o            rw-r--r--        388.8K 2019-03-18 09:33:55
-#>  4 src/fs.so           rwxr-xr-x        367.3K 2019-04-02 14:24:08
-#>  5 src/file.o          rw-r--r--        358.7K 2019-03-18 10:10:35
-#>  6 src/path.o          rw-r--r--        279.9K 2019-03-18 09:33:55
-#>  7 src/link.o          rw-r--r--        227.7K 2019-03-18 09:33:55
-#>  8 src/utils.o         rw-r--r--        127.2K 2019-03-18 11:29:09
-#>  9 src/error.o         rw-r--r--         17.6K 2019-03-18 10:02:15
-#> 10 src/RcppExports.cpp rw-r--r--         12.2K 2019-04-02 14:18:40
-#> 11 src/file.cc         rw-r--r--         10.1K 2019-03-18 10:08:54
+#>  1 src/RcppExports.o   rw-r--r--        973.5K 2020-01-03 13:49:03
+#>  2 src/dir.o           rw-r--r--        535.2K 2020-01-03 13:48:26
+#>  3 src/id.o            rw-r--r--        437.7K 2020-01-03 13:48:26
+#>  4 src/file.o          rw-r--r--        404.4K 2020-01-03 13:49:03
+#>  5 src/fs.so           rwxr-xr-x        398.8K 2020-01-03 13:49:03
+#>  6 src/path.o          rw-r--r--        397.1K 2020-01-03 13:48:26
+#>  7 src/link.o          rw-r--r--          243K 2020-01-03 13:48:26
+#>  8 src/utils.o         rw-r--r--        129.2K 2020-01-03 13:48:26
+#>  9 src/error.o         rw-r--r--         19.6K 2020-01-03 13:48:26
+#> 10 src/RcppExports.cpp rw-r--r--         12.2K 2020-01-03 13:49:03
+#> 11 src/file.cc         rw-r--r--         10.2K 2020-03-03 15:26:28
 ```
 
 Tabulate and display folder size.
@@ -202,20 +197,20 @@ dir_info("src", recursive = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
 #> Warning: `recursive` is deprecated, please use `recurse` instead
-#> # A tibble: 53 x 2
-#>    directory                                        n
-#>    <chr>                                  <fs::bytes>
-#>  1 src                                          3.11M
-#>  2 src/libuv                                    2.43M
-#>  3 src/libuv/src/unix                            1.1M
-#>  4 src/libuv/test                             865.35K
-#>  5 src/libuv/src/win                          683.14K
-#>  6 src/libuv/docs/src/static                   328.3K
-#>  7 src/libuv/m4                               319.95K
-#>  8 src/libuv/include                          192.33K
-#>  9 src/libuv/docs/src/static/diagrams.key     184.02K
-#> 10 src/libuv/src                              181.85K
-#> # … with 43 more rows
+#> # A tibble: 54 x 2
+#>    directory                           n
+#>    <chr>                     <fs::bytes>
+#>  1 src/libuv                       3.92M
+#>  2 src                              3.5M
+#>  3 src/libuv/autom4te.cache        2.44M
+#>  4 src/libuv/src/unix               1.2M
+#>  5 src/libuv/test                865.35K
+#>  6 src/libuv/src/win             683.14K
+#>  7 src/libuv/docs/src/static      328.3K
+#>  8 src/libuv/m4                  319.95K
+#>  9 src/libuv/src                 203.78K
+#> 10 src/libuv/include             192.33K
+#> # … with 44 more rows
 ```
 
 Read a collection of files into one data frame.
