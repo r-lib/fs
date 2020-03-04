@@ -153,18 +153,47 @@ the result in a list.</p>
 <p><code>dir_walk()</code> calls <code>fun</code> for its side-effect and returns the input <code>path</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dir_ls</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>,
-  <span class='no'>recursive</span>)
+    <pre class="usage"><span class='fu'>dir_ls</span>(
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>,
+  <span class='no'>recursive</span>
+)
 
-<span class='fu'>dir_map</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>dir_map</span>(
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='no'>fun</span>,
+  <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
-<span class='fu'>dir_walk</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='no'>fun</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='fu'>dir_walk</span>(
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='no'>fun</span>,
+  <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)
 
-<span class='fu'>dir_info</span>(<span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>, <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
-  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>dir_info</span>(
+  <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>all</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>recurse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"any"</span>,
+  <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fail</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -277,23 +306,23 @@ accessed.</p></td>
 #&gt; 7        base/help directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
 #&gt; 8        base/html directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
 #&gt;    group device_id hard_links special_device_id   inode block_size blocks flags
-#&gt; 1 travis      2049          1                 0 2055373       4096      8     0
-#&gt; 2 travis      2049          1                 0 2055371       4096      8     0
-#&gt; 3 travis      2049          1                 0 2055372       4096     48     0
-#&gt; 4 travis      2049          2                 0 2055364       4096      8     0
-#&gt; 5 travis      2049          2                 0 2055385       4096      8     0
-#&gt; 6 travis      2049          2                 0 2055374       4096      8     0
-#&gt; 7 travis      2049          2                 0 2055379       4096      8     0
-#&gt; 8 travis      2049          2                 0 2055361       4096      8     0
+#&gt; 1 travis      2049          1                 0 2055608       4096      8     0
+#&gt; 2 travis      2049          1                 0 2055606       4096      8     0
+#&gt; 3 travis      2049          1                 0 2055607       4096     48     0
+#&gt; 4 travis      2049          2                 0 2055599       4096      8     0
+#&gt; 5 travis      2049          2                 0 2055620       4096      8     0
+#&gt; 6 travis      2049          2                 0 2055609       4096      8     0
+#&gt; 7 travis      2049          2                 0 2055614       4096      8     0
+#&gt; 8 travis      2049          2                 0 2055596       4096      8     0
 #&gt;   generation         access_time         change_time          birth_time
-#&gt; 1          0 2020-03-04 16:53:07 2020-03-04 16:53:07 2020-03-04 16:53:07
-#&gt; 2          0 2020-03-04 16:56:37 2020-03-04 16:53:07 2020-03-04 16:53:07
-#&gt; 3          0 2020-03-04 16:53:07 2020-03-04 16:53:07 2020-03-04 16:53:07
-#&gt; 4          0 2020-03-04 16:55:00 2020-03-04 16:53:07 2020-03-04 16:53:07
-#&gt; 5          0 2020-03-04 16:55:00 2020-03-04 16:53:08 2020-03-04 16:53:08
-#&gt; 6          0 2020-03-04 16:55:00 2020-03-04 16:53:07 2020-03-04 16:53:07
-#&gt; 7          0 2020-03-04 16:55:00 2020-03-04 16:53:07 2020-03-04 16:53:07
-#&gt; 8          0 2020-03-04 16:55:00 2020-03-04 16:53:07 2020-03-04 16:53:07</div><div class='input'>
+#&gt; 1          0 2020-03-04 19:26:20 2020-03-04 19:26:20 2020-03-04 19:26:20
+#&gt; 2          0 2020-03-04 19:30:01 2020-03-04 19:26:20 2020-03-04 19:26:20
+#&gt; 3          0 2020-03-04 19:26:20 2020-03-04 19:26:20 2020-03-04 19:26:20
+#&gt; 4          0 2020-03-04 19:28:18 2020-03-04 19:26:20 2020-03-04 19:26:20
+#&gt; 5          0 2020-03-04 19:28:18 2020-03-04 19:26:21 2020-03-04 19:26:21
+#&gt; 6          0 2020-03-04 19:28:18 2020-03-04 19:26:20 2020-03-04 19:26:20
+#&gt; 7          0 2020-03-04 19:28:18 2020-03-04 19:26:20 2020-03-04 19:26:20
+#&gt; 8          0 2020-03-04 19:28:18 2020-03-04 19:26:20 2020-03-04 19:26:20</div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"base"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></span></pre>

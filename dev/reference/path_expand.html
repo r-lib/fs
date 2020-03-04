@@ -188,7 +188,7 @@ set in the <code>USERPROFILE</code> environment variable and, if unset, then use
 <code>HOMEDRIVE</code>/<code>HOMEPATH</code>.</p>
 <p>In contrast <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> first checks for <code>R_USER</code> then <code>HOME</code>,
 which in the default configuration of R on Windows are both set to the user's
-document directory, e.g. <code>C:\Users\username\Documents</code>.
+document directory, e.g. <code>C:\\Users\\username\\Documents</code>.
 <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> also does not support <code>~otheruser</code> syntax on Windows,
 whereas <code>path_expand()</code> does support this syntax on all systems.</p>
 <p>This definition makes fs more consistent with the definition of home
@@ -198,7 +198,7 @@ and <a href='https://doc.rust-lang.org/std/env/fn.home_dir.html#windows'>rust</a
 is also more compatible with external tools such as git and ssh, both of
 which put user-level files in <code>USERPROFILE</code> by default. It also allows you to
 write portable paths, such as <code>~/Desktop</code> that points to the Desktop location
-on Windows, MacOS and (most) Linux systems.</p>
+on Windows, macOS and (most) Linux systems.</p>
 <p>Users can set the <code>R_FS_HOME</code> environment variable to override the
 definitions on any platform.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
