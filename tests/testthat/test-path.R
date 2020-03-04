@@ -468,6 +468,8 @@ describe("path_rel", {
   })
 
   it("can be reversed by path_abs", {
+    skip_on_os("windows")
+
     f <- file_temp()
     expect_equal(path_abs(path_rel(f)), f)
 
