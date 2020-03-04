@@ -1,26 +1,25 @@
 # fs (development version)
 
-* `path_ext_set()` now works with multiple paths (@maurolepore, #208).
-* `path()` now follows "tidy" recycling rules, namely only consistent or length 1 inputs are recycled. (#238)
-
-* `file_info()` now returns file sizes with the proper classes ("fs_bytes" and
-  "numeric"), rather than just "fs_bytes" (#239)
-
-* Fix compilation issues on alpine linux (#210)
-
 * fs now passes along `CPPFLAGS` during compilation of libuv, fixing an issue that could
   prevent compilation from source on macOS Catalina. (@kevinushey, #229)
-  
-* `path()` now errors if the path given or constructed will exceed `PATH_MAX` (#233).
 
-* `dir_tree()` now works with paths that need tilde expansion (@dmurdoch, @jennybc, #203).
-* `is_dir()`, `is_file()`, `is_file_empty()` and `file_info()` gain a `follow`
-  argument, to follow links and return information about the linked file rather
-  than the link itself (#198)
+* fs now compiles on alpine linux (#210)
 
 * `dir_create()` now works with absolute paths and `recurse = FALSE` (#204).
 
+* `dir_tree()` now works with paths that need tilde expansion (@dmurdoch, @jennybc, #203).
+
+* `file_info()` now returns file sizes with the proper classes ("fs_bytes" and "numeric"), rather than just "fs_bytes" (#239)
+
 * `get_dirent_type()` gains a `fail` argument (@bellma-lilly, #219)
+
+* `is_dir()`, `is_file()`, `is_file_empty()` and `file_info()` gain a `follow` argument, to follow links and return information about the linked file rather than the link itself (#198)
+
+* `path()` now follows "tidy" recycling rules, namely only consistent or length 1 inputs are recycled. (#238)
+
+* `path()` now errors if the path given or constructed will exceed `PATH_MAX` (#233).
+
+* `path_ext_set()` now works with multiple paths (@maurolepore, #208).
 
 # fs 1.3.1
 
