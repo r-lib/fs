@@ -28,3 +28,4 @@ shlib-clean: clean
 
 clean:
 	$(MAKE) --directory=libuv -f Makefile.mingw clean
+	rm -f $(OBJECTS)
