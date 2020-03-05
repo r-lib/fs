@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.3.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.3.2.9000</span>
       </span>
     </div>
 
@@ -136,19 +136,22 @@
 <h1 class="page-header">
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
+</div>
+    <div id="fs-1-3-2" class="section level1">
+<h1 class="page-header">
+<a href="#fs-1-3-2" class="anchor"></a>fs 1.3.2<small> 2020-03-05 </small>
+</h1>
 <ul>
-<li>
-<code><a href="../reference/path_file.html">path_ext_set()</a></code> now works with multiple paths (<a href='https://github.com/maurolepore'>@maurolepore</a>, <a href='https://github.com/r-lib/fs/issues/208'>#208</a>).</li>
-<li><p><code><a href="../reference/path.html">path()</a></code> now follows “tidy” recycling rules, namely only consistent or length 1 inputs are recycled. (<a href='https://github.com/r-lib/fs/issues/238'>#238</a>)</p></li>
-<li><p><code><a href="../reference/file_info.html">file_info()</a></code> now returns file sizes with the proper classes (“fs_bytes” and “numeric”), rather than just “fs_bytes” (<a href='https://github.com/r-lib/fs/issues/239'>#239</a>)</p></li>
-<li><p>Fix compilation issues on alpine linux (<a href='https://github.com/r-lib/fs/issues/210'>#210</a>)</p></li>
 <li><p>fs now passes along <code>CPPFLAGS</code> during compilation of libuv, fixing an issue that could prevent compilation from source on macOS Catalina. (<a href='https://github.com/kevinushey'>@kevinushey</a>, <a href='https://github.com/r-lib/fs/issues/229'>#229</a>)</p></li>
-<li><p><code><a href="../reference/path.html">path()</a></code> now errors if the path given or constructed will exceed <code>PATH_MAX</code> (<a href='https://github.com/r-lib/fs/issues/233'>#233</a>).</p></li>
-<li>
-<code><a href="../reference/dir_tree.html">dir_tree()</a></code> now works with paths that need tilde expansion (<a href='https://github.com/dmurdoch'>@dmurdoch</a>, <a href='https://github.com/jennybc'>@jennybc</a>, <a href='https://github.com/r-lib/fs/issues/203'>#203</a>).</li>
-<li><p><code><a href="../reference/is_file.html">is_dir()</a></code>, <code><a href="../reference/is_file.html">is_file()</a></code>, <code><a href="../reference/is_file.html">is_file_empty()</a></code> and <code><a href="../reference/file_info.html">file_info()</a></code> gain a <code>follow</code> argument, to follow links and return information about the linked file rather than the link itself (<a href='https://github.com/r-lib/fs/issues/198'>#198</a>)</p></li>
+<li><p>fs now compiles on alpine linux (<a href='https://github.com/r-lib/fs/issues/210'>#210</a>)</p></li>
 <li><p><code><a href="../reference/create.html">dir_create()</a></code> now works with absolute paths and <code>recurse = FALSE</code> (<a href='https://github.com/r-lib/fs/issues/204'>#204</a>).</p></li>
+<li><p><code><a href="../reference/dir_tree.html">dir_tree()</a></code> now works with paths that need tilde expansion (<a href='https://github.com/dmurdoch'>@dmurdoch</a>, <a href='https://github.com/jennybc'>@jennybc</a>, <a href='https://github.com/r-lib/fs/issues/203'>#203</a>).</p></li>
+<li><p><code><a href="../reference/file_info.html">file_info()</a></code> now returns file sizes with the proper classes (“fs_bytes” and “numeric”), rather than just “fs_bytes” (<a href='https://github.com/r-lib/fs/issues/239'>#239</a>)</p></li>
 <li><p><code>get_dirent_type()</code> gains a <code>fail</code> argument (<a href='https://github.com/bellma-lilly'>@bellma-lilly</a>, <a href='https://github.com/r-lib/fs/issues/219'>#219</a>)</p></li>
+<li><p><code><a href="../reference/is_file.html">is_dir()</a></code>, <code><a href="../reference/is_file.html">is_file()</a></code>, <code><a href="../reference/is_file.html">is_file_empty()</a></code> and <code><a href="../reference/file_info.html">file_info()</a></code> gain a <code>follow</code> argument, to follow links and return information about the linked file rather than the link itself (<a href='https://github.com/r-lib/fs/issues/198'>#198</a>)</p></li>
+<li><p><code><a href="../reference/path.html">path()</a></code> now follows “tidy” recycling rules, namely only consistent or length 1 inputs are recycled. (<a href='https://github.com/r-lib/fs/issues/238'>#238</a>)</p></li>
+<li><p><code><a href="../reference/path.html">path()</a></code> now errors if the path given or constructed will exceed <code>PATH_MAX</code> (<a href='https://github.com/r-lib/fs/issues/233'>#233</a>).</p></li>
+<li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> now works with multiple paths (<a href='https://github.com/maurolepore'>@maurolepore</a>, <a href='https://github.com/r-lib/fs/issues/208'>#208</a>).</p></li>
 </ul>
 </div>
     <div id="fs-1-3-1" class="section level1">
@@ -412,6 +415,7 @@
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
         <li><a href="#fs-development-version">development version</a></li>
+        <li><a href="#fs-1-3-2">1.3.2</a></li>
         <li><a href="#fs-1-3-1">1.3.1</a></li>
         <li><a href="#fs-1-3-0">1.3.0</a></li>
         <li><a href="#fs-1-2-7">1.2.7</a></li>
