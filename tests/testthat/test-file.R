@@ -42,7 +42,7 @@ describe("file_size", {
         expect_equal(file_size("foo"), stats::setNames(file_info("foo")$size, "foo"))
         expect_equal(file_size("bar"), stats::setNames(file_info("bar")$size, "bar"))
       })
-      it("returns an object of class fs_bytes, numeric (#4685)", {
+      it("returns an object of class fs_bytes, numeric (#239)", {
         expect_s3_class(file_size("foo"), c("fs_bytes", "numeric"), exact = TRUE)
         expect_s3_class(file_size("foo")[], c("fs_bytes", "numeric"), exact = TRUE)
       })
