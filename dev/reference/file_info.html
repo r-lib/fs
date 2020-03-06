@@ -199,11 +199,11 @@ directory.</p></div>
     <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
 <span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span>(<span class='no'>mtcars</span>, <span class='st'>"mtcars.csv"</span>)
 <span class='fu'>file_info</span>(<span class='st'>"mtcars.csv"</span>)</div><div class='output co'>#&gt;         path type  size permissions   modification_time   user  group device_id
-#&gt; 1 mtcars.csv file 1.74K   rw-rw-r-- 2020-03-05 18:50:33 travis travis      2049
+#&gt; 1 mtcars.csv file 1.74K   rw-rw-r-- 2020-03-06 16:10:45 travis travis      2049
 #&gt;   hard_links special_device_id   inode block_size blocks flags generation
-#&gt; 1          1                 0 2059891       4096      8     0          0
+#&gt; 1          1                 0 2060083       4096      8     0          0
 #&gt;           access_time         change_time          birth_time
-#&gt; 1 2020-03-05 18:50:33 2020-03-05 18:50:33 2020-03-05 18:50:33</div><div class='input'>
+#&gt; 1 2020-03-06 16:10:45 2020-03-06 16:10:45 2020-03-06 16:10:45</div><div class='input'>
 <span class='co'># Files in the working directory modified more than 20 days ago</span>
 <span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'>file_info</span>(<span class='fu'><a href='dir_ls.html'>dir_ls</a></span>())
 <span class='no'>files</span>$<span class='no'>path</span>[<span class='fu'><a href='https://rdrr.io/r/base/difftime.html'>difftime</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span>(), <span class='no'>files</span>$<span class='no'>modification_time</span>, <span class='kw'>units</span> <span class='kw'>=</span> <span class='st'>"days"</span>) <span class='kw'>&gt;</span> <span class='fl'>20</span>]</div><div class='output co'>#&gt; character(0)</div><div class='input'>

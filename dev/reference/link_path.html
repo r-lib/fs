@@ -158,7 +158,7 @@
     <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
 <span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='st'>"foo"</span>), <span class='st'>"bar"</span>)
-<span class='fu'>link_path</span>(<span class='st'>"bar"</span>)</div><div class='output co'>#&gt; /tmp/RtmpBiS9M6/foo</div><div class='input'>
+<span class='fu'>link_path</span>(<span class='st'>"bar"</span>)</div><div class='output co'>#&gt; /tmp/RtmpJY6f1U/foo</div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>file_delete</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></pre>
