@@ -401,14 +401,26 @@ path_ext_remove <- function(path) {
 #' @rdname path_file
 #' @export
 path_ext_set <- function(path, ext) {
+
+  if (!(length(ext) == length(path) || length(ext) == 1)) {
+    stop(fs_error(sprintf(
+          "`path` and `ext` must have consistent lengths, only values of length one are recycled:\n* `path` is length %s\n* `ext` is length %s",
+          length(path), length(ext)
+    )))
+  }
+
   # Remove a leading . if present
   ext <- sub("[.]", "", ext)
 
   has_ext <- nzchar(ext)
   to_set <- !is.na(path) & has_ext
 
+  if (length(ext) == 1) {
+    ext <- rep(ext, sum(to_set))
+  }
+
   path[to_set] <- paste0(
-    path_ext_remove(path[to_set]), ".", rep(ext, sum(to_set))
+    path_ext_remove(path[to_set]), ".", ext
   )
 
   path_tidy(path)

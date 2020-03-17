@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `path_ext_set()` now recycles both the `path` and `ext` arguments (#250).
+
 # fs 1.3.2
 
 * fs now passes along `CPPFLAGS` during compilation of libuv, fixing an issue that could

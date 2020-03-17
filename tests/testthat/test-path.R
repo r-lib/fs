@@ -305,6 +305,13 @@ describe("path_ext_set", {
     multiple_paths <- c("a", "b")
     expect_equal(path_ext_set(multiple_paths, "csv"), c("a.csv", "b.csv"))
   })
+  it ("works with multiple extensions (#250)", {
+    multiple_paths <- c("a", "b")
+    multiple_exts <- c("csv", "tsv")
+    expect_equal(path_ext_set(multiple_paths, multiple_exts), c("a.csv", "b.tsv"))
+
+    expect_error(path_ext_set(multiple_paths, c(multiple_exts, "xls")), class = "fs_error", "consistent lengths")
+  })
   it ("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
