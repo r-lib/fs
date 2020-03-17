@@ -73,7 +73,7 @@ assert_recyclable <- function(x) {
   max_len <- max(len)
   different <- which(len != 0 & len != max_len)
   assert(
-    "path() arguments must have consistent lengths, only values of length one are recycled.",
+    "Arguments must have consistent lengths, only values of length one are recycled.",
     all(len[different] == 1)
   )
 }
@@ -403,10 +403,7 @@ path_ext_remove <- function(path) {
 path_ext_set <- function(path, ext) {
 
   if (!(length(ext) == length(path) || length(ext) == 1)) {
-    stop(fs_error(sprintf(
-          "`path` and `ext` must have consistent lengths, only values of length one are recycled:\n* `path` is length %s\n* `ext` is length %s",
-          length(path), length(ext)
-    )))
+    assert_recyclable(list(path, ext))
   }
 
   # Remove a leading . if present
