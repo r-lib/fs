@@ -424,13 +424,22 @@ describe("path_common", {
 })
 
 describe("path_has_parent", {
-  expect_false(path_has_parent("foo", "bar"))
-  expect_false(path_has_parent("foo", "foo/bar"))
+  it("works on single paths", {
+    expect_false(path_has_parent("foo", "bar"))
+    expect_false(path_has_parent("foo", "foo/bar"))
 
-  expect_false(path_has_parent("/usr/var2/log", "/usr/var"))
+    expect_false(path_has_parent("/usr/var2/log", "/usr/var"))
 
-  expect_true(path_has_parent("foo/bar", "foo"))
-  expect_true(path_has_parent("path/myfiles/myfile", "path/to/files/../../myfiles"))
+    expect_true(path_has_parent("foo/bar", "foo"))
+    expect_true(path_has_parent("path/myfiles/myfile", "path/to/files/../../myfiles"))
+  })
+  it("works with multiple paths", {
+    expect_equal(path_has_parent(c("/a/b/c", "x/y"), "/a/b"), c(TRUE, FALSE))
+
+    expect_equal(path_has_parent("/a/b/c", c("/a/b", "/x/y")), c(TRUE, FALSE))
+
+    expect_error(path_has_parent(c("/a/b/c", "x/y"), c("/a/b", "x/y", "foo/bar")), "consistent lengths", class = "invalid_argument")
+  })
 })
 
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483

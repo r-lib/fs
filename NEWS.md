@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `path_has_parent()` now recycles both the `path` and `parent` arguments (#253).
+
 * `path_ext_set()` now recycles both the `path` and `ext` arguments (#250).
 
 # fs 1.3.2

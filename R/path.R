@@ -60,12 +60,12 @@ NULL
 #' path("foo", letters[1:3], ext = "txt")
 path <- function(..., ext = "") {
   args <- list(...)
-  assert_recycleable(args)
+  assert_recyclable(args)
 
   path_tidy(path_(lapply(args, function(x) enc2utf8(as.character(x))), ext))
 }
 
-assert_recycleable <- function(x) {
+assert_recyclable <- function(x) {
   if (length(x) == 0) {
     return()
   }
@@ -503,5 +503,18 @@ path_has_parent <- function(path, parent) {
   path <- path_abs(path)
   parent <- path_abs(parent)
 
-  identical(path_common(c(path, parent)), parent)
+  res <- logical(length(path))
+
+  assert_recyclable(list(path, parent))
+  if (length(path) == 1) {
+    path <- rep(path, length(parent))
+  }
+
+  if (length(parent) == 1) {
+    parent <- rep(parent, length(path))
+  }
+  for (i in seq_along(path)) {
+    res[[i]] <- identical(path_common(c(path[[i]], parent[[i]]))[[1]], parent[[i]])
+  }
+  res
 }
