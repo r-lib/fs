@@ -53,7 +53,7 @@ describe("path", {
     expect_equal(path("foo", c("bar", "baz")), c("foo/bar", "foo/baz"))
     expect_equal(path(c("foo", "qux"), c("bar", "baz")), c("foo/bar", "qux/baz"))
 
-    expect_error(path(c("foo", "qux", "foo2"), c("bar", "baz")), "arguments must have consistent lengths", class = "invalid_argument")
+    expect_error(path(c("foo", "qux", "foo2"), c("bar", "baz")), "Arguments must have consistent lengths", class = "invalid_argument")
   })
 })
 
