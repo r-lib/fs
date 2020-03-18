@@ -510,8 +510,9 @@ path_has_parent <- function(path, parent) {
   if (length(parent) == 1) {
     parent <- rep(parent, length(path))
   }
+
   for (i in seq_along(path)) {
-    res[[i]] <- identical(path_common(c(path[[i]], parent[[i]]))[[1]], parent[[i]])
+    res[[i]] <- identical(as.character(path_common(c(path[[i]], parent[[i]]))), as.character(parent[[i]]))
   }
   res
 }

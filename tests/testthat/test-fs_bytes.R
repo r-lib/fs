@@ -81,6 +81,13 @@ describe("[.fs_bytes", {
   })
 })
 
+describe("[[.fs_bytes", {
+  it("retains the fs_bytes class", {
+    x <- fs_bytes(c(100, 200, 300))
+    expect_equal(x[[1]], new_fs_bytes(100))
+  })
+})
+
 describe("Ops.fs_bytes", {
   it("errors for unary operators", {
     x <- fs_bytes(c(100, 200, 300))

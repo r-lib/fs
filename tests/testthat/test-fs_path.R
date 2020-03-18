@@ -18,6 +18,11 @@ describe("as_fs_path", {
     expect_error(as_fs_path(1), "no applicable method")
     expect_error(as_fs_path(TRUE), "no applicable method")
   })
+
+  it("preserves the class with both subset and subset2", {
+    expect_is(as_fs_path("foo")[1], "fs_path")
+    expect_is(as_fs_path("foo")[[1]], "fs_path")
+  })
 })
 
 describe("colourise_fs_path", {

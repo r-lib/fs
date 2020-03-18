@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `[[.fs_path`, `[[.fs_bytes` and `[[.fs_perms` now preserve their classes after subsetting (#254).
+
 * `path_has_parent()` now recycles both the `path` and `parent` arguments (#253).
 
 * `path_ext_set()` now recycles both the `path` and `ext` arguments (#250).

@@ -92,6 +92,11 @@ as.character.fs_perms <- format.fs_perms
 }
 
 #' @export
+`[[.fs_perms` <- function(x, i) {
+  new_fs_perms(NextMethod("[["))
+}
+
+#' @export
 as_fs_perms.fs_perms <- function(x, ...) x
 
 #' @export

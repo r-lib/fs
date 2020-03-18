@@ -104,6 +104,11 @@ max.fs_bytes <- function(x, ...) {
 }
 
 #' @export
+`[[.fs_bytes` <- function(x, i) {
+  new_fs_bytes(NextMethod("[["))
+}
+
+#' @export
 # Adapted from Ops.numeric_version
 Ops.fs_bytes <- function (e1, e2) {
   if (nargs() == 1L) {

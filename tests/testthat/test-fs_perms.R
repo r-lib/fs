@@ -34,6 +34,10 @@ describe("as_fs_perms (POSIX)", {
     expect_equal(as_fs_perms("rw-r--r--"), new_fs_perms(420L))
     expect_equal(as_fs_perms(c("rw-r--r--", "rwxrwxrwx")), new_fs_perms(c(420L, 511L)))
   })
+  it("preserves the class with both subset and subset2", {
+    expect_is(as_fs_perms("777")[1], "fs_perms")
+    expect_is(as_fs_perms("777")[[1]], "fs_perms")
+  })
 })
 
 } else {
