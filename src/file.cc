@@ -286,16 +286,18 @@ extern "C" SEXP access_(SEXP path_sxp, SEXP mode_sxp) {
   return out;
 }
 
-// [[Rcpp::export]]
-void chmod_(Rcpp::CharacterVector path, Rcpp::IntegerVector mode) {
-  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+// [[export]]
+extern "C" SEXP chmod_(SEXP path_sxp, SEXP mode_sxp) {
+  for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;
-    const char* p = CHAR(STRING_ELT(path, i));
-    mode_t m = INTEGER(mode)[i];
+    const char* p = CHAR(STRING_ELT(path_sxp, i));
+    mode_t m = INTEGER(mode_sxp)[i];
     uv_fs_chmod(uv_default_loop(), &req, p, m, NULL);
     stop_for_error(req, "Failed to chmod '%s'", p);
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 // [[Rcpp::export]]

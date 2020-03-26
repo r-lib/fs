@@ -124,7 +124,7 @@ file_chmod <- function(path, mode) {
 
   old <- path_expand(path)
 
-  chmod_(old, mode)
+  .Call(chmod_, old, as.integer(mode))
 
   invisible(path_tidy(path))
 }
