@@ -62,7 +62,7 @@ path <- function(..., ext = "") {
   args <- list(...)
   assert_recyclable(args)
 
-  path_tidy(path_(lapply(args, function(x) enc2utf8(as.character(x))), ext))
+  path_tidy(.Call(path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
 }
 
 assert_recyclable <- function(x) {
@@ -156,7 +156,7 @@ path_join <- function(parts) {
     return(path_tidy(""))
   }
   if (is.character(parts)) {
-    return(path_tidy(path_(enc2utf8(parts), "")))
+    return(path_tidy(.Call(path_, as.list(enc2utf8(parts)), "")))
   }
   path_tidy(vapply(parts, path_join, character(1)))
 }

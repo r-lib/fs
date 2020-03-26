@@ -29,10 +29,6 @@ realize_ <- function(path) {
     .Call(`_fs_realize_`, path)
 }
 
-path_ <- function(paths, ext) {
-    .Call(`_fs_path_`, paths, ext)
-}
-
 tidy_ <- function(path) {
     .Call(`_fs_tidy_`, path)
 }
