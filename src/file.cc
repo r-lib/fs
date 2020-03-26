@@ -45,11 +45,14 @@ void move_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path) {
   }
 }
 
-// [[Rcpp::export]]
-void create_(Rcpp::CharacterVector path, unsigned short mode) {
-  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+// [[export]]
+extern "C" SEXP create_(SEXP path_sxp, SEXP mode_sxp) {
+
+  unsigned short mode = INTEGER(mode_sxp)[0];
+
+  for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;
-    const char* p = CHAR(STRING_ELT(path, i));
+    const char* p = CHAR(STRING_ELT(path_sxp, i));
     int fd = uv_fs_open(
         uv_default_loop(), &req, p, UV_FS_O_CREAT | UV_FS_O_WRONLY, mode, NULL);
     stop_for_error(req, "Failed to open '%s'", p);
@@ -59,6 +62,8 @@ void create_(Rcpp::CharacterVector path, unsigned short mode) {
 
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 // [[Rcpp::export]]

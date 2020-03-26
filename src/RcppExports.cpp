@@ -53,17 +53,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// create_
-void create_(Rcpp::CharacterVector path, unsigned short mode);
-RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP modeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
-    create_(path, mode);
-    return R_NilValue;
-END_RCPP
-}
 // stat_
 Rcpp::List stat_(Rcpp::CharacterVector path, bool fail);
 RcppExport SEXP _fs_stat_(SEXP pathSEXP, SEXP failSEXP) {
