@@ -25,10 +25,6 @@ stat_ <- function(path, fail) {
     .Call(`_fs_stat_`, path, fail)
 }
 
-access_ <- function(path, mode) {
-    .Call(`_fs_access_`, path, mode)
-}
-
 chmod_ <- function(path, mode) {
     invisible(.Call(`_fs_chmod_`, path, mode))
 }
