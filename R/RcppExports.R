@@ -9,10 +9,6 @@ rmdir_ <- function(path) {
     invisible(.Call(`_fs_rmdir_`, path))
 }
 
-dir_map_ <- function(path, fun, all, type, recurse, fail) {
-    .Call(`_fs_dir_map_`, path, fun, all, type, recurse, fail)
-}
-
 move_ <- function(path, new_path) {
     invisible(.Call(`_fs_move_`, path, new_path))
 }
