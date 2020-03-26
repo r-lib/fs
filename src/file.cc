@@ -318,8 +318,8 @@ extern "C" SEXP chmod_(SEXP path_sxp, SEXP mode_sxp) {
   return R_NilValue;
 }
 
-// [[Rcpp::export]]
-void unlink_(Rcpp::CharacterVector path) {
+// [[export]]
+extern "C" SEXP unlink_(SEXP path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -327,6 +327,8 @@ void unlink_(Rcpp::CharacterVector path) {
     stop_for_error(req, "Failed to remove '%s'", p);
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 // [[export]]
