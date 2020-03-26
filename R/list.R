@@ -89,7 +89,7 @@ dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type =
 
   old <- path_expand(path)
 
-  dir_map_(old, fun, all, sum(directory_entry_types[type]), recurse, fail)
+  .Call(dir_map_, old, fun, all, sum(directory_entry_types[type]), as.integer(recurse), fail)
 }
 
 #' @rdname dir_ls

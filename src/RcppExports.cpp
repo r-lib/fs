@@ -26,22 +26,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// dir_map_
-List dir_map_(Rcpp::CharacterVector path, Rcpp::Function fun, bool all, Rcpp::IntegerVector type, int recurse, bool fail);
-RcppExport SEXP _fs_dir_map_(SEXP pathSEXP, SEXP funSEXP, SEXP allSEXP, SEXP typeSEXP, SEXP recurseSEXP, SEXP failSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< Rcpp::Function >::type fun(funSEXP);
-    Rcpp::traits::input_parameter< bool >::type all(allSEXP);
-    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type type(typeSEXP);
-    Rcpp::traits::input_parameter< int >::type recurse(recurseSEXP);
-    Rcpp::traits::input_parameter< bool >::type fail(failSEXP);
-    rcpp_result_gen = Rcpp::wrap(dir_map_(path, fun, all, type, recurse, fail));
-    return rcpp_result_gen;
-END_RCPP
-}
 // move_
 void move_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path);
 RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
