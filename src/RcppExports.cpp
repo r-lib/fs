@@ -154,18 +154,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// getmode_
-unsigned short getmode_(const char* mode_str, unsigned short mode);
-RcppExport SEXP _fs_getmode_(SEXP mode_strSEXP, SEXP modeSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const char* >::type mode_str(mode_strSEXP);
-    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
-    rcpp_result_gen = Rcpp::wrap(getmode_(mode_str, mode));
-    return rcpp_result_gen;
-END_RCPP
-}
 // strmode_
 std::string strmode_(unsigned short mode);
 RcppExport SEXP _fs_strmode_(SEXP modeSEXP) {
@@ -309,40 +297,4 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(tidy_(path));
     return rcpp_result_gen;
 END_RCPP
-}
-
-static const R_CallMethodDef CallEntries[] = {
-    {"_fs_mkdir_", (DL_FUNC) &_fs_mkdir_, 2},
-    {"_fs_rmdir_", (DL_FUNC) &_fs_rmdir_, 1},
-    {"_fs_dir_map_", (DL_FUNC) &_fs_dir_map_, 6},
-    {"_fs_move_", (DL_FUNC) &_fs_move_, 2},
-    {"_fs_create_", (DL_FUNC) &_fs_create_, 2},
-    {"_fs_stat_", (DL_FUNC) &_fs_stat_, 2},
-    {"_fs_access_", (DL_FUNC) &_fs_access_, 2},
-    {"_fs_chmod_", (DL_FUNC) &_fs_chmod_, 2},
-    {"_fs_unlink_", (DL_FUNC) &_fs_unlink_, 1},
-    {"_fs_copyfile_", (DL_FUNC) &_fs_copyfile_, 3},
-    {"_fs_chown_", (DL_FUNC) &_fs_chown_, 3},
-    {"_fs_touch_", (DL_FUNC) &_fs_touch_, 3},
-    {"_fs_cleanup_", (DL_FUNC) &_fs_cleanup_, 0},
-    {"_fs_getmode_", (DL_FUNC) &_fs_getmode_, 2},
-    {"_fs_strmode_", (DL_FUNC) &_fs_strmode_, 1},
-    {"_fs_file_code_", (DL_FUNC) &_fs_file_code_, 2},
-    {"_fs_getpwnam_", (DL_FUNC) &_fs_getpwnam_, 1},
-    {"_fs_getgrnam_", (DL_FUNC) &_fs_getgrnam_, 1},
-    {"_fs_groups_", (DL_FUNC) &_fs_groups_, 0},
-    {"_fs_users_", (DL_FUNC) &_fs_users_, 0},
-    {"_fs_link_create_hard_", (DL_FUNC) &_fs_link_create_hard_, 2},
-    {"_fs_link_create_symbolic_", (DL_FUNC) &_fs_link_create_symbolic_, 2},
-    {"_fs_readlink_", (DL_FUNC) &_fs_readlink_, 1},
-    {"_fs_realize_", (DL_FUNC) &_fs_realize_, 1},
-    {"_fs_path_", (DL_FUNC) &_fs_path_, 2},
-    {"_fs_expand_", (DL_FUNC) &_fs_expand_, 2},
-    {"_fs_tidy_", (DL_FUNC) &_fs_tidy_, 1},
-    {NULL, NULL, 0}
-};
-
-RcppExport void R_init_fs(DllInfo *dll) {
-    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
 }
