@@ -5,16 +5,6 @@
 
 using namespace Rcpp;
 
-// unlink_
-void unlink_(Rcpp::CharacterVector path);
-RcppExport SEXP _fs_unlink_(SEXP pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    unlink_(path);
-    return R_NilValue;
-END_RCPP
-}
 // users_
 Rcpp::List users_();
 RcppExport SEXP _fs_users_() {
