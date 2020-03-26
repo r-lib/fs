@@ -7,9 +7,9 @@
 #include "utils.h"
 #include <libgen.h>
 
-// [[Rcpp::export]]
-Rcpp::CharacterVector realize_(Rcpp::CharacterVector path) {
-  Rcpp::CharacterVector out = Rcpp::CharacterVector(path.size());
+// [[export]]
+extern "C" SEXP realize_(SEXP path) {
+  SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
     uv_fs_t req;
@@ -19,8 +19,11 @@ Rcpp::CharacterVector realize_(Rcpp::CharacterVector path) {
     SET_STRING_ELT(out, i, Rf_mkChar((const char*)req.ptr));
     uv_fs_req_cleanup(&req);
   }
+
+  UNPROTECT(1);
   return out;
 }
+
 // [[export]]
 extern "C" SEXP path_(SEXP paths, SEXP ext_sxp) {
   R_xlen_t max_row = 0;

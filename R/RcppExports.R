@@ -21,10 +21,6 @@ users_ <- function() {
     .Call(`_fs_users_`)
 }
 
-realize_ <- function(path) {
-    .Call(`_fs_realize_`, path)
-}
-
 tidy_ <- function(path) {
     .Call(`_fs_tidy_`, path)
 }

@@ -101,13 +101,13 @@ path_real <- function(path) {
   exists <- file_exists(path) == TRUE
 
   # Realize all paths which fully exist
-  old[!is_missing & exists] <- realize_(old[!is_missing & exists])
+  old[!is_missing & exists] <- .Call(realize_, old[!is_missing & exists])
 
   # Handle paths which only partially exist
   realize_one <- function(splits) {
     paths <- Reduce(fs::path, splits, accumulate = TRUE)
     last_link <- which.max(is_link(paths))
-    path(realize_(paths[last_link]), path_join(splits[seq(last_link + 1, length(splits))]))
+    path(.Call(realize_, paths[last_link]), path_join(splits[seq(last_link + 1, length(splits))]))
   }
 
   partial <- !is_missing & !exists

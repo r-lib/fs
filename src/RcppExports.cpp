@@ -59,17 +59,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// realize_
-Rcpp::CharacterVector realize_(Rcpp::CharacterVector path);
-RcppExport SEXP _fs_realize_(SEXP pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(realize_(path));
-    return rcpp_result_gen;
-END_RCPP
-}
 // tidy_
 Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_tidy_(SEXP pathSEXP) {
