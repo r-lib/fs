@@ -69,7 +69,7 @@ extern "C" SEXP groups_() {
   SEXP ids_sxp = PROTECT(Rf_allocVector(INTSXP, ids.size()));
   SEXP group_names_sxp = PROTECT(Rf_allocVector(STRSXP, names.size()));
 
-  for (R_xlen_t i = 0; i < ids.size(); ++i) {
+  for (size_t i = 0; i < ids.size(); ++i) {
     INTEGER(ids_sxp)[i] = ids[i];
     SET_STRING_ELT(group_names_sxp, i, Rf_mkChar(names[i].c_str()));
   }
@@ -113,7 +113,7 @@ extern "C" SEXP users_() {
   SEXP ids_sxp = PROTECT(Rf_allocVector(INTSXP, ids.size()));
   SEXP user_names_sxp = PROTECT(Rf_allocVector(STRSXP, names.size()));
 
-  for (R_xlen_t i = 0; i < ids.size(); ++i) {
+  for (size_t i = 0; i < ids.size(); ++i) {
     INTEGER(ids_sxp)[i] = ids[i];
     SET_STRING_ELT(user_names_sxp, i, Rf_mkChar(names[i].c_str()));
   }

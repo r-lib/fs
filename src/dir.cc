@@ -7,6 +7,8 @@
 #include "Rinternals.h"
 #include "error.h"
 #include "utils.h"
+#include <cstring>
+#include <limits>
 
 // [[export]]
 extern "C" SEXP mkdir_(SEXP path, SEXP mode_sxp) {

@@ -150,11 +150,11 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
   }
 
   if (is.character(user_id)) {
-    user_id <- getpwnam_(user_id)
+    user_id <- .Call(getpwnam_, user_id)
   }
 
   if (is.character(group_id)) {
-    group_id <- getgrnam_(group_id)
+    group_id <- .Call(getgrnam_, group_id)
   }
 
   .Call(chown_, old, as.integer(user_id), as.integer(group_id))
