@@ -13,6 +13,8 @@
 
 #include <sys/stat.h>
 
+#include <cstdlib>
+
 extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
   const char* mode_str = CHAR(STRING_ELT(mode_str_sxp, 0));
   unsigned short mode = INTEGER(mode_sxp)[0];
