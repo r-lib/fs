@@ -196,7 +196,7 @@ std::string strmode__(mode_t mode) {
 }
 #define S_IFLNK 0120000
 
-std::string file_code__(std::string path, mode_t mode) {
+std::string file_code__(std::string path, unsigned short mode) {
   switch (mode & S_IFMT) {
   case S_IFDIR:
     return "di";
