@@ -53,10 +53,6 @@ cleanup_ <- function() {
     invisible(.Call(`_fs_cleanup_`))
 }
 
-getmode_ <- function(mode_str, mode) {
-    .Call(`_fs_getmode_`, mode_str, mode)
-}
-
 strmode_ <- function(mode) {
     .Call(`_fs_strmode_`, mode)
 }

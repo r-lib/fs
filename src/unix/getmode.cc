@@ -13,7 +13,15 @@
 
 #include <sys/stat.h>
 
-unsigned short getmode_(const char* mode_str, unsigned short mode) {
+extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
+  const char* mode_str = CHAR(STRING_ELT(mode_str_sxp, 0));
+  unsigned short mode = INTEGER(mode_sxp)[0];
+  unsigned short res = getmode__(mode_str, mode);
+
+  return Rf_ScalarInteger(res);
+}
+
+unsigned short getmode__(const char* mode_str, unsigned short mode) {
   void* out = setmode(mode_str);
   if (out == NULL) {
     // TODO: use stop_for_error here
