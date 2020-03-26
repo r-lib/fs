@@ -157,7 +157,7 @@ file_chown <- function(path, user_id = NULL, group_id = NULL) {
     group_id <- getgrnam_(group_id)
   }
 
-  chown_(old, user_id, group_id)
+  .Call(chown_, old, as.integer(user_id), as.integer(group_id))
 
   invisible(path_tidy(path))
 }
