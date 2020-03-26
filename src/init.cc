@@ -35,7 +35,7 @@ extern SEXP strmode_(SEXP);
 extern SEXP tidy_(SEXP);
 extern SEXP touch_(SEXP, SEXP, SEXP);
 extern SEXP unlink_(SEXP);
-extern SEXP _fs_users_();
+extern SEXP users_();
 extern SEXP getmode_(SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
@@ -63,7 +63,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"tidy_", (DL_FUNC)&tidy_, 1},
     {"touch_", (DL_FUNC)&touch_, 3},
     {"unlink_", (DL_FUNC)&unlink_, 1},
-    {"_fs_users_", (DL_FUNC)&_fs_users_, 0},
+    {"users_", (DL_FUNC)&users_, 0},
     {"getmode_", (DL_FUNC)&getmode_, 2},
     {"strmode_", (DL_FUNC)&strmode_, 1},
     {NULL, NULL, 0}};
