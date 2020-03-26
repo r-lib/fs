@@ -5,10 +5,6 @@ unlink_ <- function(path) {
     invisible(.Call(`_fs_unlink_`, path))
 }
 
-touch_ <- function(path, atime, mtime) {
-    invisible(.Call(`_fs_touch_`, path, atime, mtime))
-}
-
 users_ <- function() {
     .Call(`_fs_users_`)
 }
