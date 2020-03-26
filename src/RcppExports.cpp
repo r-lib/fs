@@ -76,17 +76,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// chmod_
-void chmod_(Rcpp::CharacterVector path, Rcpp::IntegerVector mode);
-RcppExport SEXP _fs_chmod_(SEXP pathSEXP, SEXP modeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type mode(modeSEXP);
-    chmod_(path, mode);
-    return R_NilValue;
-END_RCPP
-}
 // unlink_
 void unlink_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_unlink_(SEXP pathSEXP) {
