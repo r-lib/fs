@@ -17,10 +17,6 @@ move_ <- function(path, new_path) {
     invisible(.Call(`_fs_move_`, path, new_path))
 }
 
-create_ <- function(path, mode) {
-    invisible(.Call(`_fs_create_`, path, mode))
-}
-
 stat_ <- function(path, fail) {
     .Call(`_fs_stat_`, path, fail)
 }

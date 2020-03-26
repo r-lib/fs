@@ -40,7 +40,7 @@ file_create <- function(path, ..., mode = "u=rw,go=r") {
   mode <- as_fs_perms(mode)
   new <- path_expand(path(path, ...))
 
-  create_(new, mode)
+  .Call(create_, new, as.integer(mode))
   invisible(path_tidy(path))
 }
 
