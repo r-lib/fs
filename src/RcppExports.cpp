@@ -110,15 +110,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// cleanup_
-void cleanup_();
-RcppExport SEXP _fs_cleanup_() {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    cleanup_();
-    return R_NilValue;
-END_RCPP
-}
 // getpwnam_
 Rcpp::IntegerVector getpwnam_(Rcpp::CharacterVector name);
 RcppExport SEXP _fs_getpwnam_(SEXP nameSEXP) {
