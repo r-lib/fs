@@ -21,7 +21,7 @@ extern SEXP expand_(SEXP, SEXP);
 extern SEXP file_code_(SEXP, SEXP);
 extern SEXP getgrnam_(SEXP);
 extern SEXP getpwnam_(SEXP);
-extern SEXP _fs_groups_();
+extern SEXP groups_();
 extern SEXP _fs_link_create_hard_(SEXP, SEXP);
 extern SEXP _fs_link_create_symbolic_(SEXP, SEXP);
 extern SEXP _fs_mkdir_(SEXP, SEXP);
@@ -50,7 +50,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"file_code_", (DL_FUNC)&file_code_, 2},
     {"getgrnam_", (DL_FUNC)&getgrnam_, 1},
     {"getpwnam_", (DL_FUNC)&getpwnam_, 1},
-    {"_fs_groups_", (DL_FUNC)&_fs_groups_, 0},
+    {"groups_", (DL_FUNC)&groups_, 0},
     {"_fs_link_create_hard_", (DL_FUNC)&_fs_link_create_hard_, 2},
     {"_fs_link_create_symbolic_", (DL_FUNC)&_fs_link_create_symbolic_, 2},
     {"_fs_mkdir_", (DL_FUNC)&_fs_mkdir_, 2},

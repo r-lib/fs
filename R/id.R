@@ -15,7 +15,7 @@
 #' # list first 6 users
 #' head(user_ids())
 group_ids <- function() {
-  res <- groups_()
+  res <- .Call(groups_)
   res <- unique(res[order(res$group_id), ])
   row.names(res) <- NULL
   res
