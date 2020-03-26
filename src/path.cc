@@ -21,8 +21,8 @@ Rcpp::CharacterVector realize_(Rcpp::CharacterVector path) {
   }
   return out;
 }
-// [[Rcpp::export]]
-Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext) {
+// [[export]]
+extern "C" SEXP path_(SEXP paths, SEXP ext_sxp) {
   R_xlen_t max_row = 0;
   R_xlen_t max_col = Rf_xlength(paths);
   char buf[PATH_MAX];
@@ -30,13 +30,16 @@ Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext) {
   for (R_xlen_t c = 0; c < max_col; ++c) {
     R_xlen_t len = Rf_xlength(VECTOR_ELT(paths, c));
     if (len == 0) {
-      return Rcpp::CharacterVector();
+      return Rf_allocVector(STRSXP, 0);
     }
     if (len > max_row) {
       max_row = len;
     }
   }
-  Rcpp::CharacterVector out(max_row);
+
+  const char* ext = CHAR(STRING_ELT(ext_sxp, 0));
+
+  SEXP out = PROTECT(Rf_allocVector(STRSXP, max_row));
   for (R_xlen_t r = 0; r < max_row; ++r) {
     bool has_na = false;
     b = buf;
@@ -51,9 +54,9 @@ Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext) {
         int str_len = LENGTH(str);
         int new_len = b - buf + str_len;
         if (new_len > PATH_MAX) {
-          std::stringstream err;
-          err << "Total path length must be less than PATH_MAX: " << PATH_MAX;
-          throw Rcpp::exception(err.str().c_str(), false);
+          UNPROTECT(1);
+          Rf_error(
+              "Total path length must be less than PATH_MAX: %i", PATH_MAX);
         }
 
         const char* s = CHAR(str);
@@ -68,7 +71,7 @@ Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext) {
       }
     }
     if (has_na) {
-      out[r] = NA_STRING;
+      SET_STRING_ELT(out, r, NA_STRING);
     } else {
       if (strlen(ext) > 0) {
         *b++ = '.';
@@ -76,9 +79,12 @@ Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext) {
         b += strlen(ext) + 1;
       }
       *b = '\0';
-      out[r] = Rf_mkCharCE(buf, CE_UTF8);
+      SET_STRING_ELT(out, r, Rf_mkCharCE(buf, CE_UTF8));
     }
   }
+
+  UNPROTECT(1);
+
   return out;
 }
 

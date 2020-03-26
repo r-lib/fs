@@ -81,18 +81,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// path_
-Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext);
-RcppExport SEXP _fs_path_(SEXP pathsSEXP, SEXP extSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::List >::type paths(pathsSEXP);
-    Rcpp::traits::input_parameter< const char* >::type ext(extSEXP);
-    rcpp_result_gen = Rcpp::wrap(path_(paths, ext));
-    return rcpp_result_gen;
-END_RCPP
-}
 // tidy_
 Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_tidy_(SEXP pathSEXP) {
