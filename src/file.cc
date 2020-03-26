@@ -17,10 +17,8 @@
 
 #include <inttypes.h>
 
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-void move_(CharacterVector path, CharacterVector new_path) {
+void move_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -48,7 +46,7 @@ void move_(CharacterVector path, CharacterVector new_path) {
 }
 
 // [[Rcpp::export]]
-void create_(CharacterVector path, unsigned short mode) {
+void create_(Rcpp::CharacterVector path, unsigned short mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -64,7 +62,7 @@ void create_(CharacterVector path, unsigned short mode) {
 }
 
 // [[Rcpp::export]]
-List stat_(CharacterVector path, bool fail) {
+Rcpp::List stat_(Rcpp::CharacterVector path, bool fail) {
   // typedef struct {
   //  uint64_t st_dev;
   //  uint64_t st_mode;
@@ -85,8 +83,8 @@ List stat_(CharacterVector path, bool fail) {
 
   R_xlen_t n = Rf_xlength(path);
 
-  List out = List(18);
-  CharacterVector names = CharacterVector(18);
+  Rcpp::List out = Rcpp::List(18);
+  Rcpp::CharacterVector names = Rcpp::CharacterVector(18);
 
   SET_STRING_ELT(names, 0, Rf_mkChar("path"));
   SET_VECTOR_ELT(out, 0, Rf_duplicate(path));
@@ -262,15 +260,15 @@ List stat_(CharacterVector path, bool fail) {
     uv_fs_req_cleanup(&req);
   }
   out.attr("names") = names;
-  out.attr("class") = CharacterVector::create("data.frame");
-  out.attr("row.names") = IntegerVector::create(NA_INTEGER, -i);
+  out.attr("class") = Rcpp::CharacterVector::create("data.frame");
+  out.attr("row.names") = Rcpp::IntegerVector::create(NA_INTEGER, -i);
 
   return out;
 }
 
 // [[Rcpp::export]]
-LogicalVector access_(CharacterVector path, int mode) {
-  LogicalVector out = LogicalVector(Rf_xlength(path));
+Rcpp::LogicalVector access_(Rcpp::CharacterVector path, int mode) {
+  Rcpp::LogicalVector out = Rcpp::LogicalVector(Rf_xlength(path));
   Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path));
 
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
@@ -284,7 +282,7 @@ LogicalVector access_(CharacterVector path, int mode) {
 }
 
 // [[Rcpp::export]]
-void chmod_(CharacterVector path, IntegerVector mode) {
+void chmod_(Rcpp::CharacterVector path, Rcpp::IntegerVector mode) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -296,7 +294,7 @@ void chmod_(CharacterVector path, IntegerVector mode) {
 }
 
 // [[Rcpp::export]]
-void unlink_(CharacterVector path) {
+void unlink_(Rcpp::CharacterVector path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -307,7 +305,10 @@ void unlink_(CharacterVector path) {
 }
 
 // [[Rcpp::export]]
-void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite) {
+void copyfile_(
+    Rcpp::CharacterVector path,
+    Rcpp::CharacterVector new_path,
+    bool overwrite) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -325,7 +326,7 @@ void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite) {
 }
 
 // [[Rcpp::export]]
-void chown_(CharacterVector path, int uid, int gid) {
+void chown_(Rcpp::CharacterVector path, int uid, int gid) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -336,7 +337,7 @@ void chown_(CharacterVector path, int uid, int gid) {
 }
 
 // [[Rcpp::export]]
-void touch_(CharacterVector path, double atime, double mtime) {
+void touch_(Rcpp::CharacterVector path, double atime, double mtime) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));

@@ -7,11 +7,9 @@
 #include "utils.h"
 #include <libgen.h>
 
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-CharacterVector realize_(CharacterVector path) {
-  CharacterVector out = CharacterVector(path.size());
+Rcpp::CharacterVector realize_(Rcpp::CharacterVector path) {
+  Rcpp::CharacterVector out = Rcpp::CharacterVector(path.size());
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
     uv_fs_t req;
@@ -24,7 +22,7 @@ CharacterVector realize_(CharacterVector path) {
   return out;
 }
 // [[Rcpp::export]]
-CharacterVector path_(List paths, const char* ext) {
+Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext) {
   R_xlen_t max_row = 0;
   R_xlen_t max_col = Rf_xlength(paths);
   char buf[PATH_MAX];
@@ -32,13 +30,13 @@ CharacterVector path_(List paths, const char* ext) {
   for (R_xlen_t c = 0; c < max_col; ++c) {
     R_xlen_t len = Rf_xlength(VECTOR_ELT(paths, c));
     if (len == 0) {
-      return CharacterVector();
+      return Rcpp::CharacterVector();
     }
     if (len > max_row) {
       max_row = len;
     }
   }
-  CharacterVector out(max_row);
+  Rcpp::CharacterVector out(max_row);
   for (R_xlen_t r = 0; r < max_row; ++r) {
     bool has_na = false;
     b = buf;
@@ -161,8 +159,8 @@ std::string expand_windows(const char* p) {
 }
 
 // [[Rcpp::export]]
-CharacterVector expand_(CharacterVector path, bool windows) {
-  CharacterVector out = CharacterVector(path.size());
+Rcpp::CharacterVector expand_(Rcpp::CharacterVector path, bool windows) {
+  Rcpp::CharacterVector out = Rcpp::CharacterVector(path.size());
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
     if (STRING_ELT(path, i) == R_NaString) {
@@ -181,8 +179,8 @@ CharacterVector expand_(CharacterVector path, bool windows) {
 }
 
 // [[Rcpp::export]]
-CharacterVector tidy_(CharacterVector path) {
-  CharacterVector out = CharacterVector(path.size());
+Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path) {
+  Rcpp::CharacterVector out = Rcpp::CharacterVector(path.size());
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
     if (STRING_ELT(path, i) == R_NaString) {

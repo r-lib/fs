@@ -6,36 +6,36 @@
 using namespace Rcpp;
 
 // mkdir_
-void mkdir_(CharacterVector path, unsigned short mode);
+void mkdir_(Rcpp::CharacterVector path, unsigned short mode);
 RcppExport SEXP _fs_mkdir_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     mkdir_(path, mode);
     return R_NilValue;
 END_RCPP
 }
 // rmdir_
-void rmdir_(CharacterVector path);
+void rmdir_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_rmdir_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     rmdir_(path);
     return R_NilValue;
 END_RCPP
 }
 // dir_map_
-List dir_map_(CharacterVector path, Function fun, bool all, IntegerVector type, int recurse, bool fail);
+List dir_map_(Rcpp::CharacterVector path, Rcpp::Function fun, bool all, Rcpp::IntegerVector type, int recurse, bool fail);
 RcppExport SEXP _fs_dir_map_(SEXP pathSEXP, SEXP funSEXP, SEXP allSEXP, SEXP typeSEXP, SEXP recurseSEXP, SEXP failSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< Function >::type fun(funSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::Function >::type fun(funSEXP);
     Rcpp::traits::input_parameter< bool >::type all(allSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type type(typeSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type type(typeSEXP);
     Rcpp::traits::input_parameter< int >::type recurse(recurseSEXP);
     Rcpp::traits::input_parameter< bool >::type fail(failSEXP);
     rcpp_result_gen = Rcpp::wrap(dir_map_(path, fun, all, type, recurse, fail));
@@ -43,90 +43,90 @@ BEGIN_RCPP
 END_RCPP
 }
 // move_
-void move_(CharacterVector path, CharacterVector new_path);
+void move_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path);
 RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
     move_(path, new_path);
     return R_NilValue;
 END_RCPP
 }
 // create_
-void create_(CharacterVector path, unsigned short mode);
+void create_(Rcpp::CharacterVector path, unsigned short mode);
 RcppExport SEXP _fs_create_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
     create_(path, mode);
     return R_NilValue;
 END_RCPP
 }
 // stat_
-List stat_(CharacterVector path, bool fail);
+Rcpp::List stat_(Rcpp::CharacterVector path, bool fail);
 RcppExport SEXP _fs_stat_(SEXP pathSEXP, SEXP failSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< bool >::type fail(failSEXP);
     rcpp_result_gen = Rcpp::wrap(stat_(path, fail));
     return rcpp_result_gen;
 END_RCPP
 }
 // access_
-LogicalVector access_(CharacterVector path, int mode);
+Rcpp::LogicalVector access_(Rcpp::CharacterVector path, int mode);
 RcppExport SEXP _fs_access_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< int >::type mode(modeSEXP);
     rcpp_result_gen = Rcpp::wrap(access_(path, mode));
     return rcpp_result_gen;
 END_RCPP
 }
 // chmod_
-void chmod_(CharacterVector path, IntegerVector mode);
+void chmod_(Rcpp::CharacterVector path, Rcpp::IntegerVector mode);
 RcppExport SEXP _fs_chmod_(SEXP pathSEXP, SEXP modeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type mode(modeSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type mode(modeSEXP);
     chmod_(path, mode);
     return R_NilValue;
 END_RCPP
 }
 // unlink_
-void unlink_(CharacterVector path);
+void unlink_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_unlink_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     unlink_(path);
     return R_NilValue;
 END_RCPP
 }
 // copyfile_
-void copyfile_(CharacterVector path, CharacterVector new_path, bool overwrite);
+void copyfile_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path, bool overwrite);
 RcppExport SEXP _fs_copyfile_(SEXP pathSEXP, SEXP new_pathSEXP, SEXP overwriteSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
     Rcpp::traits::input_parameter< bool >::type overwrite(overwriteSEXP);
     copyfile_(path, new_path, overwrite);
     return R_NilValue;
 END_RCPP
 }
 // chown_
-void chown_(CharacterVector path, int uid, int gid);
+void chown_(Rcpp::CharacterVector path, int uid, int gid);
 RcppExport SEXP _fs_chown_(SEXP pathSEXP, SEXP uidSEXP, SEXP gidSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< int >::type uid(uidSEXP);
     Rcpp::traits::input_parameter< int >::type gid(gidSEXP);
     chown_(path, uid, gid);
@@ -134,11 +134,11 @@ BEGIN_RCPP
 END_RCPP
 }
 // touch_
-void touch_(CharacterVector path, double atime, double mtime);
+void touch_(Rcpp::CharacterVector path, double atime, double mtime);
 RcppExport SEXP _fs_touch_(SEXP pathSEXP, SEXP atimeSEXP, SEXP mtimeSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< double >::type atime(atimeSEXP);
     Rcpp::traits::input_parameter< double >::type mtime(mtimeSEXP);
     touch_(path, atime, mtime);
@@ -190,29 +190,29 @@ BEGIN_RCPP
 END_RCPP
 }
 // getpwnam_
-IntegerVector getpwnam_(CharacterVector name);
+Rcpp::IntegerVector getpwnam_(Rcpp::CharacterVector name);
 RcppExport SEXP _fs_getpwnam_(SEXP nameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type name(nameSEXP);
     rcpp_result_gen = Rcpp::wrap(getpwnam_(name));
     return rcpp_result_gen;
 END_RCPP
 }
 // getgrnam_
-IntegerVector getgrnam_(CharacterVector name);
+Rcpp::IntegerVector getgrnam_(Rcpp::CharacterVector name);
 RcppExport SEXP _fs_getgrnam_(SEXP nameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type name(nameSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type name(nameSEXP);
     rcpp_result_gen = Rcpp::wrap(getgrnam_(name));
     return rcpp_result_gen;
 END_RCPP
 }
 // groups_
-List groups_();
+Rcpp::List groups_();
 RcppExport SEXP _fs_groups_() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -222,7 +222,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // users_
-List users_();
+Rcpp::List users_();
 RcppExport SEXP _fs_users_() {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -232,80 +232,80 @@ BEGIN_RCPP
 END_RCPP
 }
 // link_create_hard_
-void link_create_hard_(CharacterVector path, CharacterVector new_path);
+void link_create_hard_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path);
 RcppExport SEXP _fs_link_create_hard_(SEXP pathSEXP, SEXP new_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
     link_create_hard_(path, new_path);
     return R_NilValue;
 END_RCPP
 }
 // link_create_symbolic_
-void link_create_symbolic_(CharacterVector path, CharacterVector new_path);
+void link_create_symbolic_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path);
 RcppExport SEXP _fs_link_create_symbolic_(SEXP pathSEXP, SEXP new_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type new_path(new_pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
     link_create_symbolic_(path, new_path);
     return R_NilValue;
 END_RCPP
 }
 // readlink_
-CharacterVector readlink_(CharacterVector path);
+Rcpp::CharacterVector readlink_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_readlink_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     rcpp_result_gen = Rcpp::wrap(readlink_(path));
     return rcpp_result_gen;
 END_RCPP
 }
 // realize_
-CharacterVector realize_(CharacterVector path);
+Rcpp::CharacterVector realize_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_realize_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     rcpp_result_gen = Rcpp::wrap(realize_(path));
     return rcpp_result_gen;
 END_RCPP
 }
 // path_
-CharacterVector path_(List paths, const char* ext);
+Rcpp::CharacterVector path_(Rcpp::List paths, const char* ext);
 RcppExport SEXP _fs_path_(SEXP pathsSEXP, SEXP extSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type paths(pathsSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type paths(pathsSEXP);
     Rcpp::traits::input_parameter< const char* >::type ext(extSEXP);
     rcpp_result_gen = Rcpp::wrap(path_(paths, ext));
     return rcpp_result_gen;
 END_RCPP
 }
 // expand_
-CharacterVector expand_(CharacterVector path, bool windows);
+Rcpp::CharacterVector expand_(Rcpp::CharacterVector path, bool windows);
 RcppExport SEXP _fs_expand_(SEXP pathSEXP, SEXP windowsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     Rcpp::traits::input_parameter< bool >::type windows(windowsSEXP);
     rcpp_result_gen = Rcpp::wrap(expand_(path, windows));
     return rcpp_result_gen;
 END_RCPP
 }
 // tidy_
-CharacterVector tidy_(CharacterVector path);
+Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_tidy_(SEXP pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< CharacterVector >::type path(pathSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
     rcpp_result_gen = Rcpp::wrap(tidy_(path));
     return rcpp_result_gen;
 END_RCPP
