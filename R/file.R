@@ -217,7 +217,7 @@ file_move <- function(path, new_path) {
 
   new[is_directory] <- path(new[is_directory], basename(old))
 
-  move_(old, new)
+  .Call(move_, old, new)
 
   invisible(path_tidy(new))
 }

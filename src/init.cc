@@ -25,7 +25,7 @@ extern SEXP groups_();
 extern SEXP link_create_hard_(SEXP, SEXP);
 extern SEXP link_create_symbolic_(SEXP, SEXP);
 extern SEXP mkdir_(SEXP, SEXP);
-extern SEXP _fs_move_(SEXP, SEXP);
+extern SEXP move_(SEXP, SEXP);
 extern SEXP _fs_path_(SEXP, SEXP);
 extern SEXP _fs_readlink_(SEXP);
 extern SEXP _fs_realize_(SEXP);
@@ -54,7 +54,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"link_create_hard_", (DL_FUNC)&link_create_hard_, 2},
     {"link_create_symbolic_", (DL_FUNC)&link_create_symbolic_, 2},
     {"mkdir_", (DL_FUNC)&mkdir_, 2},
-    {"_fs_move_", (DL_FUNC)&_fs_move_, 2},
+    {"move_", (DL_FUNC)&move_, 2},
     {"_fs_path_", (DL_FUNC)&_fs_path_, 2},
     {"_fs_readlink_", (DL_FUNC)&_fs_readlink_, 1},
     {"_fs_realize_", (DL_FUNC)&_fs_realize_, 1},
