@@ -304,7 +304,7 @@ path_expand <- function(path) {
   path <- enc2utf8(path)
 
   # We use the windows implementation if R_FS_HOME is set or if on windows
-  path_tidy(expand_(path, Sys.getenv("R_FS_HOME") != "" || is_windows()))
+  path_tidy(.Call(expand_, path, Sys.getenv("R_FS_HOME") != "" || is_windows()))
 }
 
 #' @rdname path_expand
@@ -313,7 +313,7 @@ path_expand_r <- function(path) {
   path <- enc2utf8(path)
 
   # Unconditionally use R_ExpandFileName
-  path_tidy(expand_(path, FALSE))
+  path_tidy(.Call(expand_, path, FALSE))
 }
 
 #' @rdname path_expand
