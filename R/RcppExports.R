@@ -29,10 +29,6 @@ unlink_ <- function(path) {
     invisible(.Call(`_fs_unlink_`, path))
 }
 
-copyfile_ <- function(path, new_path, overwrite) {
-    invisible(.Call(`_fs_copyfile_`, path, new_path, overwrite))
-}
-
 touch_ <- function(path, atime, mtime) {
     invisible(.Call(`_fs_touch_`, path, atime, mtime))
 }

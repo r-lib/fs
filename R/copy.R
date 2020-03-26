@@ -61,7 +61,7 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
 
   new[is_directory] <- path(new[is_directory], basename(old))
 
-  copyfile_(old, new, isTRUE(overwrite))
+  .Call(copyfile_, old, new, isTRUE(overwrite))
 
   invisible(path_tidy(new))
 }
