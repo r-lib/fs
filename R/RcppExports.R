@@ -29,10 +29,6 @@ getpwnam_ <- function(name) {
     .Call(`_fs_getpwnam_`, name)
 }
 
-getgrnam_ <- function(name) {
-    .Call(`_fs_getgrnam_`, name)
-}
-
 groups_ <- function() {
     .Call(`_fs_groups_`)
 }

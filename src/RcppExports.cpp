@@ -82,17 +82,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// getgrnam_
-Rcpp::IntegerVector getgrnam_(Rcpp::CharacterVector name);
-RcppExport SEXP _fs_getgrnam_(SEXP nameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type name(nameSEXP);
-    rcpp_result_gen = Rcpp::wrap(getgrnam_(name));
-    return rcpp_result_gen;
-END_RCPP
-}
 // groups_
 Rcpp::List groups_();
 RcppExport SEXP _fs_groups_() {

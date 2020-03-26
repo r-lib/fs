@@ -25,21 +25,24 @@ Rcpp::IntegerVector getpwnam_(Rcpp::CharacterVector name) {
   return out;
 }
 
-// [[Rcpp::export]]
-Rcpp::IntegerVector getgrnam_(Rcpp::CharacterVector name) {
-  Rcpp::IntegerVector out(Rf_xlength(name));
+// [[export]]
+extern "C" SEXP getgrnam_(SEXP name_sxp) {
+  SEXP out = PROTECT(Rf_allocVector(INTSXP, Rf_xlength(name_sxp)));
+  int* out_p = INTEGER(out);
 
 #ifndef __WIN32
-  for (R_xlen_t i = 0; i < Rf_xlength(name); ++i) {
+  for (R_xlen_t i = 0; i < Rf_xlength(name_sxp); ++i) {
     group* grp;
-    grp = getgrnam(CHAR(STRING_ELT(name, i)));
+    grp = getgrnam(CHAR(STRING_ELT(name_sxp, i)));
     if (grp != NULL) {
-      out[i] = grp->gr_gid;
+      out_p[i] = grp->gr_gid;
     } else {
-      out[i] = NA_INTEGER;
+      out_p[i] = NA_INTEGER;
     }
   }
 #endif
+
+  UNPROTECT(1);
   return out;
 }
 
