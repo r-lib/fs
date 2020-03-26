@@ -266,18 +266,23 @@ Rcpp::List stat_(Rcpp::CharacterVector path, bool fail) {
   return out;
 }
 
-// [[Rcpp::export]]
-Rcpp::LogicalVector access_(Rcpp::CharacterVector path, int mode) {
-  Rcpp::LogicalVector out = Rcpp::LogicalVector(Rf_xlength(path));
-  Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path));
+// [[export]]
+extern "C" SEXP access_(SEXP path_sxp, SEXP mode_sxp) {
 
-  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+  unsigned short mode = INTEGER(mode_sxp)[0];
+
+  SEXP out = PROTECT(Rf_allocVector(LGLSXP, Rf_xlength(path_sxp)));
+  Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path_sxp));
+
+  for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;
-    const char* p = CHAR(STRING_ELT(path, i));
+    const char* p = CHAR(STRING_ELT(path_sxp, i));
     int res = uv_fs_access(uv_default_loop(), &req, p, mode, NULL);
     LOGICAL(out)[i] = res == 0;
     uv_fs_req_cleanup(&req);
   }
+
+  UNPROTECT(1);
   return out;
 }
 
