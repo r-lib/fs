@@ -25,10 +25,6 @@ touch_ <- function(path, atime, mtime) {
     invisible(.Call(`_fs_touch_`, path, atime, mtime))
 }
 
-groups_ <- function() {
-    .Call(`_fs_groups_`)
-}
-
 users_ <- function() {
     .Call(`_fs_users_`)
 }

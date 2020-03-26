@@ -71,16 +71,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// groups_
-Rcpp::List groups_();
-RcppExport SEXP _fs_groups_() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(groups_());
-    return rcpp_result_gen;
-END_RCPP
-}
 // users_
 Rcpp::List users_();
 RcppExport SEXP _fs_users_() {
