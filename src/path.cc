@@ -7,6 +7,7 @@
 #include "utils.h"
 #include <libgen.h>
 
+#include <cstdlib>
 #include <cstring>
 
 // [[export]]
