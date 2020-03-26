@@ -5,16 +5,6 @@
 
 using namespace Rcpp;
 
-// rmdir_
-void rmdir_(Rcpp::CharacterVector path);
-RcppExport SEXP _fs_rmdir_(SEXP pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    rmdir_(path);
-    return R_NilValue;
-END_RCPP
-}
 // stat_
 Rcpp::List stat_(Rcpp::CharacterVector path, bool fail);
 RcppExport SEXP _fs_stat_(SEXP pathSEXP, SEXP failSEXP) {
