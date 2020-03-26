@@ -5,17 +5,6 @@
 
 using namespace Rcpp;
 
-// mkdir_
-void mkdir_(Rcpp::CharacterVector path, unsigned short mode);
-RcppExport SEXP _fs_mkdir_(SEXP pathSEXP, SEXP modeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
-    mkdir_(path, mode);
-    return R_NilValue;
-END_RCPP
-}
 // rmdir_
 void rmdir_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_rmdir_(SEXP pathSEXP) {

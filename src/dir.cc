@@ -8,8 +8,10 @@
 #include "error.h"
 #include "utils.h"
 
-// [[Rcpp::export]]
-void mkdir_(Rcpp::CharacterVector path, unsigned short mode) {
+// [[export]]
+extern "C" SEXP mkdir_(SEXP path, SEXP mode_sxp) {
+  unsigned short mode = INTEGER(mode_sxp)[0];
+
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {
     uv_fs_t req;
@@ -36,6 +38,8 @@ void mkdir_(Rcpp::CharacterVector path, unsigned short mode) {
 
     stop_for_error(req, "Failed to make directory '%s'", p);
   }
+
+  return R_NilValue;
 }
 
 // [[Rcpp::export]]
