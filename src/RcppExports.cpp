@@ -86,18 +86,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// copyfile_
-void copyfile_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path, bool overwrite);
-RcppExport SEXP _fs_copyfile_(SEXP pathSEXP, SEXP new_pathSEXP, SEXP overwriteSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
-    Rcpp::traits::input_parameter< bool >::type overwrite(overwriteSEXP);
-    copyfile_(path, new_path, overwrite);
-    return R_NilValue;
-END_RCPP
-}
 // touch_
 void touch_(Rcpp::CharacterVector path, double atime, double mtime);
 RcppExport SEXP _fs_touch_(SEXP pathSEXP, SEXP atimeSEXP, SEXP mtimeSEXP) {

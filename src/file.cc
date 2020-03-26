@@ -311,15 +311,16 @@ void unlink_(Rcpp::CharacterVector path) {
   }
 }
 
-// [[Rcpp::export]]
-void copyfile_(
-    Rcpp::CharacterVector path,
-    Rcpp::CharacterVector new_path,
-    bool overwrite) {
-  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+// [[export]]
+extern "C" SEXP
+copyfile_(SEXP path_sxp, SEXP new_path_sxp, SEXP overwrite_sxp) {
+
+  bool overwrite = LOGICAL(overwrite_sxp)[0];
+
+  for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;
-    const char* p = CHAR(STRING_ELT(path, i));
-    const char* n = CHAR(STRING_ELT(new_path, i));
+    const char* p = CHAR(STRING_ELT(path_sxp, i));
+    const char* n = CHAR(STRING_ELT(new_path_sxp, i));
     uv_fs_copyfile(
         uv_default_loop(),
         &req,
@@ -330,6 +331,8 @@ void copyfile_(
     stop_for_error2(req, "Failed to copy '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 // [[export]]
