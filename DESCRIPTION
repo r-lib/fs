@@ -16,11 +16,8 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-LinkingTo: 
-    Rcpp
 Imports:
-    methods,
-    Rcpp
+    methods
 SystemRequirements: GNU make
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2

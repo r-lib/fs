@@ -2,12 +2,16 @@
 #define __STDC_FORMAT_MACROS 1
 #endif
 
+#include <Rinternals.h>
+
 #include "getmode.h"
 #include "uv.h"
 
 #undef ERROR
 
-#include "Rcpp.h"
+#include <string>
+#include <vector>
+
 #include "error.h"
 
 #ifndef __WIN32

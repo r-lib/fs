@@ -1,7 +1,10 @@
 #ifndef ERROR_H_
 #define ERROR_H_
 
+#define R_NO_REMAP
 #include <Rinternals.h>
+#undef R_NO_REMAP
+
 #include <stdarg.h>
 
 #undef ERROR

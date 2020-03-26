@@ -1,7 +1,7 @@
 #include "getmode.h"
 #include <sys/stat.h>
 
-#include <Rcpp.h> /* for Rf_error */
+#include <Rinternals.h> /* for Rf_error */
 
 extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
   const char* mode_str = CHAR(STRING_ELT(mode_str_sxp, 0));

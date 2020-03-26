@@ -10,7 +10,7 @@ CFLAGS += -D_WIN32_WINNT=0x0600
 all: $(SHLIB)
 
 SOURCES = $(wildcard *.cc windows/*.cc)
-OBJECTS = $(SOURCES:.cc=.o) RcppExports.o
+OBJECTS = $(SOURCES:.cc=.o)
 
 # Additional flags for libuv borrowed from libuv/Makefile.mingw
 LIBUV_CFLAGS = -Iinclude -Isrc -Isrc/win -DWIN32_LEAN_AND_MEAN -D_WIN32_WINNT=0x0600

@@ -9,7 +9,7 @@
 #include "bsd/unistd.h" /* for getmode / setmode */
 #endif
 
-#include <Rcpp.h> /* for Rf_error */
+#include <Rinternals.h> /* for Rf_error */
 
 #include <sys/stat.h>
 

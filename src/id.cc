@@ -1,4 +1,6 @@
-#include <Rcpp.h>
+#include <Rinternals.h>
+#include <string>
+#include <vector>
 
 #ifndef __WIN32
 #include <grp.h>
