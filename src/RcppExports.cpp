@@ -154,18 +154,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// file_code_
-std::string file_code_(std::string path, unsigned short mode);
-RcppExport SEXP _fs_file_code_(SEXP pathSEXP, SEXP modeSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< unsigned short >::type mode(modeSEXP);
-    rcpp_result_gen = Rcpp::wrap(file_code_(path, mode));
-    return rcpp_result_gen;
-END_RCPP
-}
 // getpwnam_
 Rcpp::IntegerVector getpwnam_(Rcpp::CharacterVector name);
 RcppExport SEXP _fs_getpwnam_(SEXP nameSEXP) {

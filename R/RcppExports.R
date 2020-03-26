@@ -53,10 +53,6 @@ cleanup_ <- function() {
     invisible(.Call(`_fs_cleanup_`))
 }
 
-file_code_ <- function(path, mode) {
-    .Call(`_fs_file_code_`, path, mode)
-}
-
 getpwnam_ <- function(name) {
     .Call(`_fs_getpwnam_`, name)
 }

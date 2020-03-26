@@ -18,8 +18,17 @@ extern "C" SEXP strmode_(SEXP mode_sxp) {
   return Rf_mkString(res.c_str());
 }
 
+extern "C" SEXP file_code_(SEXP path_sxp, SEXP mode_sxp) {
+  std::string path(CHAR(STRING_ELT(path_sxp, 0)));
+  unsigned short mode = INTEGER(mode_sxp)[0];
+
+  std::string res = file_code__(path, mode);
+
+  return Rf_mkString(res.c_str());
+}
+
 /* code adapted from https://cgit.freedesktop.org/libbsd/tree/src/setmode.c */
-unsigned short getmode_(const char* mode_str, unsigned short mode) {
+unsigned short getmode__(const char* mode_str, unsigned short mode) {
   const char* p = mode_str;
   char* ep;
   char op;
@@ -178,7 +187,7 @@ void strmode(mode_t mode, char* p) {
   *p = '\0';
 }
 
-std::string strmode_(mode_t mode) {
+std::string strmode__(mode_t mode) {
   char out[4];
   strmode(mode, out);
 
@@ -187,7 +196,7 @@ std::string strmode_(mode_t mode) {
 }
 #define S_IFLNK 0120000
 
-std::string file_code_(std::string path, mode_t mode) {
+std::string file_code__(std::string path, mode_t mode) {
   switch (mode & S_IFMT) {
   case S_IFDIR:
     return "di";
