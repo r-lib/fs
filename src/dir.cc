@@ -42,8 +42,8 @@ extern "C" SEXP mkdir_(SEXP path, SEXP mode_sxp) {
   return R_NilValue;
 }
 
-// [[Rcpp::export]]
-void rmdir_(Rcpp::CharacterVector path) {
+// [[export]]
+extern "C" SEXP rmdir_(SEXP path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -52,6 +52,8 @@ void rmdir_(Rcpp::CharacterVector path) {
 
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 void dir_map(

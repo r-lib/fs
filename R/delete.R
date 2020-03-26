@@ -70,7 +70,7 @@ dir_delete <- function(path) {
     recurse = TRUE,
     all = TRUE)
   unlink_(files)
-  rmdir_(rev(c(old, dirs)))
+  .Call(rmdir_, rev(c(old, dirs)))
 
   invisible(path_tidy(path))
 }
