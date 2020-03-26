@@ -1,9 +1,8 @@
 #pragma once
 
-//#define R_NO_REMAP
-//#include <Rinternals.h>
-//#undef R_NO_REMAP
-#include <Rcpp.h>
+#define R_NO_REMAP
+#include <Rinternals.h>
+#undef R_NO_REMAP
 
 #include <string>
 

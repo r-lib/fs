@@ -2,7 +2,7 @@
 
 #undef ERROR
 
-#include "Rcpp.h"
+#include "Rinternals.h"
 #include "error.h"
 #include "utils.h"
 #include <libgen.h>

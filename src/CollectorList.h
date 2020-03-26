@@ -1,4 +1,4 @@
-#include <Rcpp.h>
+#include <Rinternals.h>
 
 class CollectorList {
   SEXP data_;

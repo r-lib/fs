@@ -1,10 +1,12 @@
 #include "utils.h"
 #include "error.h"
 
+#include <string>
+
 // If dirent is not unknown, just return it, otherwise stat the file and get
 // the filetype from that.
-uv_dirent_type_t
-get_dirent_type(const char* path, const uv_dirent_type_t& entry_type,bool fail) {
+uv_dirent_type_t get_dirent_type(
+    const char* path, const uv_dirent_type_t& entry_type, bool fail) {
   if (entry_type == UV_DIRENT_UNKNOWN) {
     uv_fs_t req;
     uv_fs_lstat(uv_default_loop(), &req, path, NULL);
