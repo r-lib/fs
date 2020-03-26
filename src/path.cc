@@ -158,15 +158,18 @@ std::string expand_windows(const char* p) {
   return home;
 }
 
-// [[Rcpp::export]]
-Rcpp::CharacterVector expand_(Rcpp::CharacterVector path, bool windows) {
-  Rcpp::CharacterVector out = Rcpp::CharacterVector(path.size());
+// [[export]]
+extern "C" SEXP expand_(SEXP path_sxp, SEXP windows_sxp) {
+
+  SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path_sxp)));
+
+  bool windows = LOGICAL(windows_sxp)[0];
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
-    if (STRING_ELT(path, i) == R_NaString) {
+    if (STRING_ELT(path_sxp, i) == R_NaString) {
       SET_STRING_ELT(out, i, R_NaString);
     } else {
-      const char* p = CHAR(STRING_ELT(path, i));
+      const char* p = CHAR(STRING_ELT(path_sxp, i));
       if (windows) {
         std::string res = expand_windows(p);
         SET_STRING_ELT(out, i, Rf_mkCharCE(res.c_str(), CE_UTF8));
@@ -175,6 +178,8 @@ Rcpp::CharacterVector expand_(Rcpp::CharacterVector path, bool windows) {
       }
     }
   }
+
+  UNPROTECT(1);
   return out;
 }
 

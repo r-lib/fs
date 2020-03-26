@@ -169,18 +169,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// expand_
-Rcpp::CharacterVector expand_(Rcpp::CharacterVector path, bool windows);
-RcppExport SEXP _fs_expand_(SEXP pathSEXP, SEXP windowsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< bool >::type windows(windowsSEXP);
-    rcpp_result_gen = Rcpp::wrap(expand_(path, windows));
-    return rcpp_result_gen;
-END_RCPP
-}
 // tidy_
 Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_tidy_(SEXP pathSEXP) {
