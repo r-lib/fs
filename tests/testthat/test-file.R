@@ -122,7 +122,7 @@ describe("file_chown", {
 
       # Change ownership to root
       expect_equal(file_chown("foo/bar", user_id = 0), "foo/bar")
-      expect_true(file_info("foo/bar")$user_id == 0)
+      expect_true(file_info("foo/bar")$user == "root")
     })
     it("errors on missing input", {
       expect_error(file_chown(NA, user_id = 0), class = "invalid_argument")

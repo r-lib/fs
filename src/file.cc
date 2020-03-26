@@ -332,15 +332,20 @@ void copyfile_(
   }
 }
 
-// [[Rcpp::export]]
-void chown_(Rcpp::CharacterVector path, int uid, int gid) {
-  for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
+// [[export]]
+extern "C" SEXP chown_(SEXP path_sxp, SEXP uid_sxp, SEXP gid_sxp) {
+  int uid = INTEGER(uid_sxp)[0];
+  int gid = INTEGER(gid_sxp)[0];
+
+  for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;
-    const char* p = CHAR(STRING_ELT(path, i));
+    const char* p = CHAR(STRING_ELT(path_sxp, i));
     uv_fs_chown(uv_default_loop(), &req, p, uid, gid, NULL);
     stop_for_error(req, "Failed to chown '%s'", p);
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 // [[Rcpp::export]]

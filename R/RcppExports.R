@@ -33,10 +33,6 @@ copyfile_ <- function(path, new_path, overwrite) {
     invisible(.Call(`_fs_copyfile_`, path, new_path, overwrite))
 }
 
-chown_ <- function(path, uid, gid) {
-    invisible(.Call(`_fs_chown_`, path, uid, gid))
-}
-
 touch_ <- function(path, atime, mtime) {
     invisible(.Call(`_fs_touch_`, path, atime, mtime))
 }
