@@ -93,7 +93,7 @@ link_create <- function(path, new_path, symbolic = TRUE) {
   new <- path_expand(new_path)
 
   if (isTRUE(symbolic)) {
-    link_create_symbolic_(old, new)
+    .Call(link_create_symbolic_, old, new)
   } else {
     .Call(link_create_hard_, old, new)
   }
