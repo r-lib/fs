@@ -15,18 +15,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// touch_
-void touch_(Rcpp::CharacterVector path, double atime, double mtime);
-RcppExport SEXP _fs_touch_(SEXP pathSEXP, SEXP atimeSEXP, SEXP mtimeSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< double >::type atime(atimeSEXP);
-    Rcpp::traits::input_parameter< double >::type mtime(mtimeSEXP);
-    touch_(path, atime, mtime);
-    return R_NilValue;
-END_RCPP
-}
 // users_
 Rcpp::List users_();
 RcppExport SEXP _fs_users_() {

@@ -33,7 +33,7 @@ extern SEXP rmdir_(SEXP);
 extern SEXP stat_(SEXP, SEXP);
 extern SEXP strmode_(SEXP);
 extern SEXP tidy_(SEXP);
-extern SEXP _fs_touch_(SEXP, SEXP, SEXP);
+extern SEXP touch_(SEXP, SEXP, SEXP);
 extern SEXP _fs_unlink_(SEXP);
 extern SEXP _fs_users_();
 extern SEXP getmode_(SEXP, SEXP);
@@ -61,7 +61,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"rmdir_", (DL_FUNC)&rmdir_, 1},
     {"stat_", (DL_FUNC)&stat_, 2},
     {"tidy_", (DL_FUNC)&tidy_, 1},
-    {"_fs_touch_", (DL_FUNC)&_fs_touch_, 3},
+    {"touch_", (DL_FUNC)&touch_, 3},
     {"_fs_unlink_", (DL_FUNC)&_fs_unlink_, 1},
     {"_fs_users_", (DL_FUNC)&_fs_users_, 0},
     {"getmode_", (DL_FUNC)&getmode_, 2},
