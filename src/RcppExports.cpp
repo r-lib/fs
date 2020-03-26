@@ -81,17 +81,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// link_create_symbolic_
-void link_create_symbolic_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path);
-RcppExport SEXP _fs_link_create_symbolic_(SEXP pathSEXP, SEXP new_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
-    link_create_symbolic_(path, new_path);
-    return R_NilValue;
-END_RCPP
-}
 // readlink_
 Rcpp::CharacterVector readlink_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_readlink_(SEXP pathSEXP) {

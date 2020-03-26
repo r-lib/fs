@@ -20,9 +20,8 @@ extern "C" SEXP link_create_hard_(SEXP path, SEXP new_path) {
   return R_NilValue;
 }
 
-// [[Rcpp::export]]
-void link_create_symbolic_(
-    Rcpp::CharacterVector path, Rcpp::CharacterVector new_path) {
+// [[export]]
+extern "C" SEXP link_create_symbolic_(SEXP path, SEXP new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -52,6 +51,8 @@ void link_create_symbolic_(
     stop_for_error2(req, "Failed to link '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
+
+  return R_NilValue;
 }
 
 // [[Rcpp::export]]
