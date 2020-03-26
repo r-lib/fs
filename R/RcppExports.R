@@ -53,10 +53,6 @@ cleanup_ <- function() {
     invisible(.Call(`_fs_cleanup_`))
 }
 
-strmode_ <- function(mode) {
-    .Call(`_fs_strmode_`, mode)
-}
-
 file_code_ <- function(path, mode) {
     .Call(`_fs_file_code_`, path, mode)
 }

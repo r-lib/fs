@@ -9,11 +9,15 @@
 
 unsigned short getmode__(const char* mode_str, unsigned short mode);
 
-// [[export]]
-extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp);
+std::string strmode__(unsigned short mode);
 
-// [[Rcpp::export]]
-std::string strmode_(unsigned short mode);
+extern "C" {
+// [[export]]
+SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp);
+
+// [[export]]
+SEXP strmode_(SEXP mode);
+}
 
 // [[Rcpp::export]]
 std::string file_code_(std::string path, unsigned short mode);

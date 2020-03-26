@@ -3,12 +3,19 @@
 
 #include <Rcpp.h> /* for Rf_error */
 
-SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
+extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
   const char* mode_str = CHAR(STRING_ELT(mode_str_sxp, 0));
   unsigned short mode = INTEGER(mode_sxp)[0];
   unsigned short res = getmode__(mode_str, mode);
 
   return Rf_ScalarInteger(res);
+}
+
+extern "C" SEXP strmode_(SEXP mode_sxp) {
+  unsigned short mode = INTEGER(mode_sxp)[0];
+  std::string res = strmode__(mode);
+
+  return Rf_mkString(res.c_str());
 }
 
 /* code adapted from https://cgit.freedesktop.org/libbsd/tree/src/setmode.c */

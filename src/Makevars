@@ -35,7 +35,7 @@ libuv/.libs/libuv.a: libuv/Makefile
 
 .PHONY: shlib-clean clean
 
-shlib-clean: clean
+# shlib-clean: clean
 
 clean:
 	$(MAKE) --directory=libuv distclean

@@ -80,7 +80,7 @@ print.fs_perms <- function(x, ...) {
 
 #' @export
 format.fs_perms <- function(x, ...) {
-  vapply(x, strmode_, character(1))
+  vapply(x, function(x) .Call(strmode_, x), character(1))
 }
 
 #' @export
