@@ -21,6 +21,13 @@ extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
   return Rf_ScalarInteger(res);
 }
 
+extern "C" SEXP strmode_(SEXP mode_sxp) {
+  unsigned short mode = INTEGER(mode_sxp)[0];
+  std::string res = strmode__(mode);
+
+  return Rf_mkString(res.c_str());
+}
+
 unsigned short getmode__(const char* mode_str, unsigned short mode) {
   void* out = setmode(mode_str);
   if (out == NULL) {
@@ -32,7 +39,7 @@ unsigned short getmode__(const char* mode_str, unsigned short mode) {
   return res;
 }
 
-std::string strmode_(unsigned short mode) {
+std::string strmode__(unsigned short mode) {
   char out[12];
   strmode(mode, out);
 
