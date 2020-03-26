@@ -32,7 +32,7 @@ extern SEXP realize_(SEXP);
 extern SEXP rmdir_(SEXP);
 extern SEXP stat_(SEXP, SEXP);
 extern SEXP strmode_(SEXP);
-extern SEXP _fs_tidy_(SEXP);
+extern SEXP tidy_(SEXP);
 extern SEXP _fs_touch_(SEXP, SEXP, SEXP);
 extern SEXP _fs_unlink_(SEXP);
 extern SEXP _fs_users_();
@@ -60,7 +60,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"realize_", (DL_FUNC)&realize_, 1},
     {"rmdir_", (DL_FUNC)&rmdir_, 1},
     {"stat_", (DL_FUNC)&stat_, 2},
-    {"_fs_tidy_", (DL_FUNC)&_fs_tidy_, 1},
+    {"tidy_", (DL_FUNC)&tidy_, 1},
     {"_fs_touch_", (DL_FUNC)&_fs_touch_, 3},
     {"_fs_unlink_", (DL_FUNC)&_fs_unlink_, 1},
     {"_fs_users_", (DL_FUNC)&_fs_users_, 0},

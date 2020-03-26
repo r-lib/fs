@@ -192,9 +192,9 @@ extern "C" SEXP expand_(SEXP path_sxp, SEXP windows_sxp) {
   return out;
 }
 
-// [[Rcpp::export]]
-Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path) {
-  Rcpp::CharacterVector out = Rcpp::CharacterVector(path.size());
+// [[export]]
+extern "C" SEXP tidy_(SEXP path) {
+  SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
     if (STRING_ELT(path, i) == R_NaString) {
@@ -204,5 +204,7 @@ Rcpp::CharacterVector tidy_(Rcpp::CharacterVector path) {
       SET_STRING_ELT(out, i, Rf_mkCharCE(p.c_str(), CE_UTF8));
     }
   }
+
+  UNPROTECT(1);
   return out;
 }

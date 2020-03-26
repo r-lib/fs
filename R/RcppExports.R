@@ -13,7 +13,3 @@ users_ <- function() {
     .Call(`_fs_users_`)
 }
 
-tidy_ <- function(path) {
-    .Call(`_fs_tidy_`, path)
-}
-
