@@ -25,10 +25,6 @@ touch_ <- function(path, atime, mtime) {
     invisible(.Call(`_fs_touch_`, path, atime, mtime))
 }
 
-getpwnam_ <- function(name) {
-    .Call(`_fs_getpwnam_`, name)
-}
-
 groups_ <- function() {
     .Call(`_fs_groups_`)
 }
