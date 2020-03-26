@@ -28,6 +28,15 @@ extern "C" SEXP strmode_(SEXP mode_sxp) {
   return Rf_mkString(res.c_str());
 }
 
+extern "C" SEXP file_code_(SEXP path_sxp, SEXP mode_sxp) {
+  std::string path(CHAR(STRING_ELT(path_sxp, 0)));
+  unsigned short mode = INTEGER(mode_sxp)[0];
+
+  std::string res = file_code__(path, mode);
+
+  return Rf_mkString(res.c_str());
+}
+
 unsigned short getmode__(const char* mode_str, unsigned short mode) {
   void* out = setmode(mode_str);
   if (out == NULL) {
@@ -50,7 +59,7 @@ std::string strmode__(unsigned short mode) {
   return out + 1;
 }
 
-std::string file_code_(std::string path, unsigned short mode) {
+std::string file_code__(const std::string& path, unsigned short mode) {
   switch (mode & S_IFMT) {
   case S_IFDIR:
     if (mode & S_IWOTH)
