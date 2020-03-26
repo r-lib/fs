@@ -55,9 +55,9 @@ extern "C" SEXP link_create_symbolic_(SEXP path, SEXP new_path) {
   return R_NilValue;
 }
 
-// [[Rcpp::export]]
-Rcpp::CharacterVector readlink_(Rcpp::CharacterVector path) {
-  Rcpp::CharacterVector out(Rf_xlength(path));
+// [[export]]
+extern "C" SEXP readlink_(SEXP path) {
+  SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));
   Rf_setAttrib(out, R_NamesSymbol, path);
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
@@ -67,5 +67,7 @@ Rcpp::CharacterVector readlink_(Rcpp::CharacterVector path) {
     SET_STRING_ELT(out, i, Rf_mkCharCE((const char*)req.ptr, CE_UTF8));
     uv_fs_req_cleanup(&req);
   }
+
+  UNPROTECT(1);
   return out;
 }

@@ -17,5 +17,5 @@ link_path <- function(path) {
 
   old <- path_expand(path)
 
-  path_tidy(readlink_(old))
+  path_tidy(.Call(readlink_, old))
 }

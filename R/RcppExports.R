@@ -21,10 +21,6 @@ users_ <- function() {
     .Call(`_fs_users_`)
 }
 
-readlink_ <- function(path) {
-    .Call(`_fs_readlink_`, path)
-}
-
 realize_ <- function(path) {
     .Call(`_fs_realize_`, path)
 }
