@@ -95,7 +95,7 @@ link_create <- function(path, new_path, symbolic = TRUE) {
   if (isTRUE(symbolic)) {
     link_create_symbolic_(old, new)
   } else {
-    link_create_hard_(old, new)
+    .Call(link_create_hard_, old, new)
   }
 
   invisible(path_tidy(new_path))
