@@ -7,11 +7,9 @@
 #include <unistd.h>
 #endif
 
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-IntegerVector getpwnam_(CharacterVector name) {
-  IntegerVector out(Rf_xlength(name));
+Rcpp::IntegerVector getpwnam_(Rcpp::CharacterVector name) {
+  Rcpp::IntegerVector out(Rf_xlength(name));
 
 #ifndef __WIN32
   for (R_xlen_t i = 0; i < Rf_xlength(name); ++i) {
@@ -28,8 +26,8 @@ IntegerVector getpwnam_(CharacterVector name) {
 }
 
 // [[Rcpp::export]]
-IntegerVector getgrnam_(CharacterVector name) {
-  IntegerVector out(Rf_xlength(name));
+Rcpp::IntegerVector getgrnam_(Rcpp::CharacterVector name) {
+  Rcpp::IntegerVector out(Rf_xlength(name));
 
 #ifndef __WIN32
   for (R_xlen_t i = 0; i < Rf_xlength(name); ++i) {
@@ -46,7 +44,7 @@ IntegerVector getgrnam_(CharacterVector name) {
 }
 
 // [[Rcpp::export]]
-List groups_() {
+Rcpp::List groups_() {
   std::vector<std::string> names;
   std::vector<int> ids;
 #ifndef __WIN32
@@ -58,15 +56,17 @@ List groups_() {
   }
   endgrent();
 #endif
-  List out =
-      List::create(_["group_id"] = wrap(ids), _["group_name"] = wrap(names));
+  Rcpp::List out = Rcpp::List::create(
+      Rcpp::_["group_id"] = Rcpp::wrap(ids),
+      Rcpp::_["group_name"] = Rcpp::wrap(names));
   out.attr("class") = "data.frame";
-  out.attr("row.names") = IntegerVector::create(NA_INTEGER, -names.size());
+  out.attr("row.names") =
+      Rcpp::IntegerVector::create(NA_INTEGER, -names.size());
   return out;
 }
 
 // [[Rcpp::export]]
-List users_() {
+Rcpp::List users_() {
   std::vector<std::string> names;
   std::vector<int> ids;
 #ifndef __WIN32
@@ -78,9 +78,11 @@ List users_() {
   }
   endpwent();
 #endif
-  List out =
-      List::create(_["user_id"] = wrap(ids), _["user_name"] = wrap(names));
+  Rcpp::List out = Rcpp::List::create(
+      Rcpp::_["user_id"] = Rcpp::wrap(ids),
+      Rcpp::_["user_name"] = Rcpp::wrap(names));
   out.attr("class") = "data.frame";
-  out.attr("row.names") = IntegerVector::create(NA_INTEGER, -names.size());
+  out.attr("row.names") =
+      Rcpp::IntegerVector::create(NA_INTEGER, -names.size());
   return out;
 }

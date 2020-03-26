@@ -6,10 +6,9 @@
 #include "error.h"
 #include "utils.h"
 
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-void link_create_hard_(CharacterVector path, CharacterVector new_path) {
+void link_create_hard_(
+    Rcpp::CharacterVector path, Rcpp::CharacterVector new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -21,7 +20,8 @@ void link_create_hard_(CharacterVector path, CharacterVector new_path) {
 }
 
 // [[Rcpp::export]]
-void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
+void link_create_symbolic_(
+    Rcpp::CharacterVector path, Rcpp::CharacterVector new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -54,8 +54,8 @@ void link_create_symbolic_(CharacterVector path, CharacterVector new_path) {
 }
 
 // [[Rcpp::export]]
-CharacterVector readlink_(CharacterVector path) {
-  CharacterVector out(Rf_xlength(path));
+Rcpp::CharacterVector readlink_(Rcpp::CharacterVector path) {
+  Rcpp::CharacterVector out(Rf_xlength(path));
   Rf_setAttrib(out, R_NamesSymbol, path);
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;

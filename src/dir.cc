@@ -8,10 +8,8 @@
 #include "error.h"
 #include "utils.h"
 
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-void mkdir_(CharacterVector path, unsigned short mode) {
+void mkdir_(Rcpp::CharacterVector path, unsigned short mode) {
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {
     uv_fs_t req;
@@ -41,7 +39,7 @@ void mkdir_(CharacterVector path, unsigned short mode) {
 }
 
 // [[Rcpp::export]]
-void rmdir_(CharacterVector path) {
+void rmdir_(Rcpp::CharacterVector path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -53,7 +51,7 @@ void rmdir_(CharacterVector path) {
 }
 
 void dir_map(
-    Function fun,
+    Rcpp::Function fun,
     const char* path,
     bool all,
     int file_type,
@@ -93,7 +91,7 @@ void dir_map(
     } else {
       name = std::string(path) + '/' + e.name;
     }
-    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type,fail);
+    uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type, fail);
     if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
       value->push_back(fun(asCharacterVector(name)));
     }
@@ -114,10 +112,10 @@ void dir_map(
 
 // [[Rcpp::export]]
 List dir_map_(
-    CharacterVector path,
-    Function fun,
+    Rcpp::CharacterVector path,
+    Rcpp::Function fun,
     bool all,
-    IntegerVector type,
+    Rcpp::IntegerVector type,
     int recurse,
     bool fail) {
   int file_type = INTEGER(type)[0];
