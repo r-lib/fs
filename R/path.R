@@ -129,7 +129,7 @@ path_real <- function(path) {
 #' @export
 path_tidy <- function(path) {
   path <- as.character(path)
-  new_fs_path(tidy_(path))
+  new_fs_path(.Call(tidy_, path))
 }
 
 
