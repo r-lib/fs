@@ -15,17 +15,6 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// move_
-void move_(Rcpp::CharacterVector path, Rcpp::CharacterVector new_path);
-RcppExport SEXP _fs_move_(SEXP pathSEXP, SEXP new_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type new_path(new_pathSEXP);
-    move_(path, new_path);
-    return R_NilValue;
-END_RCPP
-}
 // stat_
 Rcpp::List stat_(Rcpp::CharacterVector path, bool fail);
 RcppExport SEXP _fs_stat_(SEXP pathSEXP, SEXP failSEXP) {

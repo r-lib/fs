@@ -5,10 +5,6 @@ rmdir_ <- function(path) {
     invisible(.Call(`_fs_rmdir_`, path))
 }
 
-move_ <- function(path, new_path) {
-    invisible(.Call(`_fs_move_`, path, new_path))
-}
-
 stat_ <- function(path, fail) {
     .Call(`_fs_stat_`, path, fail)
 }
