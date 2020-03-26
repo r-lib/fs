@@ -28,7 +28,7 @@ extern SEXP mkdir_(SEXP, SEXP);
 extern SEXP move_(SEXP, SEXP);
 extern SEXP path_(SEXP, SEXP);
 extern SEXP readlink_(SEXP);
-extern SEXP _fs_realize_(SEXP);
+extern SEXP realize_(SEXP);
 extern SEXP _fs_rmdir_(SEXP);
 extern SEXP _fs_stat_(SEXP, SEXP);
 extern SEXP strmode_(SEXP);
@@ -57,7 +57,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"move_", (DL_FUNC)&move_, 2},
     {"path_", (DL_FUNC)&path_, 2},
     {"readlink_", (DL_FUNC)&readlink_, 1},
-    {"_fs_realize_", (DL_FUNC)&_fs_realize_, 1},
+    {"realize_", (DL_FUNC)&realize_, 1},
     {"_fs_rmdir_", (DL_FUNC)&_fs_rmdir_, 1},
     {"_fs_stat_", (DL_FUNC)&_fs_stat_, 2},
     {"_fs_tidy_", (DL_FUNC)&_fs_tidy_, 1},
