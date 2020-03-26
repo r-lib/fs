@@ -45,7 +45,7 @@
 file_info <- function(path, fail = TRUE, follow = FALSE) {
   old <- path_expand(path)
 
-  res <- stat_(old, fail)
+  res <- .Call(stat_, old, fail)
 
   res$path <- path_tidy(path)
 

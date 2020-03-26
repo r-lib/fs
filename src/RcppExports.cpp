@@ -5,18 +5,6 @@
 
 using namespace Rcpp;
 
-// stat_
-Rcpp::List stat_(Rcpp::CharacterVector path, bool fail);
-RcppExport SEXP _fs_stat_(SEXP pathSEXP, SEXP failSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::CharacterVector >::type path(pathSEXP);
-    Rcpp::traits::input_parameter< bool >::type fail(failSEXP);
-    rcpp_result_gen = Rcpp::wrap(stat_(path, fail));
-    return rcpp_result_gen;
-END_RCPP
-}
 // unlink_
 void unlink_(Rcpp::CharacterVector path);
 RcppExport SEXP _fs_unlink_(SEXP pathSEXP) {

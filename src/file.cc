@@ -68,8 +68,9 @@ extern "C" SEXP create_(SEXP path_sxp, SEXP mode_sxp) {
   return R_NilValue;
 }
 
-// [[Rcpp::export]]
-Rcpp::List stat_(Rcpp::CharacterVector path, bool fail) {
+// [[export]]
+extern "C" SEXP stat_(SEXP path, SEXP fail_sxp) {
+  bool fail = LOGICAL(fail_sxp)[0];
   // typedef struct {
   //  uint64_t st_dev;
   //  uint64_t st_mode;
@@ -90,8 +91,8 @@ Rcpp::List stat_(Rcpp::CharacterVector path, bool fail) {
 
   R_xlen_t n = Rf_xlength(path);
 
-  Rcpp::List out = Rcpp::List(18);
-  Rcpp::CharacterVector names = Rcpp::CharacterVector(18);
+  SEXP out = PROTECT(Rf_allocVector(VECSXP, 18));
+  SEXP names = PROTECT(Rf_allocVector(STRSXP, 18));
 
   SET_STRING_ELT(names, 0, Rf_mkChar("path"));
   SET_VECTOR_ELT(out, 0, Rf_duplicate(path));
@@ -123,8 +124,12 @@ Rcpp::List stat_(Rcpp::CharacterVector path, bool fail) {
 
   SET_STRING_ELT(names, 9, Rf_mkChar("size"));
   SET_VECTOR_ELT(out, 9, Rf_allocVector(REALSXP, n));
-  Rf_classgets(
-      VECTOR_ELT(out, 9), Rcpp::CharacterVector::create("fs_bytes", "numeric"));
+
+  SEXP class_sxp = PROTECT(Rf_allocVector(STRSXP, 2));
+  SET_STRING_ELT(class_sxp, 0, Rf_mkChar("fs_bytes"));
+  SET_STRING_ELT(class_sxp, 1, Rf_mkChar("numeric"));
+  Rf_classgets(VECTOR_ELT(out, 9), class_sxp);
+  UNPROTECT(1);
 
   SET_STRING_ELT(names, 10, Rf_mkChar("block_size"));
   SET_VECTOR_ELT(out, 10, Rf_allocVector(REALSXP, n));
@@ -266,10 +271,16 @@ Rcpp::List stat_(Rcpp::CharacterVector path, bool fail) {
     [i] = (st.st_birthtim.tv_sec + 1e-9 * st.st_birthtim.tv_nsec);
     uv_fs_req_cleanup(&req);
   }
-  out.attr("names") = names;
-  out.attr("class") = Rcpp::CharacterVector::create("data.frame");
-  out.attr("row.names") = Rcpp::IntegerVector::create(NA_INTEGER, -i);
+  Rf_setAttrib(out, R_NamesSymbol, names);
+  Rf_setAttrib(out, R_ClassSymbol, Rf_mkString("data.frame"));
 
+  SEXP row_names = PROTECT(Rf_allocVector(INTSXP, 2));
+  INTEGER(row_names)[0] = NA_INTEGER;
+  INTEGER(row_names)[1] = -i;
+  Rf_setAttrib(out, R_RowNamesSymbol, row_names);
+  UNPROTECT(1);
+
+  UNPROTECT(2);
   return out;
 }
 
