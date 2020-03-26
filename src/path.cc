@@ -7,6 +7,8 @@
 #include "utils.h"
 #include <libgen.h>
 
+#include <cstring>
+
 // [[export]]
 extern "C" SEXP realize_(SEXP path) {
   SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));

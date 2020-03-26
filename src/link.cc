@@ -6,6 +6,8 @@
 #include "error.h"
 #include "utils.h"
 
+#include <cstring>
+
 // [[export]]
 extern "C" SEXP link_create_hard_(SEXP path, SEXP new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
