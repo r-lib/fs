@@ -29,3 +29,4 @@
 ^revdep$
 ^.*\.tar\.gz$
 ^\.github$
+^Makefile$

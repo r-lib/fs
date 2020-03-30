@@ -4,3 +4,4 @@ tools
 .Rhistory
 script.R
 docs/
+Makefile
