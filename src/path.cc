@@ -183,8 +183,11 @@ extern "C" SEXP expand_(SEXP path_sxp, SEXP windows_sxp) {
     } else {
       const char* p = CHAR(STRING_ELT(path_sxp, i));
       if (windows) {
+
+        BEGIN_CPP
         std::string res = expand_windows(p);
         SET_STRING_ELT(out, i, Rf_mkCharCE(res.c_str(), CE_UTF8));
+        END_CPP
       } else {
         SET_STRING_ELT(out, i, Rf_mkCharCE(R_ExpandFileName(p), CE_UTF8));
       }
@@ -203,8 +206,11 @@ extern "C" SEXP tidy_(SEXP path) {
     if (STRING_ELT(path, i) == R_NaString) {
       SET_STRING_ELT(out, i, R_NaString);
     } else {
+
+      BEGIN_CPP
       std::string p = path_tidy_(CHAR(STRING_ELT(path, i)));
       SET_STRING_ELT(out, i, Rf_mkCharCE(p.c_str(), CE_UTF8));
+      END_CPP
     }
   }
 

@@ -1,4 +1,5 @@
 #include "getmode.h"
+#include "utils.h"
 
 #if (defined(__APPLE__) && defined(__MACH__)) || defined(__OpenBSD__) ||       \
     defined(__FreeBSD__) || defined(__NetBSD__)
@@ -14,30 +15,6 @@
 #include <sys/stat.h>
 
 #include <cstdlib>
-
-extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
-  const char* mode_str = CHAR(STRING_ELT(mode_str_sxp, 0));
-  unsigned short mode = INTEGER(mode_sxp)[0];
-  unsigned short res = getmode__(mode_str, mode);
-
-  return Rf_ScalarInteger(res);
-}
-
-extern "C" SEXP strmode_(SEXP mode_sxp) {
-  unsigned short mode = INTEGER(mode_sxp)[0];
-  std::string res = strmode__(mode);
-
-  return Rf_mkString(res.c_str());
-}
-
-extern "C" SEXP file_code_(SEXP path_sxp, SEXP mode_sxp) {
-  std::string path(CHAR(STRING_ELT(path_sxp, 0)));
-  unsigned short mode = INTEGER(mode_sxp)[0];
-
-  std::string res = file_code__(path, mode);
-
-  return Rf_mkString(res.c_str());
-}
 
 unsigned short getmode__(const char* mode_str, unsigned short mode) {
   void* out = setmode(mode_str);

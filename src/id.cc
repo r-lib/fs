@@ -1,3 +1,4 @@
+#include "utils.h"
 #include <Rinternals.h>
 #include <string>
 #include <vector>
@@ -53,6 +54,8 @@ extern "C" SEXP getgrnam_(SEXP name_sxp) {
 
 // [[export]]
 extern "C" SEXP groups_() {
+
+  BEGIN_CPP
   std::vector<std::string> names;
   std::vector<int> ids;
 #ifndef __WIN32
@@ -91,12 +94,15 @@ extern "C" SEXP groups_() {
   UNPROTECT(1);
 
   UNPROTECT(3);
-
   return out;
+
+  END_CPP
 }
 
 // [[export]]
 extern "C" SEXP users_() {
+
+  BEGIN_CPP
   std::vector<std::string> names;
   std::vector<int> ids;
 #ifndef __WIN32
@@ -136,4 +142,6 @@ extern "C" SEXP users_() {
 
   UNPROTECT(3);
   return out;
+
+  END_CPP
 }

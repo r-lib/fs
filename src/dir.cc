@@ -67,6 +67,8 @@ void dir_map(
     CollectorList* value,
     bool fail) {
 
+  BEGIN_CPP
+
   if (recurse < 0) {
     recurse = std::numeric_limits<int>::max();
   }
@@ -117,6 +119,8 @@ void dir_map(
     }
   }
   uv_fs_req_cleanup(&req);
+
+  END_CPP
 }
 
 // [[export]]
