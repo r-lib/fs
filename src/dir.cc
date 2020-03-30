@@ -103,8 +103,10 @@ void dir_map(
     }
     uv_dirent_type_t entry_type = get_dirent_type(name.c_str(), e.type, fail);
     if (file_type == -1 || (((1 << (entry_type)) & file_type) > 0)) {
-      value->push_back(
-          Rf_eval(Rf_lang2(fun, Rf_mkString(name.c_str())), R_GlobalEnv));
+      SEXP call = PROTECT(Rf_lang2(fun, Rf_mkString(name.c_str())));
+      SEXP res = PROTECT(Rf_eval(call, R_GlobalEnv));
+      value->push_back(res);
+      UNPROTECT(2);
     }
 
     if (recurse > 0 && entry_type == UV_DIRENT_DIR) {
