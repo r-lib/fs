@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.4.0
 
 * `[[.fs_path`, `[[.fs_bytes` and `[[.fs_perms` now preserve their classes after subsetting (#254).
 
