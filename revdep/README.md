@@ -10,21 +10,20 @@
 |collate  |en_US.UTF-8                  |
 |ctype    |en_US.UTF-8                  |
 |tz       |America/New_York             |
-|date     |2020-03-04                   |
+|date     |2020-03-30                   |
 
 # Dependencies
 
 |package |old   |new        |Δ  |
 |:-------|:-----|:----------|:--|
-|fs      |1.3.1 |1.3.1.9000 |*  |
-|Rcpp    |1.0.3 |1.0.3      |   |
+|fs      |1.3.2 |1.3.2.9000 |*  |
+|Rcpp    |1.0.4 |NA         |*  |
 
 # Revdeps
 
-## New problems (2)
+## Failed to check (1)
 
-|package                              |version |error |warning |note   |
-|:------------------------------------|:-------|:-----|:-------|:------|
-|[batchtools](problems.md#batchtools) |0.9.12  |      |__+1__  |1 -1   |
-|[socviz](problems.md#socviz)         |1.1     |      |        |__+1__ |
+|package |version |error |warning |note |
+|:-------|:-------|:-----|:-------|:----|
+|vroom   |1.2.0   |1     |        |     |
 
