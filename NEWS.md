@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.4.1
 
 # fs 1.4.0
 

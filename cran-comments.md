@@ -1,8 +1,10 @@
+This version fixes segfaults on Solaris, caused by a name collision with the libfsu.so.1 shared library.
+
 ## Test environments
-* local OS X install, R 3.5.1
-* ubuntu 14.04 (on travis-ci), R 3.5.1
+* local OS X install, R 3.6.3
+* ubuntu 16.04 (on GitHub Actions), R 3.6.3, 3.5, 3.4, 3.3, 3.2
 * win-builder (devel and release)
-* Solaris 10 (in a VM)
+* Solaris 10 (on R-Hub and a cloud instance via SSH)
 
 ## R CMD check results
 
