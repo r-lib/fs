@@ -22,7 +22,7 @@
 #include <inttypes.h>
 
 // [[export]]
-extern "C" SEXP move_(SEXP path, SEXP new_path) {
+extern "C" SEXP fs_move_(SEXP path, SEXP new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -52,7 +52,7 @@ extern "C" SEXP move_(SEXP path, SEXP new_path) {
 }
 
 // [[export]]
-extern "C" SEXP create_(SEXP path_sxp, SEXP mode_sxp) {
+extern "C" SEXP fs_create_(SEXP path_sxp, SEXP mode_sxp) {
 
   unsigned short mode = INTEGER(mode_sxp)[0];
 
@@ -73,7 +73,7 @@ extern "C" SEXP create_(SEXP path_sxp, SEXP mode_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP stat_(SEXP path, SEXP fail_sxp) {
+extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
   bool fail = LOGICAL(fail_sxp)[0];
   // typedef struct {
   //  uint64_t st_dev;
@@ -289,9 +289,9 @@ extern "C" SEXP stat_(SEXP path, SEXP fail_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP access_(SEXP path_sxp, SEXP mode_sxp) {
+extern "C" SEXP fs_access_(SEXP path_sxp, SEXP mode_sxp) {
 
-  unsigned short mode = INTEGER(mode_sxp)[0];
+  int mode = INTEGER(mode_sxp)[0];
 
   SEXP out = PROTECT(Rf_allocVector(LGLSXP, Rf_xlength(path_sxp)));
   Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path_sxp));
@@ -309,7 +309,7 @@ extern "C" SEXP access_(SEXP path_sxp, SEXP mode_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP chmod_(SEXP path_sxp, SEXP mode_sxp) {
+extern "C" SEXP fs_chmod_(SEXP path_sxp, SEXP mode_sxp) {
   for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path_sxp, i));
@@ -323,7 +323,7 @@ extern "C" SEXP chmod_(SEXP path_sxp, SEXP mode_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP unlink_(SEXP path) {
+extern "C" SEXP fs_unlink_(SEXP path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -337,7 +337,7 @@ extern "C" SEXP unlink_(SEXP path) {
 
 // [[export]]
 extern "C" SEXP
-copyfile_(SEXP path_sxp, SEXP new_path_sxp, SEXP overwrite_sxp) {
+fs_copyfile_(SEXP path_sxp, SEXP new_path_sxp, SEXP overwrite_sxp) {
 
   bool overwrite = LOGICAL(overwrite_sxp)[0];
 
@@ -360,7 +360,7 @@ copyfile_(SEXP path_sxp, SEXP new_path_sxp, SEXP overwrite_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP chown_(SEXP path_sxp, SEXP uid_sxp, SEXP gid_sxp) {
+extern "C" SEXP fs_chown_(SEXP path_sxp, SEXP uid_sxp, SEXP gid_sxp) {
   int uid = INTEGER(uid_sxp)[0];
   int gid = INTEGER(gid_sxp)[0];
 
@@ -376,7 +376,7 @@ extern "C" SEXP chown_(SEXP path_sxp, SEXP uid_sxp, SEXP gid_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP touch_(SEXP path, SEXP atime_sxp, SEXP mtime_sxp) {
+extern "C" SEXP fs_touch_(SEXP path, SEXP atime_sxp, SEXP mtime_sxp) {
 
   double atime = REAL(atime_sxp)[0];
   double mtime = REAL(mtime_sxp)[0];

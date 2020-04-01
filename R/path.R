@@ -62,7 +62,7 @@ path <- function(..., ext = "") {
   args <- list(...)
   assert_recyclable(args)
 
-  path_tidy(.Call(path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
+  path_tidy(.Call(fs_path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
 }
 
 assert_recyclable <- function(x) {
@@ -101,13 +101,13 @@ path_real <- function(path) {
   exists <- file_exists(path) == TRUE
 
   # Realize all paths which fully exist
-  old[!is_missing & exists] <- .Call(realize_, old[!is_missing & exists])
+  old[!is_missing & exists] <- .Call(fs_realize_, old[!is_missing & exists])
 
   # Handle paths which only partially exist
   realize_one <- function(splits) {
     paths <- Reduce(fs::path, splits, accumulate = TRUE)
     last_link <- which.max(is_link(paths))
-    path(.Call(realize_, paths[last_link]), path_join(splits[seq(last_link + 1, length(splits))]))
+    path(.Call(fs_realize_, paths[last_link]), path_join(splits[seq(last_link + 1, length(splits))]))
   }
 
   partial <- !is_missing & !exists
@@ -129,7 +129,7 @@ path_real <- function(path) {
 #' @export
 path_tidy <- function(path) {
   path <- as.character(path)
-  new_fs_path(.Call(tidy_, path))
+  new_fs_path(.Call(fs_tidy_, path))
 }
 
 
@@ -156,7 +156,7 @@ path_join <- function(parts) {
     return(path_tidy(""))
   }
   if (is.character(parts)) {
-    return(path_tidy(.Call(path_, as.list(enc2utf8(parts)), "")))
+    return(path_tidy(.Call(fs_path_, as.list(enc2utf8(parts)), "")))
   }
   path_tidy(vapply(parts, path_join, character(1)))
 }
@@ -304,7 +304,7 @@ path_expand <- function(path) {
   path <- enc2utf8(path)
 
   # We use the windows implementation if R_FS_HOME is set or if on windows
-  path_tidy(.Call(expand_, path, Sys.getenv("R_FS_HOME") != "" || is_windows()))
+  path_tidy(.Call(fs_expand_, path, Sys.getenv("R_FS_HOME") != "" || is_windows()))
 }
 
 #' @rdname path_expand
@@ -313,7 +313,7 @@ path_expand_r <- function(path) {
   path <- enc2utf8(path)
 
   # Unconditionally use R_ExpandFileName
-  path_tidy(.Call(expand_, path, FALSE))
+  path_tidy(.Call(fs_expand_, path, FALSE))
 }
 
 #' @rdname path_expand

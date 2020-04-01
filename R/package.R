@@ -4,7 +4,7 @@ NULL
 
 # nocov start
 .onUnload <- function(libpath) {
-  .Call(cleanup_)
+  .Call(fs_cleanup_)
   library.dynam.unload("fs", libpath)
 }
 # nocov end

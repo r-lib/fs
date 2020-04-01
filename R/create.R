@@ -40,7 +40,7 @@ file_create <- function(path, ..., mode = "u=rw,go=r") {
   mode <- as_fs_perms(mode)
   new <- path_expand(path(path, ...))
 
-  .Call(create_, new, as.integer(mode))
+  .Call(fs_create_, new, as.integer(mode))
   invisible(path_tidy(path))
 }
 
@@ -59,20 +59,20 @@ dir_create <- function(path, ..., mode = "u=rwx,go=rx", recurse = TRUE, recursiv
   new <- path_expand(path(path, ...))
 
   if (!isTRUE(recurse)) {
-    .Call(mkdir_, path, as.integer(mode))
+    .Call(fs_mkdir_, path, as.integer(mode))
     return(invisible(path_tidy(path)))
   }
 
   paths <- path_split(new)
   for (p in paths) {
     if (length(p) == 1) {
-      .Call(mkdir_, p, as.integer(mode))
+      .Call(fs_mkdir_, p, as.integer(mode))
     } else {
       p_paths <- Reduce(get("path", mode = "function"), p, accumulate = TRUE)
       if (is_absolute_path(p[[1]])) {
         p_paths <- p_paths[-1]
       }
-      .Call(mkdir_, p_paths, as.integer(mode))
+      .Call(fs_mkdir_, p_paths, as.integer(mode))
     }
   }
 
@@ -93,9 +93,9 @@ link_create <- function(path, new_path, symbolic = TRUE) {
   new <- path_expand(new_path)
 
   if (isTRUE(symbolic)) {
-    .Call(link_create_symbolic_, old, new)
+    .Call(fs_link_create_symbolic_, old, new)
   } else {
-    .Call(link_create_hard_, old, new)
+    .Call(fs_link_create_hard_, old, new)
   }
 
   invisible(path_tidy(new_path))

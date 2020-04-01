@@ -9,7 +9,7 @@
 #include <cstring>
 
 // [[export]]
-extern "C" SEXP link_create_hard_(SEXP path, SEXP new_path) {
+extern "C" SEXP fs_link_create_hard_(SEXP path, SEXP new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -23,7 +23,7 @@ extern "C" SEXP link_create_hard_(SEXP path, SEXP new_path) {
 }
 
 // [[export]]
-extern "C" SEXP link_create_symbolic_(SEXP path, SEXP new_path) {
+extern "C" SEXP fs_link_create_symbolic_(SEXP path, SEXP new_path) {
   for (R_xlen_t i = 0; i < Rf_xlength(new_path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -58,7 +58,7 @@ extern "C" SEXP link_create_symbolic_(SEXP path, SEXP new_path) {
 }
 
 // [[export]]
-extern "C" SEXP readlink_(SEXP path) {
+extern "C" SEXP fs_readlink_(SEXP path) {
   SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));
   Rf_setAttrib(out, R_NamesSymbol, path);
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {

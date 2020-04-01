@@ -6,7 +6,7 @@ std::string strmode__(unsigned short mode);
 
 std::string file_code__(const std::string& path, unsigned short mode);
 
-extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
+extern "C" SEXP fs_getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
   const char* mode_str = CHAR(STRING_ELT(mode_str_sxp, 0));
   unsigned short mode = INTEGER(mode_sxp)[0];
   unsigned short res = getmode__(mode_str, mode);
@@ -14,7 +14,7 @@ extern "C" SEXP getmode_(SEXP mode_str_sxp, SEXP mode_sxp) {
   return Rf_ScalarInteger(res);
 }
 
-extern "C" SEXP strmode_(SEXP mode_sxp) {
+extern "C" SEXP fs_strmode_(SEXP mode_sxp) {
   unsigned short mode = INTEGER(mode_sxp)[0];
   SEXP out;
 
@@ -28,7 +28,7 @@ extern "C" SEXP strmode_(SEXP mode_sxp) {
   return out;
 }
 
-extern "C" SEXP file_code_(SEXP path_sxp, SEXP mode_sxp) {
+extern "C" SEXP fs_file_code_(SEXP path_sxp, SEXP mode_sxp) {
 
   SEXP out;
 

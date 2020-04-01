@@ -11,7 +11,7 @@
 #include <limits>
 
 // [[export]]
-extern "C" SEXP mkdir_(SEXP path, SEXP mode_sxp) {
+extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
   unsigned short mode = INTEGER(mode_sxp)[0];
 
   R_xlen_t n = Rf_xlength(path);
@@ -45,7 +45,7 @@ extern "C" SEXP mkdir_(SEXP path, SEXP mode_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP rmdir_(SEXP path) {
+extern "C" SEXP fs_rmdir_(SEXP path) {
   for (R_xlen_t i = 0; i < Rf_xlength(path); ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
@@ -126,7 +126,7 @@ void dir_map(
 }
 
 // [[export]]
-extern "C" SEXP dir_map_(
+extern "C" SEXP fs_dir_map_(
     SEXP path_sxp,
     SEXP fun_sxp,
     SEXP all_sxp,

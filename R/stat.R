@@ -1,5 +1,5 @@
 stat <- function(path, fail) {
-  as_tibble(.Call(stat_, path, fail))
+  as_tibble(.Call(fs_stat_, path, fail))
 }
 
 as_tibble <- function(x) {

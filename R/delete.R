@@ -52,7 +52,7 @@ file_delete <- function(path) {
   dirs <- is_dir(old)
   dir_delete(old[dirs])
 
-  .Call(unlink_, old[!dirs])
+  .Call(fs_unlink_, old[!dirs])
 
   invisible(path_tidy(path))
 }
@@ -69,8 +69,8 @@ dir_delete <- function(path) {
     type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
     recurse = TRUE,
     all = TRUE)
-  .Call(unlink_, files)
-  .Call(rmdir_, rev(c(old, dirs)))
+  .Call(fs_unlink_, files)
+  .Call(fs_rmdir_, rev(c(old, dirs)))
 
   invisible(path_tidy(path))
 }
@@ -86,7 +86,7 @@ link_delete <- function(path) {
 
   old <- path_expand(path)
 
-  .Call(unlink_, old)
+  .Call(fs_unlink_, old)
 
   invisible(path_tidy(path))
 }

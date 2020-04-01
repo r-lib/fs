@@ -27,7 +27,7 @@ file_access <- function(path, mode = "exists") {
   old <- path_expand(path)
   mode <- sum(access_types[mode])
 
-  .Call(access_, unclass(old), as.integer(mode))
+  .Call(fs_access_, unclass(old), as.integer(mode))
 }
 
 #' @rdname file_access

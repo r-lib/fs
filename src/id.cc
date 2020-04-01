@@ -11,7 +11,7 @@
 #endif
 
 // [[export]]
-extern "C" SEXP getpwnam_(SEXP name_sxp) {
+extern "C" SEXP fs_getpwnam_(SEXP name_sxp) {
   SEXP out = PROTECT(Rf_allocVector(INTSXP, Rf_xlength(name_sxp)));
 
 #ifndef __WIN32
@@ -32,7 +32,7 @@ extern "C" SEXP getpwnam_(SEXP name_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP getgrnam_(SEXP name_sxp) {
+extern "C" SEXP fs_getgrnam_(SEXP name_sxp) {
   SEXP out = PROTECT(Rf_allocVector(INTSXP, Rf_xlength(name_sxp)));
   int* out_p = INTEGER(out);
 
@@ -53,7 +53,7 @@ extern "C" SEXP getgrnam_(SEXP name_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP groups_() {
+extern "C" SEXP fs_groups_() {
 
   BEGIN_CPP
   std::vector<std::string> names;
@@ -100,7 +100,7 @@ extern "C" SEXP groups_() {
 }
 
 // [[export]]
-extern "C" SEXP users_() {
+extern "C" SEXP fs_users_() {
 
   BEGIN_CPP
   std::vector<std::string> names;

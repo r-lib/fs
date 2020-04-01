@@ -133,7 +133,7 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
   res <- character(length(x))
 
   for (i in seq_along(x)) {
-    code <- map[.Call(file_code_, x[[i]], as.integer(perms[[i]]))]
+    code <- map[.Call(fs_file_code_, x[[i]], as.integer(perms[[i]]))]
     if (is.na(code)) {
       code <- file_types[na.omit(tools::file_ext(x[[i]]))]
     }

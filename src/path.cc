@@ -11,7 +11,7 @@
 #include <cstring>
 
 // [[export]]
-extern "C" SEXP realize_(SEXP path) {
+extern "C" SEXP fs_realize_(SEXP path) {
   SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {
@@ -28,7 +28,7 @@ extern "C" SEXP realize_(SEXP path) {
 }
 
 // [[export]]
-extern "C" SEXP path_(SEXP paths, SEXP ext_sxp) {
+extern "C" SEXP fs_path_(SEXP paths, SEXP ext_sxp) {
   R_xlen_t max_row = 0;
   R_xlen_t max_col = Rf_xlength(paths);
   char buf[PATH_MAX];
@@ -171,7 +171,7 @@ std::string expand_windows(const char* p) {
 }
 
 // [[export]]
-extern "C" SEXP expand_(SEXP path_sxp, SEXP windows_sxp) {
+extern "C" SEXP fs_expand_(SEXP path_sxp, SEXP windows_sxp) {
 
   SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path_sxp)));
 
@@ -199,7 +199,7 @@ extern "C" SEXP expand_(SEXP path_sxp, SEXP windows_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP tidy_(SEXP path) {
+extern "C" SEXP fs_tidy_(SEXP path) {
   SEXP out = PROTECT(Rf_allocVector(STRSXP, Rf_xlength(path)));
 
   for (R_xlen_t i = 0; i < Rf_xlength(out); ++i) {

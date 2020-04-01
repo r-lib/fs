@@ -80,7 +80,7 @@ print.fs_perms <- function(x, ...) {
 
 #' @export
 format.fs_perms <- function(x, ...) {
-  vapply(x, function(x) .Call(strmode_, x), character(1))
+  vapply(x, function(x) .Call(fs_strmode_, x), character(1))
 }
 
 #' @export
@@ -128,7 +128,7 @@ as_fs_perms.character <- function(x, ..., mode = 0) {
   out <- integer(n)
   for (i in seq_len(n)) {
     out[[i]] <- as.integer(
-      .Call(getmode_,
+      .Call(fs_getmode_,
         res[[((i + 1) %% length(res)) + 1L]],
         as.integer(mode[[((i + 1) %% length(mode)) + 1L]])))
   }
