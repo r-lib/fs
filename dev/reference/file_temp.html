@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.3.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.0.9000</span>
       </span>
     </div>
 
@@ -188,8 +188,8 @@ internal stack, however generally this is done instead by calling
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span>(<span class='st'>"/tmp/filedd461c46df20"</span>)
 
-<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6eUk23</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6eUk23/does-not-exist</div><div class='input'>
-<span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(<span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6eUk23/file17a664d6f5ab.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp6eUk23/image17a65c9ae145.png</span><span></div><div class='input'>
+<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpalXisz</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpalXisz/does-not-exist</div><div class='input'>
+<span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(<span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpalXisz/file2c8f173e3762.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpalXisz/image2c8f75a60ed9.png</span><span></div><div class='input'>
 
 <span class='co'># You can make the temp file paths deterministic</span>
 <span class='fu'>file_temp_push</span>(<span class='no'>letters</span>)
