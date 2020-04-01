@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -44,7 +48,6 @@ file_info(dir_ls()).
 dir_map() applies a function fun() to each entry in the path and returns
 the result in a list.
 dir_walk() calls fun for its side-effect and returns the input path." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -72,7 +75,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -86,7 +89,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -119,7 +122,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/fs">
+  <a href="https://github.com/r-lib/fs/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -250,15 +253,16 @@ accessed.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'>dir_ls</span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"share"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"directory"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/R</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/Rd</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/dictionaries</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/encodings</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/java</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/licenses</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/make</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/sh</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/home/travis/R-bin/lib/R/share/texmf</span><span></div><div class='input'>
+<span class='fu'>dir_ls</span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"share"</span>), <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"directory"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/R</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/Rd</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/dictionaries</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/encodings</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/java</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/licenses</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/make</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/sh</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/texmf</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/zoneinfo</span><span></div><div class='input'>
 <span class='co'># Create a shorter link</span>
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"base"</span>), <span class='st'>"base"</span>)
 
@@ -296,44 +300,41 @@ accessed.</p></td>
 #&gt;  chr "base/demo"
 #&gt;  chr "base/help"
 #&gt;  chr "base/html"</div><div class='input'>
-<span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt;               path      type    size permissions   modification_time   user
-#&gt; 1    base/CITATION      file     956   rw-r--r-- 2019-12-17 13:11:00 travis
-#&gt; 2 base/DESCRIPTION      file     286   rw-r--r-- 2019-12-17 13:11:00 travis
-#&gt; 3       base/INDEX      file  23.41K   rw-rw-r-- 2019-12-17 13:11:00 travis
-#&gt; 4        base/Meta directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
-#&gt; 5           base/R directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
-#&gt; 6        base/demo directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
-#&gt; 7        base/help directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
-#&gt; 8        base/html directory      4K   rwxrwxr-x 2019-12-17 13:11:00 travis
-#&gt;    group device_id hard_links special_device_id   inode block_size blocks flags
-#&gt; 1 travis      2049          1                 0 2055614       4096      8     0
-#&gt; 2 travis      2049          1                 0 2055612       4096      8     0
-#&gt; 3 travis      2049          1                 0 2055613       4096     48     0
-#&gt; 4 travis      2049          2                 0 2055605       4096      8     0
-#&gt; 5 travis      2049          2                 0 2055626       4096      8     0
-#&gt; 6 travis      2049          2                 0 2055615       4096      8     0
-#&gt; 7 travis      2049          2                 0 2055620       4096      8     0
-#&gt; 8 travis      2049          2                 0 2055602       4096      8     0
+<span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt;               path      type    size permissions   modification_time user group
+#&gt; 1    base/CITATION      file     956   rw-rw-r-- 2020-03-05 20:45:26 root admin
+#&gt; 2 base/DESCRIPTION      file     286   rw-rw-r-- 2020-03-05 20:45:26 root admin
+#&gt; 3       base/INDEX      file  23.41K   rw-rw-r-- 2020-03-05 20:45:26 root admin
+#&gt; 4        base/Meta directory     256   rwxrwxr-x 2020-03-05 20:45:26 root admin
+#&gt; 5           base/R directory     192   rwxrwxr-x 2020-03-05 20:45:26 root admin
+#&gt; 6        base/demo directory     192   rwxrwxr-x 2020-03-05 20:45:26 root admin
+#&gt; 7        base/help directory     224   rwxrwxr-x 2020-03-05 20:45:26 root admin
+#&gt; 8        base/html directory     128   rwxrwxr-x 2020-03-05 20:45:26 root admin
+#&gt;   device_id hard_links special_device_id       inode block_size blocks flags
+#&gt; 1  16777220          1                 0 12891414619       4096      8     0
+#&gt; 2  16777220          1                 0 12891414625       4096      8     0
+#&gt; 3  16777220          1                 0 12891414635       4096     48     0
+#&gt; 4  16777220          8                 0 12891414636       4096      0     0
+#&gt; 5  16777220          6                 0 12891414643       4096      0     0
+#&gt; 6  16777220          6                 0 12891414620       4096      0     0
+#&gt; 7  16777220          7                 0 12891414626       4096      0     0
+#&gt; 8  16777220          4                 0 12891414632       4096      0     0
 #&gt;   generation         access_time         change_time          birth_time
-#&gt; 1          0 2020-03-04 23:02:38 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 2          0 2020-03-04 23:06:06 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 3          0 2020-03-04 23:02:38 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 4          0 2020-03-04 23:04:31 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 5          0 2020-03-04 23:04:31 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 6          0 2020-03-04 23:04:31 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 7          0 2020-03-04 23:04:31 2020-03-04 23:02:38 2020-03-04 23:02:38
-#&gt; 8          0 2020-03-04 23:04:31 2020-03-04 23:02:38 2020-03-04 23:02:38</div><div class='input'>
+#&gt; 1          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 2          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 3          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 4          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 5          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 6          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 7          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
+#&gt; 8          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26</div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"base"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -344,7 +345,7 @@ accessed.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>

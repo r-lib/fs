@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -63,7 +67,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -110,7 +114,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/fs">
+  <a href="https://github.com/r-lib/fs/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -128,39 +132,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/r-lib/fs/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="fs-1-3-2" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-3-2" class="anchor"></a>fs 1.3.2<small> Unreleased </small>
+    <div id="fs-141" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.1">
+<a href="#fs-141" class="anchor"></a>fs 1.4.1<small> Unreleased </small>
+</h1>
+</div>
+    <div id="fs-140" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.0">
+<a href="#fs-140" class="anchor"></a>fs 1.4.0<small> 2020-03-31 </small>
+</h1>
+<ul>
+<li><p><code>[[.fs_path</code>, <code>[[.fs_bytes</code> and <code>[[.fs_perms</code> now preserve their classes after subsetting (<a href='https://github.com/r-lib/fs/issues/254'>#254</a>).</p></li>
+<li><p><code><a href="../reference/path_math.html">path_has_parent()</a></code> now recycles both the <code>path</code> and <code>parent</code> arguments (<a href='https://github.com/r-lib/fs/issues/253'>#253</a>).</p></li>
+<li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> now recycles both the <code>path</code> and <code>ext</code> arguments (<a href='https://github.com/r-lib/fs/issues/250'>#250</a>).</p></li>
+<li><p>Internally fs no longer depends on Rcpp</p></li>
+</ul>
+</div>
+    <div id="fs-132" class="section level1">
+<h1 class="page-header" data-toc-text="1.3.2">
+<a href="#fs-132" class="anchor"></a>fs 1.3.2<small> 2020-03-05 </small>
 </h1>
 <ul>
 <li><p>fs now passes along <code>CPPFLAGS</code> during compilation of libuv, fixing an issue that could prevent compilation from source on macOS Catalina. (<a href='https://github.com/kevinushey'>@kevinushey</a>, <a href='https://github.com/r-lib/fs/issues/229'>#229</a>)</p></li>
 <li><p>fs now compiles on alpine linux (<a href='https://github.com/r-lib/fs/issues/210'>#210</a>)</p></li>
 <li><p><code><a href="../reference/create.html">dir_create()</a></code> now works with absolute paths and <code>recurse = FALSE</code> (<a href='https://github.com/r-lib/fs/issues/204'>#204</a>).</p></li>
 <li><p><code><a href="../reference/dir_tree.html">dir_tree()</a></code> now works with paths that need tilde expansion (<a href='https://github.com/dmurdoch'>@dmurdoch</a>, <a href='https://github.com/jennybc'>@jennybc</a>, <a href='https://github.com/r-lib/fs/issues/203'>#203</a>).</p></li>
-<li><p><code><a href="../reference/file_info.html">file_info()</a></code> now returns file sizes with the proper classes (“fs_bytes” and “numeric”), rather than just “fs_bytes” (<a href='https://github.com/r-lib/fs/issues/239'>#239</a>)</p></li>
+<li><p><code><a href="../reference/file_info.html">file_info()</a></code> now returns file sizes with the proper classes (âfs_bytesâ and ânumericâ), rather than just âfs_bytesâ (<a href='https://github.com/r-lib/fs/issues/239'>#239</a>)</p></li>
 <li><p><code>get_dirent_type()</code> gains a <code>fail</code> argument (<a href='https://github.com/bellma-lilly'>@bellma-lilly</a>, <a href='https://github.com/r-lib/fs/issues/219'>#219</a>)</p></li>
 <li><p><code><a href="../reference/is_file.html">is_dir()</a></code>, <code><a href="../reference/is_file.html">is_file()</a></code>, <code><a href="../reference/is_file.html">is_file_empty()</a></code> and <code><a href="../reference/file_info.html">file_info()</a></code> gain a <code>follow</code> argument, to follow links and return information about the linked file rather than the link itself (<a href='https://github.com/r-lib/fs/issues/198'>#198</a>)</p></li>
-<li><p><code><a href="../reference/path.html">path()</a></code> now follows “tidy” recycling rules, namely only consistent or length 1 inputs are recycled. (<a href='https://github.com/r-lib/fs/issues/238'>#238</a>)</p></li>
+<li><p><code><a href="../reference/path.html">path()</a></code> now follows âtidyâ recycling rules, namely only consistent or length 1 inputs are recycled. (<a href='https://github.com/r-lib/fs/issues/238'>#238</a>)</p></li>
 <li><p><code><a href="../reference/path.html">path()</a></code> now errors if the path given or constructed will exceed <code>PATH_MAX</code> (<a href='https://github.com/r-lib/fs/issues/233'>#233</a>).</p></li>
 <li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> now works with multiple paths (<a href='https://github.com/maurolepore'>@maurolepore</a>, <a href='https://github.com/r-lib/fs/issues/208'>#208</a>).</p></li>
 </ul>
 </div>
-    <div id="fs-1-3-1" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-3-1" class="anchor"></a>fs 1.3.1<small> 2019-05-06 </small>
+    <div id="fs-131" class="section level1">
+<h1 class="page-header" data-toc-text="1.3.1">
+<a href="#fs-131" class="anchor"></a>fs 1.3.1<small> 2019-05-06 </small>
 </h1>
 <ul>
 <li><p>Fix missed test with UTF-8 characters, which now passes on a strict Latin-1 locale.</p></li>
 <li><p>Fix undefined behavior when casting -1 to <code>size_t</code>.</p></li>
 </ul>
 </div>
-    <div id="fs-1-3-0" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-3-0" class="anchor"></a>fs 1.3.0<small> 2019-05-02 </small>
+    <div id="fs-130" class="section level1">
+<h1 class="page-header" data-toc-text="1.3.0">
+<a href="#fs-130" class="anchor"></a>fs 1.3.0<small> 2019-05-02 </small>
 </h1>
 <div id="breaking-changes" class="section level2">
 <h2 class="hasAnchor">
@@ -190,9 +210,9 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-2-7" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-7" class="anchor"></a>fs 1.2.7<small> 2019-03-19 </small>
+    <div id="fs-127" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.7">
+<a href="#fs-127" class="anchor"></a>fs 1.2.7<small> 2019-03-19 </small>
 </h1>
 <div id="new-features-1" class="section level2">
 <h2 class="hasAnchor">
@@ -208,7 +228,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes-1" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
-<li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/file_temp.html">file_temp()</a></code> now treat extensions with a leading <code>.</code> and those without equally. e.g. <code><a href="../reference/path_file.html">path_ext_set("foo", ext = "bar")</a></code> and <code><a href="../reference/path_file.html">path_ext_set("foo", ext = ".bar")</a></code> both result in “foo.bar”</p></li>
+<li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/file_temp.html">file_temp()</a></code> now treat extensions with a leading <code>.</code> and those without equally. e.g.Â <code><a href="../reference/path_file.html">path_ext_set("foo", ext = "bar")</a></code> and <code><a href="../reference/path_file.html">path_ext_set("foo", ext = ".bar")</a></code> both result in âfoo.barâ</p></li>
 <li><p>Tidy paths are now always returned with uppercase drive letters on Windows (<a href='https://github.com/r-lib/fs/issues/174'>#174</a>).</p></li>
 <li><p><code>format.bench_bytes()</code> now works with <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> in R 3.5.1+ (<a href='https://github.com/r-lib/fs/issues/155'>#155</a>).</p></li>
 <li><p><code><a href="../reference/path_file.html">path_ext()</a></code>, <code><a href="../reference/path_file.html">path_ext_remove()</a></code>, and <code><a href="../reference/path_file.html">path_ext_set()</a></code> now work on paths with no extension, and <code><a href="../reference/file_temp.html">file_temp()</a></code> now prepends a <code>.</code> to the file extension (<a href='https://github.com/r-lib/fs/issues/153'>#153</a>).</p></li>
@@ -220,9 +240,9 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-2-6" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-6" class="anchor"></a>fs 1.2.6<small> 2018-08-23 </small>
+    <div id="fs-126" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.6">
+<a href="#fs-126" class="anchor"></a>fs 1.2.6<small> 2018-08-23 </small>
 </h1>
 <ul>
 <li><p>This is a small bugfix only release.</p></li>
@@ -230,17 +250,17 @@
 <li><p>Fix for a double free when using <code>warn = TRUE</code> (<a href='https://github.com/r-lib/fs/issues/132'>#132</a>)</p></li>
 </ul>
 </div>
-    <div id="fs-1-2-5" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-5" class="anchor"></a>fs 1.2.5<small> 2018-07-30 </small>
+    <div id="fs-125" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.5">
+<a href="#fs-125" class="anchor"></a>fs 1.2.5<small> 2018-07-30 </small>
 </h1>
 <ul>
 <li>Patch release to fix tests which left files in the R session directory</li>
 </ul>
 </div>
-    <div id="fs-1-2-4" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-4" class="anchor"></a>fs 1.2.4<small> 2018-07-26 </small>
+    <div id="fs-124" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.4">
+<a href="#fs-124" class="anchor"></a>fs 1.2.4<small> 2018-07-26 </small>
 </h1>
 <div id="new-features-2" class="section level2">
 <h2 class="hasAnchor">
@@ -256,16 +276,16 @@
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes-2" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
-<li><p><code><a href="../reference/path_tidy.html">path_tidy()</a></code> now always includes a trailing slash for the windows root directory, e.g. <code>C:/</code> (<a href='https://github.com/r-lib/fs/issues/124'>#124</a>).</p></li>
+<li><p><code><a href="../reference/path_tidy.html">path_tidy()</a></code> now always includes a trailing slash for the windows root directory, e.g.Â <code>C:/</code> (<a href='https://github.com/r-lib/fs/issues/124'>#124</a>).</p></li>
 <li><p><code><a href="../reference/path_file.html">path_ext()</a></code>, <code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/path_file.html">path_ext_remove()</a></code> now handle paths with non-ASCII characters (<a href='https://github.com/r-lib/fs/issues/120'>#120</a>).</p></li>
 <li><p><code>fs_path</code> objects now print (without colors) even if the user does not have permission to stat them (<a href='https://github.com/r-lib/fs/issues/121'>#121</a>).</p></li>
 <li><p>compatibility with upcoming gcc 8 based Windows toolchain (<a href='https://github.com/r-lib/fs/issues/119'>#119</a>)</p></li>
 </ul>
 </div>
 </div>
-    <div id="fs-1-2-3" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-3" class="anchor"></a>fs 1.2.3<small> 2018-06-08 </small>
+    <div id="fs-123" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.3">
+<a href="#fs-123" class="anchor"></a>fs 1.2.3<small> 2018-06-08 </small>
 </h1>
 <div id="features" class="section level2">
 <h2 class="hasAnchor">
@@ -284,9 +304,9 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-2-2" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-2" class="anchor"></a>fs 1.2.2<small> 2018-03-21 </small>
+    <div id="fs-122" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.2">
+<a href="#fs-122" class="anchor"></a>fs 1.2.2<small> 2018-03-21 </small>
 </h1>
 <div id="features-1" class="section level2">
 <h2 class="hasAnchor">
@@ -304,9 +324,9 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-2-1" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-1" class="anchor"></a>fs 1.2.1<small> 2018-03-20 </small>
+    <div id="fs-121" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.1">
+<a href="#fs-121" class="anchor"></a>fs 1.2.1<small> 2018-03-20 </small>
 </h1>
 <div id="features-2" class="section level2">
 <h2 class="hasAnchor">
@@ -325,15 +345,15 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-2-0" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-2-0" class="anchor"></a>fs 1.2.0<small> 2018-03-13 </small>
+    <div id="fs-120" class="section level1">
+<h1 class="page-header" data-toc-text="1.2.0">
+<a href="#fs-120" class="anchor"></a>fs 1.2.0<small> 2018-03-13 </small>
 </h1>
 <div id="breaking-changes-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
 <ul>
-<li><p><code><a href="../reference/path_expand.html">path_expand()</a></code> and <code><a href="../reference/path_expand.html">path_home()</a></code> now use <code>USERPROFILE</code> or <code>HOMEDRIVE</code>/<code>HOMEPATH</code> as the user home directory on Windows. This differs from the definition used in <code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code> but is consistent with definitions from other programming environments such as python and rust. This is also more compatible with external tools such as git and ssh, both of which put user-level files in <code>USERPROFILE</code> by default. To mimic R’s (and previous) behavior there are functions <code><a href="../reference/path_expand.html">path_expand_r()</a></code> and <code><a href="../reference/path_expand.html">path_home_r()</a></code>.</p></li>
+<li><p><code><a href="../reference/path_expand.html">path_expand()</a></code> and <code><a href="../reference/path_expand.html">path_home()</a></code> now use <code>USERPROFILE</code> or <code>HOMEDRIVE</code>/<code>HOMEPATH</code> as the user home directory on Windows. This differs from the definition used in <code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code> but is consistent with definitions from other programming environments such as python and rust. This is also more compatible with external tools such as git and ssh, both of which put user-level files in <code>USERPROFILE</code> by default. To mimic Râs (and previous) behavior there are functions <code><a href="../reference/path_expand.html">path_expand_r()</a></code> and <code><a href="../reference/path_expand.html">path_home_r()</a></code>.</p></li>
 <li><p>Handling missing values are more consistent. In general <code>is_*</code> functions always return <code>FALSE</code> for missing values, <code>path_*</code> functions always propagate NA values (NA inputs become NA outputs) and <code>dir_*</code> <code>file_*</code> and <code>link_*</code> functions error with NA inputs.</p></li>
 <li><p>fs functions now preserve tildes in their outputs. Previously paths were always returned with tildes expanded. Users can use <code><a href="../reference/path_expand.html">path_expand()</a></code> to expand tildes if desired.</p></li>
 </ul>
@@ -360,9 +380,9 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-1-0" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-1-0" class="anchor"></a>fs 1.1.0<small> 2018-01-26 </small>
+    <div id="fs-110" class="section level1">
+<h1 class="page-header" data-toc-text="1.1.0">
+<a href="#fs-110" class="anchor"></a>fs 1.1.0<small> 2018-01-26 </small>
 </h1>
 <div id="breaking-changes-2" class="section level2">
 <h2 class="hasAnchor">
@@ -393,9 +413,9 @@
 </ul>
 </div>
 </div>
-    <div id="fs-1-0-0" class="section level1">
-<h1 class="page-header">
-<a href="#fs-1-0-0" class="anchor"></a>fs 1.0.0<small> 2018-01-19 </small>
+    <div id="fs-100" class="section level1">
+<h1 class="page-header" data-toc-text="1.0.0">
+<a href="#fs-100" class="anchor"></a>fs 1.0.0<small> 2018-01-19 </small>
 </h1>
 <ul>
 <li>Removed the libbsd system dependency on linux</li>
@@ -405,25 +425,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#fs-1-3-2">1.3.2</a></li>
-        <li><a href="#fs-1-3-1">1.3.1</a></li>
-        <li><a href="#fs-1-3-0">1.3.0</a></li>
-        <li><a href="#fs-1-2-7">1.2.7</a></li>
-        <li><a href="#fs-1-2-6">1.2.6</a></li>
-        <li><a href="#fs-1-2-5">1.2.5</a></li>
-        <li><a href="#fs-1-2-4">1.2.4</a></li>
-        <li><a href="#fs-1-2-3">1.2.3</a></li>
-        <li><a href="#fs-1-2-2">1.2.2</a></li>
-        <li><a href="#fs-1-2-1">1.2.1</a></li>
-        <li><a href="#fs-1-2-0">1.2.0</a></li>
-        <li><a href="#fs-1-1-0">1.1.0</a></li>
-        <li><a href="#fs-1-0-0">1.0.0</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -435,7 +440,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>
