@@ -48,12 +48,12 @@ print.fs_path <- function(x, ..., max = getOption("max.print")) {
 }
 
 #' @export
-`[.fs_path` <- function(x, i) {
+`[.fs_path` <- function(x, i, ...) {
   new_fs_path(NextMethod("["))
 }
 
 #' @export
-`[[.fs_path` <- function(x, i) {
+`[[.fs_path` <- function(x, i, ...) {
   new_fs_path(NextMethod("["))
 }
 

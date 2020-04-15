@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `file_info()` returns a tibble if the tibble package is installed, and subsets work when it is a `data.frame` (#265)
+
 # fs 1.4.1
 
 * Fix compilation on Solaris.

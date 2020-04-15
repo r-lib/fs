@@ -67,6 +67,7 @@ file_info <- function(path, fail = TRUE, follow = FALSE) {
   }
 
   res
+  as_tibble(res)
 }
 
 #' @export

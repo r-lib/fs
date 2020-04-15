@@ -99,12 +99,12 @@ max.fs_bytes <- function(x, ...) {
 }
 
 #' @export
-`[.fs_bytes` <- function(x, i) {
+`[.fs_bytes` <- function(x, i, ...) {
   new_fs_bytes(NextMethod("["))
 }
 
 #' @export
-`[[.fs_bytes` <- function(x, i) {
+`[[.fs_bytes` <- function(x, i, ...) {
   new_fs_bytes(NextMethod("[["))
 }
 

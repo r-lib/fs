@@ -31,6 +31,20 @@ describe("file_info", {
       expect_equal(as.character(x$path), NA_character_)
       expect_equal(sum(is.na(x)), 18)
     })
+    it("can be subset as a data.frame", {
+      x <- file_info("foo/bar")
+      class(x) <- "data.frame"
+      for (col in seq_along(x)) {
+        expect_true(length(x[[1, col]]) == 1)
+      }
+    })
+    it("can be subset as a tibble", {
+      x <- file_info("foo/bar")
+      expect_is(x, "tbl_df")
+      for (col in seq_along(x)) {
+        expect_true(length(x[[1, col]]) == 1)
+      }
+    })
   })
 })
 
