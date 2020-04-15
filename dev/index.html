@@ -98,7 +98,7 @@
 </p>
 <p><img src="https://i.imgur.com/NAux1Xc.png" width="75%"></p>
 
-<p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as <a href="https://nodejs.org">nodejs</a>, the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rustâs <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
+<p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as <a href="https://nodejs.org">nodejs</a>, the <a href="http://docs.libuv.org/en/v1.x/fs.html">libuv</a> C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html">fs module</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -117,12 +117,12 @@
 <li><p>Predictable return values that always convey a path. All <strong>fs</strong> functions return a character vector of paths, a named integer or a logical vector, where the names give the paths. Base return values are more varied: they are often logical or contain error codes which require downstream processing.</p></li>
 <li><p>Explicit failure. If <strong>fs</strong> operations fail, they throw an error. Base functions tend to generate a warning and a system dependent error code. This makes it easy to miss a failure.</p></li>
 <li><p>UTF-8 all the things. <strong>fs</strong> functions always convert input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSes. Base functions rely on the native system encoding.</p></li>
-<li><p>Naming convention. <strong>fs</strong> functions use a consistent naming convention. Because base Râs functions were gradually added over time there are a number of different conventions used (e.g.Â <code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code> vs <code><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath()</a></code>; <code><a href="https://rdrr.io/r/base/files2.html">Sys.chmod()</a></code> vs <code><a href="https://rdrr.io/r/base/file.access.html">file.access()</a></code>).</p></li>
+<li><p>Naming convention. <strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code> vs <code><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath()</a></code>; <code><a href="https://rdrr.io/r/base/files2.html">Sys.chmod()</a></code> vs <code><a href="https://rdrr.io/r/base/file.access.html">file.access()</a></code>).</p></li>
 </ul>
 <div id="tidy-paths" class="section level3">
 <h3 class="hasAnchor">
 <a href="#tidy-paths" class="anchor"></a>Tidy paths</h3>
-<p><strong>fs</strong> functions always return âtidyâ paths. Tidy paths</p>
+<p><strong>fs</strong> functions always return ‘tidy’ paths. Tidy paths</p>
 <ul>
 <li>Always use <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> to delimit directories</li>
 <li>never have multiple <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> or trailing <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>
@@ -178,7 +178,7 @@
 
 <span class="co"># remove the directory</span>
 <span class="fu"><a href="reference/delete.html">dir_delete</a></span>(<span class="no">tmp</span>)</pre></div>
-<p><strong>fs</strong> is designed to work well with the pipe, though because it is a minimal-dependency infrastructure package it doesnât provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
+<p><strong>fs</strong> is designed to work well with the pipe, though because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">magrittr</span>)
 
 <span class="no">paths</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span>() <span class="kw">%&gt;%</span>
@@ -194,7 +194,7 @@
 
 <span class="no">paths</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/delete.html">file_delete</a></span>()</pre></div>
 <p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/">tidyverse</a> packages, like <a href="http://dplyr.tidyverse.org">dplyr</a> and <a href="http://purrr.tidyverse.org">purrr</a>.</p>
-<p>Some examplesâ¦</p>
+<p>Some examples…</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyverse</span>))</pre></div>
 <p>Filter files by type, permission and size</p>
@@ -235,7 +235,7 @@
 <span class="co">#&gt;  8 src/libuv/m4                  319.95K</span>
 <span class="co">#&gt;  9 src/libuv/src                 203.78K</span>
 <span class="co">#&gt; 10 src/libuv/include             192.33K</span>
-<span class="co">#&gt; # â¦ with 44 more rows</span></pre></div>
+<span class="co">#&gt; # … with 44 more rows</span></pre></div>
 <p>Read a collection of files into one data frame.</p>
 <p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df(.id)</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Create separate files for each species</span>
@@ -322,7 +322,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
