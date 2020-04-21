@@ -12,14 +12,16 @@ public:
 
   void push_back(SEXP x) {
     if (Rf_xlength(data_) == n_) {
+      R_ReleaseObject(data_);
       data_ = Rf_lengthgets(data_, n_ * 2);
+      R_PreserveObject(data_);
     }
     SET_VECTOR_ELT(data_, n_++, x);
   }
 
-  SEXP vector() {
+  operator SEXP() {
     if (Rf_xlength(data_) != n_) {
-      data_ = Rf_xlengthgets(data_, n_);
+      SETLENGTH(data_, n_);
     }
     return data_;
   }

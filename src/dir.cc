@@ -146,5 +146,5 @@ extern "C" SEXP fs_dir_map_(
         &out,
         LOGICAL(fail_sxp)[0]);
   }
-  return out.vector();
+  return out;
 }
