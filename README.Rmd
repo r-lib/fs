@@ -155,7 +155,7 @@ suppressMessages(
 Filter files by type, permission and size
 
 ```{r}
-dir_info("src", recursive = FALSE) %>%
+dir_info("src", recurse = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, modification_time)
@@ -164,7 +164,7 @@ dir_info("src", recursive = FALSE) %>%
 Tabulate and display folder size.
 
 ```{r}
-dir_info("src", recursive = TRUE) %>%
+dir_info("src", recurse = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
 ```

@@ -106,22 +106,22 @@ path("foo", "bar", letters[1:3], ext = "txt")
 
 # list files in the current directory
 dir_ls()
-#> DESCRIPTION      LICENSE.md       NAMESPACE        NEWS.md          
-#> R                README.Rmd       README.md        _pkgdown.yml     
-#> appveyor.yml     codecov.yml      cran-comments.md docs             
-#> fs.Rcheck        fs.Rproj         inst             man              
+#> DESCRIPTION      LICENSE.md       Makefile         NAMESPACE        
+#> NEWS.md          R                README.Rmd       README.md        
+#> _pkgdown.yml     appveyor.yml     codecov.yml      cran-comments.md 
+#> docs             fs.Rproj         inst             man              
 #> man-roxygen      revdep           script.R         src              
 #> tests            vignettes
 
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d157c3b7c
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848c8f1fa0
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d157c3b7c/my-file.txt
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848c8f1fa0/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -145,11 +145,11 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/a
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/b
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/c
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/d
-#> /var/folders/dt/r5s12t392tb5sk181j3gs4zw0000gn/T/Rtmp0aiZS3/fileb29d5be994c3/e
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/a
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/b
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/c
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/d
+#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/e
 
 paths %>% file_delete()
 ```
@@ -169,47 +169,45 @@ suppressMessages(
 Filter files by type, permission and size
 
 ``` r
-dir_info("src", recursive = FALSE) %>%
+dir_info("src", recurse = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, modification_time)
-#> Warning: `recursive` is deprecated, please use `recurse` instead
 #> # A tibble: 11 x 4
-#>    path                permissions        size modification_time  
-#>    <fs::path>          <fs::perms> <fs::bytes> <dttm>             
-#>  1 src/RcppExports.o   rw-r--r--        973.5K 2020-01-03 13:49:03
-#>  2 src/dir.o           rw-r--r--        535.2K 2020-01-03 13:48:26
-#>  3 src/id.o            rw-r--r--        437.7K 2020-01-03 13:48:26
-#>  4 src/file.o          rw-r--r--        404.4K 2020-01-03 13:49:03
-#>  5 src/fs.so           rwxr-xr-x        398.8K 2020-01-03 13:49:03
-#>  6 src/path.o          rw-r--r--        397.1K 2020-01-03 13:48:26
-#>  7 src/link.o          rw-r--r--          243K 2020-01-03 13:48:26
-#>  8 src/utils.o         rw-r--r--        129.2K 2020-01-03 13:48:26
-#>  9 src/error.o         rw-r--r--         19.6K 2020-01-03 13:48:26
-#> 10 src/RcppExports.cpp rw-r--r--         12.2K 2020-01-03 13:49:03
-#> 11 src/file.cc         rw-r--r--         10.2K 2020-03-03 15:26:28
+#>    path          permissions        size modification_time  
+#>    <fs::path>    <fs::perms> <fs::bytes> <dttm>             
+#>  1 src/fs.so     rwxr-xr-x        245.9K 2020-04-21 08:34:24
+#>  2 src/id.o      rw-r--r--        178.6K 2020-04-21 08:34:24
+#>  3 src/dir.o     rw-r--r--        108.3K 2020-04-21 08:34:24
+#>  4 src/path.o    rw-r--r--         99.7K 2020-04-21 08:34:24
+#>  5 src/utils.o   rw-r--r--         75.3K 2020-04-21 08:34:24
+#>  6 src/getmode.o rw-r--r--         70.9K 2020-04-21 08:34:24
+#>  7 src/link.o    rw-r--r--         69.4K 2020-04-21 08:34:24
+#>  8 src/file.o    rw-r--r--           48K 2020-04-21 08:34:24
+#>  9 src/error.o   rw-r--r--           18K 2020-04-21 08:34:24
+#> 10 src/init.o    rw-r--r--         16.5K 2020-04-21 08:34:24
+#> 11 src/file.cc   rw-r--r--           11K 2020-04-01 12:30:55
 ```
 
 Tabulate and display folder size.
 
 ``` r
-dir_info("src", recursive = TRUE) %>%
+dir_info("src", recurse = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
-#> Warning: `recursive` is deprecated, please use `recurse` instead
 #> # A tibble: 54 x 2
-#>    directory                           n
-#>    <chr>                     <fs::bytes>
-#>  1 src/libuv                       3.92M
-#>  2 src                              3.5M
-#>  3 src/libuv/autom4te.cache        2.44M
-#>  4 src/libuv/src/unix               1.2M
-#>  5 src/libuv/test                865.35K
-#>  6 src/libuv/src/win             683.14K
-#>  7 src/libuv/docs/src/static      328.3K
-#>  8 src/libuv/m4                  319.95K
-#>  9 src/libuv/src                 203.78K
-#> 10 src/libuv/include             192.33K
+#>    directory                                        n
+#>    <chr>                                  <fs::bytes>
+#>  1 src/libuv                                    3.92M
+#>  2 src/libuv/autom4te.cache                     2.44M
+#>  3 src                                        976.15K
+#>  4 src/libuv/test                             865.35K
+#>  5 src/libuv/src/win                          683.14K
+#>  6 src/libuv/src/unix                         526.47K
+#>  7 src/libuv/docs/src/static                   328.3K
+#>  8 src/libuv/m4                               319.95K
+#>  9 src/libuv/include                          192.33K
+#> 10 src/libuv/docs/src/static/diagrams.key     184.02K
 #> # … with 44 more rows
 ```
 
