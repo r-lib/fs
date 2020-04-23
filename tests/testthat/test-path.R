@@ -74,16 +74,6 @@ describe("path_real", {
     })
   })
 
-  it("returns the real path for symbolic links even if the full path doesn't exist", {
-    with_dir_tree(list("foo/bar/baz" = "test"), {
-      link_create(path_real("foo"), "foo2")
-      expect_equal(path_real("foo/qux"), path_real("foo/qux"))
-
-      link_create(path_real("foo/bar"), "bar2")
-      expect_equal(path_real("bar2/qux"), path_real("bar2/qux"))
-    })
-  })
-
   it ("works with indirect symlinks", {
     skip_on_os("windows")
 
@@ -107,7 +97,9 @@ describe("path_real", {
       wd <- path_wd()
       link_create("y", "k")
       withr::with_dir("k", {
+        file_create("a")
         expect_equal(path_real("a"), path(wd, "/y/a"))
+        unlink("a")
       })
     })
   })
