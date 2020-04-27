@@ -4,6 +4,10 @@
 
 * `file_info()` returns a tibble if the tibble package is installed, and subsets work when it is a `data.frame` (#265)
 
+* `path_real()` always fails if the file does not exist. Thus it can no longer
+be used to resolve symlinks further up the path hierarchy for files that do not
+yet exist. This reverts the feature introduced in 1.2.7 (#144, #221, #231)
+
 # fs 1.4.1
 
 * Fix compilation on Solaris.
