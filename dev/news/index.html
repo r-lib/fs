@@ -157,6 +157,7 @@
 <ul>
 <li><p><code><a href="../reference/dir_ls.html">dir_map()</a></code> now grows its internal list safely, the 1.4.0 release introduced an unsafe regression (<a href='https://github.com/r-lib/fs/issues/268'>#268</a>)</p></li>
 <li><p><code><a href="../reference/file_info.html">file_info()</a></code> returns a tibble if the tibble package is installed, and subsets work when it is a <code>data.frame</code> (<a href='https://github.com/r-lib/fs/issues/265'>#265</a>)</p></li>
+<li><p><code><a href="../reference/path_math.html">path_real()</a></code> always fails if the file does not exist. Thus it can no longer be used to resolve symlinks further up the path hierarchy for files that do not yet exist. This reverts the feature introduced in 1.2.7 (<a href='https://github.com/r-lib/fs/issues/144'>#144</a>, <a href='https://github.com/r-lib/fs/issues/221'>#221</a>, <a href='https://github.com/r-lib/fs/issues/231'>#231</a>)</p></li>
 </ul>
 </div>
     <div id="fs-141" class="section level1">
