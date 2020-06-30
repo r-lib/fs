@@ -52,5 +52,5 @@ path_ext_remove("file.tar.gz")
 path_ext_set(path_ext_remove("file.tar.gz"), "zip")
 }
 \seealso{
-\code{\link[base:basename]{base::basename()}}, \code{\link[base:dirname]{base::dirname()}}
+\code{\link[base:basename]{base::basename()}}, \code{\link[base:basename]{base::dirname()}}
 }
