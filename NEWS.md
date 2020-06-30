@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.4.2
 
 * `file_info(..., follow = TRUE)`, `is_dir()`, and `is_file()`
   follow relative symlinks in non-current directories (@heavywatal, #280)
