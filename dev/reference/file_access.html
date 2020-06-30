@@ -155,18 +155,18 @@ the path is a directory or link, respectively." />
     </div>
 
     <div class="ref-description">
-    <p><code>file_exists(path)</code> is a shortcut for <code>file_access(x, "exists")</code>;
-<code>dir_exists(path)</code> and <code>link_exists(path)</code> are similar but also check that
+    <p><code><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists(path)</a></code> is a shortcut for <code><a href='http://fs.r-lib.org/reference/file_access.html'>file_access(x, "exists")</a></code>;
+<code><a href='http://fs.r-lib.org/reference/file_access.html'>dir_exists(path)</a></code> and <code><a href='http://fs.r-lib.org/reference/file_access.html'>link_exists(path)</a></code> are similar but also check that
 the path is a directory or link, respectively.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>file_access</span>(<span class='no'>path</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"exists"</span>)
+    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_access</a></span>(<span class='kw'>path</span>, mode = <span class='st'>"exists"</span>)
 
-<span class='fu'>file_exists</span>(<span class='no'>path</span>)
+<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='kw'>path</span>)
 
-<span class='fu'>dir_exists</span>(<span class='no'>path</span>)
+<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>dir_exists</a></span>(<span class='kw'>path</span>)
 
-<span class='fu'>link_exists</span>(<span class='no'>path</span>)</pre>
+<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>link_exists</a></span>(<span class='kw'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,14 +189,14 @@ the path is a directory or link, respectively.</p>
 
     <p><strong>Cross-compatibility warning:</strong> There is no executable bit on
 Windows. Checking a file for mode 'execute' on Windows, e.g.
-<code>file_access(x, "execute")</code> will always return <code>TRUE</code>.</p>
+<code><a href='http://fs.r-lib.org/reference/file_access.html'>file_access(x, "execute")</a></code> will always return <code>TRUE</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>file_access</span>(<span class='st'>"/"</span>)</div><div class='output co'>#&gt;    / 
-#&gt; TRUE </div><div class='input'><span class='fu'>file_access</span>(<span class='st'>"/"</span>, <span class='st'>"read"</span>)</div><div class='output co'>#&gt;    / 
-#&gt; TRUE </div><div class='input'><span class='fu'>file_access</span>(<span class='st'>"/"</span>, <span class='st'>"write"</span>)</div><div class='output co'>#&gt;     / 
+    <pre class="examples"><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_access</a></span>(<span class='st'>"/"</span>)</div><div class='output co'>#&gt;    / 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_access</a></span>(<span class='st'>"/"</span>, <span class='st'>"read"</span>)</div><div class='output co'>#&gt;    / 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_access</a></span>(<span class='st'>"/"</span>, <span class='st'>"write"</span>)</div><div class='output co'>#&gt;     / 
 #&gt; FALSE </div><div class='input'>
-<span class='fu'>file_exists</span>(<span class='st'>"WOMBATS"</span>)</div><div class='output co'>#&gt; WOMBATS 
+<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='st'>"WOMBATS"</span>)</div><div class='output co'>#&gt; WOMBATS 
 #&gt;   FALSE </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

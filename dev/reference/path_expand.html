@@ -165,24 +165,24 @@ definition of the home directory.
     <div class="ref-description">
     
 <ul>
-<li><p><code>path_expand()</code> performs tilde expansion on a path, replacing instances of
-<code>~</code> or <code>~user</code> with the user's home directory.</p></li>
-<li><p><code>path_home()</code> constructs a path within the expanded users home directory,
+<li><p><code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand()</a></code> performs tilde expansion on a path, replacing instances of
+<code><a href='https://rdrr.io/r/base/tilde.html'>~</a></code> or <code>~user</code> with the user's home directory.</p></li>
+<li><p><code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home()</a></code> constructs a path within the expanded users home directory,
 calling it with <em>no</em> arguments can be useful to verify what fs considers the
 home directory.</p></li>
-<li><p><code>path_expand_r()</code> and <code>path_home_r()</code> are equivalents which always use R's
+<li><p><code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand_r()</a></code> and <code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home_r()</a></code> are equivalents which always use R's
 definition of the home directory.</p></li>
 </ul>
 
     </div>
 
-    <pre class="usage"><span class='fu'>path_expand</span>(<span class='no'>path</span>)
+    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand</a></span>(<span class='kw'>path</span>)
 
-<span class='fu'>path_expand_r</span>(<span class='no'>path</span>)
+<span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand_r</a></span>(<span class='kw'>path</span>)
 
-<span class='fu'>path_home</span>(<span class='no'>...</span>)
+<span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home</a></span>(<span class='kw'>...</span>)
 
-<span class='fu'>path_home_r</span>(<span class='no'>...</span>)</pre>
+<span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home_r</a></span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,21 +193,21 @@ definition of the home directory.</p></li>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional paths appended to the home directory by <code><a href='path.html'>path()</a></code>.</p></td>
+      <td><p>Additional paths appended to the home directory by <code><a href='http://fs.r-lib.org/reference/path.html'>path()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>path_expand()</code> differs from <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> in the interpretation of
-the home directory of Windows. In particular <code>path_expand()</code> uses the path
+    <p><code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand()</a></code> differs from <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> in the interpretation of
+the home directory of Windows. In particular <code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand()</a></code> uses the path
 set in the <code>USERPROFILE</code> environment variable and, if unset, then uses
 <code>HOMEDRIVE</code>/<code>HOMEPATH</code>.</p>
 <p>In contrast <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> first checks for <code>R_USER</code> then <code>HOME</code>,
 which in the default configuration of R on Windows are both set to the user's
 document directory, e.g. <code>C:\\Users\\username\\Documents</code>.
 <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code> also does not support <code>~otheruser</code> syntax on Windows,
-whereas <code>path_expand()</code> does support this syntax on all systems.</p>
+whereas <code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand()</a></code> does support this syntax on all systems.</p>
 <p>This definition makes fs more consistent with the definition of home
 directory used on Windows in other languages, such as
 <a href='https://docs.python.org/3/library/os.path.html#os.path.expanduser'>python</a>
@@ -225,12 +225,12 @@ for behavior of <code><a href='https://rdrr.io/r/base/path.expand.html'>base::pa
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Expand a path</span>
-<span class='fu'>path_expand</span>(<span class='st'>"~/bin"</span>)</div><div class='output co'>#&gt; /Users/runner/bin</div><div class='input'>
+<span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_expand</a></span>(<span class='st'>"~/bin"</span>)</div><div class='output co'>#&gt; /Users/runner/bin</div><div class='input'>
 <span class='co'># You can use `path_home()` without arguments to see what is being used as</span>
 <span class='co'># the home diretory.</span>
-<span class='fu'>path_home</span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Users/runner</span><span></div><div class='input'><span class='fu'>path_home</span>(<span class='st'>"R"</span>)</div><div class='output co'>#&gt; /Users/runner/R</div><div class='input'>
+<span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home</a></span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Users/runner</span><span></div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home</a></span>(<span class='st'>"R"</span>)</div><div class='output co'>#&gt; /Users/runner/R</div><div class='input'>
 <span class='co'># This will likely differ from the above on Windows</span>
-<span class='fu'>path_home_r</span>()</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Users/runner</span><span></div></span></pre>
+<span class='fu'><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home_r</a></span>()</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Users/runner</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -154,13 +154,13 @@ from the current working directory." />
     </div>
 
     <div class="ref-description">
-    <p><code>path()</code> constructs a relative path, <code>path_wd()</code> constructs an absolute path
+    <p><code><a href='http://fs.r-lib.org/reference/path.html'>path()</a></code> constructs a relative path, <code><a href='http://fs.r-lib.org/reference/path.html'>path_wd()</a></code> constructs an absolute path
 from the current working directory.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>path</span>(<span class='no'>...</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>""</span>)
+    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span>(<span class='kw'>...</span>, ext = <span class='st'>""</span>)
 
-<span class='fu'>path_wd</span>(<span class='no'>...</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+<span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path_wd</a></span>(<span class='kw'>...</span>, ext = <span class='st'>""</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,12 +179,12 @@ namely that only length 1 arguments are recycled.</p></td>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='path_expand.html'>path_home()</a></code>, <code><a href='path_package.html'>path_package()</a></code> for functions to construct paths
+    <div class='dont-index'><p><code><a href='http://fs.r-lib.org/reference/path_expand.html'>path_home()</a></code>, <code><a href='http://fs.r-lib.org/reference/path_package.html'>path_package()</a></code> for functions to construct paths
 relative to the home and package directories respectively.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>, <span class='st'>"baz"</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"zip"</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;font-weight: bold;'>foo/bar/baz.zip</span><span></div><div class='input'>
-<span class='fu'>path</span>(<span class='st'>"foo"</span>, <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>3</span>], <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"txt"</span>)</div><div class='output co'>#&gt; foo/a.txt foo/b.txt foo/c.txt </div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>, <span class='st'>"baz"</span>, ext = <span class='st'>"zip"</span>)</div><div class='output co'>#&gt; <span style='color: #BB0000;font-weight: bold;'>foo/bar/baz.zip</span><span></div><div class='input'>
+<span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span>(<span class='st'>"foo"</span>, <span class='kw'>letters</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>], ext = <span class='st'>"txt"</span>)</div><div class='output co'>#&gt; foo/a.txt foo/b.txt foo/c.txt </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
