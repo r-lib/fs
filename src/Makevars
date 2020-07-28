@@ -1,6 +1,8 @@
 UNAME := $(shell uname)
 
-PKG_LIBS = ./libuv/.libs/libuv.a -pthread
+LIBUV := libuv-1.38.1
+
+PKG_LIBS = ./$(LIBUV)/.libs/libuv.a -pthread
 
 SOURCES = $(wildcard *.cc unix/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)
@@ -19,18 +21,18 @@ ifeq ($(UNAME), Linux)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
-PKG_CPPFLAGS = -I./libuv/include -I. -pthread
+PKG_CPPFLAGS = -I./$(LIBUV)/include -I. -pthread
 
 all: $(SHLIB)
 
-$(SHLIB): libuv/.libs/libuv.a
+$(SHLIB): $(LIBUV)/.libs/libuv.a
 
-libuv/Makefile:
-	(cd libuv \
+$(LIBUV)/Makefile:
+	(cd $(LIBUV) \
 	&& CC="$(CC)" CFLAGS="$(CFLAGS) $(CPPFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
 
-libuv/.libs/libuv.a: libuv/Makefile
-	$(MAKE) --directory=libuv \
+$(LIBUV)/.libs/libuv.a: $(LIBUV)/Makefile
+	$(MAKE) --directory=$(LIBUV) \
 		HAVE_DTRACE=0
 
 .PHONY: shlib-clean clean
@@ -38,5 +40,5 @@ libuv/.libs/libuv.a: libuv/Makefile
 # shlib-clean: clean
 
 clean:
-	$(MAKE) --directory=libuv distclean
+	$(MAKE) --directory=$(LIBUV) distclean
 	rm -f $(OBJECTS)
