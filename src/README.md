@@ -3,7 +3,7 @@
 - Download the tarball from https://dist.libuv.org/dist/
 - Extract to a temporary directory
 - Add `AM_MAINTAINER_MODE` to configure.ac
-- Remove `AM_ENABLE_SHARED` in configure.ac
+- Remove `AC_ENABLE_SHARED` in configure.ac
 - Add `-DSUNOS_NO_IFADDDRS` in `Makefile.am` for CRAN Solaris support
 - Run autogen.sh
 - Run ./configure
