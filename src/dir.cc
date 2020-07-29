@@ -9,10 +9,16 @@
 #include "utils.h"
 #include <cstring>
 #include <limits>
+#include <sys/stat.h>
 
 // [[export]]
 extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
-  unsigned short mode = INTEGER(mode_sxp)[0];
+  int process_umask = 0;
+#ifndef _WIN32
+  process_umask = umask(0);
+#endif
+
+  int mode = INTEGER(mode_sxp)[0] & ~process_umask;
 
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {

@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `dir_create()` now consults the process umask so the mode during directory creation works like `mkdir` does (#284).
+
 # fs 1.4.2
 
 * `file_info(..., follow = TRUE)`, `is_dir()`, and `is_file()`

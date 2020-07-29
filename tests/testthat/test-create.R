@@ -20,6 +20,16 @@ test_that("dir_create works with new and existing files", {
   unlink(x1, recursive = TRUE)
 })
 
+test_that("dir_create sets the mode properly", {
+  skip_on_cran()
+  x1 <- dir_create(tempfile(), mode = "775")
+
+  expect_true(file_exists(x1))
+  expect_equal(file_info(x1)$permissions, "775")
+
+  unlink(x1, recursive = TRUE)
+})
+
 test_that("dir_create works with absolute paths and recurse = FALSE (#204)", {
   x1 <- dir_create(path_abs(tempfile()), recurse = FALSE)
 
