@@ -335,7 +335,8 @@ endif
 if SUNOS
 test_run_tests_CFLAGS += -D__EXTENSIONS__ \
                          -D_XOPEN_SOURCE=500 \
-                         -D_REENTRANT
+                         -D_REENTRANT \
+                         -DSUNOS_NO_IFADDRS
 endif
 
 if OS390
