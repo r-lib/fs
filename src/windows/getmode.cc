@@ -170,7 +170,6 @@ std::string strmode__(mode_t mode) {
   // The first character is the file type, so we do not return it.
   return out + 1;
 }
-#define S_IFLNK 0120000
 
 std::string file_code__(const std::string& path, unsigned short mode) {
   switch (mode & S_IFMT) {
