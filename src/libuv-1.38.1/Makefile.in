@@ -194,6 +194,7 @@ check_PROGRAMS = test/run-tests$(EXEEXT)
 @SUNOS_TRUE@am__append_15 = -D__EXTENSIONS__ \
 @SUNOS_TRUE@                         -D_XOPEN_SOURCE=500 \
 @SUNOS_TRUE@                         -D_REENTRANT
+@SUNOS_TRUE@                         -DSUNOS_NO_IFADDRS
 
 @OS390_TRUE@am__append_16 = -D_ISOC99_SOURCE \
 @OS390_TRUE@                         -D_UNIX03_THREADS \
