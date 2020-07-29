@@ -193,8 +193,7 @@ check_PROGRAMS = test/run-tests$(EXEEXT)
 @LINUX_TRUE@am__append_14 = -D_GNU_SOURCE
 @SUNOS_TRUE@am__append_15 = -D__EXTENSIONS__ \
 @SUNOS_TRUE@                         -D_XOPEN_SOURCE=500 \
-@SUNOS_TRUE@                         -D_REENTRANT \
-@SUNOS_TRUE@                         -DSUNOS_NO_IFADDRS
+@SUNOS_TRUE@                         -D_REENTRANT
 
 @OS390_TRUE@am__append_16 = -D_ISOC99_SOURCE \
 @OS390_TRUE@                         -D_UNIX03_THREADS \
@@ -341,7 +340,8 @@ check_PROGRAMS = test/run-tests$(EXEEXT)
 @SUNOS_TRUE@am__append_56 = include/uv/sunos.h
 @SUNOS_TRUE@am__append_57 = -D__EXTENSIONS__ \
 @SUNOS_TRUE@                   -D_XOPEN_SOURCE=500 \
-@SUNOS_TRUE@                   -D_REENTRANT
+@SUNOS_TRUE@                   -D_REENTRANT \
+@SUNOS_TRUE@                   -DSUNOS_NO_IFADDRS
 
 @SUNOS_TRUE@am__append_58 = src/unix/no-proctitle.c \
 @SUNOS_TRUE@                    src/unix/sunos.c

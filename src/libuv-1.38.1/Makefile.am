@@ -335,8 +335,7 @@ endif
 if SUNOS
 test_run_tests_CFLAGS += -D__EXTENSIONS__ \
                          -D_XOPEN_SOURCE=500 \
-                         -D_REENTRANT \
-                         -DSUNOS_NO_IFADDRS
+                         -D_REENTRANT
 endif
 
 if OS390
@@ -512,7 +511,9 @@ if SUNOS
 uvinclude_HEADERS += include/uv/sunos.h
 libuv_la_CFLAGS += -D__EXTENSIONS__ \
                    -D_XOPEN_SOURCE=500 \
-                   -D_REENTRANT
+                   -D_REENTRANT \
+                   -DSUNOS_NO_IFADDRS
+
 libuv_la_SOURCES += src/unix/no-proctitle.c \
                     src/unix/sunos.c
 endif
