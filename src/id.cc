@@ -34,9 +34,9 @@ extern "C" SEXP fs_getpwnam_(SEXP name_sxp) {
 // [[export]]
 extern "C" SEXP fs_getgrnam_(SEXP name_sxp) {
   SEXP out = PROTECT(Rf_allocVector(INTSXP, Rf_xlength(name_sxp)));
-  int* out_p = INTEGER(out);
 
 #ifndef __WIN32
+  int* out_p = INTEGER(out);
   for (R_xlen_t i = 0; i < Rf_xlength(name_sxp); ++i) {
     group* grp;
     grp = getgrnam(CHAR(STRING_ELT(name_sxp, i)));
