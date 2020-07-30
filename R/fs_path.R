@@ -145,3 +145,9 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
   }
   res
 }
+
+#' @export
+xtfrm.fs_path <- function(x, ...) {
+  x <- unclass(x)
+  NextMethod("xterm")
+}
