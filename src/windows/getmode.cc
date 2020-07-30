@@ -171,11 +171,13 @@ std::string strmode__(mode_t mode) {
   return out + 1;
 }
 
+#define WIN_S_IFLNK 0120000
+
 std::string file_code__(const std::string& path, unsigned short mode) {
   switch (mode & S_IFMT) {
   case S_IFDIR:
     return "di";
-  case S_IFLNK:
+  case WIN_S_IFLNK:
     return "ln";
   case S_IFIFO:
     return "pi";
