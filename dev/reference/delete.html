@@ -89,7 +89,7 @@ directory cannot be deleted rather than being silent or signalling a warning." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
       </span>
     </div>
 
@@ -160,21 +160,21 @@ directory cannot be deleted rather than being silent or signalling a warning." /
     </div>
 
     <div class="ref-description">
-    <p><code><a href='http://fs.r-lib.org/reference/delete.html'>file_delete()</a></code> and <code><a href='http://fs.r-lib.org/reference/delete.html'>link_delete()</a></code> delete file and links. Compared to
+    <p><code>file_delete()</code> and <code>link_delete()</code> delete file and links. Compared to
 <a href='https://rdrr.io/r/base/files.html'>file.remove</a> they always fail if they cannot delete the object rather than
 changing return value or signalling a warning. If any inputs are
-directories, they are passed to <code><a href='http://fs.r-lib.org/reference/delete.html'>dir_delete()</a></code>, so <code><a href='http://fs.r-lib.org/reference/delete.html'>file_delete()</a></code> can
+directories, they are passed to <code>dir_delete()</code>, so <code>file_delete()</code> can
 therefore be used to delete any filesystem object.</p>
-<p><code><a href='http://fs.r-lib.org/reference/delete.html'>dir_delete()</a></code> will first delete the contents of the directory, then remove
+<p><code>dir_delete()</code> will first delete the contents of the directory, then remove
 the directory. Compared to <a href='https://rdrr.io/r/base/unlink.html'>unlink</a> it will always throw an error if the
 directory cannot be deleted rather than being silent or signalling a warning.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='kw'>path</span>)
+    <pre class="usage"><span class='fu'>file_delete</span>(<span class='no'>path</span>)
 
-<span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>dir_delete</a></span>(<span class='kw'>path</span>)
+<span class='fu'>dir_delete</span>(<span class='no'>path</span>)
 
-<span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>link_delete</a></span>(<span class='kw'>path</span>)</pre>
+<span class='fu'>link_delete</span>(<span class='no'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -190,35 +190,35 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
     <p>The deleted paths (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+    <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
 <span class='co'># create a directory, with some files and a link to it</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>dir_create</a></span>(<span class='st'>"dir"</span>)
-<span class='kw'>files</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>file_create</a></span>(<span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span>(<span class='st'>"dir"</span>, <span class='kw'>letters</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>]))
-<span class='kw'>link</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>link_create</a></span>(<span class='fu'><a href='http://fs.r-lib.org/reference/path_math.html'>path_abs</a></span>(<span class='st'>"dir"</span>), <span class='st'>"link"</span>)
+<span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"dir"</span>)
+<span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>file_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='st'>"dir"</span>, <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>5</span>]))
+<span class='no'>link</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='st'>"dir"</span>), <span class='st'>"link"</span>)
 
 <span class='co'># All files created</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;  dir 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='kw'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
-#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='fu'><a href='http://fs.r-lib.org/reference/link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmprw7I9h/dir 
+<span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;  dir 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
+#&gt;  TRUE  TRUE  TRUE  TRUE  TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUSzZz4/dir 
 #&gt;                                                                    TRUE </div><div class='input'>
 <span class='co'># Delete a file</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='kw'>files</span>[<span class='fl'>1</span>])
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='kw'>files</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; dir/a 
+<span class='fu'>file_delete</span>(<span class='no'>files</span>[<span class='fl'>1</span>])
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>[<span class='fl'>1</span>])</div><div class='output co'>#&gt; dir/a 
 #&gt; FALSE </div><div class='input'>
 <span class='co'># Delete the directory (which deletes the files as well)</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>dir_delete</a></span>(<span class='st'>"dir"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='kw'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
-#&gt; FALSE FALSE FALSE FALSE FALSE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;   dir 
+<span class='fu'>dir_delete</span>(<span class='st'>"dir"</span>)
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
+#&gt; FALSE FALSE FALSE FALSE FALSE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;   dir 
 #&gt; FALSE </div><div class='input'>
 <span class='co'># The link still exists, but what it points to does not.</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>dir_exists</a></span>(<span class='fu'><a href='http://fs.r-lib.org/reference/link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmprw7I9h/dir 
+<span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUSzZz4/dir 
 #&gt;                                                                   FALSE </div><div class='input'>
 <span class='co'># Delete the link</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>link_delete</a></span>(<span class='st'>"link"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt;  link 
-#&gt; FALSE </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='kw'>.old_wd</span>)</div></pre>
+<span class='fu'>link_delete</span>(<span class='st'>"link"</span>)
+<span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt;  link 
+#&gt; FALSE </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -234,7 +234,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

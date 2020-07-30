@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
       </span>
     </div>
 
@@ -156,13 +156,13 @@
     <p>Functions to test for file types</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_file</a></span>(<span class='kw'>path</span>, follow = <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>is_file</span>(<span class='no'>path</span>, <span class='kw'>follow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_dir</a></span>(<span class='kw'>path</span>, follow = <span class='fl'>TRUE</span>)
+<span class='fu'>is_dir</span>(<span class='no'>path</span>, <span class='kw'>follow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_link</a></span>(<span class='kw'>path</span>)
+<span class='fu'>is_link</span>(<span class='no'>path</span>)
 
-<span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_file_empty</a></span>(<span class='kw'>path</span>, follow = <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>is_file_empty</span>(<span class='no'>path</span>, <span class='kw'>follow</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,25 +184,25 @@ the results will be that of the final file rather than the link.</p></td>
 object does not exist, <code>NA</code> is returned.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists()</a></code>, <code><a href='http://fs.r-lib.org/reference/file_access.html'>dir_exists()</a></code> and <code><a href='http://fs.r-lib.org/reference/file_access.html'>link_exists()</a></code> if you want
+    <div class='dont-index'><p><code><a href='file_access.html'>file_exists()</a></code>, <code><a href='file_access.html'>dir_exists()</a></code> and <code><a href='file_access.html'>link_exists()</a></code> if you want
 to ensure that the path also exists.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>dir_create</a></span>(<span class='st'>"d"</span>)
+    <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+<span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"d"</span>)
 
-<span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>file_create</a></span>(<span class='st'>"d/file.txt"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>dir_create</a></span>(<span class='st'>"d/dir"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>link_create</a></span>(<span class='fu'><a href='http://fs.r-lib.org/reference/path.html'>path</a></span>(<span class='fu'><a href='http://fs.r-lib.org/reference/path_math.html'>path_abs</a></span>(<span class='st'>"d"</span>), <span class='st'>"file.txt"</span>), <span class='st'>"d/link"</span>)
+<span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"d/file.txt"</span>)
+<span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"d/dir"</span>)
+<span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='path.html'>path</a></span>(<span class='fu'><a href='path_math.html'>path_abs</a></span>(<span class='st'>"d"</span>), <span class='st'>"file.txt"</span>), <span class='st'>"d/link"</span>)
 
-<span class='kw'>paths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://fs.r-lib.org/reference/dir_ls.html'>dir_ls</a></span>(<span class='st'>"d"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_file</a></span>(<span class='kw'>paths</span>)</div><div class='output co'>#&gt;      d/dir d/file.txt     d/link 
-#&gt;      FALSE       TRUE       TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_dir</a></span>(<span class='kw'>paths</span>)</div><div class='output co'>#&gt;      d/dir d/file.txt     d/link 
-#&gt;       TRUE      FALSE      FALSE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/is_file.html'>is_link</a></span>(<span class='kw'>paths</span>)</div><div class='output co'>#&gt;      d/dir d/file.txt     d/link 
+<span class='no'>paths</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dir_ls.html'>dir_ls</a></span>(<span class='st'>"d"</span>)
+<span class='fu'>is_file</span>(<span class='no'>paths</span>)</div><div class='output co'>#&gt;      d/dir d/file.txt     d/link 
+#&gt;      FALSE       TRUE       TRUE </div><div class='input'><span class='fu'>is_dir</span>(<span class='no'>paths</span>)</div><div class='output co'>#&gt;      d/dir d/file.txt     d/link 
+#&gt;       TRUE      FALSE      FALSE </div><div class='input'><span class='fu'>is_link</span>(<span class='no'>paths</span>)</div><div class='output co'>#&gt;      d/dir d/file.txt     d/link 
 #&gt;      FALSE      FALSE       TRUE </div><div class='input'>
 <span class='co'># Cleanup</span>
-<span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>dir_delete</a></span>(<span class='st'>"d"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='kw'>.old_wd</span>)</div></pre>
+<span class='fu'><a href='delete.html'>dir_delete</a></span>(<span class='st'>"d"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -218,7 +218,7 @@ to ensure that the path also exists.</p></div>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

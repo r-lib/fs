@@ -83,7 +83,7 @@ a file, rather than signaling a Warning and returning an error code." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
       </span>
     </div>
 
@@ -154,11 +154,11 @@ a file, rather than signaling a Warning and returning an error code." />
     </div>
 
     <div class="ref-description">
-    <p>Compared to <a href='https://rdrr.io/r/base/files.html'>file.rename</a> <code><a href='http://fs.r-lib.org/reference/file_move.html'>file_move()</a></code> always fails if it is unable to move
+    <p>Compared to <a href='https://rdrr.io/r/base/files.html'>file.rename</a> <code>file_move()</code> always fails if it is unable to move
 a file, rather than signaling a Warning and returning an error code.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/file_move.html'>file_move</a></span>(<span class='kw'>path</span>, <span class='kw'>new_path</span>)</pre>
+    <pre class="usage"><span class='fu'>file_move</span>(<span class='no'>path</span>, <span class='no'>new_path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,12 +181,12 @@ the full path.</p>
     <p>The new path (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'><a href='http://fs.r-lib.org/reference/create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_move.html'>file_move</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>)
-<span class='fu'><a href='http://fs.r-lib.org/reference/file_access.html'>file_exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))</div><div class='output co'>#&gt;   foo   bar 
-#&gt; FALSE  TRUE </div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/delete.html'>file_delete</a></span>(<span class='st'>"bar"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='kw'>.old_wd</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+<span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"foo"</span>)
+<span class='fu'>file_move</span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>)
+<span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"bar"</span>))</div><div class='output co'>#&gt;   foo   bar 
+#&gt; FALSE  TRUE </div><div class='input'><span class='fu'><a href='delete.html'>file_delete</a></span>(<span class='st'>"bar"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -202,7 +202,7 @@ the full path.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

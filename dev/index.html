@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
       </span>
     </div>
 
@@ -117,14 +117,10 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of <strong>fs</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"fs"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"fs"</span>)</pre></div>
 <p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"r-lib/fs"</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"r-lib/fs"</span>)</pre></div>
 </div>
 <div id="comparison-vs-base-equivalents" class="section level2">
 <h2 class="hasAnchor">
@@ -164,11 +160,10 @@
 <code>link_</code> for links</li>
 </ul>
 <p>Directories and links are special types of files, so <code>file_</code> functions will generally also work when applied to a directory or link.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://fs.r-lib.org">fs</a></span>)
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">fs</span>)
 
 <span class="co"># Construct a path to a file with `path()`</span>
-<span class="fu"><a href="reference/path.html">path</a></span>(<span class="st">"foo"</span>, <span class="st">"bar"</span>, <span class="kw">letters</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>], ext = <span class="st">"txt"</span>)
+<span class="fu"><a href="reference/path.html">path</a></span>(<span class="st">"foo"</span>, <span class="st">"bar"</span>, <span class="no">letters</span>[<span class="fl">1</span>:<span class="fl">3</span>], <span class="kw">ext</span> <span class="kw">=</span> <span class="st">"txt"</span>)
 <span class="co">#&gt; foo/bar/a.txt foo/bar/b.txt foo/bar/c.txt</span>
 
 <span class="co"># list files in the current directory</span>
@@ -181,52 +176,46 @@
 <span class="co">#&gt; tests            vignettes</span>
 
 <span class="co"># create a new directory</span>
-<span class="kw">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create.html">dir_create</a></span>(<span class="fu"><a href="reference/file_temp.html">file_temp</a></span>())
-<span class="kw">tmp</span>
+<span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/create.html">dir_create</a></span>(<span class="fu"><a href="reference/file_temp.html">file_temp</a></span>())
+<span class="no">tmp</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848c8f1fa0</span>
 
 <span class="co"># create new files in that directory</span>
-<span class="fu"><a href="reference/create.html">file_create</a></span>(<span class="fu"><a href="reference/path.html">path</a></span>(<span class="kw">tmp</span>, <span class="st">"my-file.txt"</span>))
-<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(<span class="kw">tmp</span>)
+<span class="fu"><a href="reference/create.html">file_create</a></span>(<span class="fu"><a href="reference/path.html">path</a></span>(<span class="no">tmp</span>, <span class="st">"my-file.txt"</span>))
+<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(<span class="no">tmp</span>)
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848c8f1fa0/my-file.txt</span>
 
 <span class="co"># remove files from the directory</span>
-<span class="fu"><a href="reference/delete.html">file_delete</a></span>(<span class="fu"><a href="reference/path.html">path</a></span>(<span class="kw">tmp</span>, <span class="st">"my-file.txt"</span>))
-<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(<span class="kw">tmp</span>)
+<span class="fu"><a href="reference/delete.html">file_delete</a></span>(<span class="fu"><a href="reference/path.html">path</a></span>(<span class="no">tmp</span>, <span class="st">"my-file.txt"</span>))
+<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(<span class="no">tmp</span>)
 <span class="co">#&gt; character(0)</span>
 
 <span class="co"># remove the directory</span>
-<span class="fu"><a href="reference/delete.html">dir_delete</a></span>(<span class="kw">tmp</span>)
-</pre></div>
+<span class="fu"><a href="reference/delete.html">dir_delete</a></span>(<span class="no">tmp</span>)</pre></div>
 <p><strong>fs</strong> is designed to work well with the pipe, though because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="http://magrittr.tidyverse.org">magrittr</a> or similar.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">magrittr</span>)
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">magrittr</span>)
 
-<span class="kw">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/create.html">dir_create</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/path.html">path</a></span>(<span class="kw">letters</span>[<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>]) <span class="op">%&gt;%</span>
+<span class="no">paths</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/create.html">dir_create</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="reference/path.html">path</a></span>(<span class="no">letters</span>[<span class="fl">1</span>:<span class="fl">5</span>]) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="reference/create.html">file_create</a></span>()
-<span class="kw">paths</span>
+<span class="no">paths</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/a</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/b</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/c</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/d</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/e</span>
 
-<span class="kw">paths</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/delete.html">file_delete</a></span>()
-</pre></div>
+<span class="no">paths</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/delete.html">file_delete</a></span>()</pre></div>
 <p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/">tidyverse</a> packages, like <a href="http://dplyr.tidyverse.org">dplyr</a> and <a href="http://purrr.tidyverse.org">purrr</a>.</p>
 <p>Some examples…</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">tidyverse</span>))
-</pre></div>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span>(
+  <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">tidyverse</span>))</pre></div>
 <p>Filter files by type, permission and size</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, recurse = <span class="fl">FALSE</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="kw">type</span> <span class="op">==</span> <span class="st">"file"</span>, <span class="kw">permissions</span> <span class="op">==</span> <span class="st">"u+r"</span>, <span class="kw">size</span> <span class="op">&gt;</span> <span class="st">"10KB"</span>) <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="kw">size</span>)) <span class="op">%&gt;%</span>
-  <span class="fu">select</span>(<span class="kw">path</span>, <span class="kw">permissions</span>, <span class="kw">size</span>, <span class="kw">modification_time</span>)
+<div class="sourceCode" id="cb6"><pre class="r"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="kw">recurse</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">"file"</span>, <span class="no">permissions</span> <span class="kw">==</span> <span class="st">"u+r"</span>, <span class="no">size</span> <span class="kw">&gt;</span> <span class="st">"10KB"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="no">size</span>)) <span class="kw">%&gt;%</span>
+  <span class="fu">select</span>(<span class="no">path</span>, <span class="no">permissions</span>, <span class="no">size</span>, <span class="no">modification_time</span>)
 <span class="co">#&gt; # A tibble: 11 x 4</span>
 <span class="co">#&gt;    path          permissions        size modification_time  </span>
 <span class="co">#&gt;    &lt;fs::path&gt;    &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span>
@@ -240,13 +229,11 @@
 <span class="co">#&gt;  8 src/file.o    rw-r--r--           48K 2020-04-21 08:34:24</span>
 <span class="co">#&gt;  9 src/error.o   rw-r--r--           18K 2020-04-21 08:34:24</span>
 <span class="co">#&gt; 10 src/init.o    rw-r--r--         16.5K 2020-04-21 08:34:24</span>
-<span class="co">#&gt; 11 src/file.cc   rw-r--r--           11K 2020-04-01 12:30:55</span>
-</pre></div>
+<span class="co">#&gt; 11 src/file.cc   rw-r--r--           11K 2020-04-01 12:30:55</span></pre></div>
 <p>Tabulate and display folder size.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, recurse = <span class="fl">TRUE</span>) <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span>(directory = <span class="fu"><a href="reference/path_file.html">path_dir</a></span>(<span class="kw">path</span>)) <span class="op">%&gt;%</span>
-  <span class="fu">tally</span>(wt = <span class="kw">size</span>, sort = <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="kw">recurse</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
+  <span class="fu">group_by</span>(<span class="kw">directory</span> <span class="kw">=</span> <span class="fu"><a href="reference/path_file.html">path_dir</a></span>(<span class="no">path</span>)) <span class="kw">%&gt;%</span>
+  <span class="fu">tally</span>(<span class="kw">wt</span> <span class="kw">=</span> <span class="no">size</span>, <span class="kw">sort</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="co">#&gt; # A tibble: 54 x 2</span>
 <span class="co">#&gt;    directory                                        n</span>
 <span class="co">#&gt;    &lt;chr&gt;                                  &lt;fs::bytes&gt;</span>
@@ -260,25 +247,23 @@
 <span class="co">#&gt;  8 src/libuv/m4                               319.95K</span>
 <span class="co">#&gt;  9 src/libuv/include                          192.33K</span>
 <span class="co">#&gt; 10 src/libuv/docs/src/static/diagrams.key     184.02K</span>
-<span class="co">#&gt; # … with 44 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 44 more rows</span></pre></div>
 <p>Read a collection of files into one data frame.</p>
 <p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df(.id)</a></code>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># Create separate files for each species</span>
-<span class="kw">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="kw">.</span><span class="op">$</span><span class="kw">Species</span>) <span class="op">%&gt;%</span>
-  <span class="fu">map</span>(<span class="kw">select</span>, <span class="op">-</span><span class="kw">Species</span>) <span class="op">%&gt;%</span>
-  <span class="fu">iwalk</span>(<span class="op">~</span> <span class="fu">write_tsv</span>(<span class="kw">.x</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw">.y</span>, <span class="st">".tsv"</span>)))
+<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Create separate files for each species</span>
+<span class="no">iris</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span>(<span class="no">.</span>$<span class="no">Species</span>) <span class="kw">%&gt;%</span>
+  <span class="fu">map</span>(<span class="no">select</span>, -<span class="no">Species</span>) <span class="kw">%&gt;%</span>
+  <span class="fu">iwalk</span>(~ <span class="fu">write_tsv</span>(<span class="no">.x</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="no">.y</span>, <span class="st">".tsv"</span>)))
 
 <span class="co"># Show the files</span>
-<span class="kw">iris_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(glob = <span class="st">"*.tsv"</span>)
-<span class="kw">iris_files</span>
+<span class="no">iris_files</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(<span class="kw">glob</span> <span class="kw">=</span> <span class="st">"*.tsv"</span>)
+<span class="no">iris_files</span>
 <span class="co">#&gt; setosa.tsv     versicolor.tsv virginica.tsv</span>
 
 <span class="co"># Read the data into a single table, including the filenames</span>
-<span class="kw">iris_files</span> <span class="op">%&gt;%</span>
-  <span class="fu">map_df</span>(<span class="kw">read_tsv</span>, .id = <span class="st">"file"</span>, col_types = <span class="fu">cols</span>(), n_max = <span class="fl">2</span>)
+<span class="no">iris_files</span> <span class="kw">%&gt;%</span>
+  <span class="fu">map_df</span>(<span class="no">read_tsv</span>, <span class="kw">.id</span> <span class="kw">=</span> <span class="st">"file"</span>, <span class="kw">col_types</span> <span class="kw">=</span> <span class="fu">cols</span>(), <span class="kw">n_max</span> <span class="kw">=</span> <span class="fl">2</span>)
 <span class="co">#&gt; # A tibble: 6 x 5</span>
 <span class="co">#&gt;   file           Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
 <span class="co">#&gt;   &lt;chr&gt;                 &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span>
@@ -289,8 +274,7 @@
 <span class="co">#&gt; 5 virginica.tsv           6.3         3.3          6           2.5</span>
 <span class="co">#&gt; 6 virginica.tsv           5.8         2.7          5.1         1.9</span>
 
-<span class="fu"><a href="reference/delete.html">file_delete</a></span>(<span class="kw">iris_files</span>)
-</pre></div>
+<span class="fu"><a href="reference/delete.html">file_delete</a></span>(<span class="no">iris_files</span>)</pre></div>
 </div>
 <div id="feedback-wanted" class="section level2">
 <h2 class="hasAnchor">
@@ -350,7 +334,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

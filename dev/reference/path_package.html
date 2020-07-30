@@ -84,7 +84,7 @@ the file within the package does not exist." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.1.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
       </span>
     </div>
 
@@ -160,7 +160,7 @@ error if the package does not exist. It also returns a different error if
 the file within the package does not exist.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='http://fs.r-lib.org/reference/path_package.html'>path_package</a></span>(<span class='kw'>package</span>, <span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>path_package</span>(<span class='no'>package</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,17 +171,17 @@ the file within the package does not exist.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional paths appended to the package path by <code><a href='http://fs.r-lib.org/reference/path.html'>path()</a></code>.</p></td>
+      <td><p>Additional paths appended to the package path by <code><a href='path.html'>path()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code><a href='http://fs.r-lib.org/reference/path_package.html'>path_package()</a></code> also automatically works with packages loaded with devtools
-even if the <code><a href='http://fs.r-lib.org/reference/path_package.html'>path_package()</a></code> call comes from a different package.</p>
+    <p><code>path_package()</code> also automatically works with packages loaded with devtools
+even if the <code>path_package()</code> call comes from a different package.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/path_package.html'>path_package</a></span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/library/base</span><span></div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/path_package.html'>path_package</a></span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/library/stats</span><span></div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/path_package.html'>path_package</a></span>(<span class='st'>"base"</span>, <span class='st'>"INDEX"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/base/INDEX</div><div class='input'><span class='fu'><a href='http://fs.r-lib.org/reference/path_package.html'>path_package</a></span>(<span class='st'>"splines"</span>, <span class='st'>"help"</span>, <span class='st'>"AnIndex"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/splines/help/AnIndex</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/library/base</span><span></div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/library/stats</span><span></div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"base"</span>, <span class='st'>"INDEX"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/base/INDEX</div><div class='input'><span class='fu'>path_package</span>(<span class='st'>"splines"</span>, <span class='st'>"help"</span>, <span class='st'>"AnIndex"</span>)</div><div class='output co'>#&gt; /Library/Frameworks/R.framework/Resources/library/splines/help/AnIndex</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -197,7 +197,7 @@ even if the <code><a href='http://fs.r-lib.org/reference/path_package.html'>path
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
