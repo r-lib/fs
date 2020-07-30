@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `fs_path` objects now sort properly when there is a mix of ASCII and unicode elements (#279)
+
 * `dir_create()` now consults the process umask so the mode during directory creation works like `mkdir` does (#284).
 
 # fs 1.4.2
