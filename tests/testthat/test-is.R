@@ -1,6 +1,7 @@
 context("test-is.R")
 
 with_dir_tree(list("foo/bar"  = "test"), {
+  skip_on_os("windows")
   link_create(path_abs("foo/bar"), "foo2")
   link_create("foo/bar", "relbar")
   link_create("foo", "relfoo")
