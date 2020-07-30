@@ -2405,6 +2405,9 @@ static void CALLBACK uv__tty_console_resize_event(HWINEVENTHOOK hWinEventHook,
   SetEvent(uv__tty_console_resized);
 }
 
+# pragma GCC diagnostic push
+# pragma GCC diagnostic ignored "-Wreturn-type"
+
 static DWORD WINAPI uv__tty_console_resize_watcher_thread(void* param) {
   for (;;) {
     /* Make sure to not overwhelm the system with resize events */
@@ -2414,6 +2417,8 @@ static DWORD WINAPI uv__tty_console_resize_watcher_thread(void* param) {
     ResetEvent(uv__tty_console_resized);
   }
 }
+
+# pragma GCC diagnostic pop
 
 static void uv__tty_console_signal_resize(void) {
   CONSOLE_SCREEN_BUFFER_INFO sb_info;
