@@ -22,6 +22,7 @@ test_that("dir_create works with new and existing files", {
 
 test_that("dir_create sets the mode properly", {
   skip_on_cran()
+  skip_on_os("windows")
   x1 <- dir_create(tempfile(), mode = "775")
 
   expect_true(file_exists(x1))
