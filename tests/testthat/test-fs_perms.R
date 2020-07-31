@@ -79,6 +79,9 @@ describe("as_fs_perms (Windows)", {
     expect_equal(as_fs_perms("rw-"), new_fs_perms(384L))
     expect_equal(as_fs_perms(c("rw-", "rwx")), new_fs_perms(c(384L, 448L)))
   })
+  it("returns 'rwx' on windows", {
+    expect_equal(as.character(as_fs_perms("777")), "rwx")
+  })
 })
 }
 

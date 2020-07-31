@@ -164,8 +164,9 @@ void strmode(mode_t mode, char* p) {
 }
 
 std::string strmode__(mode_t mode) {
-  char out[4];
+  char out[5];
   strmode(mode, out);
+  out[4] = '\0';
 
   // The first character is the file type, so we do not return it.
   return out + 1;
