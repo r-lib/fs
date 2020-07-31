@@ -51,4 +51,5 @@ unicode
 valgrind
 Vectorization
 vectorized
+vctrs
 writeable

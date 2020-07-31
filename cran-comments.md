@@ -1,4 +1,4 @@
-This version fixes segfaults on Solaris, caused by a name collision with the libfsu.so.1 shared library.
+This version fixes warnings in the libuv library from gcc-9
 
 ## Test environments
 * local OS X install, R 3.6.3
