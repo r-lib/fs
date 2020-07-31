@@ -1,10 +1,13 @@
 # fs (development version)
 
+* The libuv release used by fs was updated to 1.38.1
+
+* `dir_create()` now consults the process umask so the mode during directory creation works like `mkdir` does (#284).
+
 * `fs_path`, `fs_bytes` and `fs_perms` objects are now compatible with vctrs 0.3.0 (#266)
 
 * `fs_path` objects now sort properly when there is a mix of ASCII and unicode elements (#279)
 
-* `dir_create()` now consults the process umask so the mode during directory creation works like `mkdir` does (#284).
 
 # fs 1.4.2
 
