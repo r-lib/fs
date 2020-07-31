@@ -153,6 +153,10 @@ test_that("fs_perms and character are coercible", {
     vctrs::vec_cast("777", fs_perms()),
     fs_perms("777")
   )
+
+  # This test only return rwx on Windows due to the less fine grained
+  # permissions, so we skip it
+  skip_on_os("windows")
   expect_identical(
     vctrs::vec_cast(fs_perms("777"), character()),
     "rwxrwxrwx"
