@@ -414,7 +414,7 @@ INLINE static int fs__readlink_handle(HANDLE handle, char** target_ptr,
       SetLastError(ERROR_SYMLINK_NOT_SUPPORTED);
       return -1;
     }
-    w_target = reparse_data->AppExecLinkReparseBuffer.StringList;
+    w_target = reparse_data->u.AppExecLinkReparseBuffer.StringList;
     /* The StringList buffer contains a list of strings separated by "\0",   */
     /* with "\0\0" terminating the list. Move to the 3rd string in the list: */
     for (i = 0; i < 2; ++i) {
@@ -1719,7 +1719,7 @@ INLINE static int fs__stat_handle(HANDLE handle, uv_stat_t* statbuf,
                                             FileFsVolumeInformation);
 
   /* Buffer overflow (a warning status code) is expected here. */
-  if (io_status.Status == STATUS_NOT_IMPLEMENTED) {
+  if (io_status.u.Status == STATUS_NOT_IMPLEMENTED) {
     statbuf->st_dev = 0;
   } else if (NT_ERROR(nt_status)) {
     SetLastError(pRtlNtStatusToDosError(nt_status));
