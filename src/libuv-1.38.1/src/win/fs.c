@@ -338,11 +338,11 @@ INLINE static int fs__readlink_handle(HANDLE handle, char** target_ptr,
 
   if (reparse_data->ReparseTag == IO_REPARSE_TAG_SYMLINK) {
     /* Real symlink */
-    w_target = reparse_data->SymbolicLinkReparseBuffer.PathBuffer +
-        (reparse_data->SymbolicLinkReparseBuffer.SubstituteNameOffset /
+    w_target = reparse_data->u.SymbolicLinkReparseBuffer.PathBuffer +
+        (reparse_data->u.SymbolicLinkReparseBuffer.SubstituteNameOffset /
         sizeof(WCHAR));
     w_target_len =
-        reparse_data->SymbolicLinkReparseBuffer.SubstituteNameLength /
+        reparse_data->u.SymbolicLinkReparseBuffer.SubstituteNameLength /
         sizeof(WCHAR);
 
     /* Real symlinks can contain pretty much everything, but the only thing we
@@ -380,10 +380,10 @@ INLINE static int fs__readlink_handle(HANDLE handle, char** target_ptr,
 
   } else if (reparse_data->ReparseTag == IO_REPARSE_TAG_MOUNT_POINT) {
     /* Junction. */
-    w_target = reparse_data->MountPointReparseBuffer.PathBuffer +
-        (reparse_data->MountPointReparseBuffer.SubstituteNameOffset /
+    w_target = reparse_data->u.MountPointReparseBuffer.PathBuffer +
+        (reparse_data->u.MountPointReparseBuffer.SubstituteNameOffset /
         sizeof(WCHAR));
-    w_target_len = reparse_data->MountPointReparseBuffer.SubstituteNameLength /
+    w_target_len = reparse_data->u.MountPointReparseBuffer.SubstituteNameLength /
         sizeof(WCHAR);
 
     /* Only treat junctions that look like \??\<drive>:\ as symlink. Junctions
@@ -2389,7 +2389,7 @@ static void fs__create_junction(uv_fs_t* req, const WCHAR* path,
 
   /* Do a pessimistic calculation of the required buffer size */
   needed_buf_size =
-      FIELD_OFFSET(REPARSE_DATA_BUFFER, MountPointReparseBuffer.PathBuffer) +
+      FIELD_OFFSET(REPARSE_DATA_BUFFER, u.MountPointReparseBuffer.PathBuffer) +
       JUNCTION_PREFIX_LEN * sizeof(WCHAR) +
       2 * (target_len + 2) * sizeof(WCHAR);
 
@@ -2400,7 +2400,7 @@ static void fs__create_junction(uv_fs_t* req, const WCHAR* path,
   }
 
   /* Grab a pointer to the part of the buffer where filenames go */
-  path_buf = (WCHAR*)&(buffer->MountPointReparseBuffer.PathBuffer);
+  path_buf = (WCHAR*)&(buffer->u.MountPointReparseBuffer.PathBuffer);
   path_buf_len = 0;
 
   /* Copy the substitute (internal) target path */
@@ -2428,8 +2428,8 @@ static void fs__create_junction(uv_fs_t* req, const WCHAR* path,
   len = path_buf_len - start;
 
   /* Set the info about the substitute name */
-  buffer->MountPointReparseBuffer.SubstituteNameOffset = start * sizeof(WCHAR);
-  buffer->MountPointReparseBuffer.SubstituteNameLength = len * sizeof(WCHAR);
+  buffer->u.MountPointReparseBuffer.SubstituteNameOffset = start * sizeof(WCHAR);
+  buffer->u.MountPointReparseBuffer.SubstituteNameLength = len * sizeof(WCHAR);
 
   /* Insert null terminator */
   path_buf[path_buf_len++] = L'\0';
@@ -2457,17 +2457,17 @@ static void fs__create_junction(uv_fs_t* req, const WCHAR* path,
   }
 
   /* Set the info about the print name */
-  buffer->MountPointReparseBuffer.PrintNameOffset = start * sizeof(WCHAR);
-  buffer->MountPointReparseBuffer.PrintNameLength = len * sizeof(WCHAR);
+  buffer->u.MountPointReparseBuffer.PrintNameOffset = start * sizeof(WCHAR);
+  buffer->u.MountPointReparseBuffer.PrintNameLength = len * sizeof(WCHAR);
 
   /* Insert another null terminator */
   path_buf[path_buf_len++] = L'\0';
 
   /* Calculate how much buffer space was actually used */
-  used_buf_size = FIELD_OFFSET(REPARSE_DATA_BUFFER, MountPointReparseBuffer.PathBuffer) +
+  used_buf_size = FIELD_OFFSET(REPARSE_DATA_BUFFER, u.MountPointReparseBuffer.PathBuffer) +
     path_buf_len * sizeof(WCHAR);
   used_data_size = used_buf_size -
-    FIELD_OFFSET(REPARSE_DATA_BUFFER, MountPointReparseBuffer);
+    FIELD_OFFSET(REPARSE_DATA_BUFFER, u.MountPointReparseBuffer);
 
   /* Put general info in the data buffer */
   buffer->ReparseTag = IO_REPARSE_TAG_MOUNT_POINT;
