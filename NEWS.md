@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.5.0
 
 * The libuv release used by fs was updated to 1.38.1
 
