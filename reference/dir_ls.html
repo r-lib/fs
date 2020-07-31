@@ -89,7 +89,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -116,8 +116,22 @@ dir_walk() calls fun for its side-effect and returns the input path." />
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://www.tidyverse.org/blog/2018/01/fs-1.0.0/">Version 1.0.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -300,33 +314,20 @@ accessed.</p></td>
 #&gt;  chr "base/demo"
 #&gt;  chr "base/help"
 #&gt;  chr "base/html"</div><div class='input'>
-<span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt;               path      type    size permissions   modification_time user group
-#&gt; 1    base/CITATION      file     956   rw-rw-r-- 2020-03-05 20:45:26 root admin
-#&gt; 2 base/DESCRIPTION      file     286   rw-rw-r-- 2020-03-05 20:45:26 root admin
-#&gt; 3       base/INDEX      file  23.41K   rw-rw-r-- 2020-03-05 20:45:26 root admin
-#&gt; 4        base/Meta directory     256   rwxrwxr-x 2020-03-05 20:45:26 root admin
-#&gt; 5           base/R directory     192   rwxrwxr-x 2020-03-05 20:45:26 root admin
-#&gt; 6        base/demo directory     192   rwxrwxr-x 2020-03-05 20:45:26 root admin
-#&gt; 7        base/help directory     224   rwxrwxr-x 2020-03-05 20:45:26 root admin
-#&gt; 8        base/html directory     128   rwxrwxr-x 2020-03-05 20:45:26 root admin
-#&gt;   device_id hard_links special_device_id       inode block_size blocks flags
-#&gt; 1  16777220          1                 0 12891414619       4096      8     0
-#&gt; 2  16777220          1                 0 12891414625       4096      8     0
-#&gt; 3  16777220          1                 0 12891414635       4096     48     0
-#&gt; 4  16777220          8                 0 12891414636       4096      0     0
-#&gt; 5  16777220          6                 0 12891414643       4096      0     0
-#&gt; 6  16777220          6                 0 12891414620       4096      0     0
-#&gt; 7  16777220          7                 0 12891414626       4096      0     0
-#&gt; 8  16777220          4                 0 12891414632       4096      0     0
-#&gt;   generation         access_time         change_time          birth_time
-#&gt; 1          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 2          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 3          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 4          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 5          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 6          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 7          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26
-#&gt; 8          0 2020-03-05 20:45:26 2020-04-01 16:48:41 2020-03-05 20:45:26</div><div class='input'>
+<span class='fu'>dir_info</span>(<span class='st'>"base"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 18</span><span>
+#&gt;   path       type    size permissions modification_time   user  group device_id
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fs::path&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fs::&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fs::perms&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> base/CITA… file     956 rw-rw-r--   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>2</span><span> base/DESC… file     286 rw-rw-r--   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>3</span><span> base/INDEX file   23.6K rw-rw-r--   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/Meta</span><span>  dire…    256 rwxrwxr-x   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/R</span><span>     dire…    192 rwxrwxr-x   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>6</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/demo</span><span>  dire…    192 rwxrwxr-x   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>7</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/help</span><span>  dire…    224 rwxrwxr-x   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>8</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/html</span><span>  dire…    128 rwxrwxr-x   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'># … with 10 more variables: hard_links </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, special_device_id </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   inode </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, block_size </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, blocks </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, flags </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, generation </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   access_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, change_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, birth_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span></div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"base"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></span></pre>
@@ -345,7 +346,7 @@ accessed.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

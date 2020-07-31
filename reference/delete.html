@@ -89,7 +89,7 @@ directory cannot be deleted rather than being silent or signalling a warning." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.5.0</span>
       </span>
     </div>
 
@@ -116,8 +116,22 @@ directory cannot be deleted rather than being silent or signalling a warning." /
     </li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    News
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Releases</li>
+    <li>
+      <a href="https://www.tidyverse.org/blog/2018/01/fs-1.0.0/">Version 1.0.0</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="../news/index.html">Changelog</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -186,7 +200,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 <span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='st'>"dir"</span>)</div><div class='output co'>#&gt;  dir 
 #&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='no'>files</span>)</div><div class='output co'>#&gt; dir/a dir/b dir/c dir/d dir/e 
 #&gt;  TRUE  TRUE  TRUE  TRUE  TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpOSQGgR/dir 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>file_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmplDveSz/dir 
 #&gt;                                                                    TRUE </div><div class='input'>
 <span class='co'># Delete a file</span>
 <span class='fu'>file_delete</span>(<span class='no'>files</span>[<span class='fl'>1</span>])
@@ -199,7 +213,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 #&gt; FALSE </div><div class='input'>
 <span class='co'># The link still exists, but what it points to does not.</span>
 <span class='fu'><a href='file_access.html'>link_exists</a></span>(<span class='st'>"link"</span>)</div><div class='output co'>#&gt; link 
-#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpOSQGgR/dir 
+#&gt; TRUE </div><div class='input'><span class='fu'><a href='file_access.html'>dir_exists</a></span>(<span class='fu'><a href='link_path.html'>link_path</a></span>(<span class='st'>"link"</span>))</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmplDveSz/dir 
 #&gt;                                                                   FALSE </div><div class='input'>
 <span class='co'># Delete the link</span>
 <span class='fu'>link_delete</span>(<span class='st'>"link"</span>)
@@ -220,7 +234,7 @@ directory cannot be deleted rather than being silent or signalling a warning.</p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
