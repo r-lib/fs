@@ -68,6 +68,11 @@ as_fs_perms <- function(x, ...) {
 }
 
 #' @export
+as_fs_perms.NULL <- function(x, ...) {
+  new_fs_perms(integer())
+}
+
+#' @export
 #' @rdname fs_perms
 fs_perms <- as_fs_perms
 
@@ -195,4 +200,55 @@ pillar_shaft.fs_perms <- function(x, ...) {
 
 type_sum.fs_perms <- function(x) {
   "fs::perms"
+}
+
+# All functions below registered in .onLoad
+
+vec_ptype2.fs_perms.fs_perms <- function(x, y, ...) {
+  x
+}
+vec_ptype2.fs_perms.double <- function(x, y, ...) {
+  x
+}
+vec_ptype2.double.fs_perms <- function(x, y, ...) {
+  y
+}
+
+# Note order of class is the opposite as for ptype2
+vec_cast.fs_perms.fs_perms <- function(x, to, ...) {
+  x
+}
+vec_cast.fs_perms.double <- function(x, to, ...) {
+  as_fs_perms(x)
+}
+vec_cast.double.fs_perms <- function(x, to, ...) {
+  unclass(x)
+}
+
+vec_ptype2.fs_perms.integer <- function(x, y, ...) {
+  x
+}
+vec_ptype2.integer.fs_perms <- function(x, y, ...) {
+  y
+}
+
+vec_cast.fs_perms.integer <- function(x, to, ...) {
+  as_fs_perms(x)
+}
+vec_cast.integer.fs_perms <- function(x, to, ...) {
+  unclass(x)
+}
+
+vec_ptype2.fs_perms.character <- function(x, y, ...) {
+  x
+}
+vec_ptype2.character.fs_perms <- function(x, y, ...) {
+  y
+}
+
+vec_cast.fs_perms.character <- function(x, to, ...) {
+  as_fs_perms(x)
+}
+vec_cast.character.fs_perms <- function(x, to, ...) {
+  as.character(x)
 }

@@ -33,6 +33,7 @@ Suggests:
     rmarkdown,
     knitr,
     withr,
-    spelling
+    spelling,
+    vctrs (>= 0.3.0)
 VignetteBuilder: knitr
 Language: en-US

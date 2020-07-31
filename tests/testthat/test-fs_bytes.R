@@ -125,3 +125,58 @@ describe("Ops.fs_bytes", {
     expect_error(x | TRUE, "'|' not defined for \"fs_bytes\" objects")
   })
 })
+
+test_that("common type of double and fs_bytes is fs_bytes", {
+  expect_identical(
+    vctrs::vec_ptype2(double(), fs_bytes()),
+    fs_bytes()[0]
+  )
+  expect_identical(
+    vctrs::vec_ptype2(fs_bytes(), double()),
+    fs_bytes()[0]
+  )
+})
+
+test_that("fs_bytes and double are coercible", {
+  expect_identical(
+    vctrs::vec_cast(1, fs_bytes()),
+    fs_bytes(1)
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_bytes(1), double()),
+    1
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_bytes(1), fs_bytes()),
+    fs_bytes(1)
+  )
+})
+
+test_that("can concatenate fs_bytes", {
+  expect_identical(
+    vctrs::vec_c(fs_bytes(1), fs_bytes(2)),
+    as_fs_bytes(c(1, 2))
+  )
+})
+
+test_that("common type of integer and fs_bytes is fs_bytes", {
+  expect_identical(
+    vctrs::vec_ptype2(integer(), fs_bytes()),
+    fs_bytes()[0]
+  )
+  expect_identical(
+    vctrs::vec_ptype2(fs_bytes(), integer()),
+    fs_bytes()[0]
+  )
+})
+
+test_that("fs_bytes and integer are coercible", {
+  expect_identical(
+    vctrs::vec_cast(1L, fs_bytes()),
+    fs_bytes(1L)
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_bytes(1L), integer()),
+    1L
+  )
+})

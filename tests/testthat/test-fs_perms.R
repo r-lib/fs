@@ -81,3 +81,80 @@ describe("as_fs_perms (Windows)", {
   })
 })
 }
+
+test_that("common type of double and fs_perms is fs_perms", {
+  expect_identical(
+    vctrs::vec_ptype2(double(), fs_perms()),
+    fs_perms()[0]
+  )
+  expect_identical(
+    vctrs::vec_ptype2(fs_perms(), double()),
+    fs_perms()[0]
+  )
+})
+
+test_that("fs_perms and double are coercible", {
+  expect_identical(
+    vctrs::vec_cast(1, fs_perms()),
+    fs_perms(1)
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_perms(1), double()),
+    1L
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_perms(1), fs_perms()),
+    fs_perms(1)
+  )
+})
+
+test_that("can concatenate fs_perms", {
+  expect_identical(
+    vctrs::vec_c(fs_perms(1), fs_perms(2)),
+    as_fs_perms(c(1, 2))
+  )
+})
+
+test_that("common type of integer and fs_perms is fs_perms", {
+  expect_identical(
+    vctrs::vec_ptype2(integer(), fs_perms()),
+    fs_perms()[0]
+  )
+  expect_identical(
+    vctrs::vec_ptype2(fs_perms(), integer()),
+    fs_perms()[0]
+  )
+})
+
+test_that("fs_perms and integer are coercible", {
+  expect_identical(
+    vctrs::vec_cast(1L, fs_perms()),
+    fs_perms(1L)
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_perms(1L), integer()),
+    1L
+  )
+})
+
+test_that("common type of character and fs_perms is fs_perms", {
+  expect_identical(
+    vctrs::vec_ptype2(character(), fs_perms()),
+    fs_perms()[0]
+  )
+  expect_identical(
+    vctrs::vec_ptype2(fs_perms(), character()),
+    fs_perms()[0]
+  )
+})
+
+test_that("fs_perms and character are coercible", {
+  expect_identical(
+    vctrs::vec_cast("777", fs_perms()),
+    fs_perms("777")
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_perms("777"), character()),
+    "rwxrwxrwx"
+  )
+})

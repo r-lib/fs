@@ -111,3 +111,36 @@ describe("multicol", {
     })
   })
 })
+
+test_that("common type of character and fs_path is fs_path", {
+  expect_identical(
+    vctrs::vec_ptype2(character(), fs_path()),
+    fs_path()[0]
+  )
+  expect_identical(
+    vctrs::vec_ptype2(fs_path(), character()),
+    fs_path()[0]
+  )
+})
+
+test_that("fs_path and character are coercible", {
+  expect_identical(
+    vctrs::vec_cast("foo", fs_path()),
+    fs_path("foo")
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_path("foo"), character()),
+    "foo"
+  )
+  expect_identical(
+    vctrs::vec_cast(fs_path("foo"), fs_path()),
+    fs_path("foo")
+  )
+})
+
+test_that("can concatenate fs_path", {
+  expect_identical(
+    vctrs::vec_c(fs_path("foo"), fs_path("bar")),
+    as_fs_path(c("foo", "bar"))
+  )
+})

@@ -22,6 +22,11 @@ as_fs_path <- function(x) {
 }
 
 #' @export
+as_fs_path.NULL <- function(x) {
+  new_fs_path(character())
+}
+
+#' @export
 as_fs_path.character <- function(x) {
   path_tidy(x)
 }
@@ -150,4 +155,27 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
 xtfrm.fs_path <- function(x, ...) {
   x <- unclass(x)
   NextMethod("xterm")
+}
+
+# All functions below registered in .onLoad
+
+vec_ptype2.fs_path.fs_path <- function(x, y, ...) {
+  x
+}
+vec_ptype2.fs_path.character <- function(x, y, ...) {
+  x
+}
+vec_ptype2.character.fs_path <- function(x, y, ...) {
+  y
+}
+
+# Note order of class is the opposite as for ptype2
+vec_cast.fs_path.fs_path <- function(x, to, ...) {
+  x
+}
+vec_cast.fs_path.character <- function(x, to, ...) {
+  as_fs_path(x)
+}
+vec_cast.character.fs_path <- function(x, to, ...) {
+  unclass(x)
 }

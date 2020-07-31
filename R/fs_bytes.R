@@ -34,7 +34,7 @@ new_fs_bytes <- function(x) {
 setOldClass(c("fs_bytes", "numeric"), numeric())
 
 #' @export
-as_fs_bytes.default <- function(x) {
+as_fs_bytes.default <- function(x = numeric()) {
   x <- as.character(x)
   m <- captures(x, regexpr("^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$", x, perl = TRUE))
   m$unit[m$unit == ""] <- "B"
@@ -144,4 +144,41 @@ pillar_shaft.fs_bytes <- function(x, ...) {
 
 type_sum.fs_bytes <- function(x) {
   "fs::bytes"
+}
+
+# All functions below registered in .onLoad
+
+vec_ptype2.fs_bytes.fs_bytes <- function(x, y, ...) {
+  x
+}
+vec_ptype2.fs_bytes.double <- function(x, y, ...) {
+  x
+}
+vec_ptype2.double.fs_bytes <- function(x, y, ...) {
+  y
+}
+
+# Note order of class is the opposite as for ptype2
+vec_cast.fs_bytes.fs_bytes <- function(x, to, ...) {
+  x
+}
+vec_cast.fs_bytes.double <- function(x, to, ...) {
+  as_fs_bytes(x)
+}
+vec_cast.double.fs_bytes <- function(x, to, ...) {
+  unclass(x)
+}
+
+vec_ptype2.fs_bytes.integer <- function(x, y, ...) {
+  x
+}
+vec_ptype2.integer.fs_bytes <- function(x, y, ...) {
+  y
+}
+
+vec_cast.fs_bytes.integer <- function(x, to, ...) {
+  as_fs_bytes(x)
+}
+vec_cast.integer.fs_bytes <- function(x, to, ...) {
+  unclass(x)
 }
