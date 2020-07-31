@@ -35,6 +35,9 @@ setOldClass(c("fs_bytes", "numeric"), numeric())
 
 #' @export
 as_fs_bytes.default <- function(x = numeric()) {
+  if (length(x) == 0) {
+    return(new_fs_bytes(numeric()))
+  }
   x <- as.character(x)
   m <- captures(x, regexpr("^(?<size>[[:digit:].]+)\\s*(?<unit>[KMGTPEZY]?)i?[Bb]?$", x, perl = TRUE))
   m$unit[m$unit == ""] <- "B"
