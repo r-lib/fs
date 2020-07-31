@@ -410,7 +410,7 @@ INLINE static int fs__readlink_handle(HANDLE handle, char** target_ptr,
 
   } else if (reparse_data->ReparseTag == IO_REPARSE_TAG_APPEXECLINK) {
     /* String #3 in the list has the target filename. */
-    if (reparse_data->AppExecLinkReparseBuffer.StringCount < 3) {
+    if (reparse_data->u.AppExecLinkReparseBuffer.StringCount < 3) {
       SetLastError(ERROR_SYMLINK_NOT_SUPPORTED);
       return -1;
     }
