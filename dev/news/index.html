@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.0.9000</span>
       </span>
     </div>
 
@@ -154,10 +154,16 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
+</div>
+    <div id="fs-150" class="section level1">
+<h1 class="page-header" data-toc-text="1.5.0">
+<a href="#fs-150" class="anchor"></a>fs 1.5.0<small> 2020-07-31 </small>
+</h1>
 <ul>
+<li><p>The libuv release used by fs was updated to 1.38.1</p></li>
+<li><p><code><a href="../reference/create.html">dir_create()</a></code> now consults the process umask so the mode during directory creation works like <code>mkdir</code> does (<a href='https://github.com/r-lib/fs/issues/284'>#284</a>).</p></li>
 <li><p><code>fs_path</code>, <code>fs_bytes</code> and <code>fs_perms</code> objects are now compatible with vctrs 0.3.0 (<a href='https://github.com/r-lib/fs/issues/266'>#266</a>)</p></li>
 <li><p><code>fs_path</code> objects now sort properly when there is a mix of ASCII and unicode elements (<a href='https://github.com/r-lib/fs/issues/279'>#279</a>)</p></li>
-<li><p><code><a href="../reference/create.html">dir_create()</a></code> now consults the process umask so the mode during directory creation works like <code>mkdir</code> does (<a href='https://github.com/r-lib/fs/issues/284'>#284</a>).</p></li>
 </ul>
 </div>
     <div id="fs-142" class="section level1">

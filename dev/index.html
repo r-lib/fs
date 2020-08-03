@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.4.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.0.9000</span>
       </span>
     </div>
 
@@ -170,20 +170,19 @@
 <span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>()
 <span class="co">#&gt; DESCRIPTION      LICENSE.md       Makefile         NAMESPACE        </span>
 <span class="co">#&gt; NEWS.md          R                README.Rmd       README.md        </span>
-<span class="co">#&gt; _pkgdown.yml     appveyor.yml     codecov.yml      cran-comments.md </span>
-<span class="co">#&gt; docs             fs.Rproj         inst             man              </span>
-<span class="co">#&gt; man-roxygen      revdep           script.R         src              </span>
-<span class="co">#&gt; tests            vignettes</span>
+<span class="co">#&gt; _pkgdown.yml     codecov.yml      cran-comments.md fs.Rproj         </span>
+<span class="co">#&gt; inst             man              man-roxygen      revdep           </span>
+<span class="co">#&gt; script.R         src              tests            vignettes</span>
 
 <span class="co"># create a new directory</span>
 <span class="no">tmp</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/create.html">dir_create</a></span>(<span class="fu"><a href="reference/file_temp.html">file_temp</a></span>())
 <span class="no">tmp</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848c8f1fa0</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa117df4099f</span>
 
 <span class="co"># create new files in that directory</span>
 <span class="fu"><a href="reference/create.html">file_create</a></span>(<span class="fu"><a href="reference/path.html">path</a></span>(<span class="no">tmp</span>, <span class="st">"my-file.txt"</span>))
 <span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span>(<span class="no">tmp</span>)
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848c8f1fa0/my-file.txt</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa117df4099f/my-file.txt</span>
 
 <span class="co"># remove files from the directory</span>
 <span class="fu"><a href="reference/delete.html">file_delete</a></span>(<span class="fu"><a href="reference/path.html">path</a></span>(<span class="no">tmp</span>, <span class="st">"my-file.txt"</span>))
@@ -200,11 +199,11 @@
   <span class="fu"><a href="reference/path.html">path</a></span>(<span class="no">letters</span>[<span class="fl">1</span>:<span class="fl">5</span>]) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="reference/create.html">file_create</a></span>()
 <span class="no">paths</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/a</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/b</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/c</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/d</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp9G1u3K/file7848314deea5/e</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/a</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/b</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/c</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/d</span>
+<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/e</span>
 
 <span class="no">paths</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="reference/delete.html">file_delete</a></span>()</pre></div>
 <p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/">tidyverse</a> packages, like <a href="http://dplyr.tidyverse.org">dplyr</a> and <a href="http://purrr.tidyverse.org">purrr</a>.</p>
@@ -216,38 +215,39 @@
   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(<span class="no">type</span> <span class="kw">==</span> <span class="st">"file"</span>, <span class="no">permissions</span> <span class="kw">==</span> <span class="st">"u+r"</span>, <span class="no">size</span> <span class="kw">&gt;</span> <span class="st">"10KB"</span>) <span class="kw">%&gt;%</span>
   <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="no">size</span>)) <span class="kw">%&gt;%</span>
   <span class="fu">select</span>(<span class="no">path</span>, <span class="no">permissions</span>, <span class="no">size</span>, <span class="no">modification_time</span>)
-<span class="co">#&gt; # A tibble: 11 x 4</span>
-<span class="co">#&gt;    path          permissions        size modification_time  </span>
-<span class="co">#&gt;    &lt;fs::path&gt;    &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span>
-<span class="co">#&gt;  1 src/fs.so     rwxr-xr-x        245.9K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  2 src/id.o      rw-r--r--        178.6K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  3 src/dir.o     rw-r--r--        108.3K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  4 src/path.o    rw-r--r--         99.7K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  5 src/utils.o   rw-r--r--         75.3K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  6 src/getmode.o rw-r--r--         70.9K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  7 src/link.o    rw-r--r--         69.4K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  8 src/file.o    rw-r--r--           48K 2020-04-21 08:34:24</span>
-<span class="co">#&gt;  9 src/error.o   rw-r--r--           18K 2020-04-21 08:34:24</span>
-<span class="co">#&gt; 10 src/init.o    rw-r--r--         16.5K 2020-04-21 08:34:24</span>
-<span class="co">#&gt; 11 src/file.cc   rw-r--r--           11K 2020-04-01 12:30:55</span></pre></div>
+<span class="co">#&gt; # A tibble: 12 x 4</span>
+<span class="co">#&gt;    path                     permissions        size modification_time  </span>
+<span class="co">#&gt;    &lt;fs::path&gt;               &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span>
+<span class="co">#&gt;  1 src/libuv-v1.38.1.tar.gz rw-r--r--         1.19M 2020-07-30 15:34:04</span>
+<span class="co">#&gt;  2 src/fs.so                rwxr-xr-x       256.12K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  3 src/id.o                 rw-r--r--       173.61K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  4 src/dir.o                rw-r--r--       107.33K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  5 src/path.o               rw-r--r--        99.26K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  6 src/utils.o              rw-r--r--        75.12K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  7 src/getmode.o            rw-r--r--        71.07K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  8 src/link.o               rw-r--r--        69.95K 2020-07-31 13:49:54</span>
+<span class="co">#&gt;  9 src/file.o               rw-r--r--        48.67K 2020-07-31 13:49:54</span>
+<span class="co">#&gt; 10 src/error.o              rw-r--r--        18.41K 2020-07-31 13:49:54</span>
+<span class="co">#&gt; 11 src/init.o               rw-r--r--        16.86K 2020-07-31 13:49:54</span>
+<span class="co">#&gt; 12 src/file.cc              rw-r--r--        11.01K 2020-04-01 12:30:55</span></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="r"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span>(<span class="st">"src"</span>, <span class="kw">recurse</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
   <span class="fu">group_by</span>(<span class="kw">directory</span> <span class="kw">=</span> <span class="fu"><a href="reference/path_file.html">path_dir</a></span>(<span class="no">path</span>)) <span class="kw">%&gt;%</span>
   <span class="fu">tally</span>(<span class="kw">wt</span> <span class="kw">=</span> <span class="no">size</span>, <span class="kw">sort</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="co">#&gt; # A tibble: 54 x 2</span>
-<span class="co">#&gt;    directory                                        n</span>
-<span class="co">#&gt;    &lt;chr&gt;                                  &lt;fs::bytes&gt;</span>
-<span class="co">#&gt;  1 src/libuv                                    3.92M</span>
-<span class="co">#&gt;  2 src/libuv/autom4te.cache                     2.44M</span>
-<span class="co">#&gt;  3 src                                        976.15K</span>
-<span class="co">#&gt;  4 src/libuv/test                             865.35K</span>
-<span class="co">#&gt;  5 src/libuv/src/win                          683.14K</span>
-<span class="co">#&gt;  6 src/libuv/src/unix                         526.47K</span>
-<span class="co">#&gt;  7 src/libuv/docs/src/static                   328.3K</span>
-<span class="co">#&gt;  8 src/libuv/m4                               319.95K</span>
-<span class="co">#&gt;  9 src/libuv/include                          192.33K</span>
-<span class="co">#&gt; 10 src/libuv/docs/src/static/diagrams.key     184.02K</span>
-<span class="co">#&gt; # … with 44 more rows</span></pre></div>
+<span class="co">#&gt; # A tibble: 97 x 2</span>
+<span class="co">#&gt;    directory                                  n</span>
+<span class="co">#&gt;    &lt;chr&gt;                            &lt;fs::bytes&gt;</span>
+<span class="co">#&gt;  1 src/libuv-v1.38.1                      4.28M</span>
+<span class="co">#&gt;  2 src/libuv-1.38.1                       2.67M</span>
+<span class="co">#&gt;  3 src                                    2.15M</span>
+<span class="co">#&gt;  4 src/libuv-v1.38.1/autom4te.cache       1.15M</span>
+<span class="co">#&gt;  5 src/libuv-v1.38.1/test                 1.08M</span>
+<span class="co">#&gt;  6 src/libuv-1.38.1/src/win             731.12K</span>
+<span class="co">#&gt;  7 src/libuv-v1.38.1/src/win            731.12K</span>
+<span class="co">#&gt;  8 src/libuv-1.38.1/src/unix            591.54K</span>
+<span class="co">#&gt;  9 src/libuv-v1.38.1/src/unix           586.58K</span>
+<span class="co">#&gt; 10 src/libuv-v1.38.1/m4                 354.63K</span>
+<span class="co">#&gt; # … with 87 more rows</span></pre></div>
 <p>Read a collection of files into one data frame.</p>
 <p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df(.id)</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="r"><span class="co"># Create separate files for each species</span>
