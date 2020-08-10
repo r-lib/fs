@@ -317,6 +317,8 @@ path_home_r <- function(...) {
 #' path. `path_ext_remove()` removes the last extension and returns the rest of
 #' the path. `path_ext_set()` replaces the extension with a new extension. If
 #' there is no existing extension the new extension is appended.
+#' `path_file_ext_remove` returns the filename portion of the path without
+#' file extension.
 #'
 #' Note because these are not full file paths they return regular character
 #' vectors, not `fs_path()` objects.
@@ -337,6 +339,8 @@ path_home_r <- function(...) {
 #'
 #' # Only one level of extension is removed
 #' path_ext_set(path_ext_remove("file.tar.gz"), "zip")
+#'
+#' path_file_ext_remove("dir/file.zip")
 #' @export
 path_file <- function(path) {
   is_missing <- is.na(path)
@@ -409,6 +413,13 @@ path_ext_set <- function(path, ext) {
 #' @export
 `path_ext<-` <- function(path, value) {
   path_ext_set(path, value)
+}
+
+#' @rdname path_file
+#' @export
+path_file_ext_remove <- function(path) {
+  file <- path_file(path)
+  path_ext_remove(path = file)
 }
 
 #' @describeIn path_math finds the common parts of two (or more) paths.
