@@ -15,10 +15,16 @@
 extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
   int process_umask = 0;
 #ifndef _WIN32
+  // retrieve current umask
   process_umask = umask(0);
 #endif
 
   int mode = INTEGER(mode_sxp)[0] & ~process_umask;
+
+#ifndef _WIN32
+  // reset previous umask
+  umask(process_umask);
+#endif
 
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {
