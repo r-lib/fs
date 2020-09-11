@@ -13,20 +13,14 @@
 
 // [[export]]
 extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
-  int process_umask = 0;
-#ifndef _WIN32
-  // retrieve current umask
-  process_umask = umask(0);
-#endif
-
-  int mode = INTEGER(mode_sxp)[0] & ~process_umask;
+  mode_t m = INTEGER(mode_sxp)[0];
 
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path, i));
 
-    int fd = uv_fs_mkdir(uv_default_loop(), &req, p, mode, NULL);
+    int fd = uv_fs_mkdir(uv_default_loop(), &req, p, 0x777, NULL);
 
     if (fd == UV_EEXIST) {
       // Fail silently if the directory already exists
@@ -44,20 +38,14 @@ extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
       uv_fs_req_cleanup(&req);
       continue;
     }
-    if (req.result < 0) {
-#ifndef _WIN32
-      // reset previous umask
-      umask(process_umask);
-#endif
 
-      stop_for_error(req, "Failed to make directory '%s'", p);
-    }
+    stop_for_error(req, "Failed to make directory '%s'", p);
+
+    uv_fs_t chmod_req;
+    uv_fs_chmod(uv_default_loop(), &chmod_req, p, m, NULL);
+    stop_for_error(
+        chmod_req, "Failed to set permissions for directory '%s'", p);
   }
-
-#ifndef _WIN32
-  // reset previous umask
-  umask(process_umask);
-#endif
 
   return R_NilValue;
 }
