@@ -21,11 +21,6 @@ extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
 
   int mode = INTEGER(mode_sxp)[0] & ~process_umask;
 
-#ifndef _WIN32
-  // reset previous umask
-  umask(process_umask);
-#endif
-
   R_xlen_t n = Rf_xlength(path);
   for (R_xlen_t i = 0; i < n; ++i) {
     uv_fs_t req;
@@ -49,9 +44,20 @@ extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {
       uv_fs_req_cleanup(&req);
       continue;
     }
+    if (req.result < 0) {
+#ifndef _WIN32
+      // reset previous umask
+      umask(process_umask);
+#endif
 
-    stop_for_error(req, "Failed to make directory '%s'", p);
+      stop_for_error(req, "Failed to make directory '%s'", p);
+    }
   }
+
+#ifndef _WIN32
+  // reset previous umask
+  umask(process_umask);
+#endif
 
   return R_NilValue;
 }

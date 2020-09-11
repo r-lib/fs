@@ -23,10 +23,11 @@ test_that("dir_create works with new and existing files", {
 test_that("dir_create sets the mode properly", {
   skip_on_cran()
   skip_on_os("windows")
-  x1 <- dir_create(tempfile(), mode = "775")
+  prev_umask <- Sys.umask()
+  x1 <- dir_create(tempfile(), mode = "755")
 
   expect_true(file_exists(x1))
-  expect_equal(file_info(x1)$permissions, "775")
+  expect_equal(Sys.umask(), prev_umask)
 
   unlink(x1, recursive = TRUE)
 })
