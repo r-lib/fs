@@ -33,8 +33,7 @@ file_access <- function(path, mode = "exists") {
 #' @rdname file_access
 #' @export
 file_exists <- function(path) {
-  res <- file_info(path)
-  setNames(!is.na(res$type), res$path)
+  .Call(fs_exists_, path)
 }
 
 #' @rdname file_access

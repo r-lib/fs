@@ -289,6 +289,24 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
 }
 
 // [[export]]
+extern "C" SEXP fs_exists_(SEXP path_sxp) {
+
+  SEXP out = PROTECT(Rf_allocVector(LGLSXP, Rf_xlength(path_sxp)));
+  Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path_sxp));
+
+  for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
+    uv_fs_t req;
+    const char* p = CHAR(STRING_ELT(path_sxp, i));
+    int res = uv_fs_stat(uv_default_loop(), &req, p, NULL);
+    LOGICAL(out)[i] = res == 0;
+    uv_fs_req_cleanup(&req);
+  }
+
+  UNPROTECT(1);
+  return out;
+}
+
+// [[export]]
 extern "C" SEXP fs_access_(SEXP path_sxp, SEXP mode_sxp) {
 
   int mode = INTEGER(mode_sxp)[0];
