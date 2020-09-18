@@ -154,6 +154,10 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
+<ul>
+<li><p>You can now disable use of tibbles by setting <code><a href="https://rdrr.io/r/base/options.html">options(fs.use_tibble = FALSE)</a></code> (<a href='https://github.com/r-lib/fs/issues/295'>#295</a>).</p></li>
+<li><p><code><a href="../reference/create.html">dir_create()</a></code> now restores the previous umask (<a href='https://github.com/r-lib/fs/issues/293'>#293</a>)</p></li>
+</ul>
 </div>
     <div id="fs-150" class="section level1">
 <h1 class="page-header" data-toc-text="1.5.0">
@@ -432,7 +436,7 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <ul>
-<li><p>Tidy paths no longer expand <code>~</code>.</p></li>
+<li><p>Tidy paths no longer expand <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>.</p></li>
 <li><p>Filesystem modification functions now error for NA inputs. (<a href='https://github.com/r-lib/fs/issues/48'>#48</a>)</p></li>
 <li><p><code><a href="../reference/path.html">path()</a></code> now returns 0 length output if given any 0 length inputs (<a href='https://github.com/r-lib/fs/issues/54'>#54</a>).</p></li>
 </ul>
@@ -484,7 +488,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

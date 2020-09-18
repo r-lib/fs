@@ -158,21 +158,21 @@ files in question do not need to exist on the filesystem." />
 files in question do not need to exist on the filesystem.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>path_real</span>(<span class='no'>path</span>)
+    <pre class="usage"><span class='fu'>path_real</span>(<span class='kw'>path</span>)
 
-<span class='fu'>path_split</span>(<span class='no'>path</span>)
+<span class='fu'>path_split</span>(<span class='kw'>path</span>)
 
-<span class='fu'>path_join</span>(<span class='no'>parts</span>)
+<span class='fu'>path_join</span>(<span class='kw'>parts</span>)
 
-<span class='fu'>path_abs</span>(<span class='no'>path</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='st'>"."</span>)
+<span class='fu'>path_abs</span>(<span class='kw'>path</span>, start = <span class='st'>"."</span>)
 
-<span class='fu'>path_norm</span>(<span class='no'>path</span>)
+<span class='fu'>path_norm</span>(<span class='kw'>path</span>)
 
-<span class='fu'>path_rel</span>(<span class='no'>path</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='st'>"."</span>)
+<span class='fu'>path_rel</span>(<span class='kw'>path</span>, start = <span class='st'>"."</span>)
 
-<span class='fu'>path_common</span>(<span class='no'>path</span>)
+<span class='fu'>path_common</span>(<span class='kw'>path</span>)
 
-<span class='fu'>path_has_parent</span>(<span class='no'>path</span>, <span class='no'>parent</span>)</pre>
+<span class='fu'>path_has_parent</span>(<span class='kw'>path</span>, <span class='kw'>parent</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,7 +206,7 @@ of character vectors of path components.</p>
     
 <ul>
 <li><p><code>path_real</code>: returns the canonical path, eliminating any symbolic
-links and the special references <code>~</code>, <code>~user</code>, <code>.</code>, and <code>..</code>, , i.e. it
+links and the special references <code><a href='https://rdrr.io/r/base/tilde.html'>~</a></code>, <code>~user</code>, <code>.</code>, and <code>..</code>, , i.e. it
 calls <code><a href='path_expand.html'>path_expand()</a></code> (literally) and <code>path_norm()</code> (effectively).</p></li>
 <li><p><code>path_split</code>: splits paths into parts.</p></li>
 <li><p><code>path_join</code>: joins parts together. The inverse of <code>path_split()</code>.
@@ -226,32 +226,40 @@ which can be either an absolute or relative path.</p></li>
     <div class='dont-index'><p><code><a href='path_expand.html'>path_expand()</a></code> for expansion of user's home directory.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>.old_wd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
+    <pre class="examples"><div class='input'><span class='kw'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
 <span class='fu'><a href='create.html'>dir_create</a></span>(<span class='st'>"a"</span>)
 <span class='fu'><a href='create.html'>file_create</a></span>(<span class='st'>"a/b"</span>)
 <span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'>path_abs</span>(<span class='st'>"a"</span>), <span class='st'>"c"</span>)
 
 <span class='co'># Realize the path</span>
-<span class='fu'>path_real</span>(<span class='st'>"c/b"</span>)</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqrlofP/a/b</div><div class='input'>
+<span class='fu'>path_real</span>(<span class='st'>"c/b"</span>)
+</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/a/b</div><div class='input'>
 <span class='co'># Split a path</span>
-<span class='no'>parts</span> <span class='kw'>&lt;-</span> <span class='fu'>path_split</span>(<span class='st'>"a/b"</span>)
-<span class='no'>parts</span></div><div class='output co'>#&gt; [[1]]
+<span class='kw'>parts</span> <span class='op'>&lt;-</span> <span class='fu'>path_split</span>(<span class='st'>"a/b"</span>)
+<span class='kw'>parts</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "a" "b"
 #&gt; </div><div class='input'>
 <span class='co'># Join it together</span>
-<span class='fu'>path_join</span>(<span class='no'>parts</span>)</div><div class='output co'>#&gt; a/b</div><div class='input'>
+<span class='fu'>path_join</span>(<span class='kw'>parts</span>)
+</div><div class='output co'>#&gt; a/b</div><div class='input'>
 <span class='co'># Find the absolute path</span>
-<span class='fu'>path_abs</span>(<span class='st'>".."</span>)</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T</span><span></div><div class='input'>
+<span class='fu'>path_abs</span>(<span class='st'>".."</span>)
+</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T</span><span></div><div class='input'>
 <span class='co'># Normalize a path</span>
-<span class='fu'>path_norm</span>(<span class='st'>"a/../b\\c/."</span>)</div><div class='output co'>#&gt; b/c</div><div class='input'>
+<span class='fu'>path_norm</span>(<span class='st'>"a/../b\\c/."</span>)
+</div><div class='output co'>#&gt; b/c</div><div class='input'>
 <span class='co'># Compute a relative path</span>
-<span class='fu'>path_rel</span>(<span class='st'>"/foo/abc"</span>, <span class='st'>"/foo/bar/baz"</span>)</div><div class='output co'>#&gt; ../../abc</div><div class='input'>
+<span class='fu'>path_rel</span>(<span class='st'>"/foo/abc"</span>, <span class='st'>"/foo/bar/baz"</span>)
+</div><div class='output co'>#&gt; ../../abc</div><div class='input'>
 <span class='co'># Find the common path between multiple paths</span>
-<span class='fu'>path_common</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"/foo/bar/baz"</span>, <span class='st'>"/foo/bar/abc"</span>, <span class='st'>"/foo/xyz/123"</span>))</div><div class='output co'>#&gt; /foo</div><div class='input'>
+<span class='fu'>path_common</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"/foo/bar/baz"</span>, <span class='st'>"/foo/bar/abc"</span>, <span class='st'>"/foo/xyz/123"</span>))
+</div><div class='output co'>#&gt; /foo</div><div class='input'>
 <span class='co'># Cleanup</span>
 <span class='fu'><a href='delete.html'>dir_delete</a></span>(<span class='st'>"a"</span>)
 <span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"c"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='no'>.old_wd</span>)</div></span></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='kw'>.old_wd</span>)
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -267,7 +275,7 @@ which can be either an absolute or relative path.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

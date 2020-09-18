@@ -156,13 +156,13 @@
     <p><code>file_temp()</code> returns the name which can be used as a temporary file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>file_temp</span>(<span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"file"</span>, <span class='kw'>tmp_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>""</span>)
+    <pre class="usage"><span class='fu'>file_temp</span>(pattern = <span class='st'>"file"</span>, tmp_dir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), ext = <span class='st'>""</span>)
 
-<span class='fu'>file_temp_push</span>(<span class='no'>path</span>)
+<span class='fu'>file_temp_push</span>(<span class='kw'>path</span>)
 
 <span class='fu'>file_temp_pop</span>()
 
-<span class='fu'>path_temp</span>(<span class='no'>...</span>)</pre>
+<span class='fu'>path_temp</span>(<span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -202,15 +202,23 @@ internal stack, however generally this is done instead by calling
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span>(<span class='st'>"/tmp/filedd461c46df20"</span>)
 
-<span class='fu'>path_temp</span>()</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqrlofP</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqrlofP/does-not-exist</div><div class='input'>
-<span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(<span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqrlofP/file482e6cdd1493.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, <span class='kw'>ext</span> <span class='kw'>=</span> <span class='st'>"png"</span>)</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpqrlofP/image482e2671f6bb.png</span><span></div><div class='input'>
+<span class='fu'>path_temp</span>()
+</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)
+</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/does-not-exist</div><div class='input'>
+<span class='fu'>file_temp</span>()
+</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(ext = <span class='st'>"png"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/file4b365162fc87.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, ext = <span class='st'>"png"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/image4b3639b12ccf.png</span><span></div><div class='input'>
 
 <span class='co'># You can make the temp file paths deterministic</span>
-<span class='fu'>file_temp_push</span>(<span class='no'>letters</span>)
-<span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; a</div><div class='input'><span class='fu'>file_temp</span>()</div><div class='output co'>#&gt; b</div><div class='input'>
+<span class='fu'>file_temp_push</span>(<span class='kw'>letters</span>)
+<span class='fu'>file_temp</span>()
+</div><div class='output co'>#&gt; a</div><div class='input'><span class='fu'>file_temp</span>()
+</div><div class='output co'>#&gt; b</div><div class='input'>
 <span class='co'># Or explicitly remove values</span>
-<span class='kw'>while</span> (!<span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='fu'>file_temp_pop</span>())) <span class='kw'>next</span>
-<span class='fu'>file_temp_pop</span>()</div><div class='output co'>#&gt; NULL</div></span></pre>
+<span class='co'>while</span> (<span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='fu'>file_temp_pop</span>())) <span class='co'>next</span>
+<span class='fu'>file_temp_pop</span>()
+</div><div class='output co'>#&gt; NULL</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -226,7 +234,7 @@ internal stack, however generally this is done instead by calling
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

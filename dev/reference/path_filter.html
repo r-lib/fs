@@ -156,7 +156,7 @@
     <p>Filter paths</p>
     </div>
 
-    <pre class="usage"><span class='fu'>path_filter</span>(<span class='no'>path</span>, <span class='kw'>glob</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>path_filter</span>(<span class='kw'>path</span>, glob = <span class='kw'>NULL</span>, regexp = <span class='kw'>NULL</span>, invert = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,8 +185,11 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path_filter</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*oo"</span>)</div><div class='output co'>#&gt; foo boo </div><div class='input'><span class='fu'>path_filter</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), <span class='kw'>glob</span> <span class='kw'>=</span> <span class='st'>"*oo"</span>, <span class='kw'>invert</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; bar</div><div class='input'>
-<span class='fu'>path_filter</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), <span class='kw'>regexp</span> <span class='kw'>=</span> <span class='st'>"b.r"</span>)</div><div class='output co'>#&gt; bar</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>path_filter</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), glob = <span class='st'>"*oo"</span>)
+</div><div class='output co'>#&gt; foo boo </div><div class='input'><span class='fu'>path_filter</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), glob = <span class='st'>"*oo"</span>, invert = <span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; bar</div><div class='input'>
+<span class='fu'>path_filter</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span>), regexp = <span class='st'>"b.r"</span>)
+</div><div class='output co'>#&gt; bar</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -202,7 +205,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
