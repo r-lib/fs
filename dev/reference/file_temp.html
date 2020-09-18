@@ -203,12 +203,12 @@ internal stack, however generally this is done instead by calling
     <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span>(<span class='st'>"/tmp/filedd461c46df20"</span>)
 
 <span class='fu'>path_temp</span>()
-</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)
-</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/does-not-exist</div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)
+</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ/does-not-exist</div><div class='input'>
 <span class='fu'>file_temp</span>()
 </div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(ext = <span class='st'>"png"</span>)
-</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/file4b365162fc87.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, ext = <span class='st'>"png"</span>)
-</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmp8N9x6q/image4b3639b12ccf.png</span><span></div><div class='input'>
+</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ/file480553cc364e.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, ext = <span class='st'>"png"</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ/image480540165dd.png</span><span></div><div class='input'>
 
 <span class='co'># You can make the temp file paths deterministic</span>
 <span class='fu'>file_temp_push</span>(<span class='kw'>letters</span>)
