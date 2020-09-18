@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `file_exists()` is now much faster (#295)
+
 * You can now disable use of tibbles by setting `options(fs.use_tibble = FALSE)` (#295).
 
 * `dir_create()` now restores the previous umask (#293)
