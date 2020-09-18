@@ -1,5 +1,7 @@
 # fs (development version)
 
+* You can now disable use of tibbles by setting `options(fs.use_tibble = FALSE)` (#295).
+
 * `dir_create()` now restores the previous umask (#293)
 
 # fs 1.5.0

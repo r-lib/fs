@@ -127,7 +127,7 @@ lengths <- function(x) {
 }
 
 as_tibble <- function(x) {
-  if (is_installed("tibble")) {
+  if (getOption("fs.use_tibble", TRUE) && is_installed("tibble")) {
     tibble::as_tibble(x)
   } else {
     x
