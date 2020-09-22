@@ -36,7 +36,9 @@ as_fs_path.character <- function(x) {
 fs_path <- as_fs_path
 
 new_fs_path <- function(x) {
-  structure(enc2utf8(x), class = c("fs_path", "character"))
+  x <- enc2utf8(x)
+  class(x) <- c("fs_path", "character")
+  x
 }
 setOldClass(c("fs_path", "character"), character())
 

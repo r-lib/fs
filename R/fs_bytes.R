@@ -29,7 +29,8 @@ as_fs_bytes <- function(x) {
 fs_bytes <- as_fs_bytes
 
 new_fs_bytes <- function(x) {
-  structure(x, class = c("fs_bytes", "numeric"))
+  class(x) <- c("fs_bytes", "numeric")
+  x
 }
 setOldClass(c("fs_bytes", "numeric"), numeric())
 
