@@ -33,6 +33,9 @@
 #'
 #' dir_ls("base", recurse = TRUE, glob = "*.R")
 #'
+#' # If you need the full paths input an absolute path
+#' dir_ls(path_abs("base"))
+#'
 #' dir_map("base", identity)
 #'
 #' dir_walk("base", str)
