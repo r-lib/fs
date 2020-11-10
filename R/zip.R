@@ -41,9 +41,11 @@ zip_ls <- function(path, method = "internal") {
 #'   `getOption("unzip")`, which on a Unix-alike may be set to the path to a
 #'   unzip program.
 #' @export
-zip_move <- function(path, dir = path_wd(), files = NULL, overwrite = TRUE,
+zip_move <- function(path, dir = NULL, files = NULL, overwrite = TRUE,
                      junkpaths = TRUE, method = "internal") {
-  stopifnot(length(dir) == 1)
+  if (is.null(dir) | length(dir) > 1) {
+    stop("one destination dir must be provided")
+  }
   path <- path_real(path)
   dir <- dir_create(path_expand(dir))
   if (is_installed("utils")) {

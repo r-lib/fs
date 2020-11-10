@@ -39,7 +39,7 @@ test_that("multiple zips can be listed", {
   unlink(c(tmp1, tmp2, zip1, zip2, out))
 })
 
-test_that("zip archices can be extracted", {
+test_that("zips can be extracted", {
   skip_if_not_installed("utils")
   tmp <- file_temp("mtcars", ext = "csv")
   write.csv(mtcars, tmp)
@@ -48,4 +48,13 @@ test_that("zip archices can be extracted", {
   expect_equal(length(out), length(tmp))
   expect_s3_class(out, "fs_path")
   unlink(c(tmp, zip, out))
+})
+
+test_that("zip extract fails without dir", {
+  skip_if_not_installed("utils")
+  tmp <- file_temp("mtcars", ext = "csv")
+  write.csv(mtcars, tmp)
+  zip <- zip_create(tmp)
+  expect_error(zip_move(zip))
+  unlink(c(tmp, zip))
 })
