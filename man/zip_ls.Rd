@@ -14,5 +14,7 @@ zip_ls(path, method = "internal")
 unzip program.}
 }
 \description{
-List zip contents
+Equivalent to the \code{unzip -l} command. It returns the compressed files within
+the given archives, much like \code{\link[=dir_ls]{dir_ls()}} returns files in a directory. If
+more than one archive is provided, files are identified by their source.
 }

@@ -5,7 +5,7 @@
 \title{Extract zip contents}
 \usage{
 zip_move(
-  zip,
+  path,
   dir = NULL,
   files = NULL,
   overwrite = TRUE,
@@ -14,20 +14,21 @@ zip_move(
 )
 }
 \arguments{
-\item{zip}{A character vector of zip archives.}
+\item{path}{A character vector of zip archives.}
 
 \item{dir}{The directory to extract files to (the equivalent of \code{unzip -d}).
-It will be created if necessary.}
+It will be created if necessary with \code{\link[=dir_create]{dir_create()}}.}
 
 \item{files}{A character vector of paths to be extracted: the default is to
-extract all files.}
+extract all files. Use \code{\link[=zip_ls]{zip_ls()}} to list contents without extracting.}
 
 \item{overwrite}{If \code{TRUE} (default), overwrite existing files (the
 equivalent of \code{unzip -o}), otherwise ignore such files (the equivalent of
 \code{unzip -n}).}
 
-\item{junk}{If \code{TRUE}, use only the basename of the stored path when
-extracting. The equivalent of \code{unzip -j}.}
+\item{junk}{If \code{FALSE} (default), preserve the directories of compressed
+files. If \code{TRUE}, use only the basename of the stored path when extracting
+(the equivalent of \code{unzip -j}).}
 
 \item{method}{The method to be used. An alternative is to use
 \code{getOption("unzip")}, which on a Unix-alike may be set to the path to a
@@ -37,5 +38,9 @@ unzip program.}
 The path to the extracted files (invisibly).
 }
 \description{
-Extract zip contents
+Decompress the contents of a zip archive and extract them to a single
+directory so they can be read. Compared to \code{\link[untils:unzip]{untils::unzip()}}, a directory
+\emph{must} be provided in the \code{dir} directory; files are not automatically
+extracted to the current working directory. New file paths are returned
+invisibly.
 }

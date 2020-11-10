@@ -16,7 +16,8 @@ zip_create(
 \item{path}{A character vector of files to archive.}
 
 \item{zip}{The path of the zip file to create. If none is supplied, and only
-one path is supplied, an archive with that name will be created.}
+one path is supplied, an archive with that name will be created in the
+same directory as the source file.}
 
 \item{quiet}{If \code{TRUE}, suppress deflating messages. The equivalent of
 \code{zip -q}.}
@@ -30,5 +31,6 @@ creating the archive. The equivalent of \code{zip -j}.}
 The path to the created archive (invisibly).
 }
 \description{
-Create zip archive
+A wrapper for an external \code{zip} command to create zip archives. Unlike
+\code{\link[utils:zip]{utils::zip()}}, filepaths can be passed into the first argument with \verb{\%>\%}.
 }
