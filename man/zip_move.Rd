@@ -5,16 +5,16 @@
 \title{Extract zip contents}
 \usage{
 zip_move(
-  path,
-  dir = path_wd(),
+  zip,
+  dir = NULL,
   files = NULL,
   overwrite = TRUE,
-  junkpaths = TRUE,
+  junk = FALSE,
   method = "internal"
 )
 }
 \arguments{
-\item{path}{A character vector of zip archives.}
+\item{zip}{A character vector of zip archives.}
 
 \item{dir}{The directory to extract files to (the equivalent of \code{unzip -d}).
 It will be created if necessary.}
@@ -26,12 +26,15 @@ extract all files.}
 equivalent of \code{unzip -o}), otherwise ignore such files (the equivalent of
 \code{unzip -n}).}
 
-\item{junkpaths}{If \code{TRUE}, use only the basename of the stored path when
+\item{junk}{If \code{TRUE}, use only the basename of the stored path when
 extracting. The equivalent of \code{unzip -j}.}
 
 \item{method}{The method to be used. An alternative is to use
 \code{getOption("unzip")}, which on a Unix-alike may be set to the path to a
 unzip program.}
+}
+\value{
+The path to the extracted files (invisibly).
 }
 \description{
 Extract zip contents

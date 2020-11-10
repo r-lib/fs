@@ -23,15 +23,15 @@ zip_ls <- function(path, method = "internal") {
 
 #' Extract zip contents
 #'
-#' @param path A character vector of zip archives.
-#' @param files A character vector of paths to be extracted: the default is to
-#'   extract all files.
+#' @param zip A character vector of zip archives.
 #' @param dir The directory to extract files to (the equivalent of `unzip -d`).
 #'   It will be created if necessary.
+#' @param files A character vector of paths to be extracted: the default is to
+#'   extract all files.
 #' @param overwrite If `TRUE` (default), overwrite existing files (the
 #'   equivalent of `unzip -o`), otherwise ignore such files (the equivalent of
 #'   `unzip -n`).
-#' @param junkpaths If `TRUE`, use only the basename of the stored path when
+#' @param junk If `TRUE`, use only the basename of the stored path when
 #'   extracting. The equivalent of `unzip -j`.
 #' @param method The method to be used. An alternative is to use
 #'   `getOption("unzip")`, which on a Unix-alike may be set to the path to a
@@ -39,7 +39,7 @@ zip_ls <- function(path, method = "internal") {
 #' @return The path to the extracted files (invisibly).
 #' @export
 zip_move <- function(zip, dir = NULL, files = NULL, overwrite = TRUE,
-                     junkpaths = FALSE, method = "internal") {
+                     junk = FALSE, method = "internal") {
   if (is.null(dir) | length(dir) > 1) {
     stop("one destination dir must be provided")
   }
@@ -49,7 +49,7 @@ zip_move <- function(zip, dir = NULL, files = NULL, overwrite = TRUE,
   for (i in seq_along(zip)) {
     x <- utils::unzip(
       zipfile = zip[i], files = files, overwrite = overwrite,
-      junkpaths = junkpaths, exdir = dir, unzip = method,
+      junkpaths = junk, exdir = dir, unzip = method,
     )
     z <- append(z, x)
   }
@@ -63,12 +63,12 @@ zip_move <- function(zip, dir = NULL, files = NULL, overwrite = TRUE,
 #'   one path is supplied, an archive with that name will be created.
 #' @param quiet If `TRUE`, suppress deflating messages. The equivalent of
 #'   `zip -q`.
-#' @param junkpaths If `TRUE`, use only the basename of the path when
+#' @param junk If `TRUE`, use only the basename of the path when
 #'   creating the archive. The equivalent of `zip -j`.
 #' @param method A character string specifying the external command to be used.
 #' @return The path to the created archive (invisibly).
 #' @export
-zip_create <- function(path, zip = NULL, quiet = TRUE, junkpaths = FALSE,
+zip_create <- function(path, zip = NULL, quiet = TRUE, junk = FALSE,
                        method = Sys.getenv("R_ZIPCMD", "zip")) {
   path <- path_real(path)
   if (is.null(zip) && length(path) == 1) {
@@ -77,7 +77,7 @@ zip_create <- function(path, zip = NULL, quiet = TRUE, junkpaths = FALSE,
     zip <- path_expand(zip)
   }
   x <- ""
-  if (junkpaths) {
+  if (junk) {
     x <- c(x, "-j")
   }
   if (quiet) {

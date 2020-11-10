@@ -4,7 +4,13 @@
 \alias{zip_create}
 \title{Create zip archive}
 \usage{
-zip_create(path, zip = NULL, method = Sys.getenv("R_ZIPCMD", "zip"), ...)
+zip_create(
+  path,
+  zip = NULL,
+  quiet = TRUE,
+  junk = FALSE,
+  method = Sys.getenv("R_ZIPCMD", "zip")
+)
 }
 \arguments{
 \item{path}{A character vector of files to archive.}
@@ -12,9 +18,16 @@ zip_create(path, zip = NULL, method = Sys.getenv("R_ZIPCMD", "zip"), ...)
 \item{zip}{The path of the zip file to create. If none is supplied, and only
 one path is supplied, an archive with that name will be created.}
 
-\item{method}{A character string specifying the external command to be used.}
+\item{quiet}{If \code{TRUE}, suppress deflating messages. The equivalent of
+\code{zip -q}.}
 
-\item{...}{Additional arguments passed to \code{\link[utils:zip]{utils::zip()}}}
+\item{junk}{If \code{TRUE}, use only the basename of the path when
+creating the archive. The equivalent of \code{zip -j}.}
+
+\item{method}{A character string specifying the external command to be used.}
+}
+\value{
+The path to the created archive (invisibly).
 }
 \description{
 Create zip archive
