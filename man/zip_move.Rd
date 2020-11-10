@@ -6,7 +6,7 @@
 \usage{
 zip_move(
   path,
-  dir = ".",
+  dir = path_wd(),
   files = NULL,
   overwrite = TRUE,
   junkpaths = TRUE,
