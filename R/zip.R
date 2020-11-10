@@ -41,11 +41,11 @@ zip_ls <- function(path, method = "internal") {
 #'   `getOption("unzip")`, which on a Unix-alike may be set to the path to a
 #'   unzip program.
 #' @export
-zip_move <- function(path, dir = ".", files = NULL, overwrite = TRUE,
+zip_move <- function(path, dir = path_wd(), files = NULL, overwrite = TRUE,
                      junkpaths = TRUE, method = "internal") {
   stopifnot(length(dir) == 1)
   path <- path_real(path)
-  dir <- dir_create(path_real(dir))
+  dir <- dir_create(path_expand(dir))
   if (is_installed("utils")) {
     z <- character()
     for (i in seq_along(path)) {
@@ -75,12 +75,12 @@ zip_create <- function(path, zip = NULL, method = Sys.getenv("R_ZIPCMD", "zip"),
   if (is.null(zip) && length(path) == 1) {
     zip <- path_ext_set(path, "zip")
   } else {
-    zip <- path_real(zip)
+    zip <- path_expand(zip)
   }
   if (is_installed("utils")) {
     utils::zip(zipfile = zip, files = path, zip = method, ...)
     invisible(zip)
   } else {
-    stop("Package \"utils\" needed for unzip", call. = FALSE)
+    stop("Package \"utils\" needed for zip", call. = FALSE)
   }
 }
