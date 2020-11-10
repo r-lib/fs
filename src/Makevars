@@ -17,7 +17,7 @@ endif
 ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
-ifeq ($(UNAME), Linux)
+ifneq ($(filter $(UNAME), Linux AIX OS400),)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
