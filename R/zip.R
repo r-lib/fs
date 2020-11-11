@@ -27,10 +27,6 @@ zip_ls <- function(path, method = "internal") {
     MoreArgs = list(list = TRUE)
   )
   z <- do.call(what = "rbind", args = z)
-  if (length(path) > 1) {
-    z <- cbind(z, source = sub("\\.\\d+$", "", rownames(z)))
-    z$source <- as_fs_path(z$source)
-  }
   names(z)[1:3] <- c("path", "size", "date")
   z$path <- as_fs_path(z$path)
   z$size <- as_fs_bytes(z$size)

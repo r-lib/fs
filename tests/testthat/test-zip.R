@@ -46,7 +46,7 @@ test_that("multiple zips can be listed", {
 
   out <- zip_ls(c(zip1, zip2))
   expect_equal(nrow(out), 2)
-  expect_length(out, 4)
+  expect_length(out, 3)
   expect_s3_class(out, "data.frame")
   unlink(c(tmp1, tmp2, zip1, zip2, out))
 })
