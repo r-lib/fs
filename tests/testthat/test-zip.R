@@ -2,12 +2,24 @@ context("test-zip.R")
 
 test_that("zip archives can be created", {
   skip_if_not_installed("utils")
-  tmp <- file_temp("mtcars", ext = "csv")
-  write.csv(mtcars, tmp)
-  zip <- zip_create(tmp)
-  expect_true(file_exists(zip))
-  expect_lt(file_size(zip), file_size(tmp))
-  unlink(c(tmp, zip))
+  t <- file_temp("mtcars", ext = "csv")
+  write.csv(mtcars, t)
+  z <- zip_create(t)
+  expect_true(file_exists(z))
+  expect_lt(file_size(z), file_size(t))
+  unlink(c(t, z))
+})
+
+test_that("zip paths can be junked", {
+  skip_if_not_installed("utils")
+  t <- file_temp("mtcars", ext = "csv")
+  write.csv(mtcars, t)
+  z <- zip_create(t, junk = TRUE)
+  l <- zip_ls(z)
+  expect_true(file_exists(z))
+  expect_equal(dirname(l$path), ".")
+  expect_lt(file_size(z), file_size(t))
+  unlink(c(t, z))
 })
 
 test_that("zip contents can be listed", {
