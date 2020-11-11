@@ -32,7 +32,7 @@ of the external \code{zip} command (e.g., \code{-x} followed by paths to exclude
 \item{method}{A character string specifying the external command to be used.}
 }
 \value{
-The path to the created archive (invisibly).
+The path of the created archive (invisibly).
 }
 \description{
 A wrapper for an external \code{zip} command to create zip archives. Unlike

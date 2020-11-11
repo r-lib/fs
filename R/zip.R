@@ -116,7 +116,6 @@ zip_move <- function(path, dir = NULL, files = NULL, overwrite = TRUE,
 #' @export
 zip_create <- function(path, zip = NULL, quiet = TRUE, junk = FALSE,
                        extra = "", method = Sys.getenv("R_ZIPCMD", "zip")) {
-  stopifnot(length(zip) == 1)
   path <- path_real(path)
   if (is.null(zip) && length(path) == 1) {
     zip <- path_ext_set(path, "zip")
@@ -124,6 +123,6 @@ zip_create <- function(path, zip = NULL, quiet = TRUE, junk = FALSE,
     zip <- path_expand(zip)
   }
   x <- c("-j", "-q")[c(junk, quiet)]
-  utils::zip(zipfile = zip, files = path, zip = method, extra = c(exta, x))
+  utils::zip(zipfile = zip, files = path, zip = method, extra = c(extra, x))
   invisible(zip)
 }
