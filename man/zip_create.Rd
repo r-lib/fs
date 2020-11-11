@@ -9,6 +9,7 @@ zip_create(
   zip = NULL,
   quiet = TRUE,
   junk = FALSE,
+  extra = "",
   method = Sys.getenv("R_ZIPCMD", "zip")
 )
 }
@@ -16,14 +17,17 @@ zip_create(
 \item{path}{A character vector of files to archive.}
 
 \item{zip}{The path of the zip file to create. If none is supplied, and only
-one path is supplied, an archive with that name will be created in the
-same directory as the source file.}
+one path is, an archive with that \code{\link[=basename]{basename()}} will be created in the same
+directory.}
 
-\item{quiet}{If \code{TRUE}, suppress deflating messages. The equivalent of
-\code{zip -q}.}
+\item{quiet}{If \code{TRUE}, suppress deflating messages (the equivalent of
+\code{zip -q}).}
 
-\item{junk}{If \code{TRUE}, use only the basename of the path when
-creating the archive. The equivalent of \code{zip -j}.}
+\item{junk}{If \code{TRUE}, use only the basename of the path when creating the
+archive (the equivalent of \code{zip -j}).}
+
+\item{extra}{An optional character vector passed to \code{\link[=system]{system()}} as arguments
+of the external \code{zip} command (e.g., \code{-x} followed by paths to exclude).}
 
 \item{method}{A character string specifying the external command to be used.}
 }
@@ -33,4 +37,13 @@ The path to the created archive (invisibly).
 \description{
 A wrapper for an external \code{zip} command to create zip archives. Unlike
 \code{\link[utils:zip]{utils::zip()}}, filepaths can be passed into the first argument with \verb{\%>\%}.
+}
+\examples{
+\dontshow{.old_wd <- setwd(tempdir())}
+# Zip a file to same basename
+tmp <- path_temp("iris.csv")
+write.csv(iris, tmp)
+(zip <- zip_create(tmp))
+file_size(c(tmp, zip))
+\dontshow{setwd(.old_wd)}
 }

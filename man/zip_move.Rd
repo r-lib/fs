@@ -44,3 +44,11 @@ directory so they can be read. Compared to \code{\link[untils:unzip]{untils::unz
 extracted to the current working directory. New file paths are returned
 invisibly.
 }
+\examples{
+# Extract two files from zip
+tmp <- path_temp("iris.csv")
+write.csv(iris, tmp)
+zip <- zip_create(tmp, junk = TRUE)
+out <- zip_move(zip, dir = path_temp("out"))
+file_size(c(tmp, zip, out))
+}
