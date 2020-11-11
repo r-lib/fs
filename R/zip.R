@@ -41,7 +41,7 @@ zip_ls <- function(path, method = "internal") {
 #'
 #' @description
 #' Decompress the contents of a zip archive and extract them to a single
-#' directory so they can be read. Compared to [untils::unzip()], a directory
+#' directory so they can be read. Compared to [utils::unzip()], a directory
 #' _must_ be provided in the `dir` directory; files are not automatically
 #' extracted to the current working directory. New file paths are returned
 #' invisibly.

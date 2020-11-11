@@ -39,7 +39,7 @@ The path to the extracted files (invisibly).
 }
 \description{
 Decompress the contents of a zip archive and extract them to a single
-directory so they can be read. Compared to \code{\link[untils:unzip]{untils::unzip()}}, a directory
+directory so they can be read. Compared to \code{\link[utils:unzip]{utils::unzip()}}, a directory
 \emph{must} be provided in the \code{dir} directory; files are not automatically
 extracted to the current working directory. New file paths are returned
 invisibly.
