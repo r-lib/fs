@@ -63,7 +63,6 @@ void closefrom(int lowfd);
 void setproctitle_init(int argc, char *argv[], char *envp[]);
 void setproctitle(const char *fmt, ...);
 
-int getpeereid(int s, uid_t *euid, gid_t *egid);
 __END_DECLS
 
 #endif
