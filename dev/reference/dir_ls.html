@@ -170,47 +170,47 @@ the result in a list.</p>
 <p><code>dir_walk()</code> calls <code>fun</code> for its side-effect and returns the input <code>path</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dir_ls</span>(
-  path = <span class='st'>"."</span>,
-  all = <span class='fl'>FALSE</span>,
-  recurse = <span class='fl'>FALSE</span>,
-  type = <span class='st'>"any"</span>,
-  glob = <span class='kw'>NULL</span>,
-  regexp = <span class='kw'>NULL</span>,
-  invert = <span class='fl'>FALSE</span>,
-  fail = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>,
-  <span class='kw'>recursive</span>
-)
+    <pre class="usage"><span class='fu'>dir_ls</span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='st'>"."</span>,
+  all <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  recurse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  type <span class='op'>=</span> <span class='st'>"any"</span>,
+  glob <span class='op'>=</span> <span class='cn'>NULL</span>,
+  regexp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  invert <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  fail <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>,
+  <span class='va'>recursive</span>
+<span class='op'>)</span>
 
-<span class='fu'>dir_map</span>(
-  path = <span class='st'>"."</span>,
-  <span class='kw'>fun</span>,
-  all = <span class='fl'>FALSE</span>,
-  recurse = <span class='fl'>FALSE</span>,
-  type = <span class='st'>"any"</span>,
-  fail = <span class='fl'>TRUE</span>
-)
+<span class='fu'>dir_map</span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='st'>"."</span>,
+  <span class='va'>fun</span>,
+  all <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  recurse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  type <span class='op'>=</span> <span class='st'>"any"</span>,
+  fail <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='fu'>dir_walk</span>(
-  path = <span class='st'>"."</span>,
-  <span class='kw'>fun</span>,
-  all = <span class='fl'>FALSE</span>,
-  recurse = <span class='fl'>FALSE</span>,
-  type = <span class='st'>"any"</span>,
-  fail = <span class='fl'>TRUE</span>
-)
+<span class='fu'>dir_walk</span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='st'>"."</span>,
+  <span class='va'>fun</span>,
+  all <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  recurse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  type <span class='op'>=</span> <span class='st'>"any"</span>,
+  fail <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='fu'>dir_info</span>(
-  path = <span class='st'>"."</span>,
-  all = <span class='fl'>FALSE</span>,
-  recurse = <span class='fl'>FALSE</span>,
-  type = <span class='st'>"any"</span>,
-  regexp = <span class='kw'>NULL</span>,
-  glob = <span class='kw'>NULL</span>,
-  fail = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+<span class='fu'>dir_info</span><span class='op'>(</span>
+  path <span class='op'>=</span> <span class='st'>"."</span>,
+  all <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  recurse <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  type <span class='op'>=</span> <span class='st'>"any"</span>,
+  regexp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  glob <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fail <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -266,8 +266,8 @@ accessed.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'>dir_ls</span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"share"</span>), type = <span class='st'>"directory"</span>)
+    <pre class="examples"><div class='input'><span class='va'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>dir_ls</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span><span class='op'>(</span><span class='st'>"share"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"directory"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/R</span><span>
 #&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/Rd</span><span>
 #&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/dictionaries</span><span>
@@ -279,12 +279,22 @@ accessed.</p></td>
 #&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/texmf</span><span>
 #&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/zoneinfo</span><span></div><div class='input'>
 <span class='co'># Create a shorter link</span>
-<span class='fu'><a href='create.html'>link_create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(package = <span class='st'>"base"</span>), <span class='st'>"base"</span>)
+<span class='fu'><a href='create.html'>link_create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>, <span class='st'>"base"</span><span class='op'>)</span>
 
-<span class='fu'>dir_ls</span>(<span class='st'>"base"</span>, recurse = <span class='fl'>TRUE</span>, glob = <span class='st'>"*.R"</span>)
+<span class='fu'>dir_ls</span><span class='op'>(</span><span class='st'>"base"</span>, recurse <span class='op'>=</span> <span class='cn'>TRUE</span>, glob <span class='op'>=</span> <span class='st'>"*.R"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>base/demo/error.catching.R</span><span> </span><span style='color: #00BB00;'>base/demo/is.things.R</span><span>      
 #&gt; </span><span style='color: #00BB00;'>base/demo/recursion.R</span><span>      </span><span style='color: #00BB00;'>base/demo/scoping.R</span><span>        </div><div class='input'>
-<span class='fu'>dir_map</span>(<span class='st'>"base"</span>, <span class='kw'>identity</span>)
+<span class='co'># If you need the full paths input an absolute path</span>
+<span class='fu'>dir_ls</span><span class='op'>(</span><span class='fu'><a href='path_math.html'>path_abs</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/CITATION
+#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/DESCRIPTION
+#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/INDEX
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/Meta</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/R</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/demo</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/help</span><span>
+#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/base/html</span><span></div><div class='input'>
+<span class='fu'>dir_map</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='va'>identity</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
 #&gt; [1] "base/CITATION"
 #&gt; 
@@ -309,7 +319,7 @@ accessed.</p></td>
 #&gt; [[8]]
 #&gt; [1] "base/html"
 #&gt; </div><div class='input'>
-<span class='fu'>dir_walk</span>(<span class='st'>"base"</span>, <span class='kw'>str</span>)
+<span class='fu'>dir_walk</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='va'>str</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;  chr "base/CITATION"
 #&gt;  chr "base/DESCRIPTION"
 #&gt;  chr "base/INDEX"
@@ -318,24 +328,24 @@ accessed.</p></td>
 #&gt;  chr "base/demo"
 #&gt;  chr "base/help"
 #&gt;  chr "base/html"</div><div class='input'>
-<span class='fu'>dir_info</span>(<span class='st'>"base"</span>)
+<span class='fu'>dir_info</span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 8 x 18</span><span>
 #&gt;   path       type    size permissions modification_time   user  group device_id
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;fs::path&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fs::&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;fs::perms&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> base/CITA… file     956 rw-rw-r--   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>2</span><span> base/DESC… file     286 rw-rw-r--   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>3</span><span> base/INDEX file   23.6K rw-rw-r--   2020-06-23 </span><span style='color: #555555;'>23:48:03</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/Meta</span><span>  dire…    256 rwxrwxr-x   2020-09-18 </span><span style='color: #555555;'>14:12:54</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/R</span><span>     dire…    192 rwxrwxr-x   2020-09-18 </span><span style='color: #555555;'>14:12:54</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>6</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/demo</span><span>  dire…    192 rwxrwxr-x   2020-09-18 </span><span style='color: #555555;'>14:12:54</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>7</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/help</span><span>  dire…    224 rwxrwxr-x   2020-09-18 </span><span style='color: #555555;'>14:12:54</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #555555;'>8</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/html</span><span>  dire…    128 rwxrwxr-x   2020-09-18 </span><span style='color: #555555;'>14:12:54</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
+#&gt; </span><span style='color: #555555;'>1</span><span> base/CITA… file     956 rw-rw-r--   2020-10-11 </span><span style='color: #555555;'>03:30:01</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>2</span><span> base/DESC… file     286 rw-rw-r--   2020-10-11 </span><span style='color: #555555;'>03:30:01</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>3</span><span> base/INDEX file   23.6K rw-rw-r--   2020-10-11 </span><span style='color: #555555;'>03:30:01</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/Meta</span><span>  dire…    256 rwxrwxr-x   2020-11-23 </span><span style='color: #555555;'>14:27:52</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/R</span><span>     dire…    192 rwxrwxr-x   2020-11-23 </span><span style='color: #555555;'>14:27:52</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>6</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/demo</span><span>  dire…    192 rwxrwxr-x   2020-11-23 </span><span style='color: #555555;'>14:27:52</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>7</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/help</span><span>  dire…    224 rwxrwxr-x   2020-11-23 </span><span style='color: #555555;'>14:27:52</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
+#&gt; </span><span style='color: #555555;'>8</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/html</span><span>  dire…    128 rwxrwxr-x   2020-11-23 </span><span style='color: #555555;'>14:27:52</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>221
 #&gt; </span><span style='color: #555555;'># … with 10 more variables: hard_links </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, special_device_id </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   inode </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, block_size </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, blocks </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, flags </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, generation </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
 #&gt; </span><span style='color: #555555;'>#   access_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, change_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span style='color: #555555;'>, birth_time </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span></div><div class='input'>
 <span class='co'># Cleanup</span>
-<span class='fu'><a href='delete.html'>link_delete</a></span>(<span class='st'>"base"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span>(<span class='kw'>.old_wd</span>)
+<span class='fu'><a href='delete.html'>link_delete</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>.old_wd</span><span class='op'>)</span>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

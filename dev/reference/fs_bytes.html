@@ -160,9 +160,9 @@ vectors, so you can compare them numerically, but they can also be compared
 to human readable values such as '10MB'.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_fs_bytes</span>(<span class='kw'>x</span>)
+    <pre class="usage"><span class='fu'>as_fs_bytes</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
-<span class='fu'>fs_bytes</span>(<span class='kw'>x</span>)</pre>
+<span class='fu'>fs_bytes</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,15 +176,15 @@ shorthand sizes (see examples).</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fs_bytes</span>(<span class='st'>"1"</span>)
-</div><div class='output co'>#&gt; 1</div><div class='input'><span class='fu'>fs_bytes</span>(<span class='st'>"1K"</span>)
-</div><div class='output co'>#&gt; 1K</div><div class='input'><span class='fu'>fs_bytes</span>(<span class='st'>"1Kb"</span>)
-</div><div class='output co'>#&gt; 1K</div><div class='input'><span class='fu'>fs_bytes</span>(<span class='st'>"1Kib"</span>)
-</div><div class='output co'>#&gt; 1K</div><div class='input'><span class='fu'>fs_bytes</span>(<span class='st'>"1MB"</span>)
+    <pre class="examples"><div class='input'><span class='fu'>fs_bytes</span><span class='op'>(</span><span class='st'>"1"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 1</div><div class='input'><span class='fu'>fs_bytes</span><span class='op'>(</span><span class='st'>"1K"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 1K</div><div class='input'><span class='fu'>fs_bytes</span><span class='op'>(</span><span class='st'>"1Kb"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 1K</div><div class='input'><span class='fu'>fs_bytes</span><span class='op'>(</span><span class='st'>"1Kib"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 1K</div><div class='input'><span class='fu'>fs_bytes</span><span class='op'>(</span><span class='st'>"1MB"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 1M</div><div class='input'>
-<span class='fu'>fs_bytes</span>(<span class='st'>"1KB"</span>) <span class='op'>&lt;</span> <span class='st'>"1MB"</span>
+<span class='fu'>fs_bytes</span><span class='op'>(</span><span class='st'>"1KB"</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='st'>"1MB"</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='fu'>fs_bytes</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"1MB"</span>, <span class='st'>"5MB"</span>, <span class='st'>"500KB"</span>)))
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'>fs_bytes</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1MB"</span>, <span class='st'>"5MB"</span>, <span class='st'>"500KB"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; 6.49M</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

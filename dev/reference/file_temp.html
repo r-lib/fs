@@ -156,13 +156,13 @@
     <p><code>file_temp()</code> returns the name which can be used as a temporary file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>file_temp</span>(pattern = <span class='st'>"file"</span>, tmp_dir = <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), ext = <span class='st'>""</span>)
+    <pre class="usage"><span class='fu'>file_temp</span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='st'>"file"</span>, tmp_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, ext <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
 
-<span class='fu'>file_temp_push</span>(<span class='kw'>path</span>)
+<span class='fu'>file_temp_push</span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span>
 
-<span class='fu'>file_temp_pop</span>()
+<span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>path_temp</span>(<span class='kw'>...</span>)</pre>
+<span class='fu'>path_temp</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,24 +200,24 @@ internal stack, however generally this is done instead by calling
 <p><code>path_temp()</code> constructs a path within the session temporary directory.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span>(<span class='st'>"/tmp/filedd461c46df20"</span>)
+    <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span><span class='op'>(</span><span class='st'>"/tmp/filedd461c46df20"</span><span class='op'>)</span>
 
-<span class='fu'>path_temp</span>()
-</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ</span><span></div><div class='input'><span class='fu'>path_temp</span>(<span class='st'>"does-not-exist"</span>)
-</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ/does-not-exist</div><div class='input'>
-<span class='fu'>file_temp</span>()
-</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span>(ext = <span class='st'>"png"</span>)
-</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ/file480553cc364e.png</span><span></div><div class='input'><span class='fu'>file_temp</span>(<span class='st'>"image"</span>, ext = <span class='st'>"png"</span>)
-</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpUCkVCZ/image480540165dd.png</span><span></div><div class='input'>
+<span class='fu'>path_temp</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc</span><span></div><div class='input'><span class='fu'>path_temp</span><span class='op'>(</span><span class='st'>"does-not-exist"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/does-not-exist</div><div class='input'>
+<span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span><span class='op'>(</span>ext <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/file493637645d4d.png</span><span></div><div class='input'><span class='fu'>file_temp</span><span class='op'>(</span><span class='st'>"image"</span>, ext <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpEG5iDc/image49361e2986a4.png</span><span></div><div class='input'>
 
 <span class='co'># You can make the temp file paths deterministic</span>
-<span class='fu'>file_temp_push</span>(<span class='kw'>letters</span>)
-<span class='fu'>file_temp</span>()
-</div><div class='output co'>#&gt; a</div><div class='input'><span class='fu'>file_temp</span>()
+<span class='fu'>file_temp_push</span><span class='op'>(</span><span class='va'>letters</span><span class='op'>)</span>
+<span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a</div><div class='input'><span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; b</div><div class='input'>
 <span class='co'># Or explicitly remove values</span>
-<span class='co'>while</span> (<span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='fu'>file_temp_pop</span>())) <span class='co'>next</span>
-<span class='fu'>file_temp_pop</span>()
+<span class='kw'>while</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='kw'>next</span>
+<span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; NULL</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
