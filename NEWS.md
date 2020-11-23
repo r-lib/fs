@@ -6,6 +6,8 @@
 
 * `dir_create()` now restores the previous umask (#293)
 
+* fs is now licensed as MIT (#301).
+
 # fs 1.5.0
 
 * The libuv release used by fs was updated to 1.38.1
