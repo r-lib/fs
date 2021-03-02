@@ -35,6 +35,12 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+       - name: Set locale
+        if: matrix.config.locale == 'en_US'
+        run: |
+          sudo locale-gen en_US
+          echo "::set-env name=LC_ALL::en_US"
+
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-r@master
