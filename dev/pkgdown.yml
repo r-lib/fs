@@ -3,8 +3,8 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   function-comparisons: function-comparisons.html
-last_built: 2021-01-06T14:06Z
+last_built: 2021-03-02T16:21Z
 urls:
-  reference: http://fs.r-lib.org/reference
-  article: http://fs.r-lib.org/articles
+  reference: https://fs.r-lib.org/reference
+  article: https://fs.r-lib.org/articles
 
