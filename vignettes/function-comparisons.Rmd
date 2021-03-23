@@ -79,6 +79,7 @@ base R functions:
 | fs                                                   | base                                              | shell                         |
 | ---                                                  | ---                                               | ---                           |
 | `path("top_dir", "nested_dir", "file", ext = "ext")` | `file.path("top_dir", "nested_dir", "file.ext")`  | `top_dir/nested_dir/file.ext` |
+| `path_temp()`, `path_temp("path")`                   | `tempdir()`, `file.path(tempdir(), "path")`       | `mktemp -d`                   |
 | `path_expand("~/path")`                              | `path.expand()`                                   | `realpath -m -s ~/path`       |
 | `path_dir("path")`                                   | `dirname("path")`                                 | `dirname path`                |
 | `path_file("path")`                                  | `basename("path")`                                | `basename path`               |
