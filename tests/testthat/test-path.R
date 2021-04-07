@@ -198,6 +198,14 @@ describe("path_tidy", {
     expect_equal(path_tidy(NA_character_), NA_character_)
     expect_equal(path_tidy(c("foo/bar", NA_character_)), c("foo/bar", NA_character_))
   })
+
+  it("works for non-UTF8 path", {
+    x <- "folder//fa\xE7ile.txt/"
+    Encoding(x) <- "latin1"
+    out <- fs::path_tidy(x)
+    expect_equal(Encoding(out), "UTF-8")
+    expect_equal(out, "folder\façile.txt")
+  })
 })
 
 describe("path_temp", {

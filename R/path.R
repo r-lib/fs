@@ -110,7 +110,7 @@ path_real <- function(path) {
 #' @template fs
 #' @export
 path_tidy <- function(path) {
-  path <- as.character(path)
+  path <- enc2utf8(as.character(path))
   new_fs_path(.Call(fs_tidy_, path))
 }
 
