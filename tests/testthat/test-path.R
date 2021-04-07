@@ -204,7 +204,7 @@ describe("path_tidy", {
     Encoding(x) <- "latin1"
     out <- fs::path_tidy(x)
     expect_equal(Encoding(out), "UTF-8")
-    expect_equal(out, "folder\façile.txt")
+    expect_equal(out, "folder/façile.txt")
   })
 })
 
