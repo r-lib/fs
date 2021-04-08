@@ -8,7 +8,7 @@
 
 * fs is now licensed as MIT (#301).
 
-* `path_tidy()` now works with non-UTF8 encoded paths (#321).
+* `path_tidy()` now works with non-UTF8 encoded paths (@shrektan, #321).
 
 # fs 1.5.0
 
