@@ -1,5 +1,8 @@
 # fs (development version)
 
+* `options(fs.fs_path.shorten)` can now be used to control how paths are shortened in tibbles.
+  The default value is "front", valid alternatives are "back", "middle" and "abbreviate". (#335)
+
 * `file_exists()` is now much faster (#295)
 
 * You can now disable use of tibbles by setting `options(fs.use_tibble = FALSE)` (#295).

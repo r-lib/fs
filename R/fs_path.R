@@ -72,8 +72,8 @@ print.fs_path <- function(x, ..., max = getOption("max.print")) {
   new_fs_path(paste0(e1, e2))
 }
 
-pillar_shaft.fs_path <- function(x, ..., min_width = 10) {
-  pillar::new_pillar_shaft_simple(colourise_fs_path(x), ..., min_width = min_width)
+pillar_shaft.fs_path <- function(x, ..., min_width = 10, shorten = getOption("fs.fs_path.shorten", "front")) {
+  pillar::new_pillar_shaft_simple(colourise_fs_path(x), ..., min_width = min_width, shorten = shorten)
 }
 
 type_sum.fs_path <- function(x) {
