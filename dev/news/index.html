@@ -155,6 +155,7 @@
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code><a href="https://rdrr.io/r/base/options.html">options(fs.fs_path.shorten)</a></code> can now be used to control how paths are shortened in tibbles. The default value is “front”, valid alternatives are “back”, “middle” and “abbreviate”. (<a href='https://github.com/r-lib/fs/issues/335'>#335</a>)</p></li>
 <li><p><code><a href="../reference/file_access.html">file_exists()</a></code> is now much faster (<a href='https://github.com/r-lib/fs/issues/295'>#295</a>)</p></li>
 <li><p>You can now disable use of tibbles by setting <code><a href="https://rdrr.io/r/base/options.html">options(fs.use_tibble = FALSE)</a></code> (<a href='https://github.com/r-lib/fs/issues/295'>#295</a>).</p></li>
 <li><p><code><a href="../reference/create.html">dir_create()</a></code> now restores the previous umask (<a href='https://github.com/r-lib/fs/issues/293'>#293</a>)</p></li>
