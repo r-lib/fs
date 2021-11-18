@@ -1,7 +1,7 @@
 # Use C++11 if available, so we have C99 support for variadic macros
 CXX_STD=CXX11
 
-LIBUV := libuv-1.38.1
+LIBUV := libuv-1.42.0
 
 PKG_LIBS = ./$(LIBUV)/libuv.a \
            -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv
