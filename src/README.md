@@ -13,5 +13,5 @@
   `rm -r m4 img docs test aclocal.m4`
 - Update `LIBUV` in `Makevars` with the current version
 - Fix any `R CMD check` warnings about pragmas
-- Add Makefile.mingw for windows builds
+- Add Makefile.mingw for windows builds   <---??? needs more explanation
 - Delete tarballs and temporary directories
