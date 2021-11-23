@@ -166,7 +166,7 @@ definition of the home directory.
     
 <ul>
 <li><p><code>path_expand()</code> performs tilde expansion on a path, replacing instances of
-<code><a href='https://rdrr.io/r/base/tilde.html'>~</a></code> or <code>~user</code> with the user's home directory.</p></li>
+<code>~</code> or <code>~user</code> with the user's home directory.</p></li>
 <li><p><code>path_home()</code> constructs a path within the expanded users home directory,
 calling it with <em>no</em> arguments can be useful to verify what fs considers the
 home directory.</p></li>
@@ -224,17 +224,21 @@ definitions on any platform.</p>
 for behavior of <code><a href='https://rdrr.io/r/base/path.expand.html'>base::path.expand()</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Expand a path</span>
-<span class='fu'>path_expand</span><span class='op'>(</span><span class='st'>"~/bin"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; /Users/runner/bin</div><div class='input'>
-<span class='co'># You can use `path_home()` without arguments to see what is being used as</span>
-<span class='co'># the home diretory.</span>
-<span class='fu'>path_home</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Users/runner</span><span></div><div class='input'><span class='fu'>path_home</span><span class='op'>(</span><span class='st'>"R"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; /Users/runner/R</div><div class='input'>
-<span class='co'># This will likely differ from the above on Windows</span>
-<span class='fu'>path_home_r</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Users/runner</span><span></div></span></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># Expand a path</span></span>
+<span class='r-in'><span class='fu'>path_expand</span><span class='op'>(</span><span class='st'>"~/bin"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /Users/runner/bin</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># You can use `path_home()` without arguments to see what is being used as</span></span>
+<span class='r-in'><span class='co'># the home diretory.</span></span>
+<span class='r-in'><span class='fu'>path_home</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Users/runner</span></span>
+<span class='r-in'><span class='fu'>path_home</span><span class='op'>(</span><span class='st'>"R"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /Users/runner/R</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># This will likely differ from the above on Windows</span></span>
+<span class='r-in'><span class='fu'>path_home_r</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Users/runner</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

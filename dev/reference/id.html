@@ -170,24 +170,26 @@ functions return an empty <code>data.frame</code> because windows does not have 
 or group ids.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># list first 6 groups</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>group_ids</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   group_id group_name
-#&gt; 1       -2     nobody
-#&gt; 2       -1    nogroup
-#&gt; 3        0      wheel
-#&gt; 4        1     daemon
-#&gt; 5        2       kmem
-#&gt; 6        3        sys</div><div class='input'>
-<span class='co'># list first 6 users</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>user_ids</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   user_id  user_name
-#&gt; 1      -2     nobody
-#&gt; 2       0       root
-#&gt; 3       1     daemon
-#&gt; 4       4      _uucp
-#&gt; 5      13 _taskgated
-#&gt; 6      24  _networkd</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># list first 6 groups</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>group_ids</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   group_id group_name</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1       -2     nobody</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2       -1    nogroup</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3        0      wheel</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        1     daemon</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        2       kmem</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6        3        sys</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># list first 6 users</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>user_ids</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   user_id  user_name</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1      -2     nobody</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2       0       root</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3       1     daemon</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4       4      _uucp</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5      13 _taskgated</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6      24  _networkd</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -140,8 +140,8 @@
 <a href="#tidy-paths" class="anchor"></a>Tidy paths</h3>
 <p><strong>fs</strong> functions always return ‘tidy’ paths. Tidy paths</p>
 <ul>
-<li>Always use <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> to delimit directories</li>
-<li>never have multiple <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> or trailing <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code>
+<li>Always use <code>/</code> to delimit directories</li>
+<li>never have multiple <code>/</code> or trailing <code>/</code>
 </li>
 </ul>
 <p>Tidy paths are also coloured (if your terminal supports it) based on the file permissions and file type. This colouring can be customized or extended by setting the <code>LS_COLORS</code> environment variable, in the same output format as <a href="http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors">GNU dircolors</a>.</p>
@@ -198,9 +198,9 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span>
 
-<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">paths</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/a</span>
@@ -209,17 +209,17 @@
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/d</span>
 <span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/RtmppbMbhP/fileaa11686663e2/e</span>
 
-<span class="va">paths</span> <span class="op">%&gt;%</span> <span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="va">paths</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/">tidyverse</a> packages, like <a href="http://dplyr.tidyverse.org">dplyr</a> and <a href="http://purrr.tidyverse.org">purrr</a>.</p>
 <p>Some examples…</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressMessages</a></span><span class="op">(</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+  <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Filter files by type, permission and size</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"file"</span>, <span class="va">permissions</span> <span class="op">==</span> <span class="st">"u+r"</span>, <span class="va">size</span> <span class="op">&gt;</span> <span class="st">"10KB"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">size</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"file"</span>, <span class="va">permissions</span> <span class="op">==</span> <span class="st">"u+r"</span>, <span class="va">size</span> <span class="op">&gt;</span> <span class="st">"10KB"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">size</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">select</span><span class="op">(</span><span class="va">path</span>, <span class="va">permissions</span>, <span class="va">size</span>, <span class="va">modification_time</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 12 x 4</span>
 <span class="co">#&gt;    path                     permissions        size modification_time  </span>
@@ -238,8 +238,8 @@
 <span class="co">#&gt; 12 src/file.cc              rw-r--r--        11.01K 2020-04-01 12:30:55</span></code></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">group_by</span><span class="op">(</span>directory <span class="op">=</span> <span class="fu"><a href="reference/path_file.html">path_dir</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">group_by</span><span class="op">(</span>directory <span class="op">=</span> <span class="fu"><a href="reference/path_file.html">path_dir</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">tally</span><span class="op">(</span>wt <span class="op">=</span> <span class="va">size</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 97 x 2</span>
 <span class="co">#&gt;    directory                                  n</span>
@@ -256,12 +256,12 @@
 <span class="co">#&gt; 10 src/libuv-v1.38.1/m4                 354.63K</span>
 <span class="co">#&gt; # … with 87 more rows</span></code></pre></div>
 <p>Read a collection of files into one data frame.</p>
-<p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map_df(.id)</a></code>.</p>
+<p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code>purrr::map_df(.id)</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Create separate files for each species</span>
-<span class="va">iris</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">map</span><span class="op">(</span><span class="va">select</span>, <span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">map</span><span class="op">(</span><span class="va">select</span>, <span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">iwalk</span><span class="op">(</span><span class="op">~</span> <span class="fu">write_tsv</span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">.y</span>, <span class="st">".tsv"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Show the files</span>
@@ -270,7 +270,7 @@
 <span class="co">#&gt; setosa.tsv     versicolor.tsv virginica.tsv</span>
 
 <span class="co"># Read the data into a single table, including the filenames</span>
-<span class="va">iris_files</span> <span class="op">%&gt;%</span>
+<span class="va">iris_files</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">map_df</span><span class="op">(</span><span class="va">read_tsv</span>, .id <span class="op">=</span> <span class="st">"file"</span>, col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span><span class="op">)</span>, n_max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 5</span>
 <span class="co">#&gt;   file           Sepal.Length Sepal.Width Petal.Length Petal.Width</span>

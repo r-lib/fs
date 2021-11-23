@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Construct a path to a location within an installed or development package — path_package • fs</title>
+<title>NA • fs</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,16 +33,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Construct a path to a location within an installed or development package — path_package" />
-<meta property="og:description" content="path_package differs from system.file() in that it always returns an
-error if the package does not exist. It also returns a different error if
-the file within the package does not exist." />
+<meta property="og:title" content="NA" />
 
 
 <meta name="robots" content="noindex">
@@ -71,7 +68,7 @@ the file within the package does not exist." />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -83,7 +80,7 @@ the file within the package does not exist." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">fs</a>
+        <a class="navbar-link" href="index.html">fs</a>
         <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.0.9000</span>
       </span>
     </div>
@@ -91,13 +88,13 @@ the file within the package does not exist." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -107,7 +104,7 @@ the file within the package does not exist." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/function-comparisons.html">Comparison of fs functions, base R, and shell commands</a>
+      <a href="articles/function-comparisons.html">Comparison of fs functions, base R, and shell commands</a>
     </li>
   </ul>
 </li>
@@ -124,7 +121,7 @@ the file within the package does not exist." />
     </li>
     <li class="divider"></li>
     <li>
-      <a href="../news/index.html">Changelog</a>
+      <a href="news/index.html">Changelog</a>
     </li>
   </ul>
 </li>
@@ -147,56 +144,35 @@ the file within the package does not exist." />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Construct a path to a location within an installed or development package</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/fs/blob/master/R/path_package.R'><code>R/path_package.R</code></a></small>
-    <div class="hidden name"><code>path_package.Rd</code></div>
+      <h1>NA</h1>
     </div>
 
-    <div class="ref-description">
-    <p><code>path_package</code> differs from <code><a href='https://rdrr.io/r/base/system.file.html'>system.file()</a></code> in that it always returns an
-error if the package does not exist. It also returns a different error if
-the file within the package does not exist.</p>
-    </div>
 
-    <pre class="usage"><span class='fu'>path_package</span><span class='op'>(</span><span class='va'>package</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<div id="current-state" class="section level2">
+<h2 class="hasAnchor">
+<a href="#current-state" class="anchor"></a>Current state</h2>
+<p>fs is generally stable and new development is pretty rare.</p>
+</div>
+<div id="known-outstanding-issues" class="section level2">
+<h2 class="hasAnchor">
+<a href="#known-outstanding-issues" class="anchor"></a>Known outstanding issues</h2>
+<p>Fairly often someone will run into problems compiling fs due to autotools / configure problems with the libuv dependency. I don’t have any great suggestions on work arounds for these things, other than maybe harmonizing the Makevars with the one in httuv, which also needs to compile libuv. <a href="https://github.com/rstudio/httpuv/blob/main/src/Makevars" class="uri">https://github.com/rstudio/httpuv/blob/main/src/Makevars</a></p>
+<p>The other outstanding issue is around networked drive shares / UNC paths on windows, e.g. (<a href="https://github.com/r-lib/fs/issues/296" class="uri">https://github.com/r-lib/fs/issues/296</a>, <a href="https://github.com/r-lib/fs/issues/223" class="uri">https://github.com/r-lib/fs/issues/223</a>, <a href="https://github.com/r-lib/fs/issues/147" class="uri">https://github.com/r-lib/fs/issues/147</a>) These partially stem from deficiencies in the OS APIs and the fs node package ended up going back to a javascript only implementation to avoid the issues.</p>
+</div>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>package</th>
-      <td><p>Name of the package to in which to search</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional paths appended to the package path by <code><a href='path.html'>path()</a></code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>path_package()</code> also automatically works with packages loaded with devtools
-even if the <code>path_package()</code> call comes from a different package.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='fu'>path_package</span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/library/base</span></span>
-<span class='r-in'><span class='fu'>path_package</span><span class='op'>(</span><span class='st'>"stats"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/library/stats</span></span>
-<span class='r-in'><span class='fu'>path_package</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='st'>"INDEX"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> /Library/Frameworks/R.framework/Resources/library/base/INDEX</span>
-<span class='r-in'><span class='fu'>path_package</span><span class='op'>(</span><span class='st'>"splines"</span>, <span class='st'>"help"</span>, <span class='st'>"AnIndex"</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> /Library/Frameworks/R.framework/Resources/library/splines/help/AnIndex</span>
-</pre>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
+
 
 
       <footer>

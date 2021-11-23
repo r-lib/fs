@@ -164,7 +164,7 @@ dir_walk() calls fun for its side-effect and returns the input path." />
 named <code>fs_path</code> character vector. The names are equivalent to the values,
 which is useful for passing onto functions like <code><a href='https://purrr.tidyverse.org/reference/map.html'>purrr::map_dfr()</a></code>.</p>
 <p><code>dir_info()</code> is equivalent to <code>ls -l</code> and a shortcut for
-<code><a href='file_info.html'>file_info(dir_ls())</a></code>.</p>
+<code>file_info(dir_ls())</code>.</p>
 <p><code>dir_map()</code> applies a function <code>fun()</code> to each entry in the path and returns
 the result in a list.</p>
 <p><code>dir_walk()</code> calls <code>fun</code> for its side-effect and returns the input <code>path</code>.</p>
@@ -266,87 +266,93 @@ accessed.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>dir_ls</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span><span class='op'>(</span><span class='st'>"share"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"directory"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/R</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/Rd</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/dictionaries</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/encodings</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/java</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/licenses</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/make</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/sh</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/texmf</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/zoneinfo</span><span></div><div class='input'>
-<span class='co'># Create a shorter link</span>
-<span class='fu'><a href='create.html'>link_create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>, <span class='st'>"base"</span><span class='op'>)</span>
-
-<span class='fu'>dir_ls</span><span class='op'>(</span><span class='st'>"base"</span>, recurse <span class='op'>=</span> <span class='cn'>TRUE</span>, glob <span class='op'>=</span> <span class='st'>"*.R"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #00BB00;'>base/demo/error.catching.R</span><span> </span><span style='color: #00BB00;'>base/demo/is.things.R</span><span>      
-#&gt; </span><span style='color: #00BB00;'>base/demo/recursion.R</span><span>      </span><span style='color: #00BB00;'>base/demo/scoping.R</span><span>        </div><div class='input'>
-<span class='co'># If you need the full paths input an absolute path</span>
-<span class='fu'>dir_ls</span><span class='op'>(</span><span class='fu'><a href='path_math.html'>path_abs</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/CITATION
-#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/DESCRIPTION
-#&gt; /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/INDEX
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/Meta</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/R</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/demo</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/help</span><span>
-#&gt; </span><span style='color: #0000BB;font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/base/html</span><span></div><div class='input'>
-<span class='fu'>dir_map</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='va'>identity</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "base/CITATION"
-#&gt; 
-#&gt; [[2]]
-#&gt; [1] "base/DESCRIPTION"
-#&gt; 
-#&gt; [[3]]
-#&gt; [1] "base/INDEX"
-#&gt; 
-#&gt; [[4]]
-#&gt; [1] "base/Meta"
-#&gt; 
-#&gt; [[5]]
-#&gt; [1] "base/R"
-#&gt; 
-#&gt; [[6]]
-#&gt; [1] "base/demo"
-#&gt; 
-#&gt; [[7]]
-#&gt; [1] "base/help"
-#&gt; 
-#&gt; [[8]]
-#&gt; [1] "base/html"
-#&gt; </div><div class='input'>
-<span class='fu'>dir_walk</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='va'>str</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  chr "base/CITATION"
-#&gt;  chr "base/DESCRIPTION"
-#&gt;  chr "base/INDEX"
-#&gt;  chr "base/Meta"
-#&gt;  chr "base/R"
-#&gt;  chr "base/demo"
-#&gt;  chr "base/help"
-#&gt;  chr "base/html"</div><div class='input'>
-<span class='fu'>dir_info</span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 8 x 18</span><span>
-#&gt;   path        type    size permissions modification_time   user  group device_id
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;fs::path&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fs::&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fs::perms&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> …e/CITATION file     956 rw-rw-r--   2021-04-01 </span><span style='color: #949494;'>02:39:16</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> …ESCRIPTION file     286 rw-rw-r--   2021-04-01 </span><span style='color: #949494;'>02:39:16</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> base/INDEX  file   23.6K rw-rw-r--   2021-04-01 </span><span style='color: #949494;'>02:39:16</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/Meta</span><span>   dire…    256 rwxrwxr-x   2021-05-19 </span><span style='color: #949494;'>19:46:37</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/R</span><span>      dire…    192 rwxrwxr-x   2021-05-19 </span><span style='color: #949494;'>19:46:37</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/demo</span><span>   dire…    192 rwxrwxr-x   2021-05-19 </span><span style='color: #949494;'>19:46:37</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>7</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/help</span><span>   dire…    224 rwxrwxr-x   2021-05-19 </span><span style='color: #949494;'>19:46:37</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #BCBCBC;'>8</span><span> </span><span style='color: #0000BB;font-weight: bold;'>base/html</span><span>   dire…    128 rwxrwxr-x   2021-05-19 </span><span style='color: #949494;'>19:46:37</span><span> root  admin  16</span><span style='text-decoration: underline;'>777</span><span>220
-#&gt; </span><span style='color: #949494;'># … with 10 more variables: hard_links &lt;dbl&gt;, special_device_id &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;, flags &lt;int&gt;, generation &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   access_time &lt;dttm&gt;, change_time &lt;dttm&gt;, birth_time &lt;dttm&gt;</span><span></div><div class='input'>
-<span class='co'># Cleanup</span>
-<span class='fu'><a href='delete.html'>link_delete</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>.old_wd</span><span class='op'>)</span>
-</div></span></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>dir_ls</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span><span class='op'>(</span><span class='st'>"share"</span><span class='op'>)</span>, type <span class='op'>=</span> <span class='st'>"directory"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/R</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/Rd</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/dictionaries</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/encodings</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/java</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/licenses</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/make</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/sh</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/texmf</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/Library/Frameworks/R.framework/Resources/share/zoneinfo</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Create a shorter link</span></span>
+<span class='r-in'><span class='fu'><a href='create.html'>link_create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span>package <span class='op'>=</span> <span class='st'>"base"</span><span class='op'>)</span>, <span class='st'>"base"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>dir_ls</span><span class='op'>(</span><span class='st'>"base"</span>, recurse <span class='op'>=</span> <span class='cn'>TRUE</span>, glob <span class='op'>=</span> <span class='st'>"*.R"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #00BB00;'>base/demo/error.catching.R</span> <span style='color: #00BB00;'>base/demo/is.things.R</span>      </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #00BB00;'>base/demo/recursion.R</span>      <span style='color: #00BB00;'>base/demo/scoping.R</span>        </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># If you need the full paths input an absolute path</span></span>
+<span class='r-in'><span class='fu'>dir_ls</span><span class='op'>(</span><span class='fu'><a href='path_math.html'>path_abs</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/CITATION</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/DESCRIPTION</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/INDEX</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/Meta</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/R</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/demo</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/help</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/base/html</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>dir_map</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='va'>identity</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/CITATION"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[2]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/DESCRIPTION"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[3]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/INDEX"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[4]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/Meta"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[5]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/R"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[6]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/demo"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[7]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/help"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[8]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "base/html"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>dir_walk</span><span class='op'>(</span><span class='st'>"base"</span>, <span class='va'>str</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/CITATION"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/DESCRIPTION"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/INDEX"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/Meta"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/R"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/demo"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/help"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  chr "base/html"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>dir_info</span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># A tibble: 8 × 18</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   path        type    size permissions modification_time   user  group device_id</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;fs::path&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;fct&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fs::&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;fs::perms&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;dttm&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>1</span> …e/CITATION file     956 rw-rw-r--   2021-11-01 <span style='color: #949494;'>21:03:12</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>2</span> …ESCRIPTION file     354 rw-rw-r--   2021-11-01 <span style='color: #949494;'>21:03:12</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>3</span> base/INDEX  file   23.7K rw-rw-r--   2021-11-01 <span style='color: #949494;'>21:03:12</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>4</span> <span style='color: #0000BB; font-weight: bold;'>base/Meta</span>   dire…    256 rwxrwxr-x   2021-11-23 <span style='color: #949494;'>19:59:28</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>5</span> <span style='color: #0000BB; font-weight: bold;'>base/R</span>      dire…    192 rwxrwxr-x   2021-11-23 <span style='color: #949494;'>19:59:28</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>6</span> <span style='color: #0000BB; font-weight: bold;'>base/demo</span>   dire…    192 rwxrwxr-x   2021-11-23 <span style='color: #949494;'>19:59:28</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>7</span> <span style='color: #0000BB; font-weight: bold;'>base/help</span>   dire…    224 rwxrwxr-x   2021-11-23 <span style='color: #949494;'>19:59:28</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BCBCBC;'>8</span> <span style='color: #0000BB; font-weight: bold;'>base/html</span>   dire…    128 rwxrwxr-x   2021-11-23 <span style='color: #949494;'>19:59:28</span> root  admin  16<span style='text-decoration: underline;'>777</span>220</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'># … with 10 more variables: hard_links &lt;dbl&gt;, special_device_id &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   inode &lt;dbl&gt;, block_size &lt;dbl&gt;, blocks &lt;dbl&gt;, flags &lt;int&gt;, generation &lt;dbl&gt;,</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #949494;'>#   access_time &lt;dttm&gt;, change_time &lt;dttm&gt;, birth_time &lt;dttm&gt;</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Cleanup</span></span>
+<span class='r-in'><span class='fu'><a href='delete.html'>link_delete</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>.old_wd</span><span class='op'>)</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

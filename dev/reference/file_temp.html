@@ -200,25 +200,33 @@ internal stack, however generally this is done instead by calling
 <p><code>path_temp()</code> constructs a path within the session temporary directory.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>file_temp_push</span><span class='op'>(</span><span class='st'>"/tmp/filedd461c46df20"</span><span class='op'>)</span>
-
-<span class='fu'>path_temp</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #0000BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU</span><span></div><div class='input'><span class='fu'>path_temp</span><span class='op'>(</span><span class='st'>"does-not-exist"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/does-not-exist</div><div class='input'>
-<span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; /tmp/filedd461c46df20</div><div class='input'><span class='fu'>file_temp</span><span class='op'>(</span>ext <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/file497b2db17c05.png</span><span></div><div class='input'><span class='fu'>file_temp</span><span class='op'>(</span><span class='st'>"image"</span>, ext <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #BB00BB;font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpeAMRzU/image497b5f4543b2.png</span><span></div><div class='input'>
-
-<span class='co'># You can make the temp file paths deterministic</span>
-<span class='fu'>file_temp_push</span><span class='op'>(</span><span class='va'>letters</span><span class='op'>)</span>
-<span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; a</div><div class='input'><span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; b</div><div class='input'>
-<span class='co'># Or explicitly remove values</span>
-<span class='kw'>while</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='kw'>next</span>
-<span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; NULL</div></span></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>file_temp_push</span><span class='op'>(</span><span class='st'>"/tmp/filedd461c46df20"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_temp</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB; font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k</span></span>
+<span class='r-in'><span class='fu'>path_temp</span><span class='op'>(</span><span class='st'>"does-not-exist"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/does-not-exist</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> /tmp/filedd461c46df20</span>
+<span class='r-in'><span class='fu'>file_temp</span><span class='op'>(</span>ext <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BB00BB; font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/file773438bc4df1.png</span></span>
+<span class='r-in'><span class='fu'>file_temp</span><span class='op'>(</span><span class='st'>"image"</span>, ext <span class='op'>=</span> <span class='st'>"png"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BB00BB; font-weight: bold;'>/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpw2Jf7k/image773452a12650.png</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># You can make the temp file paths deterministic</span></span>
+<span class='r-in'><span class='fu'>file_temp_push</span><span class='op'>(</span><span class='va'>letters</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> a</span>
+<span class='r-in'><span class='fu'>file_temp</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> b</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Or explicitly remove values</span></span>
+<span class='r-in'><span class='kw'>while</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span><span class='op'>(</span><span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='kw'>next</span></span>
+<span class='r-in'><span class='fu'>file_temp_pop</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> NULL</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

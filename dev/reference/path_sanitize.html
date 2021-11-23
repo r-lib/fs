@@ -197,12 +197,14 @@ The resulting string is then truncated to <a href='https://en.wikipedia.org/wiki
 function is based.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># potentially unsafe string</span>
-<span class='va'>str</span> <span class='op'>&lt;-</span> <span class='st'>"~/.\u0001ssh/authorized_keys"</span>
-<span class='fu'>path_sanitize</span><span class='op'>(</span><span class='va'>str</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~.sshauthorized_keys"</div><div class='input'>
-<span class='fu'>path_sanitize</span><span class='op'>(</span><span class='st'>".."</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] ""</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># potentially unsafe string</span></span>
+<span class='r-in'><span class='va'>str</span> <span class='op'>&lt;-</span> <span class='st'>"~/.\u0001ssh/authorized_keys"</span></span>
+<span class='r-in'><span class='fu'>path_sanitize</span><span class='op'>(</span><span class='va'>str</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "~.sshauthorized_keys"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_sanitize</span><span class='op'>(</span><span class='st'>".."</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] ""</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

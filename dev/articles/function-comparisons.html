@@ -138,48 +138,48 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code><a href="../reference/dir_ls.html">dir_ls("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/list.files.html">list.files("path")</a></code></td>
+<td><code>dir_ls("path")</code></td>
+<td><code>list.files("path")</code></td>
 <td><code>ls path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/dir_ls.html">dir_info("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/do.call.html">do.call(rbind, lapply(list.files("path"), file.info))</a></code></td>
+<td><code>dir_info("path")</code></td>
+<td><code>do.call(rbind, lapply(list.files("path"), file.info))</code></td>
 <td><code>ls -al path</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/copy.html">dir_copy("path", "new-path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files2.html">dir.create("new-path"); file.copy("path", "new-path", recursive=TRUE)</a></code></td>
+<td><code>dir_copy("path", "new-path")</code></td>
+<td><code>dir.create("new-path"); file.copy("path", "new-path", recursive=TRUE)</code></td>
 <td><code>cp path new-path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/create.html">dir_create("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files2.html">dir.create("path")</a></code></td>
+<td><code>dir_create("path")</code></td>
+<td><code>dir.create("path")</code></td>
 <td><code>mkdir path</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/delete.html">dir_delete("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/unlink.html">unlink("path", recursive = TRUE)</a></code></td>
+<td><code>dir_delete("path")</code></td>
+<td><code>unlink("path", recursive = TRUE)</code></td>
 <td><code>rm -rf path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/file_access.html">dir_exists("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files2.html">dir.exists("path")</a></code></td>
+<td><code>dir_exists("path")</code></td>
+<td><code>dir.exists("path")</code></td>
 <td><code>if [ -d "path" ]; then ... ; fi</code></td>
 </tr>
 <tr class="odd">
 <td>
 <del><code>dir_move()</code></del> (see <code>file_move</code>)</td>
-<td><code><a href="https://rdrr.io/r/base/files.html">file.rename("path", "new-path")</a></code></td>
+<td><code>file.rename("path", "new-path")</code></td>
 <td><code>mv path new-path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/dir_ls.html">dir_map("path", fun)</a></code></td>
+<td><code>dir_map("path", fun)</code></td>
 <td><em>No direct equivalent</em></td>
 <td><code>for file in $(ls path); do ...; done</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/dir_tree.html">dir_tree("path")</a></code></td>
+<td><code>dir_tree("path")</code></td>
 <td><em>No direct equivalent</em></td>
 <td><code>tree path</code></td>
 </tr>
@@ -202,48 +202,48 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code><a href="../reference/file_chmod.html">file_chmod("path", "mode")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files2.html">Sys.chmod("path", "mode")</a></code></td>
+<td><code>file_chmod("path", "mode")</code></td>
+<td><code>Sys.chmod("path", "mode")</code></td>
 <td><code>chmod mode path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/file_chown.html">file_chown("path", "user_id", "group_id")</a></code></td>
+<td><code>file_chown("path", "user_id", "group_id")</code></td>
 <td><em>No direct equivalent</em></td>
 <td><code>chown options path</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/copy.html">file_copy("path", "new-path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files.html">file.copy("path", "new-path")</a></code></td>
+<td><code>file_copy("path", "new-path")</code></td>
+<td><code>file.copy("path", "new-path")</code></td>
 <td><code>cp path new-path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/create.html">file_create("new-path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files.html">file.create("new-path")</a></code></td>
+<td><code>file_create("new-path")</code></td>
+<td><code>file.create("new-path")</code></td>
 <td><code>touch new-path</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/delete.html">file_delete("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/unlink.html">unlink("path")</a></code></td>
+<td><code>file_delete("path")</code></td>
+<td><code>unlink("path")</code></td>
 <td><code>rm path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/file_access.html">file_exists("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files.html">file.exists("path")</a></code></td>
+<td><code>file_exists("path")</code></td>
+<td><code>file.exists("path")</code></td>
 <td><code>if [ -f "path" ]; then ... ; fi</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/file_info.html">file_info("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/file.info.html">file.info("path")</a></code></td>
+<td><code>file_info("path")</code></td>
+<td><code>file.info("path")</code></td>
 <td><code>ls -al path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/file_move.html">file_move("path", "new-path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/files.html">file.rename("path", "new-path")</a></code></td>
+<td><code>file_move("path", "new-path")</code></td>
+<td><code>file.rename("path", "new-path")</code></td>
 <td><code>mv path new-path</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/file_show.html">file_show("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/utils/browseURL.html">browseURL("path")</a></code></td>
+<td><code>file_show("path")</code></td>
+<td><code>browseURL("path")</code></td>
 <td><code>open path</code></td>
 </tr>
 <tr class="even">
@@ -280,76 +280,76 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td><code><a href="../reference/path.html">path("top_dir", "nested_dir", "file", ext = "ext")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/file.path.html">file.path("top_dir", "nested_dir", "file.ext")</a></code></td>
+<td><code>path("top_dir", "nested_dir", "file", ext = "ext")</code></td>
+<td><code>file.path("top_dir", "nested_dir", "file.ext")</code></td>
 <td><code>top_dir/nested_dir/file.ext</code></td>
 </tr>
 <tr class="even">
 <td>
-<code><a href="../reference/file_temp.html">path_temp()</a></code>, <code><a href="../reference/file_temp.html">path_temp("path")</a></code>
+<code><a href="../reference/file_temp.html">path_temp()</a></code>, <code>path_temp("path")</code>
 </td>
 <td>
-<code><a href="https://rdrr.io/r/base/tempfile.html">tempdir()</a></code>, <code><a href="https://rdrr.io/r/base/file.path.html">file.path(tempdir(), "path")</a></code>
+<code><a href="https://rdrr.io/r/base/tempfile.html">tempdir()</a></code>, <code>file.path(tempdir(), "path")</code>
 </td>
 <td><code>mktemp -d</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/path_expand.html">path_expand("~/path")</a></code></td>
+<td><code>path_expand("~/path")</code></td>
 <td><code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code></td>
 <td><code>realpath -m -s ~/path</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/path_file.html">path_dir("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/basename.html">dirname("path")</a></code></td>
+<td><code>path_dir("path")</code></td>
+<td><code>dirname("path")</code></td>
 <td><code>dirname path</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/path_file.html">path_file("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/basename.html">basename("path")</a></code></td>
+<td><code>path_file("path")</code></td>
+<td><code>basename("path")</code></td>
 <td><code>basename path</code></td>
 </tr>
 <tr class="even">
 <td><code><a href="../reference/path_expand.html">path_home()</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/path.expand.html">path.expand("~")</a></code></td>
+<td><code>path.expand("~")</code></td>
 <td><code>$HOME</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/path_package.html">path_package("pkgname", "dir", "file")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/system.file.html">system.file("dir", "file", package = "pkgname")</a></code></td>
+<td><code>path_package("pkgname", "dir", "file")</code></td>
+<td><code>system.file("dir", "file", package = "pkgname")</code></td>
 <td><em>No direct equivalent</em></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/path_math.html">path_norm("path")</a></code></td>
+<td><code>path_norm("path")</code></td>
 <td><code><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath()</a></code></td>
 <td><code>realpath</code></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/path_math.html">path_real("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath(mustWork = TRUE)</a></code></td>
+<td><code>path_real("path")</code></td>
+<td><code>normalizePath(mustWork = TRUE)</code></td>
 <td><code>realpath</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/path_math.html">path_rel("path/foo", "path/bar")</a></code></td>
+<td><code>path_rel("path/foo", "path/bar")</code></td>
 <td><em>No direct equivalent</em></td>
 <td><em>No direct equivalent</em></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/path_math.html">path_common(c("path/foo", "path/bar", "path/baz"))</a></code></td>
+<td><code>path_common(c("path/foo", "path/bar", "path/baz"))</code></td>
 <td><em>No direct equivalent</em></td>
 <td><em>No direct equivalent</em></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/path_file.html">path_ext_remove("path")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/grep.html">sub("\\.[a-zA-Z0-9]*$", "", "path")</a></code></td>
+<td><code>path_ext_remove("path")</code></td>
+<td><code>sub("\\.[a-zA-Z0-9]*$", "", "path")</code></td>
 <td><em>No direct equivalent</em></td>
 </tr>
 <tr class="odd">
-<td><code><a href="../reference/path_file.html">path_ext_set("path", "new_ext")</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/grep.html">sub("\\.[a-zA-Z0-9]*$", "new_ext", "path")</a></code></td>
+<td><code>path_ext_set("path", "new_ext")</code></td>
+<td><code>sub("\\.[a-zA-Z0-9]*$", "new_ext", "path")</code></td>
 <td><em>No direct equivalent</em></td>
 </tr>
 <tr class="even">
-<td><code><a href="../reference/path_sanitize.html">path_sanitize("path")</a></code></td>
+<td><code>path_sanitize("path")</code></td>
 <td><em>No direct equivalent</em></td>
 <td><em>No direct equivalent</em></td>
 </tr>

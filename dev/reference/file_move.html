@@ -181,14 +181,15 @@ the full path.</p>
     <p>The new path (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='create.html'>file_create</a></span><span class='op'>(</span><span class='st'>"foo"</span><span class='op'>)</span>
-<span class='fu'>file_move</span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>
-<span class='fu'><a href='file_access.html'>file_exists</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"bar"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   foo   bar 
-#&gt; FALSE  TRUE </div><div class='input'><span class='fu'><a href='delete.html'>file_delete</a></span><span class='op'>(</span><span class='st'>"bar"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>.old_wd</span><span class='op'>)</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>.old_wd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='create.html'>file_create</a></span><span class='op'>(</span><span class='st'>"foo"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>file_move</span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"bar"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='file_access.html'>file_exists</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"bar"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   foo   bar </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> FALSE  TRUE </span>
+<span class='r-in'><span class='fu'><a href='delete.html'>file_delete</a></span><span class='op'>(</span><span class='st'>"bar"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='va'>.old_wd</span><span class='op'>)</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

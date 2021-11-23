@@ -185,11 +185,14 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>, glob <span class='op'>=</span> <span class='st'>"*oo"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; foo boo </div><div class='input'><span class='fu'>path_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>, glob <span class='op'>=</span> <span class='st'>"*oo"</span>, invert <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; bar</div><div class='input'>
-<span class='fu'>path_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>, regexp <span class='op'>=</span> <span class='st'>"b.r"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; bar</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>path_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>, glob <span class='op'>=</span> <span class='st'>"*oo"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> foo boo </span>
+<span class='r-in'><span class='fu'>path_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>, glob <span class='op'>=</span> <span class='st'>"*oo"</span>, invert <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> bar</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_filter</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"foo"</span>, <span class='st'>"boo"</span>, <span class='st'>"bar"</span><span class='op'>)</span>, regexp <span class='op'>=</span> <span class='st'>"b.r"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> bar</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

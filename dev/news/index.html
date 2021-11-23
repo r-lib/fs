@@ -155,9 +155,9 @@
 <a href="#fs-development-version" class="anchor"></a>fs (development version)<small> Unreleased </small>
 </h1>
 <ul>
-<li><p><code><a href="https://rdrr.io/r/base/options.html">options(fs.fs_path.shorten)</a></code> can now be used to control how paths are shortened in tibbles. The default value is “front”, valid alternatives are “back”, “middle” and “abbreviate”. (<a href='https://github.com/r-lib/fs/issues/335'>#335</a>)</p></li>
+<li><p><code>options(fs.fs_path.shorten)</code> can now be used to control how paths are shortened in tibbles. The default value is “front”, valid alternatives are “back”, “middle” and “abbreviate”. (<a href='https://github.com/r-lib/fs/issues/335'>#335</a>)</p></li>
 <li><p><code><a href="../reference/file_access.html">file_exists()</a></code> is now much faster (<a href='https://github.com/r-lib/fs/issues/295'>#295</a>)</p></li>
-<li><p>You can now disable use of tibbles by setting <code><a href="https://rdrr.io/r/base/options.html">options(fs.use_tibble = FALSE)</a></code> (<a href='https://github.com/r-lib/fs/issues/295'>#295</a>).</p></li>
+<li><p>You can now disable use of tibbles by setting <code>options(fs.use_tibble = FALSE)</code> (<a href='https://github.com/r-lib/fs/issues/295'>#295</a>).</p></li>
 <li><p><code><a href="../reference/create.html">dir_create()</a></code> now restores the previous umask (<a href='https://github.com/r-lib/fs/issues/293'>#293</a>)</p></li>
 <li><p>fs is now licensed as MIT (<a href='https://github.com/r-lib/fs/issues/301'>#301</a>).</p></li>
 <li><p><code><a href="../reference/path_tidy.html">path_tidy()</a></code> now works with non-UTF8 encoded paths (<a href='https://github.com/shrektan'>@shrektan</a>, <a href='https://github.com/r-lib/fs/issues/321'>#321</a>).</p></li>
@@ -179,7 +179,7 @@
 <a href="#fs-142" class="anchor"></a>fs 1.4.2<small> 2020-06-30 </small>
 </h1>
 <ul>
-<li><p><code><a href="../reference/file_info.html">file_info(..., follow = TRUE)</a></code>, <code><a href="../reference/is_file.html">is_dir()</a></code>, and <code><a href="../reference/is_file.html">is_file()</a></code> follow relative symlinks in non-current directories (<a href='https://github.com/heavywatal'>@heavywatal</a>, <a href='https://github.com/r-lib/fs/issues/280'>#280</a>)</p></li>
+<li><p><code>file_info(..., follow = TRUE)</code>, <code><a href="../reference/is_file.html">is_dir()</a></code>, and <code><a href="../reference/is_file.html">is_file()</a></code> follow relative symlinks in non-current directories (<a href='https://github.com/heavywatal'>@heavywatal</a>, <a href='https://github.com/r-lib/fs/issues/280'>#280</a>)</p></li>
 <li><p><code><a href="../reference/dir_ls.html">dir_map()</a></code> now grows its internal list safely, the 1.4.0 release introduced an unsafe regression (<a href='https://github.com/r-lib/fs/issues/268'>#268</a>)</p></li>
 <li><p><code><a href="../reference/file_info.html">file_info()</a></code> returns a tibble if the tibble package is installed, and subsets work when it is a <code>data.frame</code> (<a href='https://github.com/r-lib/fs/issues/265'>#265</a>)</p></li>
 <li><p><code><a href="../reference/path_math.html">path_real()</a></code> always fails if the file does not exist. Thus it can no longer be used to resolve symlinks further up the path hierarchy for files that do not yet exist. This reverts the feature introduced in 1.2.7 (<a href='https://github.com/r-lib/fs/issues/144'>#144</a>, <a href='https://github.com/r-lib/fs/issues/221'>#221</a>, <a href='https://github.com/r-lib/fs/issues/231'>#231</a>)</p></li>
@@ -280,7 +280,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-improvements-and-fixes-1" class="anchor"></a>Minor improvements and fixes</h2>
 <ul>
-<li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/file_temp.html">file_temp()</a></code> now treat extensions with a leading <code>.</code> and those without equally. e.g. <code><a href="../reference/path_file.html">path_ext_set("foo", ext = "bar")</a></code> and <code><a href="../reference/path_file.html">path_ext_set("foo", ext = ".bar")</a></code> both result in “foo.bar”</p></li>
+<li><p><code><a href="../reference/path_file.html">path_ext_set()</a></code> and <code><a href="../reference/file_temp.html">file_temp()</a></code> now treat extensions with a leading <code>.</code> and those without equally. e.g. <code>path_ext_set("foo", ext = "bar")</code> and <code>path_ext_set("foo", ext = ".bar")</code> both result in “foo.bar”</p></li>
 <li><p>Tidy paths are now always returned with uppercase drive letters on Windows (<a href='https://github.com/r-lib/fs/issues/174'>#174</a>).</p></li>
 <li><p><code>format.bench_bytes()</code> now works with <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> in R 3.5.1+ (<a href='https://github.com/r-lib/fs/issues/155'>#155</a>).</p></li>
 <li><p><code><a href="../reference/path_file.html">path_ext()</a></code>, <code><a href="../reference/path_file.html">path_ext_remove()</a></code>, and <code><a href="../reference/path_file.html">path_ext_set()</a></code> now work on paths with no extension, and <code><a href="../reference/file_temp.html">file_temp()</a></code> now prepends a <code>.</code> to the file extension (<a href='https://github.com/r-lib/fs/issues/153'>#153</a>).</p></li>
@@ -343,7 +343,7 @@
 <h2 class="hasAnchor">
 <a href="#features" class="anchor"></a>Features</h2>
 <ul>
-<li><p>Experimental support for <code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> and <code><a href="https://rdrr.io/r/base/Arithmetic.html">+</a></code> methods for <code>fs_path</code> objects (<a href='https://github.com/r-lib/fs/issues/110'>#110</a>).</p></li>
+<li><p>Experimental support for <code>/</code> and <code>+</code> methods for <code>fs_path</code> objects (<a href='https://github.com/r-lib/fs/issues/110'>#110</a>).</p></li>
 <li><p><code><a href="../reference/create.html">file_create()</a></code> and <code><a href="../reference/create.html">dir_create()</a></code> now take <code>...</code>, which is passed to <code><a href="../reference/path.html">path()</a></code> to make construction a little nicer (<a href='https://github.com/r-lib/fs/issues/80'>#80</a>).</p></li>
 </ul>
 </div>
@@ -440,7 +440,7 @@
 <h2 class="hasAnchor">
 <a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <ul>
-<li><p>Tidy paths no longer expand <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code>.</p></li>
+<li><p>Tidy paths no longer expand <code>~</code>.</p></li>
 <li><p>Filesystem modification functions now error for NA inputs. (<a href='https://github.com/r-lib/fs/issues/48'>#48</a>)</p></li>
 <li><p><code><a href="../reference/path.html">path()</a></code> now returns 0 length output if given any 0 length inputs (<a href='https://github.com/r-lib/fs/issues/54'>#54</a>).</p></li>
 </ul>

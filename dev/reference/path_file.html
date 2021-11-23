@@ -198,19 +198,25 @@ vectors, not <code><a href='fs_path.html'>fs_path()</a></code> objects.</p>
     <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/basename.html'>base::basename()</a></code>, <code><a href='https://rdrr.io/r/base/basename.html'>base::dirname()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>path_file</span><span class='op'>(</span><span class='st'>"dir/file.zip"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "file.zip"</div><div class='input'>
-<span class='fu'>path_dir</span><span class='op'>(</span><span class='st'>"dir/file.zip"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "dir"</div><div class='input'>
-<span class='fu'>path_ext</span><span class='op'>(</span><span class='st'>"dir/file.zip"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "zip"</div><div class='input'>
-<span class='fu'>path_ext</span><span class='op'>(</span><span class='st'>"file.tar.gz"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "gz"</div><div class='input'>
-<span class='fu'>path_ext_remove</span><span class='op'>(</span><span class='st'>"file.tar.gz"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "file.tar"</div><div class='input'>
-<span class='co'># Only one level of extension is removed</span>
-<span class='fu'>path_ext_set</span><span class='op'>(</span><span class='fu'>path_ext_remove</span><span class='op'>(</span><span class='st'>"file.tar.gz"</span><span class='op'>)</span>, <span class='st'>"zip"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #BB0000;font-weight: bold;'>file.zip</span><span></div></span></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>path_file</span><span class='op'>(</span><span class='st'>"dir/file.zip"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "file.zip"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_dir</span><span class='op'>(</span><span class='st'>"dir/file.zip"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "dir"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_ext</span><span class='op'>(</span><span class='st'>"dir/file.zip"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "zip"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_ext</span><span class='op'>(</span><span class='st'>"file.tar.gz"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "gz"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>path_ext_remove</span><span class='op'>(</span><span class='st'>"file.tar.gz"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "file.tar"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Only one level of extension is removed</span></span>
+<span class='r-in'><span class='fu'>path_ext_set</span><span class='op'>(</span><span class='fu'>path_ext_remove</span><span class='op'>(</span><span class='st'>"file.tar.gz"</span><span class='op'>)</span>, <span class='st'>"zip"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> <span style='color: #BB0000; font-weight: bold;'>file.zip</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
