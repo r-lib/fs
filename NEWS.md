@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.5.1
 
 * Gábor Csárdi is now the maintainer.
 
