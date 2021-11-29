@@ -2,16 +2,16 @@
 
 * Gábor Csárdi is now the maintainer.
 
-* `options(fs.fs_path.shorten)` can now be used to control how paths are shortened in tibbles.
-  The default value is "front", valid alternatives are "back", "middle" and "abbreviate". (#335)
-
-* `file_exists()` is now much faster (#295)
-
-* You can now disable use of tibbles by setting `options(fs.use_tibble = FALSE)` (#295).
+* fs is now licensed as MIT (#301).
 
 * `dir_create()` now restores the previous umask (#293)
 
-* fs is now licensed as MIT (#301).
+* `file_exists()` is now much faster (#295)
+
+* `options(fs.fs_path.shorten)` can now be used to control how paths are shortened in tibbles.
+  The default value is "front", valid alternatives are "back", "middle" and "abbreviate". (#335)
+
+* `options(fs.use_tibble = FALSE)` can now be used to disable use of tibbles (#295).
 
 * `path_tidy()` now works with non-UTF8 encoded paths (@shrektan, #321).
 
