@@ -2,8 +2,9 @@ Package: fs
 Title: Cross-Platform File System Operations Based on 'libuv'
 Version: 1.5.0.9000
 Authors@R: c(
-    person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre")),
+    person("Jim", "Hester", role = "aut"),
     person("Hadley", "Wickham", , "hadley@rstudio.com", "aut"),
+    person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("libuv project contributors", role = "cph", comment = "libuv library"),
     person("Joyent, Inc. and other Node contributors", role = "cph", comment = "libuv library"),
     person("RStudio", role = c("cph", "fnd"))

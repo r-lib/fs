@@ -1,5 +1,7 @@
 # fs (development version)
 
+* Gábor Csárdi is now the maintainer.
+
 * `options(fs.fs_path.shorten)` can now be used to control how paths are shortened in tibbles.
   The default value is "front", valid alternatives are "back", "middle" and "abbreviate". (#335)
 
