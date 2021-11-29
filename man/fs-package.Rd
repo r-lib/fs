@@ -8,28 +8,29 @@
 \description{
 \ifelse{html}{
 \out{
-<a href="https://www.tidyverse.org/lifecycle/#maturing">
+<a href="https://lifecycle.r-lib.org/articles/stages.html#maturing">
   <img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Maturing lifecycle">
 </a>
 }
 }{
-\url{https://www.tidyverse.org/lifecycle/#maturing}
+\url{https://lifecycle.r-lib.org/articles/stages.html#maturing}
 }
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://fs.r-lib.org}
+  \item \url{https://fs.r-lib.org}
   \item \url{https://github.com/r-lib/fs}
   \item Report bugs at \url{https://github.com/r-lib/fs/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Jim Hester \email{james.f.hester@gmail.com}
+\strong{Maintainer}: Gábor Csárdi \email{csardi.gabor@gmail.com}
 
 Authors:
 \itemize{
+  \item Jim Hester
   \item Hadley Wickham \email{hadley@rstudio.com}
 }
 
