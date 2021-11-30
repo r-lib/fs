@@ -14,7 +14,8 @@ dir_create(path, ..., mode = "u=rwx,go=rx", recurse = TRUE, recursive)
 link_create(path, new_path, symbolic = TRUE)
 }
 \arguments{
-\item{path}{A character vector of one or more paths.}
+\item{path}{A character vector of one or more paths. For \code{link_create()}, 
+this is the target.}
 
 \item{...}{Additional arguments passed to \code{\link[=path]{path()}}}
 
