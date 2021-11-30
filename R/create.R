@@ -6,7 +6,8 @@
 #' compared to [dir.create()], `dir_create()` will silently ignore existing
 #' directories.
 #'
-#' @template fs
+#' @param path A character vector of one or more paths. For `link_create()`, 
+#'   this is the target.
 #' @param mode If file/directory is created, what mode should it have?
 #'
 #'   Links do not have mode; they inherit the mode of the file they link to.
