@@ -27,6 +27,7 @@ reference:
 - title: Path manipulation
   contents:
   - path
+  - is_absolute_path
   - starts_with("path_")
 
 - title: Helpers
@@ -36,6 +37,9 @@ reference:
   - as_fs_bytes
   - as_fs_perms
 
+- title: System information
+  contents:
+  - id
 
 news:
   releases:
