@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://fs.r-lib.org/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://fs.r-lib.org/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://fs.r-lib.org/MAINTENANCE.html</loc>
+  </url>
+  <url>
+    <loc>https://fs.r-lib.org/articles/function-comparisons.html</loc>
+  </url>
+  <url>
+    <loc>https://fs.r-lib.org/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fs.r-lib.org/authors.html</loc>
+  </url>
+  <url>
     <loc>https://fs.r-lib.org/index.html</loc>
+  </url>
+  <url>
+    <loc>https://fs.r-lib.org/news/index.html</loc>
   </url>
   <url>
     <loc>https://fs.r-lib.org/reference/copy.html</loc>
@@ -58,6 +79,9 @@
     <loc>https://fs.r-lib.org/reference/id.html</loc>
   </url>
   <url>
+    <loc>https://fs.r-lib.org/reference/index.html</loc>
+  </url>
+  <url>
     <loc>https://fs.r-lib.org/reference/is_absolute_path.html</loc>
   </url>
   <url>
@@ -89,8 +113,5 @@
   </url>
   <url>
     <loc>https://fs.r-lib.org/reference/path_tidy.html</loc>
-  </url>
-  <url>
-    <loc>https://fs.r-lib.org/articles/function-comparisons.html</loc>
   </url>
 </urlset>

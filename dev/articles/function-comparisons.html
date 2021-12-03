@@ -26,6 +26,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">fs</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.5.1.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -74,10 +70,11 @@
   <ul class="dropdown-menu" role="menu">
 <li class="dropdown-header">Releases</li>
     <li>
-      <a href="https://www.tidyverse.org/blog/2018/01/fs-1.0.0/">Version 1.0.0</a>
+      <a href="https://www.tidyverse.org/blog/2018/01/fs-1.0.0/" class="external-link">Version 1.0.0</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="../news/index.html">Changelog</a>
     </li>
   </ul>
@@ -85,7 +82,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/r-lib/fs/">
+  <a href="https://github.com/r-lib/fs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -106,7 +103,7 @@
       <h1 data-toc-skip>Comparison of fs functions, base R, and shell commands</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/r-lib/fs/blob/master/vignettes/function-comparisons.Rmd"><code>vignettes/function-comparisons.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/fs/blob/HEAD/vignettes/function-comparisons.Rmd" class="external-link"><code>vignettes/function-comparisons.Rmd</code></a></small>
       <div class="hidden name"><code>function-comparisons.Rmd</code></div>
 
     </div>
@@ -120,11 +117,11 @@
 <li><p>Predictable return values that always convey a path. All <strong>fs</strong> functions return a character vector of paths, a named integer or a logical vector, where the names give the paths. Base return values are more varied: they are often logical or contain error codes which require downstream processing.</p></li>
 <li><p>Explicit failure. If <strong>fs</strong> operations fail, they throw an error. Base functions tend to generate a warning and a system dependent error code. This makes it easy to miss a failure.</p></li>
 <li><p>UTF-8 all the things. <strong>fs</strong> functions always convert input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSes. Base functions rely on the native system encoding.</p></li>
-<li><p>Naming convention. <strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code> vs <code><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath()</a></code>; <code><a href="https://rdrr.io/r/base/files2.html">Sys.chmod()</a></code> vs <code><a href="https://rdrr.io/r/base/file.access.html">file.access()</a></code>).</p></li>
+<li><p>Naming convention. <strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code><a href="https://rdrr.io/r/base/path.expand.html" class="external-link">path.expand()</a></code> vs <code><a href="https://rdrr.io/r/base/normalizePath.html" class="external-link">normalizePath()</a></code>; <code><a href="https://rdrr.io/r/base/files2.html" class="external-link">Sys.chmod()</a></code> vs <code><a href="https://rdrr.io/r/base/file.access.html" class="external-link">file.access()</a></code>).</p></li>
 </ul>
-<div id="directory-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#directory-functions" class="anchor"></a>Directory functions</h2>
+<div class="section level2">
+<h2 id="directory-functions">Directory functions<a class="anchor" aria-label="anchor" href="#directory-functions"></a>
+</h2>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -186,9 +183,9 @@
 </tbody>
 </table>
 </div>
-<div id="file-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#file-functions" class="anchor"></a>File functions</h2>
+<div class="section level2">
+<h2 id="file-functions">File functions<a class="anchor" aria-label="anchor" href="#file-functions"></a>
+</h2>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -253,20 +250,20 @@
 </tr>
 <tr class="odd">
 <td><code><a href="../reference/file_temp.html">file_temp()</a></code></td>
-<td><code><a href="https://rdrr.io/r/base/tempfile.html">tempfile()</a></code></td>
+<td><code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile()</a></code></td>
 <td><code>mktemp</code></td>
 </tr>
 <tr class="even">
-<td><code><a href="https://rdrr.io/r/utils/filetest.html">file_test()</a></code></td>
+<td><code><a href="https://rdrr.io/r/utils/filetest.html" class="external-link">file_test()</a></code></td>
 <td><em>No direct equivalent</em></td>
 <td><code>if [ -d "path" ]; then ...; fi</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="path-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#path-functions" class="anchor"></a>Path functions</h2>
+<div class="section level2">
+<h2 id="path-functions">Path functions<a class="anchor" aria-label="anchor" href="#path-functions"></a>
+</h2>
 <table class="table">
 <colgroup>
 <col width="33%">
@@ -289,13 +286,13 @@
 <code><a href="../reference/file_temp.html">path_temp()</a></code>, <code>path_temp("path")</code>
 </td>
 <td>
-<code><a href="https://rdrr.io/r/base/tempfile.html">tempdir()</a></code>, <code>file.path(tempdir(), "path")</code>
+<code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, <code>file.path(tempdir(), "path")</code>
 </td>
 <td><code>mktemp -d</code></td>
 </tr>
 <tr class="odd">
 <td><code>path_expand("~/path")</code></td>
-<td><code><a href="https://rdrr.io/r/base/path.expand.html">path.expand()</a></code></td>
+<td><code><a href="https://rdrr.io/r/base/path.expand.html" class="external-link">path.expand()</a></code></td>
 <td><code>realpath -m -s ~/path</code></td>
 </tr>
 <tr class="even">
@@ -320,7 +317,7 @@
 </tr>
 <tr class="even">
 <td><code>path_norm("path")</code></td>
-<td><code><a href="https://rdrr.io/r/base/normalizePath.html">normalizePath()</a></code></td>
+<td><code><a href="https://rdrr.io/r/base/normalizePath.html" class="external-link">normalizePath()</a></code></td>
 <td><code>realpath</code></td>
 </tr>
 <tr class="odd">
@@ -369,11 +366,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://jimhester.com">Jim Hester</a>, <a href="http://hadley.nz">Hadley Wickham</a>, <a href="https://www.rstudio.com"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" height="24"></a>.</p>
+  <p></p>
+<p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>, Gábor Csárdi, <a href="https://www.rstudio.com" class="external-link"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" width="72"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
 </div>
 
       </footer>
@@ -381,6 +380,8 @@
 
   
 
+
+  
 
   </body>
 </html>
