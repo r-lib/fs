@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `dir_copy()` works when `path` has length >1 (#360).
+
 # fs 1.5.1
 
 * Gábor Csárdi is now the maintainer.
