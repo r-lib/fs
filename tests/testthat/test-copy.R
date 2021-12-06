@@ -169,3 +169,15 @@ describe("dir_copy", {
     expect_error(dir_copy("foo", NA), class = "invalid_argument")
   })
 })
+
+test_that("dir_copy() works for >1 path", {
+  grandparent_before <- withr::local_tempdir("dir_copy-multiple_paths-before-")
+  grandparent_after <- withr::local_tempdir("dir_copy-multiple_paths-after-")
+
+  parents <- dir_create(path(grandparent_before, c("alfa", "beta")))
+  file_create(path(parents, c("apple", "banana")))
+
+  expect_error_free(
+    dir_copy(parents, path(grandparent_after, path_file(parents)))
+  )
+})
