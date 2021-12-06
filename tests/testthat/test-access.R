@@ -10,6 +10,7 @@ describe("file_access", {
     })
     it("checks for file read and write ability", {
       skip_on_os(c("windows", "solaris"))
+      if (Sys.info()[["effective_user"]] == "root") skip("root user")
       file_chmod("foo/bar", "-rw")
       expect_equal(file_access("foo/bar", "read"), c("foo/bar" = FALSE))
       expect_equal(file_access("foo/bar", "write"), c("foo/bar" = FALSE))

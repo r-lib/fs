@@ -75,6 +75,7 @@ describe("dir_ls", {
   })
   it("warns if fail == FALSE", {
     skip_on_os("windows")
+    if (Sys.info()[["effective_user"]] == "root") skip("root user")
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
@@ -108,6 +109,7 @@ describe("dir_map", {
 
   it("warns if fail == FALSE", {
     skip_on_os("windows")
+    if (Sys.info()[["effective_user"]] == "root") skip("root user")
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
@@ -158,6 +160,7 @@ describe("dir_walk", {
 
   it("warns if fail == FALSE", {
     skip_on_os("windows")
+    if (Sys.info()[["effective_user"]] == "root") skip("root user")
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
@@ -189,6 +192,7 @@ describe("dir_info", {
 
   it("warns if fail == FALSE", {
     skip_on_os("windows")
+    if (Sys.info()[["effective_user"]] == "root") skip("root user")
     with_dir_tree(list(
         "foo",
         "foo2/bar/baz"), {
