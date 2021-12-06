@@ -83,11 +83,11 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
     dirs <- dir_ls(path[[i]], type = "directory", recurse = TRUE, all = TRUE)
     dir_create(path(new_path[[i]], path_rel(dirs, path[[i]])))
 
-    files <- dir_ls(path, recurse = TRUE,
+    files <- dir_ls(path[[i]], recurse = TRUE,
       type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"), all = TRUE)
     file_copy(files, path(new_path[[i]], path_rel(files, path[[i]])), overwrite = overwrite)
 
-    links <- dir_ls(path, recurse = TRUE,
+    links <- dir_ls(path[[i]], recurse = TRUE,
       type = "symlink", all = TRUE)
     link_copy(links, path(new_path[[i]], path_rel(links, path[[i]])), overwrite = overwrite)
   }
