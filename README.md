@@ -9,7 +9,7 @@
 [![R build
 status](https://github.com/r-lib/fs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/fs/actions)
 [![Coverage
-status](https://codecov.io/gh/r-lib/fs/branch/master/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=master)
+status](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=main)
 <!-- badges: end -->
 
 <p align="center">
