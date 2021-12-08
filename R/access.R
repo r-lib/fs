@@ -4,7 +4,8 @@ access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
 #'
 #' `file_exists(path)` is a shortcut for `file_access(x, "exists")`;
 #' `dir_exists(path)` and `link_exists(path)` are similar but also check that
-#' the path is a directory or link, respectively.
+#' the path is a directory or link, respectively. (`file_exists(path)` returns
+#' `TRUE` if `path` exists and it is a directory.)
 #'
 #' @template fs
 #' @param mode A character vector containing one or more of 'exists', 'read',

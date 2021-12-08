@@ -27,7 +27,8 @@ A logical vector, with names corresponding to the input \code{path}.
 \description{
 \code{file_exists(path)} is a shortcut for \code{file_access(x, "exists")};
 \code{dir_exists(path)} and \code{link_exists(path)} are similar but also check that
-the path is a directory or link, respectively.
+the path is a directory or link, respectively. (\code{file_exists(path)} returns
+\code{TRUE} if \code{path} exists and it is a directory.)
 }
 \details{
 \strong{Cross-compatibility warning:} There is no executable bit on
