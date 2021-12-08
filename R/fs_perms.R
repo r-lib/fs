@@ -169,7 +169,8 @@ as_fs_perms.integer <- function(x, ...) {
 
 new_fs_perms <- function(x) {
   assert("`x` must be an integer", is.integer(x))
-  structure(x, class = c("fs_perms", "integer"))
+  class(x) <- c("fs_perms", "integer")
+  x
 }
 setOldClass(c("fs_perms", "integer"), integer())
 
