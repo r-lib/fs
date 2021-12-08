@@ -5,3 +5,15 @@ tools
 script.R
 docs/
 Makefile
+*.lo
+.libs
+.deps
+/src/*/config.log
+/src/*/config.status
+/src/*/libtool
+/src/*/libuv.la
+/src/*/libuv.pc
+/src/*/src/.dirstamp
+/src/*/src/unix/.dirstamp
+/src/libuv/
+	
