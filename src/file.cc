@@ -289,10 +289,10 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
 }
 
 // [[export]]
-extern "C" SEXP fs_exists_(SEXP path_sxp) {
+extern "C" SEXP fs_exists_(SEXP path_sxp, SEXP name_sxp) {
 
   SEXP out = PROTECT(Rf_allocVector(LGLSXP, Rf_xlength(path_sxp)));
-  Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(path_sxp));
+  Rf_setAttrib(out, R_NamesSymbol, Rf_duplicate(name_sxp));
 
   for (R_xlen_t i = 0; i < Rf_xlength(path_sxp); ++i) {
     uv_fs_t req;

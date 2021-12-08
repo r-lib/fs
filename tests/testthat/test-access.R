@@ -43,6 +43,12 @@ with_dir_tree(list("foo/bar"  = "test"), {
     it("returns FALSE on missing input", {
       expect_identical(file_exists(NA_character_), structure(names = NA, FALSE))
     })
+    it ("expands ~", {
+      withr::with_envvar(c("R_FS_HOME" = getwd()), {
+        expect_identical(file_exists("~/foo"), c("~/foo" = TRUE))
+        expect_identical(file_exists("~/missing"), c("~/missing" = FALSE))
+      })
+    })
   })
 
   describe("dir_exists", {

@@ -18,7 +18,7 @@ extern SEXP fs_copyfile_(SEXP, SEXP, SEXP);
 extern SEXP fs_create_(SEXP, SEXP);
 extern SEXP fs_dir_map_(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP fs_expand_(SEXP, SEXP);
-extern SEXP fs_exists_(SEXP);
+  extern SEXP fs_exists_(SEXP, SEXP);
 extern SEXP fs_file_code_(SEXP, SEXP);
 extern SEXP fs_getgrnam_(SEXP);
 extern SEXP fs_getpwnam_(SEXP);
@@ -48,7 +48,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"fs_create_", (DL_FUNC)&fs_create_, 2},
     {"fs_dir_map_", (DL_FUNC)&fs_dir_map_, 6},
     {"fs_expand_", (DL_FUNC)&fs_expand_, 2},
-    {"fs_exists_", (DL_FUNC)&fs_exists_, 1},
+    {"fs_exists_", (DL_FUNC)&fs_exists_, 2},
     {"fs_file_code_", (DL_FUNC)&fs_file_code_, 2},
     {"fs_getgrnam_", (DL_FUNC)&fs_getgrnam_, 1},
     {"fs_getpwnam_", (DL_FUNC)&fs_getpwnam_, 1},

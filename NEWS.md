@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `file_exists()` now expands `~` again (#325).
+
 * `dir_copy()` works when `path` has length >1 (#360).
 
 # fs 1.5.1
