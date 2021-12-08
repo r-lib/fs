@@ -1,5 +1,9 @@
 # fs (development version)
 
+* `file_create()` and `dir_create()` now return the correct path when `...` arguments are used (@davidchall, #333).
+
+* `dir_create(recurse = FALSE)` now correctly handles `...` arguments (@davidchall, #333).
+
 * `file_exists()` now expands `~` again (#325).
 
 * `dir_copy()` works when `path` has length >1 (#360).
@@ -20,10 +24,6 @@
 * `options(fs.use_tibble = FALSE)` can now be used to disable use of tibbles (#295).
 
 * `path_tidy()` now works with non-UTF8 encoded paths (@shrektan, #321).
-
-* `file_create()` and `dir_create()` now return the correct path when `...` arguments are used (@davidchall, #333).
-
-* `dir_create(recurse = FALSE)` now correctly handles `...` arguments (@davidchall, #333).
 
 # fs 1.5.0
 
