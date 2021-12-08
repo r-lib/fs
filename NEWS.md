@@ -21,6 +21,10 @@
 
 * `path_tidy()` now works with non-UTF8 encoded paths (@shrektan, #321).
 
+* `file_create()` and `dir_create()` now return the correct path when `...` arguments are used (@davidchall, #333).
+
+* `dir_create(recurse = FALSE)` now correctly handles `...` arguments (@davidchall, #333).
+
 # fs 1.5.0
 
 * The libuv release used by fs was updated to 1.38.1
