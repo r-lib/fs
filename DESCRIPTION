@@ -37,3 +37,4 @@ Suggests:
     vctrs (>= 0.3.0)
 VignetteBuilder: knitr
 Language: en-US
+Config/Needs/website: tidyverse/tidytemplate
