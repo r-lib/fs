@@ -1,6 +1,7 @@
 url: https://fs.r-lib.org/
 template:
   bootstrap: 5
+  template: tidytemplate
 
 development:
   mode: auto
