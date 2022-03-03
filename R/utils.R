@@ -22,6 +22,11 @@ auto_name <- function(names) {
 }
 
 is_windows <- function() {
+  # mock for tests
+  if (isTRUE(Sys.getenv("FS_IS_WINDOWS", "FALSE") == "TRUE")) {
+    return(TRUE)
+  }
+
   tolower(Sys.info()[["sysname"]]) == "windows"
 }
 
@@ -136,4 +141,8 @@ as_tibble <- function(x) {
 
 is_installed <- function(pkg) {
   isTRUE(requireNamespace(pkg, quietly = TRUE))
+}
+
+mkdirp <- function(x) {
+  dir.create(x, showWarnings = FALSE, recursive = TRUE)
 }

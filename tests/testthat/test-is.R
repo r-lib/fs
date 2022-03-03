@@ -1,4 +1,3 @@
-context("test-is.R")
 
 with_dir_tree(list("foo/bar"  = "test"), {
   skip_on_os("windows")

@@ -1,4 +1,3 @@
-context("test-access.R")
 
 describe("file_access", {
   with_dir_tree(list("foo/bar" = "test"), {

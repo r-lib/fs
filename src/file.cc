@@ -109,7 +109,11 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
 
   SET_STRING_ELT(names, 3, Rf_mkChar("permissions"));
   SET_VECTOR_ELT(out, 3, Rf_allocVector(INTSXP, n));
-  Rf_classgets(VECTOR_ELT(out, 3), Rf_mkString("fs_perms"));
+  SEXP class_perm_sxp = PROTECT(Rf_allocVector(STRSXP, 2));
+  SET_STRING_ELT(class_perm_sxp, 0, Rf_mkChar("fs_perms"));
+  SET_STRING_ELT(class_perm_sxp, 1, Rf_mkChar("integer"));
+  Rf_classgets(VECTOR_ELT(out, 3), class_perm_sxp);
+  UNPROTECT(1);
 
   SET_STRING_ELT(names, 4, Rf_mkChar("hard_links"));
   SET_VECTOR_ELT(out, 4, Rf_allocVector(REALSXP, n));

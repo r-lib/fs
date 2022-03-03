@@ -1,4 +1,3 @@
-context("utils.R")
 
 describe("captures", {
   it("works with non-ASCII inputs (#120)", {

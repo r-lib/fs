@@ -29,3 +29,7 @@ expect_error_free <- function(...) {
 skip_if_not_utf8 <- function() {
   skip_if_not(l10n_info()$`UTF-8`)
 }
+
+named_fs_path <- function(x) {
+  new_fs_path(stats::setNames(x, x))
+}

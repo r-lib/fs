@@ -27,7 +27,7 @@ Suggests:
     pillar (>= 1.0.0),
     rmarkdown,
     spelling,
-    testthat,
+    testthat (>= 3.0.0),
     tibble (>= 1.1.0),
     vctrs (>= 0.3.0),
     withr
@@ -40,3 +40,4 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 SystemRequirements: GNU make
+Config/testthat/edition: 3

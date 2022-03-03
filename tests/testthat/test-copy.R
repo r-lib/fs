@@ -1,10 +1,9 @@
-context("test-copy.R")
 
 describe("file_copy", {
   it("copies an empty file and returns the new path", {
     with_dir_tree(list("foo" = ""), {
       expect_true(file_exists("foo"))
-      expect_equal(file_copy("foo", "foo2"), "foo2")
+      expect_equal(file_copy("foo", "foo2"), fs_path("foo2"))
       expect_true(file_exists("foo"))
       expect_true(file_exists("foo2"))
     })
@@ -14,7 +13,7 @@ describe("file_copy", {
     with_dir_tree(
       list("foo" = "test"), {
       expect_true(file_exists("foo"))
-      expect_equal(file_copy("foo", "foo2"), "foo2")
+      expect_equal(file_copy("foo", "foo2"), fs_path("foo2"))
       expect_true(file_exists("foo"))
       expect_true(file_exists("foo2"))
       expect_equal(readLines("foo2"), readLines("foo"))
@@ -24,7 +23,7 @@ describe("file_copy", {
     with_dir_tree(list("foo" = "test", "bar" = "test2"), {
       expect_equal(file_exists(c("foo", "bar")), c(foo = TRUE, bar = TRUE))
       expect_equal(file_copy(c("foo", "bar"), c("foo2", "bar2")),
-        c("foo2", "bar2"))
+                   fs_path(c("foo2", "bar2")))
       expect_equal(readLines("foo2"), readLines("foo"))
       expect_equal(readLines("bar2"), readLines("bar"))
     })
@@ -37,7 +36,7 @@ describe("file_copy", {
     it("returns the new path and copies the file", {
       expect_true(file_exists("foo/bar"))
       expect_false(file_exists("foo/bar2"))
-      expect_equal(file_copy("foo/bar", "foo/bar2"), "foo/bar2")
+      expect_equal(file_copy("foo/bar", "foo/bar2"), fs_path("foo/bar2"))
       expect_true(file_exists("foo/bar"))
       expect_true(file_exists("foo/bar2"))
     })
@@ -55,7 +54,10 @@ describe("file_copy", {
     with_dir_tree(list("foo/bar" = "test", "foo3/bar2" = "test2", "foo2"), {
       expect_true(file_exists("foo/bar"))
       expect_true(file_exists("foo2"))
-      expect_equal(file_copy(c("foo/bar", "foo3/bar2"), "foo2"), c("foo2/bar", "foo2/bar2"))
+      expect_equal(
+        file_copy(c("foo/bar", "foo3/bar2"), "foo2"),
+        fs_path(c("foo2/bar", "foo2/bar2"))
+      )
       expect_true(file_exists("foo/bar"))
       expect_true(file_exists("foo3/bar2"))
       expect_true(file_exists("foo2/bar"))
@@ -72,7 +74,7 @@ describe("link_copy", {
       link_create(path_abs("foo"), "loo")
       expect_true(dir_exists("foo"))
       expect_true(link_exists("loo"))
-      expect_equal(link_copy("loo", "loo2"), "loo2")
+      expect_equal(link_copy("loo", "loo2"), fs_path("loo2"))
 
       expect_true(link_exists("loo2"))
       expect_equal(link_path("loo2"), link_path("loo"))
@@ -88,7 +90,7 @@ describe("dir_copy", {
   it("copies an empty directory and returns the new path", {
     with_dir_tree(list("foo"), {
       expect_true(dir_exists("foo"))
-      expect_equal(dir_copy("foo", "foo2"), "foo2")
+      expect_equal(dir_copy("foo", "foo2"), fs_path("foo2"))
       expect_true(dir_exists("foo"))
       expect_true(dir_exists("foo2"))
     })
@@ -98,7 +100,7 @@ describe("dir_copy", {
       list("foo/bar" = "test",
         "foo/baz" = "test2"), {
       expect_true(dir_exists("foo"))
-      expect_equal(dir_copy("foo", "foo2"), "foo2")
+      expect_equal(dir_copy("foo", "foo2"), fs_path("foo2"))
       expect_true(dir_exists("foo"))
       expect_true(dir_exists("foo2"))
       expect_true(file_exists("foo2/bar"))
@@ -108,7 +110,7 @@ describe("dir_copy", {
     with_dir_tree(
       list("foo/bar" = "test"), {
         dir_create("foo2")
-        expect_equal(dir_copy("foo", "foo2"), "foo2/foo")
+        expect_equal(dir_copy("foo", "foo2"), fs_path("foo2/foo"))
         expect_true(dir_exists("foo"))
         expect_true(dir_exists("foo2"))
         expect_true(dir_exists("foo2/foo"))
@@ -120,7 +122,7 @@ describe("dir_copy", {
       list("foo/bar/baz" = "test",
         "foo/baz/qux" = "test2"), {
       expect_true(dir_exists("foo"))
-      expect_equal(dir_copy("foo", "foo2"), "foo2")
+      expect_equal(dir_copy("foo", "foo2"), fs_path("foo2"))
       expect_true(dir_exists("foo"))
       expect_true(dir_exists("foo2"))
       expect_true(file_exists("foo2/bar/baz"))
@@ -147,7 +149,7 @@ describe("dir_copy", {
     with_dir_tree(
       list("foo/.bar/.baz" = "test"), {
         link_create(path_abs("foo/.bar"), "foo/.qux")
-      expect_equal(dir_copy("foo", "foo2"), "foo2")
+      expect_equal(dir_copy("foo", "foo2"), fs_path("foo2"))
       expect_true(dir_exists("foo2"))
       expect_true(dir_exists("foo2/.bar"))
       expect_true(file_exists("foo2/.bar/.baz"))
@@ -158,7 +160,7 @@ describe("dir_copy", {
     with_dir_tree(
       list("foo/bar/baz" = "test"), {
         link_create(path_abs("foo/bar"), "foo/foo")
-        expect_equal(dir_copy("foo", "foo2"), "foo2")
+        expect_equal(dir_copy("foo", "foo2"), fs_path("foo2"))
         expect_true(dir_exists("foo2"))
         expect_true(link_exists("foo2/foo"))
         expect_equal(link_path("foo2/foo"), link_path("foo/foo"))
