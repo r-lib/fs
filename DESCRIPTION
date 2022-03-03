@@ -17,7 +17,7 @@ License: MIT + file LICENSE
 URL: https://fs.r-lib.org, https://github.com/r-lib/fs
 BugReports: https://github.com/r-lib/fs/issues
 Depends: 
-    R (>= 3.1)
+    R (>= 3.4)
 Imports:
     methods
 Suggests: 
