@@ -3,37 +3,41 @@ Title: Cross-Platform File System Operations Based on 'libuv'
 Version: 1.5.2.9000
 Authors@R: c(
     person("Jim", "Hester", role = "aut"),
-    person("Hadley", "Wickham", , "hadley@rstudio.com", "aut"),
+    person("Hadley", "Wickham", , "hadley@rstudio.com", role = "aut"),
     person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre")),
-    person("libuv project contributors", role = "cph", comment = "libuv library"),
-    person("Joyent, Inc. and other Node contributors", role = "cph", comment = "libuv library"),
+    person("libuv project contributors", role = "cph",
+           comment = "libuv library"),
+    person("Joyent, Inc. and other Node contributors", role = "cph",
+           comment = "libuv library"),
     person("RStudio", role = c("cph", "fnd"))
-    )
-Description: A cross-platform interface to file system operations, built on
-  top of the 'libuv' C library.
-Depends: 
-    R (>= 3.1)
+  )
+Description: A cross-platform interface to file system operations, built
+    on top of the 'libuv' C library.
 License: MIT + file LICENSE
-Encoding: UTF-8
-ByteCompile: true
-Imports:
-    methods
-SystemRequirements: GNU make
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
 URL: https://fs.r-lib.org, https://github.com/r-lib/fs
 BugReports: https://github.com/r-lib/fs/issues
-Copyright: file COPYRIGHTS
+Depends: 
+    R (>= 3.4)
+Imports:
+    methods
 Suggests: 
-    testthat,
     covr,
-    pillar (>= 1.0.0),
-    tibble (>= 1.1.0),
     crayon,
-    rmarkdown,
     knitr,
-    withr,
+    pillar (>= 1.0.0),
+    rmarkdown,
     spelling,
-    vctrs (>= 0.3.0)
-VignetteBuilder: knitr
+    testthat (>= 3.0.0),
+    tibble (>= 1.1.0),
+    vctrs (>= 0.3.0),
+    withr
+VignetteBuilder: 
+    knitr
+ByteCompile: true
+Copyright: file COPYRIGHTS
+Encoding: UTF-8
 Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+SystemRequirements: GNU make
+Config/testthat/edition: 3

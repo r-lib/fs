@@ -21,8 +21,8 @@ fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
-[![R build status](https://github.com/r-lib/fs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/fs/actions)
-[![Coverage status](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=main)
+[![R-CMD-check](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs?branch=main)
 <!-- badges: end -->
 
 <p align="center">
@@ -75,7 +75,7 @@ base R functions:
   Because base R's functions were gradually added over time there are a number
   of different conventions used (e.g. `path.expand()` vs `normalizePath()`;
   `Sys.chmod()` vs `file.access()`).
-  
+
 ### Tidy paths
 
 **fs** functions always return 'tidy' paths. Tidy paths
@@ -200,3 +200,9 @@ Please open [GitHub issues](https://github.com/r-lib/fs) for any feature request
 In particular, we have found non-ASCII filenames in non-English locales on
 Windows to be especially tricky to reproduce and handle correctly. Feedback
 from users who use commonly have this situation is greatly appreciated.
+
+## Code of Conduct
+
+Please note that the fs project is released with a
+[Contributor Code of Conduct](https://fs.r-lib.org/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.

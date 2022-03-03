@@ -6,10 +6,9 @@
 <!-- badges: start -->
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
-[![R build
-status](https://github.com/r-lib/fs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/fs/actions)
-[![Coverage
-status](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://codecov.io/github/r-lib/fs?branch=main)
+[![R-CMD-check](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs?branch=main)
 <!-- badges: end -->
 
 <p align="center">
@@ -252,3 +251,9 @@ In particular, we have found non-ASCII filenames in non-English locales
 on Windows to be especially tricky to reproduce and handle correctly.
 Feedback from users who use commonly have this situation is greatly
 appreciated.
+
+## Code of Conduct
+
+Please note that the fs project is released with a [Contributor Code of
+Conduct](https://fs.r-lib.org/CODE_OF_CONDUCT.html). By contributing to
+this project, you agree to abide by its terms.

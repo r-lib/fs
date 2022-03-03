@@ -6,15 +6,7 @@
 \alias{fs-package}
 \title{fs: Cross-Platform File System Operations Based on 'libuv'}
 \description{
-\ifelse{html}{
-\out{
-<a href="https://lifecycle.r-lib.org/articles/stages.html#maturing">
-  <img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Maturing lifecycle">
-</a>
-}
-}{
-\url{https://lifecycle.r-lib.org/articles/stages.html#maturing}
-}
+A cross-platform interface to file system operations, built on top of the 'libuv' C library.
 }
 \seealso{
 Useful links:
