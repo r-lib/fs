@@ -251,3 +251,9 @@ In particular, we have found non-ASCII filenames in non-English locales
 on Windows to be especially tricky to reproduce and handle correctly.
 Feedback from users who use commonly have this situation is greatly
 appreciated.
+
+## Code of Conduct
+
+Please note that the fs project is released with a [Contributor Code of
+Conduct](https://fs.r-lib.org/CODE_OF_CONDUCT.html). By contributing to
+this project, you agree to abide by its terms.
