@@ -80,13 +80,15 @@
     <p><code>file_temp()</code> returns the name which can be used as a temporary file.</p>
     </div>
 
-    <div id="ref-usage">Usage,<div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_temp</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"file"</span>, tmp_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, ext <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_temp</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"file"</span>, tmp_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, ext <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
 
 <span class="fu">file_temp_push</span><span class="op">(</span><span class="va">path</span><span class="op">)</span>
 
 <span class="fu">file_temp_pop</span><span class="op">(</span><span class="op">)</span>
 
-<span class="fu">path_temp</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div></div>
+<span class="fu">path_temp</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></code></pre></div>
+    </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
@@ -117,16 +119,16 @@ internal stack, however generally this is done instead by calling
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">file_temp_push</span><span class="op">(</span><span class="st">"/tmp/filedd461c46df20"</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">path_temp</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpWOkRl2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmprKaoWc</span></span>
 <span class="r-in"><span class="fu">path_temp</span><span class="op">(</span><span class="st">"does-not-exist"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/RtmpWOkRl2/does-not-exist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/RtmprKaoWc/does-not-exist</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">file_temp</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/filedd461c46df20</span>
 <span class="r-in"><span class="fu">file_temp</span><span class="op">(</span>ext <span class="op">=</span> <span class="st">"png"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/RtmpWOkRl2/file69f2327d47ac.png</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/RtmprKaoWc/file6921131184ff.png</span></span>
 <span class="r-in"><span class="fu">file_temp</span><span class="op">(</span><span class="st">"image"</span>, ext <span class="op">=</span> <span class="st">"png"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/RtmpWOkRl2/image69f2301c1897.png</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/RtmprKaoWc/image6921565ae345.png</span></span>
 <span class="r-in"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># You can make the temp file paths deterministic</span></span>
@@ -150,11 +152,11 @@ internal stack, however generally this is done instead by calling
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>, Gábor Csárdi, <a href="https://www.rstudio.com" class="external-link"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" width="72"></a>.</p>
+  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, Hadley Wickham, Gábor Csárdi, RStudio.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>

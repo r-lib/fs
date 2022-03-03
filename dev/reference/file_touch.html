@@ -82,7 +82,9 @@ exist. Use file_create() to do this if needed."><meta name="robots" content="noi
 exist. Use <code><a href="create.html">file_create()</a></code> to do this if needed.</p>
     </div>
 
-    <div id="ref-usage">Usage,<div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_touch</span><span class="op">(</span><span class="va">path</span>, access_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, modification_time <span class="op">=</span> <span class="va">access_time</span><span class="op">)</span></code></pre></div></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_touch</span><span class="op">(</span><span class="va">path</span>, access_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, modification_time <span class="op">=</span> <span class="va">access_time</span><span class="op">)</span></code></pre></div>
+    </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
@@ -102,7 +104,7 @@ coerced to <a href="https://rdrr.io/r/base/DateTimeClasses.html" class="external
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   access_time         modification_time   change_time        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2018-01-01 <span style="color: #949494;">00:00:00</span> 2018-01-01 <span style="color: #949494;">00:00:00</span> 2021-12-09 <span style="color: #949494;">08:44:22</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2018-01-01 <span style="color: #949494;">00:00:00</span> 2018-01-01 <span style="color: #949494;">00:00:00</span> 2022-03-03 <span style="color: #949494;">10:53:45</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: birth_time &lt;dttm&gt;</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">.old_wd</span><span class="op">)</span></span>
 </code></pre></div>
@@ -115,11 +117,11 @@ coerced to <a href="https://rdrr.io/r/base/DateTimeClasses.html" class="external
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>, Gábor Csárdi, <a href="https://www.rstudio.com" class="external-link"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" width="72"></a>.</p>
+  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, Hadley Wickham, Gábor Csárdi, RStudio.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>

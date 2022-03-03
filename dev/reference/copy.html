@@ -84,11 +84,13 @@ dir_copy() copies the directory recursively at the new location."><meta name="ro
 <p><code>dir_copy()</code> copies the directory recursively at the new location.</p>
     </div>
 
-    <div id="ref-usage">Usage,<div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_copy</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_copy</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="fu">dir_copy</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="fu">link_copy</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div></div>
+<span class="fu">link_copy</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
@@ -137,10 +139,10 @@ if the name differs from the basename of <code>path</code>.</p>
 <span class="r-in"><span class="co"># Create a link to the directory</span></span>
 <span class="r-in"><span class="fu"><a href="create.html">link_create</a></span><span class="op">(</span><span class="fu"><a href="path_math.html">path_abs</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span>, <span class="st">"loo"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="link_path.html">link_path</a></span><span class="op">(</span><span class="st">"loo"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpWOkRl2/foo</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmprKaoWc/foo</span></span>
 <span class="r-in"><span class="fu">link_copy</span><span class="op">(</span><span class="st">"loo"</span>, <span class="st">"loo2"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="link_path.html">link_path</a></span><span class="op">(</span><span class="st">"loo2"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpWOkRl2/foo</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmprKaoWc/foo</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Cleanup</span></span>
 <span class="r-in"><span class="fu"><a href="delete.html">dir_delete</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"foo2"</span><span class="op">)</span><span class="op">)</span></span>
@@ -156,11 +158,11 @@ if the name differs from the basename of <code>path</code>.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>, Gábor Csárdi, <a href="https://www.rstudio.com" class="external-link"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" width="72"></a>.</p>
+  <p></p><p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, Hadley Wickham, Gábor Csárdi, RStudio.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>
