@@ -302,7 +302,7 @@ extern "C" SEXP fs_exists_(SEXP path_sxp, SEXP name_sxp) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path_sxp, i));
     int res = uv_fs_stat(uv_default_loop(), &req, p, NULL);
-    LOGICAL(out)[i] = res == 0;
+    LOGICAL(out)[i] = static_cast<int>(res == 0);
     uv_fs_req_cleanup(&req);
   }
 
