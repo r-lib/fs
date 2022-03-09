@@ -18,7 +18,7 @@ extern SEXP fs_copyfile_(SEXP, SEXP, SEXP);
 extern SEXP fs_create_(SEXP, SEXP);
 extern SEXP fs_dir_map_(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP fs_expand_(SEXP, SEXP);
-  extern SEXP fs_exists_(SEXP, SEXP);
+extern SEXP fs_exists_(SEXP, SEXP);
 extern SEXP fs_file_code_(SEXP, SEXP);
 extern SEXP fs_getgrnam_(SEXP);
 extern SEXP fs_getpwnam_(SEXP);
