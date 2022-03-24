@@ -143,8 +143,16 @@ describe("path_real", {
       expect_equal(path_real(NA_character_), NA_character_)
       expect_equal(path_real(c("foo2", NA_character_)), c(path_real("foo"), NA_character_))
     })
-
   })
+
+  it("converts inputs to character if required", {
+    with_dir_tree(list("foo/bar" = "test"), {
+      link_create(path_real("foo"), "2") 
+      expect_equal(path_real(NA), NA_character_) ## NA (logical) coerced to NA_character_
+      expect_equal(path_real(2), path_real("2"))
+    })
+  })
+
 })
 
 describe("path_split", {
@@ -205,6 +213,11 @@ describe("path_tidy", {
     out <- fs::path_tidy(x)
     expect_equal(Encoding(out), "UTF-8")
     expect_equal(out, "folder/façile.txt")
+  })
+
+  it("converts inputs to character if required", {
+      expect_equal(path_tidy(c("foo/bar", NA)), c("foo/bar", NA_character_))
+      expect_equal(path_tidy(1), "1")
   })
 })
 
@@ -440,6 +453,18 @@ describe("path_has_parent", {
 
     expect_error(path_has_parent(c("/a/b/c", "x/y"), c("/a/b", "x/y", "foo/bar")), "consistent lengths", class = "invalid_argument")
   })
+})
+
+describe("path_join", {
+    it("converts inputs to character if required", {
+        expect_equal(path_join(c("a", NA)), path_join(c("a", NA_character_)))
+        expect_equal(path_join(c("a", 1)), path_join(c("a", "1")))
+        expect_equal(path_join(list(c("a", 1), c("a/b", 2))), c(path_join(c("a", "1")), path_join(c("a/b", "2"))))
+    })
+    it("works with list inputs", {
+        expect_equal(path_join(list(c("foo", "bar"), c("a/b", "c"))), c(path_join(c("foo", "bar")), path_join(c("a/b", "c"))))
+        expect_equal(path_join(list(NA, c("a", 1), c("a/b", 2))), c(path_join(NA_character_), path_join(c("a", "1")), path_join(c("a/b", "2"))))
+    })
 })
 
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
