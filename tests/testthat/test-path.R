@@ -147,8 +147,8 @@ describe("path_real", {
 
   it("converts inputs to character if required", {
     with_dir_tree(list("foo/bar" = "test"), {
-      link_create(path_real("foo"), "2") 
-      expect_equal(path_real(NA), NA_character_) ## NA (logical) coerced to NA_character_
+      link_create(path_real("foo"), "2")
+      expect_equal(path_real(NA), fs_path(NA_character_)) ## NA (logical) coerced to NA_character_
       expect_equal(path_real(2), path_real("2"))
     })
   })
@@ -216,8 +216,8 @@ describe("path_tidy", {
   })
 
   it("converts inputs to character if required", {
-      expect_equal(path_tidy(c("foo/bar", NA)), c("foo/bar", NA_character_))
-      expect_equal(path_tidy(1), "1")
+      expect_equal(path_tidy(c("foo/bar", NA)), fs_path(c("foo/bar", NA_character_)))
+      expect_equal(path_tidy(1), fs_path("1"))
   })
 })
 
@@ -459,11 +459,11 @@ describe("path_join", {
     it("converts inputs to character if required", {
         expect_equal(path_join(c("a", NA)), path_join(c("a", NA_character_)))
         expect_equal(path_join(c("a", 1)), path_join(c("a", "1")))
-        expect_equal(path_join(list(c("a", 1), c("a/b", 2))), c(path_join(c("a", "1")), path_join(c("a/b", "2"))))
+        expect_equal(path_join(list(c("a", 1), c("a/b", 2))), fs_path(c(path_join(c("a", "1")), path_join(c("a/b", "2")))))
     })
     it("works with list inputs", {
-        expect_equal(path_join(list(c("foo", "bar"), c("a/b", "c"))), c(path_join(c("foo", "bar")), path_join(c("a/b", "c"))))
-        expect_equal(path_join(list(NA, c("a", 1), c("a/b", 2))), c(path_join(NA_character_), path_join(c("a", "1")), path_join(c("a/b", "2"))))
+        expect_equal(path_join(list(c("foo", "bar"), c("a/b", "c"))), fs_path(c(path_join(c("foo", "bar")), path_join(c("a/b", "c")))))
+        expect_equal(path_join(list(NA, c("a", 1), c("a/b", 2))), fs_path(c(path_join(NA_character_), path_join(c("a", "1")), path_join(c("a/b", "2")))))
     })
 })
 
