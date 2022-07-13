@@ -89,7 +89,7 @@ path_wd <- function(..., ext = "") {
 #'   calls `path_expand()` (literally) and `path_norm()` (effectively).
 #' @export
 path_real <- function(path) {
-  path <- enc2utf8(path)
+  path <- enc2utf8(as.character(path))
   old <- path_expand(path)
 
   is_missing <- is.na(path)
@@ -137,8 +137,8 @@ path_join <- function(parts) {
   if (length(parts) == 0) {
     return(path_tidy(""))
   }
-  if (is.character(parts)) {
-    return(path_tidy(.Call(fs_path_, as.list(enc2utf8(parts)), "")))
+  if (!is.list(parts)) {
+    return(path_tidy(.Call(fs_path_, as.list(enc2utf8(as.character(parts))), "")))
   }
   path_tidy(vapply(parts, path_join, character(1)))
 }
