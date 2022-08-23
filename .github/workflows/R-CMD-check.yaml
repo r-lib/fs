@@ -35,12 +35,19 @@ jobs:
           - {os: ubuntu-18.04,   r: 'oldrel-2'}
           - {os: ubuntu-18.04,   r: 'oldrel-3'}
           - {os: ubuntu-18.04,   r: 'oldrel-4'}
+          - {os: ubuntu-18.04,   r: 'devel', http-user-agent: 'release', locale: 'en_US'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
 
     steps:
+      - name: Set locale
+        if: matrix.config.locale == 'en_US'
+        run: |
+          sudo locale-gen en_US
+          echo "::set-env name=LC_ALL::en_US"
+
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-pandoc@v2
