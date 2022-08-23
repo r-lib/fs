@@ -1,9 +1,9 @@
 pandoc: 2.14.2
-pkgdown: 2.0.2
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   function-comparisons: function-comparisons.html
-last_built: 2022-03-27T21:09Z
+last_built: 2022-08-23T09:54Z
 urls:
   reference: https://fs.r-lib.org/reference
   article: https://fs.r-lib.org/articles

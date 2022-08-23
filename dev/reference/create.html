@@ -3,7 +3,7 @@
 if it already exists it will be left unchanged. That means that compared to
 file.create(), file_create() will not truncate an existing file, and
 compared to dir.create(), dir_create() will silently ignore existing
-directories."><title>Create files, directories, or links — create • fs</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Source%20Sans%20Pro-0.4.1/font.css" rel="stylesheet"><link href="../deps/_Source%20Code%20Pro-0.4.1/font.css" rel="stylesheet"><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Create files, directories, or links — create"><meta property="og:description" content="The functions file_create() and dir_create() ensure that path exists;
+directories."><title>Create files, directories, or links — create • fs</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.2/font.css" rel="stylesheet"><link href="../deps/Source_Code_Pro-0.4.2/font.css" rel="stylesheet"><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Create files, directories, or links — create"><meta property="og:description" content="The functions file_create() and dir_create() ensure that path exists;
 if it already exists it will be left unchanged. That means that compared to
 file.create(), file_create() will not truncate an existing file, and
 compared to dir.create(), dir_create() will silently ignore existing
@@ -75,11 +75,11 @@ directories.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">file_create</span><span class="op">(</span><span class="va">path</span>, <span class="va">...</span>, mode <span class="op">=</span> <span class="st">"u=rw,go=r"</span><span class="op">)</span>
-
-<span class="fu">dir_create</span><span class="op">(</span><span class="va">path</span>, <span class="va">...</span>, mode <span class="op">=</span> <span class="st">"u=rwx,go=rx"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">recursive</span><span class="op">)</span>
-
-<span class="fu">link_create</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, symbolic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">file_create</span><span class="op">(</span><span class="va">path</span>, <span class="va">...</span>, mode <span class="op">=</span> <span class="st">"u=rw,go=r"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">dir_create</span><span class="op">(</span><span class="va">path</span>, <span class="va">...</span>, mode <span class="op">=</span> <span class="st">"u=rwx,go=rx"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">recursive</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">link_create</span><span class="op">(</span><span class="va">path</span>, <span class="va">new_path</span>, symbolic <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -87,50 +87,65 @@ directories.</p>
     <dl><dt>path</dt>
 <dd><p>A character vector of one or more paths. For <code>link_create()</code>,
 this is the target.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional arguments passed to <code><a href="path.html">path()</a></code></p></dd>
+
+
 <dt>mode</dt>
 <dd><p>If file/directory is created, what mode should it have?</p>
 <p>Links do not have mode; they inherit the mode of the file they link to.</p></dd>
+
+
 <dt>recurse</dt>
 <dd><p>should intermediate directories be created if they do not
 exist?</p></dd>
+
+
 <dt>recursive</dt>
 <dd><p>(Deprecated) If <code>TRUE</code> recurse fully.</p></dd>
+
+
 <dt>new_path</dt>
 <dd><p>The path where the link should be created.</p></dd>
+
+
 <dt>symbolic</dt>
 <dd><p>Boolean value determining if the link should be a symbolic
 (the default) or hard link.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The path to the created object (invisibly).</p>
+    
+
+<p>The path to the created object (invisibly).</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">.old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">file_create</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="is_file.html">is_file</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">.old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">file_create</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="is_file.html">is_file</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  foo </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TRUE </span>
-<span class="r-in"><span class="co"># dir_create applied to the same path will fail</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">dir_create</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># dir_create applied to the same path will fail</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">dir_create</span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error : [EEXIST] Failed to make directory 'foo': file already exists</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">dir_create</span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="is_file.html">is_dir</a></span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">dir_create</span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="is_file.html">is_dir</a></span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  bar </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TRUE </span>
-<span class="r-in"><span class="co"># file_create applied to the same path will fail</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">file_create</span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># file_create applied to the same path will fail</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">file_create</span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Error : [EISDIR] Failed to open 'bar': illegal operation on a directory</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Cleanup</span></span>
-<span class="r-in"><span class="fu"><a href="delete.html">file_delete</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="delete.html">dir_delete</a></span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">.old_wd</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Cleanup</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="delete.html">file_delete</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="delete.html">dir_delete</a></span><span class="op">(</span><span class="st">"bar"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">.old_wd</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -144,7 +159,7 @@ exist?</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
   </div></footer></body></html>
