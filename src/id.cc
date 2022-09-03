@@ -105,7 +105,7 @@ extern "C" SEXP fs_users_() {
   BEGIN_CPP
   std::vector<std::string> names;
   std::vector<int> ids;
-#ifndef __WIN32
+#if !defined(__WIN32) && !defined(__ANDROID__)
   passwd* pwd = getpwent();
   while (pwd != NULL) {
     names.push_back(pwd->pw_name);
