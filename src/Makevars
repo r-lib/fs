@@ -1,4 +1,6 @@
 UNAME := $(shell uname)
+HOST := 
+UNAMEO := $(shell uname -o)
 
 LIBUV := libuv-1.38.1
 
@@ -18,6 +20,9 @@ ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
 ifneq ($(filter $(UNAME), Linux AIX OS400),)
+	ifeq ($(UNAMEO), Android)
+		HOST = --host=$(shell clang -print-target-triple)
+	endif
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
@@ -29,7 +34,7 @@ $(SHLIB): $(LIBUV)/.libs/libuv.a
 
 $(LIBUV)/Makefile:
 	(cd $(LIBUV) \
-	&& CC="$(CC)" CFLAGS="$(CFLAGS) $(CPPFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
+	&& CC="$(CC)" CFLAGS="$(CFLAGS) $(CPPFLAGS) $(CPICFLAGS) $(C_VISIBILITY)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet $(HOST) --disable-shared)
 
 $(LIBUV)/.libs/libuv.a: $(LIBUV)/Makefile
 	$(MAKE) --directory=$(LIBUV) \
