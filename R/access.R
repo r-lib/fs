@@ -44,7 +44,7 @@ dir_exists <- function(path) {
   res <- is_dir(path)
 
   links <- is_link(path)
-  res[links] <- is_dir(link_path(path[links]))
+  res[links] <- is_dir(path_real(path[links]))
 
   !is.na(res) & res
 }
