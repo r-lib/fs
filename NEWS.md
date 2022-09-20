@@ -2,6 +2,8 @@
 
 * inputs to `path_real()` and `path_join()` are coerced to character for consistency with other functions (@raymondben, #370)
 
+* `dir_exists()` follows relative symlinks in non-current directories (@heavywatal, #395)
+
 # fs 1.5.2
 
 * `file_create()` and `dir_create()` now return the correct path when `...` arguments are used (@davidchall, #333).
