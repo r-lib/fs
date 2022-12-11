@@ -41,9 +41,11 @@ static int uv__pthread_setname_np(const char* name) {
   strncpy(namebuf, name, sizeof(namebuf) - 1);
   namebuf[sizeof(namebuf) - 1] = '\0';
 
+#if TARGET_OS_IPHONE || (MAC_OS_X_VERSION_MIN_REQUIRED >= 1060)
   err = pthread_setname_np(namebuf);
   if (err)
     return UV__ERR(err);
+#endif
 
   return 0;
 }
