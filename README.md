@@ -256,5 +256,5 @@ appreciated.
 ## Code of Conduct
 
 Please note that the fs project is released with a [Contributor Code of
-Conduct](https://fs.r-lib.org/CODE_OF_CONDUCT.html). By contributing to
+Conduct](https://fs.r-lib.org/dev/CODE_OF_CONDUCT.html). By contributing to
 this project, you agree to abide by its terms.
