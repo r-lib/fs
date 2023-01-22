@@ -44,37 +44,35 @@ devtools::install_github("r-lib/fs")
 **fs** functions smooth over some of the idiosyncrasies of file handling
 with base R functions:
 
--   Vectorization. All **fs** functions are vectorized, accepting
-    multiple paths as input. Base functions are inconsistently
-    vectorized.
+- Vectorization. All **fs** functions are vectorized, accepting multiple
+  paths as input. Base functions are inconsistently vectorized.
 
--   Predictable return values that always convey a path. All **fs**
-    functions return a character vector of paths, a named integer or a
-    logical vector, where the names give the paths. Base return values
-    are more varied: they are often logical or contain error codes which
-    require downstream processing.
+- Predictable return values that always convey a path. All **fs**
+  functions return a character vector of paths, a named integer or a
+  logical vector, where the names give the paths. Base return values are
+  more varied: they are often logical or contain error codes which
+  require downstream processing.
 
--   Explicit failure. If **fs** operations fail, they throw an error.
-    Base functions tend to generate a warning and a system dependent
-    error code. This makes it easy to miss a failure.
+- Explicit failure. If **fs** operations fail, they throw an error. Base
+  functions tend to generate a warning and a system dependent error
+  code. This makes it easy to miss a failure.
 
--   UTF-8 all the things. **fs** functions always convert input paths to
-    UTF-8 and return results as UTF-8. This gives you path encoding
-    consistency across OSes. Base functions rely on the native system
-    encoding.
+- UTF-8 all the things. **fs** functions always convert input paths to
+  UTF-8 and return results as UTF-8. This gives you path encoding
+  consistency across OSes. Base functions rely on the native system
+  encoding.
 
--   Naming convention. **fs** functions use a consistent naming
-    convention. Because base R’s functions were gradually added over
-    time there are a number of different conventions used
-    (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs
-    `file.access()`).
+- Naming convention. **fs** functions use a consistent naming
+  convention. Because base R’s functions were gradually added over time
+  there are a number of different conventions used (e.g. `path.expand()`
+  vs `normalizePath()`; `Sys.chmod()` vs `file.access()`).
 
 ### Tidy paths
 
 **fs** functions always return ‘tidy’ paths. Tidy paths
 
--   Always use `/` to delimit directories
--   never have multiple `/` or trailing `/`
+- Always use `/` to delimit directories
+- never have multiple `/` or trailing `/`
 
 Tidy paths are also coloured (if your terminal supports it) based on the
 file permissions and file type. This colouring can be customized or
@@ -86,10 +84,10 @@ dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_col
 
 **fs** functions are divided into four main categories:
 
--   `path_` for manipulating and constructing paths
--   `file_` for files
--   `dir_` for directories
--   `link_` for links
+- `path_` for manipulating and constructing paths
+- `file_` for files
+- `dir_` for directories
+- `link_` for links
 
 Directories and links are special types of files, so `file_` functions
 will generally also work when applied to a directory or link.
@@ -105,19 +103,20 @@ path("foo", "bar", letters[1:3], ext = "txt")
 dir_ls()
 #> DESCRIPTION      LICENSE          LICENSE.md       MAINTENANCE.md   
 #> NAMESPACE        NEWS.md          R                README.Rmd       
-#> README.md        _pkgdown.yml     codecov.yml      cran-comments.md 
-#> fs.Rproj         inst             man              man-roxygen      
-#> revdep           src              tests            vignettes
+#> README.md        _pkgdown.yml     cleanup          codecov.yml      
+#> cran-comments.md fs.Rproj         inst             man              
+#> man-roxygen      revdep           src              tests            
+#> vignettes
 
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file553519e91baa
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file553519e91baa/my-file.txt
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -141,11 +140,11 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/a
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/b
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/c
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/d
-#> /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/e
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/a
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/b
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/c
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/d
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/e
 
 paths %>% file_delete()
 ```
@@ -169,21 +168,20 @@ dir_info("src", recurse = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, modification_time)
-#> # A tibble: 12 × 4
+#> # A tibble: 11 × 4
 #>    path          permissions        size modification_time  
 #>    <fs::path>    <fs::perms> <fs::bytes> <dttm>             
-#>  1 src/fs.so     rwxr-xr-x        267.7K 2021-11-29 17:54:31
-#>  2 src/id.o      rw-r--r--        159.2K 2021-11-29 17:54:10
-#>  3 src/dir.o     rw-r--r--         96.7K 2021-11-29 17:54:10
-#>  4 src/path.o    rw-r--r--         94.2K 2021-11-29 17:54:10
-#>  5 src/link.o    rw-r--r--           76K 2021-11-29 17:54:10
-#>  6 src/utils.o   rw-r--r--         75.1K 2021-11-29 17:54:10
-#>  7 src/getmode.o rw-r--r--           67K 2021-11-29 17:54:10
-#>  8 src/file.o    rw-r--r--         61.5K 2021-11-29 17:54:10
-#>  9 src/error.o   rw-r--r--         19.8K 2021-11-29 17:54:10
-#> 10 src/init.o    rw-r--r--         17.3K 2021-11-29 17:54:10
-#> 11 src/fs.o      rw-r--r--         12.1K 2021-11-29 17:54:10
-#> 12 src/file.cc   rw-r--r--         11.5K 2021-11-29 17:54:06
+#>  1 src/fs.so     rwxr-xr-x        492.6K 2023-01-22 21:52:58
+#>  2 src/id.o      rw-r--r--        213.5K 2023-01-22 21:52:41
+#>  3 src/dir.o     rw-r--r--        102.7K 2023-01-22 21:52:40
+#>  4 src/utils.o   rw-r--r--         89.2K 2023-01-22 21:52:41
+#>  5 src/path.o    rw-r--r--         81.7K 2023-01-22 21:52:41
+#>  6 src/link.o    rw-r--r--         74.2K 2023-01-22 21:52:41
+#>  7 src/getmode.o rw-r--r--         65.3K 2023-01-22 21:52:40
+#>  8 src/file.o    rw-r--r--         48.5K 2023-01-22 21:52:40
+#>  9 src/error.o   rw-r--r--         18.4K 2023-01-22 21:52:40
+#> 10 src/init.o    rw-r--r--         17.4K 2023-01-22 21:52:41
+#> 11 src/file.cc   rw-r--r--         11.7K 2023-01-22 21:52:29
 ```
 
 Tabulate and display folder size.
@@ -192,20 +190,23 @@ Tabulate and display folder size.
 dir_info("src", recurse = TRUE) %>%
   group_by(directory = path_dir(path)) %>%
   tally(wt = size, sort = TRUE)
-#> # A tibble: 11 × 2
-#>    directory                             n
-#>    <chr>                       <fs::bytes>
-#>  1 src/libuv-1.38.1                  2.67M
-#>  2 src/libuv-1.38.1/src/unix         1.37M
-#>  3 src                              986.5K
-#>  4 src/libuv-1.38.1/src/win        729.66K
-#>  5 src/libuv-1.38.1/src            329.28K
-#>  6 src/libuv-1.38.1/include/uv     138.27K
-#>  7 src/libuv-1.38.1/include         64.03K
-#>  8 src/unix                         63.43K
-#>  9 src/bsd                          20.02K
-#> 10 src/windows                       4.73K
-#> 11 src/libuv-1.38.1/test                64
+#> # A tibble: 14 × 2
+#>    directory                                n
+#>    <chr>                          <fs::bytes>
+#>  1 src/libuv-1.44.2                     2.85M
+#>  2 src/libuv-1.44.2/src/unix            1.28M
+#>  3 src                                  1.22M
+#>  4 src/libuv-1.44.2/test                1.05M
+#>  5 src/libuv-1.44.2/src/win           742.07K
+#>  6 src/libuv-1.44.2/m4                 356.7K
+#>  7 src/libuv-1.44.2/src               340.12K
+#>  8 src/libuv-1.44.2/include/uv        137.44K
+#>  9 src/libuv-1.44.2/img               106.71K
+#> 10 src/libuv-1.44.2/include            66.23K
+#> 11 src/unix                             60.2K
+#> 12 src/bsd                             20.02K
+#> 13 src/windows                          4.73K
+#> 14 src/libuv-1.44.2/test/fixtures         453
 ```
 
 Read a collection of files into one data frame.
