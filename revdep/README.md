@@ -1,29 +1,37 @@
 # Platform
 
-|field    |value                        |
-|:--------|:----------------------------|
-|version  |R version 3.6.1 (2019-07-05) |
-|os       |macOS Catalina 10.15.3       |
-|system   |x86_64, darwin15.6.0         |
-|ui       |X11                          |
-|language |(EN)                         |
-|collate  |en_US.UTF-8                  |
-|ctype    |en_US.UTF-8                  |
-|tz       |America/New_York             |
-|date     |2020-03-30                   |
+|field    |value                             |
+|:--------|:---------------------------------|
+|version  |R version 4.2.2 (2022-10-31)      |
+|os       |macOS Monterey 12.6.2             |
+|system   |aarch64, darwin20                 |
+|ui       |X11                               |
+|language |(EN)                              |
+|collate  |en_US.UTF-8                       |
+|ctype    |en_US.UTF-8                       |
+|tz       |Europe/Madrid                     |
+|date     |2023-01-22                        |
+|pandoc   |2.19.2 @ /opt/homebrew/bin/pandoc |
 
 # Dependencies
 
 |package |old   |new        |Δ  |
 |:-------|:-----|:----------|:--|
-|fs      |1.3.2 |1.3.2.9000 |*  |
-|Rcpp    |1.0.4 |NA         |*  |
+|fs      |1.5.2 |1.5.2.9000 |*  |
 
 # Revdeps
 
-## Failed to check (1)
+## Failed to check (3)
 
-|package |version |error |warning |note |
-|:-------|:-------|:-----|:-------|:----|
-|vroom   |1.2.0   |1     |        |     |
+|package     |version |error |warning |note |
+|:-----------|:-------|:-----|:-------|:----|
+|NanoMethViz |?       |      |        |     |
+|riot        |1.1.0   |1     |        |     |
+|smfishHmrf  |?       |      |        |     |
+
+## New problems (1)
+
+|package     |version |error  |warning |note |
+|:-----------|:-------|:------|:-------|:----|
+|[dockerfiler](problems.md#dockerfiler)|0.2.1   |__+1__ |        |     |
 
