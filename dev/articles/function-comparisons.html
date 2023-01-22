@@ -8,12 +8,12 @@
 <meta name="description" content="fs">
 <title>Comparison of fs functions, base R, and shell commands • fs</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.2/font.css" rel="stylesheet">
-<link href="../deps/Source_Code_Pro-0.4.2/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.4/font.css" rel="stylesheet">
+<link href="../deps/Source_Code_Pro-0.4.4/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparison of fs functions, base R, and shell commands">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparison of fs functions, base R, and shell commands">
 <meta property="og:description" content="fs">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -89,14 +89,33 @@
 
     
     
-<p>Most of the functionality is <strong>fs</strong> can be approximated with functions in <strong>base R</strong> or in a command line shell. The table at the end of this vignette can be used as a translation aid between these three methods.</p>
-<p><strong>fs</strong> functions smooth over some of the idiosyncrasies of file handling with base R functions:</p>
+<p>Most of the functionality is <strong>fs</strong> can be approximated
+with functions in <strong>base R</strong> or in a command line shell.
+The table at the end of this vignette can be used as a translation aid
+between these three methods.</p>
+<p><strong>fs</strong> functions smooth over some of the idiosyncrasies
+of file handling with base R functions:</p>
 <ul>
-<li><p>Vectorization. All <strong>fs</strong> functions are vectorized, accepting multiple paths as input. Base functions are inconsistently vectorized.</p></li>
-<li><p>Predictable return values that always convey a path. All <strong>fs</strong> functions return a character vector of paths, a named integer or a logical vector, where the names give the paths. Base return values are more varied: they are often logical or contain error codes which require downstream processing.</p></li>
-<li><p>Explicit failure. If <strong>fs</strong> operations fail, they throw an error. Base functions tend to generate a warning and a system dependent error code. This makes it easy to miss a failure.</p></li>
-<li><p>UTF-8 all the things. <strong>fs</strong> functions always convert input paths to UTF-8 and return results as UTF-8. This gives you path encoding consistency across OSes. Base functions rely on the native system encoding.</p></li>
-<li><p>Naming convention. <strong>fs</strong> functions use a consistent naming convention. Because base R’s functions were gradually added over time there are a number of different conventions used (e.g. <code><a href="https://rdrr.io/r/base/path.expand.html" class="external-link">path.expand()</a></code> vs <code><a href="https://rdrr.io/r/base/normalizePath.html" class="external-link">normalizePath()</a></code>; <code><a href="https://rdrr.io/r/base/files2.html" class="external-link">Sys.chmod()</a></code> vs <code><a href="https://rdrr.io/r/base/file.access.html" class="external-link">file.access()</a></code>).</p></li>
+<li><p>Vectorization. All <strong>fs</strong> functions are vectorized,
+accepting multiple paths as input. Base functions are inconsistently
+vectorized.</p></li>
+<li><p>Predictable return values that always convey a path. All
+<strong>fs</strong> functions return a character vector of paths, a
+named integer or a logical vector, where the names give the paths. Base
+return values are more varied: they are often logical or contain error
+codes which require downstream processing.</p></li>
+<li><p>Explicit failure. If <strong>fs</strong> operations fail, they
+throw an error. Base functions tend to generate a warning and a system
+dependent error code. This makes it easy to miss a failure.</p></li>
+<li><p>UTF-8 all the things. <strong>fs</strong> functions always
+convert input paths to UTF-8 and return results as UTF-8. This gives you
+path encoding consistency across OSes. Base functions rely on the native
+system encoding.</p></li>
+<li><p>Naming convention. <strong>fs</strong> functions use a consistent
+naming convention. Because base R’s functions were gradually added over
+time there are a number of different conventions used
+(e.g. <code><a href="https://rdrr.io/r/base/path.expand.html" class="external-link">path.expand()</a></code> vs <code><a href="https://rdrr.io/r/base/normalizePath.html" class="external-link">normalizePath()</a></code>;
+<code><a href="https://rdrr.io/r/base/files2.html" class="external-link">Sys.chmod()</a></code> vs <code><a href="https://rdrr.io/r/base/file.access.html" class="external-link">file.access()</a></code>).</p></li>
 </ul>
 <div class="section level2">
 <h2 id="directory-functions">Directory functions<a class="anchor" aria-label="anchor" href="#directory-functions"></a>
@@ -265,7 +284,8 @@
 <code><a href="../reference/file_temp.html">path_temp()</a></code>, <code>path_temp("path")</code>
 </td>
 <td>
-<code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>, <code>file.path(tempdir(), "path")</code>
+<code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>,
+<code>file.path(tempdir(), "path")</code>
 </td>
 <td><code>mktemp -d</code></td>
 </tr>
@@ -347,7 +367,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
   </div></footer>
