@@ -240,7 +240,7 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
       SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(pwd->pw_name, CE_UTF8));
     } else {
       char buf[20];
-      sprintf(buf, "%" PRIu64, st.st_uid);
+      snprintf(buf, sizeof(buf), "%" PRIu64, st.st_uid);
       SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(buf, CE_UTF8));
     }
 #endif
@@ -253,7 +253,7 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
       SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(grp->gr_name, CE_UTF8));
     } else {
       char buf[20];
-      sprintf(buf, "%" PRIu64, st.st_gid);
+      snprintf(buf, sizeof(buf), "%" PRIu64, st.st_gid);
       SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(buf, CE_UTF8));
     }
 #endif
