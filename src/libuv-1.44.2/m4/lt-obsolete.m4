@@ -1,4 +1,4 @@
-# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
+# lt-obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 #
 #   Copyright (C) 2004-2005, 2007, 2009, 2011-2019, 2021-2022 Free
 #   Software Foundation, Inc.
@@ -8,7 +8,7 @@
 # unlimited permission to copy and/or distribute it, with or without
 # modifications, as long as this notice is preserved.
 
-# serial 5 lt~obsolete.m4
+# serial 5 lt-obsolete.m4
 
 # These exist entirely to fool aclocal when bootstrapping libtool.
 #
