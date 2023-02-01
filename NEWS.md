@@ -1,3 +1,5 @@
+# fs (development version)
+
 # fs 1.6.0
 
 * inputs to `path_real()` and `path_join()` are coerced to character for consistency with other functions (@raymondben, #370)
