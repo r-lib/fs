@@ -5,18 +5,18 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A cross-platform interface to file system operations, built on
-  top of the libuv C library.">
+<meta name="description" content="A cross-platform interface to file system operations, built
+    on top of the libuv C library.">
 <title>Cross-Platform File System Operations Based on libuv • fs</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Source%20Sans%20Pro-0.4.0/font.css" rel="stylesheet">
-<link href="deps/_Source%20Code%20Pro-0.4.0/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.5/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.5/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Cross-Platform File System Operations Based on libuv">
-<meta property="og:description" content="A cross-platform interface to file system operations, built on
-  top of the libuv C library.">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Cross-Platform File System Operations Based on libuv">
+<meta property="og:description" content="A cross-platform interface to file system operations, built
+    on top of the libuv C library.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -30,7 +30,7 @@
     
     <a class="navbar-brand me-2" href="index.html">fs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.6.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,11 +89,11 @@
 </h2>
 <p>You can install the released version of <strong>fs</strong> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"fs"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"fs"</span><span class="op">)</span></span></code></pre></div>
 <p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-lib/fs"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-lib/fs"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="comparison-vs-base-equivalents">Comparison vs base equivalents<a class="anchor" aria-label="anchor" href="#comparison-vs-base-equivalents"></a>
@@ -134,132 +134,140 @@
 </ul>
 <p>Directories and links are special types of files, so <code>file_</code> functions will generally also work when applied to a directory or link.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fs.r-lib.org">fs</a></span><span class="op">)</span>
-
-<span class="co"># Construct a path to a file with `path()`</span>
-<span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, ext <span class="op">=</span> <span class="st">"txt"</span><span class="op">)</span>
-<span class="co">#&gt; foo/bar/a.txt foo/bar/b.txt foo/bar/c.txt</span>
-
-<span class="co"># list files in the current directory</span>
-<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; DESCRIPTION      LICENSE          LICENSE.md       MAINTENANCE.md   </span>
-<span class="co">#&gt; NAMESPACE        NEWS.md          R                README.Rmd       </span>
-<span class="co">#&gt; README.md        _pkgdown.yml     codecov.yml      cran-comments.md </span>
-<span class="co">#&gt; fs.Rproj         inst             man              man-roxygen      </span>
-<span class="co">#&gt; revdep           src              tests            vignettes</span>
-
-<span class="co"># create a new directory</span>
-<span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="va">tmp</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file553519e91baa</span>
-
-<span class="co"># create new files in that directory</span>
-<span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="st">"my-file.txt"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file553519e91baa/my-file.txt</span>
-
-<span class="co"># remove files from the directory</span>
-<span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="st">"my-file.txt"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span>
-<span class="co">#&gt; character(0)</span>
-
-<span class="co"># remove the directory</span>
-<span class="fu"><a href="reference/delete.html">dir_delete</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://fs.r-lib.org">fs</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Construct a path to a file with `path()`</span></span>
+<span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"bar"</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, ext <span class="op">=</span> <span class="st">"txt"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; foo/bar/a.txt foo/bar/b.txt foo/bar/c.txt</span></span>
+<span></span>
+<span><span class="co"># list files in the current directory</span></span>
+<span><span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DESCRIPTION      LICENSE          LICENSE.md       MAINTENANCE.md   </span></span>
+<span><span class="co">#&gt; NAMESPACE        NEWS.md          R                README.Rmd       </span></span>
+<span><span class="co">#&gt; README.md        _pkgdown.yml     cleanup          codecov.yml      </span></span>
+<span><span class="co">#&gt; cran-comments.md fs.Rproj         inst             man              </span></span>
+<span><span class="co">#&gt; man-roxygen      revdep           src              tests            </span></span>
+<span><span class="co">#&gt; vignettes</span></span>
+<span></span>
+<span><span class="co"># create a new directory</span></span>
+<span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">tmp</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8</span></span>
+<span></span>
+<span><span class="co"># create new files in that directory</span></span>
+<span><span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="st">"my-file.txt"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8/my-file.txt</span></span>
+<span></span>
+<span><span class="co"># remove files from the directory</span></span>
+<span><span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="st">"my-file.txt"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; character(0)</span></span>
+<span></span>
+<span><span class="co"># remove the directory</span></span>
+<span><span class="fu"><a href="reference/delete.html">dir_delete</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span></code></pre></div>
 <p><strong>fs</strong> is designed to work well with the pipe, though because it is a minimal-dependency infrastructure package it doesn’t provide the pipe itself. You will need to attach <a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a> or similar.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span>
-
-<span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">paths</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/a</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/b</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/c</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/d</span>
-<span class="co">#&gt; /var/folders/9x/_8jnmxwj3rq1t90mlr6_0k1w0000gn/T/Rtmp8qNYF8/file5535783c1027/e</span>
-
-<span class="va">paths</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">paths</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/a</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/b</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/c</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/d</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/e</span></span>
+<span></span>
+<span><span class="va">paths</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/" class="external-link">tidyverse</a> packages, like <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and <a href="https://purrr.tidyverse.org" class="external-link">purrr</a>.</p>
 <p>Some examples…</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Filter files by type, permission and size</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"file"</span>, <span class="va">permissions</span> <span class="op">==</span> <span class="st">"u+r"</span>, <span class="va">size</span> <span class="op">&gt;</span> <span class="st">"10KB"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">size</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">select</span><span class="op">(</span><span class="va">path</span>, <span class="va">permissions</span>, <span class="va">size</span>, <span class="va">modification_time</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 12 × 4</span>
-<span class="co">#&gt;    path          permissions        size modification_time  </span>
-<span class="co">#&gt;    &lt;fs::path&gt;    &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span>
-<span class="co">#&gt;  1 src/fs.so     rwxr-xr-x        267.7K 2021-11-29 17:54:31</span>
-<span class="co">#&gt;  2 src/id.o      rw-r--r--        159.2K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  3 src/dir.o     rw-r--r--         96.7K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  4 src/path.o    rw-r--r--         94.2K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  5 src/link.o    rw-r--r--           76K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  6 src/utils.o   rw-r--r--         75.1K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  7 src/getmode.o rw-r--r--           67K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  8 src/file.o    rw-r--r--         61.5K 2021-11-29 17:54:10</span>
-<span class="co">#&gt;  9 src/error.o   rw-r--r--         19.8K 2021-11-29 17:54:10</span>
-<span class="co">#&gt; 10 src/init.o    rw-r--r--         17.3K 2021-11-29 17:54:10</span>
-<span class="co">#&gt; 11 src/fs.o      rw-r--r--         12.1K 2021-11-29 17:54:10</span>
-<span class="co">#&gt; 12 src/file.cc   rw-r--r--         11.5K 2021-11-29 17:54:06</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"file"</span>, <span class="va">permissions</span> <span class="op">==</span> <span class="st">"u+r"</span>, <span class="va">size</span> <span class="op">&gt;</span> <span class="st">"10KB"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">size</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">path</span>, <span class="va">permissions</span>, <span class="va">size</span>, <span class="va">modification_time</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 11 × 4</span></span>
+<span><span class="co">#&gt;    path          permissions        size modification_time  </span></span>
+<span><span class="co">#&gt;    &lt;fs::path&gt;    &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></span>
+<span><span class="co">#&gt;  1 src/fs.so     rwxr-xr-x        492.6K 2023-01-22 21:52:58</span></span>
+<span><span class="co">#&gt;  2 src/id.o      rw-r--r--        213.5K 2023-01-22 21:52:41</span></span>
+<span><span class="co">#&gt;  3 src/dir.o     rw-r--r--        102.7K 2023-01-22 21:52:40</span></span>
+<span><span class="co">#&gt;  4 src/utils.o   rw-r--r--         89.2K 2023-01-22 21:52:41</span></span>
+<span><span class="co">#&gt;  5 src/path.o    rw-r--r--         81.7K 2023-01-22 21:52:41</span></span>
+<span><span class="co">#&gt;  6 src/link.o    rw-r--r--         74.2K 2023-01-22 21:52:41</span></span>
+<span><span class="co">#&gt;  7 src/getmode.o rw-r--r--         65.3K 2023-01-22 21:52:40</span></span>
+<span><span class="co">#&gt;  8 src/file.o    rw-r--r--         48.5K 2023-01-22 21:52:40</span></span>
+<span><span class="co">#&gt;  9 src/error.o   rw-r--r--         18.4K 2023-01-22 21:52:40</span></span>
+<span><span class="co">#&gt; 10 src/init.o    rw-r--r--         17.4K 2023-01-22 21:52:41</span></span>
+<span><span class="co">#&gt; 11 src/file.cc   rw-r--r--         11.7K 2023-01-22 21:52:29</span></span></code></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">group_by</span><span class="op">(</span>directory <span class="op">=</span> <span class="fu"><a href="reference/path_file.html">path_dir</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">tally</span><span class="op">(</span>wt <span class="op">=</span> <span class="va">size</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 11 × 2</span>
-<span class="co">#&gt;    directory                             n</span>
-<span class="co">#&gt;    &lt;chr&gt;                       &lt;fs::bytes&gt;</span>
-<span class="co">#&gt;  1 src/libuv-1.38.1                  2.67M</span>
-<span class="co">#&gt;  2 src/libuv-1.38.1/src/unix         1.37M</span>
-<span class="co">#&gt;  3 src                              986.5K</span>
-<span class="co">#&gt;  4 src/libuv-1.38.1/src/win        729.66K</span>
-<span class="co">#&gt;  5 src/libuv-1.38.1/src            329.28K</span>
-<span class="co">#&gt;  6 src/libuv-1.38.1/include/uv     138.27K</span>
-<span class="co">#&gt;  7 src/libuv-1.38.1/include         64.03K</span>
-<span class="co">#&gt;  8 src/unix                         63.43K</span>
-<span class="co">#&gt;  9 src/bsd                          20.02K</span>
-<span class="co">#&gt; 10 src/windows                       4.73K</span>
-<span class="co">#&gt; 11 src/libuv-1.38.1/test                64</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span>directory <span class="op">=</span> <span class="fu"><a href="reference/path_file.html">path_dir</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">tally</span><span class="op">(</span>wt <span class="op">=</span> <span class="va">size</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 14 × 2</span></span>
+<span><span class="co">#&gt;    directory                                n</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                          &lt;fs::bytes&gt;</span></span>
+<span><span class="co">#&gt;  1 src/libuv-1.44.2                     2.85M</span></span>
+<span><span class="co">#&gt;  2 src/libuv-1.44.2/src/unix            1.28M</span></span>
+<span><span class="co">#&gt;  3 src                                  1.22M</span></span>
+<span><span class="co">#&gt;  4 src/libuv-1.44.2/test                1.05M</span></span>
+<span><span class="co">#&gt;  5 src/libuv-1.44.2/src/win           742.07K</span></span>
+<span><span class="co">#&gt;  6 src/libuv-1.44.2/m4                 356.7K</span></span>
+<span><span class="co">#&gt;  7 src/libuv-1.44.2/src               340.12K</span></span>
+<span><span class="co">#&gt;  8 src/libuv-1.44.2/include/uv        137.44K</span></span>
+<span><span class="co">#&gt;  9 src/libuv-1.44.2/img               106.71K</span></span>
+<span><span class="co">#&gt; 10 src/libuv-1.44.2/include            66.23K</span></span>
+<span><span class="co">#&gt; 11 src/unix                             60.2K</span></span>
+<span><span class="co">#&gt; 12 src/bsd                             20.02K</span></span>
+<span><span class="co">#&gt; 13 src/windows                          4.73K</span></span>
+<span><span class="co">#&gt; 14 src/libuv-1.44.2/test/fixtures         453</span></span></code></pre></div>
 <p>Read a collection of files into one data frame.</p>
 <p><code><a href="reference/dir_ls.html">dir_ls()</a></code> returns a named vector, so it can be used directly with <code>purrr::map_df(.id)</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Create separate files for each species</span>
-<span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">map</span><span class="op">(</span><span class="va">select</span>, <span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">iwalk</span><span class="op">(</span><span class="op">~</span> <span class="fu">write_tsv</span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">.y</span>, <span class="st">".tsv"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Show the files</span>
-<span class="va">iris_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span>glob <span class="op">=</span> <span class="st">"*.tsv"</span><span class="op">)</span>
-<span class="va">iris_files</span>
-<span class="co">#&gt; setosa.tsv     versicolor.tsv virginica.tsv</span>
-
-<span class="co"># Read the data into a single table, including the filenames</span>
-<span class="va">iris_files</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">map_df</span><span class="op">(</span><span class="va">read_tsv</span>, .id <span class="op">=</span> <span class="st">"file"</span>, col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span><span class="op">)</span>, n_max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 5</span>
-<span class="co">#&gt;   file           Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="co">#&gt;   &lt;chr&gt;                 &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 setosa.tsv              5.1         3.5          1.4         0.2</span>
-<span class="co">#&gt; 2 setosa.tsv              4.9         3            1.4         0.2</span>
-<span class="co">#&gt; 3 versicolor.tsv          7           3.2          4.7         1.4</span>
-<span class="co">#&gt; 4 versicolor.tsv          6.4         3.2          4.5         1.5</span>
-<span class="co">#&gt; 5 virginica.tsv           6.3         3.3          6           2.5</span>
-<span class="co">#&gt; 6 virginica.tsv           5.8         2.7          5.1         1.9</span>
-
-<span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="va">iris_files</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Create separate files for each species</span></span>
+<span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/split.html" class="external-link">split</a></span><span class="op">(</span><span class="va">.</span><span class="op">$</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">map</span><span class="op">(</span><span class="va">select</span>, <span class="op">-</span><span class="va">Species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">iwalk</span><span class="op">(</span><span class="op">~</span> <span class="fu">write_tsv</span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">.y</span>, <span class="st">".tsv"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Show the files</span></span>
+<span><span class="va">iris_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span>glob <span class="op">=</span> <span class="st">"*.tsv"</span><span class="op">)</span></span>
+<span><span class="va">iris_files</span></span>
+<span><span class="co">#&gt; setosa.tsv     versicolor.tsv virginica.tsv</span></span>
+<span></span>
+<span><span class="co"># Read the data into a single table, including the filenames</span></span>
+<span><span class="va">iris_files</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">map_df</span><span class="op">(</span><span class="va">read_tsv</span>, .id <span class="op">=</span> <span class="st">"file"</span>, col_types <span class="op">=</span> <span class="fu">cols</span><span class="op">(</span><span class="op">)</span>, n_max <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 5</span></span>
+<span><span class="co">#&gt;   file           Sepal.Length Sepal.Width Petal.Length Petal.Width</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                 &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 setosa.tsv              5.1         3.5          1.4         0.2</span></span>
+<span><span class="co">#&gt; 2 setosa.tsv              4.9         3            1.4         0.2</span></span>
+<span><span class="co">#&gt; 3 versicolor.tsv          7           3.2          4.7         1.4</span></span>
+<span><span class="co">#&gt; 4 versicolor.tsv          6.4         3.2          4.5         1.5</span></span>
+<span><span class="co">#&gt; 5 virginica.tsv           6.3         3.3          6           2.5</span></span>
+<span><span class="co">#&gt; 6 virginica.tsv           5.8         2.7          5.1         1.9</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="va">iris_files</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="feedback-wanted">Feedback wanted!<a class="anchor" aria-label="anchor" href="#feedback-wanted"></a>
 </h2>
 <p>We hope <strong>fs</strong> is a useful tool for both analysis scripts and packages. Please open <a href="https://github.com/r-lib/fs" class="external-link">GitHub issues</a> for any feature requests or bugs.</p>
 <p>In particular, we have found non-ASCII filenames in non-English locales on Windows to be especially tricky to reproduce and handle correctly. Feedback from users who use commonly have this situation is greatly appreciated.</p>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the fs project is released with a <a href="https://fs.r-lib.org/dev/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -279,6 +287,12 @@
 </ul>
 </div>
 
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
+</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -302,14 +316,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://lifecycle.r-lib.org/articles/stages.html#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
-<li><a href="https://github.com/r-lib/fs/actions" class="external-link"><img src="https://github.com/r-lib/fs/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/github/r-lib/fs?branch=main" class="external-link"><img src="https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg" alt="Coverage status"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
@@ -324,7 +331,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
   </div></footer>
