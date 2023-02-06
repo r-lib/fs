@@ -1,5 +1,3 @@
-# Use C++11 if available, so we have C99 support for variadic macros
-CXX_STD=CXX11
 
 LIBUV := libuv-1.44.2
 
