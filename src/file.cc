@@ -44,7 +44,7 @@ extern "C" SEXP fs_move_(SEXP path, SEXP new_path) {
       continue;
     }
 
-    stop_for_error2(req, "Failed to move '%s'to '%s'", p, n);
+    stop_for_error2(req, "Failed to move '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
 
