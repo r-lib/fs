@@ -545,6 +545,10 @@ describe("path_has_parent", {
 
     expect_true(path_has_parent("foo/bar", "foo"))
     expect_true(path_has_parent("path/myfiles/myfile", "path/to/files/../../myfiles"))
+
+    # expands path
+    expect_true(path_has_parent("~/a", path_expand("~/a")))
+    expect_true(path_has_parent(path_expand("~/a"), "~/a"))
   })
   it("works with multiple paths", {
     expect_equal(path_has_parent(c("/a/b/c", "x/y"), "/a/b"), c(TRUE, FALSE))

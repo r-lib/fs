@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `path_has_parent()` now expands `~` (#412).
+
 # fs 1.6.1
 
 No user visible changes.
