@@ -27,7 +27,7 @@ describe("as_fs_path", {
 describe("colourise_fs_path", {
   it("returns an appropriately colored fs_path object", {
     withr::local_envvar(c("LS_COLORS" = gnu_ls_defaults))
-    withr::local_options(c(crayon.enabled = TRUE))
+    local_reproducible_output(crayon = TRUE)
 
     with_dir_tree(
       list(
