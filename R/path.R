@@ -389,7 +389,7 @@ path_ext_set <- function(path, ext) {
   }
 
   # Remove a leading . if present
-  ext <- sub("[.]", "", ext)
+  ext <- sub("^[.]", "", ext)
 
   has_ext <- nzchar(ext)
   to_set <- !is.na(path) & has_ext
