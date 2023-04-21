@@ -2,6 +2,8 @@
 
 * `path_has_parent()` now expands `~` (#412).
 
+* `path_ext_set()` can now handle extensions that contain a `.`, e.g. `csv.gz` (@mgirlich, #415).
+
 # fs 1.6.1
 
 No user visible changes.

@@ -346,6 +346,10 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("foo", "bar"), fs_path("foo.bar"))
     expect_equal(path_ext_set("foo", ".bar"), fs_path("foo.bar"))
   })
+  it ("only removes a leading . from the extension", {
+    expect_equal(path_ext_set("foo", "b.ar"), fs_path("foo.b.ar"))
+    expect_equal(path_ext_set("foo", ".b.ar"), fs_path("foo.b.ar"))
+  })
   it ("works with multiple paths (#205)", {
     multiple_paths <- c("a", "b")
     expect_equal(
