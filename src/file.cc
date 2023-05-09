@@ -2,8 +2,6 @@
 #define __STDC_FORMAT_MACROS 1
 #endif
 
-#include <Rinternals.h>
-
 #include "getmode.h"
 #include "uv.h"
 
@@ -12,6 +10,7 @@
 #include <string>
 #include <vector>
 
+#include <Rinternals.h>
 #include "error.h"
 
 #ifndef __WIN32
