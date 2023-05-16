@@ -2,7 +2,7 @@
 #'
 #' @param path A path to print the tree from
 #' @inheritParams dir_ls
-#' @param ... Additional arguments passed to [dir_ls].
+#' @inheritDotParams dir_ls
 #'
 #' @export
 dir_tree <- function(path = ".", recurse = TRUE, ...) {
