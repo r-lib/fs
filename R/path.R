@@ -480,7 +480,9 @@ path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
 #' @export
 path_has_parent <- function(path, parent) {
   path <- path_abs(path)
+  path <- path_expand(path)
   parent <- path_abs(parent)
+  parent <- path_expand(parent)
 
   res <- logical(length(path))
 
