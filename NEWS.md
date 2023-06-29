@@ -1,3 +1,5 @@
+# fs (development version)
+
 # fs 1.6.2
 
 * `path_ext_set()` can now handle extensions that contain a `.`, e.g. `csv.gz` (@mgirlich, #415).
