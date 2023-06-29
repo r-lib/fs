@@ -29,7 +29,7 @@ $(SHLIB): $(LIBUV)/.libs/libuv.a
 
 $(LIBUV)/Makefile:
 	(cd $(LIBUV) \
-	&& CC="$(CC)" CFLAGS="$(CFLAGS) $(CPPFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
+	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure --quiet)
 
 $(LIBUV)/.libs/libuv.a: $(LIBUV)/Makefile
 	$(MAKE) --directory=$(LIBUV) \

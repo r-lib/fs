@@ -12,7 +12,19 @@ dir_tree(path = ".", recurse = TRUE, ...)
 \item{recurse}{If \code{TRUE} recurse fully, if a positive number the number of levels
 to recurse.}
 
-\item{...}{Additional arguments passed to \link{dir_ls}.}
+\item{...}{
+  Arguments passed on to \code{\link[=dir_ls]{dir_ls}}
+  \describe{
+    \item{\code{type}}{File type(s) to return, one or more of "any", "file", "directory",
+"symlink", "FIFO", "socket", "character_device" or "block_device".}
+    \item{\code{recursive}}{(Deprecated) If \code{TRUE} recurse fully.}
+    \item{\code{all}}{If \code{TRUE} hidden files are also returned.}
+    \item{\code{fail}}{Should the call fail (the default) or warn if a file cannot be
+accessed.}
+    \item{\code{glob}}{A wildcard aka globbing pattern (e.g. \verb{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+    \item{\code{regexp}}{A regular expression (e.g. \verb{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
+    \item{\code{invert}}{If \code{TRUE} return files which do \emph{not} match}
+  }}
 }
 \description{
 Print contents of directories in a tree-like format
