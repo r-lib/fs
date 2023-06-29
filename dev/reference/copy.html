@@ -14,7 +14,7 @@ dir_copy() copies the directory recursively at the new location."><meta name="ro
     
     <a class="navbar-brand me-2" href="../index.html">fs</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6.1.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">1.6.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,10 +130,10 @@ if the name differs from the basename of <code>path</code>.</p>
 <span class="r-in"><span><span class="co"># Create a link to the directory</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="create.html">link_create</a></span><span class="op">(</span><span class="fu"><a href="path_math.html">path_abs</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span>, <span class="st">"loo"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="link_path.html">link_path</a></span><span class="op">(</span><span class="st">"loo"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpHx19zw/foo</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpFvEydD/foo</span></span>
 <span class="r-in"><span><span class="fu">link_copy</span><span class="op">(</span><span class="st">"loo"</span>, <span class="st">"loo2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="link_path.html">link_path</a></span><span class="op">(</span><span class="st">"loo2"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpHx19zw/foo</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/RtmpFvEydD/foo</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Cleanup</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="delete.html">dir_delete</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"foo2"</span><span class="op">)</span><span class="op">)</span></span></span>
