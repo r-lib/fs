@@ -499,22 +499,3 @@ path_has_parent <- function(path, parent) {
   }
   res
 }
-
-
-#' Calls a function via deduplication of the input rather than each individual element.
-#'
-#' @description Used to speed up some functions above.
-#'
-#' @param func Function to call.
-#' @param x First unnamed argument to the function, and the one that should be deduplicated.
-#' @param ... Other arguments to the function.
-#'
-#' @return `func` applied to `x`.
-call_with_deduplication <- function(func, x, ...) {
-  unique_x <- unique(x)
-
-  func(unique_x, ...)[match(x, unique_x)]
-}
-
-
-
