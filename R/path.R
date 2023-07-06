@@ -340,15 +340,16 @@ path_home_r <- function(...) {
 #' @export
 path_file <- function(path) {
   is_missing <- is.na(path)
-  path[!is_missing] <- basename(path[!is_missing])
+  path[!is_missing] <- call_with_deduplication(basename, path[!is_missing])
   as.character(path)
 }
+
 
 #' @rdname path_file
 #' @export
 path_dir <- function(path) {
   is_missing <- is.na(path)
-  path[!is_missing] <- dirname(path[!is_missing])
+  path[!is_missing] <- call_with_deduplication(dirname, path[!is_missing])
   as.character(path_tidy(path))
 }
 
@@ -498,3 +499,22 @@ path_has_parent <- function(path, parent) {
   }
   res
 }
+
+
+#' Calls a function via deduplication of the input rather than each individual element.
+#'
+#' @description Used to speed up some functions above.
+#'
+#' @param func Function to call.
+#' @param x First unnamed argument to the function, and the one that should be deduplicated.
+#' @param ... Other arguments to the function.
+#'
+#' @return `func` applied to `x`.
+call_with_deduplication <- function(func, x, ...) {
+  unique_x <- unique(x)
+
+  func(unique_x, ...)[match(x, unique_x)]
+}
+
+
+
