@@ -148,15 +148,7 @@ mkdirp <- function(x) {
 }
 
 
-#' Calls a function via deduplication of the input rather than each individual element.
-#'
-#' @description Used to speed up some functions.
-#'
-#' @param func Function to call.
-#' @param x First unnamed argument to the function, and the one that should be deduplicated.
-#' @param ... Other arguments to the function.
-#'
-#' @return `func` applied to `x`.
+# Calls a function via deduplication of the input rather than each individual element.
 call_with_deduplication <- function(func, x, ...) {
   unique_x <- unique(x)
 
