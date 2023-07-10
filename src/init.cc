@@ -1,7 +1,7 @@
+#include <stdlib.h> // for NULL
 #include <R.h>
 #include <R_ext/Rdynload.h>
 #include <Rinternals.h>
-#include <stdlib.h> // for NULL
 
 /* FIXME:
    Check these declarations against the C/Fortran source code.

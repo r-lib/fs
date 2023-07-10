@@ -1,5 +1,3 @@
-#include "utils.h"
-#include <Rinternals.h>
 #include <string>
 #include <vector>
 
@@ -9,6 +7,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
+
+#include <Rinternals.h>
+
+#include "utils.h"
 
 // [[export]]
 extern "C" SEXP fs_getpwnam_(SEXP name_sxp) {

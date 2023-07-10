@@ -2,15 +2,9 @@
 #define __STDC_FORMAT_MACROS 1
 #endif
 
-#include <Rinternals.h>
-
-#include "getmode.h"
-#include "uv.h"
-
-#undef ERROR
-
 #include <string>
 #include <vector>
+#include <inttypes.h>
 
 #include "error.h"
 
@@ -19,7 +13,12 @@
 #include <pwd.h>
 #endif
 
-#include <inttypes.h>
+#include <Rinternals.h>
+
+#include "getmode.h"
+#include "uv.h"
+
+#undef ERROR
 
 // [[export]]
 extern "C" SEXP fs_move_(SEXP path, SEXP new_path) {

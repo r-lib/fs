@@ -1,7 +1,7 @@
+#include <string>
+
 #include "utils.h"
 #include "error.h"
-
-#include <string>
 
 // If dirent is not unknown, just return it, otherwise stat the file and get
 // the filetype from that.
