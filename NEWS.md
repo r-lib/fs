@@ -1,4 +1,4 @@
-# fs (development version)
+# fs 1.6.3
 
 * No user visible changes.
 
