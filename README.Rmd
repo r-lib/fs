@@ -42,8 +42,7 @@ install.packages("fs")
 
 And the development version from [GitHub](https://github.com/) with:
 ```r
-# install.packages("devtools")
-devtools::install_github("r-lib/fs")
+pak::pak("r-lib/fs")
 ```
 
 ## Comparison vs base equivalents

@@ -31,8 +31,7 @@ install.packages("fs")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("r-lib/fs")
+pak::pak("r-lib/fs")
 ```
 
 ## Comparison vs base equivalents
@@ -106,12 +105,12 @@ dir_ls()
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2053685f92
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e375b43f7c8
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2053685f92/my-file.txt
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e375b43f7c8/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -135,11 +134,11 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/a
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/b
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/c
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/d
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/e
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/a
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/b
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/c
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/d
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/e
 
 paths %>% file_delete()
 ```
