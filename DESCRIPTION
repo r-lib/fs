@@ -9,7 +9,7 @@ Authors@R: c(
            comment = "libuv library"),
     person("Joyent, Inc. and other Node contributors", role = "cph",
            comment = "libuv library"),
-    person("RStudio", role = c("cph", "fnd"))
+    person("Posit Software, PBC", role = c("cph", "fnd")),
   )
 Description: A cross-platform interface to file system operations, built
     on top of the 'libuv' C library.
