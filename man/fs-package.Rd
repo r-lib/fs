@@ -6,6 +6,8 @@
 \alias{fs-package}
 \title{fs: Cross-Platform File System Operations Based on 'libuv'}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 A cross-platform interface to file system operations, built on top of the 'libuv' C library.
 }
 \seealso{

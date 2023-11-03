@@ -17,17 +17,13 @@ if (basename(getwd()) == "docs") {
 fs:::pkgdown_tmp(c("/tmp/filedd463d6d7e0f", "/tmp/filedd464dbb3467"))
 ```
 
-# fs
+# fs <a href="https://fs.r-lib.org/"><img src="man/figures/logo.png" align="right" height="138" alt="fs website" /></a>
 
 <!-- badges: start -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![R-CMD-check](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs?branch=main)
 <!-- badges: end -->
-
-<p align="center">
-  <img src="https://i.imgur.com/NAux1Xc.png" width = "75%"/>
-</p>
 
 **fs** provides a cross-platform, uniform interface to file system operations.
 It shares the same back-end component as [nodejs](https://nodejs.org), the
