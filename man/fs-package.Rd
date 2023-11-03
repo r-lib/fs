@@ -23,14 +23,14 @@ Useful links:
 Authors:
 \itemize{
   \item Jim Hester
-  \item Hadley Wickham \email{hadley@rstudio.com}
+  \item Hadley Wickham \email{hadley@posit.co}
 }
 
 Other contributors:
 \itemize{
   \item libuv project contributors (libuv library) [copyright holder]
   \item Joyent, Inc. and other Node contributors (libuv library) [copyright holder]
-  \item RStudio [copyright holder, funder]
+  \item Posit Software, PBC [copyright holder, funder]
 }
 
 }
