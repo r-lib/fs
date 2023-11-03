@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# fs
+# fs <a href="https://fs.r-lib.org/"><img src="man/figures/logo.png" align="right" height="138" alt="fs website" /></a>
 
 <!-- badges: start -->
 
@@ -10,10 +10,6 @@
 [![Codecov test
 coverage](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs?branch=main)
 <!-- badges: end -->
-
-<p align="center">
-<img src="https://i.imgur.com/NAux1Xc.png" width = "75%"/>
-</p>
 
 **fs** provides a cross-platform, uniform interface to file system
 operations. It shares the same back-end component as
@@ -105,18 +101,17 @@ dir_ls()
 #> NAMESPACE        NEWS.md          R                README.Rmd       
 #> README.md        _pkgdown.yml     cleanup          codecov.yml      
 #> cran-comments.md fs.Rproj         inst             man              
-#> man-roxygen      revdep           src              tests            
-#> vignettes
+#> man-roxygen      src              tests            vignettes
 
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2053685f92
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8/my-file.txt
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2053685f92/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -140,11 +135,11 @@ paths <- file_temp() %>%
   path(letters[1:5]) %>%
   file_create()
 paths
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/a
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/b
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/c
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/d
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/e
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/a
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/b
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/c
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/d
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpK8kk3v/file5c2039edb14c/e
 
 paths %>% file_delete()
 ```
@@ -168,20 +163,21 @@ dir_info("src", recurse = FALSE) %>%
   filter(type == "file", permissions == "u+r", size > "10KB") %>%
   arrange(desc(size)) %>%
   select(path, permissions, size, modification_time)
-#> # A tibble: 11 × 4
+#> # A tibble: 12 × 4
 #>    path          permissions        size modification_time  
 #>    <fs::path>    <fs::perms> <fs::bytes> <dttm>             
-#>  1 src/fs.so     rwxr-xr-x        492.6K 2023-01-22 21:52:58
-#>  2 src/id.o      rw-r--r--        213.5K 2023-01-22 21:52:41
-#>  3 src/dir.o     rw-r--r--        102.7K 2023-01-22 21:52:40
-#>  4 src/utils.o   rw-r--r--         89.2K 2023-01-22 21:52:41
-#>  5 src/path.o    rw-r--r--         81.7K 2023-01-22 21:52:41
-#>  6 src/link.o    rw-r--r--         74.2K 2023-01-22 21:52:41
-#>  7 src/getmode.o rw-r--r--         65.3K 2023-01-22 21:52:40
-#>  8 src/file.o    rw-r--r--         48.5K 2023-01-22 21:52:40
-#>  9 src/error.o   rw-r--r--         18.4K 2023-01-22 21:52:40
-#> 10 src/init.o    rw-r--r--         17.4K 2023-01-22 21:52:41
-#> 11 src/file.cc   rw-r--r--         11.7K 2023-01-22 21:52:29
+#>  1 src/fs.so     rwxr-xr-x        309.3K 2023-07-10 18:01:44
+#>  2 src/id.o      rw-r--r--        185.7K 2023-07-10 18:01:17
+#>  3 src/dir.o     rw-r--r--        115.1K 2023-07-10 18:01:16
+#>  4 src/path.o    rw-r--r--        113.6K 2023-07-10 18:01:18
+#>  5 src/link.o    rw-r--r--         91.6K 2023-07-10 18:01:18
+#>  6 src/getmode.o rw-r--r--         83.1K 2023-07-10 18:01:17
+#>  7 src/utils.o   rw-r--r--         80.8K 2023-07-10 18:01:18
+#>  8 src/file.o    rw-r--r--         66.1K 2023-07-10 18:01:17
+#>  9 src/init.o    rw-r--r--         20.4K 2023-07-10 18:01:17
+#> 10 src/error.o   rw-r--r--         20.1K 2023-07-10 18:01:16
+#> 11 src/fs.o      rw-r--r--           12K 2023-07-10 18:01:17
+#> 12 src/file.cc   rw-r--r--         11.7K 2023-07-10 17:54:06
 ```
 
 Tabulate and display folder size.
@@ -193,17 +189,17 @@ dir_info("src", recurse = TRUE) %>%
 #> # A tibble: 14 × 2
 #>    directory                                n
 #>    <chr>                          <fs::bytes>
-#>  1 src/libuv-1.44.2                     2.85M
-#>  2 src/libuv-1.44.2/src/unix            1.28M
-#>  3 src                                  1.22M
+#>  1 src/libuv-1.44.2                     2.87M
+#>  2 src/libuv-1.44.2/src/unix            1.46M
+#>  3 src                                  1.11M
 #>  4 src/libuv-1.44.2/test                1.05M
 #>  5 src/libuv-1.44.2/src/win           742.07K
 #>  6 src/libuv-1.44.2/m4                 356.7K
-#>  7 src/libuv-1.44.2/src               340.12K
+#>  7 src/libuv-1.44.2/src               353.05K
 #>  8 src/libuv-1.44.2/include/uv        137.44K
 #>  9 src/libuv-1.44.2/img               106.71K
-#> 10 src/libuv-1.44.2/include            66.23K
-#> 11 src/unix                             60.2K
+#> 10 src/unix                            76.56K
+#> 11 src/libuv-1.44.2/include            66.23K
 #> 12 src/bsd                             20.02K
 #> 13 src/windows                          4.73K
 #> 14 src/libuv-1.44.2/test/fixtures         453
@@ -256,5 +252,5 @@ appreciated.
 ## Code of Conduct
 
 Please note that the fs project is released with a [Contributor Code of
-Conduct](https://fs.r-lib.org/dev/CODE_OF_CONDUCT.html). By contributing to
-this project, you agree to abide by its terms.
+Conduct](https://fs.r-lib.org/dev/CODE_OF_CONDUCT.html). By contributing
+to this project, you agree to abide by its terms.
