@@ -15,7 +15,7 @@ dir_tree <- function(path = ".", recurse = TRUE, ...) {
   files <- dir_ls(path, recurse = recurse, ...)
   dd <- unlist(sapply(path_dir(files), find_ancestor_dirs))
   dd <- setdiff(dd, path)
-  files <- unique(c(dd, files))
+  files <- unique(c(files, dd))
   by_dir <- split(files, path_dir(files))
 
   ch <- box_chars()
