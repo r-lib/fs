@@ -6,7 +6,16 @@
 #'
 #' @export
 dir_tree <- function(path = ".", recurse = TRUE, ...) {
+  find_ancestor_dirs <- function(path) {
+    parts <- path_split(path)[[1]]
+    Reduce(function(x, y) path_join(list(c(x, y))),
+           parts, accumulate = TRUE)
+  }
+
   files <- dir_ls(path, recurse = recurse, ...)
+  dd <- unlist(sapply(path_dir(files), find_ancestor_dirs))
+  dd <- setdiff(dd, path)
+  files <- unique(c(dd, files))
   by_dir <- split(files, path_dir(files))
 
   ch <- box_chars()
