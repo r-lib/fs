@@ -100,7 +100,7 @@ path_real <- function(path) {
 
 #' Tidy paths
 #'
-#' untidy paths are all different, tidy paths are all the same.
+#' Untidy paths are all different, tidy paths are all the same.
 #' Tidy paths always use `/` to delimit directories, never have
 #' multiple `/` or trailing `/` and have colourised output based on the file
 #' type.
