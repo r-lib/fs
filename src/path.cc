@@ -35,6 +35,9 @@ extern "C" SEXP fs_path_(SEXP paths, SEXP ext_sxp) {
   R_xlen_t max_col = Rf_xlength(paths);
   char buf[PATH_MAX];
   char* b = buf;
+  if (max_col == 0) {
+    return Rf_allocVector(STRSXP, 0);
+  }
   for (R_xlen_t c = 0; c < max_col; ++c) {
     R_xlen_t len = Rf_xlength(VECTOR_ELT(paths, c));
     if (len == 0) {

@@ -69,6 +69,7 @@ describe("path", {
 
     expect_error(path(c("foo", "qux", "foo2"), c("bar", "baz")), "Arguments must have consistent lengths", class = "invalid_argument")
 
+    expect_equal(path(ext = character()), fs_path(character()))
     expect_equal(path("foo", ext = character()), fs_path(character()))
     expect_equal(path("foo", ext = "bar"), fs_path("foo.bar"))
     expect_equal(
