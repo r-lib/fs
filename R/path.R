@@ -60,7 +60,7 @@ NULL
 #' path("foo", letters[1:3], ext = "txt")
 path <- function(..., ext = "") {
   args <- list(...)
-  assert_recyclable(args)
+  assert_recyclable(c(args, list(ext)))
 
   path_tidy(.Call(fs_path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
 }
