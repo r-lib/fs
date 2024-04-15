@@ -312,14 +312,16 @@ path_home_r <- function(...) {
 
 #' Manipulate file paths
 #'
-#' `path_file()` returns the filename portion of the path, `path_dir()` returns
-#' the directory portion. `path_ext()` returns the last extension (if any) for a
-#' path. `path_ext_remove()` removes the last extension and returns the rest of
-#' the path. `path_ext_set()` replaces the extension with a new extension. If
-#' there is no existing extension the new extension is appended.
+#' * `path_file()` returns the filename portion of the path
+#' * `path_dir()` returns the directory portion of the path
+#' * `path_ext()` returns the last extension (if any) for a path
+#' * `path_ext_remove()` removes the last extension and returns the rest of
+#'   the path
+#' * `path_ext_set()` replaces the extension with a new extension. If there is
+#'   no existing extension the new extension is appended
 #'
 #' Note because these are not full file paths they return regular character
-#' vectors, not `fs_path()` objects.
+#' vectors, not [`fs_path`][fs_path()] objects.
 #' @template fs
 #' @param ext,value The new file extension.
 #' @seealso [base::basename()], [base::dirname()]
