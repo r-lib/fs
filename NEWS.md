@@ -1,4 +1,6 @@
-# fs (development version)
+# fs 1.6.4
+
+* No changes.
 
 # fs 1.6.3
 
