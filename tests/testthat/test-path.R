@@ -261,6 +261,8 @@ describe("path_ext", {
     expect_equal(path_ext(".cshrc"), "")
     expect_equal(path_ext("...manydots"), "")
     expect_equal(path_ext("...manydots.ext"), "ext")
+    expect_equal(path_ext("manydots..."), "")
+    expect_equal(path_ext("manydots...ext"), "ext")
     expect_equal(path_ext("."), "")
     expect_equal(path_ext(".."), "")
     expect_equal(path_ext("........"), "")
