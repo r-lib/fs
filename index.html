@@ -5,18 +5,23 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A cross-platform interface to file system operations, built
-    on top of the libuv C library.">
+<meta name="description" content="A cross-platform interface to file system operations, built on top of the libuv C library.">
 <title>Cross-Platform File System Operations Based on libuv • fs</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.7/font.css" rel="stylesheet">
-<link href="deps/Source_Code_Pro-0.4.7/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.9/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Cross-Platform File System Operations Based on libuv">
-<meta property="og:description" content="A cross-platform interface to file system operations, built
-    on top of the libuv C library.">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Cross-Platform File System Operations Based on libuv">
+<meta property="og:description" content="A cross-platform interface to file system operations, built on top of the libuv C library.">
+<meta property="og:image" content="https://fs.r-lib.org/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -26,11 +31,11 @@
     <a href="#container" class="visually-hidden-focusable">Skip to content</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-none"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-none" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">fs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.6.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.6.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,13 +82,14 @@
 </nav><div class="container template-home" id="container">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="fs">fs<a class="anchor" aria-label="anchor" href="#fs"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="fs-">fs 
+<a class="anchor" aria-label="anchor" href="#fs-"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
-<p align="center">
-<img src="https://i.imgur.com/NAux1Xc.png" width="75%"></p>
-<p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as <a href="https://nodejs.org" class="external-link">nodejs</a>, the <a href="http://docs.libuv.org/en/v1.x/fs.html" class="external-link">libuv</a> C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html" class="external-link">fs module</a>.</p>
+<p><strong>fs</strong> provides a cross-platform, uniform interface to file system operations. It shares the same back-end component as <a href="https://nodejs.org" class="external-link">nodejs</a>, the <a href="https://docs.libuv.org/en/v1.x/fs.html" class="external-link">libuv</a> C library, which brings the benefit of extensive real-world use and rigorous cross-platform testing. The name, and some of the interface, is partially inspired by Rust’s <a href="https://doc.rust-lang.org/std/fs/index.html" class="external-link">fs module</a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -92,8 +98,7 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"fs"</span><span class="op">)</span></span></code></pre></div>
 <p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"r-lib/fs"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"r-lib/fs"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="comparison-vs-base-equivalents">Comparison vs base equivalents<a class="anchor" aria-label="anchor" href="#comparison-vs-base-equivalents"></a>
@@ -115,7 +120,7 @@
 <li>never have multiple <code>/</code> or trailing <code>/</code>
 </li>
 </ul>
-<p>Tidy paths are also coloured (if your terminal supports it) based on the file permissions and file type. This colouring can be customized or extended by setting the <code>LS_COLORS</code> environment variable, in the same output format as <a href="http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors" class="external-link">GNU dircolors</a>.</p>
+<p>Tidy paths are also coloured (if your terminal supports it) based on the file permissions and file type. This colouring can be customized or extended by setting the <code>LS_COLORS</code> environment variable, in the same output format as <a href="https://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors" class="external-link">GNU dircolors</a>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -146,18 +151,17 @@
 <span><span class="co">#&gt; NAMESPACE        NEWS.md          R                README.Rmd       </span></span>
 <span><span class="co">#&gt; README.md        _pkgdown.yml     cleanup          codecov.yml      </span></span>
 <span><span class="co">#&gt; cran-comments.md fs.Rproj         inst             man              </span></span>
-<span><span class="co">#&gt; man-roxygen      revdep           src              tests            </span></span>
-<span><span class="co">#&gt; vignettes</span></span>
+<span><span class="co">#&gt; man-roxygen      src              tests            vignettes</span></span>
 <span></span>
 <span><span class="co"># create a new directory</span></span>
 <span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create.html">dir_create</a></span><span class="op">(</span><span class="fu"><a href="reference/file_temp.html">file_temp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tmp</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e375b43f7c8</span></span>
 <span></span>
 <span><span class="co"># create new files in that directory</span></span>
 <span><span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="st">"my-file.txt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb5f12e1a8/my-file.txt</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e375b43f7c8/my-file.txt</span></span>
 <span></span>
 <span><span class="co"># remove files from the directory</span></span>
 <span><span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">tmp</span>, <span class="st">"my-file.txt"</span><span class="op">)</span><span class="op">)</span></span>
@@ -175,11 +179,11 @@
 <span>  <span class="fu"><a href="reference/path.html">path</a></span><span class="op">(</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/create.html">file_create</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">paths</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/a</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/b</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/c</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/d</span></span>
-<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpsYVhMJ/file14eb51c5215df/e</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/a</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/b</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/c</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/d</span></span>
+<span><span class="co">#&gt; /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/e</span></span>
 <span></span>
 <span><span class="va">paths</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="reference/delete.html">file_delete</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>fs</strong> functions also work well in conjunction with other <a href="https://www.tidyverse.org/" class="external-link">tidyverse</a> packages, like <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> and <a href="https://purrr.tidyverse.org" class="external-link">purrr</a>.</p>
@@ -193,20 +197,21 @@
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">type</span> <span class="op">==</span> <span class="st">"file"</span>, <span class="va">permissions</span> <span class="op">==</span> <span class="st">"u+r"</span>, <span class="va">size</span> <span class="op">&gt;</span> <span class="st">"10KB"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">size</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">path</span>, <span class="va">permissions</span>, <span class="va">size</span>, <span class="va">modification_time</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 11 × 4</span></span>
+<span><span class="co">#&gt; # A tibble: 12 × 4</span></span>
 <span><span class="co">#&gt;    path          permissions        size modification_time  </span></span>
 <span><span class="co">#&gt;    &lt;fs::path&gt;    &lt;fs::perms&gt; &lt;fs::bytes&gt; &lt;dttm&gt;             </span></span>
-<span><span class="co">#&gt;  1 src/fs.so     rwxr-xr-x        492.6K 2023-01-22 21:52:58</span></span>
-<span><span class="co">#&gt;  2 src/id.o      rw-r--r--        213.5K 2023-01-22 21:52:41</span></span>
-<span><span class="co">#&gt;  3 src/dir.o     rw-r--r--        102.7K 2023-01-22 21:52:40</span></span>
-<span><span class="co">#&gt;  4 src/utils.o   rw-r--r--         89.2K 2023-01-22 21:52:41</span></span>
-<span><span class="co">#&gt;  5 src/path.o    rw-r--r--         81.7K 2023-01-22 21:52:41</span></span>
-<span><span class="co">#&gt;  6 src/link.o    rw-r--r--         74.2K 2023-01-22 21:52:41</span></span>
-<span><span class="co">#&gt;  7 src/getmode.o rw-r--r--         65.3K 2023-01-22 21:52:40</span></span>
-<span><span class="co">#&gt;  8 src/file.o    rw-r--r--         48.5K 2023-01-22 21:52:40</span></span>
-<span><span class="co">#&gt;  9 src/error.o   rw-r--r--         18.4K 2023-01-22 21:52:40</span></span>
-<span><span class="co">#&gt; 10 src/init.o    rw-r--r--         17.4K 2023-01-22 21:52:41</span></span>
-<span><span class="co">#&gt; 11 src/file.cc   rw-r--r--         11.7K 2023-01-22 21:52:29</span></span></code></pre></div>
+<span><span class="co">#&gt;  1 src/fs.so     rwxr-xr-x        309.3K 2023-07-10 18:01:44</span></span>
+<span><span class="co">#&gt;  2 src/id.o      rw-r--r--        185.7K 2023-07-10 18:01:17</span></span>
+<span><span class="co">#&gt;  3 src/dir.o     rw-r--r--        115.1K 2023-07-10 18:01:16</span></span>
+<span><span class="co">#&gt;  4 src/path.o    rw-r--r--        113.6K 2023-07-10 18:01:18</span></span>
+<span><span class="co">#&gt;  5 src/link.o    rw-r--r--         91.6K 2023-07-10 18:01:18</span></span>
+<span><span class="co">#&gt;  6 src/getmode.o rw-r--r--         83.1K 2023-07-10 18:01:17</span></span>
+<span><span class="co">#&gt;  7 src/utils.o   rw-r--r--         80.8K 2023-07-10 18:01:18</span></span>
+<span><span class="co">#&gt;  8 src/file.o    rw-r--r--         66.1K 2023-07-10 18:01:17</span></span>
+<span><span class="co">#&gt;  9 src/init.o    rw-r--r--         20.4K 2023-07-10 18:01:17</span></span>
+<span><span class="co">#&gt; 10 src/error.o   rw-r--r--         20.1K 2023-07-10 18:01:16</span></span>
+<span><span class="co">#&gt; 11 src/fs.o      rw-r--r--           12K 2023-07-10 18:01:17</span></span>
+<span><span class="co">#&gt; 12 src/file.cc   rw-r--r--         11.7K 2023-07-10 17:54:06</span></span></code></pre></div>
 <p>Tabulate and display folder size.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/dir_ls.html">dir_info</a></span><span class="op">(</span><span class="st">"src"</span>, recurse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -215,17 +220,17 @@
 <span><span class="co">#&gt; # A tibble: 14 × 2</span></span>
 <span><span class="co">#&gt;    directory                                n</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;                          &lt;fs::bytes&gt;</span></span>
-<span><span class="co">#&gt;  1 src/libuv-1.44.2                     2.85M</span></span>
-<span><span class="co">#&gt;  2 src/libuv-1.44.2/src/unix            1.28M</span></span>
-<span><span class="co">#&gt;  3 src                                  1.22M</span></span>
+<span><span class="co">#&gt;  1 src/libuv-1.44.2                     2.87M</span></span>
+<span><span class="co">#&gt;  2 src/libuv-1.44.2/src/unix            1.46M</span></span>
+<span><span class="co">#&gt;  3 src                                  1.11M</span></span>
 <span><span class="co">#&gt;  4 src/libuv-1.44.2/test                1.05M</span></span>
 <span><span class="co">#&gt;  5 src/libuv-1.44.2/src/win           742.07K</span></span>
 <span><span class="co">#&gt;  6 src/libuv-1.44.2/m4                 356.7K</span></span>
-<span><span class="co">#&gt;  7 src/libuv-1.44.2/src               340.12K</span></span>
+<span><span class="co">#&gt;  7 src/libuv-1.44.2/src               353.05K</span></span>
 <span><span class="co">#&gt;  8 src/libuv-1.44.2/include/uv        137.44K</span></span>
 <span><span class="co">#&gt;  9 src/libuv-1.44.2/img               106.71K</span></span>
-<span><span class="co">#&gt; 10 src/libuv-1.44.2/include            66.23K</span></span>
-<span><span class="co">#&gt; 11 src/unix                             60.2K</span></span>
+<span><span class="co">#&gt; 10 src/unix                            76.56K</span></span>
+<span><span class="co">#&gt; 11 src/libuv-1.44.2/include            66.23K</span></span>
 <span><span class="co">#&gt; 12 src/bsd                             20.02K</span></span>
 <span><span class="co">#&gt; 13 src/windows                          4.73K</span></span>
 <span><span class="co">#&gt; 14 src/libuv-1.44.2/test/fixtures         453</span></span></code></pre></div>
@@ -307,11 +312,11 @@
 <li>
 <a href="https://www.jimhester.com/" class="external-link">Jim Hester</a> <br><small class="roles"> Author </small>  </li>
 <li>
-<a href="http://hadley.nz" class="external-link">Hadley Wickham</a> <br><small class="roles"> Author </small>  </li>
+<a href="https://hadley.nz" class="external-link">Hadley Wickham</a> <br><small class="roles"> Author </small>  </li>
 <li>
 <a href="https://github.com/gaborcsardi" class="external-link">Gábor Csárdi</a> <br><small class="roles"> Author, maintainer </small>  </li>
 <li>
-<a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" style="margin-bottom: 3px;"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
+<a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -325,13 +330,11 @@
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by <a href="https://www.jimhester.com/" class="external-link">Jim Hester</a>, <a href="http://hadley.nz" class="external-link">Hadley Wickham</a>, <a href="https://github.com/gaborcsardi" class="external-link">Gábor Csárdi</a>, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" style="margin-bottom: 3px;"></a>.</p>
+  <p>Developed by <a href="https://www.jimhester.com/" class="external-link">Jim Hester</a>, <a href="https://hadley.nz" class="external-link">Hadley Wickham</a>, <a href="https://github.com/gaborcsardi" class="external-link">Gábor Csárdi</a>, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
   </div></footer>
