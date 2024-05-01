@@ -368,7 +368,7 @@ path_ext <- function(path) {
 #' @export
 path_ext_remove <- function(path) {
   dir <- path_dir(path)
-  file <- sub("(?<!^|[.]|/)[.][^.]+$", "", path_file(path), perl = TRUE)
+  file <- sub("(?<!^|[.])\\.+([^.]+)$", "", path_file(path), perl = TRUE)
 
   na <- is.na(path)
   no_dir <- dir == "." | dir == ""

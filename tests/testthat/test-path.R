@@ -293,6 +293,8 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove(".cshrc"), ".cshrc")
     expect_equal(path_ext_remove("...manydots"), "...manydots")
     expect_equal(path_ext_remove("...manydots.ext"), "...manydots")
+    expect_equal(path_ext_remove("manydots..."), "manydots...")
+    expect_equal(path_ext_remove("manydots...ext"), "manydots")
     expect_equal(path_ext_remove("."), ".")
     expect_equal(path_ext_remove(".."), "..")
     expect_equal(path_ext_remove("........"), "........")
