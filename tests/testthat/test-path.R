@@ -604,6 +604,11 @@ describe("path_rel", {
       path_rel(c("a", "a/b", "a/b/c"), "a/b"),
       fs_path(c("..", ".", "c"))
     )
+    expect_error(
+      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a")),
+      "`start` must be a single path to a starting directory",
+      fixed = TRUE
+    )
   })
 
   it("works for windows paths", {

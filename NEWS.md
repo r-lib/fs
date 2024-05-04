@@ -1,6 +1,8 @@
 # fs (development version)
 
-* `path_ext()` returns extension when multiple dots are present in file name (@IndrajeetPatil, #452).
+* `path_ext()` and `path_ext_remove()` return correct extension and path, respectively, when multiple dots are present in file name (@IndrajeetPatil, #452, #453).
+
+* `path_rel()` provides an informative error message when multiple starting directory paths are specified (@IndrajeetPatil, #454).
 
 # fs 1.6.4
 
