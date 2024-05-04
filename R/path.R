@@ -201,6 +201,10 @@ path_norm <- function(path) {
 # This implementation is partially derived from
 # https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
 path_rel <- function(path, start = ".") {
+  if (length(start) > 1L) {
+    stop("`start` must be a single path to a starting directory.", call. = FALSE)
+  }
+
   start <- path_abs(path_expand(start))
   path <- path_abs(path_expand(path))
 
