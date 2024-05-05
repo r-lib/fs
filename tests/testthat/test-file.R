@@ -15,15 +15,18 @@ describe("file_info", {
     })
 
     it("returns NA if a file does not exist", {
-      x <- file_info("missing")
+      x <- file_info("missing", fail = FALSE)
       expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
       expect_length(x, 18)
       expect_equal(nrow(x), 1)
       expect_equal(as.character(x$path), "missing")
       expect_equal(sum(is.na(x)), 17)
     })
+    it("produces error if a file does not exist and fail is set to TRUE", {
+      expect_error(file_info("missing", fail = TRUE))
+    })
     it("returns NA on NA input", {
-      x <- file_info(NA_character_)
+      x <- file_info(NA_character_, fail = FALSE)
       expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
       expect_length(x, 18)
       expect_equal(nrow(x), 1)

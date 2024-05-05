@@ -61,7 +61,7 @@ file_info <- function(path, fail = TRUE, follow = FALSE) {
   res <- res[c(important, setdiff(names(res), important))]
 
   is_symlink <- !is.na(res$type) & res$type == "symlink"
-  while(follow && any(is_symlink)) {
+  while (follow && any(is_symlink)) {
     lpath <- link_path(path[is_symlink])
     lpath <- ifelse(is_absolute_path(lpath), lpath, path(path_dir(path[is_symlink]), lpath))
     res[is_symlink, ] <- file_info(lpath, fail = fail, follow = FALSE)
