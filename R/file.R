@@ -42,7 +42,7 @@
 #' file_delete("mtcars.csv")
 #' \dontshow{setwd(.old_wd)}
 #' @export
-file_info <- function(path, fail = TRUE, follow = FALSE) {
+file_info <- function(path, fail = FALSE, follow = FALSE) {
   old <- path_expand(path)
 
   res <- .Call(fs_stat_, old, fail)
@@ -74,7 +74,7 @@ file_info <- function(path, fail = TRUE, follow = FALSE) {
 
 #' @export
 #' @rdname file_info
-file_size <- function(path, fail = TRUE) {
+file_size <- function(path, fail = FALSE) {
   res <- file_info(path, fail)
 
   stats::setNames(res$size, path)

@@ -17,9 +17,8 @@ to recurse.}
   \describe{
     \item{\code{type}}{File type(s) to return, one or more of "any", "file", "directory",
 "symlink", "FIFO", "socket", "character_device" or "block_device".}
-    \item{\code{recursive}}{(Deprecated) If \code{TRUE} recurse fully.}
     \item{\code{all}}{If \code{TRUE} hidden files are also returned.}
-    \item{\code{fail}}{Should the call fail (the default) or warn if a file cannot be
+    \item{\code{fail}}{Should the call warn (the default) or fail if a file cannot be
 accessed.}
     \item{\code{glob}}{A wildcard aka globbing pattern (e.g. \verb{*.csv}) passed on to \code{\link[=grep]{grep()}} to filter paths.}
     \item{\code{regexp}}{A regular expression (e.g. \verb{[.]csv$}) passed on to \code{\link[=grep]{grep()}} to filter paths.}

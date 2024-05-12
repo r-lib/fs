@@ -113,7 +113,7 @@ describe("dir_ls", {
         "foo2/bar/baz"), {
 
       file_chmod("foo", "a-r")
-      expect_error(dir_ls(".", recurse = TRUE), class = "EACCES")
+      expect_error(dir_ls(".", recurse = TRUE, fail = TRUE), class = "EACCES")
       expect_warning(dir_ls(fail = FALSE, recurse = TRUE), class = "EACCES")
       file_chmod("foo", "a+r")
 
@@ -198,7 +198,7 @@ describe("dir_walk", {
         "foo2/bar/baz"), {
 
       file_chmod("foo", "a-r")
-      expect_error(dir_walk(".", fun = identity, recurse = TRUE), class = "EACCES")
+      expect_error(dir_walk(".", fun = identity, recurse = TRUE, fail = TRUE), class = "EACCES")
       expect_warning(dir_walk(fail = FALSE, fun = identity, recurse = TRUE), class = "EACCES")
       file_chmod("foo", "a+r")
 
@@ -230,7 +230,7 @@ describe("dir_info", {
         "foo2/bar/baz"), {
 
       file_chmod("foo", "a-r")
-      expect_error(dir_info(".", fun = identity, recurse = TRUE), class = "EACCES")
+      expect_error(dir_info(".", fun = identity, recurse = TRUE, fail = TRUE), class = "EACCES")
       expect_warning(dir_info(fail = FALSE, fun = identity, recurse = TRUE), class = "EACCES")
       file_chmod("foo", "a+r")
 
