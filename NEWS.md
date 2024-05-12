@@ -4,6 +4,8 @@
 
 * `path_rel()` provides an informative error message when multiple starting directory paths are specified (@IndrajeetPatil, #454).
 
+* All functions that have `fail` parameter actually start respecting this parameter (@IndrajeetPatil, #455).
+
 # fs 1.6.4
 
 * No changes.
