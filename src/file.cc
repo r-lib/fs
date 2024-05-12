@@ -175,10 +175,11 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
       stop_for_error(req, "Failed to stat '%s'", p);
     }
 
-    bool has_error =
-        !fail && !doesnt_exist && warn_for_error(req, "Failed to stat '%s'", p);
+    if (doesnt_exist && !fail) {
+      warn_for_error(req, "Failed to stat '%s'", p);
+    }
 
-    if (is_na || doesnt_exist || has_error) {
+    if (is_na || doesnt_exist) {
       REAL(VECTOR_ELT(out, 1))[i] = NA_REAL;
       INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
       INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
