@@ -7,12 +7,12 @@
 \usage{
 file_info(path, fail = FALSE, follow = FALSE)
 
-file_size(path, fail = FALSE)
+file_size(path, fail = TRUE)
 }
 \arguments{
 \item{path}{A character vector of one or more paths.}
 
-\item{fail}{Should the call warn (the default) or fail if a file cannot be
+\item{fail}{Should the call fail (the default) or warn if a file cannot be
 accessed.}
 
 \item{follow}{If \code{TRUE}, symbolic links will be followed (recursively) and

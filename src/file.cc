@@ -170,35 +170,35 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
 
     bool is_na = STRING_ELT(path, i) == NA_STRING;
     bool doesnt_exist = res == UV_ENOENT || res == UV_ENOTDIR;
+
+    if (doesnt_exist && fail) {
+      stop_for_error(req, "Failed to stat '%s'", p);
+    }
+
     bool has_error =
         !fail && !doesnt_exist && warn_for_error(req, "Failed to stat '%s'", p);
 
     if (is_na || doesnt_exist || has_error) {
-      if (fail) {
-        stop_for_error(req, "Failed to stat '%s'", p);
-      } else {
-        REAL(VECTOR_ELT(out, 1))[i] = NA_REAL;
-        INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
-        INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
-        INTEGER(VECTOR_ELT(out, 3))[i] = NA_INTEGER;
-        REAL(VECTOR_ELT(out, 4))[i] = NA_REAL;
-        SET_STRING_ELT(VECTOR_ELT(out, 5), i, NA_STRING);
-        SET_STRING_ELT(VECTOR_ELT(out, 6), i, NA_STRING);
-        REAL(VECTOR_ELT(out, 7))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 8))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 9))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 10))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 11))[i] = NA_REAL;
-        INTEGER(VECTOR_ELT(out, 12))[i] = NA_INTEGER;
-        REAL(VECTOR_ELT(out, 13))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 14))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 15))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 16))[i] = NA_REAL;
-        REAL(VECTOR_ELT(out, 17))[i] = NA_REAL;
-        continue;
-      }
+      REAL(VECTOR_ELT(out, 1))[i] = NA_REAL;
+      INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
+      INTEGER(VECTOR_ELT(out, 2))[i] = NA_INTEGER;
+      INTEGER(VECTOR_ELT(out, 3))[i] = NA_INTEGER;
+      REAL(VECTOR_ELT(out, 4))[i] = NA_REAL;
+      SET_STRING_ELT(VECTOR_ELT(out, 5), i, NA_STRING);
+      SET_STRING_ELT(VECTOR_ELT(out, 6), i, NA_STRING);
+      REAL(VECTOR_ELT(out, 7))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 8))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 9))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 10))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 11))[i] = NA_REAL;
+      INTEGER(VECTOR_ELT(out, 12))[i] = NA_INTEGER;
+      REAL(VECTOR_ELT(out, 13))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 14))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 15))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 16))[i] = NA_REAL;
+      REAL(VECTOR_ELT(out, 17))[i] = NA_REAL;
+      continue;
     }
-    stop_for_error(req, "Failed to stat '%s'", p);
 
     uv_stat_t st = req.statbuf;
     REAL(VECTOR_ELT(out, 1))[i] = st.st_dev;

@@ -20,7 +20,7 @@
 #' @param recursive (Deprecated) If `TRUE` recurse fully.
 #' @inheritParams path_filter
 #' @param all If `TRUE` hidden files are also returned.
-#' @param fail Should the call warn (the default) or fail if a file cannot be
+#' @param fail Should the call fail (the default) or warn if a file cannot be
 #'   accessed.
 #' @template fs
 #' @export
@@ -46,7 +46,7 @@
 #' link_delete("base")
 #' \dontshow{setwd(.old_wd)}
 dir_ls <- function(path = ".", all = FALSE, recurse = FALSE, type = "any",
-                   glob = NULL, regexp = NULL, invert = FALSE, fail = FALSE,
+                   glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE,
                    ..., recursive) {
   assert_no_missing(path)
 
@@ -97,7 +97,7 @@ dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type =
 
 #' @rdname dir_ls
 #' @export
-dir_walk <- function(path = ".", fun, all = FALSE, recurse = FALSE, type = "any", fail = FALSE) {
+dir_walk <- function(path = ".", fun, all = FALSE, recurse = FALSE, type = "any", fail = TRUE) {
   assert_no_missing(path)
 
   old <- path_expand(path)
@@ -109,7 +109,7 @@ dir_walk <- function(path = ".", fun, all = FALSE, recurse = FALSE, type = "any"
 #' @rdname dir_ls
 #' @export
 dir_info <- function(path = ".", all = FALSE, recurse = FALSE,
-                     type = "any", regexp = NULL, glob = NULL, fail = FALSE, ...) {
+                     type = "any", regexp = NULL, glob = NULL, fail = TRUE, ...) {
   assert_no_missing(path)
 
   file_info(dir_ls(path = path, all = all, recurse = recurse, type = type,

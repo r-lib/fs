@@ -74,7 +74,7 @@ file_info <- function(path, fail = FALSE, follow = FALSE) {
 
 #' @export
 #' @rdname file_info
-file_size <- function(path, fail = FALSE) {
+file_size <- function(path, fail = TRUE) {
   res <- file_info(path, fail)
 
   stats::setNames(res$size, path)

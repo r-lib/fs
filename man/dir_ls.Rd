@@ -15,7 +15,7 @@ dir_ls(
   glob = NULL,
   regexp = NULL,
   invert = FALSE,
-  fail = FALSE,
+  fail = TRUE,
   ...,
   recursive
 )
@@ -35,7 +35,7 @@ dir_walk(
   all = FALSE,
   recurse = FALSE,
   type = "any",
-  fail = FALSE
+  fail = TRUE
 )
 
 dir_info(
@@ -45,7 +45,7 @@ dir_info(
   type = "any",
   regexp = NULL,
   glob = NULL,
-  fail = FALSE,
+  fail = TRUE,
   ...
 )
 }
@@ -66,7 +66,7 @@ to recurse.}
 
 \item{invert}{If \code{TRUE} return files which do \emph{not} match}
 
-\item{fail}{Should the call warn (the default) or fail if a file cannot be
+\item{fail}{Should the call fail (the default) or warn if a file cannot be
 accessed.}
 
 \item{...}{Additional arguments passed to \link{grep}.}
