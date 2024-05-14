@@ -74,10 +74,12 @@ print.fs_path <- function(x, ..., max = getOption("max.print")) {
   new_fs_path(paste0(e1, e2))
 }
 
+#' @exportS3Method pillar::pillar_shaft
 pillar_shaft.fs_path <- function(x, ..., min_width = 10, shorten = getOption("fs.fs_path.shorten", "front")) {
   pillar::new_pillar_shaft_simple(colourise_fs_path(x), ..., min_width = min_width, shorten = shorten)
 }
 
+#' @exportS3Method pillar::type_sum
 type_sum.fs_path <- function(x) {
   "fs::path"
 }
@@ -159,25 +161,29 @@ xtfrm.fs_path <- function(x, ...) {
   NextMethod("xterm")
 }
 
-# All functions below registered in .onLoad
-
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_path.fs_path <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_path.character <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.character.fs_path <- function(x, y, ...) {
   y
 }
 
 # Note order of class is the opposite as for ptype2
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_path.fs_path <- function(x, to, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_path.character <- function(x, to, ...) {
   as_fs_path(x)
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.character.fs_path <- function(x, to, ...) {
   unclass(x)
 }

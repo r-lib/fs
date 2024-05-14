@@ -195,61 +195,75 @@ setOldClass(c("fs_perms", "integer"), integer())
   unclass(a & b) == unclass(b)
 }
 
+#' @exportS3Method pillar::pillar_shaft
 pillar_shaft.fs_perms <- function(x, ...) {
   pillar::new_pillar_shaft_simple(format.fs_perms(x), ...)
 }
 
+#' @exportS3Method pillar::type_sum
 type_sum.fs_perms <- function(x) {
   "fs::perms"
 }
 
-# All functions below registered in .onLoad
-
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_perms.fs_perms <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_perms.double <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.double.fs_perms <- function(x, y, ...) {
   y
 }
 
 # Note order of class is the opposite as for ptype2
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_perms.fs_perms <- function(x, to, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_perms.double <- function(x, to, ...) {
   as_fs_perms(x)
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.double.fs_perms <- function(x, to, ...) {
   unclass(x)
 }
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_perms.integer <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.integer.fs_perms <- function(x, y, ...) {
   y
 }
 
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_perms.integer <- function(x, to, ...) {
   as_fs_perms(x)
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.integer.fs_perms <- function(x, to, ...) {
   unclass(x)
 }
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_perms.character <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.character.fs_perms <- function(x, y, ...) {
   y
 }
 
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_perms.character <- function(x, to, ...) {
   as_fs_perms(x)
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.character.fs_perms <- function(x, to, ...) {
   as.character(x)
 }
