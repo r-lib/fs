@@ -171,12 +171,9 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
     bool is_na = STRING_ELT(path, i) == NA_STRING;
     bool doesnt_exist = res == UV_ENOENT || res == UV_ENOTDIR;
 
-    if (doesnt_exist && fail) {
-      stop_for_error(req, "Failed to stat '%s'", p);
-    }
-
-    if (doesnt_exist && !fail) {
-      warn_for_error(req, "Failed to stat '%s'", p);
+    if (doesnt_exist) {
+      if (fail)  stop_for_error(req, "Failed to stat '%s'", p);
+      if (!fail) warn_for_error(req, "Failed to stat '%s'", p);
     }
 
     if (is_na || doesnt_exist) {
