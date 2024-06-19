@@ -1,5 +1,6 @@
 #include <cstring>
 #include <limits>
+#include <string>
 #include <sys/stat.h>
 
 #include "getmode.h"

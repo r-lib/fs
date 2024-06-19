@@ -2,6 +2,7 @@
 #define __STDC_FORMAT_MACROS 1
 #endif
 
+#include <cstdio>
 #include <string>
 #include <vector>
 #include <inttypes.h>

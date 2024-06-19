@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <string>
 
 #include "Rinternals.h"
 #include "error.h"
