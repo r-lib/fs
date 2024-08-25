@@ -4,6 +4,7 @@
 #include <cstring>
 #include <string>
 
+#include "R.h"
 #include "Rinternals.h"
 #include "error.h"
 #include "utils.h"
