@@ -1,6 +1,7 @@
 
 #include <cstring>
 
+#include "R.h"
 #include "Rinternals.h"
 #include "error.h"
 #include "utils.h"

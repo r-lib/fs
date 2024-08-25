@@ -14,6 +14,7 @@
 #include <pwd.h>
 #endif
 
+#include <R.h>
 #include <Rinternals.h>
 
 #include "getmode.h"
