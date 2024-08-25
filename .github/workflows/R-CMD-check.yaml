@@ -62,7 +62,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, r-lib/xml2@fix/compile-macos-devel, gaborcsardi/sass@fix/compile-macos-devel
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
