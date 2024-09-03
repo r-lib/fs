@@ -142,47 +142,57 @@ Ops.fs_bytes <- function (e1, e2) {
   NextMethod(.Generic)
 }
 
+#' @exportS3Method pillar::pillar_shaft
 pillar_shaft.fs_bytes <- function(x, ...) {
   pillar::new_pillar_shaft_simple(format.fs_bytes(x), align = "right", ...)
 }
 
+#' @exportS3Method pillar::type_sum
 type_sum.fs_bytes <- function(x) {
   "fs::bytes"
 }
 
-# All functions below registered in .onLoad
-
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_bytes.fs_bytes <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_bytes.double <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.double.fs_bytes <- function(x, y, ...) {
   y
 }
 
 # Note order of class is the opposite as for ptype2
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_bytes.fs_bytes <- function(x, to, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_bytes.double <- function(x, to, ...) {
   as_fs_bytes(x)
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.double.fs_bytes <- function(x, to, ...) {
   unclass(x)
 }
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.fs_bytes.integer <- function(x, y, ...) {
   x
 }
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.integer.fs_bytes <- function(x, y, ...) {
   y
 }
 
+#' @exportS3Method vctrs::vec_cast
 vec_cast.fs_bytes.integer <- function(x, to, ...) {
   as_fs_bytes(x)
 }
+#' @exportS3Method vctrs::vec_cast
 vec_cast.integer.fs_bytes <- function(x, to, ...) {
   unclass(x)
 }
