@@ -32,6 +32,7 @@ reference:
 - title: Helpers
   contents:
   - is_file
+  - is_dir_empty
   - as_fs_path
   - as_fs_bytes
   - as_fs_perms
