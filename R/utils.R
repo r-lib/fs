@@ -146,3 +146,11 @@ is_installed <- function(pkg) {
 mkdirp <- function(x) {
   dir.create(x, showWarnings = FALSE, recursive = TRUE)
 }
+
+
+# Calls a function via deduplication of the input rather than each individual element.
+call_with_deduplication <- function(func, x, ...) {
+  unique_x <- unique(x)
+
+  func(unique_x, ...)[match(x, unique_x)]
+}
