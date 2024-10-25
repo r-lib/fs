@@ -1,6 +1,6 @@
 UNAME := $(shell uname)
 
-LIBUV := libuv-1.44.2
+LIBUV := libuv-1.49.2
 
 PKG_LIBS = ./$(LIBUV)/.libs/libuv.a -pthread
 

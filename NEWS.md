@@ -4,6 +4,8 @@
 
 * `path_rel()` provides an informative error message when multiple starting directory paths are specified (@IndrajeetPatil, #454).
 
+* fs uses libuv 1.49.2 now.
+
 # fs 1.6.4
 
 * No changes.

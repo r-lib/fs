@@ -1,5 +1,5 @@
 
-LIBUV := libuv-1.44.2
+LIBUV := libuv-1.49.2
 
 PKG_LIBS = ./$(LIBUV)/libuv.a \
            -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv
