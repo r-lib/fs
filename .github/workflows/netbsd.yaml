@@ -38,7 +38,7 @@ jobs:
       - name: Install system dependencies
         shell: netbsd {0}
         run: |
-          pkg_add autoconf automake libtool pandoc x11-links
+          pkg_add autoconf automake libtool pandoc
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
@@ -51,7 +51,8 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
         with:
-          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          args: 'c("--no-manual", "--as-cran", "--no-build-vignettes")'
+          build_args: 'c("--no-manual", "--compact-vignettes=gs+qpdf", "--no-build-vignettes")'
           upload-results: never
           upload-snapshots: false
         env:
