@@ -1,0 +1,59 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'NetBSD release'
+        required: true
+        type: choice
+        options:
+        - '10.0'
+        default: '10.0'
+
+name: netbsd.yaml
+
+jobs:
+  netbsd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-hub/actions/setup-r-netbsd@main
+        with:
+          release: ${{ github.event.inputs.release || '10.0' }}
+
+      - name: Test R in NetBSD VM
+        run: |
+          getRversion()
+          R.version[["platform"]]
+          .libPaths()
+          .Library
+          find.package("pak")
+          Sys.getenv()
+        shell: Rscript {0}
+
+      - uses: r-hub/actions/debug-shell@v1
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          pak-version: none
+          install-pandoc: false
+          install-quarto: false
+          cache-version: netbsd-1
+          extra-packages: any::rcmdcheck
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          upload-results: never
+          upload-snapshots: false
+        env:
+          NOT_CRAN: true
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: 'check-results'
+          path: check
