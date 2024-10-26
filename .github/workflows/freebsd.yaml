@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: r-hub/actions/setup-r-freebsd@v1
+      - uses: r-hub/actions/setup-r-freebsd@main
         with:
           release: ${{ github.event.inputs.release || '14.1' }}
 
