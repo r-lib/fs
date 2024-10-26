@@ -43,6 +43,11 @@ jobs:
           cd /usr/local/lib && ln -s libbind/libbind.so* .
         shell: openbsd {0}
 
+      - name: Install system dependencies
+        run: |
+          pkg_add -I pandoc autoconf-2.72p0 automake-1.9.6p13 libtool
+        shell: openbsd {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: none

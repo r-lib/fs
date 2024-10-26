@@ -35,13 +35,17 @@ jobs:
           Sys.getenv()
         shell: Rscript {0}
 
+      - name: Install system requirements
+        run: |
+          pkg install -y autoconf automake libtool hs-pandoc
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: none
           install-pandoc: false
           install-quarto: false
           cache-version: dragonflybsd-1
-          extra-packages: any::rcmdcheck, r-lib/ps, gaborcsardi/Rcpp@fix/dragonflybsd
+          extra-packages: any::rcmdcheck, r-lib/ps, jeroen/openssl, gaborcsardi/Rcpp@fix/dragonflybsd
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2

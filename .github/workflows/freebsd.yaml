@@ -40,6 +40,11 @@ jobs:
 
       - uses: r-hub/actions/debug-shell@v1
 
+      - name: Install system requirements
+        run: |
+          pkg install -y hs-pandoc autoconf automake libtool
+        shell: freebsd {0}
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: none

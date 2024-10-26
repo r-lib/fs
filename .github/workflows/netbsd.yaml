@@ -35,6 +35,11 @@ jobs:
 
       - uses: r-hub/actions/debug-shell@v1
 
+      - run: Install system dependencies
+        shell: netbsd {0}
+        run: |
+          pkg_add autoconf automake libtool pandoc x11-links
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           pak-version: none
