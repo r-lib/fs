@@ -45,6 +45,7 @@ jobs:
 
       - name: Ignore vignettes
         shell: netbsd {0}
+        run: |
           sed -i.bak -e '/VignetteBuilder:/,+1d' DESCRIPTION
           rm DESCRIPTION.bak
           echo '^vignettes$' >> .Rbuildignore
