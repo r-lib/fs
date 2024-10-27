@@ -45,8 +45,7 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          pkg_add -I pandoc automake-1.16.5 libtool
-          echo 'export AUTOCONF_VERSION=2.69' >> /etc/profile
+          pkg_add -I pandoc
         shell: openbsd {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
