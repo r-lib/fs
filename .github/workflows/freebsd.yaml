@@ -42,9 +42,7 @@ jobs:
 
       - name: Install system requirements
         run: |
-          pkg install -y hs-pandoc autoconf automake libtool
-          ln -s aclocal /usr/local/bin/aclocal-1.16
-          ln -s automake /usr/local/bin/automake-1.16
+          pkg install -y hs-pandoc
         shell: freebsd {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2

@@ -38,7 +38,7 @@ jobs:
       - name: Install system dependencies
         shell: netbsd {0}
         run: |
-          pkg_add autoconf automake libtool pandoc png
+          pkg_add pandoc png
           # these do not work in the end, but I'll leave them here
           ln -s libpng16.so /usr/pkg/lib/libpng.so
           ln -s libfontconfig.so /usr/pkg/lib/libfontconfig.so.2

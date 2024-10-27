@@ -37,7 +37,7 @@ jobs:
 
       - name: Install system requirements
         run: |
-          pkg install -y autoconf automake libtool hs-pandoc
+          pkg install -y hs-pandoc
         shell: dragonflybsd {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
