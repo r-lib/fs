@@ -44,11 +44,15 @@ jobs:
           ln -s libfontconfig.so /usr/pkg/lib/libfontconfig.so.2
 
       - name: Ignore vignettes
-        shell: netbsd {0}
+        shell: Rscript {0}
         run: |
-          sed -i.bak -e '/VignetteBuilder:/,+1d' DESCRIPTION
-          rm DESCRIPTION.bak
-          echo '^vignettes$' >> .Rbuildignore
+          dsc <- readLines("DESCRIPTION")
+          vb <- grep("VignetteBuilder:", dsc)
+          if (length(vb) > 0) {
+            dsc <- dsc[-(vb:(vb+1))]
+            writeLines(dsc, "DESCRIPTION")
+          }
+          cat("^vignettes$", file = ".Rbuildignore", append = TRUE, sep = "")
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
