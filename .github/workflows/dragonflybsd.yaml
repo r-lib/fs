@@ -48,9 +48,8 @@ jobs:
           cache-version: dragonflybsd-1
           extra-packages: |
             any::rcmdcheck
-            r-lib/ps,
             jeroen/openssl
-            gaborcsardi/Rcpp@fix/dragonflybsd
+            RcppCore/Rcpp
             sodium=?ignore
           needs: check
 

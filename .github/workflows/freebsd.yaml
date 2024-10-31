@@ -51,7 +51,7 @@ jobs:
           install-pandoc: false
           install-quarto: false
           cache-version: freebsd-1
-          extra-packages: any::rcmdcheck, r-lib/ps
+          extra-packages: any::rcmdcheck
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
