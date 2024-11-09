@@ -7,8 +7,8 @@
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![R-CMD-check](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs?branch=main)
+[![Codecov test 
+coverage](https://codecov.io/gh/r-lib/fs/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs)
 <!-- badges: end -->
 
 **fs** provides a cross-platform, uniform interface to file system
