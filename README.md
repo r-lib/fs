@@ -188,20 +188,20 @@ dir_info("src", recurse = TRUE) %>%
 #> # A tibble: 14 × 2
 #>    directory                                n
 #>    <chr>                          <fs::bytes>
-#>  1 src/libuv-1.44.2                     2.87M
-#>  2 src/libuv-1.44.2/src/unix            1.46M
+#>  1 src/libuv-1.49.2                     2.87M
+#>  2 src/libuv-1.49.2/src/unix            1.46M
 #>  3 src                                  1.11M
-#>  4 src/libuv-1.44.2/test                1.05M
-#>  5 src/libuv-1.44.2/src/win           742.07K
-#>  6 src/libuv-1.44.2/m4                 356.7K
-#>  7 src/libuv-1.44.2/src               353.05K
-#>  8 src/libuv-1.44.2/include/uv        137.44K
-#>  9 src/libuv-1.44.2/img               106.71K
+#>  4 src/libuv-1.49.2/test                1.05M
+#>  5 src/libuv-1.49.2/src/win           742.07K
+#>  6 src/libuv-1.49.2/m4                 356.7K
+#>  7 src/libuv-1.49.2/src               353.05K
+#>  8 src/libuv-1.49.2/include/uv        137.44K
+#>  9 src/libuv-1.49.2/img               106.71K
 #> 10 src/unix                            76.56K
-#> 11 src/libuv-1.44.2/include            66.23K
+#> 11 src/libuv-1.49.2/include            66.23K
 #> 12 src/bsd                             20.02K
 #> 13 src/windows                          4.73K
-#> 14 src/libuv-1.44.2/test/fixtures         453
+#> 14 src/libuv-1.49.2/test/fixtures         453
 ```
 
 Read a collection of files into one data frame.
