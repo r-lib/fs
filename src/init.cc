@@ -1,6 +1,7 @@
 #include <stdlib.h> // for NULL
 #include <R.h>
 #include <R_ext/Rdynload.h>
+#include <R_ext/Visibility.h>
 #include <R.h>
 #include <Rinternals.h>
 
@@ -71,7 +72,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"fs_strmode_", (DL_FUNC)&fs_strmode_, 1},
     {NULL, NULL, 0}};
 
-void R_init_fs(DllInfo* dll) {
+attribute_visible void R_init_fs(DllInfo* dll) {
   R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
   R_useDynamicSymbols(dll, FALSE);
 }
