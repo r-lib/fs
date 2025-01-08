@@ -17,6 +17,9 @@ endif
 ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
+ifeq ($(UNAME), NetBSD)
+PKG_LIBS += -lkvm
+endif
 ifneq ($(filter $(UNAME), Linux AIX OS400),)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
@@ -27,7 +30,10 @@ all: $(SHLIB)
 
 $(SHLIB): $(LIBUV)/.libs/libuv.a
 
+# Avoid re-running autoconf/automake/aclocal.
+# Need the timestamps in the right order.
 $(LIBUV)/Makefile:
+	touch $(LIBUV)/aclocal.m4 && touch $(LIBUV)/configure && touch $(LIBUV)/Makefile.in
 	(cd $(LIBUV) \
 	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure $(R_CONFIGURE_FLAGS) --quiet)
 

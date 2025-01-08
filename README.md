@@ -7,14 +7,14 @@
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![R-CMD-check](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/r-lib/fs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs?branch=main)
+[![Codecov test 
+coverage](https://codecov.io/gh/r-lib/fs/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs)
 <!-- badges: end -->
 
 **fs** provides a cross-platform, uniform interface to file system
 operations. It shares the same back-end component as
 [nodejs](https://nodejs.org), the
-[libuv](http://docs.libuv.org/en/v1.x/fs.html) C library, which brings
+[libuv](https://docs.libuv.org/en/v1.x/fs.html) C library, which brings
 the benefit of extensive real-world use and rigorous cross-platform
 testing. The name, and some of the interface, is partially inspired by
 Rust’s [fs module](https://doc.rust-lang.org/std/fs/index.html).
@@ -73,7 +73,7 @@ Tidy paths are also coloured (if your terminal supports it) based on the
 file permissions and file type. This colouring can be customized or
 extended by setting the `LS_COLORS` environment variable, in the same
 output format as [GNU
-dircolors](http://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors).
+dircolors](https://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_colors).
 
 ## Usage
 
