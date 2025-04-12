@@ -1,7 +1,7 @@
 
 LIBUV := libuv-1.44.2
 
-PKG_LIBS = ./$(LIBUV)/libuv.a \
+PKG_LIBS = ./$(LIBUV)/libuv.pa \
            -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv
 
 PKG_CPPFLAGS = -I./$(LIBUV)/include -D_WIN32_WINNT=0x0600 -DSTRICT_R_HEADERS -I.
@@ -15,12 +15,13 @@ OBJECTS = $(SOURCES:.cc=.o)
 # Additional flags for libuv borrowed from libuv/Makefile.mingw
 LIBUV_CFLAGS = -Iinclude -Isrc -Isrc/win -DWIN32_LEAN_AND_MEAN -D_WIN32_WINNT=0x0600
 
-$(SHLIB): $(LIBUV)/libuv.a
+$(SHLIB): $(LIBUV)/libuv.pa
 
-$(LIBUV)/libuv.a:
+$(LIBUV)/libuv.pa:
 	$(MAKE) --directory=$(LIBUV) -f Makefile.mingw \
 		CC="$(CC)" CFLAGS="$(CFLAGS) $(LIBUV_CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=gnu11" AR="$(AR)" RANLIB="$(RANLIB)" \
 		HAVE_DTRACE=0
+	@mv $(LIBUV)/libuv.a $(LIBUV)/libuv.pa
 
 .PHONY: shlib-clean clean
 
