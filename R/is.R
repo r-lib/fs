@@ -65,3 +65,24 @@ is_absolute_path <- function(path) {
   tidy_path <- path_tidy(path)
   grepl("^~", path) | grepl("^(/+|[A-Za-z]:)", tidy_path)
 }
+
+#' Check if a directory is empty
+#'
+#' This function checks whether a given directory is empty or not.
+#'
+#' @param path A character string specifying the path to the directory to check.
+#'
+#' @return A logical value. Returns \code{TRUE} if the directory is empty,
+#'         \code{FALSE} otherwise.
+#'
+#' @examples
+#' \dontrun{
+#' is_dir_empty("path/to/empty/directory")  # Returns TRUE
+#' is_dir_empty("path/to/non-empty/directory")  # Returns FALSE
+#' }
+#'
+#' @export
+is_dir_empty <- function(path) {
+  length(dir_ls(path)) == 0
+}
+
