@@ -24,6 +24,7 @@ ifneq ($(filter $(UNAME), Linux AIX OS400),)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
+PKG_CFLAGS = $(C_VISIBILITY)
 PKG_CPPFLAGS = -I./$(LIBUV)/include -I. -pthread
 
 all: $(SHLIB)
