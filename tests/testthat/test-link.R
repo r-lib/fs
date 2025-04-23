@@ -1,4 +1,3 @@
-context("test-link.R")
 
 describe("link_path", {
   with_dir_tree("foo", {

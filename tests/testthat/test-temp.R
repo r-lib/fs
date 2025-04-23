@@ -1,4 +1,3 @@
-context("test-temp.R")
 
 test_that("file_temp() returns unique temporary files", {
   prev <- file_temp()
@@ -27,9 +26,9 @@ test_that("file_temp() extension applied correctly", {
 test_that("file_temp() can use have deterministic results if desired", {
   prev <- file_temp()
   file_temp_push(c("foo", "bar", "baz", "bar"))
-  expect_equal(file_temp(), "foo")
-  expect_equal(file_temp(), "bar")
-  expect_equal(file_temp(), "baz")
+  expect_equal(file_temp(), fs_path("foo"))
+  expect_equal(file_temp(), fs_path("bar"))
+  expect_equal(file_temp(), fs_path("baz"))
 
   file_temp_pop()
   x <- file_temp()

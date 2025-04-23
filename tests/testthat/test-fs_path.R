@@ -1,17 +1,16 @@
-context("test-fs_path.R")
 
 describe("as_fs_path", {
   it("returns a new fs_path object from character inputs", {
     x <- as_fs_path("foo/bar")
-    expect_is(x, "fs_path")
-    expect_is(x, "character")
+    expect_s3_class(x, "fs_path")
+    expect_s3_class(x, "character")
     expect_equal(length(x), 1)
 
     x <- as_fs_path(c("foo/bar", "foo", NA))
-    expect_is(x, "fs_path")
-    expect_is(x, "character")
+    expect_s3_class(x, "fs_path")
+    expect_s3_class(x, "character")
     expect_equal(length(x), 3)
-    expect_equal(x, c("foo/bar", "foo", NA))
+    expect_equal(as.character(x), c("foo/bar", "foo", NA))
   })
 
   it("fails with non-character inputs", {
@@ -20,15 +19,15 @@ describe("as_fs_path", {
   })
 
   it("preserves the class with both subset and subset2", {
-    expect_is(as_fs_path("foo")[1], "fs_path")
-    expect_is(as_fs_path("foo")[[1]], "fs_path")
+    expect_s3_class(as_fs_path("foo")[1], "fs_path")
+    expect_s3_class(as_fs_path("foo")[[1]], "fs_path")
   })
 })
 
 describe("colourise_fs_path", {
   it("returns an appropriately colored fs_path object", {
     withr::local_envvar(c("LS_COLORS" = gnu_ls_defaults))
-    withr::local_options(c(crayon.enabled = TRUE))
+    local_reproducible_output(crayon = TRUE)
 
     with_dir_tree(
       list(

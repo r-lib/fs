@@ -1,4 +1,3 @@
-context("test-fs_bytes.R")
 
 describe("as_fs_bytes", {
   it("accepts numeric input unchanged", {

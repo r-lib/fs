@@ -1,4 +1,3 @@
-context("test-access.R")
 
 describe("file_access", {
   with_dir_tree(list("foo/bar" = "test"), {
@@ -21,6 +20,10 @@ describe("file_access", {
     })
     it("checks for file execute ability", {
       skip_on_os(c("windows", "solaris"))
+      if (Sys.info()[["sysname"]] == "DragonFly" &&
+          Sys.info()[["effective_user"]] == "root") {
+        skip("file_access() is always executable for root on DragonFlyBSD")
+      }
       file_chmod("foo/bar", "-x")
       expect_equal(file_access("foo/bar", "execute"), c("foo/bar" = FALSE))
       file_chmod("foo/bar", "+x")

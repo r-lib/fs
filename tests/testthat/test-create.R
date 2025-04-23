@@ -1,4 +1,3 @@
-context("test-create.R")
 
 test_that("file_create works with new and existing files", {
   x1 <- file_create(tempfile())
@@ -21,12 +20,12 @@ test_that("dir_create works with new and existing files", {
 })
 
 test_that("file_create works with multiple path arguments", {
-  x1 <- file_create(tempdir(), "foo")
+  mkdirp(tmp <- tempfile())
+  on.exit(unlink(tmp, recursive = TRUE), add = TRUE)
+  x1 <- file_create(tmp, "foo")
 
-  expect_equal(x1, path(tempdir(), "foo"))
+  expect_equal(x1, path(tmp, "foo"))
   expect_true(file_exists(x1))
-
-  unlink(x1)
 })
 
 test_that("dir_create works with multiple path arguments", {
@@ -48,7 +47,7 @@ test_that("dir_create sets the mode properly", {
   x1 <- dir_create(tempfile(), mode = "775")
 
   expect_true(file_exists(x1))
-  expect_equal(file_info(x1)$permissions, "775")
+  expect_equal(as.character(file_info(x1)$permissions), "rwxrwxr-x")
 
   unlink(x1, recursive = TRUE)
 })

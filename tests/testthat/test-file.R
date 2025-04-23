@@ -1,4 +1,3 @@
-context("test-file.R")
 
 describe("file_info", {
   with_dir_tree(list(
@@ -8,7 +7,7 @@ describe("file_info", {
 
     it("returns a correct tibble", {
       x <- file_info(c("foo", "foo/bar", "foo2", "NA"))
-      expect_is(x, c("tbl", "tbl_df", "data.frame"))
+      expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
       expect_length(x, 18)
       expect_equal(nrow(x), 4)
       expect_equal(as.character(x$path), c("foo", "foo/bar", "foo2", "NA"))
@@ -17,7 +16,7 @@ describe("file_info", {
 
     it("returns NA if a file does not exist", {
       x <- file_info("missing")
-      expect_is(x, c("tbl", "tbl_df", "data.frame"))
+      expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
       expect_length(x, 18)
       expect_equal(nrow(x), 1)
       expect_equal(as.character(x$path), "missing")
@@ -25,7 +24,7 @@ describe("file_info", {
     })
     it("returns NA on NA input", {
       x <- file_info(NA_character_)
-      expect_is(x, c("tbl", "tbl_df", "data.frame"))
+      expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
       expect_length(x, 18)
       expect_equal(nrow(x), 1)
       expect_equal(as.character(x$path), NA_character_)
@@ -40,7 +39,7 @@ describe("file_info", {
     })
     it("can be subset as a tibble", {
       x <- file_info("foo/bar")
-      expect_is(x, "tbl_df")
+      expect_s3_class(x, "tbl_df")
       for (col in seq_along(x)) {
         expect_true(length(x[[1, col]]) == 1)
       }
@@ -69,36 +68,69 @@ if (!is_windows()) {
   describe("file_chmod", {
     with_dir_tree(list("foo/bar" = "test"), {
       it("returns the input path and changes permissions with symbolic input", {
-        expect_equal(file_chmod("foo/bar", "u=rw,go=r"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "644")
-        expect_equal(file_chmod("foo/bar", "u+x"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "744")
-        expect_equal(file_chmod("foo/bar", "g-r"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "704")
-        expect_equal(file_chmod("foo/bar", "o-r"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "700")
+        expect_equal(file_chmod("foo/bar", "u=rw,go=r"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("644"))
+        )
+        expect_equal(file_chmod("foo/bar", "u+x"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("744"))
+        )
+        expect_equal(file_chmod("foo/bar", "g-r"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("704"))
+        )
+        expect_equal(file_chmod("foo/bar", "o-r"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("700"))
+        )
       })
 
       it("returns the input path and changes permissions with octal input", {
-        expect_equal(file_chmod("foo/bar", "644"), "foo/bar")
-        expect_true(file_info("foo/bar")$permissions == "644")
-        expect_equal(file_chmod("foo/bar", "744"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "744")
-        expect_equal(file_chmod("foo/bar", "704"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "704")
-        expect_equal(file_chmod("foo/bar", "700"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "700")
+        expect_equal(file_chmod("foo/bar", "644"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("644"))
+        )
+        expect_equal(file_chmod("foo/bar", "744"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("744"))
+        )
+        expect_equal(file_chmod("foo/bar", "704"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("704"))
+        )
+        expect_equal(file_chmod("foo/bar", "700"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("700"))
+        )
       })
 
       it("returns the input path and changes permissions with display input", {
-        expect_equal(file_chmod("foo/bar", "rw-r--r--"), "foo/bar")
+        expect_equal(file_chmod("foo/bar", "rw-r--r--"), fs_path("foo/bar"))
         expect_true(file_info("foo/bar")$permissions == "644")
-        expect_equal(file_chmod("foo/bar", "rwxr--r--"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "744")
-        expect_equal(file_chmod("foo/bar", "rwx---r--"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "704")
-        expect_equal(file_chmod("foo/bar", "rwx------"), "foo/bar")
-        expect_equal(file_info("foo/bar")$permissions, "700")
+        expect_equal(file_chmod("foo/bar", "rwxr--r--"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("744"))
+        )
+        expect_equal(file_chmod("foo/bar", "rwx---r--"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("704"))
+        )
+        expect_equal(file_chmod("foo/bar", "rwx------"), fs_path("foo/bar"))
+        expect_equal(
+          as.character(file_info("foo/bar")$permissions),
+          as.character(fs_perms("700"))
+        )
       })
 
       it("errors if given an invalid mode", {
@@ -111,13 +143,13 @@ if (!is_windows()) {
       it("is vectorized over files and permissions", {
         file_create("foo/baz")
         files <- c("foo/bar", "foo/baz")
-        expect_equal(file_chmod(files, "000"), files)
+        expect_equal(file_chmod(files, "000"), fs_path(files))
         expect_true(all(file_info(files)$permissions == c("000", "000")))
 
-        expect_equal(file_chmod(files, "644"), files)
+        expect_equal(file_chmod(files, "644"), fs_path(files))
         expect_true(all(file_info(files)$permissions == c("644", "644")))
 
-        expect_equal(file_chmod(files, c("u+x", "o+x")), files)
+        expect_equal(file_chmod(files, c("u+x", "o+x")), fs_path(files))
         expect_true(all(file_info(files)$permissions == c("744", "645")))
 
         expect_error(file_chmod(files, c("u+x", "o+x", "g+x")), class = "invalid_argument")
@@ -148,7 +180,7 @@ describe("file_move", {
   it("renames files in the same directory", {
     with_dir_tree(list("foo" = "test"), {
       expect_true(file_exists("foo"))
-      expect_equal(file_move("foo", "bar"), "bar")
+      expect_equal(file_move("foo", "bar"), fs_path("bar"))
       expect_false(file_exists("foo"))
       expect_true(file_exists("bar"))
     })
@@ -158,7 +190,7 @@ describe("file_move", {
     with_dir_tree(list("foo/bar" = "test", "foo2"), {
       expect_true(file_exists("foo/bar"))
       expect_true(file_exists("foo2"))
-      expect_equal(file_move("foo/bar", "foo2"), "foo2/bar")
+      expect_equal(file_move("foo/bar", "foo2"), fs_path("foo2/bar"))
       expect_false(file_exists("foo/bar"))
       expect_true(file_exists("foo2/bar"))
 

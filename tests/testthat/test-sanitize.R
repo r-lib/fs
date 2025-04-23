@@ -1,4 +1,3 @@
-context("sanitize")
 
 test_that("valid names", {
   expect_equal(path_sanitize("the quick brown fox jumped over the lazy dog.mp3"), "the quick brown fox jumped over the lazy dog.mp3")

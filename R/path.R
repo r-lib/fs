@@ -89,7 +89,7 @@ path_wd <- function(..., ext = "") {
 #'   calls `path_expand()` (literally) and `path_norm()` (effectively).
 #' @export
 path_real <- function(path) {
-  path <- enc2utf8(path)
+  path <- enc2utf8(as.character(path))
   old <- path_expand(path)
 
   is_missing <- is.na(path)
@@ -100,7 +100,7 @@ path_real <- function(path) {
 
 #' Tidy paths
 #'
-#' untidy paths are all different, tidy paths are all the same.
+#' Untidy paths are all different, tidy paths are all the same.
 #' Tidy paths always use `/` to delimit directories, never have
 #' multiple `/` or trailing `/` and have colourised output based on the file
 #' type.
@@ -137,8 +137,8 @@ path_join <- function(parts) {
   if (length(parts) == 0) {
     return(path_tidy(""))
   }
-  if (is.character(parts)) {
-    return(path_tidy(.Call(fs_path_, as.list(enc2utf8(parts)), "")))
+  if (!is.list(parts)) {
+    return(path_tidy(.Call(fs_path_, as.list(enc2utf8(as.character(parts))), "")))
   }
   path_tidy(vapply(parts, path_join, character(1)))
 }
@@ -201,6 +201,10 @@ path_norm <- function(path) {
 # This implementation is partially derived from
 # https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
 path_rel <- function(path, start = ".") {
+  if (length(start) > 1L) {
+    stop("`start` must be a single path to a starting directory.", call. = FALSE)
+  }
+
   start <- path_abs(path_expand(start))
   path <- path_abs(path_expand(path))
 
@@ -359,7 +363,7 @@ path_ext <- function(path) {
     return(character())
   }
 
-  res <- captures(path_file(path), regexpr("(?<!^|[.]|/)[.]([^.]+)$", path_file(path), perl = TRUE))[[1]]
+  res <- captures(path_file(path), regexpr("(?<!^|[.]|/)[.]+([^.]+)$", path_file(path), perl = TRUE))[[1]]
   res[!is.na(path) & is.na(res)] <- ""
   res
 }
@@ -368,7 +372,7 @@ path_ext <- function(path) {
 #' @export
 path_ext_remove <- function(path) {
   dir <- path_dir(path)
-  file <- sub("(?<!^|[.]|/)[.][^.]+$", "", path_file(path), perl = TRUE)
+  file <- sub("(?<!^|[.])\\.+([^.]+)$", "", path_file(path), perl = TRUE)
 
   na <- is.na(path)
   no_dir <- dir == "." | dir == ""
@@ -389,7 +393,7 @@ path_ext_set <- function(path, ext) {
   }
 
   # Remove a leading . if present
-  ext <- sub("[.]", "", ext)
+  ext <- sub("^[.]", "", ext)
 
   has_ext <- nzchar(ext)
   to_set <- !is.na(path) & has_ext

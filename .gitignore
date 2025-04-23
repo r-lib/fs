@@ -17,3 +17,5 @@ Makefile
 /src/*/src/unix/.dirstamp
 /src/libuv/
 	
+docs
+/revdep
