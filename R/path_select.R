@@ -16,14 +16,15 @@
 #' @examples
 #' path <- fs::path("some", "simple", "path", "to", "a", "file.txt")
 #'
-#' path_select(path, 1:3)
+#' path_select_components(path, 1:3)
 #'
-#' path_select(path, 1:3, "end")
+#' path_select_components(path, 1:3, "end")
 #'
-#' path_select(path, -1, "end")
+#' path_select_components(path, -1, "end")
 #'
-#' path_select(path, 6)
-path_select <- function(path, index, from = c("start", "end")) {
+#' path_select_components(path, 6)
+
+path_select_components <- function(path, index, from = c("start", "end")) {
 
   from <- match.arg(from)
 
