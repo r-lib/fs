@@ -1,8 +1,5 @@
-context("fs_select")
-
-path <- fs::path("some", "simple", "path", "to", "a", "file.txt")
-
 test_that("examples", {
+  path <- fs::path("some", "simple", "path", "to", "a", "file.txt")
   expect_equal(
     path_select(path, 1:3),
     path("some", "simple", "path")
