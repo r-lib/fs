@@ -2,7 +2,7 @@
 % Please edit documentation in R/path_select.R
 \name{path_select}
 \alias{path_select}
-\title{Select path elements by their position/index.}
+\title{Select path components by their position/index.}
 \usage{
 path_select(path, index, from = c("start", "end"))
 }
@@ -13,15 +13,15 @@ path_select(path, index, from = c("start", "end"))
 according to R's usual subsetting rules.)}
 
 \item{from}{A character of either \code{"start"} or \code{"end"} to choose if indexing
-should start from the first or last element of the \code{path}.}
+should start from the first or last component of the \code{path}.}
 }
 \value{
 An \code{fs_path} object, which is a character vector that also has class
 \code{fs_path}.
 }
 \description{
-\code{path_select()} allows to select individual elements from an \code{fs_path}
-object via their index.
+\code{path_select_components()} allows to select individual components from
+an \code{fs_path} object via their index.
 }
 \examples{
 path <- fs::path("some", "simple", "path", "to", "a", "file.txt")
