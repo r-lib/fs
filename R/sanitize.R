@@ -2,7 +2,7 @@
 #'
 #' `path_sanitize()` removes the following:
 #' - [Control characters](https://en.wikipedia.org/wiki/C0_and_C1_control_codes)
-#' - [Reserved characters](https://kb.acronis.com/content/39790)
+#' - [Reserved characters](https://web.archive.org/web/20230126161942/https://kb.acronis.com/content/39790)
 #' - Unix reserved filenames (`.` and `..`)
 #' - Trailing periods and spaces (invalid on Windows)
 #' - Windows reserved filenames (`CON`, `PRN`, `AUX`, `NUL`, `COM1`, `COM2`,

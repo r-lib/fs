@@ -1,0 +1,79 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'NetBSD release'
+        required: true
+        type: choice
+        options:
+        - '10.0'
+        default: '10.0'
+
+name: netbsd.yaml
+
+jobs:
+  netbsd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-hub/actions/setup-r-netbsd@main
+        with:
+          release: ${{ github.event.inputs.release || '10.0' }}
+
+      - name: Test R in NetBSD VM
+        run: |
+          getRversion()
+          R.version[["platform"]]
+          .libPaths()
+          .Library
+          find.package("pak")
+          Sys.getenv()
+        shell: Rscript {0}
+
+      - uses: r-hub/actions/debug-shell@v1
+
+      - name: Install system dependencies
+        shell: netbsd {0}
+        run: |
+          pkg_add pandoc png
+          # these do not work in the end, but I'll leave them here
+          ln -s libpng16.so /usr/pkg/lib/libpng.so
+          ln -s libfontconfig.so /usr/pkg/lib/libfontconfig.so.2
+
+      - name: Ignore vignettes
+        shell: Rscript {0}
+        run: |
+          dsc <- readLines("DESCRIPTION")
+          vb <- grep("VignetteBuilder:", dsc)
+          if (length(vb) > 0) {
+            dsc <- dsc[-(vb:(vb+1))]
+            writeLines(dsc, "DESCRIPTION")
+          }
+          cat("^vignettes$", file = ".Rbuildignore", append = TRUE, sep = "")
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          pak-version: none
+          install-pandoc: false
+          install-quarto: false
+          cache-version: netbsd-1
+          extra-packages: any::rcmdcheck
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          args: 'c("--no-manual", "--as-cran", "--no-build-vignettes")'
+          build_args: 'c("--no-manual", "--compact-vignettes=gs+qpdf", "--no-build-vignettes")'
+          upload-results: never
+          upload-snapshots: false
+        env:
+          NOT_CRAN: true
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: 'check-results'
+          path: check

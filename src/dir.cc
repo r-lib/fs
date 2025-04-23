@@ -1,15 +1,18 @@
+#include <cstring>
+#include <limits>
+#include <string>
+#include <sys/stat.h>
+
 #include "getmode.h"
 #include "uv.h"
 
 #undef ERROR
 
 #include "CollectorList.h"
+#include "R.h"
 #include "Rinternals.h"
 #include "error.h"
 #include "utils.h"
-#include <cstring>
-#include <limits>
-#include <sys/stat.h>
 
 // [[export]]
 extern "C" SEXP fs_mkdir_(SEXP path, SEXP mode_sxp) {

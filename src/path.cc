@@ -1,14 +1,18 @@
-#include "uv.h"
-
-#undef ERROR
-
-#include "Rinternals.h"
-#include "error.h"
-#include "utils.h"
 #include <libgen.h>
 
 #include <cstdlib>
 #include <cstring>
+#include <string>
+
+#include "R.h"
+#include "Rinternals.h"
+#include "error.h"
+#include "utils.h"
+
+#include "uv.h"
+
+#undef ERROR
+
 
 // [[export]]
 extern "C" SEXP fs_realize_(SEXP path) {
