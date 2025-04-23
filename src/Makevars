@@ -17,10 +17,15 @@ endif
 ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
+
+CYGWIN := $(findstring CYGWIN, $(shell echo $(UNAME) | \
+	    tr '[:lower:]' '[:upper:]'))
+
 ifeq ($(UNAME), NetBSD)
 PKG_LIBS += -lkvm
 endif
-ifneq ($(filter $(UNAME), Linux AIX OS400),)
+
+ifneq ($(or $(filter $(UNAME), Linux AIX OS400), $(CYGWIN)),)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
 endif
 
