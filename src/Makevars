@@ -2,7 +2,7 @@ UNAME := $(shell uname)
 
 LIBUV := libuv-1.44.2
 
-PKG_LIBS = ./$(LIBUV)/.libs/libuv.a -pthread
+PKG_LIBS = ./$(LIBUV)/.libs/libuv.pa -pthread
 
 SOURCES = $(wildcard *.cc unix/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)
@@ -28,7 +28,7 @@ PKG_CPPFLAGS = -I./$(LIBUV)/include -I. -pthread
 
 all: $(SHLIB)
 
-$(SHLIB): $(LIBUV)/.libs/libuv.a
+$(SHLIB): $(LIBUV)/.libs/libuv.pa
 
 # Avoid re-running autoconf/automake/aclocal.
 # Need the timestamps in the right order.
@@ -37,9 +37,10 @@ $(LIBUV)/Makefile:
 	(cd $(LIBUV) \
 	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure $(R_CONFIGURE_FLAGS) --quiet)
 
-$(LIBUV)/.libs/libuv.a: $(LIBUV)/Makefile
+$(LIBUV)/.libs/libuv.pa: $(LIBUV)/Makefile
 	$(MAKE) --directory=$(LIBUV) \
 		HAVE_DTRACE=0
+	@mv $(LIBUV)/.libs/libuv.a $(LIBUV)/.libs/libuv.pa
 
 .PHONY: shlib-clean clean
 
