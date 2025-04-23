@@ -3,6 +3,8 @@
 #' `path_select_components()` allows to select individual components from
 #' an `fs_path` object via their index.
 #'
+#' `path_select_components()` is vectorized.
+#'
 #' @param path A path of class `fs_path`.
 #' @param index An integer vector of path positions. (A negative index will work
 #'  according to R's usual subsetting rules.)
@@ -28,22 +30,24 @@ path_select_components <- function(path, index, from = c("start", "end")) {
 
   from <- match.arg(from)
 
-  if (length(path) > 1) {stop("Please supply only one path.")}
+  res <- fs_path(character(length(path)))
+  ps <- fs::path_split(path)
+  for (idx in seq_along(ps)) {
+    path <- ps[[idx]]
+    path_seq <- seq_along(path)
 
-  path <- unlist(fs::path_split(path))
-  path_seq <- seq_along(path)
+    if (length(index) > 0 && max(abs(index)) > length(path)) {
+      stop("`seq` contains a higher number than the path has components.")
+    }
 
-  if (max(abs(index)) > length(path)) {
-    stop("`seq` contains a higher number than the path has components.")
+    if (from == "start") {path <- path[index]}
+    if (from == "end") {
+      path_seq <- rev(rev(path_seq)[index])
+      path <- path[path_seq]
+    }
+
+    res[idx] <- fs::path_join(path)
   }
 
-  if (from == "start") {path <- path[index]}
-  if (from == "end") {
-    path_seq <- rev(rev(path_seq)[index])
-    path <- path[path_seq]
-  }
-
-  path <- fs::path_join(path)
-
-  return(path)
+  res
 }

@@ -23,6 +23,9 @@ An \code{fs_path} object, which is a character vector that also has class
 \code{path_select_components()} allows to select individual components from
 an \code{fs_path} object via their index.
 }
+\details{
+\code{path_select_components()} is vectorized.
+}
 \examples{
 path <- fs::path("some", "simple", "path", "to", "a", "file.txt")
 
