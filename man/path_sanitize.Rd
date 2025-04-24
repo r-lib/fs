@@ -15,7 +15,7 @@ path_sanitize(filename, replacement = "")
 \code{path_sanitize()} removes the following:
 \itemize{
 \item \href{https://en.wikipedia.org/wiki/C0_and_C1_control_codes}{Control characters}
-\item \href{https://kb.acronis.com/content/39790}{Reserved characters}
+\item \href{https://web.archive.org/web/20230126161942/https://kb.acronis.com/content/39790}{Reserved characters}
 \item Unix reserved filenames (\code{.} and \code{..})
 \item Trailing periods and spaces (invalid on Windows)
 \item Windows reserved filenames (\code{CON}, \code{PRN}, \code{AUX}, \code{NUL}, \code{COM1}, \code{COM2},
