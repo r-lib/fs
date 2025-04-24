@@ -36,7 +36,9 @@
 #include <poll.h>
 
 #if defined(__APPLE__)
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
 # include <spawn.h>
+#endif
 # include <paths.h>
 # include <sys/kauth.h>
 # include <sys/types.h>
@@ -387,7 +389,7 @@ static void uv__process_child_init(const uv_process_options_t* options,
 #endif
 
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) && (MAC_OS_X_VERSION_MIN_REQUIRED >= 1050)
 typedef struct uv__posix_spawn_fncs_tag {
   struct {
     int (*addchdir_np)(const posix_spawn_file_actions_t *, const char *);
@@ -588,9 +590,11 @@ static int uv__spawn_set_posix_spawn_file_actions(
       }
     }
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= 1070
     if (fd == use_fd)
         err = posix_spawn_file_actions_addinherit_np(actions, fd);
     else
+#endif
         err = posix_spawn_file_actions_adddup2(actions, use_fd, fd);
     assert(err != ENOSYS);
     if (err != 0)
@@ -839,7 +843,7 @@ static int uv__spawn_and_init_child(
   int exec_errorno;
   ssize_t r;
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) && (MAC_OS_X_VERSION_MIN_REQUIRED >= 1050)
   uv_once(&posix_spawn_init_once, uv__spawn_init_posix_spawn);
 
   /* Special child process spawn case for macOS Big Sur (11.0) onwards
