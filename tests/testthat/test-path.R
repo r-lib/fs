@@ -49,10 +49,14 @@ describe("path", {
   })
 
   it("errors on paths which are too long", {
-    expect_snapshot(error = TRUE, {
-      path(paste(rep("a", 100000), collapse = ""))
-      do.call(path, as.list(rep("a", 100000)))
-    }, transform = transform_path_max)
+    expect_snapshot(
+      error = TRUE,
+      {
+        path(paste(rep("a", 100000), collapse = ""))
+        do.call(path, as.list(rep("a", 100000)))
+      },
+      transform = transform_path_max
+    )
   })
 
   it("follows recycling rules", {
