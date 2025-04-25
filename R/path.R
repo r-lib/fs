@@ -60,7 +60,7 @@ NULL
 #' path("foo", letters[1:3], ext = "txt")
 path <- function(..., ext = "") {
   args <- list(...)
-  assert_recyclable(args)
+  assert_recyclable(c(args, list(ext)))
 
   path_tidy(.Call(fs_path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
 }
@@ -346,15 +346,16 @@ path_home_r <- function(...) {
 #' @export
 path_file <- function(path) {
   is_missing <- is.na(path)
-  path[!is_missing] <- basename(path[!is_missing])
+  path[!is_missing] <- call_with_deduplication(basename, path[!is_missing])
   as.character(path)
 }
+
 
 #' @rdname path_file
 #' @export
 path_dir <- function(path) {
   is_missing <- is.na(path)
-  path[!is_missing] <- dirname(path[!is_missing])
+  path[!is_missing] <- call_with_deduplication(dirname, path[!is_missing])
   as.character(path_tidy(path))
 }
 
@@ -486,7 +487,9 @@ path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
 #' @export
 path_has_parent <- function(path, parent) {
   path <- path_abs(path)
+  path <- path_expand(path)
   parent <- path_abs(parent)
+  parent <- path_expand(parent)
 
   res <- logical(length(path))
 

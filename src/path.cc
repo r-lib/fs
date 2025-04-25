@@ -37,6 +37,9 @@ extern "C" SEXP fs_path_(SEXP paths, SEXP ext_sxp) {
   R_xlen_t max_col = Rf_xlength(paths);
   char buf[PATH_MAX];
   char* b = buf;
+  if (max_col == 0) {
+    return Rf_allocVector(STRSXP, 0);
+  }
   for (R_xlen_t c = 0; c < max_col; ++c) {
     R_xlen_t len = Rf_xlength(VECTOR_ELT(paths, c));
     if (len == 0) {
@@ -47,7 +50,12 @@ extern "C" SEXP fs_path_(SEXP paths, SEXP ext_sxp) {
     }
   }
 
-  const char* ext = CHAR(STRING_ELT(ext_sxp, 0));
+  R_xlen_t ext_len = Rf_xlength(ext_sxp);
+  if (ext_len == 0) {
+    return Rf_allocVector(STRSXP, 0);
+  } else if (ext_len > max_row) {
+    max_row = ext_len;
+  }
 
   SEXP out = PROTECT(Rf_allocVector(STRSXP, max_row));
   for (R_xlen_t r = 0; r < max_row; ++r) {
@@ -83,6 +91,7 @@ extern "C" SEXP fs_path_(SEXP paths, SEXP ext_sxp) {
     if (has_na) {
       SET_STRING_ELT(out, r, NA_STRING);
     } else {
+      const char* ext = CHAR(STRING_ELT(ext_sxp, r % ext_len));
       if (strlen(ext) > 0) {
         *b++ = '.';
         strcpy(b, ext);

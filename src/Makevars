@@ -17,11 +17,20 @@ endif
 ifeq ($(UNAME), OpenBSD)
 PKG_LIBS += -lkvm
 endif
+
+CYGWIN := $(findstring CYGWIN, $(shell echo $(UNAME) | \
+	    tr '[:lower:]' '[:upper:]'))
+
 ifeq ($(UNAME), NetBSD)
 PKG_LIBS += -lkvm
 endif
-ifneq ($(filter $(UNAME), Linux AIX OS400),)
+
+ifneq ($(or $(filter $(UNAME), Linux AIX OS400), $(CYGWIN)),)
 OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
+endif
+ifeq ($(UNAME), AIX)
+CONFIGURE_ARGS = --enable-shared=no
+PKG_LIBS += -lperfstat
 endif
 
 PKG_CPPFLAGS = -I./$(LIBUV)/include -I. -pthread
@@ -35,7 +44,7 @@ $(SHLIB): $(LIBUV)/.libs/libuv.pa
 $(LIBUV)/Makefile:
 	touch $(LIBUV)/aclocal.m4 && touch $(LIBUV)/configure && touch $(LIBUV)/Makefile.in
 	(cd $(LIBUV) \
-	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure $(R_CONFIGURE_FLAGS) --quiet)
+	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure $(R_CONFIGURE_FLAGS) $(CONFIGURE_ARGS) --quiet)
 
 $(LIBUV)/.libs/libuv.pa: $(LIBUV)/Makefile
 	$(MAKE) --directory=$(LIBUV) \
