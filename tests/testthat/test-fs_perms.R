@@ -25,7 +25,11 @@ if (!is_windows()) {
       expect_equal(as_fs_perms("777"), new_fs_perms(511L))
       expect_equal(as_fs_perms(c("644", "777")), new_fs_perms(c(420L, 511L)))
 
-      expect_snapshot(error = TRUE, as_fs_perms("777777"))
+      expect_snapshot(
+        error = TRUE,
+        as_fs_perms("777777"),
+        transform = transform_error
+      )
     })
     it("coerces characters in symbolic notation", {
       expect_equal(as_fs_perms("a+rwx"), new_fs_perms(511L))

@@ -33,3 +33,7 @@ skip_if_not_utf8 <- function() {
 named_fs_path <- function(x) {
   new_fs_path(stats::setNames(x, x))
 }
+
+transform_error <- function(x) {
+  sub("Error in `.*[(][)]`:", "Error:", x)
+}
