@@ -13,12 +13,11 @@ file_touch(path, access_time = Sys.time(), modification_time = access_time)
 coerced to \link{POSIXct} objects.}
 }
 \description{
-Unlike the touch POSIX utility this does not create the file if it does not
-exist. Use \code{\link[=file_create]{file_create()}} to do this if needed.
+Like the touch POSIX utility this will create the file if it does not
+exist.
 }
 \examples{
 \dontshow{.old_wd <- setwd(tempdir())}
-file_create("foo")
 file_touch("foo", "2018-01-01")
 file_info("foo")[c("access_time", "modification_time", "change_time", "birth_time")]
 \dontshow{setwd(.old_wd)}
