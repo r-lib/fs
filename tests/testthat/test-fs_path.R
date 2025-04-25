@@ -13,8 +13,10 @@ describe("as_fs_path", {
   })
 
   it("fails with non-character inputs", {
-    expect_error(as_fs_path(1), "no applicable method")
-    expect_error(as_fs_path(TRUE), "no applicable method")
+    expect_snapshot(error = TRUE, {
+      as_fs_path(1)
+      as_fs_path(TRUE)
+    })
   })
 
   it("preserves the class with both subset and subset2", {

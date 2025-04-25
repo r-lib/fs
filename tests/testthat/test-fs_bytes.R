@@ -93,9 +93,11 @@ describe("[[.fs_bytes", {
 describe("Ops.fs_bytes", {
   it("errors for unary operators", {
     x <- fs_bytes(c(100, 200, 300))
-    expect_error(!x, "unary '!' not defined for \"fs_bytes\" objects")
-    expect_error(+x, "unary '\\+' not defined for \"fs_bytes\" objects")
-    expect_error(-x, "unary '-' not defined for \"fs_bytes\" objects")
+    expect_snapshot(error = TRUE, {
+      !x
+      +x
+      -x
+    })
   })
 
   it("works with boolean comparison operators", {
@@ -121,10 +123,12 @@ describe("Ops.fs_bytes", {
 
   it("errors for other binary operators", {
     x <- fs_bytes(c(100, 200, 300))
-    expect_error(x %% 2, "'%%' not defined for \"fs_bytes\" objects")
-    expect_error(x %/% 2, "'%/%' not defined for \"fs_bytes\" objects")
-    expect_error(x & TRUE, "'&' not defined for \"fs_bytes\" objects")
-    expect_error(x | TRUE, "'|' not defined for \"fs_bytes\" objects")
+    expect_snapshot(error = TRUE, {
+      x %% 2
+      x %/% 2
+      x & TRUE
+      x | TRUE
+    })
   })
 })
 

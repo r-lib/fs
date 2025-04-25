@@ -150,7 +150,7 @@ if (!is_windows()) {
       })
 
       it("errors if given an invalid mode", {
-        expect_error(file_chmod("foo", "g+S"), "Invalid mode 'g\\+S'")
+        expect_snapshot(error = TRUE, file_chmod("foo", "g+S"))
       })
       it("errors on missing input", {
         expect_error(file_chmod(NA, "u+x"), class = "invalid_argument")

@@ -49,12 +49,10 @@ describe("path", {
   })
 
   it("errors on paths which are too long", {
-    expect_error(
-      path(paste(rep("a", 100000), collapse = "")),
-      "less than PATH_MAX"
-    )
-
-    expect_error(do.call(path, as.list(rep("a", 100000))), "less than PATH_MAX")
+    expect_snapshot(error = TRUE, {
+      path(paste(rep("a", 100000), collapse = ""))
+      do.call(path, as.list(rep("a", 100000)))
+    })
   })
 
   it("follows recycling rules", {
@@ -673,10 +671,9 @@ describe("path_rel", {
       path_rel(c("a", "a/b", "a/b/c"), "a/b"),
       fs_path(c("..", ".", "c"))
     )
-    expect_error(
-      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a")),
-      "`start` must be a single path to a starting directory",
-      fixed = TRUE
+    expect_snapshot(
+      error = TRUE,
+      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a"))
     )
   })
 
