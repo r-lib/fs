@@ -2,10 +2,11 @@ access_types <- c("exists" = 0L, "read" = 4L, "write" = 2L, "execute" = 1L)
 
 #' Query for existence and access permissions
 #'
-#' `file_exists(path)` is a shortcut for `file_access(x, "exists")`;
-#' `dir_exists(path)` and `link_exists(path)` are similar but also check that
-#' the path is a directory or link, respectively. (`file_exists(path)` returns
-#' `TRUE` if `path` exists and it is a directory.)
+#' * `file_exists(path)` is a shortcut for `file_access(x, "exists")`
+#' * `dir_exists(path)` and `link_exists(path)` are similar but also check that
+#'   the path is a directory or link, respectively. (`file_exists(path)` returns
+#'   `TRUE` if `path` exists and it is a directory. Use [is_file()] to check for
+#'   file (not directory) existence)
 #'
 #' @template fs
 #' @param mode A character vector containing one or more of 'exists', 'read',
@@ -44,7 +45,7 @@ dir_exists <- function(path) {
   res <- is_dir(path)
 
   links <- is_link(path)
-  res[links] <- is_dir(link_path(path[links]))
+  res[links] <- is_dir(path_real(path[links]))
 
   !is.na(res) & res
 }

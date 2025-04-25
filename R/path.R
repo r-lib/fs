@@ -60,7 +60,7 @@ NULL
 #' path("foo", letters[1:3], ext = "txt")
 path <- function(..., ext = "") {
   args <- list(...)
-  assert_recyclable(args)
+  assert_recyclable(c(args, list(ext)))
 
   path_tidy(.Call(fs_path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
 }
@@ -316,14 +316,16 @@ path_home_r <- function(...) {
 
 #' Manipulate file paths
 #'
-#' `path_file()` returns the filename portion of the path, `path_dir()` returns
-#' the directory portion. `path_ext()` returns the last extension (if any) for a
-#' path. `path_ext_remove()` removes the last extension and returns the rest of
-#' the path. `path_ext_set()` replaces the extension with a new extension. If
-#' there is no existing extension the new extension is appended.
+#' * `path_file()` returns the filename portion of the path
+#' * `path_dir()` returns the directory portion of the path
+#' * `path_ext()` returns the last extension (if any) for a path
+#' * `path_ext_remove()` removes the last extension and returns the rest of
+#'   the path
+#' * `path_ext_set()` replaces the extension with a new extension. If there is
+#'   no existing extension the new extension is appended
 #'
 #' Note because these are not full file paths they return regular character
-#' vectors, not `fs_path()` objects.
+#' vectors, not [`fs_path`][fs_path()] objects.
 #' @template fs
 #' @param ext,value The new file extension.
 #' @seealso [base::basename()], [base::dirname()]
@@ -344,15 +346,16 @@ path_home_r <- function(...) {
 #' @export
 path_file <- function(path) {
   is_missing <- is.na(path)
-  path[!is_missing] <- basename(path[!is_missing])
+  path[!is_missing] <- call_with_deduplication(basename, path[!is_missing])
   as.character(path)
 }
+
 
 #' @rdname path_file
 #' @export
 path_dir <- function(path) {
   is_missing <- is.na(path)
-  path[!is_missing] <- dirname(path[!is_missing])
+  path[!is_missing] <- call_with_deduplication(dirname, path[!is_missing])
   as.character(path_tidy(path))
 }
 
@@ -484,7 +487,9 @@ path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
 #' @export
 path_has_parent <- function(path, parent) {
   path <- path_abs(path)
+  path <- path_expand(path)
   parent <- path_abs(parent)
+  parent <- path_expand(parent)
 
   res <- logical(length(path))
 

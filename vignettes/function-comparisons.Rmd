@@ -72,7 +72,7 @@ base R functions:
 | `file_show("path")`                         | `browseURL("path")`               | `open path`                       |
 | `file_touch()`                              | *No direct equivalent*            | `touch path`                      |
 | `file_temp()`                               | `tempfile()`                      | `mktemp`                          |
-| `file_test()`                               | *No direct equivalent*            | `if [ -d "path" ]; then ...; fi`  |
+|  *No direct equivalent*                     | `file_test()`                     | `if [ -d "path" ]; then ...; fi`  |
 
 ## Path functions
 
