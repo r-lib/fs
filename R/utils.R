@@ -1,12 +1,25 @@
 captures <- function(x, m) {
   assert("`x` must be a character", is.character(x))
-  assert("`m` must be a match object from `regexpr()`",
+  assert(
+    "`m` must be a match object from `regexpr()`",
     inherits(m, "integer") &&
-    all(c("match.length", "capture.start", "capture.length", "capture.names") %in% names(attributes(m))))
+      all(
+        c(
+          "match.length",
+          "capture.start",
+          "capture.length",
+          "capture.names"
+        ) %in%
+          names(attributes(m))
+      )
+  )
 
   starts <- attr(m, "capture.start")
   strings <- substring(x, starts, starts + attr(m, "capture.length") - 1L)
-  res <- data.frame(matrix(strings, ncol = NCOL(starts)), stringsAsFactors = FALSE)
+  res <- data.frame(
+    matrix(strings, ncol = NCOL(starts)),
+    stringsAsFactors = FALSE
+  )
   colnames(res) <- auto_name(attr(m, "capture.names"))
   res[is.na(m) | m == -1, ] <- NA_character_
   res
@@ -103,13 +116,19 @@ assert_no_missing <- function(x) {
   if (length(idx) > 0) {
     number <- prettyNum(length(idx), big.mark = ",")
     remaining_width <- getOption("width") - nchar(number, keepNA = FALSE) - 29
-    indexes <- collapse(idx, width = remaining_width, sep = ", ", last = " and ")
+    indexes <- collapse(
+      idx,
+      width = remaining_width,
+      sep = ", ",
+      last = " and "
+    )
     msg <- sprintf(
-"`%s` must not have missing values
+      "`%s` must not have missing values
   * NAs found at %s locations: %s",
-    nme,
-    number,
-    indexes)
+      nme,
+      number,
+      indexes
+    )
 
     stop(fs_error(msg))
   }
@@ -124,7 +143,10 @@ assert <- function(msg, ..., class = "invalid_argument") {
 }
 
 fs_error <- function(msg, class = "invalid_argument") {
-  structure(class = c(class, "fs_error", "error", "condition"), list(message = msg))
+  structure(
+    class = c(class, "fs_error", "error", "condition"),
+    list(message = msg)
+  )
 }
 
 lengths <- function(x) {

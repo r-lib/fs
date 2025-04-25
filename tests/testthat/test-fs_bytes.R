@@ -1,4 +1,3 @@
-
 describe("as_fs_bytes", {
   it("accepts numeric input unchanged", {
     expect_equal(unclass(as_fs_bytes(123L)), 123L)
@@ -37,7 +36,8 @@ describe("format.fs_bytes", {
     v <- c(NA, 1, 2^13, 2^20, NaN, 2^15)
     expect_equal(
       format(fs_bytes(v), trim = TRUE),
-      c("NA", "1", "8K", "1M", "NaN", "32K"))
+      c("NA", "1", "8K", "1M", "NaN", "32K")
+    )
 
     expect_equal(format(fs_bytes(numeric())), character())
   })
@@ -93,9 +93,11 @@ describe("[[.fs_bytes", {
 describe("Ops.fs_bytes", {
   it("errors for unary operators", {
     x <- fs_bytes(c(100, 200, 300))
-    expect_error(!x, "unary '!' not defined for \"fs_bytes\" objects")
-    expect_error(+x, "unary '\\+' not defined for \"fs_bytes\" objects")
-    expect_error(-x, "unary '-' not defined for \"fs_bytes\" objects")
+    expect_snapshot(error = TRUE, {
+      !x
+      +x
+      -x
+    })
   })
 
   it("works with boolean comparison operators", {
@@ -116,15 +118,17 @@ describe("Ops.fs_bytes", {
     expect_equal(x - 100, fs_bytes(c(0, 100, 200)))
     expect_equal(x * 100, fs_bytes(c(10000, 20000, 30000)))
     expect_equal(x / 2, fs_bytes(c(50, 100, 150)))
-    expect_equal(x ^ 2, fs_bytes(c(10000, 40000, 90000)))
+    expect_equal(x^2, fs_bytes(c(10000, 40000, 90000)))
   })
 
   it("errors for other binary operators", {
     x <- fs_bytes(c(100, 200, 300))
-    expect_error(x %% 2, "'%%' not defined for \"fs_bytes\" objects")
-    expect_error(x %/% 2, "'%/%' not defined for \"fs_bytes\" objects")
-    expect_error(x & TRUE, "'&' not defined for \"fs_bytes\" objects")
-    expect_error(x | TRUE, "'|' not defined for \"fs_bytes\" objects")
+    expect_snapshot(error = TRUE, {
+      x %% 2
+      x %/% 2
+      x & TRUE
+      x | TRUE
+    })
   })
 })
 

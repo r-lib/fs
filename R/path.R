@@ -62,7 +62,11 @@ path <- function(..., ext = "") {
   args <- list(...)
   assert_recyclable(c(args, list(ext)))
 
-  path_tidy(.Call(fs_path_, lapply(args, function(x) enc2utf8(as.character(x))), ext))
+  path_tidy(.Call(
+    fs_path_,
+    lapply(args, function(x) enc2utf8(as.character(x))),
+    ext
+  ))
 }
 
 assert_recyclable <- function(x) {
@@ -138,7 +142,11 @@ path_join <- function(parts) {
     return(path_tidy(""))
   }
   if (!is.list(parts)) {
-    return(path_tidy(.Call(fs_path_, as.list(enc2utf8(as.character(parts))), "")))
+    return(path_tidy(.Call(
+      fs_path_,
+      as.list(enc2utf8(as.character(parts))),
+      ""
+    )))
   }
   path_tidy(vapply(parts, path_join, character(1)))
 }
@@ -173,7 +181,11 @@ path_norm <- function(path) {
       size <- 0
       is_abs <- is_absolute_path(p[[1]])
       for (i in seq_along(p)) {
-        if (p[[i]] != ".." || (! is_abs && size == 0) || (size > 0 && res[[size]] == "..")) {
+        if (
+          p[[i]] != ".." ||
+            (!is_abs && size == 0) ||
+            (size > 0 && res[[size]] == "..")
+        ) {
           res[[size <- size + 1]] <- p[[i]]
         } else if (size > 0) {
           size <- size - 1
@@ -202,7 +214,10 @@ path_norm <- function(path) {
 # https://github.com/python/cpython/blob/9c99fd163d5ca9bcc0b7ddd0d1e3b8717a63237c/Lib/posixpath.py#L446
 path_rel <- function(path, start = ".") {
   if (length(start) > 1L) {
-    stop("`start` must be a single path to a starting directory.", call. = FALSE)
+    stop(
+      "`start` must be a single path to a starting directory.",
+      call. = FALSE
+    )
   }
 
   start <- path_abs(path_expand(start))
@@ -290,7 +305,11 @@ path_expand <- function(path) {
   path <- enc2utf8(path)
 
   # We use the windows implementation if R_FS_HOME is set or if on windows
-  path_tidy(.Call(fs_expand_, path, Sys.getenv("R_FS_HOME") != "" || is_windows()))
+  path_tidy(.Call(
+    fs_expand_,
+    path,
+    Sys.getenv("R_FS_HOME") != "" || is_windows()
+  ))
 }
 
 #' @rdname path_expand
@@ -366,7 +385,10 @@ path_ext <- function(path) {
     return(character())
   }
 
-  res <- captures(path_file(path), regexpr("(?<!^|[.]|/)[.]+([^.]+)$", path_file(path), perl = TRUE))[[1]]
+  res <- captures(
+    path_file(path),
+    regexpr("(?<!^|[.]|/)[.]+([^.]+)$", path_file(path), perl = TRUE)
+  )[[1]]
   res[!is.na(path) & is.na(res)] <- ""
   res
 }
@@ -390,7 +412,6 @@ path_ext_remove <- function(path) {
 #' @rdname path_file
 #' @export
 path_ext_set <- function(path, ext) {
-
   if (!(length(ext) == length(path) || length(ext) == 1)) {
     assert_recyclable(list(path, ext))
   }
@@ -406,7 +427,9 @@ path_ext_set <- function(path, ext) {
   }
 
   path[to_set] <- paste0(
-    path_ext_remove(path[to_set]), ".", ext
+    path_ext_remove(path[to_set]),
+    ".",
+    ext
   )
 
   path_tidy(path)
@@ -421,7 +444,6 @@ path_ext_set <- function(path, ext) {
 #' @describeIn path_math finds the common parts of two (or more) paths.
 #' @export
 path_common <- function(path) {
-
   is_missing <- is.na(path)
 
   if (any(is_missing)) {
@@ -450,7 +472,7 @@ path_common <- function(path) {
       } else {
         common <- s1[seq(1, i - 1)]
       }
-      break;
+      break
     }
   }
   path_join(common)
@@ -477,7 +499,13 @@ path_filter <- function(path, glob = NULL, regexp = NULL, invert = FALSE, ...) {
     regexp <- utils::glob2rx(glob)
   }
   if (!is.null(regexp)) {
-    path <- grep(x = path, pattern = regexp, value = TRUE, invert = isTRUE(invert), ...)
+    path <- grep(
+      x = path,
+      pattern = regexp,
+      value = TRUE,
+      invert = isTRUE(invert),
+      ...
+    )
   }
   setNames(path_tidy(path), path)
 }
@@ -503,7 +531,10 @@ path_has_parent <- function(path, parent) {
   }
 
   for (i in seq_along(path)) {
-    res[[i]] <- identical(as.character(path_common(c(path[[i]], parent[[i]]))), as.character(parent[[i]]))
+    res[[i]] <- identical(
+      as.character(path_common(c(path[[i]], parent[[i]]))),
+      as.character(parent[[i]])
+    )
   }
   res
 }

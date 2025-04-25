@@ -85,4 +85,3 @@ is_absolute_path <- function(path) {
 is_dir_empty <- function(path) {
   length(dir_ls(path)) == 0
 }
-

@@ -57,13 +57,25 @@ file_info <- function(path, fail = TRUE, follow = FALSE) {
   res$change_time <- .POSIXct(res$change_time)
   res$birth_time <- .POSIXct(res$birth_time)
 
-  important <- c("path", "type", "size", "permissions", "modification_time", "user", "group")
+  important <- c(
+    "path",
+    "type",
+    "size",
+    "permissions",
+    "modification_time",
+    "user",
+    "group"
+  )
   res <- res[c(important, setdiff(names(res), important))]
 
   is_symlink <- !is.na(res$type) & res$type == "symlink"
-  while(follow && any(is_symlink)) {
+  while (follow && any(is_symlink)) {
     lpath <- link_path(path[is_symlink])
-    lpath <- ifelse(is_absolute_path(lpath), lpath, path(path_dir(path[is_symlink]), lpath))
+    lpath <- ifelse(
+      is_absolute_path(lpath),
+      lpath,
+      path(path_dir(path[is_symlink]), lpath)
+    )
     res[is_symlink, ] <- file_info(lpath, fail = fail, follow = FALSE)
     is_symlink <- !is.na(res$type) & res$type == "symlink"
   }
@@ -88,7 +100,8 @@ file_types <- c(
   "FIFO" = 3L,
   "symlink" = 4L,
   "file" = 5L,
-  "socket" = 6L)
+  "socket" = 6L
+)
 
 #' Change file permissions
 #' @template fs
@@ -216,7 +229,10 @@ file_move <- function(path, new_path) {
   if (length(new) == 1 && is_directory[[1]]) {
     new <- rep(new, length(path))
   }
-  assert("Length of `path` must equal length of `new_path`", length(old) == length(new))
+  assert(
+    "Length of `path` must equal length of `new_path`",
+    length(old) == length(new)
+  )
 
   new[is_directory] <- path(new[is_directory], basename(old))
 
@@ -240,7 +256,11 @@ file_move <- function(path, new_path) {
 #' file_info("foo")[c("access_time", "modification_time", "change_time", "birth_time")]
 #' \dontshow{setwd(.old_wd)}
 #' @export
-file_touch <- function(path, access_time = Sys.time(), modification_time = access_time) {
+file_touch <- function(
+  path,
+  access_time = Sys.time(),
+  modification_time = access_time
+) {
   assert_no_missing(path)
 
   access_time <- as.POSIXct(access_time)

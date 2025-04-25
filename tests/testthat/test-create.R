@@ -1,4 +1,3 @@
-
 test_that("file_create works with new and existing files", {
   x1 <- file_create(tempfile())
 
@@ -80,7 +79,6 @@ test_that("dir_create fails with EACCES if it cannot create the directory", {
 })
 
 test_that("link_create does not modify existing links", {
-
   # Windows does not currently support file based symlinks
   skip_on_os("windows")
 
@@ -90,7 +88,11 @@ test_that("link_create does not modify existing links", {
   dir_create(path(x, "dir2"))
 
   link_create(path(x, "dir1"), path(x, "link"))
-  expect_error(link_create(path(x, "dir2"), path(x, "link")), "file already exists", class = "EEXIST")
+  expect_error(
+    link_create(path(x, "dir2"), path(x, "link")),
+    "file already exists",
+    class = "EEXIST"
+  )
   expect_equal(link_path(path(x, "link")), path(x, "dir1"))
 
   expect_error(link_create(NA), class = "invalid_argument")

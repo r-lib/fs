@@ -1,65 +1,81 @@
-
 describe("file_info", {
-  with_dir_tree(list(
+  with_dir_tree(
+    list(
       "foo/bar" = "test",
-      "NA" = ""), {
-    link_create(path_abs("foo"), "foo2")
+      "NA" = ""
+    ),
+    {
+      link_create(path_abs("foo"), "foo2")
 
-    it("returns a correct tibble", {
-      x <- file_info(c("foo", "foo/bar", "foo2", "NA"))
-      expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
-      expect_length(x, 18)
-      expect_equal(nrow(x), 4)
-      expect_equal(as.character(x$path), c("foo", "foo/bar", "foo2", "NA"))
-      expect_equal(as.character(x$type), c("directory", "file", "symlink", "file"))
-    })
+      it("returns a correct tibble", {
+        x <- file_info(c("foo", "foo/bar", "foo2", "NA"))
+        expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
+        expect_length(x, 18)
+        expect_equal(nrow(x), 4)
+        expect_equal(as.character(x$path), c("foo", "foo/bar", "foo2", "NA"))
+        expect_equal(
+          as.character(x$type),
+          c("directory", "file", "symlink", "file")
+        )
+      })
 
-    it("returns NA if a file does not exist", {
-      x <- file_info("missing")
-      expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
-      expect_length(x, 18)
-      expect_equal(nrow(x), 1)
-      expect_equal(as.character(x$path), "missing")
-      expect_equal(sum(is.na(x)), 17)
-    })
-    it("returns NA on NA input", {
-      x <- file_info(NA_character_)
-      expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
-      expect_length(x, 18)
-      expect_equal(nrow(x), 1)
-      expect_equal(as.character(x$path), NA_character_)
-      expect_equal(sum(is.na(x)), 18)
-    })
-    it("can be subset as a data.frame", {
-      x <- file_info("foo/bar")
-      class(x) <- "data.frame"
-      for (col in seq_along(x)) {
-        expect_true(length(x[[1, col]]) == 1)
-      }
-    })
-    it("can be subset as a tibble", {
-      x <- file_info("foo/bar")
-      expect_s3_class(x, "tbl_df")
-      for (col in seq_along(x)) {
-        expect_true(length(x[[1, col]]) == 1)
-      }
-    })
-  })
+      it("returns NA if a file does not exist", {
+        x <- file_info("missing")
+        expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
+        expect_length(x, 18)
+        expect_equal(nrow(x), 1)
+        expect_equal(as.character(x$path), "missing")
+        expect_equal(sum(is.na(x)), 17)
+      })
+      it("returns NA on NA input", {
+        x <- file_info(NA_character_)
+        expect_s3_class(x, c("tbl", "tbl_df", "data.frame"))
+        expect_length(x, 18)
+        expect_equal(nrow(x), 1)
+        expect_equal(as.character(x$path), NA_character_)
+        expect_equal(sum(is.na(x)), 18)
+      })
+      it("can be subset as a data.frame", {
+        x <- file_info("foo/bar")
+        class(x) <- "data.frame"
+        for (col in seq_along(x)) {
+          expect_true(length(x[[1, col]]) == 1)
+        }
+      })
+      it("can be subset as a tibble", {
+        x <- file_info("foo/bar")
+        expect_s3_class(x, "tbl_df")
+        for (col in seq_along(x)) {
+          expect_true(length(x[[1, col]]) == 1)
+        }
+      })
+    }
+  )
 })
 
 describe("file_size", {
-  with_dir_tree(list(
+  with_dir_tree(
+    list(
       "foo" = "test",
-      "bar" = "test2"), {
+      "bar" = "test2"
+    ),
+    {
       it("returns the correct file size", {
-        expect_equal(file_size("foo"), stats::setNames(file_info("foo")$size, "foo"))
-        expect_equal(file_size("bar"), stats::setNames(file_info("bar")$size, "bar"))
+        expect_equal(
+          file_size("foo"),
+          stats::setNames(file_info("foo")$size, "foo")
+        )
+        expect_equal(
+          file_size("bar"),
+          stats::setNames(file_info("bar")$size, "bar")
+        )
       })
       it("returns an object of class fs_bytes, numeric (#239)", {
         expect_equal(class(file_size("foo")), c("fs_bytes", "numeric"))
         expect_equal(class(file_size("foo")[]), c("fs_bytes", "numeric"))
       })
-  })
+    }
+  )
 })
 
 # Windows permissions only really allow setting read only, so we will skip
@@ -134,7 +150,11 @@ if (!is_windows()) {
       })
 
       it("errors if given an invalid mode", {
-        expect_error(file_chmod("foo", "g+S"), "Invalid mode 'g\\+S'")
+        expect_snapshot(
+          error = TRUE,
+          file_chmod("foo", "g+S"),
+          transform = transform_error
+        )
       })
       it("errors on missing input", {
         expect_error(file_chmod(NA, "u+x"), class = "invalid_argument")
@@ -152,7 +172,10 @@ if (!is_windows()) {
         expect_equal(file_chmod(files, c("u+x", "o+x")), fs_path(files))
         expect_true(all(file_info(files)$permissions == c("744", "645")))
 
-        expect_error(file_chmod(files, c("u+x", "o+x", "g+x")), class = "invalid_argument")
+        expect_error(
+          file_chmod(files, c("u+x", "o+x", "g+x")),
+          class = "invalid_argument"
+        )
       })
     })
   })

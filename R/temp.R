@@ -81,4 +81,3 @@ file_temp_pop <- function() {
 path_temp <- function(...) {
   path(tempdir(), ...)
 }
-

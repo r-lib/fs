@@ -7,7 +7,7 @@
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![R-CMD-check](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/fs/actions/workflows/R-CMD-check.yaml)
-[![Codecov test 
+[![Codecov test
 coverage](https://codecov.io/gh/r-lib/fs/graph/badge.svg)](https://app.codecov.io/gh/r-lib/fs)
 <!-- badges: end -->
 
@@ -39,35 +39,37 @@ pak::pak("r-lib/fs")
 **fs** functions smooth over some of the idiosyncrasies of file handling
 with base R functions:
 
-- Vectorization. All **fs** functions are vectorized, accepting multiple
-  paths as input. Base functions are inconsistently vectorized.
+-   Vectorization. All **fs** functions are vectorized, accepting
+    multiple paths as input. Base functions are inconsistently
+    vectorized.
 
-- Predictable return values that always convey a path. All **fs**
-  functions return a character vector of paths, a named integer or a
-  logical vector, where the names give the paths. Base return values are
-  more varied: they are often logical or contain error codes which
-  require downstream processing.
+-   Predictable return values that always convey a path. All **fs**
+    functions return a character vector of paths, a named integer or a
+    logical vector, where the names give the paths. Base return values
+    are more varied: they are often logical or contain error codes which
+    require downstream processing.
 
-- Explicit failure. If **fs** operations fail, they throw an error. Base
-  functions tend to generate a warning and a system dependent error
-  code. This makes it easy to miss a failure.
+-   Explicit failure. If **fs** operations fail, they throw an error.
+    Base functions tend to generate a warning and a system dependent
+    error code. This makes it easy to miss a failure.
 
-- UTF-8 all the things. **fs** functions always convert input paths to
-  UTF-8 and return results as UTF-8. This gives you path encoding
-  consistency across OSes. Base functions rely on the native system
-  encoding.
+-   UTF-8 all the things. **fs** functions always convert input paths to
+    UTF-8 and return results as UTF-8. This gives you path encoding
+    consistency across OSes. Base functions rely on the native system
+    encoding.
 
-- Naming convention. **fs** functions use a consistent naming
-  convention. Because base R’s functions were gradually added over time
-  there are a number of different conventions used (e.g. `path.expand()`
-  vs `normalizePath()`; `Sys.chmod()` vs `file.access()`).
+-   Naming convention. **fs** functions use a consistent naming
+    convention. Because base R’s functions were gradually added over
+    time there are a number of different conventions used
+    (e.g. `path.expand()` vs `normalizePath()`; `Sys.chmod()` vs
+    `file.access()`).
 
 ### Tidy paths
 
 **fs** functions always return ‘tidy’ paths. Tidy paths
 
-- Always use `/` to delimit directories
-- never have multiple `/` or trailing `/`
+-   Always use `/` to delimit directories
+-   never have multiple `/` or trailing `/`
 
 Tidy paths are also coloured (if your terminal supports it) based on the
 file permissions and file type. This colouring can be customized or
@@ -79,10 +81,10 @@ dircolors](https://www.bigsoft.co.uk/blog/index.php/2008/04/11/configuring-ls_co
 
 **fs** functions are divided into four main categories:
 
-- `path_` for manipulating and constructing paths
-- `file_` for files
-- `dir_` for directories
-- `link_` for links
+-   `path_` for manipulating and constructing paths
+-   `file_` for files
+-   `dir_` for directories
+-   `link_` for links
 
 Directories and links are special types of files, so `file_` functions
 will generally also work when applied to a directory or link.
@@ -98,19 +100,20 @@ path("foo", "bar", letters[1:3], ext = "txt")
 dir_ls()
 #> DESCRIPTION      LICENSE          LICENSE.md       MAINTENANCE.md   
 #> NAMESPACE        NEWS.md          R                README.Rmd       
-#> README.md        _pkgdown.yml     cleanup          codecov.yml      
-#> cran-comments.md fs.Rproj         inst             man              
-#> man-roxygen      src              tests            vignettes
+#> README.md        _pkgdown.yml     air.toml         cleanup          
+#> codecov.yml      cran-comments.md fs.Rproj         inst             
+#> man              man-roxygen      src              tests            
+#> vignettes
 
 # create a new directory
 tmp <- dir_create(file_temp())
 tmp
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e375b43f7c8
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file1306976eefd77
 
 # create new files in that directory
 file_create(path(tmp, "my-file.txt"))
 dir_ls(tmp)
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e375b43f7c8/my-file.txt
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file1306976eefd77/my-file.txt
 
 # remove files from the directory
 file_delete(path(tmp, "my-file.txt"))
@@ -129,18 +132,18 @@ itself. You will need to attach
 ``` r
 library(magrittr)
 
-paths <- file_temp() %>%
-  dir_create() %>%
-  path(letters[1:5]) %>%
+paths <- file_temp() |>
+  dir_create() |>
+  path(letters[1:5]) |>
   file_create()
 paths
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/a
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/b
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/c
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/d
-#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpxNODwI/file5e377e50d1e9/e
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file13069ccfb642/a
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file13069ccfb642/b
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file13069ccfb642/c
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file13069ccfb642/d
+#> /var/folders/ph/fpcmzfd16rgbbk8mxvy9m2_h0000gn/T/RtmpBx9X5L/file13069ccfb642/e
 
-paths %>% file_delete()
+paths |> file_delete()
 ```
 
 **fs** functions also work well in conjunction with other
@@ -158,49 +161,49 @@ suppressMessages(
 Filter files by type, permission and size
 
 ``` r
-dir_info("src", recurse = FALSE) %>%
-  filter(type == "file", permissions == "u+r", size > "10KB") %>%
-  arrange(desc(size)) %>%
+dir_info("src", recurse = FALSE) |>
+  filter(type == "file", permissions == "u+r", size > "10KB") |>
+  arrange(desc(size)) |>
   select(path, permissions, size, modification_time)
 #> # A tibble: 12 × 4
 #>    path          permissions        size modification_time  
 #>    <fs::path>    <fs::perms> <fs::bytes> <dttm>             
-#>  1 src/fs.so     rwxr-xr-x        309.3K 2023-07-10 18:01:44
-#>  2 src/id.o      rw-r--r--        185.7K 2023-07-10 18:01:17
-#>  3 src/dir.o     rw-r--r--        115.1K 2023-07-10 18:01:16
-#>  4 src/path.o    rw-r--r--        113.6K 2023-07-10 18:01:18
-#>  5 src/link.o    rw-r--r--         91.6K 2023-07-10 18:01:18
-#>  6 src/getmode.o rw-r--r--         83.1K 2023-07-10 18:01:17
-#>  7 src/utils.o   rw-r--r--         80.8K 2023-07-10 18:01:18
-#>  8 src/file.o    rw-r--r--         66.1K 2023-07-10 18:01:17
-#>  9 src/init.o    rw-r--r--         20.4K 2023-07-10 18:01:17
-#> 10 src/error.o   rw-r--r--         20.1K 2023-07-10 18:01:16
-#> 11 src/fs.o      rw-r--r--           12K 2023-07-10 18:01:17
-#> 12 src/file.cc   rw-r--r--         11.7K 2023-07-10 17:54:06
+#>  1 src/fs.so     rwxr-xr-x        445.2K 2025-04-25 13:35:54
+#>  2 src/id.o      rw-r--r--        206.1K 2025-04-25 13:35:53
+#>  3 src/dir.o     rw-r--r--          111K 2025-04-25 13:35:51
+#>  4 src/utils.o   rw-r--r--         94.3K 2025-04-25 13:35:54
+#>  5 src/path.o    rw-r--r--         87.6K 2025-04-25 13:35:53
+#>  6 src/link.o    rw-r--r--           82K 2025-04-25 13:35:53
+#>  7 src/getmode.o rw-r--r--         71.1K 2025-04-25 13:35:52
+#>  8 src/file.o    rw-r--r--         55.3K 2025-04-25 13:35:52
+#>  9 src/error.o   rw-r--r--         27.9K 2025-04-25 13:35:51
+#> 10 src/init.o    rw-r--r--         20.8K 2025-04-25 13:35:53
+#> 11 src/fs.o      rw-r--r--         16.3K 2025-04-25 13:35:52
+#> 12 src/file.cc   rw-r--r--         11.8K 2025-04-25 12:25:11
 ```
 
 Tabulate and display folder size.
 
 ``` r
-dir_info("src", recurse = TRUE) %>%
-  group_by(directory = path_dir(path)) %>%
+dir_info("src", recurse = TRUE) |>
+  group_by(directory = path_dir(path)) |>
   tally(wt = size, sort = TRUE)
 #> # A tibble: 14 × 2
 #>    directory                                n
 #>    <chr>                          <fs::bytes>
-#>  1 src/libuv-1.44.2                     2.87M
-#>  2 src/libuv-1.44.2/src/unix            1.46M
-#>  3 src                                  1.11M
+#>  1 src/libuv-1.44.2                     2.88M
+#>  2 src/libuv-1.44.2/src/unix             1.3M
+#>  3 src                                  1.23M
 #>  4 src/libuv-1.44.2/test                1.05M
 #>  5 src/libuv-1.44.2/src/win           742.07K
 #>  6 src/libuv-1.44.2/m4                 356.7K
-#>  7 src/libuv-1.44.2/src               353.05K
+#>  7 src/libuv-1.44.2/src               342.89K
 #>  8 src/libuv-1.44.2/include/uv        137.44K
 #>  9 src/libuv-1.44.2/img               106.71K
-#> 10 src/unix                            76.56K
+#> 10 src/unix                            68.41K
 #> 11 src/libuv-1.44.2/include            66.23K
-#> 12 src/bsd                             20.02K
-#> 13 src/windows                          4.73K
+#> 12 src/bsd                             20.09K
+#> 13 src/windows                          4.75K
 #> 14 src/libuv-1.44.2/test/fixtures         453
 ```
 
@@ -211,10 +214,10 @@ Read a collection of files into one data frame.
 
 ``` r
 # Create separate files for each species
-iris %>%
-  split(.$Species) %>%
-  map(select, -Species) %>%
-  iwalk(~ write_tsv(.x, paste0(.y, ".tsv")))
+iris |>
+  (\(x) split(x, x$Species))() |>
+  map(select, -Species) |>
+  iwalk(\(.x, .y) write_tsv(.x, paste0(.y, ".tsv")))
 
 # Show the files
 iris_files <- dir_ls(glob = "*.tsv")
@@ -222,7 +225,7 @@ iris_files
 #> setosa.tsv     versicolor.tsv virginica.tsv
 
 # Read the data into a single table, including the filenames
-iris_files %>%
+iris_files |>
   map_df(read_tsv, .id = "file", col_types = cols(), n_max = 2)
 #> # A tibble: 6 × 5
 #>   file           Sepal.Length Sepal.Width Petal.Length Petal.Width

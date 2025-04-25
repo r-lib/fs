@@ -74,8 +74,18 @@ print.fs_path <- function(x, ..., max = getOption("max.print")) {
   new_fs_path(paste0(e1, e2))
 }
 
-pillar_shaft.fs_path <- function(x, ..., min_width = 10, shorten = getOption("fs.fs_path.shorten", "front")) {
-  pillar::new_pillar_shaft_simple(colourise_fs_path(x), ..., min_width = min_width, shorten = shorten)
+pillar_shaft.fs_path <- function(
+  x,
+  ...,
+  min_width = 10,
+  shorten = getOption("fs.fs_path.shorten", "front")
+) {
+  pillar::new_pillar_shaft_simple(
+    colourise_fs_path(x),
+    ...,
+    min_width = min_width,
+    shorten = shorten
+  )
 }
 
 type_sum.fs_path <- function(x) {
@@ -97,7 +107,10 @@ multicol <- function(x) {
   num_cols <- min(length(x), max(trunc(screen_width / max_len), 1))
   if (num_cols > 1) {
     to_add <- max_len - nchar(xs, keepNA = FALSE)
-    x <- paste0(x, substring(paste0(collapse = "", rep(" ", max_len)), 1, to_add))
+    x <- paste0(
+      x,
+      substring(paste0(collapse = "", rep(" ", max_len)), 1, to_add)
+    )
   }
   num_rows <- ceiling(length(x) / num_cols)
   x <- c(x, rep("", num_cols * num_rows - length(x)))
@@ -111,7 +124,11 @@ gnu_ls_defaults <- "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=4
 # LS mappings are at https://github.com/wertarbyte/coreutils/blob/f70c7b785b93dd436788d34827b209453157a6f2/src/dircolors.c#L60-L75
 
 #' @importFrom stats setNames na.omit
-colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)) {
+colourise_fs_path <- function(
+  x,
+  ...,
+  colors = Sys.getenv("LS_COLORS", gnu_ls_defaults)
+) {
   if (length(x) == 0 || !has_color() || !nzchar(colors)) {
     return(x)
   }
@@ -125,16 +142,17 @@ colourise_fs_path <- function(x, ..., colors = Sys.getenv("LS_COLORS", gnu_ls_de
   vals <- strsplit(colors, ":")[[1]]
   nms <- strsplit(vals, "=")
 
-  if (!(
-      length(vals) == length(nms) &&
-      all(lengths(nms) == 2)
-      )) {
+  if (
+    !(length(vals) == length(nms) &&
+      all(lengths(nms) == 2))
+  ) {
     return(x)
   }
 
   map <- setNames(
     vapply(nms, `[[`, character(1), 2),
-    vapply(nms, `[[`, character(1), 1))
+    vapply(nms, `[[`, character(1), 1)
+  )
   file_types <- map[grepl("^[*][.]", names(map))]
   names(file_types) <- sub("^[*][.]", "", names(file_types))
   res <- character(length(x))

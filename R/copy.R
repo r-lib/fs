@@ -57,7 +57,10 @@ file_copy <- function(path, new_path, overwrite = FALSE) {
   if (length(new) == 1 && is_directory[[1]]) {
     new <- rep(new, length(path))
   }
-  assert("Length of `path` must equal length of `new_path`", length(old) == length(new))
+  assert(
+    "Length of `path` must equal length of `new_path`",
+    length(old) == length(new)
+  )
 
   new[is_directory] <- path(new[is_directory], basename(old))
 
@@ -72,7 +75,10 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
   assert_no_missing(path)
   assert_no_missing(new_path)
   assert("`path` must be a directory", all(is_dir(path)))
-  assert("Length of `path` must equal length of `new_path`", length(path) == length(new_path))
+  assert(
+    "Length of `path` must equal length of `new_path`",
+    length(path) == length(new_path)
+  )
 
   for (i in seq_along(path)) {
     if (!isTRUE(overwrite) && isTRUE(unname(is_dir(new_path[[i]])))) {
@@ -83,13 +89,31 @@ dir_copy <- function(path, new_path, overwrite = FALSE) {
     dirs <- dir_ls(path[[i]], type = "directory", recurse = TRUE, all = TRUE)
     dir_create(path(new_path[[i]], path_rel(dirs, path[[i]])))
 
-    files <- dir_ls(path[[i]], recurse = TRUE,
-      type = c("unknown", "file", "FIFO", "socket", "character_device", "block_device"), all = TRUE)
-    file_copy(files, path(new_path[[i]], path_rel(files, path[[i]])), overwrite = overwrite)
+    files <- dir_ls(
+      path[[i]],
+      recurse = TRUE,
+      type = c(
+        "unknown",
+        "file",
+        "FIFO",
+        "socket",
+        "character_device",
+        "block_device"
+      ),
+      all = TRUE
+    )
+    file_copy(
+      files,
+      path(new_path[[i]], path_rel(files, path[[i]])),
+      overwrite = overwrite
+    )
 
-    links <- dir_ls(path[[i]], recurse = TRUE,
-      type = "symlink", all = TRUE)
-    link_copy(links, path(new_path[[i]], path_rel(links, path[[i]])), overwrite = overwrite)
+    links <- dir_ls(path[[i]], recurse = TRUE, type = "symlink", all = TRUE)
+    link_copy(
+      links,
+      path(new_path[[i]], path_rel(links, path[[i]])),
+      overwrite = overwrite
+    )
   }
 
   invisible(path_tidy(new_path))

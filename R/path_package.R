@@ -27,20 +27,23 @@ path_package <- function(package, ...) {
       error = function(error) {
         is_not_found_error <- grepl(
           gettextf("there is no package called %s", sQuote(package)),
-          conditionMessage(error), fixed = TRUE)
+          conditionMessage(error),
+          fixed = TRUE
+        )
         if (!is_not_found_error) {
           stop(error)
         }
 
         msg <- sprintf(
-"Can't find package `%s` in library locations:
+          "Can't find package `%s` in library locations:
 %s",
-    package,
-    paste0("  - '", path_tidy(.libPaths()), "'", collapse = "\n"))
+          package,
+          paste0("  - '", path_tidy(.libPaths()), "'", collapse = "\n")
+        )
 
-    stop(fs_error(msg, class = "EEXIST"))
-    })
-
+        stop(fs_error(msg, class = "EEXIST"))
+      }
+    )
 
   files_inst <- path(pkg_path, "inst", ...)
   present_inst <- file_exists(files_inst)

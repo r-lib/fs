@@ -1,4 +1,3 @@
-
 describe("file_access", {
   with_dir_tree(list("foo/bar" = "test"), {
     it("errors on missing input", {
@@ -20,8 +19,10 @@ describe("file_access", {
     })
     it("checks for file execute ability", {
       skip_on_os(c("windows", "solaris"))
-      if (Sys.info()[["sysname"]] == "DragonFly" &&
-          Sys.info()[["effective_user"]] == "root") {
+      if (
+        Sys.info()[["sysname"]] == "DragonFly" &&
+          Sys.info()[["effective_user"]] == "root"
+      ) {
         skip("file_access() is always executable for root on DragonFlyBSD")
       }
       file_chmod("foo/bar", "-x")
@@ -32,7 +33,7 @@ describe("file_access", {
   })
 })
 
-with_dir_tree(list("foo/bar"  = "test"), {
+with_dir_tree(list("foo/bar" = "test"), {
   link_create(path_abs("foo"), "loo")
   if (!is_windows()) {
     link_create("foo", "relloo")
@@ -44,12 +45,13 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(file_exists("missing"), c(missing = FALSE))
       expect_equal(
         file_exists(c("foo", "missing", "foo/bar", "loo")),
-        c(foo = TRUE, missing = FALSE, "foo/bar" = TRUE, "loo" = TRUE))
+        c(foo = TRUE, missing = FALSE, "foo/bar" = TRUE, "loo" = TRUE)
+      )
     })
     it("returns FALSE on missing input", {
       expect_identical(file_exists(NA_character_), structure(names = NA, FALSE))
     })
-    it ("expands ~", {
+    it("expands ~", {
       withr::with_envvar(c("R_FS_HOME" = getwd()), {
         expect_identical(file_exists("~/foo"), c("~/foo" = TRUE))
         expect_identical(file_exists("~/missing"), c("~/missing" = FALSE))
@@ -63,19 +65,20 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(dir_exists("missing"), c(missing = FALSE))
       expect_equal(
         dir_exists(c("foo", "missing", "foo/bar")),
-        c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE))
+        c(foo = TRUE, missing = FALSE, "foo/bar" = FALSE)
+      )
     })
     it("returns true for links to directories, like -d in bash", {
-        expect_equal(dir_exists("loo"), c(loo = TRUE))
-        if (!is_windows()) {
-          expect_equal(dir_exists("relloo"), c(relloo = TRUE))
-        }
-        .old_wd <- setwd("foo")
-        expect_equal(dir_exists("../loo"), c("../loo" = TRUE))
-        if (!is_windows()) {
-          expect_equal(dir_exists("../relloo"), c("../relloo" = TRUE))
-        }
-        setwd(.old_wd)
+      expect_equal(dir_exists("loo"), c(loo = TRUE))
+      if (!is_windows()) {
+        expect_equal(dir_exists("relloo"), c(relloo = TRUE))
+      }
+      .old_wd <- setwd("foo")
+      expect_equal(dir_exists("../loo"), c("../loo" = TRUE))
+      if (!is_windows()) {
+        expect_equal(dir_exists("../relloo"), c("../relloo" = TRUE))
+      }
+      setwd(.old_wd)
     })
     it("returns FALSE on missing input", {
       expect_identical(dir_exists(NA_character_), structure(names = NA, FALSE))
@@ -88,7 +91,8 @@ with_dir_tree(list("foo/bar"  = "test"), {
       expect_equal(link_exists("missing"), c(missing = FALSE))
       expect_equal(
         link_exists(c("foo", "missing", "foo/bar", "loo")),
-        c(foo = FALSE, missing = FALSE, "foo/bar" = FALSE, "loo" = TRUE))
+        c(foo = FALSE, missing = FALSE, "foo/bar" = FALSE, "loo" = TRUE)
+      )
     })
     it("returns FALSE on missing input", {
       expect_identical(link_exists(NA_character_), structure(names = NA, FALSE))

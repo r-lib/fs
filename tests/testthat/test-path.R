@@ -1,4 +1,3 @@
-
 describe("path", {
   it("returns paths UTF-8 encoded", {
     skip_on_os("solaris")
@@ -50,9 +49,14 @@ describe("path", {
   })
 
   it("errors on paths which are too long", {
-    expect_error(path(paste(rep("a", 100000), collapse = "")), "less than PATH_MAX")
-
-    expect_error(do.call(path, as.list(rep("a", 100000))), "less than PATH_MAX")
+    expect_snapshot(
+      error = TRUE,
+      {
+        path(paste(rep("a", 100000), collapse = ""))
+        do.call(path, as.list(rep("a", 100000)))
+      },
+      transform = transform_path_max
+    )
   })
 
   it("follows recycling rules", {
@@ -67,7 +71,11 @@ describe("path", {
       fs_path(c("foo/bar", "qux/baz"))
     )
 
-    expect_error(path(c("foo", "qux", "foo2"), c("bar", "baz")), "Arguments must have consistent lengths", class = "invalid_argument")
+    expect_error(
+      path(c("foo", "qux", "foo2"), c("bar", "baz")),
+      "Arguments must have consistent lengths",
+      class = "invalid_argument"
+    )
 
     expect_equal(path(ext = character()), fs_path(character()))
     expect_equal(path("foo", ext = character()), fs_path(character()))
@@ -81,7 +89,11 @@ describe("path", {
       fs_path(c("foo.bar", "qux.baz"))
     )
 
-    expect_error(path(c("foo", "qux", "foo2"), ext = c("bar", "baz")), "Arguments must have consistent lengths", class = "invalid_argument")
+    expect_error(
+      path(c("foo", "qux", "foo2"), ext = c("bar", "baz")),
+      "Arguments must have consistent lengths",
+      class = "invalid_argument"
+    )
   })
 })
 
@@ -102,7 +114,7 @@ describe("path_real", {
     })
   })
 
-  it ("works with indirect symlinks", {
+  it("works with indirect symlinks", {
     skip_on_os("windows")
 
     with_dir_tree("foo", {
@@ -113,7 +125,7 @@ describe("path_real", {
     })
   })
 
-  it ("works with parent symlinks", {
+  it("works with parent symlinks", {
     skip_on_os("windows")
 
     # If there are symlinks in the parents of relative paths we need to resolve
@@ -132,8 +144,7 @@ describe("path_real", {
     })
   })
 
-  it ("resolves paths before normalizing", {
-
+  it("resolves paths before normalizing", {
     skip_on_os("windows")
 
     # if we have the following hierarchy: a/k/y
@@ -146,8 +157,7 @@ describe("path_real", {
     })
   })
 
-  it ("resolves paths before normalizing", {
-
+  it("resolves paths before normalizing", {
     skip_on_os("windows")
 
     # if we have the following hierarchy: a/k/y
@@ -183,21 +193,29 @@ describe("path_real", {
       expect_equal(path_real(2), path_real("2"))
     })
   })
-
 })
 
 describe("path_split", {
   it("returns the path split", {
     expect_equal(path_split("foo/bar")[[1]], c("foo", "bar"))
-    expect_equal(path_split(c("foo/bar", "foo/baz")), list(c("foo", "bar"), c("foo", "baz")))
+    expect_equal(
+      path_split(c("foo/bar", "foo/baz")),
+      list(c("foo", "bar"), c("foo", "baz"))
+    )
   })
 
   it("does not split the root path", {
     expect_equal(path_split("/usr/bin")[[1]], c("/", "usr", "bin"))
     expect_equal(path_split("c:/usr/bin")[[1]], c("C:", "usr", "bin"))
     expect_equal(path_split("X:/usr/bin")[[1]], c("X:", "usr", "bin"))
-    expect_equal(path_split("//server/usr/bin")[[1]], c("//server", "usr", "bin"))
-    expect_equal(path_split("\\\\server\\usr\\bin")[[1]], c("//server", "usr", "bin"))
+    expect_equal(
+      path_split("//server/usr/bin")[[1]],
+      c("//server", "usr", "bin")
+    )
+    expect_equal(
+      path_split("\\\\server\\usr\\bin")[[1]],
+      c("//server", "usr", "bin")
+    )
   })
 })
 
@@ -250,8 +268,11 @@ describe("path_tidy", {
   })
 
   it("converts inputs to character if required", {
-      expect_equal(path_tidy(c("foo/bar", NA)), fs_path(c("foo/bar", NA_character_)))
-      expect_equal(path_tidy(1), fs_path("1"))
+    expect_equal(
+      path_tidy(c("foo/bar", NA)),
+      fs_path(c("foo/bar", NA_character_))
+    )
+    expect_equal(path_tidy(1), fs_path("1"))
   })
 })
 
@@ -262,11 +283,11 @@ describe("path_temp", {
 })
 
 describe("path_ext", {
-  it ("returns 0 length outputs for 0 length inputs", {
+  it("returns 0 length outputs for 0 length inputs", {
     expect_equal(path_ext(character()), character())
   })
 
-  it ("returns the path extension, or \"\" if one does not exist", {
+  it("returns the path extension, or \"\" if one does not exist", {
     expect_equal(path_ext("foo.bar"), "bar")
     expect_equal(path_ext("foo.boo.bar"), "bar")
     expect_equal(path_ext("foo.boo.biff.bar"), "bar")
@@ -286,7 +307,7 @@ describe("path_ext", {
     expect_equal(path_ext(c("foo.bar", NA_character_)), c("bar", NA_character_))
     expect_equal(path_ext("foo.bar/baz"), "")
   })
-  it ("works with non-ASCII inputs", {
+  it("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
     expect_equal(path_ext("f\U00F6\U00F6.txt"), "txt")
@@ -298,7 +319,7 @@ describe("path_ext", {
 })
 
 describe("path_ext_remove", {
-  it ("removes the path extension", {
+  it("removes the path extension", {
     expect_equal(path_ext_remove("foo.bar"), "foo")
     expect_equal(path_ext_remove("foo.boo.bar"), "foo.boo")
     expect_equal(path_ext_remove("foo.boo.biff.bar"), "foo.boo.biff")
@@ -314,13 +335,16 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove("........"), "........")
     expect_equal(path_ext_remove(""), "")
     expect_equal(path_ext_remove(NA_character_), NA_character_)
-    expect_equal(path_ext_remove(c("foo.bar", NA_character_)), c("foo", NA_character_))
+    expect_equal(
+      path_ext_remove(c("foo.bar", NA_character_)),
+      c("foo", NA_character_)
+    )
     expect_equal(path_ext_remove(".bar"), ".bar")
     expect_equal(path_ext_remove("foo/.bar"), "foo/.bar")
     expect_equal(path_ext_remove("foo.bar/abc.123"), "foo.bar/abc")
     expect_equal(path_ext_remove("foo.bar/abc"), "foo.bar/abc")
   })
-  it ("works with non-ASCII inputs", {
+  it("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
     expect_equal(path_ext_remove("f\U00F6\U00F6.txt"), "f\U00F6\U00F6")
@@ -329,7 +353,7 @@ describe("path_ext_remove", {
 })
 
 describe("path_ext_set", {
-  it ("replaces the path extension", {
+  it("replaces the path extension", {
     expect_equal(path_ext_set("foo.bar", "baz"), fs_path("foo.baz"))
     expect_equal(path_ext_set("foo.boo.bar", "baz"), fs_path("foo.boo.baz"))
     expect_equal(
@@ -360,22 +384,22 @@ describe("path_ext_set", {
     expect_equal(path_ext_set("foo/.bar", "baz"), fs_path("foo/.bar.baz"))
     expect_equal(path_ext_set("foo", ""), fs_path("foo"))
   })
-  it ("works the same with and without a leading . for ext", {
+  it("works the same with and without a leading . for ext", {
     expect_equal(path_ext_set("foo", "bar"), fs_path("foo.bar"))
     expect_equal(path_ext_set("foo", ".bar"), fs_path("foo.bar"))
   })
-  it ("only removes a leading . from the extension", {
+  it("only removes a leading . from the extension", {
     expect_equal(path_ext_set("foo", "b.ar"), fs_path("foo.b.ar"))
     expect_equal(path_ext_set("foo", ".b.ar"), fs_path("foo.b.ar"))
   })
-  it ("works with multiple paths (#205)", {
+  it("works with multiple paths (#205)", {
     multiple_paths <- c("a", "b")
     expect_equal(
       path_ext_set(multiple_paths, "csv"),
       fs_path(c("a.csv", "b.csv"))
     )
   })
-  it ("works with multiple extensions (#250)", {
+  it("works with multiple extensions (#250)", {
     multiple_paths <- c("a", "b")
     multiple_exts <- c("csv", "tsv")
     expect_equal(
@@ -383,9 +407,13 @@ describe("path_ext_set", {
       fs_path(c("a.csv", "b.tsv"))
     )
 
-    expect_error(path_ext_set(multiple_paths, c(multiple_exts, "xls")), class = "fs_error", "consistent lengths")
+    expect_error(
+      path_ext_set(multiple_paths, c(multiple_exts, "xls")),
+      class = "fs_error",
+      "consistent lengths"
+    )
   })
-  it ("works with non-ASCII inputs", {
+  it("works with non-ASCII inputs", {
     skip_if_not_utf8()
 
     expect_equal(
@@ -400,7 +428,7 @@ describe("path_ext_set", {
 })
 
 describe("path_ext<-", {
-  it ("replaces the path extension", {
+  it("replaces the path extension", {
     x <- "...manydots"
     path_ext(x) <- "bar"
     expect_equal(x, fs_path("...manydots.bar"))
@@ -410,7 +438,7 @@ describe("path_ext<-", {
 # test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L276
 
 describe("path_norm", {
-  it ("works with POSIX paths", {
+  it("works with POSIX paths", {
     expect_equal(path_norm(""), fs_path("."))
     expect_equal(path_norm(""), fs_path("."))
     expect_equal(path_norm(".."), fs_path(".."))
@@ -426,7 +454,7 @@ describe("path_norm", {
     expect_equal(path_norm("/..//./foo/.//bar"), fs_path("/foo/bar"))
   })
 
-  it ("works with POSIX paths", {
+  it("works with POSIX paths", {
     expect_equal(path_norm("A//////././//.//B"), fs_path("A/B"))
     expect_equal(path_norm("A/./B"), fs_path("A/B"))
     expect_equal(path_norm("A/foo/../B"), fs_path("A/B"))
@@ -455,19 +483,20 @@ describe("path_norm", {
     expect_equal(path_norm("\\\\?\\D:/XY\\Z"), fs_path("//?/D:/XY/Z"))
   })
 
-  it ("works with missing values", {
+  it("works with missing values", {
     expect_equal(path_norm(NA), fs_path(NA_character_))
     expect_equal(path_norm(c("foo", NA)), fs_path(c("foo", NA)))
     expect_equal(
       path_norm(c(NA, NA)),
       fs_path(c(NA_character_, NA_character_))
-    )  })
+    )
+  })
 })
 
 # Test cases derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py
 
 describe("path_common", {
-  it ("finds the common path", {
+  it("finds the common path", {
     expect_error(path_common(c("/usr", "usr")), "Can't mix", class = "fs_error")
     expect_error(path_common(c("usr", "/usr")), "Can't mix", class = "fs_error")
 
@@ -548,7 +577,11 @@ describe("path_common", {
     expect_equal(path_common(c("")), fs_path(""))
     expect_equal(path_common(c("", "spam/alot")), fs_path(""))
 
-    expect_error(path_common(c("", "/spam/alot")), "Can't mix", class = "fs_error")
+    expect_error(
+      path_common(c("", "/spam/alot")),
+      "Can't mix",
+      class = "fs_error"
+    )
   })
 
   it("returns NA if any input is NA", {
@@ -566,7 +599,10 @@ describe("path_has_parent", {
     expect_false(path_has_parent("/usr/var2/log", "/usr/var"))
 
     expect_true(path_has_parent("foo/bar", "foo"))
-    expect_true(path_has_parent("path/myfiles/myfile", "path/to/files/../../myfiles"))
+    expect_true(path_has_parent(
+      "path/myfiles/myfile",
+      "path/to/files/../../myfiles"
+    ))
 
     # expands path
     expect_true(path_has_parent("~/a", path_expand("~/a")))
@@ -577,20 +613,37 @@ describe("path_has_parent", {
 
     expect_equal(path_has_parent("/a/b/c", c("/a/b", "/x/y")), c(TRUE, FALSE))
 
-    expect_error(path_has_parent(c("/a/b/c", "x/y"), c("/a/b", "x/y", "foo/bar")), "consistent lengths", class = "invalid_argument")
+    expect_error(
+      path_has_parent(c("/a/b/c", "x/y"), c("/a/b", "x/y", "foo/bar")),
+      "consistent lengths",
+      class = "invalid_argument"
+    )
   })
 })
 
 describe("path_join", {
-    it("converts inputs to character if required", {
-        expect_equal(path_join(c("a", NA)), path_join(c("a", NA_character_)))
-        expect_equal(path_join(c("a", 1)), path_join(c("a", "1")))
-        expect_equal(path_join(list(c("a", 1), c("a/b", 2))), fs_path(c(path_join(c("a", "1")), path_join(c("a/b", "2")))))
-    })
-    it("works with list inputs", {
-        expect_equal(path_join(list(c("foo", "bar"), c("a/b", "c"))), fs_path(c(path_join(c("foo", "bar")), path_join(c("a/b", "c")))))
-        expect_equal(path_join(list(NA, c("a", 1), c("a/b", 2))), fs_path(c(path_join(NA_character_), path_join(c("a", "1")), path_join(c("a/b", "2")))))
-    })
+  it("converts inputs to character if required", {
+    expect_equal(path_join(c("a", NA)), path_join(c("a", NA_character_)))
+    expect_equal(path_join(c("a", 1)), path_join(c("a", "1")))
+    expect_equal(
+      path_join(list(c("a", 1), c("a/b", 2))),
+      fs_path(c(path_join(c("a", "1")), path_join(c("a/b", "2"))))
+    )
+  })
+  it("works with list inputs", {
+    expect_equal(
+      path_join(list(c("foo", "bar"), c("a/b", "c"))),
+      fs_path(c(path_join(c("foo", "bar")), path_join(c("a/b", "c"))))
+    )
+    expect_equal(
+      path_join(list(NA, c("a", 1), c("a/b", 2))),
+      fs_path(c(
+        path_join(NA_character_),
+        path_join(c("a", "1")),
+        path_join(c("a/b", "2"))
+      ))
+    )
+  })
 })
 
 # derived from https://github.com/python/cpython/blob/6f0eb93183519024cb360162bdd81b9faec97ba6/Lib/test/test_posixpath.py#L483
@@ -622,10 +675,9 @@ describe("path_rel", {
       path_rel(c("a", "a/b", "a/b/c"), "a/b"),
       fs_path(c("..", ".", "c"))
     )
-    expect_error(
-      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a")),
-      "`start` must be a single path to a starting directory",
-      fixed = TRUE
+    expect_snapshot(
+      error = TRUE,
+      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a"))
     )
   })
 
@@ -645,13 +697,19 @@ describe("path_rel", {
   })
 
   it("expands path before computing relativity", {
-    expect_equal(path_rel("/foo/bar/baz", "~"), path_rel("/foo/bar/baz", path_expand("~")))
+    expect_equal(
+      path_rel("/foo/bar/baz", "~"),
+      path_rel("/foo/bar/baz", path_expand("~"))
+    )
     expect_equal(path_rel("~/foo/bar/baz", "~"), fs_path("foo/bar/baz"))
   })
 
   it("propagates NAs", {
     expect_equal(path_rel(NA_character_), fs_path(NA_character_))
-    expect_equal(path_rel("/foo/bar/baz", NA_character_), fs_path(NA_character_))
+    expect_equal(
+      path_rel("/foo/bar/baz", NA_character_),
+      fs_path(NA_character_)
+    )
   })
 
   it("can be reversed by path_abs", {
@@ -717,21 +775,29 @@ describe("path_file", {
 describe("path_expand", {
   it("works on windows", {
     withr::local_envvar(c(FS_IS_WINDOWS = "TRUE"))
-    withr::with_envvar(c("USERPROFILE" = NA, "HOMEDRIVE" = NA, "HOMEPATH" = NA), {
-      expect_equal(path_expand("~test"), fs_path("~test"))
-    })
-    withr::with_envvar(c("USERPROFILE" = NA, "HOMEDRIVE" = "C:\\", "HOMEPATH" = "eric\\idle"), {
-      expect_equal(path_expand("~"), fs_path("C:/eric/idle"))
-      expect_equal(path_expand("~test"), fs_path("C:/eric/test"))
-    })
-    withr::with_envvar(c("USERPROFILE" = NA, "HOMEDRIVE" = NA, "HOMEPATH" = "eric/idle"), {
-      expect_equal(path_expand("~"), fs_path("eric/idle"))
-      expect_equal(path_expand("~test"), fs_path("eric/test"))
-    })
+    withr::with_envvar(
+      c("USERPROFILE" = NA, "HOMEDRIVE" = NA, "HOMEPATH" = NA),
+      {
+        expect_equal(path_expand("~test"), fs_path("~test"))
+      }
+    )
+    withr::with_envvar(
+      c("USERPROFILE" = NA, "HOMEDRIVE" = "C:\\", "HOMEPATH" = "eric\\idle"),
+      {
+        expect_equal(path_expand("~"), fs_path("C:/eric/idle"))
+        expect_equal(path_expand("~test"), fs_path("C:/eric/test"))
+      }
+    )
+    withr::with_envvar(
+      c("USERPROFILE" = NA, "HOMEDRIVE" = NA, "HOMEPATH" = "eric/idle"),
+      {
+        expect_equal(path_expand("~"), fs_path("eric/idle"))
+        expect_equal(path_expand("~test"), fs_path("eric/test"))
+      }
+    )
     withr::with_envvar(c("USERPROFILE" = "C:\\idle\\eric"), {
       expect_equal(path_expand("~"), fs_path("C:/idle/eric"))
       expect_equal(path_expand("~test"), fs_path("C:/idle/test"))
-
 
       expect_equal(
         path_expand("~test/foo/bar"),
@@ -758,11 +824,14 @@ describe("path_expand", {
         fs_path("C:/idle/eric/foo/bar")
       )
     })
-    withr::with_envvar(c("USERPROFILE" = "C:\\idle\\eric", "R_FS_HOME" = "C:\\john\\cleese"), {
-      # R_FS_HOME overrides userprofile
-      expect_equal(path_expand("~"), fs_path("C:/john/cleese"))
-      expect_equal(path_expand("~test"), fs_path("C:/john/test"))
-    })
+    withr::with_envvar(
+      c("USERPROFILE" = "C:\\idle\\eric", "R_FS_HOME" = "C:\\john\\cleese"),
+      {
+        # R_FS_HOME overrides userprofile
+        expect_equal(path_expand("~"), fs_path("C:/john/cleese"))
+        expect_equal(path_expand("~test"), fs_path("C:/john/test"))
+      }
+    )
   })
   it("repects R_FS_HOME", {
     withr::with_envvar(c("R_FS_HOME" = "/foo/bar"), {

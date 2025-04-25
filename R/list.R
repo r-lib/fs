@@ -45,14 +45,27 @@
 #' # Cleanup
 #' link_delete("base")
 #' \dontshow{setwd(.old_wd)}
-dir_ls <- function(path = ".", all = FALSE, recurse = FALSE, type = "any",
-                   glob = NULL, regexp = NULL, invert = FALSE, fail = TRUE,
-                   ..., recursive) {
+dir_ls <- function(
+  path = ".",
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  glob = NULL,
+  regexp = NULL,
+  invert = FALSE,
+  fail = TRUE,
+  ...,
+  recursive
+) {
   assert_no_missing(path)
 
   if (!missing(recursive)) {
     recurse <- recursive
-    warning("`recursive` is deprecated, please use `recurse` instead", immediate. = TRUE, call. = FALSE)
+    warning(
+      "`recursive` is deprecated, please use `recurse` instead",
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
 
   old <- path_expand(path)
@@ -71,13 +84,20 @@ directory_entry_types <- c(
   "FIFO" = 16L,
   "socket" = 32L,
   "character_device" = 64L,
-  "block_device" = 128L)
+  "block_device" = 128L
+)
 
 #' @rdname dir_ls
 #' @param fun A function, taking one parameter, the current path entry.
 #' @export
-dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type =
-  "any", fail = TRUE) {
+dir_map <- function(
+  path = ".",
+  fun,
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  fail = TRUE
+) {
   assert_no_missing(path)
 
   if (is.logical(recurse)) {
@@ -92,12 +112,27 @@ dir_map <- function(path = ".", fun, all = FALSE, recurse = FALSE, type =
 
   old <- path_expand(path)
 
-  .Call(fs_dir_map_, old, fun, all, sum(directory_entry_types[type]), as.integer(recurse), fail)
+  .Call(
+    fs_dir_map_,
+    old,
+    fun,
+    all,
+    sum(directory_entry_types[type]),
+    as.integer(recurse),
+    fail
+  )
 }
 
 #' @rdname dir_ls
 #' @export
-dir_walk <- function(path = ".", fun, all = FALSE, recurse = FALSE, type = "any", fail = TRUE) {
+dir_walk <- function(
+  path = ".",
+  fun,
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  fail = TRUE
+) {
   assert_no_missing(path)
 
   old <- path_expand(path)
@@ -108,10 +143,29 @@ dir_walk <- function(path = ".", fun, all = FALSE, recurse = FALSE, type = "any"
 
 #' @rdname dir_ls
 #' @export
-dir_info <- function(path = ".", all = FALSE, recurse = FALSE,
-                     type = "any", regexp = NULL, glob = NULL, fail = TRUE, ...) {
+dir_info <- function(
+  path = ".",
+  all = FALSE,
+  recurse = FALSE,
+  type = "any",
+  regexp = NULL,
+  glob = NULL,
+  fail = TRUE,
+  ...
+) {
   assert_no_missing(path)
 
-  file_info(dir_ls(path = path, all = all, recurse = recurse, type = type,
-    regexp = regexp, glob = glob, fail = fail, ...), fail = fail)
+  file_info(
+    dir_ls(
+      path = path,
+      all = all,
+      recurse = recurse,
+      type = type,
+      regexp = regexp,
+      glob = glob,
+      fail = fail,
+      ...
+    ),
+    fail = fail
+  )
 }

@@ -1,4 +1,3 @@
-
 describe("link_path", {
   with_dir_tree("foo", {
     link_create(path_abs("foo"), "loo")
