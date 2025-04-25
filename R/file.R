@@ -1,6 +1,6 @@
 #' Query file metadata
 #'
-#' Compared to `[file.info]` the full results of a `stat(2)` system call are
+#' Compared to [file.info()] the full results of a `stat(2)` system call are
 #' returned and some columns are returned as S3 classes to make manipulation
 #' more natural. On systems which do not support all metadata (such as Windows)
 #' default values are used.

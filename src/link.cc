@@ -1,12 +1,14 @@
-#include "uv.h"
 
-#undef ERROR
+#include <cstring>
 
+#include "R.h"
 #include "Rinternals.h"
 #include "error.h"
 #include "utils.h"
 
-#include <cstring>
+#include "uv.h"
+
+#undef ERROR
 
 // [[export]]
 extern "C" SEXP fs_link_create_hard_(SEXP path, SEXP new_path) {
