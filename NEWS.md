@@ -1,5 +1,7 @@
 # fs (development version)
 
+* `path_has_parent()` now expands `~` (#412).
+
 * New `path_select_components()` function to select components of one or
   more paths (#326, @Tazinho).
 
