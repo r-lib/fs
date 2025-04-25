@@ -261,6 +261,8 @@ describe("path_ext", {
     expect_equal(path_ext(".cshrc"), "")
     expect_equal(path_ext("...manydots"), "")
     expect_equal(path_ext("...manydots.ext"), "ext")
+    expect_equal(path_ext("manydots..."), "")
+    expect_equal(path_ext("manydots...ext"), "ext")
     expect_equal(path_ext("."), "")
     expect_equal(path_ext(".."), "")
     expect_equal(path_ext("........"), "")
@@ -291,6 +293,8 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove(".cshrc"), ".cshrc")
     expect_equal(path_ext_remove("...manydots"), "...manydots")
     expect_equal(path_ext_remove("...manydots.ext"), "...manydots")
+    expect_equal(path_ext_remove("manydots..."), "manydots...")
+    expect_equal(path_ext_remove("manydots...ext"), "manydots")
     expect_equal(path_ext_remove("."), ".")
     expect_equal(path_ext_remove(".."), "..")
     expect_equal(path_ext_remove("........"), "........")
@@ -345,6 +349,10 @@ describe("path_ext_set", {
   it ("works the same with and without a leading . for ext", {
     expect_equal(path_ext_set("foo", "bar"), fs_path("foo.bar"))
     expect_equal(path_ext_set("foo", ".bar"), fs_path("foo.bar"))
+  })
+  it ("only removes a leading . from the extension", {
+    expect_equal(path_ext_set("foo", "b.ar"), fs_path("foo.b.ar"))
+    expect_equal(path_ext_set("foo", ".b.ar"), fs_path("foo.b.ar"))
   })
   it ("works with multiple paths (#205)", {
     multiple_paths <- c("a", "b")
@@ -595,6 +603,11 @@ describe("path_rel", {
     expect_equal(
       path_rel(c("a", "a/b", "a/b/c"), "a/b"),
       fs_path(c("..", ".", "c"))
+    )
+    expect_error(
+      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a")),
+      "`start` must be a single path to a starting directory",
+      fixed = TRUE
     )
   })
 

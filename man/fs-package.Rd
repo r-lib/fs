@@ -6,6 +6,8 @@
 \alias{fs-package}
 \title{fs: Cross-Platform File System Operations Based on 'libuv'}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 A cross-platform interface to file system operations, built on top of the 'libuv' C library.
 }
 \seealso{
@@ -23,14 +25,14 @@ Useful links:
 Authors:
 \itemize{
   \item Jim Hester
-  \item Hadley Wickham \email{hadley@rstudio.com}
+  \item Hadley Wickham \email{hadley@posit.co}
 }
 
 Other contributors:
 \itemize{
   \item libuv project contributors (libuv library) [copyright holder]
   \item Joyent, Inc. and other Node contributors (libuv library) [copyright holder]
-  \item RStudio [copyright holder, funder]
+  \item Posit Software, PBC [copyright holder, funder]
 }
 
 }

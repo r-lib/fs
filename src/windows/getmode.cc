@@ -1,6 +1,7 @@
 #include "getmode.h"
 #include <sys/stat.h>
 
+#include <R.h>
 #include <Rinternals.h> /* for Rf_error */
 
 /* code adapted from https://cgit.freedesktop.org/libbsd/tree/src/setmode.c */

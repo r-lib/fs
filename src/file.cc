@@ -2,15 +2,10 @@
 #define __STDC_FORMAT_MACROS 1
 #endif
 
-#include <Rinternals.h>
-
-#include "getmode.h"
-#include "uv.h"
-
-#undef ERROR
-
+#include <cstdio>
 #include <string>
 #include <vector>
+#include <inttypes.h>
 
 #include "error.h"
 
@@ -19,7 +14,13 @@
 #include <pwd.h>
 #endif
 
-#include <inttypes.h>
+#include <R.h>
+#include <Rinternals.h>
+
+#include "getmode.h"
+#include "uv.h"
+
+#undef ERROR
 
 // [[export]]
 extern "C" SEXP fs_move_(SEXP path, SEXP new_path) {
@@ -44,7 +45,7 @@ extern "C" SEXP fs_move_(SEXP path, SEXP new_path) {
       continue;
     }
 
-    stop_for_error2(req, "Failed to move '%s'to '%s'", p, n);
+    stop_for_error2(req, "Failed to move '%s' to '%s'", p, n);
     uv_fs_req_cleanup(&req);
   }
 
@@ -240,7 +241,7 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
       SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(pwd->pw_name, CE_UTF8));
     } else {
       char buf[20];
-      sprintf(buf, "%" PRIu64, st.st_uid);
+      snprintf(buf, sizeof(buf), "%" PRIu64, st.st_uid);
       SET_STRING_ELT(VECTOR_ELT(out, 5), i, Rf_mkCharCE(buf, CE_UTF8));
     }
 #endif
@@ -253,7 +254,7 @@ extern "C" SEXP fs_stat_(SEXP path, SEXP fail_sxp) {
       SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(grp->gr_name, CE_UTF8));
     } else {
       char buf[20];
-      sprintf(buf, "%" PRIu64, st.st_gid);
+      snprintf(buf, sizeof(buf), "%" PRIu64, st.st_gid);
       SET_STRING_ELT(VECTOR_ELT(out, 6), i, Rf_mkCharCE(buf, CE_UTF8));
     }
 #endif
