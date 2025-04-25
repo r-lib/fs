@@ -34,7 +34,9 @@ describe("file_access", {
 
 with_dir_tree(list("foo/bar"  = "test"), {
   link_create(path_abs("foo"), "loo")
-  link_create("foo", "relloo")
+  if (!is_windows()) {
+    link_create("foo", "relloo")
+  }
 
   describe("file_exists", {
     it("returns true for files that exist, false for those that do not", {
@@ -65,10 +67,14 @@ with_dir_tree(list("foo/bar"  = "test"), {
     })
     it("returns true for links to directories, like -d in bash", {
         expect_equal(dir_exists("loo"), c(loo = TRUE))
-        expect_equal(dir_exists("relloo"), c(relloo = TRUE))
+        if (!is_windows()) {
+          expect_equal(dir_exists("relloo"), c(relloo = TRUE))
+        }
         .old_wd <- setwd("foo")
         expect_equal(dir_exists("../loo"), c("../loo" = TRUE))
-        expect_equal(dir_exists("../relloo"), c("../relloo" = TRUE))
+        if (!is_windows()) {
+          expect_equal(dir_exists("../relloo"), c("../relloo" = TRUE))
+        }
         setwd(.old_wd)
     })
     it("returns FALSE on missing input", {
