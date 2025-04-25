@@ -127,13 +127,13 @@ You will need to attach [magrittr](https://magrittr.tidyverse.org) or similar.
 ```{r}
 library(magrittr)
 
-paths <- file_temp() %>%
-  dir_create() %>%
-  path(letters[1:5]) %>%
+paths <- file_temp() |>
+  dir_create() |>
+  path(letters[1:5]) |>
   file_create()
 paths
 
-paths %>% file_delete()
+paths |> file_delete()
 ```
 
 **fs** functions also work well in conjunction with other
@@ -150,17 +150,17 @@ suppressMessages(
 Filter files by type, permission and size
 
 ```{r}
-dir_info("src", recurse = FALSE) %>%
-  filter(type == "file", permissions == "u+r", size > "10KB") %>%
-  arrange(desc(size)) %>%
+dir_info("src", recurse = FALSE) |>
+  filter(type == "file", permissions == "u+r", size > "10KB") |>
+  arrange(desc(size)) |>
   select(path, permissions, size, modification_time)
 ```
 
 Tabulate and display folder size.
 
 ```{r}
-dir_info("src", recurse = TRUE) %>%
-  group_by(directory = path_dir(path)) %>%
+dir_info("src", recurse = TRUE) |>
+  group_by(directory = path_dir(path)) |>
   tally(wt = size, sort = TRUE)
 ```
 
@@ -171,17 +171,17 @@ Read a collection of files into one data frame.
 
 ```{r}
 # Create separate files for each species
-iris %>%
-  split(.$Species) %>%
-  map(select, -Species) %>%
-  iwalk(~ write_tsv(.x, paste0(.y, ".tsv")))
+iris |>
+  (\(x) split(x, x$Species))() |>
+  map(select, -Species) |>
+  iwalk(\(.x, .y) write_tsv(.x, paste0(.y, ".tsv")))
 
 # Show the files
 iris_files <- dir_ls(glob = "*.tsv")
 iris_files
 
 # Read the data into a single table, including the filenames
-iris_files %>%
+iris_files |>
   map_df(read_tsv, .id = "file", col_types = cols(), n_max = 2)
 
 file_delete(iris_files)
