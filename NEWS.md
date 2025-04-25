@@ -5,6 +5,9 @@
 * New `path_select_components()` function to select components of one or
   more paths (#326, @Tazinho).
 
+* `dir_exists()` follows relative symlinks in non-current directories
+  (@heavywatal, #395).
+
 # fs 1.6.6
 
 * No changes.
