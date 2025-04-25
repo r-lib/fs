@@ -33,6 +33,7 @@ CONFIGURE_ARGS = --enable-shared=no
 PKG_LIBS += -lperfstat
 endif
 
+PKG_CFLAGS = $(C_VISIBILITY)
 PKG_CPPFLAGS = -I./$(LIBUV)/include -I. -pthread
 
 all: $(SHLIB)
