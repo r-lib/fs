@@ -55,7 +55,11 @@ int bsd_getopt(int argc, char * const argv[], const char *shortopts);
 mode_t getmode(const void *set, mode_t mode);
 void *setmode(const char *mode_str);
 
+#if defined (__DragonFly__)
+int closefrom(int lowfd);
+#else
 void closefrom(int lowfd);
+#endif
 
 /* Compatibility with sendmail implementations. */
 #define initsetproctitle(c, a, e) setproctitle_init((c), (a), (e))

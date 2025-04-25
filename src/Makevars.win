@@ -7,7 +7,7 @@ PKG_LIBS = ./$(LIBUV)/libuv.a \
 PKG_CPPFLAGS = -I./$(LIBUV)/include -D_WIN32_WINNT=0x0600 -DSTRICT_R_HEADERS -I.
 CFLAGS += -D_WIN32_WINNT=0x0600
 
-all: $(SHLIB)
+all: $(SHLIB) clean2
 
 SOURCES = $(wildcard *.cc windows/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)
@@ -16,6 +16,9 @@ OBJECTS = $(SOURCES:.cc=.o)
 LIBUV_CFLAGS = -Iinclude -Isrc -Isrc/win -DWIN32_LEAN_AND_MEAN -D_WIN32_WINNT=0x0600
 
 $(SHLIB): $(LIBUV)/libuv.a
+
+clean2: $(SHLIB)
+	@rm -f $(LIBUV)/libuv.a
 
 $(LIBUV)/libuv.a:
 	$(MAKE) --directory=$(LIBUV) -f Makefile.mingw \

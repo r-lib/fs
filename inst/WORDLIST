@@ -9,6 +9,7 @@ GETPWENT
 ISVTX
 Joyent
 LPT
+PBC
 Rcpp
 Vectorization
 autotool
@@ -19,7 +20,6 @@ colouring
 colourised
 datetime
 devtools
-dir
 dircolors
 dplyr
 filesystem
