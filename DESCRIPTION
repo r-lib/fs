@@ -9,7 +9,8 @@ Authors@R: c(
            comment = "libuv library"),
     person("Joyent, Inc. and other Node contributors", role = "cph",
            comment = "libuv library"),
-    person("Posit Software, PBC", role = c("cph", "fnd"), comment = c(ROR = "03wc8by49"))
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
 Description: A cross-platform interface to file system operations, built
     on top of the 'libuv' C library.
@@ -36,10 +37,10 @@ VignetteBuilder:
 ByteCompile: true
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
+Config/usethis/last-upkeep: 2025-04-23
 Copyright: file COPYRIGHTS
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2.9000
 SystemRequirements: GNU make
-Config/usethis/last-upkeep: 2025-04-23
