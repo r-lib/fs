@@ -1,5 +1,6 @@
 #include <cstring>
 #include <limits>
+#include <string>
 #include <sys/stat.h>
 
 #include "getmode.h"
@@ -8,6 +9,7 @@
 #undef ERROR
 
 #include "CollectorList.h"
+#include "R.h"
 #include "Rinternals.h"
 #include "error.h"
 #include "utils.h"
