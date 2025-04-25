@@ -4,12 +4,12 @@
       path(paste(rep("a", 1e+05), collapse = ""))
     Condition
       Error in `path_tidy()`:
-      ! Total path length must be less than PATH_MAX: 1024
+      ! Total path length must be less than PATH_MAX: <path-max>
     Code
       do.call(path, as.list(rep("a", 1e+05)))
     Condition
       Error in `path_tidy()`:
-      ! Total path length must be less than PATH_MAX: 1024
+      ! Total path length must be less than PATH_MAX: <path-max>
 
 # path_rel: works for POSIX paths
 

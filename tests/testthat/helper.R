@@ -37,3 +37,7 @@ named_fs_path <- function(x) {
 transform_error <- function(x) {
   sub("Error in `.*[(][)]`:", "Error:", x)
 }
+
+transform_path_max <- function(x) {
+  sub("PATH_MAX: [0-9]+", "PATH_MAX: <path-max>", x)
+}
