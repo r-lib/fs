@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <string>
 #include <vector>
 
@@ -8,6 +9,7 @@
 #include <unistd.h>
 #endif
 
+#include <R.h>
 #include <Rinternals.h>
 
 #include "utils.h"

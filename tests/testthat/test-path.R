@@ -275,6 +275,8 @@ describe("path_ext", {
     expect_equal(path_ext(".cshrc"), "")
     expect_equal(path_ext("...manydots"), "")
     expect_equal(path_ext("...manydots.ext"), "ext")
+    expect_equal(path_ext("manydots..."), "")
+    expect_equal(path_ext("manydots...ext"), "ext")
     expect_equal(path_ext("."), "")
     expect_equal(path_ext(".."), "")
     expect_equal(path_ext("........"), "")
@@ -305,6 +307,8 @@ describe("path_ext_remove", {
     expect_equal(path_ext_remove(".cshrc"), ".cshrc")
     expect_equal(path_ext_remove("...manydots"), "...manydots")
     expect_equal(path_ext_remove("...manydots.ext"), "...manydots")
+    expect_equal(path_ext_remove("manydots..."), "manydots...")
+    expect_equal(path_ext_remove("manydots...ext"), "manydots")
     expect_equal(path_ext_remove("."), ".")
     expect_equal(path_ext_remove(".."), "..")
     expect_equal(path_ext_remove("........"), "........")
@@ -563,6 +567,10 @@ describe("path_has_parent", {
 
     expect_true(path_has_parent("foo/bar", "foo"))
     expect_true(path_has_parent("path/myfiles/myfile", "path/to/files/../../myfiles"))
+
+    # expands path
+    expect_true(path_has_parent("~/a", path_expand("~/a")))
+    expect_true(path_has_parent(path_expand("~/a"), "~/a"))
   })
   it("works with multiple paths", {
     expect_equal(path_has_parent(c("/a/b/c", "x/y"), "/a/b"), c(TRUE, FALSE))
@@ -613,6 +621,11 @@ describe("path_rel", {
     expect_equal(
       path_rel(c("a", "a/b", "a/b/c"), "a/b"),
       fs_path(c("..", ".", "c"))
+    )
+    expect_error(
+      path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a")),
+      "`start` must be a single path to a starting directory",
+      fixed = TRUE
     )
   })
 
