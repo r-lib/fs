@@ -1,11 +1,16 @@
-
 test_that("valid names", {
-  expect_equal(path_sanitize("the quick brown fox jumped over the lazy dog.mp3"), "the quick brown fox jumped over the lazy dog.mp3")
+  expect_equal(
+    path_sanitize("the quick brown fox jumped over the lazy dog.mp3"),
+    "the quick brown fox jumped over the lazy dog.mp3"
+  )
   expect_equal(path_sanitize("résumé"), "résumé")
 })
 
 test_that("valid names", {
-  expect_equal(path_sanitize("the quick brown fox jumped over the lazy dog.mp3", "_"), "the quick brown fox jumped over the lazy dog.mp3")
+  expect_equal(
+    path_sanitize("the quick brown fox jumped over the lazy dog.mp3", "_"),
+    "the quick brown fox jumped over the lazy dog.mp3"
+  )
   expect_equal(path_sanitize("résumé", "_"), "résumé")
 })
 
@@ -89,7 +94,8 @@ test_string_fs <- function(str, tmpdir) {
   # Should write and read file to disk
   expect_equal(path_dir(path_tidy(filepath)), as.character(tmpdir))
   expect_error_free(
-    writeLines("foobar", filepath))
+    writeLines("foobar", filepath)
+  )
   expect_equal(readLines(filepath), "foobar")
   expect_error_free(file_delete(filepath))
 }
@@ -98,56 +104,57 @@ test_that("filesystems can read, write and delete sanitized files", {
   skip_if_not_utf8()
   skip_on_os("solaris")
 
- strings <- c(
-   # Windows R functions cannot handle the unicode filenames or long filenames + paths correctly.
-   if (!is_windows()) {
-     readLines(testthat::test_path("blns.txt.xz"), encoding = "UTF-8")
-   },
-   "the quick brown fox jumped over the lazy dog",
-   "résumé",
-   "hello\nworld",
-   "semi;colon.js",
-   ";leading-semi.js",
-   "mode_tslash\\.js",
-   "slash/.js",
-   "col:on.js",
-   "star*.js",
-   "question?.js",
-   "quote\".js",
-   "singlequote'.js",
-   "brack<e>ts.js",
-   "p|pes.js",
-   "plus+.js",
-   "'five and six<seven'.js",
-   " space at front",
-   "space at end ",
-   ".period",
-   "period.",
-   "relative/path/to/some/dir",
-   "/abs/path/to/some/dir",
-   "~/.notssh/authorized_keys",
-   "",
-   "h?w",
-   "h/w",
-   "h*w",
-   ".",
-   "..",
-   "./",
-   "../",
-   "/..",
-   "/../",
-   "*.|.",
-   "./",
-   "./foobar",
-   "../foobar",
-   "../../foobar",
-   "./././foobar",
-   "|*.what",
-   "LPT9.asdf")
+  strings <- c(
+    # Windows R functions cannot handle the unicode filenames or long filenames + paths correctly.
+    if (!is_windows()) {
+      readLines(testthat::test_path("blns.txt.xz"), encoding = "UTF-8")
+    },
+    "the quick brown fox jumped over the lazy dog",
+    "résumé",
+    "hello\nworld",
+    "semi;colon.js",
+    ";leading-semi.js",
+    "mode_tslash\\.js",
+    "slash/.js",
+    "col:on.js",
+    "star*.js",
+    "question?.js",
+    "quote\".js",
+    "singlequote'.js",
+    "brack<e>ts.js",
+    "p|pes.js",
+    "plus+.js",
+    "'five and six<seven'.js",
+    " space at front",
+    "space at end ",
+    ".period",
+    "period.",
+    "relative/path/to/some/dir",
+    "/abs/path/to/some/dir",
+    "~/.notssh/authorized_keys",
+    "",
+    "h?w",
+    "h/w",
+    "h*w",
+    ".",
+    "..",
+    "./",
+    "../",
+    "/..",
+    "/../",
+    "*.|.",
+    "./",
+    "./foobar",
+    "../foobar",
+    "../../foobar",
+    "./././foobar",
+    "|*.what",
+    "LPT9.asdf"
+  )
 
- td <- dir_create(file_temp())
- on.exit(dir_delete(td))
- for (str in strings) {
-   test_string_fs(str, td)
- }
+  td <- dir_create(file_temp())
+  on.exit(dir_delete(td))
+  for (str in strings) {
+    test_string_fs(str, td)
+  }
 })

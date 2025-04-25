@@ -8,8 +8,7 @@
 dir_tree <- function(path = ".", recurse = TRUE, ...) {
   find_ancestor_dirs <- function(path) {
     parts <- path_split(path)[[1]]
-    Reduce(function(x, y) path_join(list(c(x, y))),
-           parts, accumulate = TRUE)
+    Reduce(function(x, y) path_join(list(c(x, y))), parts, accumulate = TRUE)
   }
 
   files <- dir_ls(path, recurse = recurse, ...)
@@ -29,10 +28,22 @@ dir_tree <- function(path = ".", recurse = TRUE, ...) {
     leafs <- by_dir[[x]]
     for (i in seq_along(leafs)) {
       if (i == length(leafs)) {
-        cat(indent, pc(ch$l, ch$h, ch$h, " "), get_coloured_name(leafs[[i]]), "\n", sep = "")
+        cat(
+          indent,
+          pc(ch$l, ch$h, ch$h, " "),
+          get_coloured_name(leafs[[i]]),
+          "\n",
+          sep = ""
+        )
         print_leaf(leafs[[i]], paste0(indent, "    "))
       } else {
-        cat(indent, pc(ch$j, ch$h, ch$h, " "), get_coloured_name(leafs[[i]]), "\n", sep = "")
+        cat(
+          indent,
+          pc(ch$j, ch$h, ch$h, " "),
+          get_coloured_name(leafs[[i]]),
+          "\n",
+          sep = ""
+        )
         print_leaf(leafs[[i]], paste0(indent, pc(ch$v, "   ")))
       }
     }
@@ -52,15 +63,15 @@ pc <- function(...) {
 box_chars <- function() {
   if (is_utf8_output()) {
     list(
-      "h" = "\u2500",                   # horizontal
-      "v" = "\u2502",                   # vertical
+      "h" = "\u2500", # horizontal
+      "v" = "\u2502", # vertical
       "l" = "\u2514",
       "j" = "\u251C"
     )
   } else {
     list(
-      "h" = "-",                        # horizontal
-      "v" = "|",                        # vertical
+      "h" = "-", # horizontal
+      "v" = "|", # vertical
       "l" = "\\",
       "j" = "+"
     )
@@ -74,7 +85,7 @@ is_latex_output <- function() {
 
 is_utf8_output <- function() {
   opt <- getOption("cli.unicode", NULL)
-  if (! is.null(opt)) {
+  if (!is.null(opt)) {
     isTRUE(opt)
   } else {
     l10n_info()$`UTF-8` && !is_latex_output()

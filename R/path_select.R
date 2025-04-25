@@ -27,7 +27,6 @@
 #' path_select_components(path, 6)
 
 path_select_components <- function(path, index, from = c("start", "end")) {
-
   from <- match.arg(from)
 
   res <- fs_path(character(length(path)))
@@ -40,7 +39,9 @@ path_select_components <- function(path, index, from = c("start", "end")) {
       stop("`seq` contains a higher number than the path has components.")
     }
 
-    if (from == "start") {path <- path[index]}
+    if (from == "start") {
+      path <- path[index]
+    }
     if (from == "end") {
       path_seq <- rev(rev(path_seq)[index])
       path <- path[path_seq]

@@ -1,4 +1,3 @@
-
 describe("path_package", {
   it("errors if the package does not exist", {
     cnd <- tryCatch(path_package("arst"), error = function(e) e)

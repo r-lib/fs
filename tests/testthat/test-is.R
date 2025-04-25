@@ -1,5 +1,4 @@
-
-with_dir_tree(list("foo/bar"  = "test"), {
+with_dir_tree(list("foo/bar" = "test"), {
   skip_on_os("windows")
   link_create(path_abs("foo/bar"), "foo2")
   link_create("foo/bar", "relbar")
@@ -52,7 +51,7 @@ with_dir_tree(list("foo/bar"  = "test"), {
   })
 })
 
-with_dir_tree(list("foo/bar"  = "test"), {
+with_dir_tree(list("foo/bar" = "test"), {
   describe("is_absolute_path", {
     it("detects windows absolute paths", {
       expect_true(is_absolute_path("c:\\"))

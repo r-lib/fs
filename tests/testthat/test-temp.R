@@ -1,7 +1,6 @@
-
 test_that("file_temp() returns unique temporary files", {
   prev <- file_temp()
-  for(i in seq_len(10)) {
+  for (i in seq_len(10)) {
     expect_true(file_temp() != prev)
   }
 })

@@ -14,7 +14,8 @@ test_that("examples", {
   )
   expect_equal(
     path_select_components(path, 6),
-    path("file.txt"))
+    path("file.txt")
+  )
 })
 
 test_that("vectorized", {

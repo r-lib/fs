@@ -25,3 +25,5 @@
 ^src/README\.md$
 ^MAINTENANCE\.md$
 ^pkgdown$
+^[\.]?air\.toml$
+^\.vscode$

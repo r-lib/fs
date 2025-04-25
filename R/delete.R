@@ -65,10 +65,20 @@ dir_delete <- function(path) {
   old <- path_expand(path)
 
   dirs <- dir_ls(old, type = "directory", recurse = TRUE, all = TRUE)
-  files <- dir_ls(old,
-    type = c("unknown", "file", "symlink", "FIFO", "socket", "character_device", "block_device"),
+  files <- dir_ls(
+    old,
+    type = c(
+      "unknown",
+      "file",
+      "symlink",
+      "FIFO",
+      "socket",
+      "character_device",
+      "block_device"
+    ),
     recurse = TRUE,
-    all = TRUE)
+    all = TRUE
+  )
   .Call(fs_unlink_, files)
   .Call(fs_rmdir_, rev(c(old, dirs)))
 
@@ -80,9 +90,7 @@ dir_delete <- function(path) {
 link_delete <- function(path) {
   assert_no_missing(path)
 
-  assert("`path` must be a link",
-    all(is_link(path))
-  )
+  assert("`path` must be a link", all(is_link(path)))
 
   old <- path_expand(path)
 
