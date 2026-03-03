@@ -91,7 +91,7 @@ link_create(path_abs("a"), "c")
 
 # Realize the path
 path_real("c/b")
-#> /tmp/Rtmp9wRcdf/a/b
+#> /tmp/Rtmp2Ucjjw/a/b
 
 # Split a path
 parts <- path_split("a/b")
