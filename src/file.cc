@@ -368,6 +368,20 @@ fs_copyfile_(SEXP path_sxp, SEXP new_path_sxp, SEXP overwrite_sxp) {
     uv_fs_t req;
     const char* p = CHAR(STRING_ELT(path_sxp, i));
     const char* n = CHAR(STRING_ELT(new_path_sxp, i));
+
+    // When overwriting, unlink the destination first so that fchmod() does not
+    // fail with EPERM when the destination is owned by a different user (but
+    // the current user has write permission via group membership).
+    if (overwrite) {
+      uv_fs_t unlink_req;
+      uv_fs_unlink(uv_default_loop(), &unlink_req, n, NULL);
+      // Ignore ENOENT (file didn't exist); propagate other errors.
+      if (unlink_req.result < 0 && unlink_req.result != UV_ENOENT) {
+        stop_for_error(unlink_req, "Failed to remove '%s'", n);
+      }
+      uv_fs_req_cleanup(&unlink_req);
+    }
+
     uv_fs_copyfile(
         uv_default_loop(),
         &req,
