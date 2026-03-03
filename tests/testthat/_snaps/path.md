@@ -1,4 +1,4 @@
-# path: errors on paths which are too long
+# path / errors on paths which are too long
 
     Code
       path(paste(rep("a", 1e+05), collapse = ""))
@@ -11,7 +11,7 @@
       Error in `path_tidy()`:
       ! Total path length must be less than PATH_MAX: <path-max>
 
-# path_rel: works for POSIX paths
+# path_rel / works for POSIX paths
 
     Code
       path_rel(c("a", "a/b", "a/b/c"), c("a/b", "a"))
