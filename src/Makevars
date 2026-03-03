@@ -45,7 +45,7 @@ $(SHLIB): $(LIBUV)/.libs/libuv.pa
 $(LIBUV)/Makefile:
 	touch $(LIBUV)/aclocal.m4 && touch $(LIBUV)/configure && touch $(LIBUV)/Makefile.in
 	(cd $(LIBUV) \
-	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" ./configure $(R_CONFIGURE_FLAGS) $(CONFIGURE_ARGS) --quiet)
+	&& CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS) $(CPICFLAGS) $(C_VISIBILITY) -std=c99" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" LT_MULTI_MODULE=1 ./configure $(R_CONFIGURE_FLAGS) $(CONFIGURE_ARGS) --quiet)
 
 $(LIBUV)/.libs/libuv.pa: $(LIBUV)/Makefile
 	$(MAKE) --directory=$(LIBUV) \
