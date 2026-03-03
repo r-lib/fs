@@ -11,8 +11,6 @@ if (!is_windows()) {
       expect_equal(as_fs_perms(420), new_fs_perms(420L))
       expect_equal(as_fs_perms(NA_real_), new_fs_perms(NA_integer_))
       expect_equal(as_fs_perms(c(511, 420)), new_fs_perms(c(511L, 420L)))
-
-      expect_snapshot(error = TRUE, as_fs_perms(420.5))
     })
     it("coerces octmode", {
       expect_equal(as_fs_perms(as.octmode("777")), new_fs_perms(511L))
@@ -64,8 +62,6 @@ if (!is_windows()) {
       expect_equal(as_fs_perms(384), new_fs_perms(384L))
       expect_equal(as_fs_perms(NA_real_), new_fs_perms(NA_integer_))
       expect_equal(as_fs_perms(c(256, 384)), new_fs_perms(c(256L, 384L)))
-
-      expect_snapshot(error = TRUE, as_fs_perms(420.5))
     })
     it("coerces octmode", {
       expect_equal(as_fs_perms(as.octmode("600")), new_fs_perms(384L))

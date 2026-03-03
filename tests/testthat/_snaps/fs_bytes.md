@@ -1,4 +1,4 @@
-# Ops.fs_bytes: errors for unary operators
+# Ops.fs_bytes / errors for unary operators
 
     Code
       !x
@@ -16,7 +16,7 @@
       Error:
       ! unary '-' not defined for "fs_bytes" objects
 
-# Ops.fs_bytes: errors for other binary operators
+# Ops.fs_bytes / errors for other binary operators
 
     Code
       x %% 2

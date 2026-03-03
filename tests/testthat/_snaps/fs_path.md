@@ -1,4 +1,4 @@
-# as_fs_path: fails with non-character inputs
+# as_fs_path / fails with non-character inputs
 
     Code
       as_fs_path(1)
