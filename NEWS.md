@@ -8,6 +8,10 @@
 * `dir_exists()` follows relative symlinks in non-current directories
   (@heavywatal, #395).
 
+* `file_copy(overwrite = TRUE)` no longer fails with `[EPERM]` when the
+  destination file is owned by a different user but the current user has write
+  permission via group membership (#487).
+
 # fs 1.6.6
 
 * No changes.

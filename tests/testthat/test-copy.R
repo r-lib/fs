@@ -31,6 +31,12 @@ describe("file_copy", {
       expect_equal(readLines("bar2"), readLines("bar"))
     })
   })
+  it("can overwrite an existing file", {
+    with_dir_tree(list("foo" = "original", "bar" = "new content"), {
+      file_copy("bar", "foo", overwrite = TRUE)
+      expect_equal(readLines("foo"), "new content")
+    })
+  })
   it("errors on missing input", {
     expect_error(file_copy(NA, "foo2"), class = "invalid_argument")
     expect_error(file_copy("foo", NA), class = "invalid_argument")
