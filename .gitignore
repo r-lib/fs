@@ -1,6 +1,5 @@
 inst/doc
 .Rproj.user
-tools
 .Rhistory
 script.R
 docs/
@@ -15,7 +14,8 @@ Makefile
 /src/*/libuv.pc
 /src/*/src/.dirstamp
 /src/*/src/unix/.dirstamp
-/src/libuv/
-	
+/src/libuv
+/src/uv.h
+/src/uv
 docs
 /revdep

@@ -9,7 +9,6 @@
 ^codecov\.yml$
 ^src/\.ycm_extra_conf\.py$
 ^README\.Rmd$
-^tools$
 ^docs$
 ^_pkgdown\.yml$
 ^doc$
@@ -19,7 +18,6 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^revdep$
-^.*\.tar\.gz$
 ^\.github$
 ^Makefile$
 ^src/README\.md$
@@ -27,3 +25,6 @@
 ^pkgdown$
 ^[\.]?air\.toml$
 ^\.vscode$
+^src/libuv$
+^src/uv\.h$
+^src/uv$
