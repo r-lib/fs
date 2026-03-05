@@ -1,4 +1,6 @@
-# fs (development version)
+# fs 1.6.7
+
+* Windows: use libuv from Rtools (sync with httpuv)
 
 * `path_has_parent()` now expands `~` (#412).
 
@@ -7,6 +9,10 @@
 
 * `dir_exists()` follows relative symlinks in non-current directories
   (@heavywatal, #395).
+
+* Fix some autotools warning for CRAN
+
+* New maintainer
 
 # fs 1.6.6
 

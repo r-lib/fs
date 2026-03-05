@@ -10,6 +10,7 @@ ISVTX
 Joyent
 LPT
 PBC
+ROR
 Rcpp
 Vectorization
 autotool
@@ -18,7 +19,6 @@ colour
 coloured
 colouring
 colourised
-datetime
 devtools
 dircolors
 dplyr
@@ -32,14 +32,12 @@ libbsd
 libuv
 lifecycle
 linux
-macOS
 magrittr
 nodejs
 pthread
 purrr
 readline
 recurse
-reproducibility
 signalling
 symlink
 symlinks
@@ -52,5 +50,4 @@ umask
 unicode
 valgrind
 vctrs
-vectorized
 writeable

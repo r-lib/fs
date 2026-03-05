@@ -20,12 +20,13 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Gábor Csárdi \email{csardi.gabor@gmail.com}
+\strong{Maintainer}: Jeroen Ooms \email{jeroenooms@gmail.com}
 
 Authors:
 \itemize{
   \item Jim Hester
-  \item Hadley Wickham \email{hadley@posit.co}
+  \item Hadley Wickham
+  \item Gábor Csárdi
 }
 
 Other contributors:

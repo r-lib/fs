@@ -1,10 +1,11 @@
 Package: fs
 Title: Cross-Platform File System Operations Based on 'libuv'
-Version: 1.6.6.9001
+Version: 1.6.7
 Authors@R: c(
     person("Jim", "Hester", role = "aut"),
-    person("Hadley", "Wickham", , "hadley@posit.co", role = "aut"),
-    person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre")),
+    person("Hadley", "Wickham", role = "aut"),
+    person("Gábor", "Csárdi", role = "aut"),
+    person("Jeroen", "Ooms", , "jeroenooms@gmail.com", role = "cre"),
     person("libuv project contributors", role = "cph",
            comment = "libuv library"),
     person("Joyent, Inc. and other Node contributors", role = "cph",
