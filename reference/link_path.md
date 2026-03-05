@@ -24,7 +24,7 @@ A tidy path to the object the link points to.
 file_create("foo")
 link_create(path_abs("foo"), "bar")
 link_path("bar")
-#> /tmp/Rtmp9AWdCB/foo
+#> /tmp/RtmpTxJMmi/foo
 
 # Cleanup
 file_delete(c("foo", "bar"))
