@@ -29,6 +29,7 @@
 <url><loc>https://fs.r-lib.org/reference/id.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/index.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/is_absolute_path.html</loc></url>
+<url><loc>https://fs.r-lib.org/reference/is_dir_empty.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/is_file.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/link_path.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/path.html</loc></url>
@@ -38,6 +39,7 @@
 <url><loc>https://fs.r-lib.org/reference/path_math.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/path_package.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/path_sanitize.html</loc></url>
+<url><loc>https://fs.r-lib.org/reference/path_select_components.html</loc></url>
 <url><loc>https://fs.r-lib.org/reference/path_tidy.html</loc></url>
 </urlset>
 
