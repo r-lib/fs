@@ -28,3 +28,4 @@
 ^src/libuv$
 ^src/uv\.h$
 ^src/uv$
+^src/.*\.o$

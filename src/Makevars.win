@@ -1,18 +1,20 @@
 STATLIB = libuv
 
 PKG_LIBS = $(STATLIB) \
-           -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv
+           -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv -ldbghelp -lole32
 
-PKG_CPPFLAGS = -D_WIN32_WINNT=0x0600 -DSTRICT_R_HEADERS -I.
+PKG_CPPFLAGS = -DSTRICT_R_HEADERS -I.
 
 SOURCES = $(wildcard *.cc windows/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)
 
-$(OBJECTS): $(STATLIB)
+$(SHLIB): $(STATLIB)
+
+$(OBJECTS): | $(STATLIB)
 
 $(STATLIB):
 	tar xf ../tools/libuv-v1.52.0.tar.gz && \
-	CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS)" CPPFLAGS="$(CPPFLAGS)" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" cmake -S libuv-v1.52.0 -B libuv-v1.52.0 -DLIBUV_BUILD_SHARED=OFF -G'MSYS Makefiles' && cmake --build libuv-v1.52.0 && \
+	CC="$(CC)" CFLAGS="$(CFLAGS) $(CPICFLAGS) -DFILE_DEVICE_CONSOLE=0x00000050 -D_WIN32_WINNT=0x0600 -DWSA_FLAG_NO_HANDLE_INHERIT=0x80 -DPROCESSOR_ARCHITECTURE_ARM64=12 -D__USE_MINGW_ANSI_STDIO" AR="$(AR)" RANLIB="$(RANLIB)" LDFLAGS="$(LDFLAGS)" cmake -S libuv-v1.52.0 -B libuv-v1.52.0 -DLIBUV_BUILD_SHARED=OFF -G'MinGW Makefiles' && cmake --build libuv-v1.52.0 && \
 	cp -f libuv-v1.52.0/libuv.a libuv && \
 	cp -Rf libuv-v1.52.0/include/* . &&\
 	rm -Rf libuv-v1.52.0
