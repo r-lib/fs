@@ -1,5 +1,5 @@
-#include "getmode.h"
 #include <sys/stat.h>
+#include <string>
 
 #include <R.h>
 #include <Rinternals.h> /* for Rf_error */
