@@ -1,0 +1,15 @@
+SYS_LIBS = $(shell pkg-config --libs zlib libuv)
+ifeq ($(SYS_LIBS),)
+   PKG_LIBS = \
+	-luv -lpthread -lws2_32 -lkernel32 -lpsapi -liphlpapi -lshell32 -luserenv -lz \
+        -ldbghelp -luuid -lole32
+else
+   PKG_LIBS = $(SYS_LIBS)
+endif
+
+PKG_CFLAGS = $(C_VISIBILITY) -DSTRICT_R_HEADERS
+PKG_CXXFLAGS = $(CXX_VISIBILITY) -DSTRICT_R_HEADERS
+PKG_CPPFLAGS += -D_WIN32_WINNT=0x0600 -DSTRICT_R_HEADERS
+
+SOURCES = $(wildcard *.cc windows/*.cc)
+OBJECTS = $(SOURCES:.cc=.o)
