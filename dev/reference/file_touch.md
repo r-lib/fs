@@ -28,6 +28,6 @@ file_info("foo")[c("access_time", "modification_time", "change_time", "birth_tim
 #> # A tibble: 1 × 4
 #>   access_time         modification_time   change_time        
 #>   <dttm>              <dttm>              <dttm>             
-#> 1 2018-01-01 00:00:00 2018-01-01 00:00:00 2026-03-05 12:44:00
+#> 1 2018-01-01 00:00:00 2018-01-01 00:00:00 2026-03-05 13:03:58
 #> # ℹ 1 more variable: birth_time <dttm>
 ```
