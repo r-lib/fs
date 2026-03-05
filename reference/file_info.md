@@ -130,7 +130,7 @@ file_info("mtcars.csv")
 #> # A tibble: 1 × 18
 #>   path       type      size permissions modification_time   user  group
 #>   <fs::path> <fct> <fs::by> <fs::perms> <dttm>              <chr> <chr>
-#> 1 mtcars.csv file     1.74K rw-r--r--   2026-03-05 18:39:45 runn… runn…
+#> 1 mtcars.csv file     1.74K rw-r--r--   2026-03-05 19:41:50 runn… runn…
 #> # ℹ 11 more variables: device_id <dbl>, hard_links <dbl>,
 #> #   special_device_id <dbl>, inode <dbl>, block_size <dbl>,
 #> #   blocks <dbl>, flags <int>, generation <dbl>, access_time <dttm>,

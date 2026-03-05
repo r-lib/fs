@@ -137,7 +137,7 @@ paths |> file_delete()
 ```
 
 **fs** functions also work well in conjunction with other
-[tidyverse](https://www.tidyverse.org/) packages, like
+[tidyverse](https://tidyverse.org/) packages, like
 [dplyr](https://dplyr.tidyverse.org) and
 [purrr](https://purrr.tidyverse.org).
 

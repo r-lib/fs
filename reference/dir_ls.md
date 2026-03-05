@@ -135,10 +135,10 @@ dir_ls("base", recurse = TRUE, glob = "*.R")
 
 # If you need the full paths input an absolute path
 dir_ls(path_abs("base"))
-#> /tmp/Rtmp0JerhN/base/CITATION    /tmp/Rtmp0JerhN/base/DESCRIPTION 
-#> /tmp/Rtmp0JerhN/base/INDEX       /tmp/Rtmp0JerhN/base/Meta        
-#> /tmp/Rtmp0JerhN/base/R           /tmp/Rtmp0JerhN/base/demo        
-#> /tmp/Rtmp0JerhN/base/help        /tmp/Rtmp0JerhN/base/html        
+#> /tmp/Rtmp9AWdCB/base/CITATION    /tmp/Rtmp9AWdCB/base/DESCRIPTION 
+#> /tmp/Rtmp9AWdCB/base/INDEX       /tmp/Rtmp9AWdCB/base/Meta        
+#> /tmp/Rtmp9AWdCB/base/R           /tmp/Rtmp9AWdCB/base/demo        
+#> /tmp/Rtmp9AWdCB/base/help        /tmp/Rtmp9AWdCB/base/html        
 
 dir_map("base", identity)
 #> [[1]]
@@ -183,11 +183,11 @@ dir_info("base")
 #> 1 …se/CITATION file     643 rw-r--r--   2025-10-31 10:25:18 root  root 
 #> 2 …DESCRIPTION file     383 rw-r--r--   2025-10-31 10:25:18 root  root 
 #> 3 base/INDEX   file   24.2K rw-r--r--   2025-10-31 10:25:18 root  root 
-#> 4 base/Meta    dire…     4K rwxr-xr-x   2026-03-05 18:38:25 root  root 
-#> 5 base/R       dire…     4K rwxr-xr-x   2026-03-05 18:38:25 root  root 
-#> 6 base/demo    dire…     4K rwxr-xr-x   2026-03-05 18:38:25 root  root 
-#> 7 base/help    dire…     4K rwxr-xr-x   2026-03-05 18:38:25 root  root 
-#> 8 base/html    dire…     4K rwxr-xr-x   2026-03-05 18:38:25 root  root 
+#> 4 base/Meta    dire…     4K rwxr-xr-x   2026-03-05 19:40:29 root  root 
+#> 5 base/R       dire…     4K rwxr-xr-x   2026-03-05 19:40:29 root  root 
+#> 6 base/demo    dire…     4K rwxr-xr-x   2026-03-05 19:40:29 root  root 
+#> 7 base/help    dire…     4K rwxr-xr-x   2026-03-05 19:40:29 root  root 
+#> 8 base/html    dire…     4K rwxr-xr-x   2026-03-05 19:40:29 root  root 
 #> # ℹ 11 more variables: device_id <dbl>, hard_links <dbl>,
 #> #   special_device_id <dbl>, inode <dbl>, block_size <dbl>,
 #> #   blocks <dbl>, flags <int>, generation <dbl>, access_time <dttm>,
