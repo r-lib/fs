@@ -24,7 +24,10 @@ if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
   PKG_LIBS=${PKGCONFIG_LIBS}
 elif [ "$UNAME" = "Darwin" ]; then
   USE_BUNDLED_LIBUV=true
-elif test -f "/etc/redhat-release" && ! grep -Fq Fedora "/etc/redhat-release"; then
+fi
+
+# On LTS Linux servers we avoid the system dependency for now
+if test -f "/etc/redhat-release" && ! grep -Fq Fedora "/etc/redhat-release"; then
   USE_BUNDLED_LIBUV=true
 elif test -f "/etc/os-release" && grep -Fq Ubuntu "/etc/os-release"; then
   USE_BUNDLED_LIBUV=true
