@@ -1,3 +1,2 @@
-#' !/usr/bin/env sh
-
-rm -rf src/libuv-*/docs
+#!/bin/sh
+rm -f src/Makevars configure.log

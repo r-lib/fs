@@ -29,3 +29,5 @@
 ^src/uv\.h$
 ^src/uv$
 ^src/.*\.o$
+^src/Makevars$
+^configure.log$
