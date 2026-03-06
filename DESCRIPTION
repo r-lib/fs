@@ -1,6 +1,6 @@
 Package: fs
 Title: Cross-Platform File System Operations Based on 'libuv'
-Version: 1.6.7
+Version: 1.9000
 Authors@R: c(
     person("Jim", "Hester", role = "aut"),
     person("Hadley", "Wickham", role = "aut"),
@@ -35,7 +35,8 @@ Suggests:
     withr
 VignetteBuilder: 
     knitr
-ByteCompile: true
+SystemRequirements: libuv: libuv-devel (rpm) or libuv1-dev (deb). Alternatively
+    to build the vendored libuv 'cmake' is required. GNU make.
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
 Config/usethis/last-upkeep: 2025-04-23
@@ -44,4 +45,3 @@ Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-SystemRequirements: GNU make

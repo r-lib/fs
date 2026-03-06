@@ -1,0 +1,70 @@
+# This script will query 'pkg-config' for the required cflags and ldflags.
+# If pkg-config is unavailable or does not find the library, try setting
+# INCLUDE_DIR and LIB_DIR manually via e.g:
+# R CMD INSTALL --configure-vars='INCLUDE_DIR=/.../include LIB_DIR=/.../lib'
+
+# Library settings
+PKG_CONFIG_NAME="libuv"
+PKG_DEB_NAME="libuv1-dev"
+PKG_RPM_NAME="libuv-devel"
+PKG_BREW_NAME="libuv"
+PKG_TEST_HEADER="<uv.h>"
+PKG_LIBS="-luv"
+
+# Use pkg-config if available
+if [ `command -v pkg-config` ]; then
+  PKGCONFIG_CFLAGS=`pkg-config --cflags --silence-errors ${PKG_CONFIG_NAME}`
+  PKGCONFIG_LIBS=`pkg-config --libs ${PKG_CONFIG_NAME}`
+fi
+
+# Note that cflags may be empty in case of success
+if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
+  echo "Found pkg-config cflags and libs!"
+  PKG_CFLAGS=${PKGCONFIG_CFLAGS}
+  PKG_LIBS=${PKGCONFIG_LIBS}
+elif [ "$UNAME" = "Darwin" ]; then
+  USE_BUNDLED_LIBUV=true
+elif test -f "/etc/redhat-release" && ! grep -Fq Fedora "/etc/redhat-release"; then
+  USE_BUNDLED_LIBUV=true
+elif test -f "/etc/os-release" && grep -Fq Ubuntu "/etc/os-release"; then
+  USE_BUNDLED_LIBUV=true
+fi
+
+if [ "USE_BUNDLED_LIBUV" ]; then
+  echo "Building static libuv" 1>&2
+  cp -f src/Makevars.vendor src/Makevars
+  exit 0
+fi
+
+# For debugging
+echo "Using PKG_CFLAGS=$PKG_CFLAGS"
+echo "Using PKG_LIBS=$PKG_LIBS"
+
+# Find compiler
+CC=`${R_HOME}/bin/R CMD config CC`
+CFLAGS=`${R_HOME}/bin/R CMD config CFLAGS`
+CPPFLAGS=`${R_HOME}/bin/R CMD config CPPFLAGS`
+
+# Test configuration
+echo "#include $PKG_TEST_HEADER" | ${CC} ${CPPFLAGS} ${PKG_CFLAGS} ${CFLAGS} -E -xc - >/dev/null 2>configure.log
+
+# Customize the error
+if [ $? -ne 0 ]; then
+  echo "--------------------------- [CONFIGURE] --------------------------------"
+  echo "Configuration failed because $PKG_CONFIG_NAME was not found. Try installing:"
+  echo " * deb: $PKG_DEB_NAME (Debian, Ubuntu, etc)"
+  echo " * rpm: $PKG_RPM_NAME (Fedora, EPEL)"
+  echo " * brew: $PKG_BREW_NAME (OSX)"
+  echo "Alternatively set environment variable USE_BUNDLED_LIBUV=1 to build a static"
+  echo "version of libuv that is included with this package."
+  echo "-------------------------- [ERROR MESSAGE] ---------------------------"
+  cat configure.log
+  echo "--------------------------------------------------------------------"
+  exit 1
+fi
+
+# Write to Makevars
+sed -e "s|@cflags@|$PKG_CFLAGS|" -e "s|@libs@|$PKG_LIBS|" src/Makevars.in > src/Makevars
+
+# Success
+exit 0

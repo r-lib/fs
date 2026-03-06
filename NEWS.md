@@ -1,3 +1,11 @@
+# fs 2.0.0
+
+* On Linux it is now recommended to build against your system version of libuv. 
+  The envvar USE_BUNDLED_LIBUV can be used to build a static version instead.
+
+* Vendored version of libuv was updated to 1.52.0. This version now requires
+  cmake to build. 
+
 # fs 1.6.7
 
 * Windows: use libuv from Rtools (sync with httpuv)

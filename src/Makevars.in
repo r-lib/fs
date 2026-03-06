@@ -1,0 +1,19 @@
+OBJECTS = dir.o error.o file.o fs.o getmode.o id.o init.o link.o path.o utils.o unix/getmode.o
+PKG_CFLAGS = $(C_VISIBILITY)
+
+PKG_CPPFLAGS = -I. @cflags@
+PKG_LIBS = @libs@
+
+UNAME := $(shell uname)
+ifeq ($(UNAME), FreeBSD)
+PKG_LIBS += -lkvm
+endif
+ifeq ($(UNAME), OpenBSD)
+PKG_LIBS += -lkvm
+endif
+ifeq ($(UNAME), NetBSD)
+PKG_LIBS += -lkvm
+endif
+ifneq ($(filter $(UNAME), Linux AIX OS400),)
+OBJECTS +=  bsd/setmode.o bsd/strmode.o bsd/reallocarray.o
+endif

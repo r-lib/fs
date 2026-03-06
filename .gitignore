@@ -14,8 +14,10 @@ Makefile
 /src/*/libuv.pc
 /src/*/src/.dirstamp
 /src/*/src/unix/.dirstamp
+/src/Makevars
 /src/libuv
 /src/uv.h
 /src/uv
 docs
 /revdep
+configure.log
