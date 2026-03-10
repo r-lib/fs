@@ -69,10 +69,10 @@ file_exists(path("foo2", path_file(files)))
 # Create a link to the directory
 link_create(path_abs("foo"), "loo")
 link_path("loo")
-#> /tmp/RtmpSaE30J/foo
+#> /tmp/Rtmp7tZwns/foo
 link_copy("loo", "loo2")
 link_path("loo2")
-#> /tmp/RtmpSaE30J/foo
+#> /tmp/Rtmp7tZwns/foo
 
 # Cleanup
 dir_delete(c("foo", "foo2"))
