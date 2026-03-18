@@ -32,11 +32,11 @@ package.
 
 ``` r
 path_package("base")
-#> /opt/R/4.5.2/lib/R/library/base
+#> /opt/R/4.5.3/lib/R/library/base
 path_package("stats")
-#> /opt/R/4.5.2/lib/R/library/stats
+#> /opt/R/4.5.3/lib/R/library/stats
 path_package("base", "INDEX")
-#> /opt/R/4.5.2/lib/R/library/base/INDEX
+#> /opt/R/4.5.3/lib/R/library/base/INDEX
 path_package("splines", "help", "AnIndex")
-#> /opt/R/4.5.2/lib/R/library/splines/help/AnIndex
+#> /opt/R/4.5.3/lib/R/library/splines/help/AnIndex
 ```
