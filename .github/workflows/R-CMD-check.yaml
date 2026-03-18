@@ -29,6 +29,7 @@ jobs:
           - {os: windows-latest, r: 'oldrel-2'}
           - {os: windows-latest, r: 'oldrel-3'}
           - {os: windows-latest, r: 'oldrel-4'}
+          - {os: windows-11-arm, r: 'devel'}
           - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
           - {os: ubuntu-latest,  r: 'release'}
           - {os: ubuntu-latest,  r: 'oldrel-1'}
