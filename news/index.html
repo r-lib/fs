@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +43,8 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.0" id="fs-200">fs 2.0.0<a class="anchor" aria-label="anchor" href="#fs-200"></a></h2>
-<ul><li><p>On Linux it is now recommended to build against your system version of libuv. The envvar USE_BUNDLED_LIBUV can be used to build a static version instead.</p></li>
-<li><p>Vendored version of libuv was updated to 1.52.0. This version now requires cmake to build.</p></li>
+<ul><li><p>On Linux we now build against the system version of libuv if available. Set envvar USE_BUNDLED_LIBUV to force building a static version instead.</p></li>
+<li><p>Vendored version of libuv was updated to 1.52.0. This version now uses cmake instead of autotools to build.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.6.7" id="fs-167">fs 1.6.7<a class="anchor" aria-label="anchor" href="#fs-167"></a></h2><p class="text-muted">CRAN release: 2026-03-06</p>
