@@ -22,7 +22,7 @@ if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
   echo "Found pkg-config cflags and libs!"
   PKG_CFLAGS=${PKGCONFIG_CFLAGS}
   PKG_LIBS=${PKGCONFIG_LIBS}
-elif [ "$UNAME" = "Darwin" ]; then
+elif [ "$(uname)" = "Darwin" ]; then
   USE_BUNDLED_LIBUV=true
 fi
 
@@ -33,7 +33,7 @@ elif test -f "/etc/os-release" && grep -Fq Ubuntu "/etc/os-release"; then
   USE_BUNDLED_LIBUV=true
 fi
 
-if [ "USE_BUNDLED_LIBUV" ]; then
+if [ "$USE_BUNDLED_LIBUV" ]; then
   echo "Building static libuv" 1>&2
   cp -f src/Makevars.vendor src/Makevars
   exit 0
