@@ -1,6 +1,6 @@
 Package: fs
 Title: Cross-Platform File System Operations Based on 'libuv'
-Version: 1.9000
+Version: 2.0.0
 Authors@R: c(
     person("Jim", "Hester", role = "aut"),
     person("Hadley", "Wickham", role = "aut"),

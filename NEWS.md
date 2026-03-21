@@ -1,10 +1,10 @@
 # fs 2.0.0
 
-* On Linux it is now recommended to build against your system version of libuv. 
-  The envvar USE_BUNDLED_LIBUV can be used to build a static version instead.
+* On Linux we now build against the system version of libuv if available.
+  Set envvar USE_BUNDLED_LIBUV to force building a static version instead.
 
-* Vendored version of libuv was updated to 1.52.0. This version now requires
-  cmake to build. 
+* Vendored version of libuv was updated to 1.52.0. This version now uses
+  cmake instead of autotools to build.
 
 # fs 1.6.7
 
