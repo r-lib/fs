@@ -1,4 +1,5 @@
 #include <sys/stat.h>
+#include <errno.h>
 #include <string>
 
 #include <R.h>

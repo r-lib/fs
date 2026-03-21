@@ -1,3 +1,7 @@
+# fs 1.6.8
+
+* Windows: fix build with clang (for ARM)
+
 # fs 1.6.7
 
 * Windows: use libuv from Rtools (sync with httpuv)
