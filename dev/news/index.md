@@ -1,6 +1,21 @@
 # Changelog
 
-## fs (development version)
+## fs 2.0.0
+
+CRAN release: 2026-03-22
+
+- On Linux we now build against the system version of libuv if
+  available. Set envvar USE_BUNDLED_LIBUV to force building a static
+  version instead.
+
+- Vendored version of libuv was updated to 1.52.0. This version now uses
+  cmake instead of autotools to build.
+
+## fs 1.6.7
+
+CRAN release: 2026-03-06
+
+- Windows: use libuv from Rtools (sync with httpuv)
 
 - [`path_has_parent()`](https://fs.r-lib.org/dev/reference/path_math.md)
   now expands `~` ([\#412](https://github.com/r-lib/fs/issues/412)).
@@ -15,6 +30,10 @@
   follows relative symlinks in non-current directories
   ([@heavywatal](https://github.com/heavywatal),
   [\#395](https://github.com/r-lib/fs/issues/395)).
+
+- Fix some autotools warning for CRAN
+
+- New maintainer
 
 ## fs 1.6.6
 

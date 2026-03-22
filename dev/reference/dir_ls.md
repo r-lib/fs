@@ -116,15 +116,15 @@ dir_info(
 
 ``` r
 dir_ls(R.home("share"), type = "directory")
-#> /opt/R/4.5.2/lib/R/share/R
-#> /opt/R/4.5.2/lib/R/share/Rd
-#> /opt/R/4.5.2/lib/R/share/dictionaries
-#> /opt/R/4.5.2/lib/R/share/encodings
-#> /opt/R/4.5.2/lib/R/share/java
-#> /opt/R/4.5.2/lib/R/share/licenses
-#> /opt/R/4.5.2/lib/R/share/make
-#> /opt/R/4.5.2/lib/R/share/sh
-#> /opt/R/4.5.2/lib/R/share/texmf
+#> /opt/R/4.5.3/lib/R/share/R
+#> /opt/R/4.5.3/lib/R/share/Rd
+#> /opt/R/4.5.3/lib/R/share/dictionaries
+#> /opt/R/4.5.3/lib/R/share/encodings
+#> /opt/R/4.5.3/lib/R/share/java
+#> /opt/R/4.5.3/lib/R/share/licenses
+#> /opt/R/4.5.3/lib/R/share/make
+#> /opt/R/4.5.3/lib/R/share/sh
+#> /opt/R/4.5.3/lib/R/share/texmf
 
 # Create a shorter link
 link_create(system.file(package = "base"), "base")
@@ -135,10 +135,10 @@ dir_ls("base", recurse = TRUE, glob = "*.R")
 
 # If you need the full paths input an absolute path
 dir_ls(path_abs("base"))
-#> /tmp/RtmpNzJQTW/base/CITATION    /tmp/RtmpNzJQTW/base/DESCRIPTION 
-#> /tmp/RtmpNzJQTW/base/INDEX       /tmp/RtmpNzJQTW/base/Meta        
-#> /tmp/RtmpNzJQTW/base/R           /tmp/RtmpNzJQTW/base/demo        
-#> /tmp/RtmpNzJQTW/base/help        /tmp/RtmpNzJQTW/base/html        
+#> /tmp/RtmpQXQVoh/base/CITATION    /tmp/RtmpQXQVoh/base/DESCRIPTION 
+#> /tmp/RtmpQXQVoh/base/INDEX       /tmp/RtmpQXQVoh/base/Meta        
+#> /tmp/RtmpQXQVoh/base/R           /tmp/RtmpQXQVoh/base/demo        
+#> /tmp/RtmpQXQVoh/base/help        /tmp/RtmpQXQVoh/base/html        
 
 dir_map("base", identity)
 #> [[1]]
@@ -180,14 +180,14 @@ dir_info("base")
 #> # A tibble: 8 × 18
 #>   path         type    size permissions modification_time   user  group
 #>   <fs::path>   <fct> <fs::> <fs::perms> <dttm>              <chr> <chr>
-#> 1 …se/CITATION file     643 rw-r--r--   2025-10-31 10:25:18 root  root 
-#> 2 …DESCRIPTION file     383 rw-r--r--   2025-10-31 10:25:18 root  root 
-#> 3 base/INDEX   file   24.2K rw-r--r--   2025-10-31 10:25:18 root  root 
-#> 4 base/Meta    dire…     4K rwxr-xr-x   2026-03-05 15:02:10 root  root 
-#> 5 base/R       dire…     4K rwxr-xr-x   2026-03-05 15:02:10 root  root 
-#> 6 base/demo    dire…     4K rwxr-xr-x   2026-03-05 15:02:10 root  root 
-#> 7 base/help    dire…     4K rwxr-xr-x   2026-03-05 15:02:10 root  root 
-#> 8 base/html    dire…     4K rwxr-xr-x   2026-03-05 15:02:10 root  root 
+#> 1 …se/CITATION file     643 rw-r--r--   2026-03-11 09:37:27 root  root 
+#> 2 …DESCRIPTION file     383 rw-r--r--   2026-03-11 09:37:27 root  root 
+#> 3 base/INDEX   file   24.2K rw-r--r--   2026-03-11 09:37:27 root  root 
+#> 4 base/Meta    dire…     4K rwxr-xr-x   2026-03-22 11:29:44 root  root 
+#> 5 base/R       dire…     4K rwxr-xr-x   2026-03-22 11:29:44 root  root 
+#> 6 base/demo    dire…     4K rwxr-xr-x   2026-03-22 11:29:44 root  root 
+#> 7 base/help    dire…     4K rwxr-xr-x   2026-03-22 11:29:44 root  root 
+#> 8 base/html    dire…     4K rwxr-xr-x   2026-03-22 11:29:44 root  root 
 #> # ℹ 11 more variables: device_id <dbl>, hard_links <dbl>,
 #> #   special_device_id <dbl>, inode <dbl>, block_size <dbl>,
 #> #   blocks <dbl>, flags <int>, generation <dbl>, access_time <dttm>,

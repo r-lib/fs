@@ -15,13 +15,15 @@ Useful links:
 
 ## Author
 
-**Maintainer**: Gábor Csárdi <csardi.gabor@gmail.com>
+**Maintainer**: Jeroen Ooms <jeroenooms@gmail.com>
 
 Authors:
 
 - Jim Hester
 
-- Hadley Wickham <hadley@posit.co>
+- Hadley Wickham
+
+- Gábor Csárdi
 
 Other contributors:
 

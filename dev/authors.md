@@ -6,8 +6,9 @@
 
 - **[Hadley Wickham](https://hadley.nz)**. Author.
 
-- **[Gábor Csárdi](https://github.com/gaborcsardi)**. Author,
-  maintainer.
+- **[Gábor Csárdi](https://github.com/gaborcsardi)**. Author.
+
+- **Jeroen Ooms**. Maintainer.
 
 - **libuv project contributors**. Copyright holder.  
   libuv library
@@ -25,13 +26,13 @@ Source:
 [`DESCRIPTION`](https://github.com/r-lib/fs/blob/main/DESCRIPTION)
 
 Hester J, Wickham H, Csárdi G (2026). *fs: Cross-Platform File System
-Operations Based on 'libuv'*. R package version 1.6.6.9001,
+Operations Based on 'libuv'*. R package version 2.0.0.9000,
 <https://fs.r-lib.org>.
 
     @Manual{,
       title = {fs: Cross-Platform File System Operations Based on 'libuv'},
       author = {Jim Hester and Hadley Wickham and Gábor Csárdi},
       year = {2026},
-      note = {R package version 1.6.6.9001},
+      note = {R package version 2.0.0.9000},
       url = {https://fs.r-lib.org},
     }
