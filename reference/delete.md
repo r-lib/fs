@@ -52,7 +52,7 @@ link_exists("link")
 #> link 
 #> TRUE 
 file_exists(link_path("link"))
-#> /tmp/RtmphLhjkY/dir 
+#> /tmp/RtmpEdw6Bg/dir 
 #>                TRUE 
 
 # Delete a file
@@ -75,7 +75,7 @@ link_exists("link")
 #> link 
 #> TRUE 
 dir_exists(link_path("link"))
-#> /tmp/RtmphLhjkY/dir 
+#> /tmp/RtmpEdw6Bg/dir 
 #>               FALSE 
 
 # Delete the link

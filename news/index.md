@@ -2,6 +2,8 @@
 
 ## fs 2.0.0
 
+CRAN release: 2026-03-22
+
 - On Linux we now build against the system version of libuv if
   available. Set envvar USE_BUNDLED_LIBUV to force building a static
   version instead.
