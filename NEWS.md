@@ -1,3 +1,9 @@
+# fs 2.0.1
+
+* Fix bug in finding system version of libuv, now actually works :)
+
+* Workaround for MacOS if no cmake is available
+
 # fs 2.0.0
 
 * On Linux we now build against the system version of libuv if available.

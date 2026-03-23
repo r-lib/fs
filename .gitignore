@@ -21,3 +21,5 @@ Makefile
 docs
 /revdep
 configure.log
+autobrew
+.deps

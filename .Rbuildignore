@@ -31,3 +31,5 @@
 ^src/.*\.o$
 ^src/Makevars$
 ^configure.log$
+^.deps$
+^autobrew$
