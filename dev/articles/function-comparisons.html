@@ -126,7 +126,7 @@ time there are a number of different conventions used
 </tr>
 <tr class="even">
 <td><code>dir_info("path")</code></td>
-<td><code>do.call(rbind, lapply(list.files("path"), file.info))</code></td>
+<td><code>file.info(list.files("path", full.names = TRUE))</code></td>
 <td><code>ls -al path</code></td>
 </tr>
 <tr class="odd">

@@ -38,7 +38,7 @@ with base R functions:
 | fs                                 | base                                                                    | shell                                  |
 |------------------------------------|-------------------------------------------------------------------------|----------------------------------------|
 | `dir_ls("path")`                   | `list.files("path")`                                                    | `ls path`                              |
-| `dir_info("path")`                 | `do.call(rbind, lapply(list.files("path"), file.info))`                 | `ls -al path`                          |
+| `dir_info("path")`                 | `file.info(list.files("path", full.names = TRUE))`                      | `ls -al path`                          |
 | `dir_copy("path", "new-path")`     | `dir.create("new-path"); file.copy("path", "new-path", recursive=TRUE)` | `cp path new-path`                     |
 | `dir_create("path")`               | `dir.create("path")`                                                    | `mkdir path`                           |
 | `dir_delete("path")`               | `unlink("path", recursive = TRUE)`                                      | `rm -rf path`                          |
