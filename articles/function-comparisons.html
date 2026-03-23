@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Comparison of fs functions, base R, and shell commands</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/r-lib/fs/blob/v2.0.0/vignettes/function-comparisons.Rmd" class="external-link"><code>vignettes/function-comparisons.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/fs/blob/main/vignettes/function-comparisons.Rmd" class="external-link"><code>vignettes/function-comparisons.Rmd</code></a></small>
       <div class="d-none name"><code>function-comparisons.Rmd</code></div>
     </div>
 
@@ -125,7 +125,7 @@ time there are a number of different conventions used
 </tr>
 <tr class="even">
 <td><code>dir_info("path")</code></td>
-<td><code>do.call(rbind, lapply(list.files("path"), file.info))</code></td>
+<td><code>file.info(list.files("path", full.names = TRUE))</code></td>
 <td><code>ls -al path</code></td>
 </tr>
 <tr class="odd">

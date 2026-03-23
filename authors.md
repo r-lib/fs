@@ -23,16 +23,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/r-lib/fs/blob/v2.0.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/r-lib/fs/blob/main/DESCRIPTION)
 
 Hester J, Wickham H, Csárdi G (2026). *fs: Cross-Platform File System
-Operations Based on 'libuv'*. R package version 2.0.0,
+Operations Based on 'libuv'*. R package version 2.0.1,
 <https://fs.r-lib.org>.
 
     @Manual{,
       title = {fs: Cross-Platform File System Operations Based on 'libuv'},
       author = {Jim Hester and Hadley Wickham and Gábor Csárdi},
       year = {2026},
-      note = {R package version 2.0.0},
+      note = {R package version 2.0.1},
       url = {https://fs.r-lib.org},
     }
