@@ -38,7 +38,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Create names for temporary files</h1>
-      <small class="dont-index">Source: <a href="https://github.com/r-lib/fs/blob/main/R/temp.R" class="external-link"><code>R/temp.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/fs/blob/v2.0.1/R/temp.R" class="external-link"><code>R/temp.R</code></a></small>
       <div class="d-none name"><code>file_temp.Rd</code></div>
     </div>
 
@@ -96,16 +96,16 @@ internal stack, however generally this is done instead by calling
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">path_temp</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/Rtmp6nKPu6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/tmp/Rtmp7j1EXS</span></span>
 <span class="r-in"><span><span class="fu">path_temp</span><span class="op">(</span><span class="st">"does-not-exist"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/Rtmp6nKPu6/does-not-exist</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/Rtmp7j1EXS/does-not-exist</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">file_temp</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/filedd461c46df20</span>
 <span class="r-in"><span><span class="fu">file_temp</span><span class="op">(</span>ext <span class="op">=</span> <span class="st">"png"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/Rtmp6nKPu6/file1ec01986856c.png</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/Rtmp7j1EXS/file1ed7493e1642.png</span></span>
 <span class="r-in"><span><span class="fu">file_temp</span><span class="op">(</span><span class="st">"image"</span>, ext <span class="op">=</span> <span class="st">"png"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/Rtmp6nKPu6/image1ec04f533bd.png</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">/tmp/Rtmp7j1EXS/image1ed77e94127d.png</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># You can make the temp file paths deterministic</span></span></span>

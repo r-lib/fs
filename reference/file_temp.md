@@ -53,16 +53,16 @@ internal stack, however generally this is done instead by calling
 
 ``` r
 path_temp()
-#> /tmp/Rtmp6nKPu6
+#> /tmp/Rtmp7j1EXS
 path_temp("does-not-exist")
-#> /tmp/Rtmp6nKPu6/does-not-exist
+#> /tmp/Rtmp7j1EXS/does-not-exist
 
 file_temp()
 #> /tmp/filedd461c46df20
 file_temp(ext = "png")
-#> /tmp/Rtmp6nKPu6/file1ec01986856c.png
+#> /tmp/Rtmp7j1EXS/file1ed7493e1642.png
 file_temp("image", ext = "png")
-#> /tmp/Rtmp6nKPu6/image1ec04f533bd.png
+#> /tmp/Rtmp7j1EXS/image1ed77e94127d.png
 
 
 # You can make the temp file paths deterministic

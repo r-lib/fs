@@ -23,7 +23,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/r-lib/fs/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/r-lib/fs/blob/v2.0.1/DESCRIPTION)
 
 Hester J, Wickham H, Csárdi G (2026). *fs: Cross-Platform File System
 Operations Based on 'libuv'*. R package version 2.0.1,
