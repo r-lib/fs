@@ -29,12 +29,8 @@ elif [ "$(uname)" = "Darwin" ]; then
     curl -sfL "https://autobrew.github.io/scripts/$PKG_BREW_NAME" > autobrew
     . ./autobrew
   fi
-fi
-
-# On LTS Linux servers we avoid the system dependency for now
-if test -f "/etc/redhat-release" && ! grep -Fq Fedora "/etc/redhat-release"; then
-  USE_BUNDLED_LIBUV=true
-elif test -f "/etc/os-release" && grep -Fq Ubuntu "/etc/os-release"; then
+elif test -f "/etc/redhat-release" && ! grep -Fq Fedora "/etc/redhat-release"; then
+  # RHEL 8/9 does not have libuv
   USE_BUNDLED_LIBUV=true
 fi
 

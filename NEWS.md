@@ -1,3 +1,7 @@
+# fs devel
+
+* Also prefer system libuv on Ubuntu Linux
+
 # fs 2.0.1
 
 * Fix bug in finding system version of libuv, now actually works :)
