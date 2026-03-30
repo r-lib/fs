@@ -1,5 +1,13 @@
 # Changelog
 
+## fs 2.0.1
+
+CRAN release: 2026-03-24
+
+- Fix bug in finding system version of libuv, now actually works :)
+
+- Workaround for MacOS if no cmake is available
+
 ## fs 2.0.0
 
 CRAN release: 2026-03-22
