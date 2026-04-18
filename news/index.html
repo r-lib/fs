@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,9 +38,15 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/r-lib/fs/blob/v2.0.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/r-lib/fs/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.1.0" id="fs-210">fs 2.1.0<a class="anchor" aria-label="anchor" href="#fs-210"></a></h2>
+<ul><li><p>Also prefer system libuv on Ubuntu Linux</p></li>
+<li><p>fs now works with libuv from r-wasm for webr</p></li>
+<li><p>On CRAN MacOS we can use the new local static libuv from the ‘recipe’: <a href="https://github.com/R-macos/recipes/pull/87" class="external-link uri">https://github.com/R-macos/recipes/pull/87</a></p></li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.0.1" id="fs-201">fs 2.0.1<a class="anchor" aria-label="anchor" href="#fs-201"></a></h2><p class="text-muted">CRAN release: 2026-03-24</p>
 <ul><li><p>Fix bug in finding system version of libuv, now actually works :)</p></li>
