@@ -22,13 +22,9 @@ if [ "$PKGCONFIG_CFLAGS" ] || [ "$PKGCONFIG_LIBS" ]; then
   echo "Found pkg-config cflags and libs!"
   PKG_CFLAGS=${PKGCONFIG_CFLAGS}
   PKG_LIBS=${PKGCONFIG_LIBS}
-elif [ "$(uname)" = "Darwin" ]; then
-  if [ `command -v cmake` ]; then
-    USE_BUNDLED_LIBUV=true
-  else
-    curl -sfL "https://autobrew.github.io/scripts/$PKG_BREW_NAME" > autobrew
-    . ./autobrew
-  fi
+elif [ "$(uname)" = "Darwin" ] && [ -z "$USE_BUNDLED_LIBUV" ]; then
+  curl -sfL "https://autobrew.github.io/scripts/$PKG_BREW_NAME" > autobrew
+  . ./autobrew
 elif test -f "/etc/redhat-release" && ! grep -Fq Fedora "/etc/redhat-release"; then
   # RHEL 8/9 does not have libuv
   USE_BUNDLED_LIBUV=true
