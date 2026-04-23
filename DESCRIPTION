@@ -35,8 +35,8 @@ Suggests:
     withr
 VignetteBuilder: 
     knitr
-SystemRequirements: libuv: libuv-devel (rpm) or libuv1-dev (deb). Alternatively
-    to build the vendored libuv 'cmake' is required. GNU make.
+SystemRequirements: libuv (libuv-devel on RPM, libuv1-dev on Debian/Ubuntu).
+    To build the vendored libuv, 'cmake' is required. GNU make.
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
 Config/usethis/last-upkeep: 2025-04-23
