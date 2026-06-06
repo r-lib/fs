@@ -23,7 +23,7 @@ the results will be that of the final file rather than the link.}
 }
 \value{
 A named logical vector, where the names give the paths. If the given
-object does not exist, \code{NA} is returned.
+object does not exist, \code{FALSE} is returned.
 }
 \description{
 Functions to test for file types

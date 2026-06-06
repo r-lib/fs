@@ -1,7 +1,7 @@
 #' Functions to test for file types
 #'
 #' @return A named logical vector, where the names give the paths. If the given
-#'   object does not exist, `NA` is returned.
+#'   object does not exist, `FALSE` is returned.
 #' @seealso [file_exists()], [dir_exists()] and [link_exists()] if you want
 #'   to ensure that the path also exists.
 #' @template fs
