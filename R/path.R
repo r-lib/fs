@@ -221,17 +221,35 @@ path_rel <- function(path, start = ".") {
   }
 
   start <- path_abs(path_expand(start))
+
+  if (is.na(start)) {
+    return(path_tidy(NA_character_))
+  }
+
+  path <- call_with_deduplication(path_rel_impl, path, start)
+
+  # Call path_tidy after deduplication to ensure the right output format.
+  path_tidy(path)
+}
+
+# Implementation of path_rel, deduplicated in actual usage above.
+path_rel_impl <- function(path, start) {
   path <- path_abs(path_expand(path))
 
-  path_rel_one <- function(p) {
-    common <- path_common(c(start, p))
-    starts <- path_split(start)[[1]]
-    paths <- path_split(p)[[1]]
+  starts <- path_split(start)[[1]]
 
-    i <- length(path_split(common)[[1]])
+  is_missing <- is.na(path)
+  split_paths_list <- path_split(path[!is_missing])
+
+  # path_rel_one() is called once per element of `path`, so its argument is a
+  # single vector of the split components of a single path.
+  path_rel_one <- function(path_parts) {
+    common_parts <- path_common_parts(starts, path_parts)
+
+    i <- length(common_parts)
     double_dot_part <- rep("..", (length(starts) - i))
-    if (i + 1 <= length(paths)) {
-      path_part <- paths[seq(i + 1, length(paths))]
+    if (i + 1 <= length(path_parts)) {
+      path_part <- path_parts[seq(i + 1, length(path_parts))]
     } else {
       path_part <- character()
     }
@@ -242,15 +260,10 @@ path_rel <- function(path, start = ".") {
 
     path_join(rels)
   }
-  if (is.na(start)) {
-    return(path_tidy(NA_character_))
-  }
 
-  is_missing <- is.na(path)
+  path[!is_missing] <- vapply(split_paths_list, path_rel_one, character(1))
 
-  path[!is_missing] <- vapply(path[!is_missing], path_rel_one, character(1))
-
-  path_tidy(path)
+  path
 }
 
 #' Finding the User Home Directory
@@ -460,22 +473,44 @@ path_common <- function(path) {
   path <- path_norm(path)
   path <- sort(path)
 
-  # remove . entries from the split paths
-  parts <- lapply(path_split(path), function(x) x[x != "."])
+  parts <- path_split(path)
   s1 <- parts[[1]]
   s2 <- parts[[length(parts)]]
-  common <- s1
-  for (i in seq_along(s1)) {
-    if (s1[[i]] != s2[[i]]) {
-      if (i == 1) {
-        common <- ""
-      } else {
-        common <- s1[seq(1, i - 1)]
-      }
-      break
-    }
+  common_parts <- path_common_parts(s1, s2)
+  path_join(common_parts)
+}
+
+#' Find the common leading components of two already-split paths
+#'
+#' This is the shared primitive behind both [path_common()] (which reduces
+#' its general, possibly-N-path input down to exactly two vectors -- the
+#' lexicographic min and max after `sort()` -- before comparing them) and
+#' [path_rel()] (which always compares exactly two paths: `start` and one
+#' element of `path`).
+#'
+#' @param s1,s2 Character vectors of path components, as returned by a single
+#'   element of [path_split()], e.g. `path_split("/foo/bar")[[1]]`, which is
+#'   `c("/foo", "bar")`. Need not be pre-normalized: `.` entries are stripped
+#'   internally, so it's safe to call this with components straight from
+#'   `path_split()` even if they haven't been through [path_norm()].
+#' @return A character vector of the shared leading components of `s1` and
+#'   `s2`, e.g. `path_common_parts(c("/foo", "bar"), c("/foo", "baz"))`
+#'   returns `"/foo"`.
+#' @noRd
+path_common_parts <- function(s1, s2) {
+  s1 <- s1[s1 != "."]
+  s2 <- s2[s2 != "."]
+
+  n <- min(length(s1), length(s2))
+  if (n == 0) {
+    return(character(0))
   }
-  path_join(common)
+
+  eq <- s1[seq_len(n)] == s2[seq_len(n)]
+  first_diff <- match(FALSE, eq)
+  i <- if (is.na(first_diff)) n else first_diff - 1L
+
+  if (i == 0) character(0) else s1[seq_len(i)]
 }
 
 #' Filter paths
