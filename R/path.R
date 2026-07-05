@@ -226,8 +226,6 @@ path_rel <- function(path, start = ".") {
     return(path_tidy(NA_character_))
   }
 
-  path <- path_abs(path_expand(path))
-
   unique_paths <- unique(path)
   unique_out <- path_rel_impl(unique_paths, start)
   path <- unique_out[match(path, unique_paths)]
@@ -238,6 +236,8 @@ path_rel <- function(path, start = ".") {
 
 # Implementation of path_rel, deduplicated in actual usage above.
 path_rel_impl <- function(path, start) {
+  path <- path_abs(path_expand(path))
+
   starts <- path_split(start)[[1]]
 
   is_missing <- is.na(path)
