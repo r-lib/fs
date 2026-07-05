@@ -221,13 +221,23 @@ path_rel <- function(path, start = ".") {
   }
 
   start <- path_abs(path_expand(start))
-  path <- path_abs(path_expand(path))
 
   if (is.na(start)) {
     return(path_tidy(NA_character_))
   }
 
+  path <- path_abs(path_expand(path))
 
+  unique_paths <- unique(path)
+  unique_out <- path_rel_impl(unique_paths, start)
+  path <- unique_out[match(path, unique_paths)]
+
+  # Call path_tidy after deduplication to ensure the right output format.
+  path_tidy(path)
+}
+
+# Implementation of path_rel, deduplicated in actual usage above.
+path_rel_impl <- function(path, start) {
   starts <- path_split(start)[[1]]
 
   is_missing <- is.na(path)
@@ -255,7 +265,7 @@ path_rel <- function(path, start = ".") {
 
   path[!is_missing] <- vapply(split_paths_list, path_rel_one, character(1))
 
-  path_tidy(path)
+  path
 }
 
 #' Finding the User Home Directory
