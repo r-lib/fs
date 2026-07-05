@@ -244,9 +244,9 @@ path_rel_impl <- function(path, start) {
   # path_rel_one() is called once per element of `path`, so its argument is a
   # single vector of the split components of a single path.
   path_rel_one <- function(path_parts) {
-    common <- path_common_parts(starts, path_parts)
+    common_parts <- path_common_parts(starts, path_parts)
 
-    i <- length(common)
+    i <- length(common_parts)
     double_dot_part <- rep("..", (length(starts) - i))
     if (i + 1 <= length(path_parts)) {
       path_part <- path_parts[seq(i + 1, length(path_parts))]
@@ -476,8 +476,8 @@ path_common <- function(path) {
   parts <- path_split(path)
   s1 <- parts[[1]]
   s2 <- parts[[length(parts)]]
-  common <- path_common_parts(s1, s2)
-  path_join(common)
+  common_parts <- path_common_parts(s1, s2)
+  path_join(common_parts)
 }
 
 #' Find the common leading components of two already-split paths
