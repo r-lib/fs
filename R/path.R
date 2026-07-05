@@ -226,7 +226,7 @@ path_rel <- function(path, start = ".") {
     return(path_tidy(NA_character_))
   }
 
-  path <- call_with_deduplication(path_rel_impl)(path, start)
+  path <- call_with_deduplication(path_rel_impl, path, start)
 
   # Call path_tidy after deduplication to ensure the right output format.
   path_tidy(path)
