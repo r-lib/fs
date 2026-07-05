@@ -226,9 +226,7 @@ path_rel <- function(path, start = ".") {
     return(path_tidy(NA_character_))
   }
 
-  unique_paths <- unique(path)
-  unique_out <- path_rel_impl(unique_paths, start)
-  path <- unique_out[match(path, unique_paths)]
+  path <- call_with_deduplication(path_rel_impl)(path, start)
 
   # Call path_tidy after deduplication to ensure the right output format.
   path_tidy(path)
