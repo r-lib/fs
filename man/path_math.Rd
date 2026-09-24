@@ -41,7 +41,8 @@ to split paths.}
 \value{
 The new path(s) in an \code{fs_path} object, which is a character vector
 that also has class \code{fs_path}. Except \code{path_split()}, which returns a list
-of character vectors of path components.
+of character vectors of path components. Returned paths are tidied through
+\code{\link[=path_tidy]{path_tidy()}}.
 }
 \description{
 All functions apart from \code{path_real()} are purely path computations, so the
