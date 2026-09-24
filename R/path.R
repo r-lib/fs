@@ -6,7 +6,8 @@
 #' @name path_math
 #' @return The new path(s) in an `fs_path` object, which is a character vector
 #'   that also has class `fs_path`. Except `path_split()`, which returns a list
-#'   of character vectors of path components.
+#'   of character vectors of path components. Returned paths are tidied through
+#'   [path_tidy()].
 #' @seealso [path_expand()] for expansion of user's home directory.
 #' @examples
 #' \dontshow{.old_wd <- setwd(tempdir())}
