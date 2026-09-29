@@ -136,6 +136,9 @@ file_types <- c(
 #' \dontshow{setwd(.old_wd)}
 file_chmod <- function(path, mode) {
   assert_no_missing(path)
+  if (length(path) == 0) {
+    return(invisible(path_tidy(path)))
+  }
   mode <- as_fs_perms(mode, mode = file_info(path)$permissions)
 
   old <- path_expand(path)

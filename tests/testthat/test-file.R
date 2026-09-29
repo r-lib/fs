@@ -177,6 +177,10 @@ if (!is_windows()) {
           class = "invalid_argument"
         )
       })
+
+      it("is a no-op with an empty vector of files (#471)", {
+        expect_equal(file_chmod(character(0), "644"), fs_path(character(0)))
+      })
     })
   })
 }
